@@ -1,0 +1,21 @@
+// ignore_for_file: constant_identifier_names
+
+part of 'app_pages.dart';
+// DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
+
+abstract class Routes {
+  Routes._();
+  static const CREATE_DEBITUR = _Paths.CREATE_DEBITUR;
+  static const SEARCH_NIK = _Paths.SEARCH_NIK;
+  static const HOME = _Paths.HOME;
+  static const PENGHASILAN_TETAP = _Paths.PENGHASILAN_TETAP;
+  static const PENGHASILAN_XTETAP = _Paths.PENGHASILAN_XTETAP;
+}
+
+abstract class _Paths {
+  static const CREATE_DEBITUR = '/create-debitur';
+  static const SEARCH_NIK = '/search-nik';
+  static const HOME = '/home';
+  static const PENGHASILAN_TETAP = '/penghasilan-tetap';
+  static const PENGHASILAN_XTETAP = '/penghasilan-xtetap';
+}

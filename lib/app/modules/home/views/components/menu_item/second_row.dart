@@ -1,12 +1,10 @@
-// ignore_for_file: avoid_print
-
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FirstRow extends StatelessWidget {
-  const FirstRow({
+class SecondRow extends StatelessWidget {
+  const SecondRow({
     Key? key,
   }) : super(key: key);
 
@@ -19,12 +17,56 @@ class FirstRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
+            onTap: () => Get.offAllNamed(Routes.PENGHASILAN_TETAP),
+            child: Stack(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                ),
+                const Positioned(
+                  right: 25,
+                  bottom: 40,
+                  child: Icon(
+                    Icons.currency_exchange_sharp,
+                    color: secondaryColor,
+                    size: 50,
+                  ),
+                ),
+                const Positioned(
+                  bottom: 10,
+                  right: 20,
+                  child: Text(
+                    'Fixed',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.normal,
+                      color: secondaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Material(
+          borderRadius: BorderRadius.circular(10),
+          color: primaryColor,
+          child: InkWell(
             onTap: () => Get.snackbar(
-              'Idiot',
-              'Anda sudah di home goblog',
+              'Coming Soon',
+              'This feature is coming soon',
               backgroundColor: primaryColor,
-              colorText: secondaryColor,
+              snackPosition: SnackPosition.TOP,
               duration: const Duration(seconds: 2),
+              colorText: secondaryColor,
+              icon: const Icon(
+                Icons.construction,
+                color: secondaryColor,
+              ),
             ),
             child: Stack(
               children: [
@@ -39,18 +81,18 @@ class FirstRow extends StatelessWidget {
                   right: 25,
                   bottom: 40,
                   child: Icon(
-                    Icons.home,
+                    Icons.account_balance_wallet,
                     color: secondaryColor,
                     size: 50,
                   ),
                 ),
                 const Positioned(
                   bottom: 10,
-                  right: 15,
+                  right: 12,
                   child: Text(
-                    'Home',
+                    'Non - Fixed',
                     style: TextStyle(
-                      fontSize: 25,
+                      fontSize: 15,
                       fontWeight: FontWeight.normal,
                       color: secondaryColor,
                     ),
@@ -64,46 +106,18 @@ class FirstRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
-            onTap: () => Get.toNamed(Routes.CREATE_DEBITUR),
-            child: Stack(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                const Positioned(
-                  right: 25,
-                  bottom: 40,
-                  child: Icon(
-                    Icons.group,
-                    color: secondaryColor,
-                    size: 50,
-                  ),
-                ),
-                const Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: Text(
-                    'Debitur',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.normal,
-                      color: secondaryColor,
-                    ),
-                  ),
-                ),
-              ],
+            onTap: () => Get.snackbar(
+              'Coming Soon',
+              'This feature is coming soon',
+              backgroundColor: primaryColor,
+              snackPosition: SnackPosition.TOP,
+              duration: const Duration(seconds: 2),
+              colorText: secondaryColor,
+              icon: const Icon(
+                Icons.construction,
+                color: secondaryColor,
+              ),
             ),
-          ),
-        ),
-        Material(
-          borderRadius: BorderRadius.circular(10),
-          color: primaryColor,
-          child: InkWell(
-            onTap: () => Get.toNamed(Routes.SEARCH_NIK),
             child: Stack(
               children: [
                 Container(
@@ -117,7 +131,7 @@ class FirstRow extends StatelessWidget {
                   right: 25,
                   bottom: 40,
                   child: Icon(
-                    Icons.search,
+                    Icons.upload_file,
                     color: secondaryColor,
                     size: 50,
                   ),
@@ -126,7 +140,7 @@ class FirstRow extends StatelessWidget {
                   bottom: 10,
                   right: 10,
                   child: Text(
-                    'Search',
+                    'Upload',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.normal,

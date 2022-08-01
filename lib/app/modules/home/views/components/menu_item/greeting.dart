@@ -66,7 +66,7 @@ class Greeting extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    'Display user name here',
+                    'Sonia Eka Putri',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,

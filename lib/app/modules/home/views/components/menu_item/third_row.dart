@@ -1,12 +1,10 @@
-// ignore_for_file: avoid_print
-
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FirstRow extends StatelessWidget {
-  const FirstRow({
+class ThirdRow extends StatelessWidget {
+  const ThirdRow({
     Key? key,
   }) : super(key: key);
 

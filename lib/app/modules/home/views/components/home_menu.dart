@@ -1,7 +1,8 @@
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/home/views/components/menu_item/first_row.dart';
 import 'package:akm/app/modules/home/views/components/menu_item/greeting.dart';
+import 'package:akm/app/modules/home/views/components/menu_item/second_row.dart';
+import 'package:akm/app/modules/home/views/components/menu_item/third_row.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
@@ -49,67 +50,11 @@ class HomeMenu extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ],
-        ),
+        const SecondRow(),
         const SizedBox(
           height: 20,
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-          ],
-        ),
+        const ThirdRow(),
         const SizedBox(
           height: 20,
         ),
@@ -121,7 +66,9 @@ class HomeMenu extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  '${controller.isDarkModeEnabled.value ? 'Dark' : 'Light'} Mode',
+                  controller.isDarkModeEnabled.value
+                      ? 'Dark Mode (Beta)'
+                      : 'Light Mode',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

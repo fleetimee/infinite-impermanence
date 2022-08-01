@@ -1,8 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: unnecessary_overrides
 
 class HomeController extends GetxController {
+  @override
+  void onInit() {
+    _getThemeStatus();
+    super.onInit();
+  }
+
+  RxBool isDarkModeEnabled = false.obs;
+
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 12) {
@@ -12,5 +22,21 @@ class HomeController extends GetxController {
       return 'Afternoon';
     }
     return 'Evening';
+  }
+
+  final Future<SharedPreferences> initPref = SharedPreferences.getInstance();
+
+  saveThemeStatus() async {
+    SharedPreferences pref = await initPref;
+    pref.setBool('theme', isDarkModeEnabled.value);
+  }
+
+  _getThemeStatus() async {
+    var isLight = initPref.then((SharedPreferences prefs) {
+      return prefs.getBool('theme') ?? true;
+    }).obs;
+    isDarkModeEnabled.value = (await isLight.value);
+    Get.changeThemeMode(
+        isDarkModeEnabled.value ? ThemeMode.dark : ThemeMode.light);
   }
 }

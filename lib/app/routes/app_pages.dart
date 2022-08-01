@@ -45,11 +45,13 @@ class AppPages {
       name: _Paths.PENGHASILAN_TETAP,
       page: () => const PenghasilanTetapView(),
       binding: PenghasilanTetapBinding(),
+      transition: Transition.fadeIn,
     ),
     GetPage(
       name: _Paths.PENGHASILAN_XTETAP,
       page: () => const PenghasilanXtetapView(),
       binding: PenghasilanXtetapBinding(),
+      transition: Transition.fadeIn,
     ),
   ];
 }

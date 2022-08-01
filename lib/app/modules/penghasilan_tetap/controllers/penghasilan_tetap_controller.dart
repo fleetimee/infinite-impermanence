@@ -15,15 +15,13 @@ class PenghasilanTetapController extends GetxController {
     GlobalKey<FormBuilderState>(),
   ];
 
+  /// The above function calculates the remaining income of the applicant.
   void calCalculateSisaPenghasilan() {
-    final penghasilan = double.tryParse(penghasilanPemohonController.text);
-    final pengeluaran = double.tryParse(potonganGajiController.text);
+    final penghasilan = int.tryParse(penghasilanPemohonController.text);
+    final pengeluaran = int.tryParse(potonganGajiController.text);
     final sisaPenghasilan = penghasilan! - pengeluaran!;
     sisaPenghasilanController.text = sisaPenghasilan.toString();
   }
-
-  RxInt firstFieldValue = 0.obs;
-  RxInt secondFieldValue = 0.obs;
 
   // Stepper
   final currentStep = 0.obs;

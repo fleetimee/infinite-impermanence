@@ -14,15 +14,22 @@ class HomeView extends GetView<HomeController> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
+            leading: (ModalRoute.of(context)?.canPop ?? false)
+                ? const BackButton()
+                : null,
             pinned: true,
             snap: false,
             floating: false,
             expandedHeight: 250,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text('Home'),
-              background: Image.asset(
-                'assets/images/home/appbar.jpg',
-                fit: BoxFit.cover,
+              background: Obx(
+                () => Image.asset(
+                  controller.isDarkModeEnabled.value
+                      ? 'assets/images/home/appbar_light.jpg'
+                      : 'assets/images/home/appbar_dark.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

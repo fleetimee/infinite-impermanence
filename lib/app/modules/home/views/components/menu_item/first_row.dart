@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +97,7 @@ class FirstRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
-            onTap: () => print('clicked'),
+            onTap: () => Get.toNamed(Routes.SEARCH_NIK),
             child: Stack(
               children: [
                 Container(
@@ -109,7 +111,7 @@ class FirstRow extends StatelessWidget {
                   right: 30,
                   bottom: 40,
                   child: Icon(
-                    Icons.home,
+                    Icons.search,
                     color: secondaryColor,
                     size: 50,
                   ),
@@ -118,7 +120,7 @@ class FirstRow extends StatelessWidget {
                   bottom: 15,
                   right: 15,
                   child: Text(
-                    'Home',
+                    'Search',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.normal,

@@ -1,7 +1,10 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/common/waves.dart';
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 class Greeting extends StatelessWidget {
   Greeting({Key? key}) : super(key: key);
@@ -18,6 +21,18 @@ class Greeting extends StatelessWidget {
           decoration: BoxDecoration(
             color: primaryColor,
             borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        SizedBox(
+          height: 80,
+          child: WaveWidget(
+            config: CustomConfig(
+              colors: WavesSettings.waveColors,
+              heightPercentages: WavesSettings.waveHeightPercentages,
+              durations: WavesSettings.waveDurations,
+            ),
+            waveAmplitude: 10,
+            size: const Size(double.infinity, double.infinity),
           ),
         ),
         Container(
@@ -66,17 +81,19 @@ class Greeting extends StatelessWidget {
         Positioned(
           right: -45,
           top: -40,
-          child: Container(
-            padding: const EdgeInsets.all(30),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: secondaryColor,
-                width: 18,
-              ),
-            ),
-          ),
+          child: Obx(() => Container(
+                padding: const EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: controller.isDarkModeEnabled.value
+                        ? const Color.fromARGB(255, 48, 48, 48)
+                        : secondaryColor,
+                    width: 18,
+                  ),
+                ),
+              )),
         )
       ],
     );

@@ -41,13 +41,6 @@ class StepTwoForm extends StatelessWidget {
             height: 25,
           ),
           FormBuilderTextField(
-            onChanged: (String? value) {
-              if (value!.isEmpty) {
-                controller.firstFieldValue.value = 0;
-              } else {
-                controller.firstFieldValue.value = int.parse(value);
-              }
-            },
             controller: controller.penghasilanPemohonController,
             name: 'Penghasilan Pemohon',
             decoration: const InputDecoration(
@@ -65,13 +58,6 @@ class StepTwoForm extends StatelessWidget {
             height: 30,
           ),
           FormBuilderTextField(
-            onChanged: (String? value) {
-              if (value!.isEmpty) {
-                controller.secondFieldValue.value = 0;
-              } else {
-                controller.secondFieldValue.value = int.parse(value);
-              }
-            },
             controller: controller.potonganGajiController,
             name: 'Potongan Gaji',
             decoration: const InputDecoration(

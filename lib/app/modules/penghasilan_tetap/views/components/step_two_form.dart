@@ -13,7 +13,7 @@ class StepTwoForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: controller.formKeys[1],
+      key: controller.formKeys[2],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[

@@ -10,6 +10,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const PENGHASILAN_TETAP = _Paths.PENGHASILAN_TETAP;
   static const PENGHASILAN_XTETAP = _Paths.PENGHASILAN_XTETAP;
+  static const UPLOADS = _Paths.UPLOADS;
 }
 
 abstract class _Paths {
@@ -18,4 +19,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const PENGHASILAN_TETAP = '/penghasilan-tetap';
   static const PENGHASILAN_XTETAP = '/penghasilan-xtetap';
+  static const UPLOADS = '/uploads';
 }

@@ -1,18 +1,18 @@
-import 'package:akm/app/modules/penghasilan_tetap/controllers/penghasilan_tetap_controller.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
-class StepThreeForm extends StatelessWidget {
-  StepThreeForm({Key? key}) : super(key: key);
+import 'package:akm/app/modules/penghasilan_xtetap/controllers/penghasilan_xtetap_controller.dart';
 
-  final controller = Get.put(PenghasilanTetapController());
+class StepTwoForm extends StatelessWidget {
+  StepTwoForm({Key? key}) : super(key: key);
+
+  final controller = Get.put(PenghasilanXtetapController());
 
   @override
   Widget build(BuildContext context) {
     return FormBuilder(
-      key: controller.formKeys[3],
+      key: controller.formKeys[2],
       child: Column(
         children: <Widget>[
           const Text(

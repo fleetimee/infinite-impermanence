@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
+import 'package:akm/app/models/Debitur.dart';
+import 'package:akm/app/service/dropdown_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,18 @@ class PenghasilanTetapController extends GetxController {
   // Form Related
   // final formKey = GlobalKey<FormBuilderState>();
 
+  //onInit
+  @override
+  void onInit() {
+    getData();
+    super.onInit();
+  }
+
+  // List debiturDropdown = getData() as List;
+  // List debiturList = [];
+
   List<GlobalKey<FormBuilderState>> formKeys = [
+    GlobalKey<FormBuilderState>(),
     GlobalKey<FormBuilderState>(),
     GlobalKey<FormBuilderState>(),
     GlobalKey<FormBuilderState>(),
@@ -69,7 +82,7 @@ class PenghasilanTetapController extends GetxController {
         Step(
             state: currentStep > 0 ? StepState.complete : StepState.indexed,
             title: const Icon(Icons.check),
-            content: const StepZeroForm(),
+            content: StepZeroForm(),
             isActive: currentStep >= 0),
         Step(
           state: currentStep > 1 ? StepState.complete : StepState.indexed,
@@ -90,4 +103,7 @@ class PenghasilanTetapController extends GetxController {
           isActive: currentStep >= 3,
         ),
       ];
+
+  // Fetch Debitur Name to dropdown
+  final debiturName = <Debitur>[];
 }

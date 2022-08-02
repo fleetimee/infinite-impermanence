@@ -1,4 +1,4 @@
-import 'package:akm/app/modules/penghasilan_tetap/controllers/penghasilan_tetap_controller.dart';
+import 'package:akm/app/modules/penghasilan_xtetap/controllers/penghasilan_xtetap_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class StepOneForm extends StatelessWidget {
   StepOneForm({Key? key}) : super(key: key);
 
-  final controller = Get.put(PenghasilanTetapController());
+  final controller = Get.put(PenghasilanXtetapController());
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class StepOneForm extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const Text(
-            'Pengajuan Penghasilan Tetap',
+            'Pengajuan',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w200,

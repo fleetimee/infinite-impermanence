@@ -56,17 +56,8 @@ class SecondRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
-            onTap: () => Get.snackbar(
-              'Coming Soon',
-              'This feature is coming soon',
-              backgroundColor: primaryColor,
-              snackPosition: SnackPosition.TOP,
-              duration: const Duration(seconds: 2),
-              colorText: secondaryColor,
-              icon: const Icon(
-                Icons.construction,
-                color: secondaryColor,
-              ),
+            onTap: () => Get.offAllNamed(
+              Routes.PENGHASILAN_XTETAP,
             ),
             child: Stack(
               children: [
@@ -106,18 +97,7 @@ class SecondRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
-            onTap: () => Get.snackbar(
-              'Coming Soon',
-              'This feature is coming soon',
-              backgroundColor: primaryColor,
-              snackPosition: SnackPosition.TOP,
-              duration: const Duration(seconds: 2),
-              colorText: secondaryColor,
-              icon: const Icon(
-                Icons.construction,
-                color: secondaryColor,
-              ),
-            ),
+            onTap: () => Get.offAllNamed(Routes.UPLOADS),
             child: Stack(
               children: [
                 Container(

@@ -65,6 +65,14 @@ class SideMenu extends StatelessWidget {
             },
             leading: const Icon(Icons.attach_money_outlined),
           ),
+          ListTile(
+            title: const Text('Upload'),
+            onTap: () {
+              Get.offAllNamed(Routes.UPLOADS);
+              Get.back();
+            },
+            leading: const Icon(Icons.cloud_upload),
+          ),
         ],
       ),
     );

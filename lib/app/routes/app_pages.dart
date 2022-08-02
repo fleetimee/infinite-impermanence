@@ -10,6 +10,8 @@ import '../modules/penghasilan_xtetap/bindings/penghasilan_xtetap_binding.dart';
 import '../modules/penghasilan_xtetap/views/penghasilan_xtetap_view.dart';
 import '../modules/search_nik/bindings/search_nik_binding.dart';
 import '../modules/search_nik/views/search_nik_view.dart';
+import '../modules/uploads/bindings/uploads_binding.dart';
+import '../modules/uploads/views/uploads_view.dart';
 
 // ignore_for_file: prefer_const_constructors
 
@@ -52,6 +54,11 @@ class AppPages {
       page: () => const PenghasilanXtetapView(),
       binding: PenghasilanXtetapBinding(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: _Paths.UPLOADS,
+      page: () => const UploadsView(),
+      binding: UploadsBinding(),
     ),
   ];
 }

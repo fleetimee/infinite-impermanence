@@ -7,10 +7,11 @@ import 'package:http/http.dart' as http;
 
 import 'package:akm/app/models/Debitur.dart';
 
-const baseUrl = 'http://10.0.2.2:3000/';
-final httpClient = http.Client();
+import '../common/constant.dart';
 
 class ApiService {
+  final httpClient = http.Client();
+
   Future<Debitur> addDebitur(body) async {
     const apiUrl = '${baseUrl}debiturs';
     final response = await httpClient

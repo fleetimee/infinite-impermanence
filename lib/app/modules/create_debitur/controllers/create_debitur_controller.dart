@@ -34,6 +34,7 @@ class CreateDebiturController extends GetxController {
   final genderValue = ''.obs;
   final agamaController = ''.obs;
   final hubunganValue = ''.obs;
+  final tanggalLahirValue = ''.obs;
 
   // Data Pribadi Value Controller
   final nikController = TextEditingController();
@@ -44,9 +45,10 @@ class CreateDebiturController extends GetxController {
   final namaIbuController = TextEditingController();
 
   // Data Kontak Value Controller
-  final noHpIndonesiaController = MaskedTextController(mask: '(0000) 00-0000');
+  final noHpIndonesiaController =
+      MaskedTextController(mask: '(0000) 0000-0000');
   final noSelularIndonesiaController =
-      MaskedTextController(mask: '(000) 000-0000');
+      MaskedTextController(mask: '(000) 0000-0000');
   final emailController = TextEditingController();
 
   // Data Finansial Value Controller
@@ -77,6 +79,12 @@ class CreateDebiturController extends GetxController {
   final rtController = TextEditingController();
   final rwController = TextEditingController();
   final kodePosController = TextEditingController();
+
+  // Location value
+  final provinsiValue = ''.obs;
+  final kabupatenValue = ''.obs;
+  final kecamatanValue = ''.obs;
+  final kelurahanValue = ''.obs;
 
   // Send Data to the server
   void sendData() {

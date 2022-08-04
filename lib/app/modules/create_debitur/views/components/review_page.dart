@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/create_debitur/views/components/debitur_done.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -36,7 +37,8 @@ class ReviewPage extends StatelessWidget {
           summaryResult('Nama', controller.namaController),
           summaryResult('NIK', controller.nikController),
           summaryResult('Alamat', controller.alamatController),
-          summaryResult('Tempat Lahir', controller.tempatLahirController),
+          summaryResultString(
+              'Tempat Lahir', controller.tanggalLahirValue.value),
           summaryResult('Tanggal Lahir', controller.tanggalLahirController),
           summaryResult('Nama Ibu', controller.namaIbuController),
           summaryResultString('Jenis Kelamin', controller.genderValue.value),
@@ -77,10 +79,14 @@ class ReviewPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          summaryResult('Provinsi', controller.provinsiController),
-          summaryResult('Kabupaten', controller.kabupatenController),
-          summaryResult('Kecamatan', controller.kecamatanController),
-          summaryResult('Kelurahan', controller.kelurahanController),
+          // summaryResult('Provinsi', controller.provinsiController),
+          // summaryResult('Kabupaten', controller.kabupatenController),
+          // summaryResult('Kecamatan', controller.kecamatanController),
+          // summaryResult('Kelurahan', controller.kelurahanController),
+          summaryResultString('Provinsi', controller.provinsiValue.value),
+          summaryResultString('Kabupaten', controller.kabupatenValue.value),
+          summaryResultString('Kecamatan', controller.kecamatanValue.value),
+          summaryResultString('Kelurahan', controller.kelurahanValue.value),
           summaryResult('RT', controller.rtController),
           summaryResult('RW', controller.rtController),
           summaryResult('Kode Pos', controller.kodePosController),
@@ -94,8 +100,12 @@ class ReviewPage extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   onPressed: () {
-                    controller.sendData();
-                    Get.back();
+                    // controller.sendData();
+                    // Get.back();
+                    Get.to(
+                      const SuccessScreen(),
+                      transition: Transition.size,
+                    );
                   },
                   child: const Text('Submit'),
                 ),

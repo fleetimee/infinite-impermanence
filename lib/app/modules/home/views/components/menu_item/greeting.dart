@@ -66,7 +66,7 @@ class Greeting extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    'Sonia Eka Putri',
+                    'Aulia Octavia',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,

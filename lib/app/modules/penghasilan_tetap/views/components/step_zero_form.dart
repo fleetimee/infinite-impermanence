@@ -1,6 +1,7 @@
 import 'package:akm/app/modules/penghasilan_tetap/controllers/penghasilan_tetap_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
 
 class StepZeroForm extends StatelessWidget {
@@ -37,22 +38,50 @@ class StepZeroForm extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
-          FormBuilderDropdown(
+          // FormBuilderDropdown(
+          //   decoration: const InputDecoration(
+          //     labelText: 'Pilih Debitur',
+          //     border: OutlineInputBorder(),
+          //     labelStyle: TextStyle(fontSize: 18),
+          //   ),
+          //   name: 'Nama Debitur',
+          //   items: ['Item 1', 'Item 2', 'Item 3'].map((String value) {
+          //     return DropdownMenuItem(
+          //       value: value,
+          //       child: Text(value),
+          //     );
+          //   }).toList(),
+          // )
+          FormBuilderSearchableDropdown<String>(
+            popupProps: const PopupProps.menu(showSearchBox: true),
+            name: 'searchable_dropdown_online',
+            onChanged: _onChanged,
+            asyncItems: (filter) async {
+              await Future.delayed(const Duration(seconds: 1));
+              return allDebiturs
+                  .where((element) =>
+                      element.toLowerCase().contains(filter.toLowerCase()))
+                  .toList();
+            },
             decoration: const InputDecoration(
-              labelText: 'Pilih Debitur',
               border: OutlineInputBorder(),
-              labelStyle: TextStyle(fontSize: 18),
+              hintText: 'Nama Debitur',
+              labelText: 'Nama Debitur',
+              prefixIcon: Icon(Icons.wifi_protected_setup_outlined),
             ),
-            name: 'Nama Debitur',
-            items: ['Item 1', 'Item 2', 'Item 3'].map((String value) {
-              return DropdownMenuItem(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
+void _onChanged(dynamic val) => debugPrint(val.toString());
+
+const allDebiturs = [
+  'Novian Andika',
+  'Sonia Eka P',
+  'Lussy Ika',
+  'Meliya Aja',
+  'Monkey D Luffy',
+];

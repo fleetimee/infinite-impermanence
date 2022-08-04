@@ -56,8 +56,8 @@ class StepOneForm extends StatelessWidget {
                 child: Text('Adendum'),
               ),
               DropdownMenuItem(
-                value: 'REVISI',
-                child: Text('Revisi'),
+                value: 'RESTRUK',
+                child: Text('Restrukturisasi'),
               ),
             ],
             onChanged: (String? newValue) {
@@ -103,8 +103,8 @@ class StepOneForm extends StatelessWidget {
                 child: Text('Modal Usaha'),
               ),
               DropdownMenuItem(
-                value: 'REVISI',
-                child: Text('Revisi'),
+                value: 'RESTRUK',
+                child: Text('Restrukturisasi'),
               ),
             ],
             onChanged: (String? newValue) {

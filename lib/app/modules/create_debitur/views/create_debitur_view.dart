@@ -2,6 +2,7 @@ import 'package:akm/app/widget/drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import 'package:akm/app/common/style.dart';
@@ -23,10 +24,11 @@ class CreateDebiturView extends GetView<CreateDebiturController> {
       body: ListView(
         shrinkWrap: true,
         children: [
-          Image.asset(
-            'assets/images/add_debitur_section/hero_image.png',
-            alignment: Alignment.center,
+          GifView.asset(
+            'assets/images/add_debitur_section/hero_motion.gif',
+            frameRate: 30,
             fit: BoxFit.cover,
+            loop: false,
             height: 200,
           ),
           const Divider(
@@ -41,54 +43,82 @@ class CreateDebiturView extends GetView<CreateDebiturController> {
                   controller.currentStep.value = step;
                 },
                 type: StepperType.vertical,
+                // onStepContinue: () {
+                //   final isLastStep = controller.currentStep.value ==
+                //       controller.getSteps().length - 1;
+
+                //   // Validate form
+                //   if (controller
+                //       .formKeys[controller.currentStep.value].currentState!
+                //       .validate()) {
+                //     if (isLastStep) {
+                //       // Validate all form before submit
+                //       if (!controller.formKeys
+                //           .every((key) => key.currentState!.validate())) {
+                //         // show error snackbar
+                //         Get.snackbar(
+                //           'Error',
+                //           'Please fill all form',
+                //           snackPosition: SnackPosition.BOTTOM,
+                //           backgroundColor: Colors.red,
+                //           colorText: Colors.white,
+                //           icon: const Icon(
+                //             Icons.error,
+                //             color: Colors.white,
+                //           ),
+                //         );
+                //       } else {
+                //         showBarModalBottomSheet(
+                //             shape: const RoundedRectangleBorder(
+                //               borderRadius: BorderRadius.vertical(
+                //                 top: Radius.circular(25.0),
+                //               ),
+                //             ),
+                //             backgroundColor: secondaryColor,
+                //             bounce: true,
+                //             elevation: 10.0,
+                //             context: context,
+                //             builder: (context) {
+                //               return ReviewPage();
+                //             });
+                //       }
+                //     } else {
+                //       if (controller.currentStep < 5) {
+                //         controller.currentStep.value += 1;
+                //       } else {
+                //         controller.currentStep.value = 0;
+                //       }
+                //     }
+                //   }
+                // },
                 onStepContinue: () {
                   final isLastStep = controller.currentStep.value ==
                       controller.getSteps().length - 1;
 
                   // Validate form
-                  if (controller
-                      .formKeys[controller.currentStep.value].currentState!
-                      .validate()) {
-                    if (isLastStep) {
-                      // Validate all form before submit
-                      if (!controller.formKeys
-                          .every((key) => key.currentState!.validate())) {
-                        // show error snackbar
-                        Get.snackbar(
-                          'Error',
-                          'Please fill all form',
-                          snackPosition: SnackPosition.BOTTOM,
-                          backgroundColor: Colors.red,
-                          colorText: Colors.white,
-                          icon: const Icon(
-                            Icons.error,
-                            color: Colors.white,
+                  if (isLastStep) {
+                    showBarModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(25.0),
                           ),
-                        );
-                      } else {
-                        showBarModalBottomSheet(
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                top: Radius.circular(25.0),
-                              ),
-                            ),
-                            backgroundColor: secondaryColor,
-                            bounce: true,
-                            elevation: 10.0,
-                            context: context,
-                            builder: (context) {
-                              return ReviewPage();
-                            });
-                      }
+                        ),
+                        backgroundColor: secondaryColor,
+                        bounce: true,
+                        elevation: 10.0,
+                        context: context,
+                        builder: (context) {
+                          return ReviewPage();
+                        });
+                  } else {
+                    if (controller.currentStep < 5) {
+                      controller.currentStep.value += 1;
                     } else {
-                      if (controller.currentStep < 5) {
-                        controller.currentStep.value += 1;
-                      } else {
-                        controller.currentStep.value = 0;
-                      }
+                      controller.currentStep.value = 0;
                     }
                   }
                 },
+
                 onStepCancel: () {
                   if (controller.currentStep > 0) {
                     controller.currentStep.value -= 1;

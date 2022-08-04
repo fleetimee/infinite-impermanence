@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_if_null_operators, unnecessary_null_comparison
+
 import 'dart:convert';
 
 // To parse this JSON data, do
@@ -65,11 +67,11 @@ class Debitur {
   String email;
   String namaIbu;
   String relationship;
-  String? namaPasangan;
-  String? pekerjaanPasangan;
+  String namaPasangan;
+  String pekerjaanPasangan;
   DateTime? tglLahirPasangan;
-  String? tempatLahirPasangan;
-  int? nikPasangan;
+  String tempatLahirPasangan;
+  int nikPasangan;
   String totalIncome;
   String bidangUsaha;
   int jumlahTanggungan;
@@ -99,12 +101,20 @@ class Debitur {
         noSeluler: json["no_seluler"],
         email: json["email"],
         namaIbu: json["nama_ibu"],
-        relationship: json["relationship"],
-        namaPasangan: json["nama_pasangan"],
-        pekerjaanPasangan: json["pekerjaan_pasangan"],
-        tglLahirPasangan: DateTime.parse(json["tgl_lahir_pasangan"]),
-        tempatLahirPasangan: json["tempat_lahir_pasangan"],
-        nikPasangan: json["nik_pasangan"],
+        relationship:
+            json["relationship"] == null ? null : json["relationship"],
+        namaPasangan:
+            json["nama_pasangan"] == null ? null : json["nama_pasangan"],
+        pekerjaanPasangan: json["pekerjaan_pasangan"] == null
+            ? null
+            : json["pekerjaan_pasangan"],
+        tglLahirPasangan: json["tgl_lahir_pasangan"] == null
+            ? null
+            : DateTime.parse(json["tgl_lahir_pasangan"]),
+        tempatLahirPasangan: json["tempat_lahir_pasangan"] == null
+            ? null
+            : json["tempat_lahir_pasangan"],
+        nikPasangan: json["nik_pasangan"] == null ? null : json["nik_pasangan"],
         totalIncome: json["total_income"],
         bidangUsaha: json["bidang_usaha"],
         jumlahTanggungan: json["jumlah_tanggungan"],
@@ -137,13 +147,16 @@ class Debitur {
         "no_seluler": noSeluler,
         "email": email,
         "nama_ibu": namaIbu,
-        "relationship": relationship,
-        "nama_pasangan": namaPasangan,
-        "pekerjaan_pasangan": pekerjaanPasangan,
-        "tgl_lahir_pasangan":
-            "${tglLahirPasangan?.year.toString().padLeft(4, '0')}-${tglLahirPasangan!.month.toString().padLeft(2, '0')}-${tglLahirPasangan?.day.toString().padLeft(2, '0')}",
-        "tempat_lahir_pasangan": tempatLahirPasangan,
-        "nik_pasangan": nikPasangan,
+        "relationship": relationship == null ? null : relationship,
+        "nama_pasangan": namaPasangan == null ? null : namaPasangan,
+        "pekerjaan_pasangan":
+            pekerjaanPasangan == null ? null : pekerjaanPasangan,
+        "tgl_lahir_pasangan": tglLahirPasangan == null
+            ? null
+            : "${tglLahirPasangan?.year.toString().padLeft(4, '0')}-${tglLahirPasangan?.month.toString().padLeft(2, '0')}-${tglLahirPasangan?.day.toString().padLeft(2, '0')}",
+        "tempat_lahir_pasangan":
+            tempatLahirPasangan == null ? null : tempatLahirPasangan,
+        "nik_pasangan": nikPasangan == null ? null : nikPasangan,
         "total_income": totalIncome,
         "bidang_usaha": bidangUsaha,
         "jumlah_tanggungan": jumlahTanggungan,

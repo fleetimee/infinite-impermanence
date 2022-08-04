@@ -17,12 +17,96 @@ class ThirdRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
+            onTap: () => Get.offAllNamed(Routes.PRO_PENGAJUAN_APPROVE),
+            child: Stack(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                ),
+                const Positioned(
+                  right: 25,
+                  bottom: 40,
+                  child: Icon(
+                    Icons.handshake,
+                    color: secondaryColor,
+                    size: 50,
+                  ),
+                ),
+                const Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: Text(
+                    'Approval',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal,
+                      color: secondaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Material(
+          borderRadius: BorderRadius.circular(10),
+          color: primaryColor,
+          child: InkWell(
+            onTap: () => Get.offAllNamed(Routes.AGUNAN),
+            child: Stack(
+              children: [
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                ),
+                const Positioned(
+                  right: 25,
+                  bottom: 40,
+                  child: Icon(
+                    Icons.car_rental_outlined,
+                    color: secondaryColor,
+                    size: 50,
+                  ),
+                ),
+                const Positioned(
+                  bottom: 10,
+                  right: 10,
+                  child: Text(
+                    'Agunan',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.normal,
+                      color: secondaryColor,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        Material(
+          borderRadius: BorderRadius.circular(10),
+          color: primaryColor,
+          child: InkWell(
             onTap: () => Get.snackbar(
-              'Idiot',
-              'Anda sudah di home goblog',
+              // Add work in progress snackbar
+              'Work in progress',
+              'This feature is still under development',
               backgroundColor: primaryColor,
               colorText: secondaryColor,
-              duration: const Duration(seconds: 2),
+              snackPosition: SnackPosition.TOP,
+              duration: Duration(seconds: 2),
+              icon: const Icon(
+                Icons.construction,
+                color: Colors.white,
+              ),
             ),
             child: Stack(
               children: [
@@ -37,46 +121,7 @@ class ThirdRow extends StatelessWidget {
                   right: 25,
                   bottom: 40,
                   child: Icon(
-                    Icons.home,
-                    color: secondaryColor,
-                    size: 50,
-                  ),
-                ),
-                const Positioned(
-                  bottom: 10,
-                  right: 15,
-                  child: Text(
-                    'Home',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.normal,
-                      color: secondaryColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Material(
-          borderRadius: BorderRadius.circular(10),
-          color: primaryColor,
-          child: InkWell(
-            onTap: () => Get.toNamed(Routes.CREATE_DEBITUR),
-            child: Stack(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                const Positioned(
-                  right: 25,
-                  bottom: 40,
-                  child: Icon(
-                    Icons.group,
+                    Icons.settings,
                     color: secondaryColor,
                     size: 50,
                   ),
@@ -85,46 +130,7 @@ class ThirdRow extends StatelessWidget {
                   bottom: 10,
                   right: 10,
                   child: Text(
-                    'Debitur',
-                    style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.normal,
-                      color: secondaryColor,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Material(
-          borderRadius: BorderRadius.circular(10),
-          color: primaryColor,
-          child: InkWell(
-            onTap: () => Get.toNamed(Routes.SEARCH_NIK),
-            child: Stack(
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: const BoxDecoration(
-                    color: Colors.transparent,
-                  ),
-                ),
-                const Positioned(
-                  right: 25,
-                  bottom: 40,
-                  child: Icon(
-                    Icons.search,
-                    color: secondaryColor,
-                    size: 50,
-                  ),
-                ),
-                const Positioned(
-                  bottom: 10,
-                  right: 10,
-                  child: Text(
-                    'Search',
+                    'Setting',
                     style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.normal,

@@ -20,9 +20,13 @@ class FirstRow extends StatelessWidget {
           color: primaryColor,
           child: InkWell(
             onTap: () => Get.snackbar(
-              'Idiot',
-              'Anda sudah di home goblog',
+              'Whoops',
+              'And berada di home',
               backgroundColor: primaryColor,
+              icon: const Icon(
+                Icons.info,
+                color: Colors.white,
+              ),
               colorText: secondaryColor,
               duration: const Duration(seconds: 2),
             ),

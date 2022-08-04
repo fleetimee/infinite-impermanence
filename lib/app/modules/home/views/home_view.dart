@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/views/components/home_menu.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,21 @@ class HomeView extends GetView<HomeController> {
             floating: false,
             expandedHeight: 250,
             flexibleSpace: FlexibleSpaceBar(
-              title: const Text('Home'),
+              title: const Text(
+                'Home',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  // color: secondaryColor,
+                  fontSize: 40,
+                  shadows: [
+                    Shadow(
+                      blurRadius: 10,
+                      color: Colors.black,
+                      offset: Offset(5, 5),
+                    ),
+                  ],
+                ),
+              ),
               background: Obx(
                 () => Image.asset(
                   controller.isDarkModeEnabled.value

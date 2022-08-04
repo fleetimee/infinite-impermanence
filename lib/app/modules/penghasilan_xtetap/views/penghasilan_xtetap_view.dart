@@ -1,7 +1,10 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/widget/drawer.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
 
 import '../controllers/penghasilan_xtetap_controller.dart';
 
@@ -19,10 +22,11 @@ class PenghasilanXtetapView extends GetView<PenghasilanXtetapController> {
         shrinkWrap: true,
         padding: const EdgeInsets.all(16),
         children: <Widget>[
-          Image.asset(
-            'assets/images/fixed_nonfixed/nonfixed_fixed.png',
-            alignment: Alignment.center,
-            fit: BoxFit.fill,
+          GifView.asset(
+            'assets/images/fixed_nonfixed/nonfixed.gif',
+            frameRate: 30,
+            fit: BoxFit.cover,
+            loop: false,
           ),
           const Divider(
             color: Colors.black,
@@ -47,6 +51,25 @@ class PenghasilanXtetapView extends GetView<PenghasilanXtetapController> {
                       }
                     },
                     onStepContinue: () {
+                      final isLastStep = controller.currentStep.value ==
+                          controller.getSteps().length - 1;
+
+                      if (isLastStep) {
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.SUCCES,
+                          dialogBackgroundColor: primaryColor,
+                          titleTextStyle: const TextStyle(
+                            color: secondaryColor,
+                            fontSize: 20,
+                          ),
+                          animType: AnimType.BOTTOMSLIDE,
+                          title: 'Berhasil Disetujui',
+                          btnOkOnPress: () {},
+                          autoHide: const Duration(seconds: 3),
+                        ).show();
+                      }
+
                       if (controller.currentStep <
                           controller.getSteps().length - 1) {
                         controller.currentStep.value += 1;

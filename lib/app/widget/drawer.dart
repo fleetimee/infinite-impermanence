@@ -1,4 +1,5 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/create_debitur/views/components/debitur_done.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -72,6 +73,25 @@ class SideMenu extends StatelessWidget {
               Get.back();
             },
             leading: const Icon(Icons.cloud_upload),
+          ),
+          ListTile(
+            title: const Text('Logout'),
+            onTap: () {
+              Get.offAll(
+                const SuccessScreen(),
+                transition: Transition.zoom,
+              );
+              Get.back();
+            },
+            leading: const Icon(Icons.exit_to_app),
+          ),
+          ListTile(
+            title: const Text('Approve Pengajuan'),
+            onTap: () {
+              Get.offAllNamed(Routes.PRO_PENGAJUAN_APPROVE);
+              Get.back();
+            },
+            leading: const Icon(Icons.done),
           ),
         ],
       ),

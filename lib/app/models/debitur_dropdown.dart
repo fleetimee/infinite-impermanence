@@ -14,7 +14,6 @@ class Dropdown {
 
   @override
   String toString() {
-    // TODO: implement toString
     return '{id: $id, namaDebitur: $namaDebitur}';
   }
 

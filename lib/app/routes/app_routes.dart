@@ -11,6 +11,8 @@ abstract class Routes {
   static const PENGHASILAN_TETAP = _Paths.PENGHASILAN_TETAP;
   static const PENGHASILAN_XTETAP = _Paths.PENGHASILAN_XTETAP;
   static const UPLOADS = _Paths.UPLOADS;
+  static const PRO_PENGAJUAN_APPROVE = _Paths.PRO_PENGAJUAN_APPROVE;
+  static const AGUNAN = _Paths.AGUNAN;
 }
 
 abstract class _Paths {
@@ -20,4 +22,6 @@ abstract class _Paths {
   static const PENGHASILAN_TETAP = '/penghasilan-tetap';
   static const PENGHASILAN_XTETAP = '/penghasilan-xtetap';
   static const UPLOADS = '/uploads';
+  static const PRO_PENGAJUAN_APPROVE = '/pro-pengajuan-approve';
+  static const AGUNAN = '/agunan';
 }

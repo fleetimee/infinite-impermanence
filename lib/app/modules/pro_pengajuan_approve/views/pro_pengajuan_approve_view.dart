@@ -16,7 +16,7 @@ class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const SideMenu(),
+      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text('Approve'),
         centerTitle: true,

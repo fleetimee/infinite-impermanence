@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
+import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
+import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/create_debitur/bindings/create_debitur_binding.dart';
 import '../modules/create_debitur/views/create_debitur_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -73,6 +75,11 @@ class AppPages {
       name: _Paths.AGUNAN,
       page: () => const AgunanView(),
       binding: AgunanBinding(),
+    ),
+    GetPage(
+      name: _Paths.BISNIS_ANALISIS,
+      page: () => const BisnisAnalisisView(),
+      binding: BisnisAnalisisBinding(),
     ),
   ];
 }

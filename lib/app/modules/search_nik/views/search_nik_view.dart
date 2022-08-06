@@ -14,7 +14,7 @@ class SearchNikView extends GetView<SearchNikController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const SideMenu(),
+      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text("Search Debitur"),
         centerTitle: true,

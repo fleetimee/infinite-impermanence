@@ -13,7 +13,7 @@ class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const SideMenu(),
+      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text('Form Penghasilan Tetap'),
         centerTitle: true,

@@ -58,8 +58,6 @@ class StepZeroForm extends StatelessWidget {
   }
 }
 
-void _onChanged(dynamic val) => debugPrint(val.toString());
-
 const allDebiturs = [
   'Novian Andika',
   'Sonia Eka P',

@@ -102,7 +102,7 @@ class ThirdRow extends StatelessWidget {
               backgroundColor: primaryColor,
               colorText: secondaryColor,
               snackPosition: SnackPosition.TOP,
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
               icon: const Icon(
                 Icons.construction,
                 color: Colors.white,

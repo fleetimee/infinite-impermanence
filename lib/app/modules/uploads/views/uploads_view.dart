@@ -17,7 +17,7 @@ class UploadsView extends GetView<UploadsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const SideMenu(),
+        drawer: SideMenu(),
         appBar: AppBar(
           title: const Text('Upload Berkas'),
           centerTitle: true,

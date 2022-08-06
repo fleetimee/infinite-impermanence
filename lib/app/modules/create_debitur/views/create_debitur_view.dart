@@ -16,7 +16,7 @@ class CreateDebiturView extends GetView<CreateDebiturController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const SideMenu(),
+      drawer: SideMenu(),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Input Debitur'),

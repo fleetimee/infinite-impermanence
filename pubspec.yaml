@@ -52,6 +52,7 @@ flutter:
     - assets/images/approve/
     - assets/images/success_screen/
     - assets/images/agunan/
+    - assets/images/business/
 
 flutter_icons:
   android: "launcher_icon"

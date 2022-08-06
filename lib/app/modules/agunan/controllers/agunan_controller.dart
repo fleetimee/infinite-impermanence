@@ -1,8 +1,8 @@
+// ignore_for_file: unnecessary_overrides
+
 import 'package:get/get.dart';
 
 class AgunanController extends GetxController {
-  //TODO: Implement AgunanController
-
   final count = 0.obs;
   @override
   void onInit() {

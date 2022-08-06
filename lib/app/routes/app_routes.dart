@@ -13,6 +13,7 @@ abstract class Routes {
   static const UPLOADS = _Paths.UPLOADS;
   static const PRO_PENGAJUAN_APPROVE = _Paths.PRO_PENGAJUAN_APPROVE;
   static const AGUNAN = _Paths.AGUNAN;
+  static const BISNIS_ANALISIS = _Paths.BISNIS_ANALISIS;
 }
 
 abstract class _Paths {
@@ -24,4 +25,5 @@ abstract class _Paths {
   static const UPLOADS = '/uploads';
   static const PRO_PENGAJUAN_APPROVE = '/pro-pengajuan-approve';
   static const AGUNAN = '/agunan';
+  static const BISNIS_ANALISIS = '/bisnis-analisis';
 }

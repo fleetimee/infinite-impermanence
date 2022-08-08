@@ -8,6 +8,8 @@ import '../modules/create_debitur/bindings/create_debitur_binding.dart';
 import '../modules/create_debitur/views/create_debitur_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
+import '../modules/karakter_analisis/views/karakter_analisis_view.dart';
 import '../modules/penghasilan_tetap/bindings/penghasilan_tetap_binding.dart';
 import '../modules/penghasilan_tetap/views/penghasilan_tetap_view.dart';
 import '../modules/penghasilan_xtetap/bindings/penghasilan_xtetap_binding.dart';
@@ -80,6 +82,11 @@ class AppPages {
       name: _Paths.BISNIS_ANALISIS,
       page: () => const BisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
+    ),
+    GetPage(
+      name: _Paths.KARAKTER_ANALISIS,
+      page: () => const KarakterAnalisisView(),
+      binding: KarakterAnalisisBinding(),
     ),
   ];
 }

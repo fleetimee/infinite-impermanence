@@ -152,6 +152,14 @@ class SideMenu extends StatelessWidget {
                 },
                 leading: const Icon(Icons.business_center),
               ),
+              ListTile(
+                title: const Text('Karakter Analisis'),
+                onTap: () {
+                  Get.offAllNamed(Routes.KARAKTER_ANALISIS);
+                  Get.back();
+                },
+                leading: const Icon(Icons.analytics_outlined),
+              ),
             ],
           ),
           const Divider(

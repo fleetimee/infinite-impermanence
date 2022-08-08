@@ -14,6 +14,7 @@ abstract class Routes {
   static const PRO_PENGAJUAN_APPROVE = _Paths.PRO_PENGAJUAN_APPROVE;
   static const AGUNAN = _Paths.AGUNAN;
   static const BISNIS_ANALISIS = _Paths.BISNIS_ANALISIS;
+  static const KARAKTER_ANALISIS = _Paths.KARAKTER_ANALISIS;
 }
 
 abstract class _Paths {
@@ -26,4 +27,5 @@ abstract class _Paths {
   static const PRO_PENGAJUAN_APPROVE = '/pro-pengajuan-approve';
   static const AGUNAN = '/agunan';
   static const BISNIS_ANALISIS = '/bisnis-analisis';
+  static const KARAKTER_ANALISIS = '/karakter-analisis';
 }

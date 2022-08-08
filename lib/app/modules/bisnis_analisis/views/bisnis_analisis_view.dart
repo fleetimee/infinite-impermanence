@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/widget/color_button.dart';
 import 'package:akm/app/widget/drawer.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -10,7 +11,6 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 import '../controllers/bisnis_analisis_controller.dart';
 
@@ -39,8 +39,40 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         loop: false,
                         height: 400,
                       ),
+                      const Padding(
+                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
+                        child: Divider(
+                          color: primaryColor,
+                          thickness: 1,
+                        ),
+                      ),
                       const SizedBox(
-                        height: 30,
+                        height: 10,
+                      ),
+                      const Text(
+                        'Data Analisa Bisnis',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w200,
+                          letterSpacing: 1,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text(
+                        'Berikut beberapa parameter yang harus diinputkan untuk mengetahui kelayakan bisnis dari debitur.',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          overflow: TextOverflow.fade,
+                          letterSpacing: 1,
+                          height: 1.5,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 40,
                       ),
                       FormBuilderSlider(
                         divisions: 10,
@@ -342,7 +374,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.kapasitasTerpasan.value == 100)
+                          if (controller.kapasitasTerpasan.value == 100.0)
                             Text(
                               'Tercapai terhadap penjualan dengan sempurna',
                               style: GoogleFonts.poppins(
@@ -393,7 +425,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       FormBuilderRatingBar(
                         // color the start with yellow color
-                        glow: false,
+                        glowRadius: 1,
+                        glow: true,
+                        glowColor: Colors.yellow.shade900,
                         wrapAlignment: WrapAlignment.center,
                         itemPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
                         name: 'Kualitas',
@@ -401,8 +435,28 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           controller.rating.value = value!;
                           print(controller.rating.value);
                         },
+                        ratingWidget: RatingWidget(
+                          full: Icon(
+                            Icons.star,
+                            color: Colors.yellow.shade700,
+                          ),
+                          half: const Icon(
+                            Icons.star_half,
+                            color: Colors.yellow,
+                          ),
+                          empty: const Icon(
+                            Icons.star_border,
+                            color: primaryColor,
+                          ),
+                        ),
                         initialRating: 0,
                         decoration: InputDecoration(
+                          fillColor: Colors.yellow,
+                          iconColor: Colors.yellow,
+                          focusColor: Colors.yellow,
+                          hoverColor: Colors.yellow,
+                          prefixIconColor: Colors.yellow,
+                          suffixIconColor: Colors.yellow,
                           labelText: 'Kualitas',
                           labelStyle: const TextStyle(fontSize: 20),
                           border: OutlineInputBorder(
@@ -471,14 +525,55 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       const SizedBox(
                         height: 40,
                       ),
-                      FormBuilderTextField(
-                        name: 'Deskripsi Bisnis Pemohon',
-                        decoration: const InputDecoration(
-                          labelText: 'Deskripsi Bisnis Pemohon',
-                          border: OutlineInputBorder(),
-                          alignLabelWithHint: true,
+                      const Text(
+                        'Klik tombol "Refresh" untuk mengisi deskripsi secara otomatis. Jika ada yang salah atau tidak sesuai, kembali ke pilihan yang salah lalu diganti kemudian klik tombol "Refresh" lagi.',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          letterSpacing: 1,
                         ),
-                        keyboardType: TextInputType.number,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      FormBuilderTextField(
+                        controller: controller.deskripsi,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        textAlign: TextAlign.start,
+                        name: 'Deskripsi Bisnis Pemohon',
+                        decoration: InputDecoration(
+                          labelText: 'Deskripsi Bisnis Pemohon',
+                          border: const OutlineInputBorder(),
+                          alignLabelWithHint: true,
+                          suffixIcon: IconButton(
+                            onPressed: () => {
+                              controller.hasilUntukDeskripsiBisnis(),
+                              AwesomeDialog(
+                                context: context,
+                                titleTextStyle: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: secondaryColor,
+                                ),
+                                descTextStyle: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  color: secondaryColor,
+                                ),
+                                dialogBackgroundColor: primaryColor,
+                                dialogType: DialogType.INFO_REVERSED,
+                                animType: AnimType.BOTTOMSLIDE,
+                                title: 'Sukses',
+                                desc:
+                                    'Deskripsi bisnis pemohon berhasil ter-generate',
+                                btnOkOnPress: () {},
+                              ).show(),
+                            },
+                            icon: const Icon(Icons.refresh_rounded),
+                          ),
+                        ),
                         maxLines: 10,
                       ),
                       const SizedBox(
@@ -493,9 +588,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           animType: AnimType.BOTTOMSLIDE,
                           title: 'Berhasil',
                           desc: 'Data berhasil ditambahkan',
-                          btnOkOnPress: () {
-                            Navigator.pop(context);
-                          },
+                          btnOkOnPress: () {},
                         ).show(),
                       ),
                       const SizedBox(

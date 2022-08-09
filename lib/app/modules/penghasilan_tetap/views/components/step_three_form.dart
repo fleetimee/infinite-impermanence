@@ -35,27 +35,6 @@ class StepThreeForm extends StatelessWidget {
               letterSpacing: 1,
             ),
           ),
-          // Obx(
-          //   () => FormBuilderSwitch(
-          //     onChanged: (value) {
-          //       controller.isPernahPinjam.value = value!;
-          //       // if (!value) {
-          //       //   controller.formKeys[2].currentState?.reset();
-          //       // }
-          //       // Reset form if not checked
-          //       if (value) {
-          //         controller.formKeys[2].currentState!.reset();
-          //       }
-          //     },
-          //     name: 'Pernah Pinjam',
-          //     title: const Text(
-          //       'Pernah Pinjam ?',
-          //       style: TextStyle(
-          //         fontSize: 15,
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Obx(
             () => Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

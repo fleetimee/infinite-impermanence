@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/bisnis_analisis/views/components/hitung_crr_bisnis.dart';
 import 'package:akm/app/widget/color_button.dart';
 import 'package:akm/app/widget/drawer.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -11,6 +12,7 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 import '../controllers/bisnis_analisis_controller.dart';
 
@@ -74,125 +76,82 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       const SizedBox(
                         height: 40,
                       ),
-                      FormBuilderSlider(
-                        divisions: 10,
-                        initialValue: 50,
-                        min: 0,
-                        max: 100,
-                        onChanged: (double? value) {
+                      FormBuilderDropdown(
+                        name: 'Omzet Penjualan',
+                        items: const [
+                          DropdownMenuItem(
+                            value: 50,
+                            child: Text('s/d 50%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 60,
+                            child: Text('s/d 60%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 70,
+                            child: Text('s/d 70%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 80,
+                            child: Text('s/d 80%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 90,
+                            child: Text('s/d 90%++'),
+                          ),
+                        ],
+                        decoration: InputDecoration(
+                          labelText: 'Omzet Penjualan',
+                          labelStyle: const TextStyle(fontSize: 20),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onChanged: (int? value) {
                           controller.omzetPenjualan.value = value!;
                           print(controller.omzetPenjualan.value);
                         },
-                        name: 'Omzet Penjualan',
-                        decoration: InputDecoration(
-                          labelText: 'Omzet Penjualan',
-                          hintText: 'Angecekkan Omzet Penjualan',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.omzetPenjualan.value == 100)
+                          if (controller.omzetPenjualan.value == 90)
                             Text(
-                              'Omzet Penjualan sangat fantastis',
+                              'Score ${controller.omzetPenjualan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.omzetPenjualan.value >= 80.0 &&
-                              controller.omzetPenjualan.value <= 99.0)
+                          if (controller.omzetPenjualan.value == 80)
                             Text(
-                              'Omzet Selalu berada diatas 80% dari target',
+                              'Score ${controller.omzetPenjualan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.omzetPenjualan.value >= 60.0 &&
-                              controller.omzetPenjualan.value < 80.0)
+                          if (controller.omzetPenjualan.value == 70)
                             Text(
-                              'Omzet Selalu berada diatas 60% dari target',
+                              'Score ${controller.omzetPenjualan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.omzetPenjualan.value >= 40.0 &&
-                              controller.omzetPenjualan.value < 60.0)
+                          if (controller.omzetPenjualan.value == 60)
                             Text(
-                              'Omzet Selalu berada diatas 40% dari target',
+                              'Score ${controller.omzetPenjualan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.omzetPenjualan.value >= 20.0 &&
-                              controller.omzetPenjualan.value < 40.0)
+                          if (controller.omzetPenjualan.value == 50)
                             Text(
-                              'Omzet Selalu berada diatas 20% dari target',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          if (controller.omzetPenjualan.value >= 0.0 &&
-                              controller.omzetPenjualan.value < 20.0)
-                            Text('Omzet Penjualan sangatlah buruk',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                )),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      FormBuilderSwitch(
-                        name: 'Harga Bersaing',
-                        decoration: InputDecoration(
-                          labelText: 'Harga Bersaing',
-                          hintText: 'Angecekkan Omzet Penjualan',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        title: Text(
-                          controller.hargaBersaing.value
-                              ? 'Sama dengan pesaing'
-                              : 'Tidak sama dengan pesaing',
-                          style: const TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                        onChanged: (bool? value) {
-                          controller.hargaBersaing.value = value!;
-                          print(controller.hargaBersaing.value);
-                        },
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Column(
-                        children: <Widget>[
-                          if (controller.hargaBersaing.value == true)
-                            Text(
-                              'Harga sama dengan pesaing sejenis',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          if (controller.hargaBersaing.value == false)
-                            Text(
-                              'Harga tidak sama dengan pesaing sejenis',
+                              'Score ${controller.omzetPenjualan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -204,12 +163,98 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         height: 40,
                       ),
                       FormBuilderDropdown(
-                        onChanged: (String? value) {
+                        name: 'Harga Bersaing',
+                        items: const [
+                          DropdownMenuItem(
+                            value: 50,
+                            child: Text('lebih mahal dari pesaing'),
+                          ),
+                          DropdownMenuItem(
+                            value: 60,
+                            child: Text('Sama dgn pesaing'),
+                          ),
+                          DropdownMenuItem(
+                            value: 70,
+                            child: Text('lebih murah sd 5%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 80,
+                            child: Text('lebih murah 5-10%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 90,
+                            child: Text('lebih murah diatas 10%'),
+                          ),
+                        ],
+                        decoration: InputDecoration(
+                          labelText: 'Harga Bersaing',
+                          labelStyle: const TextStyle(fontSize: 20),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onChanged: (int? value) {
+                          controller.hargaBersaing.value = value!;
+                          print(controller.hargaBersaing.value);
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Column(
+                        children: <Widget>[
+                          if (controller.hargaBersaing.value == 90)
+                            Text(
+                              'Score ${controller.hargaBersaing.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.hargaBersaing.value == 80)
+                            Text(
+                              'Score ${controller.hargaBersaing.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.hargaBersaing.value == 70)
+                            Text(
+                              'Score ${controller.hargaBersaing.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.hargaBersaing.value == 60)
+                            Text(
+                              'Score ${controller.hargaBersaing.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.hargaBersaing.value == 50)
+                            Text(
+                              'Score ${controller.hargaBersaing.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 40,
+                      ),
+                      FormBuilderDropdown(
+                        onChanged: (int? value) {
                           controller.persainganPasar.value = value!;
                           print(controller.persainganPasar.value);
                         },
                         decoration: InputDecoration(
-                          labelText: 'Persaingan',
+                          labelText: 'Persaingan Pasar',
                           labelStyle: const TextStyle(fontSize: 20),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -217,24 +262,24 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ),
                         items: const [
                           DropdownMenuItem(
-                            value: 'Sangat Tidak Ketat',
-                            child: Text('Sangat Tidak Ketat'),
+                            value: 50,
+                            child: Text('Sangat ketat'),
                           ),
                           DropdownMenuItem(
-                            value: 'Tidak Ketat',
-                            child: Text('Tidak Ketat'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Ketat',
+                            value: 60,
                             child: Text('Ketat'),
                           ),
                           DropdownMenuItem(
-                            value: 'Cukup Ketat',
-                            child: Text('Cukup Ketat'),
+                            value: 70,
+                            child: Text('Cukup ketat'),
                           ),
                           DropdownMenuItem(
-                            value: 'Sangat Ketat',
-                            child: Text('Sangat Ketat'),
+                            value: 80,
+                            child: Text('Kurang ketat'),
+                          ),
+                          DropdownMenuItem(
+                            value: 90,
+                            child: Text('Tidak ketat'),
                           ),
                         ],
                         name: 'Persaingan',
@@ -244,102 +289,132 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.persainganPasar.value ==
-                              'Sangat Tidak Ketat')
+                          if (controller.persainganPasar.value == 90)
                             Text(
-                              'Usaha sejenis di sekitar masih sepi dan hampir tidak ada saingan',
+                              'Score ${controller.persainganPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                               textAlign: TextAlign.center,
                             ),
-                          if (controller.persainganPasar.value == 'Tidak Ketat')
+                          if (controller.persainganPasar.value == 80)
                             Text(
-                              'Usaha sejenis di sekitar belum banyak',
+                              'Score ${controller.persainganPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
+                              textAlign: TextAlign.center,
                             ),
-                          if (controller.persainganPasar.value == 'Ketat')
+                          if (controller.persainganPasar.value == 70)
                             Text(
-                              'Usaha sejenis di sekitar ada sedikit saingan',
+                              'Score ${controller.persainganPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
+                              textAlign: TextAlign.center,
                             ),
-                          if (controller.persainganPasar.value == 'Cukup Ketat')
+                          if (controller.persainganPasar.value == 60)
                             Text(
-                              'Usaha sejenis di sekitar sudah banyak saingan',
+                              'Score ${controller.persainganPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
+                              textAlign: TextAlign.center,
                             ),
-                          if (controller.persainganPasar.value ==
-                              'Sangat Ketat')
+                          if (controller.persainganPasar.value == 50)
                             Text(
-                              'Usaha sejenis di sekitar sangat banyak saingan',
+                              'Score ${controller.persainganPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
-                            ),
-
-                          // Initial value
-                          if (controller.persainganPasar.value == '')
-                            Text(
-                              'Pilih Persaingan',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
+                              textAlign: TextAlign.center,
                             ),
                         ],
                       ),
                       const SizedBox(
                         height: 40,
                       ),
-                      FormBuilderSwitch(
-                        name: 'Lokasi',
-                        onChanged: (bool? value) {
+                      FormBuilderDropdown(
+                        onChanged: (int? value) {
                           controller.lokasiPasar.value = value!;
                           print(controller.lokasiPasar.value);
                         },
                         decoration: InputDecoration(
-                          labelText: 'Lokasi',
+                          labelText: 'Lokasi Usaha',
                           labelStyle: const TextStyle(fontSize: 20),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        title: Text(
-                          controller.lokasiPasar.value
-                              ? 'Strategis'
-                              : 'Tidak Strategis',
-                          style: const TextStyle(
-                            fontSize: 15,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 40,
+                            child: Text('Tidak strategis'),
                           ),
-                        ),
+                          DropdownMenuItem(
+                            value: 50,
+                            child: Text('Kurang strategis'),
+                          ),
+                          DropdownMenuItem(
+                            value: 70,
+                            child: Text('Cukup Strategis'),
+                          ),
+                          DropdownMenuItem(
+                            value: 80,
+                            child: Text('Strategis'),
+                          ),
+                          DropdownMenuItem(
+                            value: 90,
+                            child: Text('Sangat strategis'),
+                          ),
+                        ],
+                        name: 'Lokasi Pasar',
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.lokasiPasar.value == true)
+                          if (controller.lokasiPasar.value == 90)
                             Text(
-                              'Lokasi mudah dijangkau pelanggan',
+                              'Score ${controller.lokasiPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.lokasiPasar.value == false)
+                          if (controller.lokasiPasar.value == 80)
                             Text(
-                              'Lokasi tidak mudah dijangkau pelanggan',
+                              'Score ${controller.lokasiPasar.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.lokasiPasar.value == 70)
+                            Text(
+                              'Score ${controller.lokasiPasar.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.lokasiPasar.value == 50)
+                            Text(
+                              'Score ${controller.lokasiPasar.value}',
+                              style: GoogleFonts.poppins(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          if (controller.lokasiPasar.value == 40)
+                            Text(
+                              'Score ${controller.lokasiPasar.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -350,69 +425,83 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       const SizedBox(
                         height: 40,
                       ),
-                      FormBuilderSlider(
-                        name: 'Produktivitas terhadap kapasitas terpasan',
-                        initialValue: 0,
-                        min: 0,
-                        max: 100,
-                        divisions: 10,
-                        onChanged: (double? value) {
+                      FormBuilderDropdown(
+                        onChanged: (int? value) {
                           controller.kapasitasTerpasan.value = value!;
                           print(controller.kapasitasTerpasan.value);
                         },
                         decoration: InputDecoration(
                           labelText:
-                              'Produktivitas terhadap kapasitas terpasan',
+                              'Produktivitas (%) thd kap terpasang/omzet',
                           labelStyle: const TextStyle(fontSize: 20),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
+                        items: const [
+                          DropdownMenuItem(
+                            value: 50,
+                            child: Text('s/d 50%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 60,
+                            child: Text('s/d 60%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 70,
+                            child: Text('s/d 70%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 80,
+                            child: Text('s/d 80%'),
+                          ),
+                          DropdownMenuItem(
+                            value: 90,
+                            child: Text('Lebih dari 80%'),
+                          ),
+                        ],
+                        name: 'Produktivitas (%) thd kap terpasang/omzet',
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.kapasitasTerpasan.value == 100.0)
+                          if (controller.kapasitasTerpasan.value == 90)
                             Text(
-                              'Tercapai terhadap penjualan dengan sempurna',
+                              'Score ${controller.kapasitasTerpasan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.kapasitasTerpasan.value >= 80 &&
-                              controller.kapasitasTerpasan.value <= 99)
+                          if (controller.kapasitasTerpasan.value == 80)
                             Text(
-                              'Tercapai terhadap penjualan dengan cukup',
+                              'Score ${controller.kapasitasTerpasan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.kapasitasTerpasan.value >= 60 &&
-                              controller.kapasitasTerpasan.value <= 79)
+                          if (controller.kapasitasTerpasan.value == 70)
                             Text(
-                              'Tercapai terhadap penjualan dengan normal',
+                              'Score ${controller.kapasitasTerpasan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.kapasitasTerpasan.value >= 40 &&
-                              controller.kapasitasTerpasan.value <= 59)
+                          if (controller.kapasitasTerpasan.value == 60)
                             Text(
-                              'Tercapai terhadap penjualan dengan kurang',
+                              'Score ${controller.kapasitasTerpasan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.kapasitasTerpasan.value >= 0 &&
-                              controller.kapasitasTerpasan.value <= 39)
+                          if (controller.kapasitasTerpasan.value == 50)
                             Text(
-                              'Tidak Tercapai terhadap penjualan ',
+                              'Score ${controller.kapasitasTerpasan.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -423,98 +512,82 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       const SizedBox(
                         height: 40,
                       ),
-                      FormBuilderRatingBar(
-                        // color the start with yellow color
-                        glowRadius: 1,
-                        glow: true,
-                        glowColor: Colors.yellow.shade900,
-                        wrapAlignment: WrapAlignment.center,
-                        itemPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                        name: 'Kualitas',
-                        onChanged: (double? value) {
+                      FormBuilderDropdown(
+                        onChanged: (int? value) {
                           controller.rating.value = value!;
                           print(controller.rating.value);
                         },
-                        ratingWidget: RatingWidget(
-                          full: Icon(
-                            Icons.star,
-                            color: Colors.yellow.shade700,
-                          ),
-                          half: const Icon(
-                            Icons.star_half,
-                            color: Colors.yellow,
-                          ),
-                          empty: const Icon(
-                            Icons.star_border,
-                            color: primaryColor,
-                          ),
-                        ),
-                        initialRating: 0,
                         decoration: InputDecoration(
-                          fillColor: Colors.yellow,
-                          iconColor: Colors.yellow,
-                          focusColor: Colors.yellow,
-                          hoverColor: Colors.yellow,
-                          prefixIconColor: Colors.yellow,
-                          suffixIconColor: Colors.yellow,
-                          labelText: 'Kualitas',
+                          labelText: 'Kwalitas produk/jasa',
                           labelStyle: const TextStyle(fontSize: 20),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
                         ),
-                        direction: Axis.horizontal,
-                        allowHalfRating: false,
-                        itemCount: 5,
+                        items: const [
+                          DropdownMenuItem(
+                            value: 50,
+                            child: Text('Jelek'),
+                          ),
+                          DropdownMenuItem(
+                            value: 60,
+                            child: Text('Kurang Baik'),
+                          ),
+                          DropdownMenuItem(
+                            value: 70,
+                            child: Text('Cukup'),
+                          ),
+                          DropdownMenuItem(
+                            value: 80,
+                            child: Text('Baik'),
+                          ),
+                          DropdownMenuItem(
+                            value: 90,
+                            child: Text('Sangat Baik'),
+                          ),
+                        ],
+                        name: 'Kwalitas produk/jasa',
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.rating.value == 5)
+                          if (controller.rating.value == 90)
                             Text(
-                              'Sangat Bagus',
+                              'Score ${controller.rating.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.rating.value == 4)
+                          if (controller.rating.value == 80)
                             Text(
-                              'Bagus',
+                              'Score ${controller.rating.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.rating.value == 3)
+                          if (controller.rating.value == 70)
                             Text(
-                              'Cukup Bagus',
+                              'Score ${controller.rating.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.rating.value == 2)
+                          if (controller.rating.value == 60)
                             Text(
-                              'Kurang Bagus',
+                              'Score ${controller.rating.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                          if (controller.rating.value == 1)
+                          if (controller.rating.value == 50)
                             Text(
-                              'Sangat Kurang Bagus',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          if (controller.rating.value == 0)
-                            Text(
-                              'Pilih Rating',
+                              'Score ${controller.rating.value}',
                               style: GoogleFonts.poppins(
                                 fontSize: 15,
                                 fontWeight: FontWeight.w600,
@@ -524,16 +597,6 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       const SizedBox(
                         height: 40,
-                      ),
-                      const Text(
-                        'Klik tombol "Refresh" untuk mengisi deskripsi secara otomatis. Jika ada yang salah atau tidak sesuai, kembali ke pilihan yang salah lalu diganti kemudian klik tombol "Refresh" lagi.',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          letterSpacing: 1,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
                       ),
                       FormBuilderTextField(
                         controller: controller.deskripsi,
@@ -543,36 +606,10 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ),
                         textAlign: TextAlign.start,
                         name: 'Deskripsi Bisnis Pemohon',
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Deskripsi Bisnis Pemohon',
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                           alignLabelWithHint: true,
-                          suffixIcon: IconButton(
-                            onPressed: () => {
-                              controller.hasilUntukDeskripsiBisnis(),
-                              AwesomeDialog(
-                                context: context,
-                                titleTextStyle: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: secondaryColor,
-                                ),
-                                descTextStyle: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.normal,
-                                  color: secondaryColor,
-                                ),
-                                dialogBackgroundColor: primaryColor,
-                                dialogType: DialogType.INFO_REVERSED,
-                                animType: AnimType.BOTTOMSLIDE,
-                                title: 'Sukses',
-                                desc:
-                                    'Deskripsi bisnis pemohon berhasil ter-generate',
-                                btnOkOnPress: () {},
-                              ).show(),
-                            },
-                            icon: const Icon(Icons.refresh_rounded),
-                          ),
                         ),
                         maxLines: 10,
                       ),
@@ -581,15 +618,16 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       colorButton(
                         context,
-                        'Submit',
-                        () => AwesomeDialog(
+                        'Hitung CRR',
+                        () => showBarModalBottomSheet(
+                          backgroundColor: secondaryColor,
+                          bounce: true,
                           context: context,
-                          dialogType: DialogType.SUCCES,
-                          animType: AnimType.BOTTOMSLIDE,
-                          title: 'Berhasil',
-                          desc: 'Data berhasil ditambahkan',
-                          btnOkOnPress: () {},
-                        ).show(),
+                          builder: (context) {
+                            controller.hasilHitungCrrBisnis();
+                            return HitungCrrBisnis();
+                          },
+                        ),
                       ),
                       const SizedBox(
                         height: 40,

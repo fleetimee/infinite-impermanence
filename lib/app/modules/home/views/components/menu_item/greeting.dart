@@ -73,27 +73,42 @@ class Greeting extends StatelessWidget {
                       color: secondaryColor,
                     ),
                   ),
+                  // Date text now
                 ],
               ),
             ],
           ),
         ),
         Positioned(
+          top: 65,
+          right: 10,
+          child: Text(
+            controller.dateNow(),
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: secondaryColor,
+            ),
+          ),
+        ),
+        Positioned(
           right: -45,
           top: -40,
-          child: Obx(() => Container(
-                padding: const EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: controller.isDarkModeEnabled.value
-                        ? const Color.fromARGB(255, 48, 48, 48)
-                        : secondaryColor,
-                    width: 18,
-                  ),
+          child: Obx(
+            () => Container(
+              padding: const EdgeInsets.all(30),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: controller.isDarkModeEnabled.value
+                      ? const Color.fromARGB(255, 48, 48, 48)
+                      : secondaryColor,
+                  width: 18,
                 ),
-              )),
+              ),
+            ),
+          ),
         )
       ],
     );

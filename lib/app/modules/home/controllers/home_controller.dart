@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: unnecessary_overrides
@@ -22,6 +23,13 @@ class HomeController extends GetxController {
       return 'Afternoon';
     }
     return 'Evening';
+  }
+
+  String dateNow() {
+    var date = DateTime.now();
+    // Format date to indonesia format with days, month and year
+    var format = DateFormat('EEEE, dd MMMM yyyy');
+    return format.format(date);
   }
 
   final Future<SharedPreferences> initPref = SharedPreferences.getInstance();

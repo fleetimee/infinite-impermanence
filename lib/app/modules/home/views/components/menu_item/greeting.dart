@@ -58,7 +58,7 @@ class Greeting extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    'Good ${controller.greeting()} !',
+                    'Selamat ${controller.greeting()}',
                     style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,

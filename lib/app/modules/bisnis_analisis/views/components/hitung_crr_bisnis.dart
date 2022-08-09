@@ -158,7 +158,7 @@ class HitungCrrBisnis extends StatelessWidget {
                 enabled: false,
                 controller: controller.sumCrrBisnis,
                 name: 'Sum hasil diatas',
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
                   labelText: 'Sum hasil diatas',

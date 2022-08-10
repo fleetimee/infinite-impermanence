@@ -177,7 +177,7 @@ class HitungCrrBisnis extends StatelessWidget {
                 displayMode: true,
               ),
               Text(
-                controller.resultCrrBisnis.toStringAsFixed(2),
+                controller.resultCrrBisnis.toString(),
                 style: GoogleFonts.poppins(
                   fontSize: 35,
                   fontWeight: FontWeight.w600,

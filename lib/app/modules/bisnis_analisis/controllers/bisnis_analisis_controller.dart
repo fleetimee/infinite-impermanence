@@ -20,7 +20,7 @@ class BisnisAnalisisController extends GetxController {
   final resultRating = TextEditingController();
 
   final sumCrrBisnis = TextEditingController();
-  final resultCrrBisnis = 0.0.obs;
+  final resultCrrBisnis = 0.obs;
 
   void hasilHitungCrrBisnis() {
     final omzet = omzetPenjualan.value;
@@ -31,7 +31,7 @@ class BisnisAnalisisController extends GetxController {
     final ratingDebitur = rating.value;
 
     final sum = omzet + harga + persaingan + lokasi + kapasitas + ratingDebitur;
-    final hasil = sum / 6;
+    final hasil = sum ~/ 6;
 
     resultOmzet.text = '$omzet';
     resultHarga.text = '$harga';

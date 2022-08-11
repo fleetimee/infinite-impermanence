@@ -181,6 +181,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_expandable_fab:
+    dependency: "direct main"
+    description:
+      name: flutter_expandable_fab
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.0"
   flutter_form_builder:
     dependency: "direct main"
     description:

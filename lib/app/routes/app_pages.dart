@@ -10,6 +10,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
 import '../modules/karakter_analisis/views/karakter_analisis_view.dart';
+import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
+import '../modules/keuangan_analisis/views/keuangan_analisis_view.dart';
 import '../modules/penghasilan_tetap/bindings/penghasilan_tetap_binding.dart';
 import '../modules/penghasilan_tetap/views/penghasilan_tetap_view.dart';
 import '../modules/penghasilan_xtetap/bindings/penghasilan_xtetap_binding.dart';
@@ -87,6 +89,11 @@ class AppPages {
       name: _Paths.KARAKTER_ANALISIS,
       page: () => const KarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
+    ),
+    GetPage(
+      name: _Paths.KEUANGAN_ANALISIS,
+      page: () => const KeuanganAnalisisView(),
+      binding: KeuanganAnalisisBinding(),
     ),
   ];
 }

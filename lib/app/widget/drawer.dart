@@ -160,6 +160,14 @@ class SideMenu extends StatelessWidget {
                 },
                 leading: const Icon(Icons.analytics_outlined),
               ),
+              ListTile(
+                title: const Text('Keuangan Analisis'),
+                onTap: () {
+                  Get.offAllNamed(Routes.KEUANGAN_ANALISIS);
+                  Get.back();
+                },
+                leading: const Icon(Icons.credit_card_outlined),
+              ),
             ],
           ),
           const Divider(

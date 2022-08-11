@@ -12,6 +12,13 @@ class AgunanController extends GetxController
     super.onInit();
   }
 
+  @override
+  // dispose getx
+  void onClose() {
+    tabController?.dispose();
+    super.onClose();
+  }
+
   final isCheckedTanah = false.obs;
   final isCheckedTanahAndBangunan = false.obs;
   final isCheckedMesinAndPeralatan = false.obs;

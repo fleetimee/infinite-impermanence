@@ -1,12 +1,11 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
+
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan/controllers/agunan_controller.dart';
 import 'package:akm/app/widget/color_button.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class NilaiAgunan extends StatelessWidget {
   NilaiAgunan({Key? key}) : super(key: key);
@@ -41,7 +40,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedTanah.value,
@@ -88,7 +87,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedTanahAndBangunan.value,
@@ -136,7 +135,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedMesinAndPeralatan.value,
@@ -186,7 +185,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedKendaraan.value,
@@ -233,7 +232,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedKios.value,
@@ -280,7 +279,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedCashCollateral.value,
@@ -328,7 +327,7 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               Expanded(
                 child: Checkbox(
                   value: controller.isCheckedLainnya.value,

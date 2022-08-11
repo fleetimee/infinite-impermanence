@@ -45,7 +45,7 @@ Nilai ratio agunan dimaksud diatas adalah nilai agunan setelah dikurangi safety 
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        children: [
+        children: <Widget>[
           // give the tab bar a height [can change hheight to preferred height]
           Container(
             height: 45,
@@ -84,7 +84,7 @@ Nilai ratio agunan dimaksud diatas adalah nilai agunan setelah dikurangi safety 
           Expanded(
             child: TabBarView(
               controller: controller.tabController,
-              children: [
+              children: <Widget>[
                 // first tab bar view widget
                 SingleChildScrollView(
                   child: Container(
@@ -180,20 +180,11 @@ Nilai ratio agunan dimaksud diatas adalah nilai agunan setelah dikurangi safety 
                     ),
                   ),
                 ),
-
                 // second tab bar view widget
                 Center(
                   child: Markdown(
                     data: mdContent,
                     padding: const EdgeInsets.all(32),
-                    // Bigger markdown font
-                    styleSheet: MarkdownStyleSheet.fromTheme(
-                      Theme.of(context),
-                    ).copyWith(
-                      p: GoogleFonts.andika(
-                        fontSize: 17,
-                      ),
-                    ),
                   ),
                 ),
               ],

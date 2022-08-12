@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
+import 'dart:math';
 
 class KeuanganAnalisisController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -82,15 +82,32 @@ class KeuanganAnalisisController extends GetxController
   final derFixed = TextEditingController(text: '200');
   final dscFixed = TextEditingController(text: '1.3');
 
-  // Ini yang atas
+  // Ini Data Keuangan
   final equityInput = TextEditingController(text: '114500000');
   final debtInput = TextEditingController(text: '10500000');
   final kreditYangDiminta = TextEditingController(text: '1000000');
   final netWorth = TextEditingController();
+  final netWorthPlusCredit = TextEditingController();
+
+  // Angsuran Pinjaman Kredit
+  final bungaPerTahun = TextEditingController(text: '6');
+  final angsuranPerBulan = TextEditingController(text: '48');
+  final totalBunga = TextEditingController(text: '1996230');
+
+  // Flat / Efektif
+  final flatInitial = TextEditingController(text: '0');
+  final efektifInitial = TextEditingController(text: '0');
+  final totalFlatEfektif = TextEditingController(text: '0');
 
   void hitungNetWorth() {
     netWorth.text =
         (int.parse(equityInput.text) + int.parse(debtInput.text)).toString();
+  }
+
+  void hitungNetWorthPlusCredit() {
+    netWorthPlusCredit.text =
+        (int.parse(netWorth.text) + int.parse(kreditYangDiminta.text))
+            .toString();
   }
 
   void hitungTotalLaba() {
@@ -160,6 +177,40 @@ class KeuanganAnalisisController extends GetxController
         (int.parse(labaUsahaYAD.text) / int.parse(omzetYAD.text) * 100)
             .toStringAsFixed(1);
 
+    // ignore: avoid_print
     print('clicked');
+  }
+
+  void hitungFlatAndEfektif() {
+    flatInitial.text =
+        (int.parse(bungaPerTahun.text) / 1200).toStringAsFixed(5);
+
+    final plusOne = (double.parse(flatInitial.text) + 1);
+    final powPlusOneDenganAngsuranPerBulan =
+        pow(plusOne, int.parse(angsuranPerBulan.text));
+
+    efektifInitial.text =
+        (1 / powPlusOneDenganAngsuranPerBulan).toStringAsFixed(5);
+
+    // totalFlatEfektif.text = ((double.parse(efektifInitial.text)) /
+    //         (1 - (double.parse(flatInitial.text))))
+    //     .toStringAsFixed(8);
+
+    final minusOne = (1 - double.parse(efektifInitial.text));
+    final result = (double.parse(flatInitial.text) / minusOne);
+
+    totalFlatEfektif.text = result.toStringAsFixed(9);
+  }
+
+  void hitungTotalEfektif() {
+    // final plusOne = (double.parse(flatInitial.text) + 1);
+    // final powPlusOneDenganAngsuranPerBulan =
+    //     pow(plusOne, int.parse(angsuranPerBulan.text));
+
+    // efektifInitial.text =
+    //     (1 / powPlusOneDenganAngsuranPerBulan).toStringAsFixed(6);
+
+    // efektifInitial.text =
+    //     (double.parse(flatInitial.text) + 1).toStringAsFixed(5);
   }
 }

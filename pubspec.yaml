@@ -64,11 +64,12 @@ flutter:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/icon.png"
+  image_path: "assets/icon/anya.png"
 
 flutter_native_splash:
-  color: "#42a5f5"
+  background_image: "assets/images/splash_screen/background.png"
   image: "assets/images/splash_screen/splash_icon.png"
+  branding: "assets/images/splash_screen/branding.png"
 
 dependency_overrides:
   intl: ^0.17.0

@@ -16,11 +16,14 @@ class HomeController extends GetxController {
 
   String greeting() {
     var hour = DateTime.now().hour;
-    if (hour < 12) {
+    if (hour < 10) {
       return 'Pagi';
     }
-    if (hour < 17) {
+    if (hour < 14) {
       return 'Siang';
+    }
+    if (hour < 18) {
+      return 'Sore';
     }
     return 'Malam';
   }

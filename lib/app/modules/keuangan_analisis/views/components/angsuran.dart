@@ -38,6 +38,7 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'Bunga Pinjaman Lain',
+                  controller: controller.bungaPerTahunLain,
                   decoration: const InputDecoration(
                     labelText: 'Bunga/tahun %',
                     border: OutlineInputBorder(),
@@ -51,6 +52,7 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'Angsuran Perbulan Top',
+                  controller: controller.angsuranPerBulanLainAtas,
                   decoration: const InputDecoration(
                     labelText: 'Angsuran Perbulan',
                     border: OutlineInputBorder(),
@@ -73,6 +75,7 @@ class Angsuran extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
+                  controller: controller.angsuranPerBulanLainBawah,
                   name: 'Angsuran Perbulan Bottom',
                   decoration: const InputDecoration(
                     labelText: 'Angsuran Perbulan',
@@ -89,6 +92,7 @@ class Angsuran extends StatelessWidget {
           FormBuilderTextField(
             enabled: false,
             textAlign: TextAlign.center,
+            controller: controller.totalBungaLainAtas,
             name: 'Total Angsuran Pinjaman Top',
             style: const TextStyle(
               fontSize: 30,
@@ -136,8 +140,10 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: FormBuilderTextField(
+                  controller: controller.totalBungaLainBawah,
                   enabled: false,
                   readOnly: true,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w600,
@@ -159,6 +165,8 @@ class Angsuran extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'Unknown Variable',
+            textAlign: TextAlign.center,
+            controller: controller.unknownNumber,
             enabled: false,
             style: const TextStyle(
               fontSize: 30,
@@ -244,12 +252,12 @@ class Angsuran extends StatelessWidget {
                   ),
                   hint: const Text('Pilih Flat/Nominal'),
                   alignment: Alignment.center,
-                  name: 'Choice',
+                  name: 'Choice Pinjaman Kredit',
                   items: const [
                     DropdownMenuItem(
-                        value: 'nominal',
+                        value: 'Efektif',
                         child: Text(
-                          'Nominal',
+                          'Efektif',
                           style: TextStyle(),
                         )),
                     DropdownMenuItem(
@@ -259,10 +267,13 @@ class Angsuran extends StatelessWidget {
                   ],
                 ),
               ),
+              const SizedBox(
+                width: 20,
+              ),
               Expanded(
                 flex: 2,
                 child: FormBuilderTextField(
-                  enabled: false,
+                  // enabled: false,
                   textAlign: TextAlign.center,
                   name: 'Total Angsuran Kredit',
                   controller: controller.totalBunga,
@@ -284,9 +295,7 @@ class Angsuran extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          const SizedBox(
-            height: 20,
-          ),
+
           colorButton(
             context,
             'Hitung Total Angsuran Pinjaman',
@@ -334,15 +343,9 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.efektifInitial,
                   name: 'Efektif Initial',
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     labelText: 'Efektif Initial',
-                    border: const OutlineInputBorder(),
-                    suffixIcon: IconButton(
-                      icon: const Icon(Icons.refresh),
-                      onPressed: () {
-                        controller.hitungTotalEfektif();
-                      },
-                    ),
+                    border: OutlineInputBorder(),
                   ),
                 ),
               ),
@@ -371,9 +374,125 @@ class Angsuran extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          colorButton(context, 'Hitung Flat / Efektif', () {
-            controller.hitungFlatAndEfektif();
-          }),
+          colorButton(
+            context,
+            'Hitung Flat / Efektif',
+            () {
+              controller.hitungFlatAndEfektif();
+            },
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Total Flat / Efektif',
+            style: TextStyle(
+              fontSize: 30,
+              letterSpacing: 1,
+              // make underline
+              decoration: TextDecoration.combine([
+                TextDecoration.underline,
+              ]),
+            ),
+            textAlign: TextAlign.left,
+          ),
+          const SizedBox(
+            height: 60,
+          ),
+          FormBuilderTextField(
+            name: 'Total Efektif',
+            controller: controller.totalEfektif,
+            textAlign: TextAlign.center,
+            enabled: false,
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1,
+              color: primaryColor,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Total Efektif',
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(
+            height: 40,
+          ),
+          FormBuilderTextField(
+            name: 'Total Flat',
+            controller: controller.totalFlat,
+            textAlign: TextAlign.center,
+            enabled: false,
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1,
+              color: primaryColor,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Total Flat',
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          colorButton(
+            context,
+            'Hitung',
+            () {
+              controller.hitungTotalFlatEfektif();
+            },
+          ),
+          const Divider(
+            height: 100,
+            thickness: 2,
+            color: primaryColor,
+          ),
+          // ! Hitung Flat / Efektif
+          Text(
+            'Total Angsuran',
+            style: TextStyle(
+              fontSize: 30,
+              letterSpacing: 1,
+              // make underline
+              decoration: TextDecoration.combine([
+                TextDecoration.underline,
+              ]),
+            ),
+            textAlign: TextAlign.left,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          FormBuilderTextField(
+            name: 'Total Angsuran',
+            controller: controller.totalAngsuran,
+            textAlign: TextAlign.center,
+            enabled: false,
+            style: const TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1,
+              color: primaryColor,
+            ),
+            decoration: const InputDecoration(
+              border: OutlineInputBorder(),
+            ),
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          colorButton(
+            context,
+            'Hitung',
+            () {
+              controller.hitungTotalAngsuran();
+            },
+          ),
         ],
       ),
     );

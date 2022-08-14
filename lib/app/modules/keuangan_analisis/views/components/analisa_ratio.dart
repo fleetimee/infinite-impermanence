@@ -38,6 +38,7 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitKini,
+                  enabled: false,
                   name: 'Ratio Profit Kini',
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit Kini',
@@ -52,6 +53,7 @@ class AnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitYAD,
                   name: 'Ratio Profit YAD',
+                  enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit YAD',
                     border: OutlineInputBorder(),
@@ -63,10 +65,14 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          colorButton(
-            context,
-            'Hitung Ratio Profit',
-            () => controller.hitungRatioProfit(),
+          Obx(
+            () => colorButton(
+              context,
+              controller.isRatioProfitLoading.value
+                  ? 'Loading..'
+                  : 'Hitung Ratio Profit',
+              () => controller.hitungRatioProfit(),
+            ),
           ),
           const SizedBox(
             height: 30,
@@ -110,6 +116,8 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'ROE Kini',
+                  controller: controller.roeKini,
+                  enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'ROE Kini',
                     border: OutlineInputBorder(),
@@ -121,7 +129,9 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
+                  controller: controller.roeYAD,
                   name: 'ROE YAD',
+                  enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'ROE YAD',
                     border: OutlineInputBorder(),
@@ -133,13 +143,49 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            'Baik 👍',
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+          // if (int.parse(controller.roeYAD.text) >
+          //     int.parse(controller.roeFixed.text))
+          //   Text(
+          //     'Baik 🥰',
+          //     style: GoogleFonts.poppins(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.w600,
+          //     ),
+          //     textAlign: TextAlign.center,
+          //   ),
+          // if (int.parse(controller.roeYAD.text) <
+          //     int.parse(controller.roeFixed.text))
+          //   Text(
+          //     'Buruk 🤬',
+          //     style: GoogleFonts.poppins(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.w600,
+          //     ),
+          //     textAlign: TextAlign.center,
+          //   ),
+
+          // Show Text from controller roeStatus
+          Obx(
+            () => Text(
+              controller.isRoeDescLoading.value
+                  ? 'Sedang memproses hasil..'
+                  : controller.roeStatus.value,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Obx(
+            () => colorButton(
+              context,
+              controller.isRoeLoading.value ? 'Loading...' : 'Hitung ROE',
+              () => controller.hitungRoe(),
+            ),
           ),
           const SizedBox(
             height: 30,

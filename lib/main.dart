@@ -12,7 +12,6 @@ import 'app/routes/app_pages.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.remove();
 
   runApp(
     // GetMaterialApp(
@@ -67,4 +66,6 @@ void main() {
       locale: const Locale('id'),
     ),
   );
+
+  FlutterNativeSplash.remove();
 }

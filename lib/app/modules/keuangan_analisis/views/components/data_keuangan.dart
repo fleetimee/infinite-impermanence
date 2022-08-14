@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import 'package:akm/app/common/style.dart';
@@ -28,6 +29,7 @@ class DataKeuangan extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: 'Equity / Modal',
                   border: OutlineInputBorder(),
+                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                 ),
                 keyboardType: TextInputType.number,
               ),
@@ -38,6 +40,7 @@ class DataKeuangan extends StatelessWidget {
                 name: 'Debt',
                 controller: controller.debtInput,
                 decoration: const InputDecoration(
+                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                   labelText: 'Debt / Hutang',
                   border: OutlineInputBorder(),
                 ),
@@ -61,6 +64,7 @@ class DataKeuangan extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: 'Total',
                   border: OutlineInputBorder(),
+                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                 ),
                 keyboardType: TextInputType.number,
               ),
@@ -92,6 +96,7 @@ class DataKeuangan extends StatelessWidget {
                       decoration: const InputDecoration(
                         labelText: 'Kredit yang diminta',
                         border: OutlineInputBorder(),
+                        prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                       ),
                     ),
                   ),
@@ -124,6 +129,7 @@ class DataKeuangan extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: 'Jumlah Asset',
                   border: OutlineInputBorder(),
+                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                 ),
               ),
               const SizedBox(

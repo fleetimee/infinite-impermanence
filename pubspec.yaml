@@ -72,5 +72,8 @@ flutter_native_splash:
   image: "assets/images/splash_screen/splash_icon.png"
   branding: "assets/images/splash_screen/branding.png"
 
+android_12:
+  image: "assets/images/splash_screen/splash_icon.png"
+
 dependency_overrides:
   intl: ^0.17.0

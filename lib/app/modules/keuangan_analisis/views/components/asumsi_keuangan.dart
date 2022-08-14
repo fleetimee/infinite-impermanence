@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
@@ -39,6 +40,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Omzet Kini',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -51,6 +53,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Omzet Dari Tahun Lalu',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -67,6 +70,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Omzet Kini',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -81,6 +85,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Omzet YAD',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -109,6 +114,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya bahan kini',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -121,6 +127,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya Bahan Tahun Lalu',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -137,6 +144,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Biaya bahan kini',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -151,6 +159,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Biaya bahan YAD',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -179,6 +188,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Upah Kini',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -191,6 +201,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Upah Dari Tahun Lalu',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -207,6 +218,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Upah Kini',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -221,6 +233,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Upah YAD',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -249,6 +262,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya operasi Kini',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -261,6 +275,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya operasi Dari Tahun Lalu',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -277,6 +292,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Biaya operasi Kini',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -291,6 +307,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Biaya operasi YAD',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -319,6 +336,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya hidup Kini',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -331,6 +349,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya hidup Dari Tahun Lalu',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -347,6 +366,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Biaya hidup Kini',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -361,6 +381,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Biaya hidup YAD',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -392,6 +413,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Laba Usaha Kini',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -404,6 +426,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Laba Usaha Tahun Lalu',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -420,6 +443,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Laba Usaha Kini',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -434,6 +458,7 @@ class AsumsiKeuangan extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: '% Laba Usaha YAD',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),

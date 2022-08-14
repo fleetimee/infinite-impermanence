@@ -3,6 +3,7 @@ import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_
 import 'package:akm/app/widget/color_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class Angsuran extends StatelessWidget {
@@ -42,6 +43,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Bunga/tahun %',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -56,6 +58,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Angsuran Perbulan',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.calendarWeek),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -80,6 +83,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Angsuran Perbulan',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.calendarWeek),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -103,6 +107,7 @@ class Angsuran extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Total Angsuran Pinjaman ',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -154,6 +159,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Total Angsuran',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -177,6 +183,7 @@ class Angsuran extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: '',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -219,6 +226,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Bunga/tahun %',
                     border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -231,9 +239,9 @@ class Angsuran extends StatelessWidget {
                   name: 'Angsuran Perbulan Kredit',
                   controller: controller.angsuranPerBulan,
                   decoration: const InputDecoration(
-                    labelText: 'Angsuran Perbulan',
-                    border: OutlineInputBorder(),
-                  ),
+                      labelText: 'Angsuran Perbulan',
+                      border: OutlineInputBorder(),
+                      prefixIcon: Icon(FontAwesomeIcons.calendarWeek)),
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -285,6 +293,7 @@ class Angsuran extends StatelessWidget {
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Total Angsuran Kredit',
+                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                     border: OutlineInputBorder(),
                   ),
                   keyboardType: TextInputType.number,
@@ -413,6 +422,7 @@ class Angsuran extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Total Efektif',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -433,6 +443,7 @@ class Angsuran extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Total Flat',
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
@@ -480,6 +491,7 @@ class Angsuran extends StatelessWidget {
             ),
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
+              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),

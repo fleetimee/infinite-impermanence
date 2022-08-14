@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
@@ -45,38 +46,103 @@ class KeuanganAnalisisController extends GetxController
 
   //Asumsi Keuangan
   /// Omzet input
-  final omzetKini = TextEditingController(text: '30000000');
-  final omzetYAD = TextEditingController(text: '34500000');
+  final omzetKini = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 30000000,
+  );
+  final omzetYAD = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 34500000,
+  );
   final omzetKiniPercent = TextEditingController(text: '100');
   final omzetYADPercent = TextEditingController(text: '100');
 
   /// Biaya bahan input
-  final biayaBahanKini = TextEditingController(text: '21000000');
-  final biayaBahanYAD = TextEditingController(text: '24150000');
+  final biayaBahanKini = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 21000000,
+  );
+  final biayaBahanYAD = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 24150000,
+  );
   final biayaBahanKiniPercent = TextEditingController(text: '');
   final biayaBahanYADPercent = TextEditingController(text: '');
 
   /// Upah input
-  final upahKini = TextEditingController(text: '800000');
-  final upahYAD = TextEditingController(text: '920000');
+  /// 800000
+  /// 920000
+  final upahKini = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 800000,
+  );
+  final upahYAD = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 920000,
+  );
   final upahKiniPercent = TextEditingController(text: '');
   final upahYADPercent = TextEditingController(text: '');
 
   // Biaya operasi
-  final biayaOperasiKini = TextEditingController(text: '500000');
-  final biayaOperasiYAD = TextEditingController(text: '575000');
+  // 500000
+  // 575000
+  final biayaOperasiKini = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 500000,
+  );
+  final biayaOperasiYAD = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 575000,
+  );
   final biayaOperasiKiniPercent = TextEditingController(text: '');
   final biayaOperasiYADPercent = TextEditingController(text: '');
 
   // Biaya hidup
-  final biayaHidupKini = TextEditingController(text: '2500000');
-  final biayaHidupYAD = TextEditingController(text: '2500000');
+  // 2500000
+  final biayaHidupKini = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 2500000,
+  );
+  final biayaHidupYAD = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 2500000,
+  );
   final biayaHidupKiniPercent = TextEditingController(text: '');
   final biayaHidupYADPercent = TextEditingController(text: '');
 
   // Laba Usaha
-  final labaUsahaKini = TextEditingController(text: '0');
-  final labaUsahaYAD = TextEditingController(text: '0');
+  final labaUsahaKini = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 0,
+  );
+  final labaUsahaYAD = MoneyMaskedTextController(
+    thousandSeparator: ',',
+    decimalSeparator: ',',
+    precision: 0,
+    initialValue: 0,
+  );
   final labaUsahaKiniPercent = TextEditingController(text: '');
   final labaUsahaYADPercent = TextEditingController(text: '');
 
@@ -87,11 +153,38 @@ class KeuanganAnalisisController extends GetxController
   final dscFixed = TextEditingController(text: '1.3');
 
   // Ini Data Keuangan
-  final equityInput = TextEditingController(text: '19933998');
-  final debtInput = TextEditingController(text: '15459590');
-  final kreditYangDiminta = TextEditingController(text: '200000000');
-  final netWorth = TextEditingController();
-  final netWorthPlusCredit = TextEditingController();
+  // final equityInput = TextEditingController(text: '19933998');
+  final equityInput = MoneyMaskedTextController(
+    initialValue: 19933998,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+  // final debtInput = TextEditingController(text: '15459590');
+  final debtInput = MoneyMaskedTextController(
+    initialValue: 15459590,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+  final kreditYangDiminta = MoneyMaskedTextController(
+    initialValue: 200000000,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+  final netWorth = MoneyMaskedTextController(
+    initialValue: 204900000,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+  final netWorthPlusCredit = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
 
   // Angsuran Pinjama Lain
   final bungaPerTahunLain = TextEditingController(text: '0');
@@ -104,53 +197,97 @@ class KeuanganAnalisisController extends GetxController
   // Angsuran Pinjaman Kredit
   final bungaPerTahun = TextEditingController(text: '6');
   final angsuranPerBulan = TextEditingController(text: '60');
-  final totalBunga = TextEditingController(text: '3866560');
+  // final totalBunga = TextEditingController(text: '3866560');
+
+  // totalBunga with MoneyMaskedTextController
+  final totalBunga = MoneyMaskedTextController(
+    initialValue: 3866560,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
 
   // Flat / Efektif
   final flatInitial = TextEditingController(text: '0');
   final efektifInitial = TextEditingController(text: '0');
   final totalFlatEfektif = TextEditingController(text: '0');
-  final totalEfektif = TextEditingController(text: '0');
-  final totalFlat = TextEditingController(text: '0');
+  final totalEfektif = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+  final totalFlat = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
 
   // Total Angsuran Keseluruhan
-  final totalAngsuran = TextEditingController(text: '0');
+  final totalAngsuran = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
 
   final roeStatus = ''.obs;
   final isRoeLoading = false.obs;
   final isRoeDescLoading = false.obs;
+  final roaStatus = ''.obs;
+  final isRoaLoading = false.obs;
+  final isRoaDescLoading = false.obs;
   final isRatioProfitLoading = false.obs;
 
   void hitungNetWorth() {
-    netWorth.text =
-        (int.parse(equityInput.text) + int.parse(debtInput.text)).toString();
+    // final parseEquity = int.tryParse(equityInput.text.replaceAll(',', ''));
+    final parseEquity = int.tryParse(equityInput.text.replaceAll(',', ''));
+    final parseDebt = int.tryParse(debtInput.text.replaceAll(',', ''));
+
+    //netWorth to double
+    netWorth.text = (parseEquity! + parseDebt!).toString();
+
+    // netWorth.text =
+    //     (int.parse(equityInput.text) + int.parse(debtInput.text)).toString();
   }
 
   void hitungNetWorthPlusCredit() {
-    netWorthPlusCredit.text =
-        (int.parse(netWorth.text) + int.parse(kreditYangDiminta.text))
-            .toString();
+    netWorthPlusCredit.text = (int.parse(netWorth.text.replaceAll(',', '')) +
+            int.parse(kreditYangDiminta.text.replaceAll(',', '')))
+        .toString();
   }
 
   void hitungTotalLaba() {
-    labaUsahaKini.text = (int.parse(omzetKini.text) -
-            int.parse(biayaBahanKini.text) -
-            int.parse(upahKini.text) -
-            int.parse(biayaOperasiKini.text) -
-            int.parse(biayaHidupKini.text))
+    final parseOmzetKini = int.tryParse(omzetKini.text.replaceAll(',', ''));
+    final parseBiayaBahanKini =
+        int.tryParse(biayaBahanKini.text.replaceAll(',', ''));
+    final parseUpahKini = int.tryParse(upahKini.text.replaceAll(',', ''));
+    final parseBiayaOperasiKini =
+        int.tryParse(biayaOperasiKini.text.replaceAll(',', ''));
+    final parseBiayaHidupKini =
+        int.tryParse(biayaHidupKini.text.replaceAll(',', ''));
+
+    labaUsahaKini.text = (parseOmzetKini! -
+            parseBiayaBahanKini! -
+            parseUpahKini! -
+            parseBiayaOperasiKini! -
+            parseBiayaHidupKini!)
         .toString();
-    labaUsahaYAD.text = (int.parse(omzetYAD.text) -
-            int.parse(biayaBahanYAD.text) -
-            int.parse(upahYAD.text) -
-            int.parse(biayaOperasiYAD.text) -
-            int.parse(biayaHidupYAD.text))
+    labaUsahaYAD.text = (int.parse(omzetYAD.text.replaceAll(',', '')) -
+            int.parse(biayaBahanYAD.text.replaceAll(',', '')) -
+            int.parse(upahYAD.text.replaceAll(',', '')) -
+            int.parse(biayaOperasiYAD.text.replaceAll(',', '')) -
+            int.parse(biayaHidupYAD.text.replaceAll(',', '')))
         .toString();
   }
 
   void hitungTotalAngsuran() {
-    final parseTotalBungaLainAtas = int.parse(totalBungaLainAtas.text);
-    final parseTotalBungaLainBawah = int.parse(totalBungaLainBawah.text);
-    final parseTotalBunga = int.parse(totalBunga.text);
+    final parseTotalBungaLainAtas =
+        int.parse(totalBungaLainAtas.text.replaceAll(',', ''));
+    final parseTotalBungaLainBawah =
+        int.parse(totalBungaLainBawah.text.replaceAll(',', ''));
+    final parseTotalBunga = int.parse(totalBunga.text.replaceAll(',', ''));
 
     totalAngsuran.text =
         (parseTotalBungaLainAtas + parseTotalBungaLainBawah + parseTotalBunga)
@@ -158,55 +295,71 @@ class KeuanganAnalisisController extends GetxController
   }
 
   void hitungTotalPersentasi() {
+    final parseLabaUsahaKini =
+        int.parse(labaUsahaKini.text.replaceAll(',', ''));
+    final parseOmzetKini = int.parse(omzetKini.text.replaceAll(',', ''));
+    final parseLabaUsahaYAD = int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+    final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll(',', ''));
+
     labaUsahaKiniPercent.text =
-        ((int.parse(labaUsahaKini.text) / int.parse(omzetKini.text)) * 100)
-            .toStringAsFixed(1);
+        (parseLabaUsahaKini / parseOmzetKini * 100).toStringAsFixed(1);
 
     labaUsahaYADPercent.text =
-        ((int.parse(labaUsahaYAD.text) / int.parse(omzetYAD.text)) * 100)
-            .toStringAsFixed(1);
+        (parseLabaUsahaYAD / parseOmzetYAD * 100).toStringAsFixed(1);
   }
 
   void hitungPersentasiOtomatis() {
+    final parseOmzetKini = int.tryParse(omzetKini.text.replaceAll(',', ''));
+    final parseOmzedYad = int.tryParse(omzetYAD.text.replaceAll(',', ''));
+    final parseBiayaBahanKini =
+        int.tryParse(biayaBahanKini.text.replaceAll(',', ''));
+    final parseBiayaBahanYad =
+        int.tryParse(biayaBahanYAD.text.replaceAll(',', ''));
+    final parseUpahKini = int.tryParse(upahKini.text.replaceAll(',', ''));
+    final parseUpahYad = int.tryParse(upahYAD.text.replaceAll(',', ''));
+    final parseBiayaOperasiKini =
+        int.tryParse(biayaOperasiKini.text.replaceAll(',', ''));
+    final parseBiayaOperasiYad =
+        int.tryParse(biayaOperasiYAD.text.replaceAll(',', ''));
+    final parseBiayaHidupKini =
+        int.tryParse(biayaHidupKini.text.replaceAll(',', ''));
+    final parseBiayaHidupYad =
+        int.tryParse(biayaHidupYAD.text.replaceAll(',', ''));
+
     biayaBahanKiniPercent.text =
-        ((int.parse(biayaBahanKini.text) / int.parse(omzetKini.text)))
-            .toStringAsFixed(2);
+        ((parseBiayaBahanKini! / parseOmzetKini!)).toStringAsFixed(2);
     biayaBahanYADPercent.text =
-        ((int.parse(biayaBahanYAD.text) / int.parse(omzetYAD.text)))
-            .toStringAsFixed(2);
+        ((parseBiayaBahanYad! / parseOmzedYad!)).toStringAsFixed(2);
     upahKiniPercent.text =
-        ((int.parse(upahKini.text) / int.parse(omzetKini.text)))
-            .toStringAsFixed(2);
-    upahYADPercent.text = ((int.parse(upahYAD.text) / int.parse(omzetYAD.text)))
-        .toStringAsFixed(2);
+        ((parseUpahKini! / parseOmzetKini)).toStringAsFixed(2);
+    upahYADPercent.text = ((parseUpahYad! / parseOmzedYad)).toStringAsFixed(2);
     biayaOperasiKiniPercent.text =
-        ((int.parse(biayaOperasiKini.text) / int.parse(omzetKini.text)))
-            .toStringAsFixed(2);
+        ((parseBiayaOperasiKini! / parseOmzetKini)).toStringAsFixed(2);
     biayaOperasiYADPercent.text =
-        ((int.parse(biayaOperasiYAD.text) / int.parse(omzetYAD.text)))
-            .toStringAsFixed(2);
+        ((parseBiayaOperasiYad! / parseOmzedYad)).toStringAsFixed(2);
     biayaHidupKiniPercent.text =
-        ((int.parse(biayaHidupKini.text) / int.parse(omzetKini.text)))
-            .toStringAsFixed(2);
+        ((parseBiayaHidupKini! / parseOmzetKini)).toStringAsFixed(2);
     biayaHidupYADPercent.text =
-        ((int.parse(biayaHidupYAD.text) / int.parse(omzetYAD.text)))
-            .toStringAsFixed(2);
+        ((parseBiayaHidupYad! / parseOmzedYad)).toStringAsFixed(2);
   }
 
   void hitungRatioProfit() {
     isRatioProfitLoading.value = true;
+    final parseLabaUsahaKini =
+        int.parse(labaUsahaKini.text.replaceAll(',', ''));
+    final parseLabaUsahaYAD = int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+    final parseOmzetKini = int.parse(omzetKini.text.replaceAll(',', ''));
+    final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll(',', ''));
 
     // Delay 1 detik
     Future.delayed(
       const Duration(seconds: 1),
       () {
         ratioProfitKini.text =
-            (int.parse(labaUsahaKini.text) / int.parse(omzetKini.text) * 100)
-                .toStringAsFixed(1);
+            (parseLabaUsahaKini / parseOmzetKini * 100).toStringAsFixed(1);
 
         ratioProfitYAD.text =
-            (int.parse(labaUsahaYAD.text) / int.parse(omzetYAD.text) * 100)
-                .toStringAsFixed(1);
+            (parseLabaUsahaYAD / parseOmzetYAD * 100).toStringAsFixed(1);
 
         isRatioProfitLoading.value = false;
         Get.snackbar(
@@ -225,29 +378,20 @@ class KeuanganAnalisisController extends GetxController
     );
   }
 
-  // void hitungRoeYad() {
-  //   final parseLabaUsaha = int.parse(labaUsahaYAD.text);
-  //   final parseTotalAngsuran = int.parse(totalBunga.text);
-  //   final parseModal = int.parse(equityInput.text);
-
-  //   final firstCount = parseLabaUsaha - parseTotalAngsuran;
-  //   final secondCount = firstCount / parseModal * 100;
-  //   final thirdCount = secondCount * 24;
-
-  //   roeYAD.text = thirdCount.toStringAsFixed(2);
-  // }
-
   void hitungRoe() {
     isRoeLoading.value = true;
 
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        final parseLabaUsaha = int.parse(labaUsahaKini.text);
-        final parseTotalAngsuran = int.parse(totalBunga.text);
-        final parseModal = int.parse(equityInput.text);
+        final parseLabaUsaha =
+            int.parse(labaUsahaKini.text.replaceAll(',', ''));
+        final parseTotalAngsuran =
+            int.parse(totalAngsuran.text.replaceAll(',', ''));
+        final parseModal = int.parse(equityInput.text.replaceAll(',', ''));
 
-        final parseLabaUsahaYad = int.parse(labaUsahaYAD.text);
+        final parseLabaUsahaYad =
+            int.parse(labaUsahaYAD.text.replaceAll(',', ''));
 
         final firstCount = parseLabaUsaha - parseTotalAngsuran;
         final parseModalPercentage = parseModal / 100;
@@ -295,11 +439,69 @@ class KeuanganAnalisisController extends GetxController
         );
       },
     );
+  }
 
-    // Delay for 2 seconds then set roeStatus to false
-    // Future.delayed(Duration(seconds: 2), () {
-    //   isRoeLoading.value = false;
-    // });
+  void hitungRoa() {
+    isRoaLoading.value = true;
+
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        final parseLabaUsahaKini =
+            int.parse(labaUsahaKini.text.replaceAll(',', ''));
+        final parseAngsuranPerBulanLainAtas =
+            int.parse(angsuranPerBulanLainAtas.text.replaceAll(',', ''));
+        final parseNetWorthPlusCredit =
+            int.parse(netWorthPlusCredit.text.replaceAll(',', ''));
+        final parseTotalBunga = int.parse(totalBunga.text.replaceAll(',', ''));
+        final parseLabaUsahaYad =
+            int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+
+        final firstCount = parseLabaUsahaKini - parseAngsuranPerBulanLainAtas;
+        final parseModalPercentage = parseNetWorthPlusCredit / 100;
+        final secondCount = firstCount / parseModalPercentage;
+        final thirdCount = secondCount * 12;
+
+        final firstCountSecond = parseLabaUsahaYad - parseTotalBunga;
+        final parseModalPercentageSecond = parseNetWorthPlusCredit / 100;
+        final secondCountSecond = firstCountSecond / parseModalPercentageSecond;
+        final thirdCountSecond = secondCountSecond * 24;
+        roaKini.text = thirdCount.toStringAsFixed(1);
+        roaYAD.text = thirdCountSecond.toStringAsFixed(1);
+
+        if (double.parse(roaYAD.text) > int.parse(roaFixed.text)) {
+          isRoaDescLoading.value = true;
+          // Delay for 2 seconds then run some code
+          Future.delayed(const Duration(seconds: 1), () {
+            roaStatus.value = 'Baik 🥰';
+            isRoaDescLoading.value = false;
+          });
+        }
+
+        if (double.parse(roaYAD.text) < int.parse(roaFixed.text)) {
+          isRoaDescLoading.value = true;
+          // Delay for 2 seconds then run some code
+          Future.delayed(const Duration(seconds: 1), () {
+            roaStatus.value = 'Jelek 🤣';
+            isRoaDescLoading.value = false;
+          });
+        }
+
+        isRoaLoading.value = false;
+        Get.snackbar(
+          'Success',
+          'ROA berhasil dihitung',
+          backgroundColor: primaryColor,
+          icon: const Icon(
+            Icons.check,
+            color: Colors.white,
+          ),
+          snackPosition: SnackPosition.BOTTOM,
+          colorText: secondaryColor,
+          duration: const Duration(seconds: 2),
+        );
+      },
+    );
   }
 
   void hitungFlatAndEfektif() {
@@ -321,11 +523,14 @@ class KeuanganAnalisisController extends GetxController
 
   void hitungTotalFlatEfektif() {
     final efektifBawah = (double.parse(totalFlatEfektif.text) *
-        (int.parse(kreditYangDiminta.text)));
+        (int.parse(kreditYangDiminta.text.replaceAll(',', ''))));
 
-    final parseKreditYangDiajukan = int.parse(kreditYangDiminta.text);
-    final parseBungaPerTahun = int.parse(bungaPerTahun.text);
-    final parseAngsuranPerBulan = int.parse(angsuranPerBulan.text);
+    final parseKreditYangDiajukan =
+        int.parse(kreditYangDiminta.text.replaceAll(',', ''));
+    final parseBungaPerTahun =
+        int.parse(bungaPerTahun.text.replaceAll(',', ''));
+    final parseAngsuranPerBulan =
+        int.parse(angsuranPerBulan.text.replaceAll(',', ''));
 
     if (parseKreditYangDiajukan == 0) {
       totalFlat.text = '0';

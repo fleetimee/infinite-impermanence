@@ -2,6 +2,7 @@ import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_
 import 'package:akm/app/widget/color_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -43,6 +44,7 @@ class AnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit Kini',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -57,6 +59,7 @@ class AnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit YAD',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -103,6 +106,7 @@ class AnalisaRatio extends StatelessWidget {
                   enabled: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -121,6 +125,7 @@ class AnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'ROE Kini',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -135,6 +140,7 @@ class AnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'ROE YAD',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -216,6 +222,7 @@ class AnalisaRatio extends StatelessWidget {
                   enabled: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -229,9 +236,12 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'ROA Kini',
+                  enabled: false,
+                  controller: controller.roaKini,
                   decoration: const InputDecoration(
                     labelText: 'ROA Kini',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -241,9 +251,12 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'ROA YAD',
+                  controller: controller.roaYAD,
+                  enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'ROA YAD',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -252,14 +265,26 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            'Baik 👍',
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+          Obx(
+            () => Text(
+              controller.isRoaDescLoading.value
+                  ? 'Sedang memproses hasil..'
+                  : controller.roaStatus.value,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
+          const SizedBox(
+            height: 30,
+          ),
+          Obx((() => colorButton(
+                context,
+                controller.isRoaLoading.value ? 'Loading...' : 'Hitung ROA',
+                () => controller.hitungRoa(),
+              ))),
           const SizedBox(
             height: 30,
           ),

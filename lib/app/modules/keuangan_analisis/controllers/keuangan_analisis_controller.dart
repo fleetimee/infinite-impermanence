@@ -16,6 +16,11 @@ class KeuanganAnalisisController extends GetxController
     super.onInit();
   }
 
+  // Make list of TextEditingController on this file
+  // List<TextEditingController> disposeTextEditingController = [
+  //   ratioProfitKini
+  // ];
+
   // Tab Controller
   TabController? tabController;
 
@@ -235,10 +240,134 @@ class KeuanganAnalisisController extends GetxController
   final roeStatus = ''.obs;
   final isRoeLoading = false.obs;
   final isRoeDescLoading = false.obs;
+
   final roaStatus = ''.obs;
   final isRoaLoading = false.obs;
   final isRoaDescLoading = false.obs;
+
+  final derStatus = ''.obs;
+  final isDerLoading = false.obs;
+  final isDerDescLoading = false.obs;
+
+  final dscStatus = ''.obs;
+  final isDscLoading = false.obs;
+  final isDscDescLoading = false.obs;
+
   final isRatioProfitLoading = false.obs;
+
+  final isKreditPassed = false.obs;
+
+  final crr = TextEditingController(text: '0');
+  final pinjamanMaksimal = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+
+  final perhitunganModalKerja = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+
+  final kebutuhanInvestasi = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+
+  final kebutuhanKredit = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: ',',
+    thousandSeparator: ',',
+    precision: 0,
+  );
+
+  final tradeCycle = TextEditingController(text: '8');
+
+  void hitungPinjamanMaksimal() {
+    final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll(',', ''));
+    final parseDscFixed = double.parse(dscFixed.text);
+    final parseAngsuranPerBulanKredit = double.parse(angsuranPerBulan.text);
+
+    final hasil =
+        parseLabaYad / parseDscFixed * parseAngsuranPerBulanKredit * 0.80;
+
+    pinjamanMaksimal.text = hasil.toStringAsFixed(0);
+  }
+
+  void hitungCrr() {
+    final parseDscYad = double.parse(dscYAD.text);
+    final parseDscFixed = double.parse(dscFixed.text);
+
+    if (parseDscYad >= 3.0) {
+      crr.text = '95.0';
+    }
+
+    if (parseDscFixed < parseDscFixed) {
+      crr.text = '0';
+    } else {
+      final firstCount = parseDscYad - parseDscFixed;
+      final secondCount = 3 - parseDscFixed;
+      final thirdCount = firstCount / secondCount;
+      final hasil = thirdCount * 35 + 60;
+
+      print(hasil);
+
+      crr.text = hasil.toStringAsFixed(1);
+
+      print(crr.text);
+    }
+  }
+
+  void hitungKebutuhanInvestasi() {
+    final parseModalKerja =
+        double.parse(perhitunganModalKerja.text.replaceAll(',', ''));
+    final parseTradeCycle = double.parse(tradeCycle.text);
+
+    final hasil = parseModalKerja * parseTradeCycle;
+
+    kebutuhanInvestasi.text = hasil.toStringAsFixed(0);
+  }
+
+  void hitungKebutuhanKredit() {
+    final parseKebutuhanInvestasi =
+        double.parse(kebutuhanInvestasi.text.replaceAll(',', ''));
+
+    final hasil = parseKebutuhanInvestasi * 0.90;
+    print(hasil);
+    kebutuhanKredit.text = hasil.toStringAsFixed(0);
+  }
+
+  void hitungPerhitunganModalKerja() {
+    final parseBiayaBahanYAD =
+        double.parse(biayaBahanYAD.text.replaceAll(',', ''));
+    final parseUpahYAD = double.parse(upahYAD.text.replaceAll(',', ''));
+    final parseBiayaOperasiYAD =
+        double.parse(biayaOperasiYAD.text.replaceAll(',', ''));
+    final parseBiayaHidupYAD =
+        double.parse(biayaHidupYAD.text.replaceAll(',', ''));
+
+    final hasil = parseBiayaBahanYAD +
+        parseUpahYAD +
+        parseBiayaOperasiYAD +
+        parseBiayaHidupYAD;
+    perhitunganModalKerja.text = hasil.toStringAsFixed(0);
+  }
+
+  void hitungSemua() {
+    final parseCrr = double.parse(crr.text);
+    final parseDscYad = double.parse(dscYAD.text);
+
+    if (parseDscYad >= 3) {
+      crr.text = '3';
+    }
+  }
+
+  void checkKredit() {}
 
   void hitungNetWorth() {
     // final parseEquity = int.tryParse(equityInput.text.replaceAll(',', ''));
@@ -502,6 +631,107 @@ class KeuanganAnalisisController extends GetxController
         );
       },
     );
+  }
+
+  void hitungDer() {
+    isDerLoading.value = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      final parseDebt = double.parse(debtInput.text.replaceAll(',', ''));
+      final parseEquity = int.parse(equityInput.text.replaceAll(',', ''));
+      final parseKreditYangDiminta =
+          int.parse(kreditYangDiminta.text.replaceAll(',', ''));
+
+      final percentage = parseEquity / 100;
+      final result = parseDebt / percentage;
+
+      final hitungDerYadFirst = parseDebt + parseKreditYangDiminta;
+      const hitungDerYadSecond = 3134404;
+      final hitungDerYadThird = hitungDerYadFirst / hitungDerYadSecond;
+
+      derKini.text = result.toStringAsFixed(0);
+      derYAD.text = hitungDerYadThird.toStringAsFixed(1);
+
+      if (double.parse(derYAD.text) > int.parse(derFixed.text)) {
+        isDerDescLoading.value = true;
+        // Delay for 2 seconds then run some code
+        Future.delayed(const Duration(seconds: 1), () {
+          derStatus.value = 'Ditolak ❌';
+          isDerDescLoading.value = false;
+        });
+      }
+
+      if (double.parse(derYAD.text) <= int.parse(derFixed.text)) {
+        isDerDescLoading.value = true;
+        // Delay for 2 seconds then run some code
+        Future.delayed(const Duration(seconds: 1), () {
+          derStatus.value = 'Diterima 🤝';
+          isDerDescLoading.value = false;
+        });
+      }
+
+      isDerLoading.value = false;
+      Get.snackbar(
+        'Success',
+        'DER berhasil dihitung',
+        backgroundColor: primaryColor,
+        icon: const Icon(
+          Icons.check,
+          color: Colors.white,
+        ),
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: secondaryColor,
+        duration: const Duration(seconds: 2),
+      );
+    });
+  }
+
+  void hitungDsc() {
+    isDscLoading.value = true;
+    Future.delayed(const Duration(seconds: 2), () {
+      final parseLabaUsahaKini =
+          int.parse(labaUsahaKini.text.replaceAll(',', ''));
+      final parseLabaYad = int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+      final parseTotalAngsuran =
+          int.parse(totalAngsuran.text.replaceAll(',', ''));
+
+      final firstCount = parseLabaUsahaKini / parseTotalAngsuran;
+      final secondCount = parseLabaYad / parseTotalAngsuran;
+
+      dscKini.text = firstCount.toStringAsFixed(1);
+      dscYAD.text = secondCount.toStringAsFixed(1);
+
+      if (double.parse(dscYAD.text) >= double.parse(dscFixed.text)) {
+        isDscDescLoading.value = true;
+        // Delay for 2 seconds then run some code
+        Future.delayed(const Duration(seconds: 1), () {
+          dscStatus.value = 'Diterima 🤝';
+          isDscDescLoading.value = false;
+        });
+      }
+
+      if (double.parse(dscYAD.text) < double.parse(dscFixed.text)) {
+        isDscDescLoading.value = true;
+        // Delay for 2 seconds then run some code
+        Future.delayed(const Duration(seconds: 1), () {
+          dscStatus.value = 'Ditolak ❌';
+          isDscDescLoading.value = false;
+        });
+      }
+
+      isDscLoading.value = false;
+      Get.snackbar(
+        'Success',
+        'DSC berhasil dihitung',
+        backgroundColor: primaryColor,
+        icon: const Icon(
+          Icons.check,
+          color: Colors.white,
+        ),
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: secondaryColor,
+        duration: const Duration(seconds: 2),
+      );
+    });
   }
 
   void hitungFlatAndEfektif() {

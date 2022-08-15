@@ -1,7 +1,10 @@
+import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 import 'package:akm/app/common/style.dart';
@@ -83,69 +86,69 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                   const Icon(Icons.error),
                             ),
                           ),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: LoadingAnimatedButton(
-                                  child: Text('Push'),
-                                  onTap: () {},
-                                ),
-                              ),
-                              Expanded(
-                                child: LoadingAnimatedButton(
-                                  child: Text('Push'),
-                                  onTap: () {},
-                                ),
-                              ),
-                            ],
+                          const SizedBox(
+                            height: 20,
                           ),
                           LoadingAnimatedButton(
-                            child: Text('Push'),
-                            onTap: () {},
-                          ),
-                          Container(
-                            width: 200,
-                            child: AspectRatio(
-                              aspectRatio: 208 / 71,
-                              child: Container(
-                                decoration: BoxDecoration(boxShadow: [
-                                  BoxShadow(
-                                      offset: Offset(0, 4),
-                                      color: Color(0x4960F9).withOpacity(.3),
-                                      spreadRadius: 4,
-                                      blurRadius: 50)
-                                ]),
-                                child: MaterialButton(
-                                  onPressed: () {},
-                                  splashColor: Colors.lightBlue,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(36)),
-                                  padding: const EdgeInsets.all(0.0),
-                                  child: Ink(
-                                      decoration: BoxDecoration(
-                                        //gradient:
-                                        image: DecorationImage(
-                                          image: NetworkImage(
-                                              "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/finance_app_2%2FbuttonBackgroundSmall.png?alt=media&token=fa2f9bba-120a-4a94-8bc2-f3adc2b58a73"),
-                                          fit: BoxFit.cover,
-                                        ),
-                                        borderRadius: BorderRadius.circular(36),
-                                      ),
-                                      child: Container(
-                                          constraints: const BoxConstraints(
-                                              minWidth: 88.0,
-                                              minHeight:
-                                                  36.0), // min sizes for Material buttons
-                                          alignment: Alignment.center,
-                                          child: Text('Get Started',
-                                              style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight:
-                                                      FontWeight.w300)))),
-                                ),
-                              ),
+                            child: Text(
+                              'Lihat Hasil',
+                              style: GoogleFonts.andika(fontSize: 25),
                             ),
+                            onTap: () {
+                              showBarModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  controller.hitungCrr();
+                                  return HasilAnalisa();
+                                },
+                                backgroundColor: secondaryColor,
+                                bounce: true,
+                              );
+                            },
                           ),
+                          // Container(
+                          //   width: 200,
+                          //   child: AspectRatio(
+                          //     aspectRatio: 208 / 71,
+                          //     child: Container(
+                          //       decoration: BoxDecoration(boxShadow: [
+                          //         BoxShadow(
+                          //             offset: Offset(0, 4),
+                          //             color: Color(0x4960F9).withOpacity(.3),
+                          //             spreadRadius: 4,
+                          //             blurRadius: 50)
+                          //       ]),
+                          //       child: MaterialButton(
+                          //         onPressed: () {},
+                          //         splashColor: Colors.lightBlue,
+                          //         shape: RoundedRectangleBorder(
+                          //             borderRadius: BorderRadius.circular(36)),
+                          //         padding: const EdgeInsets.all(0.0),
+                          //         child: Ink(
+                          //             decoration: BoxDecoration(
+                          //               //gradient:
+                          //               image: DecorationImage(
+                          //                 image: NetworkImage(
+                          //                     "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/finance_app_2%2FbuttonBackgroundSmall.png?alt=media&token=fa2f9bba-120a-4a94-8bc2-f3adc2b58a73"),
+                          //                 fit: BoxFit.cover,
+                          //               ),
+                          //               borderRadius: BorderRadius.circular(36),
+                          //             ),
+                          //             child: Container(
+                          //                 constraints: const BoxConstraints(
+                          //                     minWidth: 88.0,
+                          //                     minHeight:
+                          //                         36.0), // min sizes for Material buttons
+                          //                 alignment: Alignment.center,
+                          //                 child: Text('Get Started',
+                          //                     style: TextStyle(
+                          //                         color: Colors.white,
+                          //                         fontWeight:
+                          //                             FontWeight.w300)))),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
@@ -177,9 +180,9 @@ class LoadingAnimatedButton extends StatefulWidget {
       required this.child,
       required this.onTap,
       this.width = 500,
-      this.height = 50,
-      this.color = Colors.indigo,
-      this.borderColor = Colors.white,
+      this.height = 75,
+      this.color = primaryColor,
+      this.borderColor = secondaryColor,
       this.borderRadius = 15.0,
       this.borderWidth = 3.0,
       this.duration = const Duration(milliseconds: 1500)})
@@ -295,6 +298,7 @@ class CustomCarouselFB2 extends StatefulWidget {
   const CustomCarouselFB2({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _CustomCarouselFB2State createState() => _CustomCarouselFB2State();
 }
 

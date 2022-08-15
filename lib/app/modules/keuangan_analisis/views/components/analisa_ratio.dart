@@ -314,6 +314,7 @@ class AnalisaRatio extends StatelessWidget {
                   enabled: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -327,9 +328,11 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'DER Kini',
+                  controller: controller.derKini,
                   decoration: const InputDecoration(
                     labelText: 'DER Kini',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -339,9 +342,11 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'DER YAD',
+                  controller: controller.derYAD,
                   decoration: const InputDecoration(
                     labelText: 'DER YAD',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -350,16 +355,27 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            'Diterima 🤝',
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+          Obx(
+            () => Text(
+              controller.isDerDescLoading.value
+                  ? 'Sedang memproses hasil..'
+                  : controller.derStatus.value,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 30,
+          ),
+          Obx(
+            (() => colorButton(
+                  context,
+                  controller.isDerLoading.value ? 'Loading...' : 'Hitung DER',
+                  () => controller.hitungDer(),
+                )),
           ),
           Row(
             children: [
@@ -400,6 +416,7 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'DSC Kini',
+                  controller: controller.dscKini,
                   decoration: const InputDecoration(
                     labelText: 'DSC Kini',
                     border: OutlineInputBorder(),
@@ -412,6 +429,7 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'DSC YAD',
+                  controller: controller.dscYAD,
                   decoration: const InputDecoration(
                     labelText: 'DSC YAD',
                     border: OutlineInputBorder(),
@@ -423,14 +441,26 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          Text(
-            'Diterima 🤝',
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
+          Obx(
+            () => Text(
+              controller.isDscDescLoading.value
+                  ? 'Sedang memproses hasil..'
+                  : controller.dscStatus.value,
+              style: GoogleFonts.poppins(
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          Obx(() => colorButton(
+                context,
+                controller.isDscLoading.value ? 'Loading...' : 'Hitung DSC',
+                () => controller.hitungDsc(),
+              )),
           const SizedBox(
             height: 60,
           ),

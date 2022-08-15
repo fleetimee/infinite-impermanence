@@ -43,7 +43,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Bunga/tahun %',
                     border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -226,7 +226,7 @@ class Angsuran extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'Bunga/tahun %',
                     border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                   keyboardType: TextInputType.number,
                 ),

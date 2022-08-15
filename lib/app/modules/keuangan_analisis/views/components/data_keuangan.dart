@@ -17,135 +17,145 @@ class DataKeuangan extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.fromLTRB(45, 0, 45, 0),
         child: FormBuilder(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              const SizedBox(
-                height: 30,
-              ),
-              FormBuilderTextField(
-                controller: controller.equityInput,
-                name: 'Equity',
-                decoration: const InputDecoration(
-                  labelText: 'Equity / Modal',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                const SizedBox(
+                  height: 30,
                 ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              FormBuilderTextField(
-                name: 'Debt',
-                controller: controller.debtInput,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
-                  labelText: 'Debt / Hutang',
-                  border: OutlineInputBorder(),
+                FormBuilderTextField(
+                  controller: controller.equityInput,
+                  name: 'Equity',
+                  decoration: const InputDecoration(
+                    labelText: 'Equity / Modal',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                  ),
+                  keyboardType: TextInputType.number,
                 ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              FormBuilderTextField(
-                enabled: false,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: primaryColor,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1,
+                const SizedBox(
+                  height: 20,
                 ),
-                readOnly: true,
-                name: 'Total',
-                controller: controller.netWorth,
-                decoration: const InputDecoration(
-                  labelText: 'Total',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                FormBuilderTextField(
+                  name: 'Debt',
+                  controller: controller.debtInput,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                    labelText: 'Debt / Hutang',
+                    border: OutlineInputBorder(),
+                  ),
+                  keyboardType: TextInputType.number,
                 ),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              colorButton(
-                context,
-                'Hitung Total Asset',
-                () {
-                  controller.hitungNetWorth();
-                },
-              ),
-              const Padding(
-                padding: EdgeInsets.fromLTRB(100, 0, 100, 0),
-                child: Divider(
-                  height: 60,
-                  thickness: 1,
-                  color: primaryColor,
+                const SizedBox(
+                  height: 40,
                 ),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 10,
-                    child: FormBuilderTextField(
-                      controller: controller.kreditYangDiminta,
-                      name: 'Kredit yang diminta',
-                      decoration: const InputDecoration(
-                        labelText: 'Kredit yang diminta',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                FormBuilderTextField(
+                  enabled: false,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: primaryColor,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1,
+                  ),
+                  readOnly: true,
+                  name: 'Total',
+                  controller: controller.netWorth,
+                  decoration: const InputDecoration(
+                    labelText: 'Total',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                  ),
+                  keyboardType: TextInputType.number,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                colorButton(
+                  context,
+                  'Hitung Total Asset',
+                  () {
+                    controller.hitungNetWorth();
+                  },
+                ),
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(100, 0, 100, 0),
+                  child: Divider(
+                    height: 60,
+                    thickness: 1,
+                    color: primaryColor,
+                  ),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 10,
+                      child: FormBuilderTextField(
+                        controller: controller.kreditYangDiminta,
+                        style: const TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1,
+                          color: primaryColor,
+                        ),
+                        name: 'Kredit yang diminta',
+                        decoration: const InputDecoration(
+                          labelText: 'Kredit yang diminta',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                        ),
+                        keyboardType: TextInputType.number,
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  const Expanded(
-                    child: Icon(
-                      Icons.check_circle,
-                      color: Colors.green,
-                      size: 35,
+                    const SizedBox(
+                      width: 10,
                     ),
+                    const Expanded(
+                      flex: 2,
+                      child: Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                        size: 35,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                FormBuilderTextField(
+                  enabled: false,
+                  textAlign: TextAlign.center,
+                  name: 'Jumlah Asset',
+                  style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1,
+                    color: primaryColor,
                   ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              FormBuilderTextField(
-                enabled: false,
-                textAlign: TextAlign.center,
-                name: 'Jumlah Asset',
-                style: const TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1,
-                  color: primaryColor,
+                  controller: controller.netWorthPlusCredit,
+                  decoration: const InputDecoration(
+                    labelText: 'Jumlah Asset',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                  ),
                 ),
-                controller: controller.netWorthPlusCredit,
-                decoration: const InputDecoration(
-                  labelText: 'Jumlah Asset',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              colorButton(
-                context,
-                'Hitung Total Asset + Kredit yang diminta',
-                () {
-                  controller.hitungNetWorthPlusCredit();
-                },
-              ),
-              const SizedBox(
-                height: 60,
-              ),
-            ],
+                colorButton(
+                  context,
+                  'Hitung Total Asset + Kredit yang diminta',
+                  () {
+                    controller.hitungNetWorthPlusCredit();
+                  },
+                ),
+                const SizedBox(
+                  height: 60,
+                ),
+              ],
+            ),
           ),
         ),
       ),

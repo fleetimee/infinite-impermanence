@@ -1,11 +1,19 @@
+// 🎯 Dart imports:
 import 'dart:async';
-
-import 'package:extended_masked_text/extended_masked_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
-import 'package:get/get.dart';
 import 'dart:math';
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+// 🌎 Project imports:
 import '../../../common/style.dart';
 
 class KeuanganAnalisisController extends GetxController
@@ -16,17 +24,26 @@ class KeuanganAnalisisController extends GetxController
     super.onInit();
   }
 
-  // Make list of TextEditingController on this file
-  // List<TextEditingController> disposeTextEditingController = [
-  //   ratioProfitKini
-  // ];
+  final Map<String, TextEditingController> listOfTextEditingController = {
+    'Equity': TextEditingController(),
+    'Debt': TextEditingController(),
+    'Total': TextEditingController(),
+    'Kredit yang diminta': TextEditingController(),
+  };
+
+  // Check if controller has been disposed
+
+  @override
+  void onClose() {
+    // Disposing all the controllers
+    listOfTextEditingController.forEach((name, value) {
+      value.dispose();
+    });
+    super.onClose();
+  }
 
   // Tab Controller
   TabController? tabController;
-
-  final toggleKey = GlobalKey<ExpandableFabState>();
-
-  final isExpandedAsumsiKeuangan = false.obs;
 
   // Analisa Ratio
   /// Ratio profit
@@ -52,14 +69,14 @@ class KeuanganAnalisisController extends GetxController
   //Asumsi Keuangan
   /// Omzet input
   final omzetKini = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 30000000,
   );
   final omzetYAD = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 34500000,
   );
@@ -68,14 +85,14 @@ class KeuanganAnalisisController extends GetxController
 
   /// Biaya bahan input
   final biayaBahanKini = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 21000000,
   );
   final biayaBahanYAD = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 24150000,
   );
@@ -86,14 +103,14 @@ class KeuanganAnalisisController extends GetxController
   /// 800000
   /// 920000
   final upahKini = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 800000,
   );
   final upahYAD = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 920000,
   );
@@ -104,14 +121,14 @@ class KeuanganAnalisisController extends GetxController
   // 500000
   // 575000
   final biayaOperasiKini = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 500000,
   );
   final biayaOperasiYAD = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 575000,
   );
@@ -121,14 +138,14 @@ class KeuanganAnalisisController extends GetxController
   // Biaya hidup
   // 2500000
   final biayaHidupKini = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 2500000,
   );
   final biayaHidupYAD = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 2500000,
   );
@@ -137,14 +154,14 @@ class KeuanganAnalisisController extends GetxController
 
   // Laba Usaha
   final labaUsahaKini = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 0,
   );
   final labaUsahaYAD = MoneyMaskedTextController(
-    thousandSeparator: ',',
-    decimalSeparator: ',',
+    thousandSeparator: '.',
+    decimalSeparator: '',
     precision: 0,
     initialValue: 0,
   );
@@ -161,33 +178,37 @@ class KeuanganAnalisisController extends GetxController
   // final equityInput = TextEditingController(text: '19933998');
   final equityInput = MoneyMaskedTextController(
     initialValue: 19933998,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
+  final CurrencyTextInputFormatter equity = CurrencyTextInputFormatter(
+    symbol: '',
+    decimalDigits: 0,
+  );
+
   // final debtInput = TextEditingController(text: '15459590');
   final debtInput = MoneyMaskedTextController(
     initialValue: 15459590,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
   final kreditYangDiminta = MoneyMaskedTextController(
     initialValue: 200000000,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
   final netWorth = MoneyMaskedTextController(
     initialValue: 204900000,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
   final netWorthPlusCredit = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
@@ -207,8 +228,8 @@ class KeuanganAnalisisController extends GetxController
   // totalBunga with MoneyMaskedTextController
   final totalBunga = MoneyMaskedTextController(
     initialValue: 3866560,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
@@ -218,22 +239,22 @@ class KeuanganAnalisisController extends GetxController
   final totalFlatEfektif = TextEditingController(text: '0');
   final totalEfektif = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
   final totalFlat = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
   // Total Angsuran Keseluruhan
   final totalAngsuran = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
@@ -256,40 +277,73 @@ class KeuanganAnalisisController extends GetxController
   final isRatioProfitLoading = false.obs;
 
   final isKreditPassed = false.obs;
+  final isVerificationButtonPressed = false.obs;
 
   final crr = TextEditingController(text: '0');
   final pinjamanMaksimal = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
   final perhitunganModalKerja = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
   final kebutuhanInvestasi = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
   final kebutuhanKredit = MoneyMaskedTextController(
     initialValue: 0,
-    decimalSeparator: ',',
-    thousandSeparator: ',',
+    decimalSeparator: '',
+    thousandSeparator: '.',
     precision: 0,
   );
 
   final tradeCycle = TextEditingController(text: '8');
 
   void hitungPinjamanMaksimal() {
-    final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll(',', ''));
+    // Check if parselabayad is an empty string
+    if (labaUsahaYAD.text == '') {
+      Get.snackbar(
+        'Error',
+        'Laba Usaha Masih Kosong',
+        icon: const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+    }
+
+    // Check if pareDscFixed is an empty string
+    if (dscFixed.text == '') {
+      Get.snackbar(
+        'Error',
+        'Dsc Masih Kosong',
+        icon: const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+    }
+
+    final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll('.', ''));
     final parseDscFixed = double.parse(dscFixed.text);
     final parseAngsuranPerBulanKredit = double.parse(angsuranPerBulan.text);
 
@@ -297,6 +351,76 @@ class KeuanganAnalisisController extends GetxController
         parseLabaYad / parseDscFixed * parseAngsuranPerBulanKredit * 0.80;
 
     pinjamanMaksimal.text = hasil.toStringAsFixed(0);
+  }
+
+  void checkIfCreditPassed() {
+    if (pinjamanMaksimal.text == '0' || pinjamanMaksimal.text == '') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Pinjaman Maksimal Masih Kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 25,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Pinjaman Maksimal Masih Kosong');
+    } else {
+      final parseKreditYangDiminta =
+          double.parse(kreditYangDiminta.text.replaceAll('.', ''));
+      final parsePinjamanMaksimal =
+          double.parse(pinjamanMaksimal.text.replaceAll('.', ''));
+
+      isVerificationButtonPressed.value = true;
+
+      if (parseKreditYangDiminta > parsePinjamanMaksimal) {
+        isKreditPassed.value = true;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.ERROR,
+          animType: AnimType.BOTTOMSLIDE,
+          title: 'Error',
+          desc: 'Kredit yang diminta melebihi pinjaman maksimal',
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 30,
+          ),
+          descTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 25,
+          ),
+          btnOkOnPress: () {},
+        ).show();
+      } else {
+        isKreditPassed.value = false;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.SUCCES,
+          animType: AnimType.BOTTOMSLIDE,
+          title: 'Success',
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 30,
+          ),
+          desc: 'Kredit yang diminta tidak melebihi pinjaman maksimal',
+          descTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 25,
+          ),
+          btnOkOnPress: () {},
+        ).show();
+      }
+    }
   }
 
   void hitungCrr() {
@@ -307,7 +431,7 @@ class KeuanganAnalisisController extends GetxController
       crr.text = '95.0';
     }
 
-    if (parseDscFixed < parseDscFixed) {
+    if (parseDscYad < parseDscFixed) {
       crr.text = '0';
     } else {
       final firstCount = parseDscYad - parseDscFixed;
@@ -317,15 +441,27 @@ class KeuanganAnalisisController extends GetxController
 
       print(hasil);
 
-      crr.text = hasil.toStringAsFixed(1);
+      crr.text = hasil.toStringAsFixed(2);
 
       print(crr.text);
     }
+    // else {
+    //   final firstCount = parseDscYad - parseDscFixed;
+    //   final secondCount = 3 - parseDscFixed;
+    //   final thirdCount = firstCount / secondCount;
+    //   final hasil = thirdCount * 35 + 60;
+
+    //   print(hasil);
+
+    //   crr.text = hasil.toStringAsFixed(1);
+
+    //   print(crr.text);
+    // }
   }
 
   void hitungKebutuhanInvestasi() {
     final parseModalKerja =
-        double.parse(perhitunganModalKerja.text.replaceAll(',', ''));
+        double.parse(perhitunganModalKerja.text.replaceAll('.', ''));
     final parseTradeCycle = double.parse(tradeCycle.text);
 
     final hasil = parseModalKerja * parseTradeCycle;
@@ -335,7 +471,7 @@ class KeuanganAnalisisController extends GetxController
 
   void hitungKebutuhanKredit() {
     final parseKebutuhanInvestasi =
-        double.parse(kebutuhanInvestasi.text.replaceAll(',', ''));
+        double.parse(kebutuhanInvestasi.text.replaceAll('.', ''));
 
     final hasil = parseKebutuhanInvestasi * 0.90;
     print(hasil);
@@ -344,12 +480,12 @@ class KeuanganAnalisisController extends GetxController
 
   void hitungPerhitunganModalKerja() {
     final parseBiayaBahanYAD =
-        double.parse(biayaBahanYAD.text.replaceAll(',', ''));
-    final parseUpahYAD = double.parse(upahYAD.text.replaceAll(',', ''));
+        double.parse(biayaBahanYAD.text.replaceAll('.', ''));
+    final parseUpahYAD = double.parse(upahYAD.text.replaceAll('.', ''));
     final parseBiayaOperasiYAD =
-        double.parse(biayaOperasiYAD.text.replaceAll(',', ''));
+        double.parse(biayaOperasiYAD.text.replaceAll('.', ''));
     final parseBiayaHidupYAD =
-        double.parse(biayaHidupYAD.text.replaceAll(',', ''));
+        double.parse(biayaHidupYAD.text.replaceAll('.', ''));
 
     final hasil = parseBiayaBahanYAD +
         parseUpahYAD +
@@ -359,43 +495,107 @@ class KeuanganAnalisisController extends GetxController
   }
 
   void hitungSemua() {
-    final parseCrr = double.parse(crr.text);
-    final parseDscYad = double.parse(dscYAD.text);
+    try {
+      hitungPinjamanMaksimal();
+      hitungPerhitunganModalKerja();
 
-    if (parseDscYad >= 3) {
-      crr.text = '3';
+      hitungKebutuhanInvestasi();
+      hitungKebutuhanKredit();
+      hitungCrr();
+    } catch (e) {
+      if (FormatException == e.runtimeType) {
+        Get.snackbar(
+          'Error',
+          'Format salah',
+          icon: const Icon(
+            Icons.error,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 2),
+        );
+      }
     }
   }
 
-  void checkKredit() {}
-
   void hitungNetWorth() {
-    // final parseEquity = int.tryParse(equityInput.text.replaceAll(',', ''));
-    final parseEquity = int.tryParse(equityInput.text.replaceAll(',', ''));
-    final parseDebt = int.tryParse(debtInput.text.replaceAll(',', ''));
+    try {
+      final parseEquity = int.parse(equityInput.text.replaceAll('.', ''));
+      final parseDebt = int.parse(debtInput.text.replaceAll('.', ''));
 
-    //netWorth to double
-    netWorth.text = (parseEquity! + parseDebt!).toString();
+      netWorth.text = (parseEquity + parseDebt).toString();
+    } catch (e) {
+      if (debtInput.text == '') {
+        AwesomeDialog(
+          dialogType: DialogType.ERROR,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 20,
+          ),
+          animType: AnimType.BOTTOMSLIDE,
+          title: 'Field Pinjaman Masih Kosong',
+          btnOkOnPress: () {},
+          context: Get.context!,
+        ).show();
+      }
 
-    // netWorth.text =
-    //     (int.parse(equityInput.text) + int.parse(debtInput.text)).toString();
+      if (equityInput.text == '') {
+        AwesomeDialog(
+          dialogType: DialogType.ERROR,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 20,
+          ),
+          animType: AnimType.BOTTOMSLIDE,
+          title: 'Field Modal Masih Kosong',
+          btnOkOnPress: () {},
+          context: Get.context!,
+        ).show();
+      }
+    }
   }
 
+  final isHitungTotalNetworgLoading = false.obs;
+
   void hitungNetWorthPlusCredit() {
-    netWorthPlusCredit.text = (int.parse(netWorth.text.replaceAll(',', '')) +
-            int.parse(kreditYangDiminta.text.replaceAll(',', '')))
-        .toString();
+    try {
+      isHitungTotalNetworgLoading.value = true;
+
+      final parseNetWorth = int.parse(netWorth.text.replaceAll('.', ''));
+      final parseKreditYangDiminta =
+          int.parse(kreditYangDiminta.text.replaceAll('.', ''));
+      final hasil = parseNetWorth + parseKreditYangDiminta;
+
+      netWorthPlusCredit.text = hasil.toString();
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Jumlah asset masih kosong',
+        icon: const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 2),
+      );
+    }
   }
 
   void hitungTotalLaba() {
-    final parseOmzetKini = int.tryParse(omzetKini.text.replaceAll(',', ''));
+    final parseOmzetKini = int.tryParse(omzetKini.text.replaceAll('.', ''));
     final parseBiayaBahanKini =
-        int.tryParse(biayaBahanKini.text.replaceAll(',', ''));
-    final parseUpahKini = int.tryParse(upahKini.text.replaceAll(',', ''));
+        int.tryParse(biayaBahanKini.text.replaceAll('.', ''));
+    final parseUpahKini = int.tryParse(upahKini.text.replaceAll('.', ''));
     final parseBiayaOperasiKini =
-        int.tryParse(biayaOperasiKini.text.replaceAll(',', ''));
+        int.tryParse(biayaOperasiKini.text.replaceAll('.', ''));
     final parseBiayaHidupKini =
-        int.tryParse(biayaHidupKini.text.replaceAll(',', ''));
+        int.tryParse(biayaHidupKini.text.replaceAll('.', ''));
 
     labaUsahaKini.text = (parseOmzetKini! -
             parseBiayaBahanKini! -
@@ -403,20 +603,20 @@ class KeuanganAnalisisController extends GetxController
             parseBiayaOperasiKini! -
             parseBiayaHidupKini!)
         .toString();
-    labaUsahaYAD.text = (int.parse(omzetYAD.text.replaceAll(',', '')) -
-            int.parse(biayaBahanYAD.text.replaceAll(',', '')) -
-            int.parse(upahYAD.text.replaceAll(',', '')) -
-            int.parse(biayaOperasiYAD.text.replaceAll(',', '')) -
-            int.parse(biayaHidupYAD.text.replaceAll(',', '')))
+    labaUsahaYAD.text = (int.parse(omzetYAD.text.replaceAll('.', '')) -
+            int.parse(biayaBahanYAD.text.replaceAll('.', '')) -
+            int.parse(upahYAD.text.replaceAll('.', '')) -
+            int.parse(biayaOperasiYAD.text.replaceAll('.', '')) -
+            int.parse(biayaHidupYAD.text.replaceAll('.', '')))
         .toString();
   }
 
   void hitungTotalAngsuran() {
     final parseTotalBungaLainAtas =
-        int.parse(totalBungaLainAtas.text.replaceAll(',', ''));
+        int.parse(totalBungaLainAtas.text.replaceAll('.', ''));
     final parseTotalBungaLainBawah =
-        int.parse(totalBungaLainBawah.text.replaceAll(',', ''));
-    final parseTotalBunga = int.parse(totalBunga.text.replaceAll(',', ''));
+        int.parse(totalBungaLainBawah.text.replaceAll('.', ''));
+    final parseTotalBunga = int.parse(totalBunga.text.replaceAll('.', ''));
 
     totalAngsuran.text =
         (parseTotalBungaLainAtas + parseTotalBungaLainBawah + parseTotalBunga)
@@ -425,60 +625,162 @@ class KeuanganAnalisisController extends GetxController
 
   void hitungTotalPersentasi() {
     final parseLabaUsahaKini =
-        int.parse(labaUsahaKini.text.replaceAll(',', ''));
-    final parseOmzetKini = int.parse(omzetKini.text.replaceAll(',', ''));
-    final parseLabaUsahaYAD = int.parse(labaUsahaYAD.text.replaceAll(',', ''));
-    final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll(',', ''));
+        int.parse(labaUsahaKini.text.replaceAll('.', ''));
+    final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
+    final parseLabaUsahaYAD = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
+    final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll('.', ''));
 
     labaUsahaKiniPercent.text =
-        (parseLabaUsahaKini / parseOmzetKini * 100).toStringAsFixed(1);
+        (parseLabaUsahaKini / parseOmzetKini).toStringAsFixed(2);
 
     labaUsahaYADPercent.text =
-        (parseLabaUsahaYAD / parseOmzetYAD * 100).toStringAsFixed(1);
+        (parseLabaUsahaYAD / parseOmzetYAD).toStringAsFixed(2);
   }
 
   void hitungPersentasiOtomatis() {
-    final parseOmzetKini = int.tryParse(omzetKini.text.replaceAll(',', ''));
-    final parseOmzedYad = int.tryParse(omzetYAD.text.replaceAll(',', ''));
-    final parseBiayaBahanKini =
-        int.tryParse(biayaBahanKini.text.replaceAll(',', ''));
-    final parseBiayaBahanYad =
-        int.tryParse(biayaBahanYAD.text.replaceAll(',', ''));
-    final parseUpahKini = int.tryParse(upahKini.text.replaceAll(',', ''));
-    final parseUpahYad = int.tryParse(upahYAD.text.replaceAll(',', ''));
-    final parseBiayaOperasiKini =
-        int.tryParse(biayaOperasiKini.text.replaceAll(',', ''));
-    final parseBiayaOperasiYad =
-        int.tryParse(biayaOperasiYAD.text.replaceAll(',', ''));
-    final parseBiayaHidupKini =
-        int.tryParse(biayaHidupKini.text.replaceAll(',', ''));
-    final parseBiayaHidupYad =
-        int.tryParse(biayaHidupYAD.text.replaceAll(',', ''));
+    // Check if biayaBahanKini and biayabahanYAD is empty or not
+    if (biayaBahanKini.text == '' || biayaBahanYAD.text == '') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya bahan kini dan biaya bahan YAD tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception(
+          'Biaya bahan kini dan biaya bahan YAD tidak boleh kosong');
+    } else {
+      final parseBiayaBahanKini =
+          int.parse(biayaBahanKini.text.replaceAll('.', ''));
+      final parseBiayaBahanYADBahan =
+          int.parse(biayaBahanYAD.text.replaceAll('.', ''));
+      final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
+      final parseOmzetYADBahan = int.parse(omzetYAD.text.replaceAll('.', ''));
 
-    biayaBahanKiniPercent.text =
-        ((parseBiayaBahanKini! / parseOmzetKini!)).toStringAsFixed(2);
-    biayaBahanYADPercent.text =
-        ((parseBiayaBahanYad! / parseOmzedYad!)).toStringAsFixed(2);
-    upahKiniPercent.text =
-        ((parseUpahKini! / parseOmzetKini)).toStringAsFixed(2);
-    upahYADPercent.text = ((parseUpahYad! / parseOmzedYad)).toStringAsFixed(2);
-    biayaOperasiKiniPercent.text =
-        ((parseBiayaOperasiKini! / parseOmzetKini)).toStringAsFixed(2);
-    biayaOperasiYADPercent.text =
-        ((parseBiayaOperasiYad! / parseOmzedYad)).toStringAsFixed(2);
-    biayaHidupKiniPercent.text =
-        ((parseBiayaHidupKini! / parseOmzetKini)).toStringAsFixed(2);
-    biayaHidupYADPercent.text =
-        ((parseBiayaHidupYad! / parseOmzedYad)).toStringAsFixed(2);
+      biayaBahanKiniPercent.text =
+          ((parseBiayaBahanKini / parseOmzetKini)).toStringAsFixed(2);
+      biayaBahanYADPercent.text =
+          ((parseBiayaBahanYADBahan / parseOmzetYADBahan)).toStringAsFixed(2);
+    }
+
+    // Check if upahKini and upahYAD is empty or not
+    if (upahKini.text == '' || upahYAD.text == '') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.RIGHSLIDE,
+        title: 'Error',
+        desc: 'Upah kini dan upah YAD tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Upah kini dan upah YAD tidak boleh kosong');
+    } else {
+      final parseUpahKini = int.parse(upahKini.text.replaceAll('.', ''));
+      final parseUpahYAD = int.parse(upahYAD.text.replaceAll('.', ''));
+      final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
+      final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll('.', ''));
+
+      upahKiniPercent.text =
+          ((parseUpahKini / parseOmzetKini)).toStringAsFixed(2);
+      upahYADPercent.text = ((parseUpahYAD / parseOmzetYAD)).toStringAsFixed(2);
+    }
+
+    // Check if  biayaOperasiKini and biayaOperasiYAD is empty or not
+    if (biayaOperasiKini.text == '' || biayaOperasiYAD.text == '') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya operasi kini dan biaya operasi YAD tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception(
+          'Biaya operasi kini dan biaya operasi YAD tidak boleh kosong');
+    } else {
+      final parseBiayaOperasiKini =
+          int.parse(biayaOperasiKini.text.replaceAll('.', ''));
+      final parseBiayaOperasiYAD =
+          int.parse(biayaOperasiYAD.text.replaceAll('.', ''));
+      final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
+      final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll('.', ''));
+
+      biayaOperasiKiniPercent.text =
+          ((parseBiayaOperasiKini / parseOmzetKini)).toStringAsFixed(2);
+      biayaOperasiYADPercent.text =
+          ((parseBiayaOperasiYAD / parseOmzetYAD)).toStringAsFixed(2);
+    }
+
+    // Check if biayaHidupKini and biayaHidupYAD is empty or not
+    if (biayaHidupKini.text == '' || biayaHidupYAD.text == '') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya hidup kini dan biaya hidup YAD tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception(
+          'Biaya hidup kini dan biaya hidup YAD tidak boleh kosong');
+    } else {
+      final parseBiayaHidupKini =
+          int.parse(biayaHidupKini.text.replaceAll('.', ''));
+      final parseBiayaHidupYAD =
+          int.parse(biayaHidupYAD.text.replaceAll('.', ''));
+      final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
+      final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll('.', ''));
+      biayaHidupKiniPercent.text =
+          ((parseBiayaHidupKini / parseOmzetKini)).toStringAsFixed(2);
+      biayaHidupYADPercent.text =
+          ((parseBiayaHidupYAD / parseOmzetYAD)).toStringAsFixed(2);
+    }
   }
 
   void hitungRatioProfit() {
     isRatioProfitLoading.value = true;
     final parseLabaUsahaKini =
-        int.parse(labaUsahaKini.text.replaceAll(',', ''));
-    final parseLabaUsahaYAD = int.parse(labaUsahaYAD.text.replaceAll(',', ''));
-    final parseOmzetKini = int.parse(omzetKini.text.replaceAll(',', ''));
-    final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll(',', ''));
+        int.parse(labaUsahaKini.text.replaceAll('.', ''));
+    final parseLabaUsahaYAD = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
+    final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
+    final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll('.', ''));
 
     // Delay 1 detik
     Future.delayed(
@@ -514,13 +816,13 @@ class KeuanganAnalisisController extends GetxController
       const Duration(seconds: 2),
       () {
         final parseLabaUsaha =
-            int.parse(labaUsahaKini.text.replaceAll(',', ''));
+            int.parse(labaUsahaKini.text.replaceAll('.', ''));
         final parseTotalAngsuran =
-            int.parse(totalAngsuran.text.replaceAll(',', ''));
-        final parseModal = int.parse(equityInput.text.replaceAll(',', ''));
+            int.parse(totalAngsuran.text.replaceAll('.', ''));
+        final parseModal = int.parse(equityInput.text.replaceAll('.', ''));
 
         final parseLabaUsahaYad =
-            int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+            int.parse(labaUsahaYAD.text.replaceAll('.', ''));
 
         final firstCount = parseLabaUsaha - parseTotalAngsuran;
         final parseModalPercentage = parseModal / 100;
@@ -571,20 +873,86 @@ class KeuanganAnalisisController extends GetxController
   }
 
   void hitungRoa() {
+    if (netWorthPlusCredit.text == '') {
+      // Throw an exceotion with AwesomeDialog
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Jumlah Asset + Pinjaman tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Net worth plus credit tidak boleh kosong');
+    }
+
+    if (labaUsahaKini.text == '0') {
+      // Throw an exceotion with AwesomeDialog
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Laba usaha tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Laba usaha tidak boleh kosong');
+    }
+
+    if (labaUsahaYAD.text == '0') {
+      // Throw an exceotion with AwesomeDialog
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Laba usaha tidak boleh kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.roboto(
+          color: secondaryColor,
+          fontSize: 30,
+        ),
+        descTextStyle: const TextStyle(
+          color: secondaryColor,
+          fontSize: 20,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Laba usaha tidak boleh kosong');
+    }
+
     isRoaLoading.value = true;
 
     Future.delayed(
       const Duration(seconds: 2),
       () {
         final parseLabaUsahaKini =
-            int.parse(labaUsahaKini.text.replaceAll(',', ''));
+            int.parse(labaUsahaKini.text.replaceAll('.', ''));
         final parseAngsuranPerBulanLainAtas =
-            int.parse(angsuranPerBulanLainAtas.text.replaceAll(',', ''));
+            int.parse(angsuranPerBulanLainAtas.text.replaceAll('.', ''));
         final parseNetWorthPlusCredit =
-            int.parse(netWorthPlusCredit.text.replaceAll(',', ''));
-        final parseTotalBunga = int.parse(totalBunga.text.replaceAll(',', ''));
+            int.parse(netWorthPlusCredit.text.replaceAll('.', ''));
+        final parseTotalBunga = int.parse(totalBunga.text.replaceAll('.', ''));
         final parseLabaUsahaYad =
-            int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+            int.parse(labaUsahaYAD.text.replaceAll('.', ''));
 
         final firstCount = parseLabaUsahaKini - parseAngsuranPerBulanLainAtas;
         final parseModalPercentage = parseNetWorthPlusCredit / 100;
@@ -636,10 +1004,10 @@ class KeuanganAnalisisController extends GetxController
   void hitungDer() {
     isDerLoading.value = true;
     Future.delayed(const Duration(seconds: 2), () {
-      final parseDebt = double.parse(debtInput.text.replaceAll(',', ''));
-      final parseEquity = int.parse(equityInput.text.replaceAll(',', ''));
+      final parseDebt = double.parse(debtInput.text.replaceAll('.', ''));
+      final parseEquity = int.parse(equityInput.text.replaceAll('.', ''));
       final parseKreditYangDiminta =
-          int.parse(kreditYangDiminta.text.replaceAll(',', ''));
+          int.parse(kreditYangDiminta.text.replaceAll('.', ''));
 
       final percentage = parseEquity / 100;
       final result = parseDebt / percentage;
@@ -689,10 +1057,10 @@ class KeuanganAnalisisController extends GetxController
     isDscLoading.value = true;
     Future.delayed(const Duration(seconds: 2), () {
       final parseLabaUsahaKini =
-          int.parse(labaUsahaKini.text.replaceAll(',', ''));
-      final parseLabaYad = int.parse(labaUsahaYAD.text.replaceAll(',', ''));
+          int.parse(labaUsahaKini.text.replaceAll('.', ''));
+      final parseLabaYad = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
       final parseTotalAngsuran =
-          int.parse(totalAngsuran.text.replaceAll(',', ''));
+          int.parse(totalAngsuran.text.replaceAll('.', ''));
 
       final firstCount = parseLabaUsahaKini / parseTotalAngsuran;
       final secondCount = parseLabaYad / parseTotalAngsuran;
@@ -735,32 +1103,74 @@ class KeuanganAnalisisController extends GetxController
   }
 
   void hitungFlatAndEfektif() {
-    flatInitial.text =
-        (int.parse(bungaPerTahun.text) / 1200).toStringAsFixed(5);
+    try {
+      flatInitial.text =
+          (int.parse(bungaPerTahun.text) / 1200).toStringAsFixed(5);
 
-    final plusOne = (double.parse(flatInitial.text) + 1);
-    final powPlusOneDenganAngsuranPerBulan =
-        pow(plusOne, int.parse(angsuranPerBulan.text));
+      final plusOne = (double.parse(flatInitial.text) + 1);
+      final powPlusOneDenganAngsuranPerBulan =
+          pow(plusOne, int.parse(angsuranPerBulan.text));
 
-    efektifInitial.text =
-        (1 / powPlusOneDenganAngsuranPerBulan).toStringAsFixed(5);
+      efektifInitial.text =
+          (1 / powPlusOneDenganAngsuranPerBulan).toStringAsFixed(5);
 
-    final minusOne = (1 - double.parse(efektifInitial.text));
-    final result = (double.parse(flatInitial.text) / minusOne);
+      final minusOne = (1 - double.parse(efektifInitial.text));
+      final result = (double.parse(flatInitial.text) / minusOne);
 
-    totalFlatEfektif.text = result.toStringAsFixed(9);
+      totalFlatEfektif.text = result.toStringAsFixed(9);
+    } catch (e) {
+      if (bungaPerTahun.text == '') {
+        AwesomeDialog(
+          dialogType: DialogType.ERROR,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 30,
+          ),
+          animType: AnimType.BOTTOMSLIDE,
+          title: 'Error',
+          desc: 'Field bunga per tahun masih kosong',
+          descTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 15,
+          ),
+          btnOkOnPress: () {},
+          context: Get.context!,
+        ).show();
+      }
+
+      if (angsuranPerBulan.text == '') {
+        AwesomeDialog(
+          dialogType: DialogType.ERROR,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 30,
+          ),
+          animType: AnimType.BOTTOMSLIDE,
+          title: 'Error',
+          desc: 'Field Angsuran per bulan masih kosong',
+          descTextStyle: const TextStyle(
+            color: secondaryColor,
+            fontSize: 15,
+          ),
+          btnOkOnPress: () {},
+          context: Get.context!,
+        ).show();
+      }
+    }
   }
 
   void hitungTotalFlatEfektif() {
     final efektifBawah = (double.parse(totalFlatEfektif.text) *
-        (int.parse(kreditYangDiminta.text.replaceAll(',', ''))));
+        (int.parse(kreditYangDiminta.text.replaceAll('.', ''))));
 
     final parseKreditYangDiajukan =
-        int.parse(kreditYangDiminta.text.replaceAll(',', ''));
+        int.parse(kreditYangDiminta.text.replaceAll('.', ''));
     final parseBungaPerTahun =
-        int.parse(bungaPerTahun.text.replaceAll(',', ''));
+        int.parse(bungaPerTahun.text.replaceAll('.', ''));
     final parseAngsuranPerBulan =
-        int.parse(angsuranPerBulan.text.replaceAll(',', ''));
+        int.parse(angsuranPerBulan.text.replaceAll('.', ''));
 
     if (parseKreditYangDiajukan == 0) {
       totalFlat.text = '0';

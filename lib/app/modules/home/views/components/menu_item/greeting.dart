@@ -1,10 +1,15 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/common/waves.dart';
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/common/waves.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 
 class Greeting extends StatelessWidget {
   Greeting({Key? key}) : super(key: key);

@@ -1,8 +1,14 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:just_the_tooltip/just_the_tooltip.dart';
 
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 import 'package:akm/app/widget/color_button.dart';
@@ -25,14 +31,23 @@ class DataKeuangan extends StatelessWidget {
                   height: 30,
                 ),
                 FormBuilderTextField(
-                  controller: controller.equityInput,
+                  key: const Key('data_keuangan_nama_perusahaan'),
                   name: 'Equity',
+                  controller: controller.equityInput,
+                  // initialValue: controller.equity.format('19933998'),
                   decoration: const InputDecoration(
                     labelText: 'Equity / Modal',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                   ),
                   keyboardType: TextInputType.number,
+                  // inputFormatters: <TextInputFormatter>[
+                  //   CurrencyTextInputFormatter(
+                  //     decimalDigits: 0,
+                  //     symbol: '',
+                  //     locale: 'id_ID',
+                  //   ),
+                  // ],
                 ),
                 const SizedBox(
                   height: 20,
@@ -48,7 +63,52 @@ class DataKeuangan extends StatelessWidget {
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Text(
+                        'Tap Here ->',
+                        style: GoogleFonts.aBeeZee(
+                          fontSize: 20,
+                          color: primaryColor,
+                        ),
+                        textAlign: TextAlign.right,
+                      ),
+                    ),
+                    const Expanded(
+                      child: JustTheTooltip(
+                        backgroundColor: secondaryColor,
+                        margin: EdgeInsets.only(left: 100),
+                        elevation: 10,
+                        triggerMode: TooltipTriggerMode.tap,
+                        content: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            'Untuk total asset saya hard-code jumlahnya dikarenakan di sheetnya mereferensikan ke worksheet Rugi dan Laba, di sheet yang sebelumnya yang punya pak Nuruddin itu rumus Jumlah asset = Equity + Pinjaman, tetapi di sheet ini (dwi dagang sayur) jumlah asset diambil dari rugi laba.',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                        child: Material(
+                          color: primaryColor,
+                          shape: CircleBorder(),
+                          elevation: 4.0,
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.info_outline,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
                 FormBuilderTextField(
                   enabled: false,
@@ -111,15 +171,62 @@ class DataKeuangan extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    const Expanded(
+                    // Expanded(
+                    //   flex: 2,
+                    //   child: Obx(
+                    //     () => Icon(
+                    //       controller.isKreditPassed.value
+                    //           ? Icons.check_box
+                    //           : Icons.close_outlined,
+                    //       color: controller.isKreditPassed.value
+                    //           ? Colors.green
+                    //           : Colors.red,
+                    //       size: 35,
+                    //     ),
+                    //   ),
+                    // ),
+                    Expanded(
                       flex: 2,
-                      child: Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 35,
+                      child: Obx(
+                        () {
+                          // return controller.isKreditPassed.isFalse
+                          //     ? const Icon(
+                          //         Icons.check_box,
+                          //         color: Colors.green,
+                          //         size: 35,
+                          //       )
+                          //     : const Icon(
+                          //         Icons.close_outlined,
+                          //         color: Colors.red,
+                          //         size: 35,
+                          //       );
+                          return controller.isVerificationButtonPressed.value
+                              ? controller.isKreditPassed.isFalse
+                                  ? const Icon(
+                                      Icons.check_box,
+                                      color: Colors.green,
+                                      size: 35,
+                                    )
+                                  : const Icon(
+                                      Icons.close_outlined,
+                                      color: Colors.red,
+                                      size: 35,
+                                    )
+                              : const SizedBox();
+                        },
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                colorButton(
+                  context,
+                  'Verifikasi Kredit',
+                  () {
+                    controller.checkIfCreditPassed();
+                  },
                 ),
                 const SizedBox(
                   height: 40,

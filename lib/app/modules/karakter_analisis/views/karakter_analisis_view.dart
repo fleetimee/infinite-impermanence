@@ -1,5 +1,19 @@
 // ignore_for_file: avoid_print
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/karakter_analisis/views/components/hitung_crr.dart';
 import 'package:akm/app/modules/karakter_analisis/views/components/score_pendidikan.dart';
@@ -7,17 +21,6 @@ import 'package:akm/app/modules/karakter_analisis/views/components/score_pengala
 import 'package:akm/app/modules/karakter_analisis/views/components/score_umur.dart';
 import 'package:akm/app/widget/color_button.dart';
 import 'package:akm/app/widget/drawer.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
-
-import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
 import '../controllers/karakter_analisis_controller.dart';
 
 class KarakterAnalisisView extends GetView<KarakterAnalisisController> {

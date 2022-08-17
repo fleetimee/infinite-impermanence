@@ -1,9 +1,12 @@
 // ignore_for_file: avoid_print
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import 'package:akm/app/service/search_service.dart';
 
 class SearchNikController extends GetxController {

@@ -1,13 +1,16 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get/get.dart';
-
-import 'package:akm/app/themes/dark.dart';
-import 'package:akm/app/themes/light.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/themes/dark.dart';
+import 'package:akm/app/themes/light.dart';
 import 'app/routes/app_pages.dart';
 
 void main() {

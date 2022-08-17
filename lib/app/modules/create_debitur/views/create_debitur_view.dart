@@ -1,13 +1,15 @@
-import 'package:akm/app/widget/drawer.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/create_debitur/views/components/review_page.dart';
-
+import 'package:akm/app/widget/drawer.dart';
 import '../controllers/create_debitur_controller.dart';
 
 class CreateDebiturView extends GetView<CreateDebiturController> {

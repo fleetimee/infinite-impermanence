@@ -1,10 +1,15 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
-import 'package:akm/app/widget/color_button.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+import 'package:akm/app/widget/color_button.dart';
 
 class Angsuran extends StatelessWidget {
   Angsuran({Key? key}) : super(key: key);
@@ -190,11 +195,11 @@ class Angsuran extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          colorButton(
-            context,
-            'Hitung Total Angsuran Pinjaman',
-            () {},
-          ),
+          // colorButton(
+          //   context,
+          //   'Hitung Total Angsuran Pinjaman',
+          //   () {},
+          // ),
           const Divider(
             height: 100,
             thickness: 2,
@@ -305,11 +310,11 @@ class Angsuran extends StatelessWidget {
             height: 20,
           ),
 
-          colorButton(
-            context,
-            'Hitung Total Angsuran Pinjaman',
-            () {},
-          ),
+          // colorButton(
+          //   context,
+          //   'Hitung Total Angsuran Pinjaman',
+          //   () {},
+          // ),
 
           const Divider(
             height: 100,

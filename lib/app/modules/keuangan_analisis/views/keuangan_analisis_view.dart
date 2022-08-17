@@ -1,19 +1,23 @@
-import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/analisa_ratio.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/angsuran.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/asumsi_keuangan.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/data_keuangan.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/tutorial.dart';
 import 'package:akm/app/widget/drawer.dart';
-
 import '../controllers/keuangan_analisis_controller.dart';
 
 class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
@@ -25,6 +29,19 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
       appBar: AppBar(
         title: const Text('Analisis Keuangan'),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {
+                showBarModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Tutorial();
+                    });
+              },
+              icon: const Icon(
+                Icons.help_outline,
+              )),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -98,7 +115,7 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                               showBarModalBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  controller.hitungCrr();
+                                  controller.hitungSemua();
                                   return HasilAnalisa();
                                 },
                                 backgroundColor: secondaryColor,

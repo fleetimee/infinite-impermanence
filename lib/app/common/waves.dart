@@ -1,5 +1,8 @@
-import 'package:akm/app/common/style.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 
 class WavesSettings {
   static const waveBackgroundColor = Color(0xFFF15BB5);

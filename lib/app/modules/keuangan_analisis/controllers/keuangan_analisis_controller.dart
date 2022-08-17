@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
-import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,8 +44,8 @@ class KeuanganAnalisisController extends GetxController
   // Tab Controller
   TabController? tabController;
 
-  // Analisa Ratio
-  /// Ratio profit
+  //! Analisa Ratio
+  // Ratio profit
   final ratioProfitKini = TextEditingController();
   final ratioProfitYAD = TextEditingController();
 
@@ -66,7 +65,7 @@ class KeuanganAnalisisController extends GetxController
   final dscKini = TextEditingController();
   final dscYAD = TextEditingController();
 
-  //Asumsi Keuangan
+  //! Asumsi Keuangan
   /// Omzet input
   final omzetKini = MoneyMaskedTextController(
     thousandSeparator: '.',
@@ -98,10 +97,6 @@ class KeuanganAnalisisController extends GetxController
   );
   final biayaBahanKiniPercent = TextEditingController(text: '');
   final biayaBahanYADPercent = TextEditingController(text: '');
-
-  /// Upah input
-  /// 800000
-  /// 920000
   final upahKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
@@ -117,9 +112,6 @@ class KeuanganAnalisisController extends GetxController
   final upahKiniPercent = TextEditingController(text: '');
   final upahYADPercent = TextEditingController(text: '');
 
-  // Biaya operasi
-  // 500000
-  // 575000
   final biayaOperasiKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',

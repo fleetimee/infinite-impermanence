@@ -1,17 +1,20 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:get/get.dart';
+import 'package:gif_view/gif_view.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan/views/components/hitung_agunan.dart';
 import 'package:akm/app/modules/agunan/views/components/nilai_agunan.dart';
 import 'package:akm/app/widget/color_button.dart';
 import 'package:akm/app/widget/drawer.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
-
-import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-
 import '../controllers/agunan_controller.dart';
 
 class AgunanView extends GetView<AgunanController> {

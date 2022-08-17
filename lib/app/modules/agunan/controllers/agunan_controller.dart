@@ -1,7 +1,10 @@
 // ignore_for_file: unnecessary_overrides
 
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:get/get.dart';
 
 class AgunanController extends GetxController

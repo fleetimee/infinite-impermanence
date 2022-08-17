@@ -1,10 +1,15 @@
-import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
-import 'package:akm/app/widget/color_button.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+import 'package:akm/app/widget/color_button.dart';
 
 class AnalisaRatio extends StatelessWidget {
   AnalisaRatio({Key? key}) : super(key: key);
@@ -149,28 +154,6 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // if (int.parse(controller.roeYAD.text) >
-          //     int.parse(controller.roeFixed.text))
-          //   Text(
-          //     'Baik 🥰',
-          //     style: GoogleFonts.poppins(
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w600,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-          // if (int.parse(controller.roeYAD.text) <
-          //     int.parse(controller.roeFixed.text))
-          //   Text(
-          //     'Buruk 🤬',
-          //     style: GoogleFonts.poppins(
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w600,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-
-          // Show Text from controller roeStatus
           Obx(
             () => Text(
               controller.isRoeDescLoading.value
@@ -377,6 +360,9 @@ class AnalisaRatio extends StatelessWidget {
                   () => controller.hitungDer(),
                 )),
           ),
+          const SizedBox(
+            height: 30,
+          ),
           Row(
             children: [
               const Expanded(
@@ -403,6 +389,7 @@ class AnalisaRatio extends StatelessWidget {
                   enabled: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -420,6 +407,7 @@ class AnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'DSC Kini',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),
@@ -433,6 +421,7 @@ class AnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'DSC YAD',
                     border: OutlineInputBorder(),
+                    suffixIcon: Icon(FontAwesomeIcons.percent),
                   ),
                 ),
               ),

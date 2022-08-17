@@ -1,8 +1,12 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
+// 📦 Package imports:
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 
 class ScorePendidikan extends StatelessWidget {
   ScorePendidikan({Key? key}) : super(key: key);

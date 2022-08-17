@@ -1,5 +1,7 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import '../controllers/bisnis_analisis_controller.dart';
 
 class BisnisAnalisisBinding extends Bindings {

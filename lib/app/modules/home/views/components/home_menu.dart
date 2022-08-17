@@ -1,11 +1,16 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:get/get.dart';
+import 'package:slide_digital_clock/slide_digital_clock.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/home/views/components/menu_item/first_row.dart';
 import 'package:akm/app/modules/home/views/components/menu_item/greeting.dart';
 import 'package:akm/app/modules/home/views/components/menu_item/second_row.dart';
 import 'package:akm/app/modules/home/views/components/menu_item/third_row.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 class HomeMenu extends StatelessWidget {
   HomeMenu({

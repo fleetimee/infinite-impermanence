@@ -1,15 +1,17 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import 'package:akm/app/modules/create_debitur/views/components/step_five_form.dart';
 import 'package:akm/app/modules/create_debitur/views/components/step_four_form.dart';
 import 'package:akm/app/modules/create_debitur/views/components/step_six_form.dart';
 import 'package:akm/app/modules/create_debitur/views/components/step_three_form.dart';
 import 'package:akm/app/modules/create_debitur/views/components/step_two_form.dart';
 import 'package:akm/app/service/add_debitur.dart';
-
 import '../views/components/step_one_form.dart';
 
 class CreateDebiturController extends GetxController {

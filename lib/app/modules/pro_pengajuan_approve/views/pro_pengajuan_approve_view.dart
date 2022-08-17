@@ -1,14 +1,17 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
-
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/widget/color_button.dart';
+import 'package:akm/app/widget/drawer.dart';
 import '../controllers/pro_pengajuan_approve_controller.dart';
 
 class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {

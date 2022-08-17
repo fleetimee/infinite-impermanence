@@ -1,11 +1,16 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/agunan/controllers/agunan_controller.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_tex_js/flutter_tex_js.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan/controllers/agunan_controller.dart';
 
 // ignore: must_be_immutable
 class HitungCrrAgunan extends StatelessWidget {
@@ -136,6 +141,9 @@ Nilai ratio agunan dimaksud diatas adalah nilai agunan setelah dikurangi safety 
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
+                          ),
+                          const SizedBox(
+                            height: 10,
                           ),
                           const SizedBox(
                             height: 50,

@@ -41,13 +41,6 @@ class DataKeuangan extends StatelessWidget {
                     prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                   ),
                   keyboardType: TextInputType.number,
-                  // inputFormatters: <TextInputFormatter>[
-                  //   CurrencyTextInputFormatter(
-                  //     decimalDigits: 0,
-                  //     symbol: '',
-                  //     locale: 'id_ID',
-                  //   ),
-                  // ],
                 ),
                 const SizedBox(
                   height: 20,
@@ -171,37 +164,12 @@ class DataKeuangan extends StatelessWidget {
                     const SizedBox(
                       width: 10,
                     ),
-                    // Expanded(
-                    //   flex: 2,
-                    //   child: Obx(
-                    //     () => Icon(
-                    //       controller.isKreditPassed.value
-                    //           ? Icons.check_box
-                    //           : Icons.close_outlined,
-                    //       color: controller.isKreditPassed.value
-                    //           ? Colors.green
-                    //           : Colors.red,
-                    //       size: 35,
-                    //     ),
-                    //   ),
-                    // ),
                     Expanded(
                       flex: 2,
                       child: Obx(
                         () {
-                          // return controller.isKreditPassed.isFalse
-                          //     ? const Icon(
-                          //         Icons.check_box,
-                          //         color: Colors.green,
-                          //         size: 35,
-                          //       )
-                          //     : const Icon(
-                          //         Icons.close_outlined,
-                          //         color: Colors.red,
-                          //         size: 35,
-                          //       );
                           return controller.isVerificationButtonPressed.value
-                              ? controller.isKreditPassed.isFalse
+                              ? controller.isKreditPassed.isTrue
                                   ? const Icon(
                                       Icons.check_box,
                                       color: Colors.green,

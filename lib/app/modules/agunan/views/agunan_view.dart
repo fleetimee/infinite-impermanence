@@ -175,6 +175,7 @@ class AgunanView extends GetView<AgunanController> {
                   const SizedBox(
                     height: 30,
                   ),
+                  // Make reset button
                 ],
               ),
             ),

@@ -45,12 +45,20 @@ class NilaiAgunan extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(
-                child: Checkbox(
-                  value: controller.isCheckedTanah.value,
-                  onChanged: (value) {
-                    controller.isCheckedTanah.value = value!;
-                  },
+              Obx(
+                () => Expanded(
+                  child: Checkbox(
+                    onChanged: (value) {
+                      controller.isCheckedTanah.value = value!;
+
+                      // Clear form builder
+                      if (value) {
+                        controller.checkboxTanahDeskripsiKey.currentState
+                            ?.reset();
+                      }
+                    },
+                    value: controller.isCheckedTanah.value,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -58,16 +66,18 @@ class NilaiAgunan extends StatelessWidget {
               ),
               Expanded(
                 flex: 12,
-                child: FormBuilderTextField(
-                  // Format number with comma
-                  controller: controller.tanahInput,
-                  enabled: controller.isCheckedTanah.value ? true : false,
-                  name: 'Tanah',
-                  decoration: const InputDecoration(
-                    labelText: 'Tanah',
-                    border: OutlineInputBorder(),
+                child: Obx(
+                  () => FormBuilderTextField(
+                    // Format number with comma
+                    controller: controller.tanahInput,
+                    enabled: controller.isCheckedTanah.value ? true : false,
+                    name: 'Tanah',
+                    decoration: const InputDecoration(
+                      labelText: 'Tanah',
+                      border: OutlineInputBorder(),
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
-                  keyboardType: TextInputType.number,
                 ),
               ),
             ],
@@ -77,12 +87,15 @@ class NilaiAgunan extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(38, 0, 0, 0),
-            child: FormBuilderTextField(
-              enabled: controller.isCheckedTanah.value ? true : false,
-              name: 'Bukti Kepemilikan Tanah',
-              decoration: const InputDecoration(
-                labelText: 'Bukti Kepemilikan Tanah',
-                border: OutlineInputBorder(),
+            child: Obx(
+              () => FormBuilderTextField(
+                key: controller.checkboxTanahDeskripsiKey,
+                enabled: controller.isCheckedTanah.value ? true : false,
+                name: 'Bukti Kepemilikan Tanah',
+                decoration: const InputDecoration(
+                  labelText: 'Bukti Kepemilikan Tanah',
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
           ),

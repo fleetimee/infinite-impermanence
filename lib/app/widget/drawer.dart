@@ -181,6 +181,14 @@ class SideMenu extends StatelessWidget {
                 },
                 leading: const Icon(Icons.print),
               ),
+              ListTile(
+                title: const Text('Printing'),
+                onTap: () {
+                  Get.offAllNamed(Routes.DEBITUR_REAL);
+                  Get.back();
+                },
+                leading: const Icon(Icons.print),
+              ),
             ],
           ),
           const Divider(

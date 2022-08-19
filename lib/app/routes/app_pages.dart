@@ -1,7 +1,5 @@
-// 📦 Package imports:
 import 'package:get/get.dart';
 
-// 🌎 Project imports:
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -18,12 +16,18 @@ import '../modules/penghasilan_tetap/bindings/penghasilan_tetap_binding.dart';
 import '../modules/penghasilan_tetap/views/penghasilan_tetap_view.dart';
 import '../modules/penghasilan_xtetap/bindings/penghasilan_xtetap_binding.dart';
 import '../modules/penghasilan_xtetap/views/penghasilan_xtetap_view.dart';
+import '../modules/printing/bindings/printing_binding.dart';
+import '../modules/printing/views/printing_view.dart';
 import '../modules/pro_pengajuan_approve/bindings/pro_pengajuan_approve_binding.dart';
 import '../modules/pro_pengajuan_approve/views/pro_pengajuan_approve_view.dart';
 import '../modules/search_nik/bindings/search_nik_binding.dart';
 import '../modules/search_nik/views/search_nik_view.dart';
 import '../modules/uploads/bindings/uploads_binding.dart';
 import '../modules/uploads/views/uploads_view.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 // ignore_for_file: prefer_const_constructors
 
@@ -96,6 +100,11 @@ class AppPages {
       name: _Paths.KEUANGAN_ANALISIS,
       page: () => const KeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRINTING,
+      page: () => const PrintingView(),
+      binding: PrintingBinding(),
     ),
   ];
 }

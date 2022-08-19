@@ -1,4 +1,6 @@
 // 🎯 Dart imports:
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:math';
 
@@ -30,16 +32,16 @@ class KeuanganAnalisisController extends GetxController
     'Kredit yang diminta': TextEditingController(),
   };
 
-  @override
-  void onClose() {
-    // // Disposing all the controllers
-    // listOfTextEditingController.forEach((name, value) {
-    //   value.dispose();
-    // });
+  // @override
+  // void onClose() {
+  //   // // Disposing all the controllers
+  //   // listOfTextEditingController.forEach((name, value) {
+  //   //   value.dispose();
+  //   // });
 
-    // equityInput.dispose();
-    super.onClose();
-  }
+  //   // equityInput.dispose();
+  //   super.onClose();
+  // }
 
   //! Tab Controller
   TabController? tabController;

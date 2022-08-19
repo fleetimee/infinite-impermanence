@@ -173,6 +173,14 @@ class SideMenu extends StatelessWidget {
                 },
                 leading: const Icon(Icons.credit_card_outlined),
               ),
+              ListTile(
+                title: const Text('Printing'),
+                onTap: () {
+                  Get.offAllNamed(Routes.PRINTING);
+                  Get.back();
+                },
+                leading: const Icon(Icons.print),
+              ),
             ],
           ),
           const Divider(

@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,7 +15,8 @@ class Tutorial extends StatelessWidget {
 
   final controller = Get.put(KeuanganAnalisisController());
 
-  String mdContent = """
+  String mdContent =
+      """
 
 # Tutorial
 

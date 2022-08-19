@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 // ignore_for_file: unused_field
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,7 +9,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-// ignore: depend_on_referenced_packages
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
@@ -21,6 +21,9 @@ import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/tutorial.dart';
 import 'package:akm/app/widget/drawer.dart';
 import '../controllers/keuangan_analisis_controller.dart';
+
+// ignore: depend_on_referenced_packages
+
 
 class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   const KeuanganAnalisisView({Key? key}) : super(key: key);

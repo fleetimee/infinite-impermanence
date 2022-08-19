@@ -1,7 +1,10 @@
 // ignore_for_file: unnecessary_overrides
 
-import 'package:akm/app/models/invoice.dart';
+// 📦 Package imports:
 import 'package:get/get.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/invoice.dart';
 
 class PrintingController extends GetxController {
   final count = 0.obs;

@@ -1,11 +1,15 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/create_debitur/bindings/create_debitur_binding.dart';
 import '../modules/create_debitur/views/create_debitur_view.dart';
+import '../modules/debitur_real/bindings/debitur_real_binding.dart';
+import '../modules/debitur_real/views/debitur_real_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
@@ -105,6 +109,11 @@ class AppPages {
       name: _Paths.PRINTING,
       page: () => const PrintingView(),
       binding: PrintingBinding(),
+    ),
+    GetPage(
+      name: _Paths.DEBITUR_REAL,
+      page: () => const DebiturRealView(),
+      binding: DebiturRealBinding(),
     ),
   ];
 }

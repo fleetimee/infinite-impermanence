@@ -45,59 +45,10 @@ class CreateDebiturView extends GetView<CreateDebiturController> {
                   controller.currentStep.value = step;
                 },
                 type: StepperType.vertical,
-                // onStepContinue: () {
-                //   final isLastStep = controller.currentStep.value ==
-                //       controller.getSteps().length - 1;
-
-                //   // Validate form
-                //   if (controller
-                //       .formKeys[controller.currentStep.value].currentState!
-                //       .validate()) {
-                //     if (isLastStep) {
-                //       // Validate all form before submit
-                //       if (!controller.formKeys
-                //           .every((key) => key.currentState!.validate())) {
-                //         // show error snackbar
-                //         Get.snackbar(
-                //           'Error',
-                //           'Please fill all form',
-                //           snackPosition: SnackPosition.BOTTOM,
-                //           backgroundColor: Colors.red,
-                //           colorText: Colors.white,
-                //           icon: const Icon(
-                //             Icons.error,
-                //             color: Colors.white,
-                //           ),
-                //         );
-                //       } else {
-                //         showBarModalBottomSheet(
-                //             shape: const RoundedRectangleBorder(
-                //               borderRadius: BorderRadius.vertical(
-                //                 top: Radius.circular(25.0),
-                //               ),
-                //             ),
-                //             backgroundColor: secondaryColor,
-                //             bounce: true,
-                //             elevation: 10.0,
-                //             context: context,
-                //             builder: (context) {
-                //               return ReviewPage();
-                //             });
-                //       }
-                //     } else {
-                //       if (controller.currentStep < 5) {
-                //         controller.currentStep.value += 1;
-                //       } else {
-                //         controller.currentStep.value = 0;
-                //       }
-                //     }
-                //   }
-                // },
                 onStepContinue: () {
                   final isLastStep = controller.currentStep.value ==
                       controller.getSteps().length - 1;
 
-                  // Validate form
                   if (isLastStep) {
                     showBarModalBottomSheet(
                         shape: const RoundedRectangleBorder(
@@ -120,7 +71,6 @@ class CreateDebiturView extends GetView<CreateDebiturController> {
                     }
                   }
                 },
-
                 onStepCancel: () {
                   if (controller.currentStep > 0) {
                     controller.currentStep.value -= 1;
@@ -130,7 +80,6 @@ class CreateDebiturView extends GetView<CreateDebiturController> {
                 },
                 controlsBuilder:
                     (BuildContext context, ControlsDetails details) {
-                  // make last step variable to confirm button
                   final isLastStep =
                       details.currentStep == controller.getSteps().length - 1;
 

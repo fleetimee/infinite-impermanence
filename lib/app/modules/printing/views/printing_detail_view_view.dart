@@ -1,10 +1,14 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:akm/app/modules/printing/controllers/printing_controller.dart';
-import 'package:akm/app/modules/printing/views/pdfexport/pdf_preview.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:get/get.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/printing/controllers/printing_controller.dart';
+import 'package:akm/app/modules/printing/views/pdfexport/pdf_preview.dart';
 
 class PrintingDetailViewView extends GetView {
   PrintingDetailViewView({Key? key}) : super(key: key);

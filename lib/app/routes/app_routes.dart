@@ -17,6 +17,7 @@ abstract class Routes {
   static const KARAKTER_ANALISIS = _Paths.KARAKTER_ANALISIS;
   static const KEUANGAN_ANALISIS = _Paths.KEUANGAN_ANALISIS;
   static const PRINTING = _Paths.PRINTING;
+  static const DEBITUR_REAL = _Paths.DEBITUR_REAL;
 }
 
 abstract class _Paths {
@@ -32,4 +33,5 @@ abstract class _Paths {
   static const KARAKTER_ANALISIS = '/karakter-analisis';
   static const KEUANGAN_ANALISIS = '/keuangan-analisis';
   static const PRINTING = '/printing';
+  static const DEBITUR_REAL = '/debitur-real';
 }

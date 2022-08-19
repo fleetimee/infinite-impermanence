@@ -1,11 +1,11 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 

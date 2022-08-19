@@ -136,9 +136,9 @@ Pastikan sudah menginstall Git dan Flutter pada environment kalian.
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185532156-96cba270-9bc3-4101-b3d8-36bd1025bfe3.png" height="600"/></td>
-<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185534122-63a0a029-cec8-42e6-8268-671901f0d34d.png" height="600"/></td>
-<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185534581-02163a77-d922-44fa-b566-5405c65575f0.png" height="600"/></td>
+<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185532156-96cba270-9bc3-4101-b3d8-36bd1025bfe3.png" height="500"/></td>
+<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185534122-63a0a029-cec8-42e6-8268-671901f0d34d.png" height="500"/></td>
+<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185534581-02163a77-d922-44fa-b566-5405c65575f0.png" height="500"/></td>
 </tr>
 </tbody>
 </table>
@@ -153,9 +153,9 @@ Pastikan sudah menginstall Git dan Flutter pada environment kalian.
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185535302-920ddae2-cde3-4108-8925-f5e5b103bc4a.png" height="600"/></td>
-<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185535533-5e4243c4-ecdd-4cb2-89c5-32281a83c93f.png" height="600"/></td>
-<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185536719-39ab3cdf-f265-4368-b537-9c7f1df9efae.png" height="600"/></td>
+<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185535302-920ddae2-cde3-4108-8925-f5e5b103bc4a.png" height="500"/></td>
+<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185535533-5e4243c4-ecdd-4cb2-89c5-32281a83c93f.png" height="500"/></td>
+<td align="center"><img alt="" src="https://user-images.githubusercontent.com/45744788/185536719-39ab3cdf-f265-4368-b537-9c7f1df9efae.png" height="500"/></td>
 </tr>
 </tbody>
 </table>

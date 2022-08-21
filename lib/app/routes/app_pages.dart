@@ -1,4 +1,7 @@
 // 📦 Package imports:
+import 'package:akm/app/modules/debitur_real/views/debitur_detail_view.dart';
+import 'package:akm/app/modules/debitur_real/views/debitur_list_view.dart';
+import 'package:akm/app/modules/debitur_real/views/debitur_onboarding_view.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -112,7 +115,22 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DEBITUR_REAL,
-      page: () => const DebiturRealView(),
+      page: () => DebiturOnboardingView(),
+      binding: DebiturRealBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_DEBITUR,
+      page: () => DebiturRealView(),
+      binding: DebiturRealBinding(),
+    ),
+    GetPage(
+      name: _Paths.DEBITUR_LIST,
+      page: () => DebiturListView(),
+      binding: DebiturRealBinding(),
+    ),
+    GetPage(
+      name: _Paths.DEBITUR_DETAIL,
+      page: () => DebiturDetailView(),
       binding: DebiturRealBinding(),
     ),
   ];

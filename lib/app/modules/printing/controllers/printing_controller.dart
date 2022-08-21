@@ -41,7 +41,7 @@ class PrintingController extends GetxController {
         ],
         name: 'KUR Bayu Laundry'),
     Invoice(
-      customer: 'Sonia Eka Putri',
+      customer: 'Linda',
       address: '82 Unsure St\r\nBaggle Palace',
       items: [
         LineItem('Biaya Bahan', 100),

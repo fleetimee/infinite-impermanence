@@ -64,7 +64,6 @@ class StepZeroForm extends StatelessWidget {
 
 const allDebiturs = [
   'Novian Andika',
-  'Sonia Eka P',
   'Lussy Ika',
   'Meliya Aja',
   'Monkey D Luffy',

@@ -17,7 +17,7 @@ class HomeMenu extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final controller = Get.find<HomeController>();
+  final controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

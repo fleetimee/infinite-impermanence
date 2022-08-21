@@ -58,7 +58,7 @@ class SideMenu extends StatelessWidget {
                   fontSize: 20,
                 )),
             onTap: () {
-              Get.offAllNamed(Routes.HOME);
+              Get.offNamed(Routes.HOME);
             },
           ),
           const Divider(
@@ -89,14 +89,14 @@ class SideMenu extends StatelessWidget {
                 leading: const Icon(Icons.person),
                 title: const Text('Input Debitur'),
                 onTap: () {
-                  Get.offAllNamed(Routes.CREATE_DEBITUR);
+                  Get.offNamed(Routes.CREATE_DEBITUR);
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.search),
                 title: const Text('Search NIK'),
                 onTap: () {
-                  Get.offAllNamed(Routes.SEARCH_NIK);
+                  Get.offNamed(Routes.SEARCH_NIK);
                 },
               ),
             ],
@@ -111,7 +111,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Penghasilan Tetap'),
                 onTap: () {
-                  Get.offAllNamed(Routes.PENGHASILAN_TETAP);
+                  Get.offNamed(Routes.PENGHASILAN_TETAP);
                   Get.back();
                 },
                 leading: const Icon(Icons.attach_money_outlined),
@@ -119,7 +119,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Penghasilan Tidak Tetap'),
                 onTap: () {
-                  Get.offAllNamed(Routes.PENGHASILAN_XTETAP);
+                  Get.offNamed(Routes.PENGHASILAN_XTETAP);
                   Get.back();
                 },
                 leading: const Icon(Icons.attach_money_outlined),
@@ -136,7 +136,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Agunan'),
                 onTap: () {
-                  Get.offAllNamed(Routes.AGUNAN);
+                  Get.offNamed(Routes.AGUNAN);
                   Get.back();
                 },
                 leading: const Icon(Icons.car_rental_outlined),
@@ -144,7 +144,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Upload Berkas'),
                 onTap: () {
-                  Get.offAllNamed(Routes.UPLOADS);
+                  Get.offNamed(Routes.UPLOADS);
                   Get.back();
                 },
                 leading: const Icon(Icons.cloud_upload),
@@ -152,7 +152,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Bisnis Analisis'),
                 onTap: () {
-                  Get.offAllNamed(Routes.BISNIS_ANALISIS);
+                  Get.offNamed(Routes.BISNIS_ANALISIS);
                   Get.back();
                 },
                 leading: const Icon(Icons.business_center),
@@ -160,7 +160,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Karakter Analisis'),
                 onTap: () {
-                  Get.offAllNamed(Routes.KARAKTER_ANALISIS);
+                  Get.offNamed(Routes.KARAKTER_ANALISIS);
                   Get.back();
                 },
                 leading: const Icon(Icons.analytics_outlined),
@@ -168,7 +168,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Keuangan Analisis'),
                 onTap: () {
-                  Get.offAllNamed(Routes.KEUANGAN_ANALISIS);
+                  Get.offNamed(Routes.KEUANGAN_ANALISIS);
                   Get.back();
                 },
                 leading: const Icon(Icons.credit_card_outlined),
@@ -176,7 +176,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Printing'),
                 onTap: () {
-                  Get.offAllNamed(Routes.PRINTING);
+                  Get.offNamed(Routes.PRINTING);
                   Get.back();
                 },
                 leading: const Icon(Icons.print),
@@ -184,7 +184,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Printing'),
                 onTap: () {
-                  Get.offAllNamed(Routes.DEBITUR_REAL);
+                  Get.offNamed(Routes.DEBITUR_REAL);
                   Get.back();
                 },
                 leading: const Icon(Icons.print),
@@ -225,7 +225,7 @@ class SideMenu extends StatelessWidget {
               ),
             ),
             onTap: () {
-              Get.offAllNamed(Routes.HOME);
+              Get.offNamed(Routes.HOME);
             },
           ),
           const SizedBox(

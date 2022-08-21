@@ -18,6 +18,9 @@ abstract class Routes {
   static const KEUANGAN_ANALISIS = _Paths.KEUANGAN_ANALISIS;
   static const PRINTING = _Paths.PRINTING;
   static const DEBITUR_REAL = _Paths.DEBITUR_REAL;
+  static const ADD_DEBITUR = _Paths.ADD_DEBITUR;
+  static const DEBITUR_LIST = _Paths.DEBITUR_LIST;
+  static const DEBITUR_DETAIL = _Paths.DEBITUR_DETAIL;
 }
 
 abstract class _Paths {
@@ -34,4 +37,7 @@ abstract class _Paths {
   static const KEUANGAN_ANALISIS = '/keuangan-analisis';
   static const PRINTING = '/printing';
   static const DEBITUR_REAL = '/debitur-real';
+  static const ADD_DEBITUR = '/add-debitur';
+  static const DEBITUR_LIST = '/debitur-list';
+  static const DEBITUR_DETAIL = '/debitur-detail';
 }

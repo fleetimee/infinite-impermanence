@@ -85,7 +85,6 @@ void _onChanged(dynamic val) => debugPrint(val.toString());
 
 const allDebiturs = [
   'Novian Andika',
-  'Sonia Eka P',
   'Lussy Ika',
   'Meliya Aja',
   'Monkey D Luffy',

@@ -14,7 +14,7 @@ import 'package:akm/app/modules/home/controllers/home_controller.dart';
 class Greeting extends StatelessWidget {
   Greeting({Key? key}) : super(key: key);
 
-  final controller = Get.find<HomeController>();
+  final controller = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {

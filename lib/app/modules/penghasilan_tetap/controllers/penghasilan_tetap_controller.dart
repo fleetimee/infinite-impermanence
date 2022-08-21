@@ -8,7 +8,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/models/Debitur.dart';
 import 'package:akm/app/modules/penghasilan_tetap/views/components/step_one_form.dart';
 import 'package:akm/app/modules/penghasilan_tetap/views/components/step_three_form.dart';
 import 'package:akm/app/modules/penghasilan_tetap/views/components/step_two_form.dart';
@@ -109,5 +108,5 @@ class PenghasilanTetapController extends GetxController {
       ];
 
   // Fetch Debitur Name to dropdown
-  final debiturName = <Debitur>[];
+  // final debiturName = <Debitur>[];
 }

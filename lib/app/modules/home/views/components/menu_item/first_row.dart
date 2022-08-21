@@ -26,7 +26,7 @@ class FirstRow extends StatelessWidget {
           child: InkWell(
             onTap: () => Get.snackbar(
               'Whoops',
-              'And berada di home',
+              'Anda berada di home',
               backgroundColor: primaryColor,
               icon: const Icon(
                 Icons.info,
@@ -73,7 +73,7 @@ class FirstRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: primaryColor,
           child: InkWell(
-            onTap: () => Get.toNamed(Routes.CREATE_DEBITUR),
+            onTap: () => Get.offAllNamed(Routes.DEBITUR_REAL),
             child: Stack(
               children: [
                 Container(

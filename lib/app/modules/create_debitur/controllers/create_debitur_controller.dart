@@ -11,7 +11,6 @@ import 'package:akm/app/modules/create_debitur/views/components/step_four_form.d
 import 'package:akm/app/modules/create_debitur/views/components/step_six_form.dart';
 import 'package:akm/app/modules/create_debitur/views/components/step_three_form.dart';
 import 'package:akm/app/modules/create_debitur/views/components/step_two_form.dart';
-import 'package:akm/app/service/add_debitur.dart';
 import '../views/components/step_one_form.dart';
 
 class CreateDebiturController extends GetxController {
@@ -89,59 +88,6 @@ class CreateDebiturController extends GetxController {
   final kelurahanValue = ''.obs;
 
   // Send Data to the server
-  void sendData() {
-    // Initialize the service
-    final api = ApiService();
-
-    // Get the form data
-    final data = {
-      'nik': nikController.text,
-      'nama_debitur': namaController.text,
-      'alamat': alamatController.text,
-      'tempat_lahir': tempatLahirController.text,
-      'tanggal_lahir': tanggalLahirController.text,
-      'agama': agamaController.toString(),
-      'gender': genderValue.toString(),
-      'nama_ibu': namaIbuController.text,
-      'no_telp': noHpIndonesiaController.text,
-      'no_seluler': noSelularIndonesiaController.text,
-      'email': emailController.text,
-      'instansi': namaInstansiController.text,
-      'bidang_usaha': bidangUsahaController.text,
-      'jumlah_tanggungan': jumlahTanggunganController.text,
-      'relationship': hubunganValue.toString(),
-      'nama_pasangan': namaPasanganController.text,
-      'pekerjaan_pasangan': pekerjaanPasanganController.text,
-      'nik_pasangan': nikPasanganController.text,
-      'tempat_lahir_pasangan': tempatLahirPasanganController.text,
-      'tgl_lahir_pasangan': tanggalLahirPasanganController.text,
-      'nama_instansi': namaInstansiController.text,
-      'pekerjaan': pekerjaanController.text,
-      'provinsi': provinsiController.text,
-      'kabupaten': kabupatenController.text,
-      'kecamatan': kecamatanController.text,
-      'kelurahan': kelurahanController.text,
-      'rt': rtController.text,
-      'rw': rwController.text,
-      'total_income': moneyController.text,
-      'kode_pos': kodePosController.text,
-    };
-
-    // Send the data to the server and if success add snackbar
-    api.addDebitur(data);
-
-    // Add Snackbar
-    Get.snackbar(
-      'Success',
-      'Data berhasil ditambahkan',
-      backgroundColor: Colors.green,
-      colorText: Colors.white,
-      icon: const Icon(
-        Icons.check,
-        color: Colors.white,
-      ),
-    );
-  }
 
   List<Step> getSteps() => [
         Step(

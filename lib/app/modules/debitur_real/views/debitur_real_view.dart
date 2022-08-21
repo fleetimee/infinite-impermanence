@@ -66,6 +66,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
                         child: FormBuilderTextField(
                           name: 'peminjam1',
                           controller: controller.peminjam1.value,
+                          validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
                             labelText: 'Peminjam 1',
                             labelStyle: TextStyle(fontSize: 18),
@@ -83,11 +84,14 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'ktp1',
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                          ]),
                           controller: controller.ktp1.value,
                           decoration: const InputDecoration(
                             labelText: 'KTP 1',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan KTP 1',
+                            hintText: 'Kota Yogyakarta',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
@@ -127,7 +131,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
                           decoration: const InputDecoration(
                             labelText: 'KTP 2',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan KTP 2',
+                            hintText: 'Kabupaten Sleman',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
@@ -146,6 +150,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_1',
                           controller: controller.pemilikAgunan1.value,
+                          validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 1',
                             labelStyle: TextStyle(fontSize: 18),
@@ -163,6 +168,13 @@ class DebiturRealView extends GetView<DebiturRealController> {
                         child: FormBuilderTextField(
                           name: 'no_ktp1',
                           controller: controller.noKtp1.value,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                            FormBuilderValidators.maxLength(16,
+                                errorText: 'Max 16 Karakter'),
+                          ]),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'No Ktp',
@@ -185,6 +197,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_2',
+                          validator: FormBuilderValidators.required(),
                           controller: controller.pemilikAgunan2.value,
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 2',
@@ -202,6 +215,13 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'no_ktp2',
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                            FormBuilderValidators.maxLength(16,
+                                errorText: 'Max 16 Karakter'),
+                          ]),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           controller: controller.noKtp2.value,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
@@ -343,7 +363,18 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'umur',
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           controller: controller.umur.value,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                            FormBuilderValidators.min(18,
+                                errorText: 'Umur minimal 18 tahun'),
+                            FormBuilderValidators.max(65,
+                                errorText: 'Umur maksimal 65 tahun'),
+                            FormBuilderValidators.maxLength(3,
+                                errorText: 'Max 3 Karakter'),
+                          ]),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'Umur',
@@ -394,7 +425,14 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'lamanya_berusaha',
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.numeric(),
+                            FormBuilderValidators.maxLength(2,
+                                errorText: 'Impposibru'),
+                          ]),
                           controller: controller.lamanyaBerusaha.value,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'Lamanya Berusaha',
@@ -549,6 +587,15 @@ class DebiturRealView extends GetView<DebiturRealController> {
                   FormBuilderTextField(
                     name: 'no_skpk',
                     controller: controller.noSkpk.value,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose(
+                      [
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.minLength(10,
+                            errorText: 'Min 10 Digit'),
+                      ],
+                    ),
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: 'No SKPK',

@@ -1,13 +1,10 @@
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
-// 📦 Package imports:
 import 'package:get/get.dart';
 
-// 🌎 Project imports:
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/search_nik_controller.dart';
 
 class SearchNikView extends GetView<SearchNikController> {
@@ -16,7 +13,6 @@ class SearchNikView extends GetView<SearchNikController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text("Search Debitur"),
         centerTitle: true,
@@ -52,8 +48,8 @@ class SearchNikView extends GetView<SearchNikController> {
               const SizedBox(
                 height: 15,
               ),
-              colorButton(
-                  context, controller.apicall.isFalse ? 'SEARCH' : 'PROSES',
+              colorButton(context,
+                  controller.isSearchLoading.isFalse ? 'SEARCH' : 'PROSES',
                   () async {
                 controller.callsearchNik();
               }),
@@ -61,43 +57,28 @@ class SearchNikView extends GetView<SearchNikController> {
                 height: 30,
               ),
               Obx(() {
-                if (controller.apicall.value) {
+                if (controller.isSearchLoading.value) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
                 }
 
-                if (controller.currentNik.value == '') {
-                  return const Center();
-                }
-
-                if (controller.currentNik.value ==
-                    'Error: Exception: Failed to load post') {
-                  return Column(
-                    children: <Widget>[
-                      const Text(
-                        'Oops, nik tidak boleh kosong',
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                      Image.asset(
-                        'assets/images/search_section/search_404.png',
-                        alignment: Alignment.center,
-                        fit: BoxFit.cover,
-                        height: 300,
-                      ),
-                    ],
+                if (controller.listDebtor.isEmpty) {
+                  return const Center(
+                    child: Text('Tidak ada data'),
                   );
                 }
 
-                if (controller.currentNik.value ==
-                    'Error: Bad state: No element') {
+                // If Bad state: No Element in listDebtor
+
+                // If list has no element then return empty list
+
+                if (controller.listDebtor.isNotEmpty &&
+                    controller.listDebtor.length > 1) {
                   return Column(
                     children: <Widget>[
                       const Text(
-                        'Nik tidak ditemukan, silahkan buat disini',
-                        maxLines: 2,
+                        'Data tidak ditemukan',
                         style: TextStyle(
                           fontSize: 20,
                         ),
@@ -106,6 +87,7 @@ class SearchNikView extends GetView<SearchNikController> {
                         'assets/images/search_section/search_404_2.png',
                         alignment: Alignment.center,
                         fit: BoxFit.cover,
+                        height: 300,
                       ),
                       TextButton(
                           onPressed: () {
@@ -120,16 +102,46 @@ class SearchNikView extends GetView<SearchNikController> {
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   children: <Widget>[
+                    Center(
+                      child: Text(
+                        'Found 1 result : ${controller.listDebtor[0].noKtp1}',
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w200),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     ListTile(
-                      title: Text(controller.namaDebitur.value),
-                      subtitle: Text(controller.nomorDebitur.value),
+                      title: Text(
+                        controller.listDebtor.value[0].peminjam1.toString(),
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      subtitle: Text(
+                        controller.listDebtor.value[0].bidangUsaha.toString(),
+                      ),
                       onTap: () {
-                        // Navigate to the second screen with the data
+                        Get.toNamed(
+                          Routes.DEBITUR_DETAIL,
+                          arguments: controller.listDebtor.value[0],
+                        );
                       },
                       trailing: const Icon(Icons.keyboard_arrow_right),
                       leading: CircleAvatar(
                         backgroundColor: Colors.blue,
-                        child: Text(controller.namaDebitur.value[0]),
+                        maxRadius: 50,
+                        child: Text(
+                          controller.listDebtor.value[0].peminjam1
+                              .toString()
+                              .substring(0, 1),
+                          style: const TextStyle(
+                            fontSize: 30,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ],

@@ -66,7 +66,7 @@ class DebtorService {
         },
       );
       if (response.statusCode == 200) {
-        print('response: ${response.body}');
+        debugPrint('response: ${response.body}');
 
         Iterable it = json.decode(response.body);
         List<Debtor> list = it.map((model) => Debtor.fromJson(model)).toList();

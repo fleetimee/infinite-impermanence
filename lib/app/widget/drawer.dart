@@ -87,16 +87,16 @@ class SideMenu extends StatelessWidget {
             children: [
               ListTile(
                 leading: const Icon(Icons.person),
-                title: const Text('Input Debitur'),
+                title: const Text('Debitur Onboarding'),
                 onTap: () {
-                  Get.offNamed(Routes.CREATE_DEBITUR);
+                  Get.offAllNamed(Routes.DEBITUR_REAL);
                 },
               ),
               ListTile(
                 leading: const Icon(Icons.search),
-                title: const Text('Search NIK'),
+                title: const Text('Search Debitur'),
                 onTap: () {
-                  Get.offNamed(Routes.SEARCH_NIK);
+                  Get.toNamed(Routes.SEARCH_NIK);
                 },
               ),
             ],

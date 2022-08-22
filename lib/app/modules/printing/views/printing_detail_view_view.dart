@@ -75,7 +75,7 @@ class PrintingDetailViewView extends GetView {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Text("Total"),
+                        const Text("Total"),
                         Text(
                           Get.arguments.totalCost().toStringAsFixed(2),
                         ),

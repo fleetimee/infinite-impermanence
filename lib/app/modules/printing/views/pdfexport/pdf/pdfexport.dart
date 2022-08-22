@@ -59,11 +59,11 @@ Future<Uint8List> makePdf(Invoice invoice) async {
                 (e) => TableRow(
                   children: [
                     Expanded(
-                      child: PaddedText(e.description),
+                      child: paddedText(e.description),
                       flex: 2,
                     ),
                     Expanded(
-                      child: PaddedText("\$${e.cost}"),
+                      child: paddedText("\$${e.cost}"),
                       flex: 1,
                     )
                   ],
@@ -71,15 +71,15 @@ Future<Uint8List> makePdf(Invoice invoice) async {
               ),
               TableRow(
                 children: [
-                  PaddedText('TAX', align: TextAlign.right),
-                  PaddedText(
+                  paddedText('TAX', align: TextAlign.right),
+                  paddedText(
                       '\$${(invoice.totalCost() * 0.1).toStringAsFixed(2)}'),
                 ],
               ),
               TableRow(
                 children: [
-                  PaddedText('TOTAL', align: TextAlign.right),
-                  PaddedText("\$${invoice.totalCost()}"),
+                  paddedText('TOTAL', align: TextAlign.right),
+                  paddedText("\$${invoice.totalCost()}"),
                 ],
               )
             ],
@@ -103,28 +103,28 @@ Future<Uint8List> makePdf(Invoice invoice) async {
             children: [
               TableRow(
                 children: [
-                  PaddedText('No Pengajuan'),
-                  PaddedText(
+                  paddedText('No Pengajuan'),
+                  paddedText(
                     '1234 1234',
                   )
                 ],
               ),
               TableRow(
                 children: [
-                  PaddedText(
+                  paddedText(
                     'Account Name',
                   ),
-                  PaddedText(
+                  paddedText(
                     invoice.customer,
                   )
                 ],
               ),
               TableRow(
                 children: [
-                  PaddedText(
+                  paddedText(
                     'Maksumum Meminjam',
                   ),
-                  PaddedText(
+                  paddedText(
                       '\$${(invoice.totalCost() * 1.1).toStringAsFixed(2)}')
                 ],
               )
@@ -147,7 +147,7 @@ Future<Uint8List> makePdf(Invoice invoice) async {
   return pdf.save();
 }
 
-Widget PaddedText(
+Widget paddedText(
   final String text, {
   final TextAlign align = TextAlign.left,
 }) =>

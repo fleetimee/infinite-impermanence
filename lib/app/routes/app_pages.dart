@@ -82,56 +82,67 @@ class AppPages {
       name: _Paths.UPLOADS,
       page: () => const UploadsView(),
       binding: UploadsBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.PRO_PENGAJUAN_APPROVE,
       page: () => const ProPengajuanApproveView(),
       binding: ProPengajuanApproveBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.AGUNAN,
       page: () => const AgunanView(),
       binding: AgunanBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.BISNIS_ANALISIS,
       page: () => const BisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.KARAKTER_ANALISIS,
       page: () => const KarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.KEUANGAN_ANALISIS,
       page: () => const KeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.PRINTING,
       page: () => const PrintingView(),
       binding: PrintingBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.DEBITUR_REAL,
       page: () => DebiturOnboardingView(),
       binding: DebiturRealBinding(),
+      transition: Transition.rightToLeftWithFade,
     ),
     GetPage(
       name: _Paths.ADD_DEBITUR,
       page: () => DebiturRealView(),
       binding: DebiturRealBinding(),
+      transition: Transition.leftToRight,
     ),
     GetPage(
       name: _Paths.DEBITUR_LIST,
       page: () => DebiturListView(),
       binding: DebiturRealBinding(),
+      transition: Transition.leftToRight,
     ),
     GetPage(
       name: _Paths.DEBITUR_DETAIL,
       page: () => DebiturDetailView(),
       binding: DebiturRealBinding(),
+      transition: Transition.leftToRight,
     ),
   ];
 }

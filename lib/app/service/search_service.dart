@@ -87,7 +87,7 @@ class SearchService {
 
       throw Exception('Failed to load post');
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
 
       throw Exception('Failed to load post');
     }

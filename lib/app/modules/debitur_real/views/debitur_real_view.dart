@@ -1,9 +1,5 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/debitur_real/views/debitur_list_view.dart';
-import 'package:akm/app/routes/app_pages.dart';
-import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -20,8 +16,6 @@ import '../controllers/debitur_real_controller.dart';
 
 class DebiturRealView extends GetView<DebiturRealController> {
   const DebiturRealView({Key? key}) : super(key: key);
-
-  void _onChanged(dynamic val) => debugPrint(val.toString());
 
   @override
   Widget build(BuildContext context) {

@@ -114,19 +114,19 @@ class SearchNikView extends GetView<SearchNikController> {
                     ),
                     ListTile(
                       title: Text(
-                        controller.listDebtor.value[0].peminjam1.toString(),
+                        controller.listDebtor[0].peminjam1.toString(),
                         style: GoogleFonts.poppins(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                       subtitle: Text(
-                        controller.listDebtor.value[0].bidangUsaha.toString(),
+                        controller.listDebtor[0].bidangUsaha.toString(),
                       ),
                       onTap: () {
                         Get.toNamed(
                           Routes.DEBITUR_DETAIL,
-                          arguments: controller.listDebtor.value[0],
+                          arguments: controller.listDebtor[0],
                         );
                       },
                       trailing: const Icon(Icons.keyboard_arrow_right),
@@ -134,7 +134,7 @@ class SearchNikView extends GetView<SearchNikController> {
                         backgroundColor: Colors.blue,
                         maxRadius: 50,
                         child: Text(
-                          controller.listDebtor.value[0].peminjam1
+                          controller.listDebtor[0].peminjam1
                               .toString()
                               .substring(0, 1),
                           style: const TextStyle(

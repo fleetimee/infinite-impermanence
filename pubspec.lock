@@ -134,6 +134,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.7"
+  double_back_to_close_app:
+    dependency: "direct main"
+    description:
+      name: double_back_to_close_app
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   dropdown_search:
     dependency: transitive
     description:
@@ -177,12 +184,14 @@ packages:
     source: hosted
     version: "4.6.1"
   flare_flutter:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: flare_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.2"
+      path: flare_flutter
+      ref: stable
+      resolved-ref: ecd35f911b12460141c4bd49422c4a29cda04d30
+      url: "https://github.com/mdpe-ir/Flare-Flutter"
+    source: git
+    version: "3.0.5"
   flutter:
     dependency: "direct main"
     description: flutter

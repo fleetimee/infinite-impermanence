@@ -10,6 +10,7 @@ dependencies:
   cached_network_image: ^3.2.1
   cupertino_icons: ^1.0.2
   currency_text_input_formatter: ^2.1.7
+  double_back_to_close_app: ^2.1.0
   extended_masked_text: ^2.3.1
   file_picker: ^4.6.1
   flutter:
@@ -44,7 +45,7 @@ dependencies:
   responsive_framework: ^0.2.0
   shared_preferences: ^2.0.15
   slide_digital_clock: ^1.0.2
-  vector_math:
+  vector_math: null
   wave: ^0.2.2
 
 dev_dependencies:
@@ -89,3 +90,8 @@ android_12:
 
 dependency_overrides:
   intl: ^0.17.0
+  flare_flutter:
+    git:
+      url: https://github.com/mdpe-ir/Flare-Flutter
+      path: flare_flutter
+      ref: stable

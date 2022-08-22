@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan/controllers/agunan_controller.dart';
 import 'package:akm/app/widget/color_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class NilaiAgunan extends StatelessWidget {
   NilaiAgunan({Key? key}) : super(key: key);
@@ -399,13 +400,15 @@ class NilaiAgunan extends StatelessWidget {
                 AwesomeDialog(
                   context: context,
                   dialogBackgroundColor: primaryColor,
-                  titleTextStyle: const TextStyle(
+                  titleTextStyle: GoogleFonts.poppins(
+                    color: secondaryColor,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  descTextStyle: GoogleFonts.poppins(
                     color: secondaryColor,
                     fontSize: 20,
-                  ),
-                  descTextStyle: const TextStyle(
-                    color: secondaryColor,
-                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
                   ),
                   dialogType: DialogType.SUCCES,
                   animType: AnimType.BOTTOMSLIDE,

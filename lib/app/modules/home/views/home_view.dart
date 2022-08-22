@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -16,47 +17,61 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideMenu(),
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            leading: (ModalRoute.of(context)?.canPop ?? false)
-                ? const BackButton()
-                : null,
-            pinned: true,
-            snap: false,
-            floating: false,
-            expandedHeight: 250,
-            flexibleSpace: FlexibleSpaceBar(
-              title: const Text(
-                'Home',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  // color: secondaryColor,
-                  fontSize: 40,
-                  shadows: [
-                    Shadow(
-                      blurRadius: 10,
-                      color: Colors.black,
-                      offset: Offset(5, 5),
-                    ),
-                  ],
+      body: DoubleBackToCloseApp(
+        snackBar: SnackBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 10,
+          content: const Text(
+            'Press again to exit',
+            style: TextStyle(
+              fontSize: 20,
+            ),
+          ),
+        ),
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              leading: (ModalRoute.of(context)?.canPop ?? false)
+                  ? const BackButton()
+                  : null,
+              pinned: true,
+              snap: false,
+              floating: false,
+              expandedHeight: 250,
+              flexibleSpace: FlexibleSpaceBar(
+                title: const Text(
+                  'Home',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    // color: secondaryColor,
+                    fontSize: 40,
+                    shadows: [
+                      Shadow(
+                        blurRadius: 10,
+                        color: Colors.black,
+                        offset: Offset(5, 5),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              background: Obx(
-                () => Image.asset(
-                  controller.isDarkModeEnabled.value
-                      ? 'assets/images/home/appbar_light.jpg'
-                      : 'assets/images/home/appbar_dark.jpg',
-                  fit: BoxFit.cover,
+                background: Obx(
+                  () => Image.asset(
+                    controller.isDarkModeEnabled.value
+                        ? 'assets/images/home/appbar_light.jpg'
+                        : 'assets/images/home/appbar_dark.jpg',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(16),
-            sliver: HomeMenu(),
-          ),
-        ],
+            SliverPadding(
+              padding: const EdgeInsets.all(16),
+              sliver: HomeMenu(),
+            ),
+          ],
+        ),
       ),
     );
   }

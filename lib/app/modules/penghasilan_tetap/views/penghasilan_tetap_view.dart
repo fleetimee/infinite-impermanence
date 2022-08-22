@@ -9,6 +9,7 @@ import 'package:gif_view/gif_view.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/widget/drawer.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/penghasilan_tetap_controller.dart';
 
 class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
@@ -62,12 +63,19 @@ class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
                           context: context,
                           dialogType: DialogType.SUCCES,
                           dialogBackgroundColor: primaryColor,
-                          titleTextStyle: const TextStyle(
+                          titleTextStyle: GoogleFonts.poppins(
+                            color: secondaryColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          descTextStyle: GoogleFonts.poppins(
                             color: secondaryColor,
                             fontSize: 20,
+                            fontWeight: FontWeight.w400,
                           ),
                           animType: AnimType.BOTTOMSLIDE,
-                          title: 'Berhasil Disetujui',
+                          title: 'Success',
+                          desc: 'Data berhasil disetujui',
                           btnOkOnPress: () {},
                           autoHide: const Duration(seconds: 3),
                         ).show();

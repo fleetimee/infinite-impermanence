@@ -2,10 +2,13 @@
 import 'dart:convert';
 
 // 📦 Package imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
@@ -65,9 +68,29 @@ class SearchService {
             context: Get.context!,
             dialogType: DialogType.WARNING,
             animType: AnimType.BOTTOMSLIDE,
-            title: 'Warning',
-            desc: 'Data tidak ditemukan',
+            dialogBackgroundColor: primaryColor,
+            titleTextStyle: GoogleFonts.poppins(
+              color: secondaryColor,
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
+            ),
+            descTextStyle: GoogleFonts.poppins(
+              color: secondaryColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+            ),
             btnOkOnPress: () {},
+            btnCancelOnPress: () {
+              Get.toNamed(Routes.ADD_DEBITUR);
+            },
+            desc: 'Data tidak ditemukan',
+            title: 'Warning',
+            btnCancelIcon: Icons.add_circle,
+            btnCancelText: 'Buat Debitur Baru',
+            btnCancelColor: Colors.blue,
+            btnOkText: 'Cari Lagi',
+            btnOkIcon: Icons.search,
+            btnOkColor: Colors.blue,
           ).show();
         }
 
@@ -77,10 +100,21 @@ class SearchService {
       if (response.statusCode == 400) {
         AwesomeDialog(
           context: Get.context!,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          dialogBackgroundColor: primaryColor,
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
           dialogType: DialogType.ERROR,
           animType: AnimType.BOTTOMSLIDE,
           title: 'Error',
-          desc: 'Bad Request',
+          desc: 'Field input tidak boleh kosong',
           btnOkOnPress: () {},
         ).show();
       }

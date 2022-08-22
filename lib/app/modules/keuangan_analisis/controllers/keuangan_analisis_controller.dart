@@ -351,13 +351,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Pinjaman Maksimal Masih Kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: const TextStyle(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
-          fontSize: 25,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -379,13 +381,15 @@ class KeuanganAnalisisController extends GetxController
           title: 'Error',
           desc: 'Kredit yang diminta melebihi pinjaman maksimal',
           dialogBackgroundColor: primaryColor,
-          titleTextStyle: const TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
             fontSize: 30,
+            fontWeight: FontWeight.w500,
           ),
-          descTextStyle: const TextStyle(
+          descTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
-            fontSize: 25,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
           btnOkOnPress: () {},
         ).show();
@@ -398,15 +402,17 @@ class KeuanganAnalisisController extends GetxController
           animType: AnimType.BOTTOMSLIDE,
           title: 'Success',
           dialogBackgroundColor: primaryColor,
-          titleTextStyle: const TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
             fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
           desc: 'Kredit yang diminta tidak melebihi pinjaman maksimal',
-          descTextStyle: const TextStyle(
-            color: secondaryColor,
-            fontSize: 25,
-          ),
           btnOkOnPress: () {},
         ).show();
         print(isKreditPassed.value);
@@ -507,12 +513,19 @@ class KeuanganAnalisisController extends GetxController
         AwesomeDialog(
           dialogType: DialogType.ERROR,
           dialogBackgroundColor: primaryColor,
-          titleTextStyle: const TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
             fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
           animType: AnimType.BOTTOMSLIDE,
-          title: 'Field Pinjaman Masih Kosong',
+          title: 'Error',
+          desc: 'Field Pinjaman Masih Kosong',
           btnOkOnPress: () {},
           context: Get.context!,
         ).show();
@@ -522,12 +535,19 @@ class KeuanganAnalisisController extends GetxController
         AwesomeDialog(
           dialogType: DialogType.ERROR,
           dialogBackgroundColor: primaryColor,
-          titleTextStyle: const TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
             fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
           animType: AnimType.BOTTOMSLIDE,
-          title: 'Field Modal Masih Kosong',
+          title: 'Error',
+          desc: 'Field Modal Masih Kosong',
           btnOkOnPress: () {},
           context: Get.context!,
         ).show();
@@ -623,13 +643,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Biaya bahan kini dan biaya bahan YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -658,13 +680,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Upah kini dan upah YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -689,13 +713,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Biaya operasi kini dan biaya operasi YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -724,13 +750,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Biaya hidup kini dan biaya hidup YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -850,7 +878,6 @@ class KeuanganAnalisisController extends GetxController
 
   void hitungRoa() {
     if (netWorthPlusCredit.text == '') {
-      // Throw an exceotion with AwesomeDialog
       AwesomeDialog(
         context: Get.context!,
         dialogType: DialogType.ERROR,
@@ -858,13 +885,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Jumlah Asset + Pinjaman tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -872,7 +901,6 @@ class KeuanganAnalisisController extends GetxController
     }
 
     if (labaUsahaKini.text == '0') {
-      // Throw an exceotion with AwesomeDialog
       AwesomeDialog(
         context: Get.context!,
         dialogType: DialogType.ERROR,
@@ -880,13 +908,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Laba usaha tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -894,7 +924,6 @@ class KeuanganAnalisisController extends GetxController
     }
 
     if (labaUsahaYAD.text == '0') {
-      // Throw an exceotion with AwesomeDialog
       AwesomeDialog(
         context: Get.context!,
         dialogType: DialogType.ERROR,
@@ -902,13 +931,15 @@ class KeuanganAnalisisController extends GetxController
         title: 'Error',
         desc: 'Laba usaha tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.roboto(
+        titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 30,
+          fontWeight: FontWeight.w500,
         ),
-        descTextStyle: const TextStyle(
+        descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
           fontSize: 20,
+          fontWeight: FontWeight.w400,
         ),
         btnOkOnPress: () {},
       ).show();
@@ -1099,17 +1130,19 @@ class KeuanganAnalisisController extends GetxController
         AwesomeDialog(
           dialogType: DialogType.ERROR,
           dialogBackgroundColor: primaryColor,
-          titleTextStyle: const TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
             fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
           animType: AnimType.BOTTOMSLIDE,
           title: 'Error',
           desc: 'Field bunga per tahun masih kosong',
-          descTextStyle: const TextStyle(
-            color: secondaryColor,
-            fontSize: 15,
-          ),
           btnOkOnPress: () {},
           context: Get.context!,
         ).show();
@@ -1119,17 +1152,19 @@ class KeuanganAnalisisController extends GetxController
         AwesomeDialog(
           dialogType: DialogType.ERROR,
           dialogBackgroundColor: primaryColor,
-          titleTextStyle: const TextStyle(
+          titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
             fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
           ),
           animType: AnimType.BOTTOMSLIDE,
           title: 'Error',
           desc: 'Field Angsuran per bulan masih kosong',
-          descTextStyle: const TextStyle(
-            color: secondaryColor,
-            fontSize: 15,
-          ),
           btnOkOnPress: () {},
           context: Get.context!,
         ).show();

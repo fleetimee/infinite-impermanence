@@ -666,6 +666,28 @@ class DebiturRealView extends GetView<DebiturRealController> {
                               debugPrint(controller.formKey.currentState?.value
                                   .toString());
                               debugPrint('validation failed');
+                              AwesomeDialog(
+                                context: context,
+                                animType: AnimType.BOTTOMSLIDE,
+                                dialogType: DialogType.WARNING,
+                                dialogBackgroundColor: primaryColor,
+                                titleTextStyle: GoogleFonts.poppins(
+                                  color: secondaryColor,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                                descTextStyle: GoogleFonts.poppins(
+                                  color: secondaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                title: 'Warning',
+                                desc: 'Form masih ada yang kosong',
+                                btnOkText: 'Sunting Kembali',
+                                btnOkIcon: Icons.edit,
+                                btnOkOnPress: () {},
+                                btnOkColor: blue300,
+                              ).show();
                             }
                           },
                           child: const Text(
@@ -681,6 +703,17 @@ class DebiturRealView extends GetView<DebiturRealController> {
                             controller.formKey.currentState?.reset();
                             AwesomeDialog(
                               context: context,
+                              dialogBackgroundColor: primaryColor,
+                              titleTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              descTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              ),
                               dialogType: DialogType.SUCCES,
                               animType: AnimType.SCALE,
                               title: 'Success',

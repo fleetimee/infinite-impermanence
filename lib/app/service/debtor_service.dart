@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 class DebtorService {
@@ -31,6 +32,17 @@ class DebtorService {
           context: Get.context!,
           dialogType: DialogType.SUCCES,
           animType: AnimType.BOTTOMSLIDE,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
           title: 'Sukses',
           desc: 'Data berhasil ditambahkan',
           btnOkOnPress: () {
@@ -44,10 +56,21 @@ class DebtorService {
 
       AwesomeDialog(
         context: Get.context!,
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
         dialogType: DialogType.ERROR,
         animType: AnimType.BOTTOMSLIDE,
         title: 'Error',
-        desc: e.toString(),
+        desc: 'Terjadi kesalahan',
         btnOkOnPress: () {},
       ).show();
       throw Exception('Failed to create post');
@@ -94,6 +117,17 @@ class DebtorService {
       if (response.statusCode == 200) {
         AwesomeDialog(
           context: Get.context!,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
           dialogType: DialogType.SUCCES,
           animType: AnimType.BOTTOMSLIDE,
           title: 'Sukses',
@@ -124,6 +158,17 @@ class DebtorService {
       if (response.statusCode == 200) {
         AwesomeDialog(
           context: Get.context!,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
           dialogType: DialogType.SUCCES,
           animType: AnimType.BOTTOMSLIDE,
           title: 'Sukses',

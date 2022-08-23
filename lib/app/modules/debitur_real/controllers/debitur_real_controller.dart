@@ -3,8 +3,22 @@ import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class DebiturRealController extends GetxController {
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
+
+  void onRefresh() async {
+    refreshController.refreshCompleted();
+  }
+
+  void onLoading() async {
+    fetchDebitur();
+    // fetch debitur
+    refreshController.loadComplete();
+  }
+
   final listDebtor = <Debtor>[].obs;
   Debtor debtor = Debtor();
 
@@ -44,6 +58,12 @@ class DebiturRealController extends GetxController {
   final searchBox = TextEditingController().obs;
 
   final loadingFetch = false.obs;
+
+  // For edit
+  final peminjam1Edit = TextEditingController().obs;
+  final peminjam2Edit = TextEditingController().obs;
+
+  // For edit
 
   void searchDebtor(String query) {
     final suggestion = listDebtor.where((debtor) {
@@ -105,6 +125,21 @@ class DebiturRealController extends GetxController {
     update();
 
     fetchDebitur();
+  }
+
+  void editDebitur(String id) {
+    final api = DebtorService();
+    final data = {
+      'peminjam1': peminjam1Edit.value.text,
+    };
+    api.updateDebtor(
+      id,
+      data,
+    );
+
+    fetchDebitur();
+
+    update();
   }
 
   void fetchDebitur() async {

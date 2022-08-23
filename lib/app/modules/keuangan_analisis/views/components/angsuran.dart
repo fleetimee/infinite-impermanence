@@ -310,11 +310,13 @@ class Angsuran extends StatelessWidget {
             height: 20,
           ),
 
-          // colorButton(
-          //   context,
-          //   'Hitung Total Angsuran Pinjaman',
-          //   () {},
-          // ),
+          colorButton(
+            context,
+            'Hitung Total Angsuran Pinjaman',
+            () {
+              controller.mothlyPaymentCalculation();
+            },
+          ),
 
           const Divider(
             height: 100,

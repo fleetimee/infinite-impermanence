@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 
 // 🐦 Flutter imports:
+import 'package:finance/finance.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -95,7 +96,7 @@ class KeuanganAnalisisController extends GetxController
   final bungaPerTahun = TextEditingController(text: '6');
   final angsuranPerBulan = TextEditingController(text: '60');
   final totalBunga = MoneyMaskedTextController(
-    initialValue: 3866560,
+    initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -417,6 +418,38 @@ class KeuanganAnalisisController extends GetxController
         ).show();
         print(isKreditPassed.value);
       }
+    }
+  }
+
+  void mothlyPaymentCalculation() {
+    final parseBungaPerTahun = double.parse(bungaPerTahun.text);
+    final parseBungaPerTahunAsDecimal = parseBungaPerTahun / 100;
+    final parseAngsuranPerBulanKredit = double.parse(angsuranPerBulan.text);
+    final parseKreditYangDiminta =
+        double.parse(kreditYangDiminta.text.replaceAll('.', ''));
+
+    final hitungAwal = Finance.pmt(
+          rate: parseBungaPerTahunAsDecimal / 12,
+          nper: parseAngsuranPerBulanKredit,
+          pv: parseKreditYangDiminta,
+        ) *
+        -1 %
+        5;
+
+    final hitungKedua = Finance.pmt(
+          rate: parseBungaPerTahunAsDecimal / 12,
+          nper: parseAngsuranPerBulanKredit,
+          pv: parseKreditYangDiminta,
+        ) *
+        -1;
+
+    final ifBenar = hitungKedua - hitungAwal + 5;
+    final ifSalah = hitungKedua - hitungAwal;
+
+    if (hitungAwal > 2) {
+      totalBunga.text = ifBenar.toStringAsFixed(0);
+    } else {
+      totalBunga.text = ifSalah.toStringAsFixed(0);
     }
   }
 

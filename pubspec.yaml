@@ -47,6 +47,11 @@ dependencies:
   slide_digital_clock: ^1.0.2
   vector_math: null
   wave: ^0.2.2
+  pull_to_refresh_flutter3: ^2.0.1
+  finance:
+    git:
+      url: "https://github.com/yuvaraja2303/finance/"
+      ref: patch-1
 
 dev_dependencies:
   change_app_package_name: ^1.1.0

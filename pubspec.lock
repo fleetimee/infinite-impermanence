@@ -183,6 +183,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.1"
+  finance:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: patch-1
+      resolved-ref: "72d45996c11b016f13e42d68fc826fed395e17fc"
+      url: "https://github.com/yuvaraja2303/finance/"
+    source: git
+    version: "0.1.0"
   flare_flutter:
     dependency: "direct overridden"
     description:
@@ -723,6 +732,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+  pull_to_refresh_flutter3:
+    dependency: "direct main"
+    description:
+      name: pull_to_refresh_flutter3
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   qr:
     dependency: transitive
     description:

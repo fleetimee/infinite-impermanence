@@ -62,6 +62,8 @@ class DebiturRealController extends GetxController {
   // For edit
   final peminjam1Edit = TextEditingController().obs;
   final peminjam2Edit = TextEditingController().obs;
+  final ktp1Edit = TextEditingController().obs;
+  final ktp2Edit = TextEditingController().obs;
 
   // For edit
 

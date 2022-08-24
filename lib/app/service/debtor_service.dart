@@ -180,11 +180,7 @@ class DebtorService {
         },
       );
       if (response.statusCode == 200) {
-        Get.back(
-          result: true,
-          canPop: true,
-          closeOverlays: true,
-        );
+  
 
         AwesomeDialog(
           context: Get.context!,

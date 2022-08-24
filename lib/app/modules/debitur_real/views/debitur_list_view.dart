@@ -1,13 +1,17 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
+import 'package:akm/app/modules/debitur_detail_banget/views/debitur_detail_banget_view.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/modules/debitur_real/views/debitur_detail_view.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DebiturListView extends GetView<DebiturRealController> {
-  const DebiturListView({Key? key}) : super(key: key);
+  DebiturListView({Key? key}) : super(key: key);
+
+  final foreignCont = Get.put(DebiturDetailBangetController());
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,7 @@ class DebiturListView extends GetView<DebiturRealController> {
                                 const Divider(),
                             itemBuilder: (_, index) {
                               final debtor = controller.listDebtor[index];
+                              final debtorDetails = controller.debtorDetails;
                               return Card(
                                 child: ListTile(
                                   leading: CircleAvatar(
@@ -77,8 +82,9 @@ class DebiturListView extends GetView<DebiturRealController> {
                                     color: primaryColor,
                                   ),
                                   onTap: () {
-                                    Get.to(() => const DebiturDetailView(),
-                                        arguments: debtor);
+                                    Get.to(
+                                        () => const DebiturDetailBangetView(),
+                                        arguments: debtor.id);
                                   },
                                 ),
                               );

@@ -15,11 +15,6 @@ class DebiturDetailView extends GetView<DebiturRealController> {
     final data = Get.arguments;
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        // Refresh the page when the button is pressed
-        onPressed: () => controller.fetchDebiturPerId(data.id.toString()),
-        child: const Icon(Icons.refresh),
-      ),
       appBar: AppBar(
         title: const Text('DebiturDetailView'),
         centerTitle: true,

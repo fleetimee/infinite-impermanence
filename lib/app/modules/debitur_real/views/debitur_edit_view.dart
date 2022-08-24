@@ -1,5 +1,6 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -743,6 +744,9 @@ class DebiturEditView extends GetView<DebiturRealController> {
                                     ?.saveAndValidate() ??
                                 false) {
                               controller.editDebitur(data.id.toString());
+                              Get.toNamed(Routes.DEBITUR_DETAIL,
+                                  arguments: data);
+
                               controller.fetchDebitur();
                             } else {
                               debugPrint(controller.formKey.currentState?.value

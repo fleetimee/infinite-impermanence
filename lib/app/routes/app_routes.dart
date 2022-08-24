@@ -21,6 +21,7 @@ abstract class Routes {
   static const ADD_DEBITUR = _Paths.ADD_DEBITUR;
   static const DEBITUR_LIST = _Paths.DEBITUR_LIST;
   static const DEBITUR_DETAIL = _Paths.DEBITUR_DETAIL;
+  static const DEBITUR_EDIT = _Paths.DEBITUR_EDIT;
 }
 
 abstract class _Paths {
@@ -40,4 +41,5 @@ abstract class _Paths {
   static const ADD_DEBITUR = '/add-debitur';
   static const DEBITUR_LIST = '/debitur-list';
   static const DEBITUR_DETAIL = '/debitur-detail';
+  static const DEBITUR_EDIT = '/debitur-edit';
 }

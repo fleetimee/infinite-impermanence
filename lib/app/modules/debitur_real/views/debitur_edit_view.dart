@@ -56,13 +56,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'peminjam1',
-                          controller:
-                              TextEditingController.fromValue(TextEditingValue(
+                          controller: controller.peminjam1.value =
+                              TextEditingController(
                             text: data.peminjam1,
-                            selection: TextSelection.collapsed(
-                              offset: data.peminjam1.length,
-                            ),
-                          )),
+                          ),
                           validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
                             labelText: 'Peminjam 1',
@@ -84,7 +81,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(),
                           ]),
-                          controller: controller.ktp1.value,
+                          controller: controller.ktp1.value =
+                              TextEditingController(
+                            text: data.ktp1,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'KTP 1',
                             labelStyle: TextStyle(fontSize: 18),
@@ -106,7 +106,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'peminjam2',
-                          controller: controller.peminjam2.value,
+                          controller: controller.peminjam2.value =
+                              TextEditingController(
+                            text: data.peminjam2,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Peminjam 2',
                             labelStyle: TextStyle(fontSize: 18),
@@ -124,7 +127,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'ktp2',
-                          controller: controller.ktp2.value,
+                          controller: controller.ktp2.value =
+                              TextEditingController(
+                            text: data.ktp2,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'KTP 2',
                             labelStyle: TextStyle(fontSize: 18),
@@ -146,7 +152,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_1',
-                          controller: controller.pemilikAgunan1.value,
+                          controller: controller.pemilikAgunan1.value =
+                              TextEditingController(
+                            text: data.pemilikAgunan1,
+                          ),
                           validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 1',
@@ -164,7 +173,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'no_ktp1',
-                          controller: controller.noKtp1.value,
+                          controller: controller.noKtp1.value =
+                              TextEditingController(
+                            text: data.noKtp1,
+                          ),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(),
@@ -195,7 +207,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_2',
                           validator: FormBuilderValidators.required(),
-                          controller: controller.pemilikAgunan2.value,
+                          controller: controller.pemilikAgunan2.value =
+                              TextEditingController(
+                            text: data.pemilikAgunan2,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 2',
                             labelStyle: TextStyle(fontSize: 18),
@@ -219,7 +234,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                                 errorText: 'Max 16 Karakter'),
                           ]),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.noKtp2.value,
+                          controller: controller.noKtp2.value =
+                              TextEditingController(
+                            text: data.noKtp2,
+                          ),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'No Ktp',
@@ -251,7 +269,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                     children: [
                       FormBuilderTextField(
                         name: 'alamat_1',
-                        controller: controller.alamat1.value,
+                        controller: controller.alamat1.value =
+                            TextEditingController(
+                          text: data.alamat1,
+                        ),
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
                           alignLabelWithHint: true,
@@ -270,7 +291,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       const SizedBox(height: 16),
                       FormBuilderTextField(
                         name: 'alamat_2',
-                        controller: controller.alamat2.value,
+                        controller: controller.alamat2.value =
+                            TextEditingController(
+                          text: data.alamat2,
+                        ),
                         keyboardType: TextInputType.multiline,
                         decoration: const InputDecoration(
                           alignLabelWithHint: true,
@@ -304,7 +328,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'tempat_lahir',
-                          controller: controller.tempatLahir.value,
+                          controller: controller.tempatLahir.value =
+                              TextEditingController(
+                            text: data.tempatLahir,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Tempat Lahir',
                             labelStyle: TextStyle(fontSize: 18),
@@ -324,10 +351,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           textAlign: TextAlign.center,
                           name: 'tanggal_lahir',
                           initialValue: data.tanggalLahir,
-                          // onChanged: (value) {
-                          //   controller.tanggalLahir.value = value!;
-                          //   debugPrint(value.toString());
-                          // },
+                          onChanged: (value) {
+                            controller.tanggalLahir.value = value!;
+                            debugPrint(value.toString());
+                          },
                           errorFormatText: 'Format tanggal salah',
                           errorInvalidText: 'Tanggal tidak valid',
                           inputType: InputType.date,
@@ -362,7 +389,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                         child: FormBuilderTextField(
                           name: 'umur',
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          controller: controller.umur.value,
+                          controller: controller.umur.value =
+                              TextEditingController(
+                            text: data.umur.toString(),
+                          ),
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(),
                             FormBuilderValidators.numeric(),
@@ -391,7 +421,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'status_keluarga',
-                          controller: controller.statusKeluarga.value,
+                          controller: controller.statusKeluarga.value =
+                              TextEditingController(
+                            text: data.statusKeluarga,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Status Keluarga',
                             labelStyle: TextStyle(fontSize: 18),
@@ -429,7 +462,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                             FormBuilderValidators.maxLength(2,
                                 errorText: 'Impposibru'),
                           ]),
-                          controller: controller.lamanyaBerusaha.value,
+                          controller: controller.lamanyaBerusaha.value =
+                              TextEditingController(
+                            text: data.lamanyaBerusaha.toString(),
+                          ),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
@@ -449,7 +485,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'lokasi_usaha',
-                          controller: controller.lokasiUsaha.value,
+                          controller: controller.lokasiUsaha.value =
+                              TextEditingController(
+                            text: data.lokasiUsaha,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Lokasi Usaha',
                             labelStyle: TextStyle(fontSize: 18),
@@ -470,16 +509,27 @@ class DebiturEditView extends GetView<DebiturRealController> {
                     children: [
                       Expanded(
                         child: FormBuilderDropdown(
+                          initialValue: data.jenisUsaha,
                           decoration: const InputDecoration(
                             labelText: 'Jenis Usaha',
                             labelStyle: TextStyle(fontSize: 18),
                             border: OutlineInputBorder(),
                           ),
-                          items: controller.jenisUsaha,
+                          items: controller.jenisUsahaList
+                              .map(
+                                (element) => DropdownMenuItem(
+                                  value: element,
+                                  child: Text(element),
+                                ),
+                              )
+                              .toList(),
                           name: 'jenis_usaha',
                           onChanged: (value) {
                             controller.jenisUsahaInput.value = value.toString();
                             debugPrint(value.toString());
+                          },
+                          onSaved: (value) {
+                            controller.jenisUsahaInput.value = value.toString();
                           },
                         ),
                       ),
@@ -487,7 +537,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'bidang_usaha',
-                          controller: controller.bidangUsaha.value,
+                          controller: controller.bidangUsaha.value =
+                              TextEditingController(
+                            text: data.bidangUsaha,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Bidang Usaha',
                             labelStyle: TextStyle(fontSize: 18),
@@ -516,7 +569,12 @@ class DebiturEditView extends GetView<DebiturRealController> {
                   const SizedBox(height: 10),
                   FormBuilderDropdown(
                     name: 'pendidikan',
+                    initialValue: data.pendidikan,
                     onChanged: (value) {
+                      controller.pendidikanInput.value = value.toString();
+                      debugPrint(value.toString());
+                    },
+                    onSaved: (value) {
                       controller.pendidikanInput.value = value.toString();
                       debugPrint(value.toString());
                     },
@@ -525,7 +583,14 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       labelStyle: TextStyle(fontSize: 18),
                       border: OutlineInputBorder(),
                     ),
-                    items: controller.pendidikan,
+                    items: controller.pendidikanList
+                        .map(
+                          (element) => DropdownMenuItem(
+                            value: element,
+                            child: Text(element),
+                          ),
+                        )
+                        .toList(),
                   ),
                   const SizedBox(height: 25),
                   Padding(
@@ -548,14 +613,20 @@ class DebiturEditView extends GetView<DebiturRealController> {
                             border: OutlineInputBorder(),
                           ),
                           name: 'pekerjaan1',
-                          controller: controller.pekerjaan1.value,
+                          controller: controller.pekerjaan1.value =
+                              TextEditingController(
+                            text: data.pekerjaan1,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'pekerjaan2',
-                          controller: controller.pekerjaan2.value,
+                          controller: controller.pekerjaan2.value =
+                              TextEditingController(
+                            text: data.pekerjaan2,
+                          ),
                           decoration: const InputDecoration(
                             labelText: 'Pekerjaan 2',
                             labelStyle: TextStyle(fontSize: 18),
@@ -584,7 +655,9 @@ class DebiturEditView extends GetView<DebiturRealController> {
                   const SizedBox(height: 10),
                   FormBuilderTextField(
                     name: 'no_skpk',
-                    controller: controller.noSkpk.value,
+                    controller: controller.noSkpk.value = TextEditingController(
+                      text: data.noSkpk,
+                    ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: FormBuilderValidators.compose(
                       [
@@ -612,6 +685,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
                   FormBuilderDateTimePicker(
                     name: 'tgl_sekarang',
                     resetIcon: null,
+                    initialValue: data.tglSekarang,
                     onChanged: (value) {
                       controller.tanggalSekarangInput.value = value!;
                       debugPrint(value.toString());
@@ -640,7 +714,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                   const SizedBox(height: 16),
                   FormBuilderTextField(
                     name: 'deskripsi_debitur',
-                    controller: controller.deskripsiDebitur.value,
+                    controller: controller.deskripsiDebitur.value =
+                        TextEditingController(
+                      text: data.deskripsiDebitur,
+                    ),
                     maxLines: 5,
                     decoration: const InputDecoration(
                       alignLabelWithHint: true,
@@ -665,7 +742,8 @@ class DebiturEditView extends GetView<DebiturRealController> {
                             if (controller.formKey.currentState
                                     ?.saveAndValidate() ??
                                 false) {
-                              controller.saveDebtor();
+                              controller.editDebitur(data.id.toString());
+                              controller.fetchDebitur();
                             } else {
                               debugPrint(controller.formKey.currentState?.value
                                   .toString());

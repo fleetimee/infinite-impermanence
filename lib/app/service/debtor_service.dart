@@ -103,6 +103,30 @@ class DebtorService {
     }
   }
 
+  // Fetch debtor by id from API
+  Future<Debtor> getDebtorById(id) async {
+    try {
+      final apiUrl = '${baseUrl}debiturs/$id';
+      final response = await httpClient.get(
+        Uri.parse(apiUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        debugPrint('response: ${response.body}');
+
+        return Debtor.fromJson(json.decode(response.body));
+      } else {
+        throw Exception('Failed to load post');
+      }
+    } catch (e) {
+      debugPrint('error: $e');
+      throw Exception('Failed to load post');
+    }
+  }
+
   // Delete a debtor
   Future<void> deleteDebtor(id) async {
     try {
@@ -156,6 +180,12 @@ class DebtorService {
         },
       );
       if (response.statusCode == 200) {
+        Get.back(
+          result: true,
+          canPop: true,
+          closeOverlays: true,
+        );
+
         AwesomeDialog(
           context: Get.context!,
           dialogBackgroundColor: primaryColor,
@@ -173,9 +203,7 @@ class DebtorService {
           animType: AnimType.BOTTOMSLIDE,
           title: 'Sukses',
           desc: 'Data berhasil diubah',
-          btnOkOnPress: () {
-            Get.back();
-          },
+          btnOkOnPress: () {},
         ).show();
       } else {
         throw Exception('Failed to load post');

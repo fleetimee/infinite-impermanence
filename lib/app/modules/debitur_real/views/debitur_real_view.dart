@@ -471,7 +471,12 @@ class DebiturRealView extends GetView<DebiturRealController> {
                             labelStyle: TextStyle(fontSize: 18),
                             border: OutlineInputBorder(),
                           ),
-                          items: controller.jenisUsaha,
+                          items: controller.jenisUsahaList.map((String value) {
+                            return DropdownMenuItem(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                           name: 'jenis_usaha',
                           onChanged: (value) {
                             controller.jenisUsahaInput.value = value.toString();
@@ -521,7 +526,12 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       labelStyle: TextStyle(fontSize: 18),
                       border: OutlineInputBorder(),
                     ),
-                    items: controller.pendidikan,
+                    items: controller.pendidikanList.map((String value) {
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
                   ),
                   const SizedBox(height: 25),
                   Padding(

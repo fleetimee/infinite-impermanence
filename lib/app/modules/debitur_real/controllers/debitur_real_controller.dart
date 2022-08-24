@@ -59,14 +59,6 @@ class DebiturRealController extends GetxController {
 
   final loadingFetch = false.obs;
 
-  // For edit
-  final peminjam1Edit = TextEditingController().obs;
-  final peminjam2Edit = TextEditingController().obs;
-  final ktp1Edit = TextEditingController().obs;
-  final ktp2Edit = TextEditingController().obs;
-
-  // For edit
-
   void searchDebtor(String query) {
     final suggestion = listDebtor.where((debtor) {
       final nama = debtor.peminjam1.toString().toLowerCase();
@@ -132,16 +124,43 @@ class DebiturRealController extends GetxController {
   void editDebitur(String id) {
     final api = DebtorService();
     final data = {
-      'peminjam1': peminjam1Edit.value.text,
+      'peminjam1': peminjam1.value.text,
+      'ktp1': ktp1.value.text,
+      'peminjam2': peminjam2.value.text,
+      'ktp2': ktp2.value.text,
+      'pemilik_agunan_1': pemilikAgunan1.value.text,
+      'no_ktp1': noKtp1.value.text,
+      'pemilik_agunan_2': pemilikAgunan2.value.text,
+      'no_ktp2': noKtp2.value.text,
+      'alamat_1': alamat1.value.text,
+      'alamat_2': alamat2.value.text,
+      'tempat_lahir': tempatLahir.value.text,
+      'tanggal_lahir': tanggalLahir.value.toString(),
+      'umur': umur.value.text,
+      'status_keluarga': statusKeluarga.value.text,
+      'lamanya_berusaha': lamanyaBerusaha.value.text,
+      'lokasi_usaha': lokasiUsaha.value.text,
+      'jenis_usaha': jenisUsahaInput.value.toString(),
+      'bidang_usaha': bidangUsaha.value.text,
+      'pendidikan': pendidikanInput.value.toString(),
+      'pekerjaan1': pekerjaan1.value.text,
+      'pekerjaan2': pekerjaan2.value.text,
+      'no_skpk': noSkpk.value.text,
+      'tgl_sekarang': tanggalSekarangInput.value.toString(),
+      'deskripsi_debitur': deskripsiDebitur.value.text,
     };
     api.updateDebtor(
       id,
       data,
     );
 
-    fetchDebitur();
+    fetchDebiturPerId(id);
 
     update();
+
+    fetchDebitur();
+
+    listDebtor.refresh();
   }
 
   void fetchDebitur() async {
@@ -157,6 +176,42 @@ class DebiturRealController extends GetxController {
     update();
   }
 
+  void fetchDebiturPerId(String id) async {
+    final api = DebtorService();
+    final data = await api.getDebtorById(id);
+    peminjam1.value = TextEditingController(text: peminjam1.value.text);
+    ktp1.value = TextEditingController(text: ktp1.value.text);
+    peminjam2.value = TextEditingController(text: peminjam2.value.text);
+    ktp2.value = TextEditingController(text: ktp2.value.text);
+    pemilikAgunan1.value =
+        TextEditingController(text: pemilikAgunan1.value.text);
+    noKtp1.value = TextEditingController(text: noKtp1.value.text);
+    pemilikAgunan2.value =
+        TextEditingController(text: pemilikAgunan2.value.text);
+    noKtp2.value = TextEditingController(text: noKtp2.value.text);
+    alamat1.value = TextEditingController(text: alamat1.value.text);
+    alamat2.value = TextEditingController(text: alamat2.value.text);
+    tempatLahir.value = TextEditingController(text: tempatLahir.value.text);
+    tanggalLahir.value = tanggalLahir.value;
+    umur.value = TextEditingController(text: umur.value.text);
+    statusKeluarga.value =
+        TextEditingController(text: statusKeluarga.value.text);
+    lamanyaBerusaha.value =
+        TextEditingController(text: lamanyaBerusaha.value.text);
+    lokasiUsaha.value = TextEditingController(text: lokasiUsaha.value.text);
+    jenisUsahaInput.value = jenisUsahaInput.value;
+    bidangUsaha.value = TextEditingController(text: bidangUsaha.value.text);
+    pendidikanInput.value = pendidikanInput.value;
+    pekerjaan1.value = TextEditingController(text: pekerjaan1.value.text);
+    pekerjaan2.value = TextEditingController(text: pekerjaan2.value.text);
+    noSkpk.value = TextEditingController(text: noSkpk.value.text);
+    tanggalSekarangInput.value = tanggalSekarangInput.value;
+    deskripsiDebitur.value =
+        TextEditingController(text: deskripsiDebitur.value.text);
+
+    update();
+  }
+
   @override
   void onInit() {
     fetchDebitur();
@@ -165,116 +220,54 @@ class DebiturRealController extends GetxController {
 
   @override
   void onClose() {
+    peminjam1.value.dispose();
+    ktp1.value.dispose();
+    peminjam2.value.dispose();
+    ktp2.value.dispose();
+    pemilikAgunan1.value.dispose();
+    noKtp1.value.dispose();
+    pemilikAgunan2.value.dispose();
+    noKtp2.value.dispose();
+    alamat1.value.dispose();
+    alamat2.value.dispose();
+    tempatLahir.value.dispose();
+    umur.value.dispose();
+    statusKeluarga.value.dispose();
+    lamanyaBerusaha.value.dispose();
+    lokasiUsaha.value.dispose();
+    bidangUsaha.value.dispose();
+    pekerjaan1.value.dispose();
+    pekerjaan2.value.dispose();
+    noSkpk.value.dispose();
+    deskripsiDebitur.value.dispose();
     super.onReady();
   }
 
-  final jenisUsaha = [
-    const DropdownMenuItem(
-      value: 'Pertanian',
-      child: Text('Pertanian'),
-    ),
-    const DropdownMenuItem(
-      value: 'Perikanan',
-      child: Text('Perikanan'),
-    ),
-    const DropdownMenuItem(
-      value: 'Pertambangan',
-      child: Text('Pertambangan'),
-    ),
-    const DropdownMenuItem(
-      value: 'Perindustrian',
-      child: Text('Perindustrian'),
-    ),
-    const DropdownMenuItem(
-      value: 'Listrik',
-      child: Text('Listrik'),
-    ),
-    const DropdownMenuItem(
-      value: 'Gas',
-      child: Text('Gas'),
-    ),
-    const DropdownMenuItem(
-      value: 'Air',
-      child: Text('Air'),
-    ),
-    const DropdownMenuItem(
-      value: 'Kontruksi',
-      child: Text('Kontruksi'),
-    ),
-    const DropdownMenuItem(
-      value: 'Perdagangan',
-      child: Text('Perdagangan'),
-    ),
-    const DropdownMenuItem(
-      value: 'Pengangkutan',
-      child: Text('Pengangkutan'),
-    ),
-    const DropdownMenuItem(
-      value: 'Perdagangan',
-      child: Text('Perdagangan'),
-    ),
-    const DropdownMenuItem(
-      value: 'Komunikasi',
-      child: Text('Komunikasi'),
-    ),
-    const DropdownMenuItem(
-      value: 'Jasa Dunia Usaha',
-      child: Text('Jasa Dunia Usaha'),
-    ),
-    const DropdownMenuItem(
-      value: 'Jasa Sosial',
-      child: Text('Jasa Sosial'),
-    ),
-    const DropdownMenuItem(
-      value: 'Lain - Lain',
-      child: Text('Lain Lain'),
-    ),
+  final jenisUsahaList = [
+    'Pertanian',
+    'Perikanan',
+    'Pertambangan',
+    'Perindustrian',
+    'Listrik',
+    'Gas',
+    'Air',
+    'Kontruksi',
+    'Perdagangan',
+    'Pengangkutan',
+    'Komunikasi',
+    'Jasa Dunia Usaha',
+    'Jasa Sosial',
+    'Lain - Lain',
   ];
 
-  final pendidikan = [
-    const DropdownMenuItem(
-      value: 'Tidak Sekolah',
-      child: Text('Tidak Sekolah'),
-    ),
-    const DropdownMenuItem(
-      value: 'SD',
-      child: Text('SD'),
-    ),
-    const DropdownMenuItem(
-      value: 'SMP',
-      child: Text('SMP'),
-    ),
-    const DropdownMenuItem(
-      value: 'SMA',
-      child: Text('SMA'),
-    ),
-    const DropdownMenuItem(
-      value: 'D1',
-      child: Text('D1'),
-    ),
-    const DropdownMenuItem(
-      value: 'D2',
-      child: Text('D2'),
-    ),
-    const DropdownMenuItem(
-      value: 'D3',
-      child: Text('D3'),
-    ),
-    const DropdownMenuItem(
-      value: 'D4',
-      child: Text('D4'),
-    ),
-    const DropdownMenuItem(
-      value: 'S1',
-      child: Text('S1'),
-    ),
-    const DropdownMenuItem(
-      value: 'S2',
-      child: Text('S2'),
-    ),
-    const DropdownMenuItem(
-      value: 'S3',
-      child: Text('S3'),
-    ),
+  final pendidikanList = [
+    'Tidak Sekolah',
+    'SD',
+    'SMP',
+    'SLTA',
+    'D3',
+    'S1',
+    'S2',
+    'S3',
   ];
 }

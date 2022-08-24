@@ -1,6 +1,6 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/modules/debitur_real/views/debitur_edit_view.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -15,6 +15,11 @@ class DebiturDetailView extends GetView<DebiturRealController> {
     final data = Get.arguments;
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        // Refresh the page when the button is pressed
+        onPressed: () => controller.fetchDebiturPerId(data.id.toString()),
+        child: const Icon(Icons.refresh),
+      ),
       appBar: AppBar(
         title: const Text('DebiturDetailView'),
         centerTitle: true,
@@ -26,14 +31,18 @@ class DebiturDetailView extends GetView<DebiturRealController> {
               // controller.deleteDebtor(data.id.toString());
               // Get.back();
               // controller.fetchDebitur();
-              Get.to(() => DebiturEditView(), arguments: Get.arguments);
+              Get.toNamed(
+                Routes.DEBITUR_EDIT,
+                arguments: data,
+              );
             },
           ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-            child: Obx(() => controller.loadingFetch.value
+          child: Obx(
+            () => controller.loadingFetch.value
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
@@ -291,7 +300,9 @@ class DebiturDetailView extends GetView<DebiturRealController> {
                         ],
                       );
                     },
-                  ))),
+                  ),
+          ),
+        ),
       ),
     );
   }

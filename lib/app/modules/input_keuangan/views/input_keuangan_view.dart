@@ -14,8 +14,6 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
 
   final pageController = PageController(initialPage: 0);
 
-  void _onChanged(dynamic val) => debugPrint(val.toString());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

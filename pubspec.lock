@@ -43,13 +43,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  bot_toast:
-    dependency: "direct main"
-    description:
-      name: bot_toast
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.3"
   change_app_package_name:
     dependency: "direct dev"
     description:
@@ -309,6 +302,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+  flutter_styled_toast:
+    dependency: "direct main"
+    description:
+      name: flutter_styled_toast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.3"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -368,13 +368,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  fluttertoast:
-    dependency: "direct main"
-    description:
-      name: fluttertoast
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "8.0.9"
   font_awesome_flutter:
     dependency: "direct main"
     description:
@@ -410,13 +403,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.3.0"
-  ftoast:
-    dependency: "direct main"
-    description:
-      name: ftoast
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   get:
     dependency: "direct main"
     description:
@@ -870,13 +856,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  toast:
-    dependency: "direct main"
-    description:
-      name: toast
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
   typed_data:
     dependency: transitive
     description:

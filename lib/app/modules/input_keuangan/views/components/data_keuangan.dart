@@ -2,6 +2,7 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -181,6 +182,23 @@ class DataKeuanganInput extends StatelessWidget {
                   fixedSize: const Size(500, 50)),
               onPressed: () {
                 dataKeuanganCtrl.mothlyPaymentCalculation();
+
+                showToast(
+                  'Angsuran per bulan: Rp. ${dataKeuanganCtrl.totalAngsuran.text}',
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: secondaryColor,
+                  ),
+                  context: context,
+                  animation: StyledToastAnimation.scale,
+                  reverseAnimation: StyledToastAnimation.fade,
+                  position: StyledToastPosition.center,
+                  animDuration: const Duration(seconds: 1),
+                  duration: const Duration(seconds: 4),
+                  curve: Curves.elasticOut,
+                  reverseCurve: Curves.linear,
+                );
               },
             ),
           ],

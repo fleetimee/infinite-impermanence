@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InputKeuanganController extends GetxController {
+  final context = Get.context;
+
   final formKeyInputKeuangan = GlobalKey<FormBuilderState>();
 
   final kreditYangDiusulkan = MoneyMaskedTextController(
@@ -52,6 +54,8 @@ class InputKeuanganController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
+
+  final hpp = TextEditingController(text: '20');
 
   final biayaBahanKini = MoneyMaskedTextController(
     initialValue: 0,
@@ -215,16 +219,57 @@ class InputKeuanganController extends GetxController {
     } else {
       totalAngsuran.text = ifSalah.toStringAsFixed(0);
     }
+  }
 
-    Get.snackbar(
-      'Success',
-      'Angsuran per bulan berhasil dihitung',
-      icon: const Icon(
-        Icons.check,
-        color: Colors.white,
-      ),
-      backgroundColor: Colors.green,
-      duration: const Duration(seconds: 2),
-    );
+  void hitungBiayaBahanHpp() {
+    if (penjualanKini.text == '' || penjualanKini.text == '0') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Penjualan kini masih kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Penjualan kini masih kosong');
+    }
+
+    final parsePenjualanKini =
+        double.parse(penjualanKini.text.replaceAll('.', ''));
+    final parseHpp = double.parse(hpp.text) / 100;
+
+    final hitungBiayaBahanKini = parsePenjualanKini * parseHpp;
+
+    biayaBahanKini.text = hitungBiayaBahanKini.toStringAsFixed(0);
+  }
+
+  void hitungAsumsiPenjualan() {
+    final parsePenjualanKini =
+        double.parse(penjualanKini.text.replaceAll('.', '')) * 1.15;
+    final parseBiayaBahanKini =
+        double.parse(biayaBahanKini.text.replaceAll('.', '')) * 1.15;
+    final parseBiayaUpahKini =
+        double.parse(biayaUpahKini.text.replaceAll('.', '')) * 1.15;
+    final parseBiayaOperasionalKini =
+        double.parse(biayaOperasionalKini.text.replaceAll('.', '')) * 1.15;
+    final parseBiayaHidupKini =
+        double.parse(biayaHidupKini.text.replaceAll('.', '')) * 1.15;
+
+    penjualanYad.text = parsePenjualanKini.toStringAsFixed(0);
+    biayaBahanYad.text = parseBiayaBahanKini.toStringAsFixed(0);
+    biayaUpahYad.text = parseBiayaUpahKini.toStringAsFixed(0);
+    biayaOperasionalYad.text = parseBiayaOperasionalKini.toStringAsFixed(0);
+    biayaHidupYad.text = parseBiayaHidupKini.toStringAsFixed(0);
   }
 }

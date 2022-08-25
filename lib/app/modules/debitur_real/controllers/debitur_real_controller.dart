@@ -1,5 +1,6 @@
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/models/debtor_details.dart';
+import 'package:akm/app/service/debtor_details_service.dart';
 import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -115,6 +116,20 @@ class DebiturRealController extends GetxController {
     update();
   }
 
+  void detailsDebtor(int id) async {
+    loadingFetch.value = true;
+
+    final api = DebtorDetailsService();
+
+    Future.delayed(const Duration(seconds: 2), () async {
+      final response = await api.getDebtorDetails(id);
+      debtorDetails = response;
+      loadingFetch.value = false;
+    });
+
+    update();
+  }
+
   void deleteDebtor(String id) {
     final api = DebtorService();
 
@@ -153,22 +168,9 @@ class DebiturRealController extends GetxController {
       'tgl_sekarang': tanggalSekarangInput.value.toString(),
       'deskripsi_debitur': deskripsiDebitur.value.text,
     };
-    // api.updateDebtor(
-    //   id,
-    //   data,
-    // );
-
-    // fetchDebiturPerId(id);
-
-    // update();
-
-    // fetchDebitur();
-
-    // listDebtor.refresh();
 
     await api.updateDebtor(id, data);
-    fetchDebitur();
-    listDebtor.refresh();
+
     update();
   }
 

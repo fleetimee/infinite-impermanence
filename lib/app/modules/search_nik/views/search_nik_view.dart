@@ -90,9 +90,7 @@ class SearchNikView extends GetView<SearchNikController> {
                         height: 300,
                       ),
                       TextButton(
-                          onPressed: () {
-                            Get.offAllNamed(Routes.CREATE_DEBITUR);
-                          },
+                          onPressed: () {},
                           child: const Text('Create Debitur')),
                     ],
                   );

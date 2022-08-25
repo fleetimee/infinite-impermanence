@@ -21,25 +21,6 @@ class DebiturDetailBangetController extends GetxController {
       loadingFetch.value = false;
     });
 
-    // Future.delayed(
-    //   const Duration(seconds: 2),
-    //   () {
-    //     api.getDebtorDetails(id).then(
-    //       (value) {
-    //         debtorDetails = value;
-    //       },
-    //     );
-    //     loadingFetch.value = false;
-    //   },
-    // );
-
-    // final api = DebtorDetailsService();
-    // final data = api.getDebtorDetails(id);
-
-    // data.then((value) {
-    //   debtorDetails = value;
-    // });
-
-    // update();
+    update();
   }
 }

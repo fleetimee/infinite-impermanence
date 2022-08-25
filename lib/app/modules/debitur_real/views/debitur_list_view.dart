@@ -1,6 +1,7 @@
+// ignore_for_file: unnecessary_const
+
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
-import 'package:akm/app/modules/debitur_detail_banget/views/debitur_detail_banget_view.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -61,31 +62,120 @@ class DebiturListView extends GetView<DebiturRealController> {
                                 const Divider(),
                             itemBuilder: (_, index) {
                               final debtor = controller.listDebtor[index];
-                              final debtorDetails = controller.debtorDetails;
-                              return Card(
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    // Show first letter of name
-                                    child: Text(
-                                      debtor.peminjam1!.substring(0, 1),
-                                      style: const TextStyle(
-                                        color: secondaryColor,
+                              return Container(
+                                color: secondaryColor,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Card(
+                                      child: ListTile(
+                                        leading: CircleAvatar(
+                                          // Show first letter of name
+                                          child: Text(
+                                            debtor.peminjam1!.substring(0, 1),
+                                            style: const TextStyle(
+                                              color: secondaryColor,
+                                            ),
+                                          ),
+                                        ),
+                                        title: Text(debtor.peminjam1.toString(),
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 20,
+                                                color: primaryColor)),
+                                        subtitle:
+                                            Text(debtor.bidangUsaha.toString()),
+                                        trailing: const Icon(
+                                          Icons.keyboard_arrow_right,
+                                          color: primaryColor,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  title: Text(debtor.peminjam1.toString(),
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 20, color: primaryColor)),
-                                  subtitle: Text(debtor.bidangUsaha.toString()),
-                                  trailing: const Icon(
-                                    Icons.keyboard_arrow_right,
-                                    color: primaryColor,
-                                  ),
-                                  onTap: () {
-                                    Get.to(
-                                        () => const DebiturDetailBangetView(),
-                                        arguments: debtor.id);
-                                  },
+                                    Container(
+                                      color: secondaryColor,
+                                      child: ExpansionTile(
+                                        title: const Text('Detail Debitur'),
+                                        children: [
+                                          ExpansionTile(
+                                            leading: const Icon(Icons.people),
+                                            title: const Text(
+                                              'Data Pribadi Debitur',
+                                            ),
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Expanded(
+                                                      child:
+                                                          OutlinedButton.icon(
+                                                        icon: const Icon(Icons
+                                                            .remove_red_eye),
+                                                        label: const Text(
+                                                          "Lihat Data",
+                                                          style: TextStyle(
+                                                              fontSize: 20),
+                                                        ),
+                                                        style: OutlinedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              Colors.blueGrey,
+                                                        ),
+                                                        onPressed: () {
+                                                          Get.toNamed(
+                                                            Routes
+                                                                .DEBITUR_DETAIL_BANGET,
+                                                            arguments:
+                                                                debtor.id,
+                                                          );
+                                                        },
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 16,
+                                                    ),
+                                                    Expanded(
+                                                      child:
+                                                          OutlinedButton.icon(
+                                                        icon: const Icon(
+                                                            Icons.edit),
+                                                        label: const Text(
+                                                          "Edit Debitur",
+                                                          style: TextStyle(
+                                                              fontSize: 20),
+                                                        ),
+                                                        style: OutlinedButton
+                                                            .styleFrom(
+                                                          primary:
+                                                              Colors.blueGrey,
+                                                        ),
+                                                        onPressed: () {
+                                                          Get.toNamed(
+                                                              Routes
+                                                                  .DEBITUR_EDIT,
+                                                              arguments:
+                                                                  debtor);
+                                                        },
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const ExpansionTile(
+                                            title: Text('Keuangan Debitur'),
+                                            leading:
+                                                const Icon(Icons.attach_money),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                  ],
                                 ),
                               );
                             },

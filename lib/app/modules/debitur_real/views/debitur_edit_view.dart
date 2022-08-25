@@ -1,6 +1,5 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -19,7 +18,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Input Debitur'),
+        title: const Text('Edit Debitur'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -59,7 +58,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           name: 'peminjam1',
                           controller: controller.peminjam1.value =
                               TextEditingController(
-                            text: data.peminjam1,
+                            text: Get.arguments.peminjam1.toString(),
                           ),
                           validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
@@ -744,8 +743,9 @@ class DebiturEditView extends GetView<DebiturRealController> {
                                     ?.saveAndValidate() ??
                                 false) {
                               controller.editDebitur(data.id.toString());
-                              Get.toNamed(Routes.DEBITUR_DETAIL,
-                                  arguments: data);
+                              controller.fetchDebitur();
+
+                              Get.back();
 
                               controller.fetchDebitur();
                             } else {

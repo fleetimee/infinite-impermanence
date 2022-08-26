@@ -39,12 +39,30 @@ class AsumsiKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
+            Padding(
+              padding: const EdgeInsets.only(right: 195),
+              child: Text(
+                'Pinjaman Bank Lain',
+                style: GoogleFonts.poppins(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w400,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            const SizedBox(
+              height: 16.0,
+            ),
             Row(
               children: [
                 Expanded(
                   flex: 2,
                   child: FormBuilderTextField(
                     name: 'pinjaman_lainnya',
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
                     keyboardType: TextInputType.number,
                     controller: controller.pinjamanLainnya,
                     decoration: InputDecoration(
@@ -60,6 +78,10 @@ class AsumsiKeuanganInput extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'angsuran_pinjman_lain',
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
                     controller: controller.angsuranPinjamanLainnya,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -76,10 +98,28 @@ class AsumsiKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
+            Padding(
+              padding: const EdgeInsets.only(right: 300),
+              child: Text(
+                'Nilai Aset',
+                style: GoogleFonts.poppins(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w400,
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            const SizedBox(
+              height: 16.0,
+            ),
             FormBuilderTextField(
               name: 'nilai_aset',
               controller: controller.nilaiAset,
               keyboardType: TextInputType.number,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
               decoration: InputDecoration(
                 labelText: 'Nilai Aset (exc: Rumah)',
                 prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
@@ -92,7 +132,7 @@ class AsumsiKeuanganInput extends StatelessWidget {
               height: 25.0,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 300),
+              padding: const EdgeInsets.only(right: 250),
               child: Text(
                 'Keuangan Kini',
                 style: GoogleFonts.poppins(
@@ -107,8 +147,12 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'penjualan',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
               controller: controller.penjualanKini,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 alignLabelWithHint: true,
                 prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
@@ -194,6 +238,10 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'biaya_upah',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
               controller: controller.biayaUpahKini,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -209,6 +257,10 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'biaya_operasional',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
               controller: controller.biayaOperasionalKini,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -224,6 +276,10 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'biaya_hidup',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
               controller: controller.biayaHidupKini,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -238,7 +294,7 @@ class AsumsiKeuanganInput extends StatelessWidget {
               height: 25.0,
             ),
             Padding(
-              padding: const EdgeInsets.only(right: 360),
+              padding: const EdgeInsets.only(right: 320),
               child: Text(
                 'Asumsi',
                 style: GoogleFonts.poppins(
@@ -332,15 +388,31 @@ class AsumsiKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.thumb_up),
-              label: const Text("Like"),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.blueGrey,
-                shape: const StadiumBorder(),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.calculate),
+              label: const Text(
+                "Hitung Asumsi Keuangan",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
               ),
+              style: OutlinedButton.styleFrom(
+                  backgroundColor: primaryColor,
+                  primary: secondaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
               onPressed: () {
                 controller.hitungAsumsiPenjualan();
+                showToast(
+                  'Asumsi Penjualan Berhasil Dihitung',
+                  context: context,
+                  animation: StyledToastAnimation.scale,
+                  reverseAnimation: StyledToastAnimation.fade,
+                  position: StyledToastPosition.center,
+                  animDuration: const Duration(seconds: 1),
+                  duration: const Duration(seconds: 4),
+                  curve: Curves.elasticOut,
+                  reverseCurve: Curves.linear,
+                );
               },
             ),
           ],

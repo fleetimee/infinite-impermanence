@@ -19,6 +19,30 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Input Keuangan'),
+        actions: [
+          // Scroll page view
+
+          IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () {
+              pageController.previousPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.arrow_forward),
+            onPressed: () {
+              pageController.nextPage(
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.easeInOut,
+              );
+            },
+          ),
+
+          // Scroll page view
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -31,6 +55,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
           },
           autovalidateMode: AutovalidateMode.disabled,
           child: StepperPageView(
+            physics: const NeverScrollableScrollPhysics(),
             pageController: pageController,
             pageSteps: [
               PageStep(

@@ -255,6 +255,121 @@ class InputKeuanganController extends GetxController {
   }
 
   void hitungAsumsiPenjualan() {
+    if (penjualanKini.text == '' || penjualanKini.text == '0') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Penjualan kini masih kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Penjualan kini masih kosong');
+    }
+
+    if (biayaBahanKini.text == '' || biayaBahanKini.text == '0') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya bahan kini masih kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Biaya bahan kini masih kosong');
+    }
+
+    if (biayaUpahKini.text == '' || biayaUpahKini.text == '0') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya upah kini masih kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Biaya upah kini masih kosong');
+    }
+
+    if (biayaOperasionalKini.text == '' || biayaOperasionalKini.text == '0') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya operasional kini masih kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Biaya operasional kini masih kosong');
+    }
+
+    if (biayaHidupKini.text == '' || biayaHidupKini.text == '0') {
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.ERROR,
+        animType: AnimType.BOTTOMSLIDE,
+        title: 'Error',
+        desc: 'Biaya hidup kini masih kosong',
+        dialogBackgroundColor: primaryColor,
+        titleTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
+        descTextStyle: GoogleFonts.poppins(
+          color: secondaryColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400,
+        ),
+        btnOkOnPress: () {},
+      ).show();
+      throw Exception('Biaya hidup kini masih kosong');
+    }
+
     final parsePenjualanKini =
         double.parse(penjualanKini.text.replaceAll('.', '')) * 1.15;
     final parseBiayaBahanKini =

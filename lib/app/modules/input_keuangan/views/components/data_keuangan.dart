@@ -5,6 +5,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,6 +41,10 @@ class DataKeuanganInput extends StatelessWidget {
                   flex: 2,
                   child: FormBuilderTextField(
                     name: 'kredit_diusulkan',
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                    ]),
                     controller: dataKeuanganCtrl.kreditYangDiusulkan,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -55,6 +60,12 @@ class DataKeuanganInput extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'angsuran',
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(errorText: 'Harus diisi'),
+                      FormBuilderValidators.maxLength(3,
+                          errorText: 'Max 3 digit'),
+                    ]),
                     controller: dataKeuanganCtrl.angsuranPerBulan,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -73,6 +84,14 @@ class DataKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'bunga_per_tahun',
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(errorText: 'Harus diisi'),
+                FormBuilderValidators.numeric(),
+                FormBuilderValidators.min(0),
+                FormBuilderValidators.max(500),
+                FormBuilderValidators.maxLength(3, errorText: 'Max 3 digit'),
+              ]),
               controller: dataKeuanganCtrl.bungaPerTahun,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -92,6 +111,15 @@ class DataKeuanganInput extends StatelessWidget {
                   child: FormBuilderTextField(
                     name: 'provisi',
                     controller: dataKeuanganCtrl.provisi,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(errorText: 'Harus diisi'),
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.min(0),
+                      FormBuilderValidators.max(500),
+                      FormBuilderValidators.maxLength(3,
+                          errorText: 'Max 3 digit'),
+                    ]),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Provisi %',
@@ -108,6 +136,7 @@ class DataKeuanganInput extends StatelessWidget {
                 Expanded(
                   child: FormBuilderDropdown(
                     name: 'sistem_angsuran',
+                    initialValue: 'Efektif',
                     onChanged: (value) {
                       dataKeuanganCtrl.sistemAngsuran.value = value.toString();
                       debugPrint(value.toString());

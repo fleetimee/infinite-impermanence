@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/service/input_keuangan_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -124,6 +125,8 @@ class InputKeuanganController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
+
+  final tradeCycle = TextEditingController(text: '0');
 
   void mothlyPaymentCalculation() {
     if (kreditYangDiusulkan.text == '0' || kreditYangDiusulkan.text == '') {
@@ -391,5 +394,39 @@ class InputKeuanganController extends GetxController {
     biayaUpahYad.text = parseBiayaUpahKini.toStringAsFixed(0);
     biayaOperasionalYad.text = parseBiayaOperasionalKini.toStringAsFixed(0);
     biayaHidupYad.text = parseBiayaHidupKini.toStringAsFixed(0);
+  }
+
+  void saveKeuangan() {
+    final api = InputKeuanganService();
+
+    final data = {
+      'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
+      'angsuran': angsuranPerBulan.text,
+      'bunga_per_tahun': bungaPerTahun.text,
+      'provisi': provisi.text,
+      'sistem_angsuran': sistemAngsuran.toString(),
+      'digunakan_untuk': digunakanUntuk.text,
+      'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
+      'pinjaman_lainnya': pinjamanLainnya.text.replaceAll('.', ''),
+      'angsuran_pinjaman_lainnya':
+          angsuranPinjamanLainnya.text.replaceAll('.', ''),
+      'nilai_aset': nilaiAset.text.replaceAll('.', ''),
+      'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
+      'hpp': hpp.text,
+      'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),
+      'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
+      'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
+      'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
+      'penjualan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
+      'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
+      'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
+      'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
+      'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
+      'trade_cycle': tradeCycle.text,
+    };
+
+    api.addKeuangan(data);
+
+    update();
   }
 }

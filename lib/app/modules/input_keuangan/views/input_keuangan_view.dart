@@ -23,8 +23,6 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
       appBar: AppBar(
         title: const Text('Input Keuangan'),
         actions: [
-          // Scroll page view
-
           IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -43,22 +41,20 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
               );
             },
           ),
-
-          // Scroll page view
         ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FormBuilder(
           key: controller.formKeyInputKeuangan,
-          onChanged: () {
-            controller.formKeyInputKeuangan.currentState!.save();
-            debugPrint(
-                controller.formKeyInputKeuangan.currentState!.value.toString());
-          },
+          // onChanged: () {
+          //   controller.formKeyInputKeuangan.currentState!.save();
+          //   debugPrint(
+          //       controller.formKeyInputKeuangan.currentState!.value.toString());
+          // },
           autovalidateMode: AutovalidateMode.disabled,
           child: StepperPageView(
-            physics: const NeverScrollableScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             pageController: pageController,
             pageSteps: [
               PageStep(

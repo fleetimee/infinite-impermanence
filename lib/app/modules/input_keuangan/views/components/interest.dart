@@ -79,6 +79,7 @@ class Interest extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'trade_cycle',
+              controller: controller.tradeCycle,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Trade Cycle',
@@ -102,7 +103,15 @@ class Interest extends StatelessWidget {
                   shape: const StadiumBorder(),
                   maximumSize: const Size.fromWidth(double.infinity),
                   fixedSize: const Size(500, 50)),
-              onPressed: () {},
+              onPressed: () {
+                if (controller.formKeyInputKeuangan.currentState
+                        ?.saveAndValidate() ??
+                    false) {
+                  controller.saveKeuangan();
+                } else {
+                  debugPrint('validation failed');
+                }
+              },
             ),
           ],
         ),

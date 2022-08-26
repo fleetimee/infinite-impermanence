@@ -174,6 +174,8 @@ class DataKeuanganInput extends StatelessWidget {
               name: 'digunakan_untuk',
               controller: dataKeuanganCtrl.digunakanUntuk,
               keyboardType: TextInputType.text,
+              validator:
+                  FormBuilderValidators.required(errorText: 'Harus diisi'),
               decoration: InputDecoration(
                 alignLabelWithHint: true,
                 labelText: 'Digunakan Untuk',

@@ -1,13 +1,18 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 class DebiturDetailBangetView extends StatefulWidget {
   const DebiturDetailBangetView({Key? key}) : super(key: key);

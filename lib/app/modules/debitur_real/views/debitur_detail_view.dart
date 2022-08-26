@@ -1,11 +1,15 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 
 class DebiturDetailView extends GetView<DebiturRealController> {
   const DebiturDetailView({Key? key}) : super(key: key);

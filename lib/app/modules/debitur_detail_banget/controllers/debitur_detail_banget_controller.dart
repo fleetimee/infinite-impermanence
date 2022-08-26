@@ -1,6 +1,9 @@
+// 📦 Package imports:
+import 'package:get/get.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/service/debtor_details_service.dart';
-import 'package:get/get.dart';
 
 class DebiturDetailBangetController extends GetxController {
   final count = 0.obs;

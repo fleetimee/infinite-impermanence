@@ -6,13 +6,13 @@ import 'dart:async';
 import 'dart:math';
 
 // 🐦 Flutter imports:
-import 'package:finance/finance.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:finance/finance.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 

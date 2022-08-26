@@ -1,14 +1,18 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 
 class DebiturEditView extends GetView<DebiturRealController> {
   DebiturEditView({Key? key}) : super(key: key);

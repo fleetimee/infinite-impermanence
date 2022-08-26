@@ -1,11 +1,16 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
+import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/service/debtor_details_service.dart';
 import 'package:akm/app/service/debtor_service.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 class DebiturRealController extends GetxController {
   RefreshController refreshController =

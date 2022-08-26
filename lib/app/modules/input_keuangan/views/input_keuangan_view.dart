@@ -1,12 +1,15 @@
-import 'package:akm/app/modules/input_keuangan/views/components/asumsi_keuangan.dart';
-import 'package:akm/app/modules/input_keuangan/views/components/data_keuangan.dart';
-import 'package:akm/app/modules/input_keuangan/views/components/interest.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+// 📦 Package imports:
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:stepper_page_view/stepper_page_view.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/modules/input_keuangan/views/components/asumsi_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/data_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/interest.dart';
 import '../controllers/input_keuangan_controller.dart';
 
 class InputKeuanganView extends GetView<InputKeuanganController> {

@@ -135,4 +135,7 @@ class Debtor {
         "fixed": List<dynamic>.from(fixed!.map((x) => x)),
         "createdBy": createdBy,
       };
+
+  @override
+  String toString() => toJson().toString();
 }

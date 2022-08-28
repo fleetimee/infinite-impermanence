@@ -134,6 +134,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.2"
+  empty_widget:
+    dependency: "direct main"
+    description:
+      name: empty_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.5"
   extended_masked_text:
     dependency: "direct main"
     description:
@@ -169,6 +176,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.1"
+  filter_list:
+    dependency: "direct main"
+    description:
+      name: filter_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   finance:
     dependency: "direct main"
     description:
@@ -494,6 +508,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.0"
+  loading_animation_widget:
+    dependency: "direct main"
+    description:
+      name: loading_animation_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0+2"
   markdown:
     dependency: transitive
     description:

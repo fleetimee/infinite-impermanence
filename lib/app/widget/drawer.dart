@@ -184,7 +184,7 @@ class SideMenu extends StatelessWidget {
               ListTile(
                 title: const Text('Input Keuangan'),
                 onTap: () {
-                  Get.offNamed(Routes.INPUT_KEUANGAN);
+                  Get.toNamed(Routes.INPUT_KEUANGAN);
                   Get.back();
                 },
                 leading: const Icon(Icons.print),

@@ -24,7 +24,6 @@ import '../controllers/keuangan_analisis_controller.dart';
 
 // ignore: depend_on_referenced_packages
 
-
 class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   const KeuanganAnalisisView({Key? key}) : super(key: key);
   @override
@@ -38,10 +37,11 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
           IconButton(
               onPressed: () {
                 showBarModalBottomSheet(
-                    context: context,
-                    builder: (context) {
-                      return Tutorial();
-                    });
+                  context: context,
+                  builder: (context) {
+                    return Tutorial();
+                  },
+                );
               },
               icon: const Icon(
                 Icons.help_outline,
@@ -87,6 +87,9 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
               // tab bar view here
               Expanded(
                 child: FormBuilder(
+                  key: controller.formKeyAnalisaKeuangan,
+                  autovalidateMode: AutovalidateMode.always,
+                  autoFocusOnValidationFailure: true,
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [

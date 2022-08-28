@@ -13,6 +13,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:finance/finance.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -45,6 +46,9 @@ class KeuanganAnalisisController extends GetxController
   //   super.onClose();
   // }
 
+  // ! FormKey
+  final formKeyAnalisaKeuangan = GlobalKey<FormBuilderState>();
+
   //! Tab Controller
   TabController? tabController;
 
@@ -55,10 +59,12 @@ class KeuanganAnalisisController extends GetxController
     thousandSeparator: '.',
     precision: 0,
   );
+
   final CurrencyTextInputFormatter equity = CurrencyTextInputFormatter(
     symbol: '',
     decimalDigits: 0,
   );
+
   final debtInput = MoneyMaskedTextController(
     initialValue: 15459590,
     decimalSeparator: '',
@@ -299,6 +305,7 @@ class KeuanganAnalisisController extends GetxController
 
   final isKreditPassed = false.obs;
   final isVerificationButtonPressed = false.obs;
+  final isHitungTotalNetworgLoading = false.obs;
 
   void hitungPinjamanMaksimal() {
     // Check if parselabayad is an empty string
@@ -587,8 +594,6 @@ class KeuanganAnalisisController extends GetxController
       }
     }
   }
-
-  final isHitungTotalNetworgLoading = false.obs;
 
   void hitungNetWorthPlusCredit() {
     try {

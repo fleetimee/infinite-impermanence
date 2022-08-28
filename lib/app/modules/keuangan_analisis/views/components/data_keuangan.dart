@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
@@ -31,8 +32,12 @@ class DataKeuangan extends StatelessWidget {
                   height: 30,
                 ),
                 FormBuilderTextField(
-                  key: const Key('data_keuangan_nama_perusahaan'),
-                  name: 'Equity',
+                  name: 'equity',
+                  enabled: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
                   controller: controller.equityInput,
                   // initialValue: controller.equity.format('19933998'),
                   decoration: const InputDecoration(
@@ -46,7 +51,12 @@ class DataKeuangan extends StatelessWidget {
                   height: 20,
                 ),
                 FormBuilderTextField(
-                  name: 'Debt',
+                  name: 'debt',
+                  enabled: false,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                  ]),
                   controller: controller.debtInput,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
@@ -114,9 +124,11 @@ class DataKeuangan extends StatelessWidget {
                   ),
                   readOnly: true,
                   name: 'Total',
+                  textDirection: TextDirection.rtl,
                   controller: controller.netWorth,
                   decoration: const InputDecoration(
                     labelText: 'Total',
+                    alignLabelWithHint: true,
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
                   ),
@@ -146,6 +158,7 @@ class DataKeuangan extends StatelessWidget {
                       flex: 10,
                       child: FormBuilderTextField(
                         controller: controller.kreditYangDiminta,
+                        enabled: false,
                         style: const TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,

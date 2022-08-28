@@ -1,36 +1,22 @@
 // 🐦 Flutter imports:
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/models/debtor_details.dart';
-import 'package:akm/app/service/debtor_details_service.dart';
 import 'package:akm/app/service/debtor_service.dart';
 
 class DebiturRealController extends GetxController {
-  RefreshController refreshController =
-      RefreshController(initialRefresh: false);
-
-  void onRefresh() async {
-    refreshController.refreshCompleted();
-  }
-
-  void onLoading() async {
-    fetchDebitur();
-    // fetch debitur
-    refreshController.loadComplete();
-  }
-
+  // List<Debtor> listDebtor = [].obs;
   final listDebtor = <Debtor>[].obs;
-  final objDebtor = Debtor().obs;
+  final selectedDebtor = <Debtor>[].obs;
+  // List<Debtor>? selectedDebtor = [];
 
   Debtor debtor = Debtor();
-  DebtorDetails debtorDetails = DebtorDetails();
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -121,20 +107,6 @@ class DebiturRealController extends GetxController {
     update();
   }
 
-  void detailsDebtor(int id) async {
-    loadingFetch.value = true;
-
-    final api = DebtorDetailsService();
-
-    Future.delayed(const Duration(seconds: 2), () async {
-      final response = await api.getDebtorDetails(id);
-      debtorDetails = response;
-      loadingFetch.value = false;
-    });
-
-    update();
-  }
-
   void deleteDebtor(String id) {
     final api = DebtorService();
 
@@ -176,6 +148,8 @@ class DebiturRealController extends GetxController {
 
     await api.updateDebtor(id, data);
 
+    selectedDebtor.clear();
+
     update();
   }
 
@@ -192,35 +166,24 @@ class DebiturRealController extends GetxController {
     update();
   }
 
-  // void fetchDebiturById(String id) async {
-  //   final api = DebtorService();
-  //   final data = await api.getDebtorById(id);
-
-  //   // peminjam1.value = data.peminjam1 as TextEditingController;
-  //   // ktp1.value = data.ktp1 as TextEditingController;
-  //   // peminjam2.value = data['peminjam2'];
-  //   // ktp2.value = data['ktp2'];
-  //   // pemilikAgunan1.value = data['pemilik_agunan_1'];
-  //   // noKtp1.value = data['no_ktp1'];
-  //   // pemilikAgunan2.value = data['pemilik_agunan_2'];
-  //   // noKtp2.value = data['no_ktp2'];
-  //   // alamat1.value = data['alamat_1'];
-  //   // alamat2.value = data['alamat_2'];
-  //   // tempatLahir.value = data['tempat_lahir'];
-  //   // tanggalLahir.value = data['tanggal_lahir'];
-  //   // umur.value = data['umur'];
-  //   // statusKeluarga.value = data['status_keluarga'];
-  //   // lamanyaBerusaha.value = data['lamanya_berusaha'];
-  //   // lokasiUsaha.value = data['lokasi_usaha'];
-  //   // jenisUsahaInput.value = data['jenis_usaha'];
-  //   // bidangUsaha.value = data['bidang_usaha'];
-  //   // pendidikanInput.value = data['pendidikan'];
-  //   // pekerjaan1.value = data['pekerjaan1'];
-  //   // pekerjaan2.value = data['pekerjaan2'];
-  //   // noSkpk.value = data['no_skpk'];
-  //   // tanggalSekarangInput.value = data['tgl_sekarang'];
-  //   // deskripsiDebitur.value = data['deskripsi_debitur'];
-  // }
+  void filterDebtor() async {
+    await FilterListDialog.display<Debtor>(
+      Get.context!,
+      listData: listDebtor,
+      selectedListData: selectedDebtor,
+      choiceChipLabel: (user) => user!.peminjam1,
+      validateSelectedItem: (list, val) => list!.contains(val),
+      onItemSearch: (user, query) {
+        return user.peminjam1!.toLowerCase().contains(query.toLowerCase());
+      },
+      onApplyButtonClick: (list) {
+        selectedDebtor.value = list!;
+        debugPrint('selected: $list');
+        update();
+        Get.back();
+      },
+    );
+  }
 
   @override
   void onInit() {

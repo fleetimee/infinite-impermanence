@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -12,7 +13,6 @@ import 'package:just_the_tooltip/just_the_tooltip.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
-import 'package:akm/app/widget/color_button.dart';
 
 class DataKeuangan extends StatelessWidget {
   DataKeuangan({Key? key}) : super(key: key);
@@ -34,16 +34,19 @@ class DataKeuangan extends StatelessWidget {
                 FormBuilderTextField(
                   name: 'equity',
                   enabled: false,
+
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: FormBuilderValidators.compose([
                     FormBuilderValidators.required(),
                   ]),
                   controller: controller.equityInput,
                   // initialValue: controller.equity.format('19933998'),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Equity / Modal',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -58,10 +61,12 @@ class DataKeuangan extends StatelessWidget {
                     FormBuilderValidators.required(),
                   ]),
                   controller: controller.debtInput,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                     labelText: 'Debt / Hutang',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -126,22 +131,50 @@ class DataKeuangan extends StatelessWidget {
                   name: 'Total',
                   textDirection: TextDirection.rtl,
                   controller: controller.netWorth,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Total',
                     alignLabelWithHint: true,
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                   ),
                   keyboardType: TextInputType.number,
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                colorButton(
-                  context,
-                  'Hitung Total Asset',
-                  () {
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.calculate),
+                  label: const Text(
+                    "Hitung Total Asset",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      primary: secondaryColor,
+                      shape: const StadiumBorder(),
+                      maximumSize: const Size.fromWidth(double.infinity),
+                      fixedSize: const Size(500, 50)),
+                  onPressed: () {
                     controller.hitungNetWorth();
+
+                    showToast(
+                      'Total Aset: Rp. ${controller.netWorth.text}',
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: secondaryColor,
+                      ),
+                      context: context,
+                      animation: StyledToastAnimation.scale,
+                      reverseAnimation: StyledToastAnimation.fade,
+                      position: StyledToastPosition.center,
+                      animDuration: const Duration(seconds: 1),
+                      duration: const Duration(seconds: 4),
+                      curve: Curves.elasticOut,
+                      reverseCurve: Curves.linear,
+                    );
                   },
                 ),
                 const Padding(
@@ -166,10 +199,12 @@ class DataKeuangan extends StatelessWidget {
                           color: primaryColor,
                         ),
                         name: 'Kredit yang diminta',
-                        decoration: const InputDecoration(
+                        decoration: InputDecoration(
                           labelText: 'Kredit yang diminta',
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                         ),
                         keyboardType: TextInputType.number,
                       ),
@@ -202,11 +237,37 @@ class DataKeuangan extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                colorButton(
-                  context,
-                  'Verifikasi Kredit',
-                  () {
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.verified),
+                  label: const Text(
+                    "Verifikasi Kredit",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      primary: secondaryColor,
+                      shape: const StadiumBorder(),
+                      maximumSize: const Size.fromWidth(double.infinity),
+                      fixedSize: const Size(500, 50)),
+                  onPressed: () {
                     controller.checkIfCreditPassed();
+
+                    showToast(
+                      'Status: ${controller.isKreditPassed.isTrue ? 'Lulus' : 'Gagal'}',
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: secondaryColor,
+                      ),
+                      context: context,
+                      animation: StyledToastAnimation.scale,
+                      reverseAnimation: StyledToastAnimation.fade,
+                      position: StyledToastPosition.center,
+                      animDuration: const Duration(seconds: 1),
+                      duration: const Duration(seconds: 4),
+                      curve: Curves.elasticOut,
+                      reverseCurve: Curves.linear,
+                    );
                   },
                 ),
                 const SizedBox(
@@ -223,20 +284,55 @@ class DataKeuangan extends StatelessWidget {
                     color: primaryColor,
                   ),
                   controller: controller.netWorthPlusCredit,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Jumlah Asset',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                colorButton(
-                  context,
-                  'Hitung Total Asset + Kredit yang diminta',
-                  () {
+                // colorButton(
+                //   context,
+                //   'Hitung Total Asset + Kredit yang diminta',
+                //   () {
+                //     controller.hitungNetWorthPlusCredit();
+                //   },
+                // ),
+                OutlinedButton.icon(
+                  icon: const Icon(Icons.calculate),
+                  label: const Text(
+                    "Total Aset Kini Menjadi",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      primary: secondaryColor,
+                      shape: const StadiumBorder(),
+                      maximumSize: const Size.fromWidth(double.infinity),
+                      fixedSize: const Size(500, 50)),
+                  onPressed: () {
                     controller.hitungNetWorthPlusCredit();
+
+                    showToast(
+                      ' Total Aset: Rp. ${controller.netWorthPlusCredit.text}',
+                      textStyle: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: secondaryColor,
+                      ),
+                      context: context,
+                      animation: StyledToastAnimation.scale,
+                      reverseAnimation: StyledToastAnimation.fade,
+                      position: StyledToastPosition.center,
+                      animDuration: const Duration(seconds: 1),
+                      duration: const Duration(seconds: 4),
+                      curve: Curves.elasticOut,
+                      reverseCurve: Curves.linear,
+                    );
                   },
                 ),
                 const SizedBox(

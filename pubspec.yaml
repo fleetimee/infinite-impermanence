@@ -49,7 +49,6 @@ dependencies:
   path_provider: ^2.0.11
   pdf: ^3.8.2
   printing: ^5.9.2
-  pull_to_refresh_flutter3: ^2.0.1
   responsive_framework: ^0.2.0
   shared_preferences: ^2.0.15
   slide_digital_clock: ^1.0.2

@@ -10,7 +10,6 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
-import 'package:akm/app/widget/color_button.dart';
 
 class Angsuran extends StatelessWidget {
   Angsuran({Key? key}) : super(key: key);
@@ -46,10 +45,12 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'Bunga Pinjaman Lain',
                   controller: controller.bungaPerTahunLain,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Bunga/tahun %',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    suffixIcon: const Icon(FontAwesomeIcons.percent),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -61,10 +62,12 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'Angsuran Perbulan Top',
                   controller: controller.angsuranPerBulanLainAtas,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Angsuran Perbulan',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.calendarWeek),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(FontAwesomeIcons.calendarWeek),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -86,10 +89,12 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.angsuranPerBulanLainBawah,
                   name: 'Angsuran Perbulan Bottom',
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Angsuran Perbulan',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(FontAwesomeIcons.calendarWeek),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    prefixIcon: const Icon(FontAwesomeIcons.calendarWeek),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -135,30 +140,40 @@ class Angsuran extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // FormBuilderTextField(
-          //   name: 'Unknown Variable',
-          //   textAlign: TextAlign.center,
-          //   controller: controller.unknownNumber,
-          //   enabled: false,
-          //   style: const TextStyle(
-          //     fontSize: 30,
-          //     fontWeight: FontWeight.w600,
-          //     letterSpacing: 1,
-          //     color: primaryColor,
-          //   ),
-          //   decoration: const InputDecoration(
-          //     labelText: '',
-          //     border: OutlineInputBorder(),
-          //     prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
-          //   ),
-          //   keyboardType: TextInputType.number,
-          // ),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.calculate),
+            label: const Text(
+              "Hitung Angsuran Bank Lain",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+            ),
+            style: OutlinedButton.styleFrom(
+                backgroundColor: primaryColor,
+                primary: secondaryColor,
+                shape: const StadiumBorder(),
+                maximumSize: const Size.fromWidth(double.infinity),
+                fixedSize: const Size(500, 50)),
+            onPressed: () {
+              controller.hitungPinjamanBankLain();
 
-          // colorButton(
-          //   context,
-          //   'Hitung Total Angsuran Pinjaman',
-          //   () {},
-          // ),
+              showToast(
+                'AAA',
+                textStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: secondaryColor,
+                ),
+                context: context,
+                animation: StyledToastAnimation.scale,
+                reverseAnimation: StyledToastAnimation.fade,
+                position: StyledToastPosition.center,
+                animDuration: const Duration(seconds: 1),
+                duration: const Duration(seconds: 4),
+                curve: Curves.elasticOut,
+                reverseCurve: Curves.linear,
+              );
+            },
+          ),
+
           const Divider(
             height: 50,
             thickness: 2,
@@ -187,10 +202,12 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'Bunga Pinjaman Kredit',
                   controller: controller.bungaPerTahun,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Bunga/tahun %',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    suffixIcon: const Icon(FontAwesomeIcons.percent),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -202,10 +219,12 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'tenor',
                   controller: controller.angsuranPerBulan,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                       labelText: 'Tenor',
-                      border: OutlineInputBorder(),
-                      prefixIcon: Icon(FontAwesomeIcons.calendarWeek)),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      prefixIcon: const Icon(FontAwesomeIcons.calendarWeek)),
                   keyboardType: TextInputType.number,
                 ),
               ),
@@ -218,9 +237,11 @@ class Angsuran extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderDropdown(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Angsuran Perbulan',
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                   initialValue: 'Efektif',
                   hint: const Text('Pilih Flat/Nominal'),
@@ -249,10 +270,12 @@ class Angsuran extends StatelessWidget {
                   name: 'Total Angsuran Kredit',
                   enabled: false,
                   controller: controller.totalBunga,
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Angsuran Dibayarkan',
-                    prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
-                    border: OutlineInputBorder(),
+                    prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                   keyboardType: TextInputType.number,
                 ),
@@ -483,22 +506,58 @@ class Angsuran extends StatelessWidget {
               letterSpacing: 1,
               color: primaryColor,
             ),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+            decoration: InputDecoration(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
             ),
             keyboardType: TextInputType.number,
           ),
           const SizedBox(
             height: 20,
           ),
-          colorButton(
-            context,
-            'Hitung',
-            () {
+          OutlinedButton.icon(
+            icon: const Icon(Icons.calculate),
+            label: const Text(
+              "Hitung Total Angsuran",
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+            ),
+            style: OutlinedButton.styleFrom(
+                backgroundColor: primaryColor,
+                primary: secondaryColor,
+                shape: const StadiumBorder(),
+                maximumSize: const Size.fromWidth(double.infinity),
+                fixedSize: const Size(500, 50)),
+            onPressed: () {
               controller.hitungTotalAngsuran();
+
+              showToast(
+                'Total Angsuran per bulan: Rp. ${controller.totalAngsuran.text}',
+                textStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: secondaryColor,
+                ),
+                context: context,
+                animation: StyledToastAnimation.scale,
+                reverseAnimation: StyledToastAnimation.fade,
+                position: StyledToastPosition.center,
+                animDuration: const Duration(seconds: 1),
+                duration: const Duration(seconds: 4),
+                curve: Curves.elasticOut,
+                reverseCurve: Curves.linear,
+              );
             },
           ),
+
+          // colorButton(
+          //   context,
+          //   'Hitung',
+          //   () {
+          //     controller.hitungTotalAngsuran();
+          //   },
+          // ),
         ],
       ),
     );

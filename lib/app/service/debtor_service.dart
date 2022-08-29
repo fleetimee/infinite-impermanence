@@ -101,10 +101,31 @@ class DebtorService {
         List<Debtor> list = it.map((model) => Debtor.fromJson(model)).toList();
         return list;
       } else {
+        Get.snackbar(
+          'Error',
+          'Terjadi kesalahan',
+          icon: const Icon(
+            Icons.error,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 2),
+        );
         throw Exception('Failed to load post');
       }
     } catch (e) {
       debugPrint('error: $e');
+      Get.snackbar(
+        'Error',
+        'Terjadi kesalahan',
+        icon: const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+        duration: const Duration(seconds: 2),
+      );
+
       throw Exception('Failed to load post');
     }
   }
@@ -186,8 +207,6 @@ class DebtorService {
         },
       );
       if (response.statusCode == 200) {
-  
-
         AwesomeDialog(
           context: Get.context!,
           dialogBackgroundColor: primaryColor,

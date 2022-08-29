@@ -94,9 +94,18 @@ class KeuanganAnalisisController extends GetxController
   final bungaPerTahunLain = TextEditingController(text: '0');
   final angsuranPerBulanLainAtas = TextEditingController(text: '0');
   final angsuranPerBulanLainBawah = TextEditingController(text: '0');
-  final totalBungaLainAtas = TextEditingController(text: '0');
-  final totalBungaLainBawah = TextEditingController(text: '0');
-  final unknownNumber = TextEditingController(text: '0');
+  final totalBungaLainAtas = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final totalBungaLainBawah = MoneyMaskedTextController(
+    initialValue: 0,
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
 
   // Angsuran Pinjaman Kredit
   final bungaPerTahun = TextEditingController(text: '6');
@@ -306,6 +315,24 @@ class KeuanganAnalisisController extends GetxController
   final isKreditPassed = false.obs;
   final isVerificationButtonPressed = false.obs;
   final isHitungTotalNetworgLoading = false.obs;
+
+  void hitungPinjamanBankLain() {
+    final parseDebt = int.parse(debtInput.text.replaceAll('.', ''));
+    final parseBungaPerTahunLain = double.parse(bungaPerTahunLain.text) / 100;
+    final paseAngsuranPerBulanLain =
+        double.parse(angsuranPerBulanLainAtas.text);
+
+    if (parseBungaPerTahunLain == 0 || bungaPerTahunLain.text == '') {
+      totalBungaLainAtas.text = '0';
+    }
+
+    final firstCount =
+        parseDebt * parseBungaPerTahunLain / 12 * paseAngsuranPerBulanLain;
+    final secondCount = firstCount + parseDebt;
+    final thirdCount = secondCount / paseAngsuranPerBulanLain;
+
+    totalBungaLainAtas.text = thirdCount.toStringAsFixed(0);
+  }
 
   void hitungPinjamanMaksimal() {
     // Check if parselabayad is an empty string

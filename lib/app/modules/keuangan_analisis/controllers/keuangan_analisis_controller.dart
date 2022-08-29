@@ -5,6 +5,7 @@
 import 'dart:async';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/service/analisa_keuangan_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -1183,6 +1184,67 @@ class KeuanganAnalisisController extends GetxController
         duration: const Duration(seconds: 2),
       );
     });
+  }
+
+  void saveAnalisisKeuangan() {
+    final api = AnalisaKeuanganService();
+
+    final data = {
+      'total_aset': equityInput.text.replaceAll('.', ''),
+      'jumlah_aset_kini': netWorth.text.replaceAll('.', ''),
+      'total_angsuran_keseluruhan': netWorthPlusCredit.text.replaceAll('.', ''),
+      'persen_omzet_kini': omzetKiniPercent.text,
+      'persen_omzet_yad': omzetYADPercent.text,
+      'persen_biaya_bahan_kini': biayaBahanKiniPercent.text,
+      'persen_biaya_bahan_yad': biayaBahanYADPercent.text,
+      'persen_biaya_operasi_kini': biayaOperasiKiniPercent.text,
+      'persen_biaya_operasi_yad': biayaOperasiYADPercent.text,
+      'persen_biaya_upah_kini': upahKiniPercent.text,
+      'persen_biaya_upah_yad': upahYADPercent.text,
+      'persen_biaya_hidup_kini': biayaHidupKiniPercent.text,
+      'persen_biaya_hidup_yad': biayaHidupYADPercent.text,
+      'total_laba_usaha_kini': labaUsahaKini.text.replaceAll('.', ''),
+      'total_laba_usaha_yad': labaUsahaYAD.text.replaceAll('.', ''),
+      'persen_laba_usaha_kini': labaUsahaKiniPercent.text,
+      'persen_laba_usaha_yad': labaUsahaYADPercent.text,
+      'persen_ratio_kini': ratioProfitKini.text,
+      'persen_ratio_yad': ratioProfitYAD.text,
+      'persen_roe_kini': roeKini.text,
+      'persen_roe_yad': roeYAD.text,
+      'keterangan_roe': keteranganRoe.text,
+      'persen_roa_kini': roaKini.text,
+      'persen_roa_yad': roaYAD.text,
+      'keterangan_roa': keteranganRoa.text,
+      'persen_der_kini': derKini.text,
+      'persen_der_yad': derYAD.text,
+      'keterangan_der': keteranganDer.text,
+      'persen_dsc_kini': dscKini.text,
+      'persen_dsc_yad': dscYAD.text,
+      'keterangan_dsc': keteranganDsc.text,
+      'kredit_disetujui': isKreditPassed.value,
+      'pinjaman_maksimal': pinjamanMaksimal.text.replaceAll('.', ''),
+      'perhitungan_modal_kerja': perhitunganModalKerja.text.replaceAll('.', ''),
+      'kebutuhan_investasi': kebutuhanInvestasi.text.replaceAll('.', ''),
+      'kebutuhan_kredit': kebutuhanKredit.text.replaceAll('.', ''),
+      'total_crr_keuangan': crr.text,
+    };
+
+    api.addAnalisaKeuangan(data).then((value) {
+      Get.snackbar(
+        'Success',
+        'Analisis Keuangan berhasil disimpan',
+        backgroundColor: primaryColor,
+        icon: const Icon(
+          Icons.check,
+          color: Colors.white,
+        ),
+        snackPosition: SnackPosition.BOTTOM,
+        colorText: secondaryColor,
+        duration: const Duration(seconds: 2),
+      );
+    });
+
+    update();
   }
 
   // void hitungFlatAndEfektif() {

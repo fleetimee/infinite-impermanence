@@ -35,7 +35,7 @@ class PenghasilanTetapController extends GetxController {
     GlobalKey<FormBuilderState>(),
   ];
 
-  // Switch riwayat peminjaman
+  //  riwayat peminjaman
   RxBool isPernahPinjam = false.obs;
 
   /// The above function calculates the remaining income of the applicant.

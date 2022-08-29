@@ -169,7 +169,6 @@ class SideMenu extends StatelessWidget {
                 title: const Text('Keuangan Analisis'),
                 onTap: () {
                   Get.offNamed(Routes.KEUANGAN_ANALISIS);
-                  Get.back();
                 },
                 leading: const Icon(Icons.credit_card_outlined),
               ),

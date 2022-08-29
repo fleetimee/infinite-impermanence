@@ -146,6 +146,7 @@ class HasilAnalisa extends StatelessWidget {
                       .toString());
                   log(controller.formKeyAnalisaKeuangan.currentState!.value
                       .toString());
+                  controller.saveAnalisisKeuangan();
                 } else {
                   debugPrint(controller
                       .formKeyAnalisaKeuangan.currentState?.value

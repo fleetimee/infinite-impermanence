@@ -199,7 +199,7 @@ class DataKeuangan extends StatelessWidget {
                       ),
                       name: 'kredit_yang_diminta',
                       decoration: InputDecoration(
-                        labelText: 'Kredit yang diminta',
+                        labelText: 'Plafon',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -233,6 +233,52 @@ class DataKeuangan extends StatelessWidget {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
+              Obx(() => FormBuilderSwitch(
+                    name: 'kredit_approved',
+                    enabled: controller.isKreditPassed.value ? true : false,
+                    inactiveThumbColor: secondaryColor,
+                    decoration: InputDecoration(
+                      labelText: 'Kredit di setujui',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      prefixIcon: controller.isVerificationButtonPressed.value
+                          ? controller.isKreditPassed.isTrue
+                              ? const Icon(
+                                  Icons.check_box,
+                                  color: Colors.green,
+                                  size: 35,
+                                )
+                              : const Icon(
+                                  Icons.close_outlined,
+                                  color: Colors.red,
+                                  size: 35,
+                                )
+                          : const SizedBox(),
+                    ),
+                    onChanged: (value) {
+                      controller.isKreditPassed.value = value!;
+                    },
+                    onSaved: (value) {
+                      controller.isKreditPassed.value = value!;
+                    },
+                    title: Text(controller.isKreditPassed.isTrue
+                        ? 'Kredit di setujui'
+                        : 'Kredit di tolak'),
+                  )),
+              // Switch(
+              //   value: controller.isKreditPassed.value,
+              //   onChanged: (value) {
+              //     if (value) {
+              //       controller.isKreditPassed.value = true;
+              //     } else {
+              //       controller.isKreditPassed.value = false;
+              //     }
+              //   },
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -294,13 +340,6 @@ class DataKeuangan extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              // colorButton(
-              //   context,
-              //   'Hitung Total Asset + Kredit yang diminta',
-              //   () {
-              //     controller.hitungNetWorthPlusCredit();
-              //   },
-              // ),
               OutlinedButton.icon(
                 icon: const Icon(Icons.calculate),
                 label: const Text(

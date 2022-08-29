@@ -108,13 +108,6 @@ class AnalisaKeuangan {
         id: json["id"],
         totalAset: json["total_aset"],
         jumlahAsetKini: json["jumlah_aset_kini"],
-        flatInitial: json["flat_initial"].toDouble(),
-        efektifInitial: json["efektif_initial"].toDouble(),
-        totalFlatEfektifInPercentage:
-            json["total_flat_efektif_in_percentage"].toDouble(),
-        efektifInRp: json["efektif_in_rp"],
-        flatInRp: json["flat_in_rp"],
-        totalFlatEfektifInRp: json["total_flat_efektif_in_rp"],
         totalAngsuranKeseluruhan: json["total_angsuran_keseluruhan"],
         persenOmzetKini: json["persen_omzet_kini"],
         persenOmzetYad: json["persen_omzet_yad"],

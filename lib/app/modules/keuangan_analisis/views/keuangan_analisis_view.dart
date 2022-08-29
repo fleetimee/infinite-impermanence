@@ -88,6 +88,11 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
               Expanded(
                 child: FormBuilder(
                   key: controller.formKeyAnalisaKeuangan,
+                  onChanged: () {
+                    debugPrint(controller
+                        .formKeyAnalisaKeuangan.currentState!.value
+                        .toString());
+                  },
                   autovalidateMode: AutovalidateMode.always,
                   autoFocusOnValidationFailure: true,
                   child: TabBarView(

@@ -3,7 +3,6 @@
 
 // 🎯 Dart imports:
 import 'dart:async';
-import 'dart:math';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
@@ -150,18 +149,22 @@ class KeuanganAnalisisController extends GetxController
   /// ROE
   final roeKini = TextEditingController();
   final roeYAD = TextEditingController();
+  final keteranganRoe = TextEditingController();
 
   /// ROA
   final roaKini = TextEditingController();
   final roaYAD = TextEditingController();
+  final keteranganRoa = TextEditingController();
 
   /// DER
   final derKini = TextEditingController();
   final derYAD = TextEditingController();
+  final keteranganDer = TextEditingController();
 
   /// DSC
   final dscKini = TextEditingController();
   final dscYAD = TextEditingController();
+  final keteranganDsc = TextEditingController();
 
   // Ini Nilai Tetap
   final roeFixed = TextEditingController(text: '10');
@@ -324,14 +327,14 @@ class KeuanganAnalisisController extends GetxController
 
     if (parseBungaPerTahunLain == 0 || bungaPerTahunLain.text == '') {
       totalBungaLainAtas.text = '0';
+    } else {
+      final firstCount =
+          parseDebt * parseBungaPerTahunLain / 12 * paseAngsuranPerBulanLain;
+      final secondCount = firstCount + parseDebt;
+      final thirdCount = secondCount / paseAngsuranPerBulanLain;
+
+      totalBungaLainAtas.text = thirdCount.toStringAsFixed(0);
     }
-
-    final firstCount =
-        parseDebt * parseBungaPerTahunLain / 12 * paseAngsuranPerBulanLain;
-    final secondCount = firstCount + parseDebt;
-    final thirdCount = secondCount / paseAngsuranPerBulanLain;
-
-    totalBungaLainAtas.text = thirdCount.toStringAsFixed(0);
   }
 
   void hitungPinjamanMaksimal() {
@@ -911,6 +914,7 @@ class KeuanganAnalisisController extends GetxController
 
           Future.delayed(const Duration(seconds: 1), () {
             roeStatus.value = 'Baik 🥰';
+            keteranganRoe.text = 'Baik';
             isRoeDescLoading.value = false;
           });
         }
@@ -920,6 +924,7 @@ class KeuanganAnalisisController extends GetxController
           // Delay for 2 seconds then run some code
           Future.delayed(const Duration(seconds: 1), () {
             roeStatus.value = 'Jelek 🤣';
+            keteranganRoe.text = 'Jelek';
             isRoeDescLoading.value = false;
           });
         }
@@ -1043,6 +1048,7 @@ class KeuanganAnalisisController extends GetxController
           // Delay for 2 seconds then run some code
           Future.delayed(const Duration(seconds: 1), () {
             roaStatus.value = 'Baik 🥰';
+            keteranganRoa.text = 'Baik';
             isRoaDescLoading.value = false;
           });
         }
@@ -1051,6 +1057,7 @@ class KeuanganAnalisisController extends GetxController
           isRoaDescLoading.value = true;
           // Delay for 2 seconds then run some code
           Future.delayed(const Duration(seconds: 1), () {
+            keteranganRoa.text = 'Jelek';
             roaStatus.value = 'Jelek 🤣';
             isRoaDescLoading.value = false;
           });
@@ -1096,6 +1103,7 @@ class KeuanganAnalisisController extends GetxController
         // Delay for 2 seconds then run some code
         Future.delayed(const Duration(seconds: 1), () {
           derStatus.value = 'Ditolak ❌';
+          keteranganDer.text = 'Ditolak';
           isDerDescLoading.value = false;
         });
       }
@@ -1105,6 +1113,7 @@ class KeuanganAnalisisController extends GetxController
         // Delay for 2 seconds then run some code
         Future.delayed(const Duration(seconds: 1), () {
           derStatus.value = 'Diterima 🤝';
+          keteranganDer.text = 'Diterima';
           isDerDescLoading.value = false;
         });
       }
@@ -1145,6 +1154,7 @@ class KeuanganAnalisisController extends GetxController
         // Delay for 2 seconds then run some code
         Future.delayed(const Duration(seconds: 1), () {
           dscStatus.value = 'Diterima 🤝';
+          keteranganDsc.text = 'Diterima';
           isDscDescLoading.value = false;
         });
       }
@@ -1154,6 +1164,7 @@ class KeuanganAnalisisController extends GetxController
         // Delay for 2 seconds then run some code
         Future.delayed(const Duration(seconds: 1), () {
           dscStatus.value = 'Ditolak ❌';
+          keteranganDsc.text = 'Ditolak';
           isDscDescLoading.value = false;
         });
       }
@@ -1174,91 +1185,91 @@ class KeuanganAnalisisController extends GetxController
     });
   }
 
-  void hitungFlatAndEfektif() {
-    try {
-      flatInitial.text =
-          (int.parse(bungaPerTahun.text) / 1200).toStringAsFixed(5);
+  // void hitungFlatAndEfektif() {
+  //   try {
+  //     flatInitial.text =
+  //         (int.parse(bungaPerTahun.text) / 1200).toStringAsFixed(5);
 
-      final plusOne = (double.parse(flatInitial.text) + 1);
-      final powPlusOneDenganAngsuranPerBulan =
-          pow(plusOne, int.parse(angsuranPerBulan.text));
+  //     final plusOne = (double.parse(flatInitial.text) + 1);
+  //     final powPlusOneDenganAngsuranPerBulan =
+  //         pow(plusOne, int.parse(angsuranPerBulan.text));
 
-      efektifInitial.text =
-          (1 / powPlusOneDenganAngsuranPerBulan).toStringAsFixed(5);
+  //     efektifInitial.text =
+  //         (1 / powPlusOneDenganAngsuranPerBulan).toStringAsFixed(5);
 
-      final minusOne = (1 - double.parse(efektifInitial.text));
-      final result = (double.parse(flatInitial.text) / minusOne);
+  //     final minusOne = (1 - double.parse(efektifInitial.text));
+  //     final result = (double.parse(flatInitial.text) / minusOne);
 
-      totalFlatEfektif.text = result.toStringAsFixed(9);
-    } catch (e) {
-      if (bungaPerTahun.text == '') {
-        AwesomeDialog(
-          dialogType: DialogType.ERROR,
-          dialogBackgroundColor: primaryColor,
-          titleTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-          ),
-          descTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-          animType: AnimType.BOTTOMSLIDE,
-          title: 'Error',
-          desc: 'Field bunga per tahun masih kosong',
-          btnOkOnPress: () {},
-          context: Get.context!,
-        ).show();
-      }
+  //     totalFlatEfektif.text = result.toStringAsFixed(9);
+  //   } catch (e) {
+  //     if (bungaPerTahun.text == '') {
+  //       AwesomeDialog(
+  //         dialogType: DialogType.ERROR,
+  //         dialogBackgroundColor: primaryColor,
+  //         titleTextStyle: GoogleFonts.poppins(
+  //           color: secondaryColor,
+  //           fontSize: 30,
+  //           fontWeight: FontWeight.w500,
+  //         ),
+  //         descTextStyle: GoogleFonts.poppins(
+  //           color: secondaryColor,
+  //           fontSize: 20,
+  //           fontWeight: FontWeight.w400,
+  //         ),
+  //         animType: AnimType.BOTTOMSLIDE,
+  //         title: 'Error',
+  //         desc: 'Field bunga per tahun masih kosong',
+  //         btnOkOnPress: () {},
+  //         context: Get.context!,
+  //       ).show();
+  //     }
 
-      if (angsuranPerBulan.text == '') {
-        AwesomeDialog(
-          dialogType: DialogType.ERROR,
-          dialogBackgroundColor: primaryColor,
-          titleTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-          ),
-          descTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-          animType: AnimType.BOTTOMSLIDE,
-          title: 'Error',
-          desc: 'Field Angsuran per bulan masih kosong',
-          btnOkOnPress: () {},
-          context: Get.context!,
-        ).show();
-      }
-    }
-  }
+  //     if (angsuranPerBulan.text == '') {
+  //       AwesomeDialog(
+  //         dialogType: DialogType.ERROR,
+  //         dialogBackgroundColor: primaryColor,
+  //         titleTextStyle: GoogleFonts.poppins(
+  //           color: secondaryColor,
+  //           fontSize: 30,
+  //           fontWeight: FontWeight.w500,
+  //         ),
+  //         descTextStyle: GoogleFonts.poppins(
+  //           color: secondaryColor,
+  //           fontSize: 20,
+  //           fontWeight: FontWeight.w400,
+  //         ),
+  //         animType: AnimType.BOTTOMSLIDE,
+  //         title: 'Error',
+  //         desc: 'Field Angsuran per bulan masih kosong',
+  //         btnOkOnPress: () {},
+  //         context: Get.context!,
+  //       ).show();
+  //     }
+  //   }
+  // }
 
-  void hitungTotalFlatEfektif() {
-    final efektifBawah = (double.parse(totalFlatEfektif.text) *
-        (int.parse(kreditYangDiminta.text.replaceAll('.', ''))));
+  // void hitungTotalFlatEfektif() {
+  //   final efektifBawah = (double.parse(totalFlatEfektif.text) *
+  //       (int.parse(kreditYangDiminta.text.replaceAll('.', ''))));
 
-    final parseKreditYangDiajukan =
-        int.parse(kreditYangDiminta.text.replaceAll('.', ''));
-    final parseBungaPerTahun =
-        int.parse(bungaPerTahun.text.replaceAll('.', ''));
-    final parseAngsuranPerBulan =
-        int.parse(angsuranPerBulan.text.replaceAll('.', ''));
+  //   final parseKreditYangDiajukan =
+  //       int.parse(kreditYangDiminta.text.replaceAll('.', ''));
+  //   final parseBungaPerTahun =
+  //       int.parse(bungaPerTahun.text.replaceAll('.', ''));
+  //   final parseAngsuranPerBulan =
+  //       int.parse(angsuranPerBulan.text.replaceAll('.', ''));
 
-    if (parseKreditYangDiajukan == 0) {
-      totalFlat.text = '0';
-    }
+  //   if (parseKreditYangDiajukan == 0) {
+  //     totalFlat.text = '0';
+  //   }
 
-    final firstCount = (parseKreditYangDiajukan * parseBungaPerTahun);
-    final secondCount = (firstCount / 1200);
-    final thirdCount = (secondCount * parseAngsuranPerBulan);
-    final fourthCount = (thirdCount + parseKreditYangDiajukan);
-    final fifthCount = (fourthCount / parseAngsuranPerBulan);
+  //   final firstCount = (parseKreditYangDiajukan * parseBungaPerTahun);
+  //   final secondCount = (firstCount / 1200);
+  //   final thirdCount = (secondCount * parseAngsuranPerBulan);
+  //   final fourthCount = (thirdCount + parseKreditYangDiajukan);
+  //   final fifthCount = (fourthCount / parseAngsuranPerBulan);
 
-    totalFlat.text = fifthCount.toStringAsFixed(0);
-    totalEfektif.text = efektifBawah.toStringAsFixed(0);
-  }
+  //   totalFlat.text = fifthCount.toStringAsFixed(0);
+  //   totalEfektif.text = efektifBawah.toStringAsFixed(0);
+  // }
 }

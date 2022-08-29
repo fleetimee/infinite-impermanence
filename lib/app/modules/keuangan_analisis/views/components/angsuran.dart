@@ -43,7 +43,7 @@ class Angsuran extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'Bunga Pinjaman Lain',
+                  name: 'bunga_pinjaman_lain',
                   controller: controller.bungaPerTahunLain,
                   decoration: InputDecoration(
                     labelText: 'Bunga/tahun %',
@@ -60,10 +60,10 @@ class Angsuran extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'Angsuran Perbulan Top',
+                  name: 'tenor_a',
                   controller: controller.angsuranPerBulanLainAtas,
                   decoration: InputDecoration(
-                    labelText: 'Angsuran Perbulan',
+                    labelText: 'Tenor A',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -88,9 +88,9 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.angsuranPerBulanLainBawah,
-                  name: 'Angsuran Perbulan Bottom',
+                  name: 'tenor_b',
                   decoration: InputDecoration(
-                    labelText: 'Angsuran Perbulan',
+                    labelText: 'Tenor B',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -108,7 +108,7 @@ class Angsuran extends StatelessWidget {
             enabled: false,
             textAlign: TextAlign.center,
             controller: controller.totalBungaLainAtas,
-            name: 'Total Angsuran Pinjaman Top',
+            name: 'angsuran_pinjaman_lain_top',
             decoration: InputDecoration(
               labelText: 'Angsuran Dibayarkan A',
               border: OutlineInputBorder(
@@ -127,7 +127,7 @@ class Angsuran extends StatelessWidget {
             enabled: false,
             readOnly: true,
             textAlign: TextAlign.center,
-            name: 'Total Angsuran Pinjaman Bottom',
+            name: 'angsuran_pinjaman_lain_bottom',
             decoration: InputDecoration(
               labelText: 'Angsuran Dibayarkan B',
               border: OutlineInputBorder(
@@ -156,7 +156,7 @@ class Angsuran extends StatelessWidget {
               controller.hitungPinjamanBankLain();
 
               showToast(
-                'AAA',
+                ' Total Angsuran Bank Lain : Rp ${controller.totalBungaLainAtas.text}',
                 textStyle: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
@@ -200,7 +200,7 @@ class Angsuran extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'Bunga Pinjaman Kredit',
+                  name: 'bunga_per_tahun_bpd',
                   controller: controller.bungaPerTahun,
                   decoration: InputDecoration(
                     labelText: 'Bunga/tahun %',
@@ -217,7 +217,7 @@ class Angsuran extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'tenor',
+                  name: 'tenor_bpd',
                   controller: controller.angsuranPerBulan,
                   decoration: InputDecoration(
                       labelText: 'Tenor',
@@ -238,7 +238,7 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 child: FormBuilderDropdown(
                   decoration: InputDecoration(
-                    labelText: 'Angsuran Perbulan',
+                    labelText: 'Status',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -496,7 +496,7 @@ class Angsuran extends StatelessWidget {
             height: 30,
           ),
           FormBuilderTextField(
-            name: 'Total Angsuran',
+            name: 'total_angsuran',
             controller: controller.totalAngsuran,
             textAlign: TextAlign.center,
             enabled: false,

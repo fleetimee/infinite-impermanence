@@ -554,7 +554,6 @@ class KeuanganAnalisisController extends GetxController
 
       hitungKebutuhanInvestasi();
       hitungKebutuhanKredit();
-      hitungCrr();
     } catch (e) {
       if (FormatException == e.runtimeType) {
         Get.snackbar(
@@ -1221,7 +1220,7 @@ class KeuanganAnalisisController extends GetxController
       'persen_dsc_kini': dscKini.text,
       'persen_dsc_yad': dscYAD.text,
       'keterangan_dsc': keteranganDsc.text,
-      'kredit_disetujui': isKreditPassed.value,
+      'kredit_disetujuin': isKreditPassed.value,
       'pinjaman_maksimal': pinjamanMaksimal.text.replaceAll('.', ''),
       'perhitungan_modal_kerja': perhitunganModalKerja.text.replaceAll('.', ''),
       'kebutuhan_investasi': kebutuhanInvestasi.text.replaceAll('.', ''),

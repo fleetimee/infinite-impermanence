@@ -184,91 +184,29 @@ class DataKeuangan extends StatelessWidget {
                   color: primaryColor,
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 10,
-                    child: FormBuilderTextField(
-                      controller: controller.kreditYangDiminta,
-                      enabled: false,
-                      style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 1,
-                        color: primaryColor,
-                      ),
-                      name: 'kredit_yang_diminta',
-                      decoration: InputDecoration(
-                        labelText: 'Plafon',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
-                      ),
-                      keyboardType: TextInputType.number,
-                    ),
+              FormBuilderTextField(
+                controller: controller.kreditYangDiminta,
+                enabled: false,
+                style: const TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1,
+                  color: primaryColor,
+                ),
+                name: 'kredit_yang_diminta',
+                decoration: InputDecoration(
+                  labelText: 'Plafon',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Obx(
-                      () {
-                        return controller.isVerificationButtonPressed.value
-                            ? controller.isKreditPassed.isTrue
-                                ? const Icon(
-                                    Icons.check_box,
-                                    color: Colors.green,
-                                    size: 35,
-                                  )
-                                : const Icon(
-                                    Icons.close_outlined,
-                                    color: Colors.red,
-                                    size: 35,
-                                  )
-                            : const SizedBox();
-                      },
-                    ),
-                  ),
-                ],
+                  prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
+                ),
+                keyboardType: TextInputType.number,
               ),
               const SizedBox(
                 height: 16,
               ),
-              Obx(() => FormBuilderSwitch(
-                    name: 'kredit_approved',
-                    enabled: controller.isKreditPassed.value ? true : false,
-                    inactiveThumbColor: secondaryColor,
-                    decoration: InputDecoration(
-                      labelText: 'Kredit di setujui',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      prefixIcon: controller.isVerificationButtonPressed.value
-                          ? controller.isKreditPassed.isTrue
-                              ? const Icon(
-                                  Icons.check_box,
-                                  color: Colors.green,
-                                  size: 35,
-                                )
-                              : const Icon(
-                                  Icons.close_outlined,
-                                  color: Colors.red,
-                                  size: 35,
-                                )
-                          : const SizedBox(),
-                    ),
-                    onChanged: (value) {
-                      controller.isKreditPassed.value = value!;
-                    },
-                    onSaved: (value) {
-                      controller.isKreditPassed.value = value!;
-                    },
-                    title: Text(controller.isKreditPassed.isTrue
-                        ? 'Kredit di setujui'
-                        : 'Kredit di tolak'),
-                  )),
+
               // Switch(
               //   value: controller.isKreditPassed.value,
               //   onChanged: (value) {
@@ -279,42 +217,7 @@ class DataKeuangan extends StatelessWidget {
               //     }
               //   },
               // ),
-              const SizedBox(
-                height: 20,
-              ),
-              OutlinedButton.icon(
-                icon: const Icon(Icons.verified),
-                label: const Text(
-                  "Verifikasi Kredit",
-                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                ),
-                style: OutlinedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    primary: secondaryColor,
-                    shape: const StadiumBorder(),
-                    maximumSize: const Size.fromWidth(double.infinity),
-                    fixedSize: const Size(500, 50)),
-                onPressed: () {
-                  controller.checkIfCreditPassed();
 
-                  showToast(
-                    'Status: ${controller.isKreditPassed.isTrue ? 'Lulus' : 'Gagal'}',
-                    textStyle: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: secondaryColor,
-                    ),
-                    context: context,
-                    animation: StyledToastAnimation.scale,
-                    reverseAnimation: StyledToastAnimation.fade,
-                    position: StyledToastPosition.center,
-                    animDuration: const Duration(seconds: 1),
-                    duration: const Duration(seconds: 4),
-                    curve: Curves.elasticOut,
-                    reverseCurve: Curves.linear,
-                  );
-                },
-              ),
               const SizedBox(
                 height: 40,
               ),

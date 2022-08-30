@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
@@ -35,12 +35,10 @@ class AgunanView extends GetView<AgunanController> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  GifView.asset(
-                    'assets/images/agunan/header.gif',
-                    frameRate: 30,
+                  SvgPicture.asset(
+                    'assets/images/agunan/truck.svg',
+                    height: 350,
                     fit: BoxFit.cover,
-                    loop: false,
-                    height: 400,
                   ),
                   const Padding(
                     padding: EdgeInsets.fromLTRB(50, 0, 50, 0),

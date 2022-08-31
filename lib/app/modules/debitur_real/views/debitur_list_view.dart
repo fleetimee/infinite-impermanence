@@ -152,8 +152,9 @@ class DebiturListView extends GetView<DebiturRealController> {
                                                             style:
                                                                 OutlinedButton
                                                                     .styleFrom(
-                                                              primary: Colors
-                                                                  .blueGrey,
+                                                              foregroundColor:
+                                                                  Colors
+                                                                      .blueGrey,
                                                             ),
                                                             onPressed: () {
                                                               Get.toNamed(
@@ -181,8 +182,9 @@ class DebiturListView extends GetView<DebiturRealController> {
                                                             style:
                                                                 OutlinedButton
                                                                     .styleFrom(
-                                                              primary: Colors
-                                                                  .blueGrey,
+                                                              foregroundColor:
+                                                                  Colors
+                                                                      .blueGrey,
                                                             ),
                                                             onPressed: () {
                                                               Get.toNamed(

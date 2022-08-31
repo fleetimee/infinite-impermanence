@@ -186,8 +186,8 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                   fontWeight: FontWeight.w500, fontSize: 20),
                             ),
                             style: OutlinedButton.styleFrom(
+                                foregroundColor: secondaryColor,
                                 backgroundColor: primaryColor,
-                                primary: secondaryColor,
                                 shape: const StadiumBorder(),
                                 maximumSize:
                                     const Size.fromWidth(double.infinity),
@@ -325,8 +325,8 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                   fontWeight: FontWeight.w500, fontSize: 20),
                             ),
                             style: OutlinedButton.styleFrom(
+                                foregroundColor: secondaryColor,
                                 backgroundColor: primaryColor,
-                                primary: secondaryColor,
                                 shape: const StadiumBorder(),
                                 maximumSize:
                                     const Size.fromWidth(double.infinity),

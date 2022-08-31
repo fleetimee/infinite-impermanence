@@ -150,8 +150,8 @@ class DataKeuangan extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
                 style: OutlinedButton.styleFrom(
+                    foregroundColor: secondaryColor,
                     backgroundColor: primaryColor,
-                    primary: secondaryColor,
                     shape: const StadiumBorder(),
                     maximumSize: const Size.fromWidth(double.infinity),
                     fixedSize: const Size(500, 50)),
@@ -250,8 +250,8 @@ class DataKeuangan extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
                 style: OutlinedButton.styleFrom(
+                    foregroundColor: secondaryColor,
                     backgroundColor: primaryColor,
-                    primary: secondaryColor,
                     shape: const StadiumBorder(),
                     maximumSize: const Size.fromWidth(double.infinity),
                     fixedSize: const Size(500, 50)),

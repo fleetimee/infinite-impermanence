@@ -23,7 +23,6 @@ import '../controllers/uploads_controller.dart';
 class UploadsView extends GetView<UploadsController> {
   const UploadsView({Key? key}) : super(key: key);
 
-  final bool _useCustomFileViewer = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -740,8 +739,6 @@ class UploadsView extends GetView<UploadsController> {
     // );
   }
 }
-
-void _onChanged(dynamic val) => debugPrint(val.toString());
 
 const allDebiturs = [
   'Novian Andika',

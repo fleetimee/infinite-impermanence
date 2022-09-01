@@ -23,6 +23,7 @@ abstract class Routes {
   static const DEBITUR_EDIT = _Paths.DEBITUR_EDIT;
   static const DEBITUR_DETAIL_BANGET = _Paths.DEBITUR_DETAIL_BANGET;
   static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
+  static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
 }
 
 abstract class _Paths {
@@ -44,4 +45,5 @@ abstract class _Paths {
   static const DEBITUR_EDIT = '/debitur-edit';
   static const DEBITUR_DETAIL_BANGET = '/debitur-detail-banget';
   static const INPUT_KEUANGAN = '/input-keuangan';
+  static const PORSEKOT_TABLE = '/porsekot-table';
 }

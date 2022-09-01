@@ -1,9 +1,12 @@
 // ignore_for_file: unnecessary_overrides
 
-// 📦 Package imports:
+// 🎯 Dart imports:
 import 'dart:io';
 
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 

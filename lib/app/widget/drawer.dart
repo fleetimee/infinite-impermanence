@@ -188,6 +188,14 @@ class SideMenu extends StatelessWidget {
                 },
                 leading: const Icon(Icons.print),
               ),
+              ListTile(
+                title: const Text('Input Karakter'),
+                onTap: () {
+                  Get.offNamed(Routes.PORSEKOT_TABLE);
+                  Get.back();
+                },
+                leading: const Icon(Icons.print),
+              ),
             ],
           ),
           const Divider(

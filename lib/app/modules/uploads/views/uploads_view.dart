@@ -1,23 +1,24 @@
 // 🐦 Flutter imports:
 
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/widget/drawer.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
-
-// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/widget/drawer.dart';
 import '../controllers/uploads_controller.dart';
 
 class UploadsView extends GetView<UploadsController> {

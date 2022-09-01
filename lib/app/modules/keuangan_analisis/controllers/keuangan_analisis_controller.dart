@@ -5,7 +5,6 @@
 import 'dart:async';
 
 // 🐦 Flutter imports:
-import 'package:akm/app/service/analisa_keuangan_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -18,6 +17,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/service/analisa_keuangan_service.dart';
 import '../../../common/style.dart';
 
 class KeuanganAnalisisController extends GetxController

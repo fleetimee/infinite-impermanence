@@ -9,6 +9,7 @@ dependencies:
   awesome_dialog: ^2.2.1
   cupertino_icons: ^1.0.2
   currency_text_input_formatter: ^2.1.7
+  data_table_2: ^2.3.6
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
   extended_masked_text: ^2.3.1
@@ -57,9 +58,9 @@ dependencies:
   shared_preferences: ^2.0.15
   slide_digital_clock: ^1.0.2
   stepper_page_view: ^0.0.2
+  terbilang_id: ^0.1.0
   vector_math: null
   wave: ^0.2.2
-  terbilang_id: ^0.1.0
 
 dev_dependencies:
   change_app_package_name: ^1.1.0

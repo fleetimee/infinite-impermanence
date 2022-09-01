@@ -2,6 +2,7 @@
 //
 //     final keuangan = keuanganFromJson(jsonString);
 
+// 🎯 Dart imports:
 import 'dart:convert';
 
 Keuangan keuanganFromJson(String str) => Keuangan.fromJson(json.decode(str));

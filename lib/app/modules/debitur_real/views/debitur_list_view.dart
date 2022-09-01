@@ -1,19 +1,19 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
-import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:empty_widget/empty_widget.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class DebiturListView extends GetView<DebiturRealController> {
   DebiturListView({Key? key}) : super(key: key);

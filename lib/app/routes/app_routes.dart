@@ -24,6 +24,7 @@ abstract class Routes {
   static const DEBITUR_DETAIL_BANGET = _Paths.DEBITUR_DETAIL_BANGET;
   static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
   static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
+  static const INPUT_NERACA = _Paths.INPUT_NERACA;
 }
 
 abstract class _Paths {
@@ -46,4 +47,5 @@ abstract class _Paths {
   static const DEBITUR_DETAIL_BANGET = '/debitur-detail-banget';
   static const INPUT_KEUANGAN = '/input-keuangan';
   static const PORSEKOT_TABLE = '/porsekot-table';
+  static const INPUT_NERACA = '/input-neraca';
 }

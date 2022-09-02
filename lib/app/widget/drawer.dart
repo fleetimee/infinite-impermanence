@@ -189,9 +189,9 @@ class SideMenu extends StatelessWidget {
                 leading: const Icon(Icons.print),
               ),
               ListTile(
-                title: const Text('Input Karakter'),
+                title: const Text('Input Neraca'),
                 onTap: () {
-                  Get.offNamed(Routes.PORSEKOT_TABLE);
+                  Get.offNamed(Routes.INPUT_NERACA);
                   Get.back();
                 },
                 leading: const Icon(Icons.print),

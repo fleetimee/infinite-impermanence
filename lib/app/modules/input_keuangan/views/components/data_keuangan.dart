@@ -74,8 +74,7 @@ class DataKeuanganInput extends StatelessWidget {
                     controller: dataKeuanganCtrl.angsuranPerBulan,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      labelText: 'Angsuran (bln)',
-                      suffixIcon: const Icon(FontAwesomeIcons.calendar),
+                      labelText: 'Jangka Waktu (bln)',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),

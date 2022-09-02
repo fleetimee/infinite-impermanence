@@ -25,6 +25,7 @@ class Debtor {
     this.tanggalLahir,
     this.umur,
     this.statusKeluarga,
+    this.jumlahTanggungan,
     this.lamanyaBerusaha,
     this.lokasiUsaha,
     this.jenisUsaha,
@@ -56,6 +57,8 @@ class Debtor {
   DateTime? tanggalLahir;
   int? umur;
   String? statusKeluarga;
+  int? jumlahTanggungan;
+
   int? lamanyaBerusaha;
   String? lokasiUsaha;
   String? jenisUsaha;
@@ -87,6 +90,7 @@ class Debtor {
         tanggalLahir: DateTime.parse(json["tanggal_lahir"]),
         umur: json["umur"],
         statusKeluarga: json["status_keluarga"],
+        jumlahTanggungan: json["jumlah_tanggungan"],
         lamanyaBerusaha: json["lamanya_berusaha"],
         lokasiUsaha: json["lokasi_usaha"],
         jenisUsaha: json["jenis_usaha"],
@@ -120,6 +124,7 @@ class Debtor {
             "${tanggalLahir?.year.toString().padLeft(4, '0')}-${tanggalLahir?.month.toString().padLeft(2, '0')}-${tanggalLahir?.day.toString().padLeft(2, '0')}",
         "umur": umur,
         "status_keluarga": statusKeluarga,
+        "jumlah_tanggungan": jumlahTanggungan,
         "lamanya_berusaha": lamanyaBerusaha,
         "lokasi_usaha": lokasiUsaha,
         "jenis_usaha": jenisUsaha,

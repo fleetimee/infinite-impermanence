@@ -48,7 +48,11 @@ class _DebiturDetailBangetViewState extends State<DebiturDetailBangetView> {
         child: const Icon(Icons.edit),
       ),
       appBar: AppBar(
-        title: const Text('DebiturDetailBangetView'),
+        title: Obx(
+          () => controller.loadingFetch.value
+              ? const Text('Loading')
+              : Text(controller.debtorDetails.peminjam1.toString()),
+        ),
         centerTitle: true,
       ),
       body: Center(

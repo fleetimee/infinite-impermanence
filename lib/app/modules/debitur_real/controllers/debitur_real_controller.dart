@@ -35,7 +35,8 @@ class DebiturRealController extends GetxController {
   final tempatLahir = TextEditingController().obs;
   final tanggalLahir = DateTime.now().obs;
   final umur = TextEditingController().obs;
-  final statusKeluarga = TextEditingController().obs;
+  final statusKeluargaInput = ''.obs;
+  final jumlahTanggungan = TextEditingController().obs;
 
   final lamanyaBerusaha = TextEditingController().obs;
   final lokasiUsaha = TextEditingController().obs;
@@ -89,7 +90,8 @@ class DebiturRealController extends GetxController {
       'tempat_lahir': tempatLahir.value.text,
       'tanggal_lahir': tanggalLahir.value.toString(),
       'umur': umur.value.text,
-      'status_keluarga': statusKeluarga.value.text,
+      'status_keluarga': statusKeluargaInput.value.toString(),
+      'jumlah_tanggungan': jumlahTanggungan.value.text,
       'lamanya_berusaha': lamanyaBerusaha.value.text,
       'lokasi_usaha': lokasiUsaha.value.text,
       'jenis_usaha': jenisUsahaInput.value.toString(),
@@ -133,7 +135,8 @@ class DebiturRealController extends GetxController {
       'tempat_lahir': tempatLahir.value.text,
       'tanggal_lahir': tanggalLahir.value.toString(),
       'umur': umur.value.text,
-      'status_keluarga': statusKeluarga.value.text,
+      'status_keluarga': statusKeluargaInput.value.toString(),
+      'jumlah_tanggungan': jumlahTanggungan.value.text,
       'lamanya_berusaha': lamanyaBerusaha.value.text,
       'lokasi_usaha': lokasiUsaha.value.text,
       'jenis_usaha': jenisUsahaInput.value.toString(),
@@ -205,7 +208,6 @@ class DebiturRealController extends GetxController {
     alamat2.value.dispose();
     tempatLahir.value.dispose();
     umur.value.dispose();
-    statusKeluarga.value.dispose();
     lamanyaBerusaha.value.dispose();
     lokasiUsaha.value.dispose();
     bidangUsaha.value.dispose();
@@ -242,5 +244,12 @@ class DebiturRealController extends GetxController {
     'S1',
     'S2',
     'S3',
+  ];
+
+  final statusList = [
+    'Kawin',
+    'Belum Kawin',
+    'Cerai Hidup',
+    'Cerai Mati',
   ];
 }

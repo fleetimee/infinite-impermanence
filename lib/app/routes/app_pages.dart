@@ -16,6 +16,8 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/input_keuangan/bindings/input_keuangan_binding.dart';
 import '../modules/input_keuangan/views/input_keuangan_view.dart';
+import '../modules/input_neraca/bindings/input_neraca_binding.dart';
+import '../modules/input_neraca/views/input_neraca_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
 import '../modules/karakter_analisis/views/karakter_analisis_view.dart';
 import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
@@ -171,6 +173,11 @@ class AppPages {
       name: _Paths.PORSEKOT_TABLE,
       page: () => const PorsekotTableView(),
       binding: PorsekotTableBinding(),
+    ),
+    GetPage(
+      name: _Paths.INPUT_NERACA,
+      page: () => const InputNeracaView(),
+      binding: InputNeracaBinding(),
     ),
   ];
 }

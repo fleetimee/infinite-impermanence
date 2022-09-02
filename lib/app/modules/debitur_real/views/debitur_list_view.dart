@@ -1,10 +1,12 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
+import 'package:akm/app/models/debtor.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:empty_widget/empty_widget.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -116,98 +118,7 @@ class DebiturListView extends GetView<DebiturRealController> {
                                             ),
                                           ),
                                         ),
-                                        Container(
-                                          color: secondaryColor,
-                                          child: ExpansionTile(
-                                            title: const Text('Detail Debitur'),
-                                            children: [
-                                              ExpansionTile(
-                                                leading:
-                                                    const Icon(Icons.people),
-                                                title: const Text(
-                                                  'Data Pribadi Debitur',
-                                                ),
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            8.0),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.min,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        Expanded(
-                                                          child: OutlinedButton
-                                                              .icon(
-                                                            icon: const Icon(Icons
-                                                                .remove_red_eye),
-                                                            label: const Text(
-                                                              "Lihat Data",
-                                                              style: TextStyle(
-                                                                  fontSize: 20),
-                                                            ),
-                                                            style:
-                                                                OutlinedButton
-                                                                    .styleFrom(
-                                                              foregroundColor:
-                                                                  Colors
-                                                                      .blueGrey,
-                                                            ),
-                                                            onPressed: () {
-                                                              Get.toNamed(
-                                                                Routes
-                                                                    .DEBITUR_DETAIL_BANGET,
-                                                                arguments:
-                                                                    debtor.id,
-                                                              );
-                                                            },
-                                                          ),
-                                                        ),
-                                                        const SizedBox(
-                                                          width: 16,
-                                                        ),
-                                                        Expanded(
-                                                          child: OutlinedButton
-                                                              .icon(
-                                                            icon: const Icon(
-                                                                Icons.edit),
-                                                            label: const Text(
-                                                              "Edit Debitur",
-                                                              style: TextStyle(
-                                                                  fontSize: 20),
-                                                            ),
-                                                            style:
-                                                                OutlinedButton
-                                                                    .styleFrom(
-                                                              foregroundColor:
-                                                                  Colors
-                                                                      .blueGrey,
-                                                            ),
-                                                            onPressed: () {
-                                                              Get.toNamed(
-                                                                  Routes
-                                                                      .DEBITUR_EDIT,
-                                                                  arguments:
-                                                                      debtor);
-                                                            },
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              const ExpansionTile(
-                                                title: Text('Keuangan Debitur'),
-                                                leading: const Icon(
-                                                    Icons.attach_money),
-                                              )
-                                            ],
-                                          ),
-                                        ),
+                                        DetailDebitur(debtor: debtor),
                                       ],
                                     ),
                                   ),
@@ -219,6 +130,132 @@ class DebiturListView extends GetView<DebiturRealController> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class DetailDebitur extends StatelessWidget {
+  const DetailDebitur({
+    Key? key,
+    required this.debtor,
+  }) : super(key: key);
+
+  final Debtor debtor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: secondaryColor,
+      child: ExpansionTile(
+        title: const Text('Detail Debitur'),
+        children: [
+          ExpansionTile(
+            leading: const Icon(Icons.people),
+            title: const Text(
+              'Data Pribadi Debitur',
+            ),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.remove_red_eye),
+                        label: const Text(
+                          "Lihat Data",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          Get.toNamed(
+                            Routes.DEBITUR_DETAIL_BANGET,
+                            arguments: debtor.id,
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.edit),
+                        label: const Text(
+                          "Edit Debitur",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          Get.toNamed(Routes.DEBITUR_EDIT, arguments: debtor);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          ExpansionTile(
+            title: const Text('Keuangan Debitur'),
+            leading: const Icon(
+              Icons.attach_money,
+            ),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.remove_red_eye),
+                        label: const Text(
+                          "Lihat Data",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          showToast(
+                              'Data Keuangan Debitur belum tersedia, \n Silahkan input terlebih dahulu',
+                              context: context);
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(Icons.add),
+                        label: const Text(
+                          "Input Keuangan",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          Get.toNamed(Routes.INPUT_KEUANGAN, arguments: debtor);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

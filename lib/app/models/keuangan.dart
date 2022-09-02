@@ -19,9 +19,9 @@ class Keuangan {
     this.sistemAngsuran,
     this.digunakanUntuk,
     this.angsuranRp,
-    this.pinjamanLainnya,
-    this.angsuranPinjamanLainnya,
-    this.nilaiAset,
+    // this.pinjamanLainnya,
+    // this.angsuranPinjamanLainnya,
+    // this.nilaiAset,
     this.hpp,
     this.penjualanKini,
     this.biayaBahanKini,
@@ -44,9 +44,9 @@ class Keuangan {
   String? sistemAngsuran;
   String? digunakanUntuk;
   String? angsuranRp;
-  String? pinjamanLainnya;
-  String? angsuranPinjamanLainnya;
-  String? nilaiAset;
+  // String? pinjamanLainnya;
+  // String? angsuranPinjamanLainnya;
+  // String? nilaiAset;
   int? hpp;
   String? penjualanKini;
   String? biayaBahanKini;
@@ -69,9 +69,9 @@ class Keuangan {
         sistemAngsuran: json["sistem_angsuran"],
         digunakanUntuk: json["digunakan_untuk"],
         angsuranRp: json["angsuran_rp"],
-        pinjamanLainnya: json["pinjaman_lainnya"],
-        angsuranPinjamanLainnya: json["angsuran_pinjaman_lainnya"],
-        nilaiAset: json["nilai_aset"],
+        // pinjamanLainnya: json["pinjaman_lainnya"],
+        // angsuranPinjamanLainnya: json["angsuran_pinjaman_lainnya"],
+        // nilaiAset: json["nilai_aset"],
         hpp: json["hpp"],
         penjualanKini: json["penjualan_kini"],
         biayaBahanKini: json["biaya_bahan_kini"],
@@ -95,9 +95,9 @@ class Keuangan {
         "sistem_angsuran": sistemAngsuran,
         "digunakan_untuk": digunakanUntuk,
         "angsuran_rp": angsuranRp,
-        "pinjaman_lainnya": pinjamanLainnya,
-        "angsuran_pinjaman_lainnya": angsuranPinjamanLainnya,
-        "nilai_aset": nilaiAset,
+        // "pinjaman_lainnya": pinjamanLainnya,
+        // "angsuran_pinjaman_lainnya": angsuranPinjamanLainnya,
+        // "nilai_aset": nilaiAset,
         "hpp": hpp,
         "penjualan_kini": penjualanKini,
         "biaya_bahan_kini": biayaBahanKini,

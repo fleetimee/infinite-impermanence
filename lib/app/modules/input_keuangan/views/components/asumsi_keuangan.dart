@@ -25,6 +25,7 @@ class AsumsiKeuanganInput extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const SizedBox(
@@ -44,98 +45,98 @@ class AsumsiKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 195),
-              child: Text(
-                'Pinjaman Bank Lain',
-                style: GoogleFonts.poppins(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w400,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: FormBuilderTextField(
-                    name: 'pinjaman_lainnya',
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                    ]),
-                    keyboardType: TextInputType.number,
-                    controller: controller.pinjamanLainnya,
-                    decoration: InputDecoration(
-                      labelText: 'Pinjaman Lainnya',
-                      prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: FormBuilderTextField(
-                    name: 'angsuran_pinjman_lain',
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                    ]),
-                    controller: controller.angsuranPinjamanLainnya,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: 'Angsuran Lain (bln)',
-                      suffixIcon: const Icon(FontAwesomeIcons.calendar),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 300),
-              child: Text(
-                'Nilai Aset',
-                style: GoogleFonts.poppins(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w400,
-                ),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            FormBuilderTextField(
-              name: 'nilai_aset',
-              controller: controller.nilaiAset,
-              keyboardType: TextInputType.number,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-              ]),
-              decoration: InputDecoration(
-                labelText: 'Nilai Aset (exc: Rumah)',
-                prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 25.0,
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 195),
+            //   child: Text(
+            //     'Pinjaman Bank Lain',
+            //     style: GoogleFonts.poppins(
+            //       fontSize: 20.0,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //     textAlign: TextAlign.left,
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 16.0,
+            // ),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       flex: 2,
+            //       child: FormBuilderTextField(
+            //         name: 'pinjaman_lainnya',
+            //         autovalidateMode: AutovalidateMode.onUserInteraction,
+            //         validator: FormBuilderValidators.compose([
+            //           FormBuilderValidators.required(),
+            //         ]),
+            //         keyboardType: TextInputType.number,
+            //         controller: controller.pinjamanLainnya,
+            //         decoration: InputDecoration(
+            //           labelText: 'Pinjaman Lainnya',
+            //           prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
+            //           border: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(10),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //     const SizedBox(width: 16),
+            //     Expanded(
+            //       child: FormBuilderTextField(
+            //         name: 'angsuran_pinjman_lain',
+            //         autovalidateMode: AutovalidateMode.onUserInteraction,
+            //         validator: FormBuilderValidators.compose([
+            //           FormBuilderValidators.required(),
+            //         ]),
+            //         controller: controller.angsuranPinjamanLainnya,
+            //         keyboardType: TextInputType.number,
+            //         decoration: InputDecoration(
+            //           labelText: 'Angsuran Lain (bln)',
+            //           suffixIcon: const Icon(FontAwesomeIcons.calendar),
+            //           border: OutlineInputBorder(
+            //             borderRadius: BorderRadius.circular(10),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(
+            //   height: 16.0,
+            // ),
+            // Padding(
+            //   padding: const EdgeInsets.only(right: 300),
+            //   child: Text(
+            //     'Nilai Aset',
+            //     style: GoogleFonts.poppins(
+            //       fontSize: 20.0,
+            //       fontWeight: FontWeight.w400,
+            //     ),
+            //     textAlign: TextAlign.left,
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 16.0,
+            // ),
+            // FormBuilderTextField(
+            //   name: 'nilai_aset',
+            //   controller: controller.nilaiAset,
+            //   keyboardType: TextInputType.number,
+            //   autovalidateMode: AutovalidateMode.onUserInteraction,
+            //   validator: FormBuilderValidators.compose([
+            //     FormBuilderValidators.required(),
+            //   ]),
+            //   decoration: InputDecoration(
+            //     labelText: 'Nilai Aset (exc: Rumah)',
+            //     prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(10),
+            //     ),
+            //   ),
+            // ),
+            // const SizedBox(
+            //   height: 25.0,
+            // ),
             Padding(
               padding: const EdgeInsets.only(right: 250),
               child: Text(

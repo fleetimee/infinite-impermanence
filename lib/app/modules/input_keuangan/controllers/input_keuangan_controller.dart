@@ -407,10 +407,10 @@ class InputKeuanganController extends GetxController {
       'sistem_angsuran': sistemAngsuran.toString(),
       'digunakan_untuk': digunakanUntuk.text,
       'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
-      'pinjaman_lainnya': pinjamanLainnya.text.replaceAll('.', ''),
-      'angsuran_pinjaman_lainnya':
-          angsuranPinjamanLainnya.text.replaceAll('.', ''),
-      'nilai_aset': nilaiAset.text.replaceAll('.', ''),
+      // 'pinjaman_lainnya': pinjamanLainnya.text.replaceAll('.', ''),
+      // 'angsuran_pinjaman_lainnya':
+      //     angsuranPinjamanLainnya.text.replaceAll('.', ''),
+      // 'nilai_aset': nilaiAset.text.replaceAll('.', ''),
       'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
       'hpp': hpp.text,
       'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),

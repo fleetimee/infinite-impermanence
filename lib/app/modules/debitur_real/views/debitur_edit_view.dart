@@ -22,7 +22,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Debitur'),
+        title: Text('Edit Debitur: ${data.peminjam1}'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -423,12 +423,27 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: FormBuilderTextField(
+                        // child: FormBuilderTextField(
+                        //   name: 'status_keluarga',
+                        //   controller: controller.statusKeluarga.value =
+                        //       TextEditingController(
+                        //     text: data.statusKeluarga,
+                        //   ),
+                        //   decoration: const InputDecoration(
+                        //     labelText: 'Status Keluarga',
+                        //     labelStyle: TextStyle(fontSize: 18),
+                        //     hintText: 'Masukkan Status Keluarga',
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: primaryColor),
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: Colors.grey),
+                        //     ),
+                        //   ),
+                        // ),
+                        child: FormBuilderDropdown(
                           name: 'status_keluarga',
-                          controller: controller.statusKeluarga.value =
-                              TextEditingController(
-                            text: data.statusKeluarga,
-                          ),
+                          initialValue: data.status_keluarga,
                           decoration: const InputDecoration(
                             labelText: 'Status Keluarga',
                             labelStyle: TextStyle(fontSize: 18),
@@ -440,10 +455,57 @@ class DebiturEditView extends GetView<DebiturRealController> {
                               borderSide: BorderSide(color: Colors.grey),
                             ),
                           ),
+                          items: controller.statusList
+                              .map((e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.statusKeluargaInput.value =
+                                value.toString();
+                            debugPrint(value.toString());
+                          },
+                          onSaved: (value) {
+                            controller.statusKeluargaInput.value =
+                                value.toString();
+                          },
                         ),
                       )
                     ],
                   ),
+                  const SizedBox(height: 16.0),
+                  FormBuilderTextField(
+                    name: 'jumlah_tanggungan',
+                    controller: controller.jumlahTanggungan.value =
+                        TextEditingController(
+                      text: data.jumlahTanggungan.toString(),
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.min(1,
+                          errorText: 'Jumlah tanggungan minimal 1 orang'),
+                      FormBuilderValidators.max(99,
+                          errorText: 'Jumlah tanggungan maksimal 99 orang'),
+                      FormBuilderValidators.maxLength(2,
+                          errorText: 'Max 2 Karakter'),
+                    ]),
+                    decoration: const InputDecoration(
+                      labelText: 'Jumlah Tanggungan',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan Jumlah Tanggungan',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+
                   const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.only(right: 280),

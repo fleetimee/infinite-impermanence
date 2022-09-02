@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
-import 'package:akm/app/widget/color_button.dart';
 
 class AnalisaRatio extends StatelessWidget {
   AnalisaRatio({Key? key}) : super(key: key);
@@ -45,7 +44,7 @@ class AnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitKini,
                   enabled: false,
-                  name: 'Ratio Profit Kini',
+                  name: 'ratio_profit_kini',
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit Kini',
                     border: OutlineInputBorder(),
@@ -59,7 +58,7 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitYAD,
-                  name: 'Ratio Profit YAD',
+                  name: 'ratio_profit_yad',
                   enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit YAD',
@@ -73,13 +72,34 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          // Obx(
+          //   () => colorButton(
+          //     context,
+          //     controller.isRatioProfitLoading.value
+          //         ? 'Loading..'
+          //         : 'Hitung Ratio Profit',
+          //     () => controller.hitungRatioProfit(),
+          //   ),
+          // ),
           Obx(
-            () => colorButton(
-              context,
-              controller.isRatioProfitLoading.value
-                  ? 'Loading..'
-                  : 'Hitung Ratio Profit',
-              () => controller.hitungRatioProfit(),
+            () => OutlinedButton.icon(
+              icon: const Icon(Icons.percent),
+              label: Text(
+                controller.isRatioProfitLoading.value
+                    ? 'Loading..'
+                    : 'Hitung Ratio Profit',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: secondaryColor,
+                  backgroundColor: primaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
+              onPressed: () {
+                controller.hitungRatioProfit();
+              },
             ),
           ),
           const SizedBox(
@@ -107,7 +127,7 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.roeFixed,
-                  name: 'ROE',
+                  name: 'roe_fixed',
                   enabled: false,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
@@ -124,7 +144,7 @@ class AnalisaRatio extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'ROE Kini',
+                  name: 'roe_kini',
                   controller: controller.roeKini,
                   enabled: false,
                   decoration: const InputDecoration(
@@ -140,7 +160,7 @@ class AnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.roeYAD,
-                  name: 'ROE YAD',
+                  name: 'roe_yad',
                   enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'ROE YAD',
@@ -155,25 +175,46 @@ class AnalisaRatio extends StatelessWidget {
             height: 20,
           ),
           Obx(
-            () => Text(
-              controller.isRoeDescLoading.value
-                  ? 'Sedang memproses hasil..'
-                  : controller.roeStatus.value,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            () => controller.isRoeDescLoading.value
+                ? const Center(child: CircularProgressIndicator())
+                : FormBuilderTextField(
+                    name: 'keterangan_roe',
+                    controller: controller.keteranganRoe,
+                    enabled: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Keterangan ROE',
+                      border: OutlineInputBorder(),
+                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                    ),
+                  ),
           ),
           const SizedBox(
             height: 20,
           ),
+          // Obx(
+          //   () => colorButton(
+          //     context,
+          //     controller.isRoeLoading.value ? 'Loading...' : 'Hitung ROE',
+          //     () => controller.hitungRoe(),
+          //   ),
+          // ),
           Obx(
-            () => colorButton(
-              context,
-              controller.isRoeLoading.value ? 'Loading...' : 'Hitung ROE',
-              () => controller.hitungRoe(),
+            () => OutlinedButton.icon(
+              icon: const Icon(Icons.percent),
+              label: Text(
+                controller.isRoeLoading.value ? 'Loading..' : 'Hitung Roe',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: secondaryColor,
+                  backgroundColor: primaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
+              onPressed: () {
+                controller.hitungRoe();
+              },
             ),
           ),
           const SizedBox(
@@ -200,7 +241,7 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'ROA',
+                  name: 'roa_fixed',
                   controller: controller.roaFixed,
                   enabled: false,
                   decoration: const InputDecoration(
@@ -218,7 +259,7 @@ class AnalisaRatio extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'ROA Kini',
+                  name: 'roa_kini',
                   enabled: false,
                   controller: controller.roaKini,
                   decoration: const InputDecoration(
@@ -233,7 +274,7 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'ROA YAD',
+                  name: 'roa_yad',
                   controller: controller.roaYAD,
                   enabled: false,
                   decoration: const InputDecoration(
@@ -249,25 +290,46 @@ class AnalisaRatio extends StatelessWidget {
             height: 20,
           ),
           Obx(
-            () => Text(
-              controller.isRoaDescLoading.value
-                  ? 'Sedang memproses hasil..'
-                  : controller.roaStatus.value,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            () => controller.isRoaDescLoading.value
+                ? const Center(child: CircularProgressIndicator())
+                : FormBuilderTextField(
+                    name: 'keterangan_roa',
+                    controller: controller.keteranganRoa,
+                    enabled: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Keterangan ROA',
+                      border: OutlineInputBorder(),
+                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                    ),
+                  ),
           ),
           const SizedBox(
             height: 30,
           ),
-          Obx((() => colorButton(
-                context,
-                controller.isRoaLoading.value ? 'Loading...' : 'Hitung ROA',
-                () => controller.hitungRoa(),
-              ))),
+          // Obx((() => colorButton(
+          //       context,
+          //       controller.isRoaLoading.value ? 'Loading...' : 'Hitung ROA',
+          //       () => controller.hitungRoa(),
+          //     ))),
+          Obx(
+            () => OutlinedButton.icon(
+              icon: const Icon(Icons.percent),
+              label: Text(
+                controller.isRoeLoading.value ? 'Loading..' : 'Hitung Roa',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: secondaryColor,
+                  backgroundColor: primaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
+              onPressed: () {
+                controller.hitungRoa();
+              },
+            ),
+          ),
           const SizedBox(
             height: 30,
           ),
@@ -292,7 +354,7 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'DER',
+                  name: 'der_fixed',
                   controller: controller.derFixed,
                   enabled: false,
                   decoration: const InputDecoration(
@@ -310,7 +372,7 @@ class AnalisaRatio extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'DER Kini',
+                  name: 'der_kini',
                   controller: controller.derKini,
                   decoration: const InputDecoration(
                     labelText: 'DER Kini',
@@ -324,7 +386,7 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'DER YAD',
+                  name: 'der_yad',
                   controller: controller.derYAD,
                   decoration: const InputDecoration(
                     labelText: 'DER YAD',
@@ -338,27 +400,60 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          // Obx(
+          //   () => Text(
+          //     controller.isDerDescLoading.value
+          //         ? 'Sedang memproses hasil..'
+          //         : controller.derStatus.value,
+          //     style: GoogleFonts.poppins(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.w600,
+          //     ),
+          //     textAlign: TextAlign.center,
+          //   ),
+          // ),
           Obx(
-            () => Text(
-              controller.isDerDescLoading.value
-                  ? 'Sedang memproses hasil..'
-                  : controller.derStatus.value,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            () => controller.isDerDescLoading.value
+                ? const Center(child: CircularProgressIndicator())
+                : FormBuilderTextField(
+                    name: 'keterangan_der',
+                    controller: controller.keteranganDer,
+                    enabled: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Keterangan DER',
+                      border: OutlineInputBorder(),
+                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                    ),
+                  ),
           ),
           const SizedBox(
             height: 30,
           ),
+          // Obx(
+          //   (() => colorButton(
+          //         context,
+          //         controller.isDerLoading.value ? 'Loading...' : 'Hitung DER',
+          //         () => controller.hitungDer(),
+          //       )),
+          // ),
           Obx(
-            (() => colorButton(
-                  context,
-                  controller.isDerLoading.value ? 'Loading...' : 'Hitung DER',
-                  () => controller.hitungDer(),
-                )),
+            () => OutlinedButton.icon(
+              icon: const Icon(Icons.percent),
+              label: Text(
+                controller.isDerLoading.value ? 'Loading..' : 'Hitung Der',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: secondaryColor,
+                  backgroundColor: primaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
+              onPressed: () {
+                controller.hitungDer();
+              },
+            ),
           ),
           const SizedBox(
             height: 30,
@@ -384,7 +479,7 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'DSC',
+                  name: 'dsc_fixed',
                   controller: controller.dscFixed,
                   enabled: false,
                   decoration: const InputDecoration(
@@ -402,7 +497,7 @@ class AnalisaRatio extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'DSC Kini',
+                  name: 'dsc_kini',
                   controller: controller.dscKini,
                   decoration: const InputDecoration(
                     labelText: 'DSC Kini',
@@ -416,7 +511,7 @@ class AnalisaRatio extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'DSC YAD',
+                  name: 'dsc_yad',
                   controller: controller.dscYAD,
                   decoration: const InputDecoration(
                     labelText: 'DSC YAD',
@@ -430,26 +525,54 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
+          // Obx(
+          //   () => Text(
+          //     controller.isDscDescLoading.value
+          //         ? 'Sedang memproses hasil..'
+          //         : controller.dscStatus.value,
+          //     style: GoogleFonts.poppins(
+          //       fontSize: 18,
+          //       fontWeight: FontWeight.w600,
+          //     ),
+          //     textAlign: TextAlign.center,
+          //   ),
+          // ),
           Obx(
-            () => Text(
-              controller.isDscDescLoading.value
-                  ? 'Sedang memproses hasil..'
-                  : controller.dscStatus.value,
-              style: GoogleFonts.poppins(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            () => controller.isDscDescLoading.value
+                ? const Center(child: CircularProgressIndicator())
+                : FormBuilderTextField(
+                    name: 'keterangan_dsc',
+                    controller: controller.keteranganDsc,
+                    enabled: false,
+                    decoration: const InputDecoration(
+                      labelText: 'Keterangan DSC',
+                      border: OutlineInputBorder(),
+                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                    ),
+                  ),
           ),
           const SizedBox(
             height: 20,
           ),
-          Obx(() => colorButton(
-                context,
-                controller.isDscLoading.value ? 'Loading...' : 'Hitung DSC',
-                () => controller.hitungDsc(),
-              )),
+          Obx(
+            () => OutlinedButton.icon(
+              icon: const Icon(Icons.percent),
+              label: Text(
+                controller.isDscLoading.value ? 'Loading..' : 'Hitung Dsc',
+                style:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: secondaryColor,
+                  backgroundColor: primaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
+              onPressed: () {
+                controller.hitungDsc();
+              },
+            ),
+          ),
           const SizedBox(
             height: 60,
           ),

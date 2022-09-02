@@ -1,10 +1,13 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
+// 🌎 Project imports:
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/widget/color_button.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../controllers/search_nik_controller.dart';
 
 class SearchNikView extends GetView<SearchNikController> {
@@ -90,9 +93,7 @@ class SearchNikView extends GetView<SearchNikController> {
                         height: 300,
                       ),
                       TextButton(
-                          onPressed: () {
-                            Get.offAllNamed(Routes.CREATE_DEBITUR);
-                          },
+                          onPressed: () {},
                           child: const Text('Create Debitur')),
                     ],
                   );

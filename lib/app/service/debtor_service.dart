@@ -1,13 +1,19 @@
+// 🎯 Dart imports:
 import 'dart:convert';
 
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/debtor.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
+
+// 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/models/debtor.dart';
 
 class DebtorService {
   final httpClient = http.Client();
@@ -95,10 +101,31 @@ class DebtorService {
         List<Debtor> list = it.map((model) => Debtor.fromJson(model)).toList();
         return list;
       } else {
+        Get.snackbar(
+          'Error',
+          'Terjadi kesalahan',
+          icon: const Icon(
+            Icons.error,
+            color: Colors.white,
+          ),
+          backgroundColor: Colors.red,
+          duration: const Duration(seconds: 2),
+        );
         throw Exception('Failed to load post');
       }
     } catch (e) {
       debugPrint('error: $e');
+      Get.snackbar(
+        'Error',
+        'Terjadi kesalahan',
+        icon: const Icon(
+          Icons.error,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.red,
+        duration: const Duration(seconds: 2),
+      );
+
       throw Exception('Failed to load post');
     }
   }
@@ -180,12 +207,6 @@ class DebtorService {
         },
       );
       if (response.statusCode == 200) {
-        Get.back(
-          result: true,
-          canPop: true,
-          closeOverlays: true,
-        );
-
         AwesomeDialog(
           context: Get.context!,
           dialogBackgroundColor: primaryColor,

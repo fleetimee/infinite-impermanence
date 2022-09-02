@@ -1,14 +1,18 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 
 class DebiturEditView extends GetView<DebiturRealController> {
   DebiturEditView({Key? key}) : super(key: key);
@@ -18,7 +22,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Input Debitur'),
+        title: Text('Edit Debitur: ${data.peminjam1}'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -58,7 +62,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           name: 'peminjam1',
                           controller: controller.peminjam1.value =
                               TextEditingController(
-                            text: data.peminjam1,
+                            text: Get.arguments.peminjam1.toString(),
                           ),
                           validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
@@ -419,12 +423,27 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: FormBuilderTextField(
+                        // child: FormBuilderTextField(
+                        //   name: 'status_keluarga',
+                        //   controller: controller.statusKeluarga.value =
+                        //       TextEditingController(
+                        //     text: data.statusKeluarga,
+                        //   ),
+                        //   decoration: const InputDecoration(
+                        //     labelText: 'Status Keluarga',
+                        //     labelStyle: TextStyle(fontSize: 18),
+                        //     hintText: 'Masukkan Status Keluarga',
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: primaryColor),
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: Colors.grey),
+                        //     ),
+                        //   ),
+                        // ),
+                        child: FormBuilderDropdown(
                           name: 'status_keluarga',
-                          controller: controller.statusKeluarga.value =
-                              TextEditingController(
-                            text: data.statusKeluarga,
-                          ),
+                          initialValue: data.status_keluarga,
                           decoration: const InputDecoration(
                             labelText: 'Status Keluarga',
                             labelStyle: TextStyle(fontSize: 18),
@@ -436,10 +455,57 @@ class DebiturEditView extends GetView<DebiturRealController> {
                               borderSide: BorderSide(color: Colors.grey),
                             ),
                           ),
+                          items: controller.statusList
+                              .map((e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.statusKeluargaInput.value =
+                                value.toString();
+                            debugPrint(value.toString());
+                          },
+                          onSaved: (value) {
+                            controller.statusKeluargaInput.value =
+                                value.toString();
+                          },
                         ),
                       )
                     ],
                   ),
+                  const SizedBox(height: 16.0),
+                  FormBuilderTextField(
+                    name: 'jumlah_tanggungan',
+                    controller: controller.jumlahTanggungan.value =
+                        TextEditingController(
+                      text: data.jumlahTanggungan.toString(),
+                    ),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.min(1,
+                          errorText: 'Jumlah tanggungan minimal 1 orang'),
+                      FormBuilderValidators.max(99,
+                          errorText: 'Jumlah tanggungan maksimal 99 orang'),
+                      FormBuilderValidators.maxLength(2,
+                          errorText: 'Max 2 Karakter'),
+                    ]),
+                    decoration: const InputDecoration(
+                      labelText: 'Jumlah Tanggungan',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan Jumlah Tanggungan',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+
                   const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.only(right: 280),
@@ -743,6 +809,10 @@ class DebiturEditView extends GetView<DebiturRealController> {
                                     ?.saveAndValidate() ??
                                 false) {
                               controller.editDebitur(data.id.toString());
+                              controller.fetchDebitur();
+
+                              Get.back();
+
                               controller.fetchDebitur();
                             } else {
                               debugPrint(controller.formKey.currentState?.value

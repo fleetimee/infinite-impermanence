@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/widget/drawer.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../controllers/penghasilan_tetap_controller.dart';
 
 class PenghasilanTetapView extends GetView<PenghasilanTetapController> {

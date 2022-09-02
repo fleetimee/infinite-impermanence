@@ -1,25 +1,21 @@
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/service/debtor_service.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/debtor.dart';
+import 'package:akm/app/service/debtor_service.dart';
 
 class DebiturRealController extends GetxController {
-  RefreshController refreshController =
-      RefreshController(initialRefresh: false);
-
-  void onRefresh() async {
-    refreshController.refreshCompleted();
-  }
-
-  void onLoading() async {
-    fetchDebitur();
-    // fetch debitur
-    refreshController.loadComplete();
-  }
-
+  // List<Debtor> listDebtor = [].obs;
   final listDebtor = <Debtor>[].obs;
+  final selectedDebtor = <Debtor>[].obs;
+  // List<Debtor>? selectedDebtor = [];
+
   Debtor debtor = Debtor();
 
   final formKey = GlobalKey<FormBuilderState>();
@@ -39,7 +35,8 @@ class DebiturRealController extends GetxController {
   final tempatLahir = TextEditingController().obs;
   final tanggalLahir = DateTime.now().obs;
   final umur = TextEditingController().obs;
-  final statusKeluarga = TextEditingController().obs;
+  final statusKeluargaInput = ''.obs;
+  final jumlahTanggungan = TextEditingController().obs;
 
   final lamanyaBerusaha = TextEditingController().obs;
   final lokasiUsaha = TextEditingController().obs;
@@ -93,7 +90,8 @@ class DebiturRealController extends GetxController {
       'tempat_lahir': tempatLahir.value.text,
       'tanggal_lahir': tanggalLahir.value.toString(),
       'umur': umur.value.text,
-      'status_keluarga': statusKeluarga.value.text,
+      'status_keluarga': statusKeluargaInput.value.toString(),
+      'jumlah_tanggungan': jumlahTanggungan.value.text,
       'lamanya_berusaha': lamanyaBerusaha.value.text,
       'lokasi_usaha': lokasiUsaha.value.text,
       'jenis_usaha': jenisUsahaInput.value.toString(),
@@ -121,7 +119,7 @@ class DebiturRealController extends GetxController {
     fetchDebitur();
   }
 
-  void editDebitur(String id) {
+  void editDebitur(String id) async {
     final api = DebtorService();
     final data = {
       'peminjam1': peminjam1.value.text,
@@ -137,7 +135,8 @@ class DebiturRealController extends GetxController {
       'tempat_lahir': tempatLahir.value.text,
       'tanggal_lahir': tanggalLahir.value.toString(),
       'umur': umur.value.text,
-      'status_keluarga': statusKeluarga.value.text,
+      'status_keluarga': statusKeluargaInput.value.toString(),
+      'jumlah_tanggungan': jumlahTanggungan.value.text,
       'lamanya_berusaha': lamanyaBerusaha.value.text,
       'lokasi_usaha': lokasiUsaha.value.text,
       'jenis_usaha': jenisUsahaInput.value.toString(),
@@ -149,18 +148,12 @@ class DebiturRealController extends GetxController {
       'tgl_sekarang': tanggalSekarangInput.value.toString(),
       'deskripsi_debitur': deskripsiDebitur.value.text,
     };
-    api.updateDebtor(
-      id,
-      data,
-    );
 
-    fetchDebiturPerId(id);
+    await api.updateDebtor(id, data);
+
+    selectedDebtor.clear();
 
     update();
-
-    fetchDebitur();
-
-    listDebtor.refresh();
   }
 
   void fetchDebitur() async {
@@ -176,40 +169,23 @@ class DebiturRealController extends GetxController {
     update();
   }
 
-  void fetchDebiturPerId(String id) async {
-    final api = DebtorService();
-    final data = await api.getDebtorById(id);
-    peminjam1.value = TextEditingController(text: peminjam1.value.text);
-    ktp1.value = TextEditingController(text: ktp1.value.text);
-    peminjam2.value = TextEditingController(text: peminjam2.value.text);
-    ktp2.value = TextEditingController(text: ktp2.value.text);
-    pemilikAgunan1.value =
-        TextEditingController(text: pemilikAgunan1.value.text);
-    noKtp1.value = TextEditingController(text: noKtp1.value.text);
-    pemilikAgunan2.value =
-        TextEditingController(text: pemilikAgunan2.value.text);
-    noKtp2.value = TextEditingController(text: noKtp2.value.text);
-    alamat1.value = TextEditingController(text: alamat1.value.text);
-    alamat2.value = TextEditingController(text: alamat2.value.text);
-    tempatLahir.value = TextEditingController(text: tempatLahir.value.text);
-    tanggalLahir.value = tanggalLahir.value;
-    umur.value = TextEditingController(text: umur.value.text);
-    statusKeluarga.value =
-        TextEditingController(text: statusKeluarga.value.text);
-    lamanyaBerusaha.value =
-        TextEditingController(text: lamanyaBerusaha.value.text);
-    lokasiUsaha.value = TextEditingController(text: lokasiUsaha.value.text);
-    jenisUsahaInput.value = jenisUsahaInput.value;
-    bidangUsaha.value = TextEditingController(text: bidangUsaha.value.text);
-    pendidikanInput.value = pendidikanInput.value;
-    pekerjaan1.value = TextEditingController(text: pekerjaan1.value.text);
-    pekerjaan2.value = TextEditingController(text: pekerjaan2.value.text);
-    noSkpk.value = TextEditingController(text: noSkpk.value.text);
-    tanggalSekarangInput.value = tanggalSekarangInput.value;
-    deskripsiDebitur.value =
-        TextEditingController(text: deskripsiDebitur.value.text);
-
-    update();
+  void filterDebtor() async {
+    await FilterListDialog.display<Debtor>(
+      Get.context!,
+      listData: listDebtor,
+      selectedListData: selectedDebtor,
+      choiceChipLabel: (user) => user!.peminjam1,
+      validateSelectedItem: (list, val) => list!.contains(val),
+      onItemSearch: (user, query) {
+        return user.peminjam1!.toLowerCase().contains(query.toLowerCase());
+      },
+      onApplyButtonClick: (list) {
+        selectedDebtor.value = list!;
+        debugPrint('selected: $list');
+        update();
+        Get.back();
+      },
+    );
   }
 
   @override
@@ -232,7 +208,6 @@ class DebiturRealController extends GetxController {
     alamat2.value.dispose();
     tempatLahir.value.dispose();
     umur.value.dispose();
-    statusKeluarga.value.dispose();
     lamanyaBerusaha.value.dispose();
     lokasiUsaha.value.dispose();
     bidangUsaha.value.dispose();
@@ -269,5 +244,12 @@ class DebiturRealController extends GetxController {
     'S1',
     'S2',
     'S3',
+  ];
+
+  final statusList = [
+    'Kawin',
+    'Belum Kawin',
+    'Cerai Hidup',
+    'Cerai Mati',
   ];
 }

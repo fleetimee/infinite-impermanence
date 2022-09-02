@@ -169,7 +169,6 @@ class SideMenu extends StatelessWidget {
                 title: const Text('Keuangan Analisis'),
                 onTap: () {
                   Get.offNamed(Routes.KEUANGAN_ANALISIS);
-                  Get.back();
                 },
                 leading: const Icon(Icons.credit_card_outlined),
               ),
@@ -182,9 +181,17 @@ class SideMenu extends StatelessWidget {
                 leading: const Icon(Icons.print),
               ),
               ListTile(
-                title: const Text('Printing'),
+                title: const Text('Input Keuangan'),
                 onTap: () {
-                  Get.offNamed(Routes.DEBITUR_REAL);
+                  Get.toNamed(Routes.INPUT_KEUANGAN);
+                  Get.back();
+                },
+                leading: const Icon(Icons.print),
+              ),
+              ListTile(
+                title: const Text('Input Neraca'),
+                onTap: () {
+                  Get.offNamed(Routes.INPUT_NERACA);
                   Get.back();
                 },
                 leading: const Icon(Icons.print),

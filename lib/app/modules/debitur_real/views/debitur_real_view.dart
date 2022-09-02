@@ -1,17 +1,17 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
-// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/debitur_real_controller.dart';
 
 class DebiturRealView extends GetView<DebiturRealController> {
@@ -33,7 +33,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
               key: controller.formKey,
               onChanged: () {
                 controller.formKey.currentState!.save();
-                // debugPrint(controller.formKey.currentState!.value.toString());
+                debugPrint(controller.formKey.currentState!.value.toString());
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +83,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
                           ]),
                           controller: controller.ktp1.value,
                           decoration: const InputDecoration(
-                            labelText: 'KTP 1',
+                            labelText: 'Asal KTP 1',
                             labelStyle: TextStyle(fontSize: 18),
                             hintText: 'Kota Yogyakarta',
                             focusedBorder: OutlineInputBorder(
@@ -123,7 +123,7 @@ class DebiturRealView extends GetView<DebiturRealController> {
                           name: 'ktp2',
                           controller: controller.ktp2.value,
                           decoration: const InputDecoration(
-                            labelText: 'KTP 2',
+                            labelText: 'Asal KTP 2',
                             labelStyle: TextStyle(fontSize: 18),
                             hintText: 'Kabupaten Sleman',
                             focusedBorder: OutlineInputBorder(
@@ -166,8 +166,10 @@ class DebiturRealView extends GetView<DebiturRealController> {
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(),
                             FormBuilderValidators.numeric(),
+                            FormBuilderValidators.minLength(16,
+                                errorText: 'Min 16 Karakter'),
                             FormBuilderValidators.maxLength(16,
-                                errorText: 'Max 16 Karakter'),
+                                errorText: 'Max 16 Karakter')
                           ]),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
@@ -212,8 +214,10 @@ class DebiturRealView extends GetView<DebiturRealController> {
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(),
                             FormBuilderValidators.numeric(),
+                            FormBuilderValidators.minLength(16,
+                                errorText: 'Min 16 Karakter'),
                             FormBuilderValidators.maxLength(16,
-                                errorText: 'Max 16 Karakter'),
+                                errorText: 'Max 16 Karakter')
                           ]),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           controller: controller.noKtp2.value,
@@ -385,9 +389,23 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: FormBuilderTextField(
+                        // child: FormBuilderTextField(
+                        //   name: 'status_keluarga',
+                        //   controller: controller.statusKeluarga.value,
+                        //   decoration: const InputDecoration(
+                        //     labelText: 'Status Keluarga',
+                        //     labelStyle: TextStyle(fontSize: 18),
+                        //     hintText: 'Masukkan Status Keluarga',
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: primaryColor),
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: Colors.grey),
+                        //     ),
+                        //   ),
+                        // ),
+                        child: FormBuilderDropdown(
                           name: 'status_keluarga',
-                          controller: controller.statusKeluarga.value,
                           decoration: const InputDecoration(
                             labelText: 'Status Keluarga',
                             labelStyle: TextStyle(fontSize: 18),
@@ -399,9 +417,55 @@ class DebiturRealView extends GetView<DebiturRealController> {
                               borderSide: BorderSide(color: Colors.grey),
                             ),
                           ),
+                          items: controller.statusList
+                              .map((e) => DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            controller.statusKeluargaInput.value =
+                                value.toString();
+                            debugPrint(value.toString());
+                          },
+                          onSaved: (value) {
+                            controller.statusKeluargaInput.value =
+                                value.toString();
+                            debugPrint(value.toString());
+                          },
                         ),
                       )
                     ],
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  FormBuilderTextField(
+                    name: 'jumlah_tanggungan',
+                    controller: controller.jumlahTanggungan.value,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                      FormBuilderValidators.min(1,
+                          errorText: 'Jumlah tanggungan minimal 1 orang'),
+                      FormBuilderValidators.max(99,
+                          errorText: 'Jumlah tanggungan maksimal 99 orang'),
+                      FormBuilderValidators.maxLength(2,
+                          errorText: 'Max 2 Karakter'),
+                    ]),
+                    decoration: const InputDecoration(
+                      labelText: 'Jumlah Tanggungan',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan Jumlah Tanggungan',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
                   ),
                   const SizedBox(height: 25),
                   Padding(
@@ -594,7 +658,6 @@ class DebiturRealView extends GetView<DebiturRealController> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: FormBuilderValidators.compose(
                       [
-                        FormBuilderValidators.required(),
                         FormBuilderValidators.numeric(),
                         FormBuilderValidators.minLength(10,
                             errorText: 'Min 10 Digit'),

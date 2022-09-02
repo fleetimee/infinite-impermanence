@@ -13,7 +13,7 @@ import 'package:akm/app/themes/dark.dart';
 import 'package:akm/app/themes/light.dart';
 import 'app/routes/app_pages.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(

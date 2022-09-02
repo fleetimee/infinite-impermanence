@@ -5,7 +5,6 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const CREATE_DEBITUR = _Paths.CREATE_DEBITUR;
   static const SEARCH_NIK = _Paths.SEARCH_NIK;
   static const HOME = _Paths.HOME;
   static const PENGHASILAN_TETAP = _Paths.PENGHASILAN_TETAP;
@@ -22,10 +21,13 @@ abstract class Routes {
   static const DEBITUR_LIST = _Paths.DEBITUR_LIST;
   static const DEBITUR_DETAIL = _Paths.DEBITUR_DETAIL;
   static const DEBITUR_EDIT = _Paths.DEBITUR_EDIT;
+  static const DEBITUR_DETAIL_BANGET = _Paths.DEBITUR_DETAIL_BANGET;
+  static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
+  static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
+  static const INPUT_NERACA = _Paths.INPUT_NERACA;
 }
 
 abstract class _Paths {
-  static const CREATE_DEBITUR = '/create-debitur';
   static const SEARCH_NIK = '/search-nik';
   static const HOME = '/home';
   static const PENGHASILAN_TETAP = '/penghasilan-tetap';
@@ -42,4 +44,8 @@ abstract class _Paths {
   static const DEBITUR_LIST = '/debitur-list';
   static const DEBITUR_DETAIL = '/debitur-detail';
   static const DEBITUR_EDIT = '/debitur-edit';
+  static const DEBITUR_DETAIL_BANGET = '/debitur-detail-banget';
+  static const INPUT_KEUANGAN = '/input-keuangan';
+  static const PORSEKOT_TABLE = '/porsekot-table';
+  static const INPUT_NERACA = '/input-neraca';
 }

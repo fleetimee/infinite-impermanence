@@ -18,7 +18,52 @@ class InputNeracaController extends GetxController {
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
+    initialValue: 0,
   );
+
+  final piutangUsaha = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  final piutangLainnya = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  final persediaan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  final hutangUsaha = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  final hutangBank = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  final aktivaTetap = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  void hitungKasDanBank() {
+    final cashOnHandValue = int.parse(cashOnHand.text.replaceAll('.', ''));
+    final tabunganValue = int.parse(tabungan.text.replaceAll('.', ''));
+    final jumlahKasDanBankValue = cashOnHandValue + tabunganValue;
+
+    jumlahKasDanBank.text = jumlahKasDanBankValue.toString();
+  }
 
   @override
   void onInit() {

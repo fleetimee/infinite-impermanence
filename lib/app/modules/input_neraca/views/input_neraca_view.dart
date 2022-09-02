@@ -3,6 +3,7 @@ import 'package:akm/app/widget/drawer.dart';
 import 'package:data_table_2/paginated_data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
@@ -62,6 +63,11 @@ class InputNeracaView extends GetView<InputNeracaController> {
                         decoration: const InputDecoration(
                           labelText: 'Pilih Tanggal',
                           labelStyle: subtitle,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
                         ),
                         inputType: InputType.date,
                         format: DateFormat('dd MMMM yyyy'),
@@ -110,6 +116,10 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           FormBuilderTextField(
                             name: 'kas_on_hand',
                             controller: controller.cashOnHand,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
                           ),
                         ),
                       ]),
@@ -117,14 +127,23 @@ class InputNeracaView extends GetView<InputNeracaController> {
                         const DataCell(Text('Tabungan')),
                         DataCell(
                           FormBuilderTextField(
-                            name: 'kas_on_hand',
+                            name: 'tabungan',
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
                             controller: controller.tabungan,
+                            keyboardType: TextInputType.number,
                           ),
                         ),
                       ]),
-                      const DataRow2(cells: [
-                        DataCell(Text('Jumlah')),
-                        DataCell(Text('Rp. 100.000')),
+                      DataRow2(cells: [
+                        const DataCell(Text('Jumlah')),
+                        DataCell(FormBuilderTextField(
+                          name: 'jumlah_kas_bank',
+                          enabled: false,
+                          controller: controller.jumlahKasDanBank,
+                          keyboardType: TextInputType.number,
+                        )),
                       ]),
                       DataRow2(cells: [
                         const DataCell(Text('')),
@@ -143,7 +162,9 @@ class InputNeracaView extends GetView<InputNeracaController> {
                                 maximumSize:
                                     const Size.fromWidth(double.infinity),
                                 fixedSize: const Size(500, 5)),
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.hitungKasDanBank();
+                            },
                           ),
                         ),
                       ]),
@@ -181,13 +202,26 @@ class InputNeracaView extends GetView<InputNeracaController> {
                         DataCell(
                           FormBuilderTextField(
                             name: 'piutang',
-                            inputFormatters: const [],
+                            controller: controller.piutangLainnya,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
                           ),
                         ),
                       ]),
-                      const DataRow2(cells: [
-                        DataCell(Text('Jumlah')),
-                        DataCell(Text('Rp. 100.000')),
+                      DataRow2(cells: [
+                        const DataCell(Text('Jumlah')),
+                        DataCell(
+                          FormBuilderTextField(
+                            name: 'jumlah_piutang',
+                            enabled: false,
+                            controller: controller.piutangLainnya,
+                            keyboardType: TextInputType.number,
+                            decoration:
+                                const InputDecoration(hintText: 'Hasil disini'),
+                          ),
+                        ),
                       ]),
                     ],
                   ),
@@ -220,10 +254,19 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       DataColumn2(label: Text('Keterangan')),
                       DataColumn2(label: Text('Nilai (Rp)')),
                     ],
-                    rows: const [
+                    rows: [
                       DataRow2(cells: [
-                        DataCell(Text('Jumlah')),
-                        DataCell(Text('Rp. 100.000')),
+                        const DataCell(Text('Jumlah')),
+                        DataCell(
+                          FormBuilderTextField(
+                            name: 'jumlah_persediaan',
+                            controller: controller.persediaan,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
+                          ),
+                        ),
                       ]),
                     ],
                   ),
@@ -256,10 +299,19 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       DataColumn2(label: Text('Keterangan')),
                       DataColumn2(label: Text('Nilai (Rp)')),
                     ],
-                    rows: const [
+                    rows: [
                       DataRow2(cells: [
-                        DataCell(Text('Jumlah')),
-                        DataCell(Text('Rp. 100.000')),
+                        const DataCell(Text('Jumlah')),
+                        DataCell(
+                          FormBuilderTextField(
+                            name: 'jumlah_hutang_usaha',
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
+                            controller: controller.hutangUsaha,
+                            keyboardType: TextInputType.number,
+                          ),
+                        ),
                       ]),
                     ],
                   ),
@@ -292,10 +344,19 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       DataColumn2(label: Text('Keterangan')),
                       DataColumn2(label: Text('Nilai (Rp)')),
                     ],
-                    rows: const [
+                    rows: [
                       DataRow2(cells: [
-                        DataCell(Text('Jumlah')),
-                        DataCell(Text('Rp. 100.000')),
+                        const DataCell(Text('Jumlah')),
+                        DataCell(
+                          FormBuilderTextField(
+                            name: 'jumlah_persediaan',
+                            controller: controller.hutangBank,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
+                          ),
+                        ),
                       ]),
                     ],
                   ),
@@ -328,13 +389,39 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       DataColumn2(label: Text('Keterangan')),
                       DataColumn2(label: Text('Nilai (Rp)')),
                     ],
-                    rows: const [
+                    rows: [
                       DataRow2(cells: [
-                        DataCell(Text('Jumlah')),
-                        DataCell(Text('Rp. 100.000')),
+                        const DataCell(Text('Jumlah')),
+                        DataCell(
+                          FormBuilderTextField(
+                            name: 'jumlah_persediaan',
+                            controller: controller.aktivaTetap,
+                            keyboardType: TextInputType.number,
+                            decoration: const InputDecoration(
+                              hintText: 'Input disini',
+                            ),
+                          ),
+                        ),
                       ]),
                     ],
                   ),
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                OutlinedButton.icon(
+                  icon: const Icon(FontAwesomeIcons.paperPlane),
+                  label: const Text(
+                    "Submit",
+                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                      foregroundColor: secondaryColor,
+                      backgroundColor: primaryColor,
+                      shape: const StadiumBorder(),
+                      maximumSize: const Size.fromWidth(double.infinity),
+                      fixedSize: const Size(500, 50)),
+                  onPressed: () {},
                 ),
               ],
             ),

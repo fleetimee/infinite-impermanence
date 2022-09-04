@@ -350,7 +350,7 @@ class KeuanganAnalisisController extends GetxController
         ),
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.bottom,
         duration: const Duration(seconds: 2),
       );
     }
@@ -366,7 +366,7 @@ class KeuanganAnalisisController extends GetxController
         ),
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.bottom,
         duration: const Duration(seconds: 2),
       );
     }
@@ -565,7 +565,7 @@ class KeuanganAnalisisController extends GetxController
           ),
           backgroundColor: Colors.red,
           colorText: Colors.white,
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.bottom,
           duration: const Duration(seconds: 2),
         );
       }
@@ -645,7 +645,7 @@ class KeuanganAnalisisController extends GetxController
         ),
         backgroundColor: Colors.red,
         colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.bottom,
         duration: const Duration(seconds: 2),
       );
     }
@@ -873,7 +873,7 @@ class KeuanganAnalisisController extends GetxController
             Icons.check,
             color: Colors.white,
           ),
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.bottom,
           colorText: secondaryColor,
           duration: const Duration(seconds: 2),
         );
@@ -938,7 +938,7 @@ class KeuanganAnalisisController extends GetxController
             Icons.check,
             color: Colors.white,
           ),
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.bottom,
           colorText: secondaryColor,
           duration: const Duration(seconds: 2),
         );
@@ -1072,7 +1072,7 @@ class KeuanganAnalisisController extends GetxController
             Icons.check,
             color: Colors.white,
           ),
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.bottom,
           colorText: secondaryColor,
           duration: const Duration(seconds: 2),
         );
@@ -1127,7 +1127,7 @@ class KeuanganAnalisisController extends GetxController
           Icons.check,
           color: Colors.white,
         ),
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.bottom,
         colorText: secondaryColor,
         duration: const Duration(seconds: 2),
       );
@@ -1178,7 +1178,7 @@ class KeuanganAnalisisController extends GetxController
           Icons.check,
           color: Colors.white,
         ),
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.bottom,
         colorText: secondaryColor,
         duration: const Duration(seconds: 2),
       );
@@ -1237,7 +1237,7 @@ class KeuanganAnalisisController extends GetxController
           Icons.check,
           color: Colors.white,
         ),
-        snackPosition: SnackPosition.BOTTOM,
+        snackPosition: SnackPosition.bottom,
         colorText: secondaryColor,
         duration: const Duration(seconds: 2),
       );

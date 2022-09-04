@@ -106,7 +106,7 @@ class ThirdRow extends StatelessWidget {
               'This feature is still under development',
               backgroundColor: primaryColor,
               colorText: secondaryColor,
-              snackPosition: SnackPosition.TOP,
+              snackPosition: SnackPosition.top,
               duration: const Duration(seconds: 2),
               icon: const Icon(
                 Icons.construction,

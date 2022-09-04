@@ -1,6 +1,6 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/widget/drawer.dart';
-import 'package:data_table_2/paginated_data_table_2.dart';
+import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -349,7 +349,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                         const DataCell(Text('Jumlah')),
                         DataCell(
                           FormBuilderTextField(
-                            name: 'jumlah_persediaan',
+                            name: 'hutang_bank',
                             controller: controller.hutangBank,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
@@ -394,7 +394,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                         const DataCell(Text('Jumlah')),
                         DataCell(
                           FormBuilderTextField(
-                            name: 'jumlah_persediaan',
+                            name: 'aktiva_tetap',
                             controller: controller.aktivaTetap,
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(

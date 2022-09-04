@@ -35,3 +35,9 @@ const TextStyle subtitle = TextStyle(
   fontWeight: FontWeight.w200,
   color: Colors.grey,
 );
+
+const TextStyle subtitle2 = TextStyle(
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
+);

@@ -196,6 +196,22 @@ class SideMenu extends StatelessWidget {
                 },
                 leading: const Icon(Icons.print),
               ),
+              ListTile(
+                title: const Text('Input Rugi Laba'),
+                onTap: () {
+                  Get.offNamed(Routes.RUGI_LABA);
+                  Get.back();
+                },
+                leading: const Icon(Icons.print),
+              ),
+              ListTile(
+                title: const Text('Porsekot'),
+                onTap: () {
+                  Get.offNamed(Routes.PORSEKOT_TABLE);
+                  Get.back();
+                },
+                leading: const Icon(Icons.print),
+              ),
             ],
           ),
           const Divider(

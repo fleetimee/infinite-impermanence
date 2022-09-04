@@ -32,6 +32,8 @@ import '../modules/printing/bindings/printing_binding.dart';
 import '../modules/printing/views/printing_view.dart';
 import '../modules/pro_pengajuan_approve/bindings/pro_pengajuan_approve_binding.dart';
 import '../modules/pro_pengajuan_approve/views/pro_pengajuan_approve_view.dart';
+import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
+import '../modules/rugi_laba/views/rugi_laba_view.dart';
 import '../modules/search_nik/bindings/search_nik_binding.dart';
 import '../modules/search_nik/views/search_nik_view.dart';
 import '../modules/uploads/bindings/uploads_binding.dart';
@@ -178,6 +180,11 @@ class AppPages {
       name: _Paths.INPUT_NERACA,
       page: () => const InputNeracaView(),
       binding: InputNeracaBinding(),
+    ),
+    GetPage(
+      name: _Paths.RUGI_LABA,
+      page: () => const RugiLabaView(),
+      binding: RugiLabaBinding(),
     ),
   ];
 }

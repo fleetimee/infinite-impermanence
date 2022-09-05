@@ -364,7 +364,7 @@ class PorsekotTableController extends GetxController {
 
     // Hitung jumlah angsuran
     final parseAngsuranPokok4 =
-        int.parse(angsuranPokok4.text.replaceAll('.', ''));
+        double.parse(angsuranPokok4.text.replaceAll('.', ''));
     final parseAngsuranBunga4 =
         int.parse(angsuranBunga4.text.replaceAll('.', ''));
 

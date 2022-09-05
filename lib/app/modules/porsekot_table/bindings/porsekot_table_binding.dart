@@ -1,5 +1,7 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import '../controllers/porsekot_table_controller.dart';
 
 class PorsekotTableBinding extends Binding {

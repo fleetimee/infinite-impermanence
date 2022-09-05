@@ -1,6 +1,9 @@
+// 🐦 Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:finance/finance.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 

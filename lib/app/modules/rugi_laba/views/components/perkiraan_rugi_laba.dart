@@ -1,6 +1,11 @@
-import 'package:akm/app/common/style.dart';
-import 'package:data_table_2/data_table_2.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:data_table_2/data_table_2.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 
 class PerkiraanLabaRugi extends StatelessWidget {
   const PerkiraanLabaRugi({super.key});

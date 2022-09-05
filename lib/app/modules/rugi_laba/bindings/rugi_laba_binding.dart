@@ -1,5 +1,7 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import '../controllers/rugi_laba_controller.dart';
 
 class RugiLabaBinding extends Binding {

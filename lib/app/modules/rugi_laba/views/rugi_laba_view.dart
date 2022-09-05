@@ -1,12 +1,15 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_neraca.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_rugi_laba.dart';
-import 'package:data_table_2/data_table_2.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
+import 'package:data_table_2/data_table_2.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_neraca.dart';
+import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_rugi_laba.dart';
 import '../controllers/rugi_laba_controller.dart';
 
 class RugiLabaView extends GetView<RugiLabaController> {

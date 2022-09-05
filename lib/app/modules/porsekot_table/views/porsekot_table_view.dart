@@ -11,10 +11,25 @@ import 'package:intl/intl.dart';
 import '../controllers/porsekot_table_controller.dart';
 
 class PorsekotTableView extends GetView<PorsekotTableController> {
-  const PorsekotTableView({Key? key}) : super(key: key);
+  PorsekotTableView({Key? key}) : super(key: key);
+
+  late ScrollController _scrollController;
+
+  void _scrollToTop() {
+    _scrollController.animateTo(0,
+        duration: const Duration(seconds: 3), curve: Curves.linear);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // Back to top floating button
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     _scrollToTop();
+      //   },
+      //   child: const Icon(Icons.arrow_upward),
+      // ),
       appBar: AppBar(
         title: const Text('PorsekotTableView'),
         centerTitle: true,
@@ -75,6 +90,13 @@ class PorsekotTableView extends GetView<PorsekotTableController> {
                         Expanded(
                             child: FormBuilderTextField(
                           name: 'jangka_waktu',
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: FormBuilderValidators.compose([
+                            FormBuilderValidators.required(),
+                            FormBuilderValidators.max(48,
+                                errorText: 'Max 48 bln'),
+                            FormBuilderValidators.numeric(),
+                          ]),
                           controller: controller.jangkaWaktu,
                           decoration: const InputDecoration(
                             suffix: Text('Bulan'),
@@ -105,6 +127,16 @@ class PorsekotTableView extends GetView<PorsekotTableController> {
                             name: 'turun_pokok',
                             controller: controller.turunPokok,
                             textAlign: TextAlign.center,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: FormBuilderValidators.compose([
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.numeric(),
+                              FormBuilderValidators.match(
+                                r'^(1|3|4|6|12)$',
+                                errorText: 'Harus 1,3,4,6,12',
+                              ),
+                            ]),
                             decoration: const InputDecoration(
                               labelText: 'Turun Pokok',
                               prefix: Text('Setiap'),
@@ -255,6 +287,169 @@ class PorsekotTableView extends GetView<PorsekotTableController> {
                   height: 16.0,
                 ),
                 TabelPorsekot(),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        'Rerata per bulan',
+                        style: subtitle2,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Expanded(
+                      child: FormBuilderTextField(
+                        name: 'rerata_per_bulan',
+                        enabled: false,
+                        controller: controller.rerataPerbulan,
+                        decoration: const InputDecoration(
+                          labelText: 'Rerata per bulan',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        'Umum',
+                        style: subtitle2,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Expanded(
+                      child: FormBuilderTextField(
+                        name: 'umum',
+                        enabled: false,
+                        controller: controller.umum,
+                        decoration: const InputDecoration(
+                          labelText: 'Umum',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        'Selisih',
+                        style: subtitle2,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Expanded(
+                      child: FormBuilderTextField(
+                        name: 'selisih',
+                        enabled: false,
+                        controller: controller.selisih,
+                        decoration: const InputDecoration(
+                          labelText: 'Selisih',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        'Bunga',
+                        style: subtitle2,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Expanded(
+                      child: FormBuilderTextField(
+                        name: 'bunga_keseluruhan',
+                        enabled: false,
+                        controller: controller.bungaKeseluruhan,
+                        decoration: const InputDecoration(
+                          suffixIcon: Icon(FontAwesomeIcons.percent),
+                          labelText: 'Bunga Keseluruhan',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                      child: Text(
+                        '',
+                        style: subtitle2,
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16.0,
+                    ),
+                    Expanded(
+                      // child: FormBuilderTextField(
+                      //   name: 'bunga_final',
+                      //   enabled: false,
+                      //   controller: controller.bungaFinal,
+                      //   decoration: const InputDecoration(
+                      //     suffixIcon: Icon(FontAwesomeIcons.percent),
+                      //     labelText: 'Bunga Final',
+                      //     border: OutlineInputBorder(
+                      //       borderRadius: BorderRadius.all(
+                      //         Radius.circular(10.0),
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   keyboardType: TextInputType.number,
+                      // ),
+                      child: Container(),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

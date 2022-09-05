@@ -173,7 +173,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PORSEKOT_TABLE,
-      page: () => const PorsekotTableView(),
+      page: () => PorsekotTableView(),
       binding: PorsekotTableBinding(),
     ),
     GetPage(

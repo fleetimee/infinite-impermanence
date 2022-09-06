@@ -14,25 +14,11 @@ import 'package:akm/app/modules/porsekot_table/views/components/table_porsekot.d
 import '../controllers/porsekot_table_controller.dart';
 
 class PorsekotTableView extends GetView<PorsekotTableController> {
-  PorsekotTableView({Key? key}) : super(key: key);
-
-  late ScrollController _scrollController;
-
-  void _scrollToTop() {
-    _scrollController.animateTo(0,
-        duration: const Duration(seconds: 3), curve: Curves.linear);
-  }
+  const PorsekotTableView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Back to top floating button
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     _scrollToTop();
-      //   },
-      //   child: const Icon(Icons.arrow_upward),
-      // ),
       appBar: AppBar(
         title: const Text('PorsekotTableView'),
         centerTitle: true,

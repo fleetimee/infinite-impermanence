@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -6,9 +7,13 @@ import 'package:data_table_2/data_table_2.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
 
 class PerkiraanLabaRugi extends StatelessWidget {
-  const PerkiraanLabaRugi({super.key});
+  PerkiraanLabaRugi({super.key});
+
+  final controller = Get.put(RugiLabaController());
 
   @override
   Widget build(BuildContext context) {
@@ -39,32 +44,48 @@ class PerkiraanLabaRugi extends StatelessWidget {
                 label: SizedBox.shrink(),
               ),
             ],
-            rows: const [
+            rows: [
               DataRow2(
                 cells: [
-                  DataCell(Text('Omzet penjualan rata - rata :')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Rp. 1.000.000')),
+                  const DataCell(Text('Omzet penjualan rata - rata :')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'omzet_penjualan_rata_rata',
+                      controller: controller.omzetPerBulan,
+                    ),
+                  ),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(Text('Harga pokok penjualan')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Rp. 0')),
+                  const DataCell(Text('Harga pokok penjualan')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'harga_pokok_penjualan',
+                      controller: controller.hargaPokokPenjualan,
+                    ),
+                  ),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(SizedBox.shrink()),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Laba Kotor')),
-                  DataCell(Text('Rp. 0')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(Text('Laba Kotor')),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'laba_kotor',
+                      readOnly: true,
+                      controller: controller.labaKotor,
+                    ),
+                  ),
                 ],
               ),
-              DataRow2(
+              const DataRow2(
                 cells: [
                   DataCell(Text('Biaya :')),
                   DataCell(SizedBox.shrink()),
@@ -74,58 +95,97 @@ class PerkiraanLabaRugi extends StatelessWidget {
               ),
               DataRow2(
                 cells: [
-                  DataCell(Text('1. Biaya Tenaga Kerja')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('100000')),
-                  DataCell(SizedBox.shrink()),
+                  const DataCell(Text('1. Biaya Tenaga Kerja')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'biaya_tenaga_kerja',
+                      controller: controller.biayaTenagaKerja,
+                    ),
+                  ),
+                  const DataCell(SizedBox.shrink()),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(Text('2. Biaya Operasional')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('1000000')),
-                  DataCell(SizedBox.shrink()),
+                  const DataCell(Text('2. Biaya Operasional')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'biaya_operasional',
+                      controller: controller.biayaOperasional,
+                    ),
+                  ),
+                  const DataCell(SizedBox.shrink()),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(Text('2. Biaya Lainnya')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('1000000')),
-                  DataCell(SizedBox.shrink()),
+                  const DataCell(Text('2. Biaya Lainnya')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'biaya_lainnya',
+                      controller: controller.biayaLainnya,
+                    ),
+                  ),
+                  const DataCell(SizedBox.shrink()),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Total Biaya')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('1000000')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(Text('Total Biaya')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'total_biaya',
+                      readOnly: true,
+                      controller: controller.totalBiaya,
+                    ),
+                  ),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Laba sebelum pajak (EBIT)')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('1000000')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(Text('Laba sebelum pajak (EBIT)')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'laba_sebelum_pajak',
+                      readOnly: true,
+                      controller: controller.labaSebelumPajak,
+                    ),
+                  ),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Perkiraan Pajak')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('1000000')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(Text('Perkiraan Pajak')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'perkiraan_pajak',
+                      readOnly: true,
+                      controller: controller.perkiraanPajak,
+                    ),
+                  ),
                 ],
               ),
               DataRow2(
                 cells: [
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('Laba setelah pajak')),
-                  DataCell(SizedBox.shrink()),
-                  DataCell(Text('1000000')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(Text('Laba setelah pajak')),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'laba_setelah_pajak',
+                      readOnly: true,
+                      controller: controller.labaSetelahPajak,
+                    ),
+                  ),
                 ],
               ),
             ],

@@ -1,4 +1,269 @@
 // 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:get/get.dart';
 
-class RugiLabaController extends GetxController {}
+class RugiLabaController extends GetxController {
+  final aktivaLancarKas = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final aktivaBank = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final aktivaPiutangUsaha = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final aktivaPersediaan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final hutangUsaha = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final hutangBank = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final hutangLainnya = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final jumlahAktivaLancar = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final jumlahHutang = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final jumlahAktivaTetap = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final modal = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final jumlahAktiva = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final jumlahPasiva = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final omzetPerBulan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final hargaPokokPenjualan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final labaKotor = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final biayaTenagaKerja = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final biayaOperasional = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final biayaLainnya = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final totalBiaya = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final labaSebelumPajak = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final perkiraanPajak = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final labaSetelahPajak = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final biayaHidupRataRata = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  final sisaPenghasilanBersih = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  void result() {
+    // sumAktivaLancar();
+    // sumAktiva();
+    // sumJumlahHutang();
+    // sumModal();
+    // sumPasiva();
+
+    sumLabaKotor();
+    sumTotalBiaya();
+    sumLabaSebelumPajak();
+    sumPerkiraanPajak();
+    sumLabaSetelahPajak();
+    sumSisaPenghasilan();
+  }
+
+  void sumAktivaLancar() {
+    final parseAktivaLancarKas =
+        double.parse(aktivaLancarKas.text.replaceAll('.', ''));
+    final parseAktivaLancarBank =
+        double.parse(aktivaBank.text.replaceAll('.', ''));
+    final parseAktivaLancarPiutangUsaha =
+        double.parse(aktivaPiutangUsaha.text.replaceAll('.', ''));
+    final parseAktivaLancarPersediaan =
+        double.parse(aktivaPersediaan.text.replaceAll('.', ''));
+
+    final sumAktivaLancar = parseAktivaLancarKas +
+        parseAktivaLancarBank +
+        parseAktivaLancarPiutangUsaha +
+        parseAktivaLancarPersediaan;
+
+    jumlahAktivaLancar.text = sumAktivaLancar.toStringAsFixed(0);
+  }
+
+  void sumAktiva() {
+    final parseAktivaLancar =
+        double.parse(jumlahAktivaLancar.text.replaceAll('.', ''));
+    final parseAktivaTetap =
+        double.parse(jumlahAktivaTetap.text.replaceAll('.', ''));
+
+    final sumAktiva = parseAktivaLancar + parseAktivaTetap;
+
+    jumlahAktiva.text = sumAktiva.toStringAsFixed(0);
+  }
+
+  void sumJumlahHutang() {
+    final parseHutangDagang =
+        double.parse(hutangUsaha.text.replaceAll('.', ''));
+    final parseHutangBank = double.parse(hutangBank.text.replaceAll('.', ''));
+    final parseHutangLainnya =
+        double.parse(hutangLainnya.text.replaceAll('.', ''));
+
+    final sumHutang = parseHutangDagang + parseHutangBank + parseHutangLainnya;
+
+    jumlahHutang.text = sumHutang.toStringAsFixed(0);
+  }
+
+  void sumModal() {
+    final parseAktiva = double.parse(jumlahAktiva.text.replaceAll('.', ''));
+    final parseHutang = double.parse(jumlahHutang.text.replaceAll('.', ''));
+
+    final sumModal = parseAktiva - parseHutang;
+
+    modal.text = sumModal.toStringAsFixed(0);
+  }
+
+  void sumPasiva() {
+    final parseHutang = double.parse(jumlahHutang.text.replaceAll('.', ''));
+    final parseModal = double.parse(modal.text.replaceAll('.', ''));
+
+    final sumPasiva = parseHutang + parseModal;
+
+    jumlahPasiva.text = sumPasiva.toStringAsFixed(0);
+  }
+
+  void sumLabaKotor() {
+    final parseOmzetPerBulan =
+        double.parse(omzetPerBulan.text.replaceAll('.', ''));
+    final parseHpp = double.parse(hargaPokokPenjualan.text.replaceAll('.', ''));
+
+    final result = parseOmzetPerBulan - parseHpp;
+
+    labaKotor.text = result.toStringAsFixed(0);
+  }
+
+  void sumTotalBiaya() {
+    final parseBiayaTenagaKerja =
+        double.parse(biayaTenagaKerja.text.replaceAll('.', ''));
+    final parseBiayaOperasional =
+        double.parse(biayaOperasional.text.replaceAll('.', ''));
+    final parseBiayaLainnya =
+        double.parse(biayaLainnya.text.replaceAll('.', ''));
+
+    final hasil =
+        parseBiayaTenagaKerja + parseBiayaOperasional + parseBiayaLainnya;
+
+    totalBiaya.text = hasil.toStringAsFixed(0);
+  }
+
+  void sumLabaSebelumPajak() {
+    final parseLabaKotor = double.parse(labaKotor.text.replaceAll('.', ''));
+    final parseTotalBiaya = double.parse(totalBiaya.text.replaceAll('.', ''));
+
+    final hasil = parseLabaKotor - parseTotalBiaya;
+
+    labaSebelumPajak.text = hasil.toStringAsFixed(0);
+  }
+
+  void sumPerkiraanPajak() {
+    final parseLabaSebelumPajak =
+        double.parse(labaSebelumPajak.text.replaceAll('.', ''));
+
+    final hasil = (0.05 * parseLabaSebelumPajak);
+
+    perkiraanPajak.text = hasil.toStringAsFixed(0);
+  }
+
+  void sumLabaSetelahPajak() {
+    final parseLabaSebelumPajak =
+        double.parse(labaSebelumPajak.text.replaceAll('.', ''));
+    final parsePerkiraanPajak =
+        double.parse(perkiraanPajak.text.replaceAll('.', ''));
+
+    final hasil = parseLabaSebelumPajak - parsePerkiraanPajak;
+
+    labaSetelahPajak.text = hasil.toStringAsFixed(0);
+  }
+
+  void sumSisaPenghasilan() {
+    final parseLabaSetelahPajak =
+        double.parse(labaSetelahPajak.text.replaceAll('.', ''));
+    final parseBiayaHidupRataRata =
+        double.parse(biayaHidupRataRata.text.replaceAll('.', ''));
+
+    final hasil = parseLabaSetelahPajak - parseBiayaHidupRataRata;
+
+    sisaPenghasilanBersih.text = hasil.toStringAsFixed(0);
+  }
+}

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,9 +8,12 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:get/get.dart';
 
 class PerkiraanNeracaTabel extends StatelessWidget {
-  const PerkiraanNeracaTabel({super.key});
+  PerkiraanNeracaTabel({super.key});
+
+  final controller = Get.put(RugiLabaController());
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +73,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'kas',
+                      name: 'aktiva_kas',
+                      controller: controller.aktivaLancarKas,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -83,7 +88,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_lancar',
+                      name: 'hutang_usaha',
+                      controller: controller.hutangUsaha,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -97,7 +103,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   const DataCell(Text('2. Bank')),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_tetap',
+                      name: 'aktiva_bank',
+                      controller: controller.aktivaBank,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -107,7 +114,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   const DataCell(Text('2. Hutang Bank')),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_lancar',
+                      name: 'hutang_bank',
+                      controller: controller.hutangBank,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -123,7 +131,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_tetap',
+                      name: 'aktiva_piutang_usaha',
+                      controller: controller.aktivaPiutangUsaha,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -133,7 +142,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   const DataCell(Text('3. Hutang lainnya')),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_lancar',
+                      name: 'hutang_lainnya',
+                      controller: controller.hutangLainnya,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -149,7 +159,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_tetap',
+                      name: 'aktiva_persediaan',
+                      controller: controller.aktivaPersediaan,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -168,7 +179,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_tetap',
+                      name: 'jumlah_aktiva_lancar',
+                      controller: controller.jumlahAktivaLancar,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -178,28 +190,46 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   const DataCell(
                     Text('Jumlah Hutang'),
                   ),
-                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'jumlah_hutang',
+                      controller: controller.jumlahHutang,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
+                    ),
+                  ),
                 ],
               ),
               emptyRow(),
-              const DataRow2(
+              DataRow2(
                 cells: [
-                  DataCell(
+                  const DataCell(
                     Text(
                       'Aktiva Tetap',
                       style: heading2,
                     ),
                   ),
-                  DataCell(
+                  const DataCell(
                     SizedBox.shrink(),
                   ),
-                  DataCell(
+                  const DataCell(
                     Text(
-                      'Hutang',
+                      'Modal',
                       style: heading2,
                     ),
                   ),
-                  DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'modal',
+                      controller: controller.modal,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
+                    ),
+                  ),
                 ],
               ),
               emptyRow(),
@@ -210,7 +240,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_tetap',
+                      name: 'jumlah_aktiva_tetap',
+                      controller: controller.jumlahAktivaTetap,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
@@ -220,7 +251,16 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   const DataCell(
                     Text('Jumlah Modal'),
                   ),
-                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'modal_result',
+                      controller: controller.modal,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
+                    ),
+                  ),
                 ],
               ),
               DataRow2(
@@ -235,6 +275,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'aktiva_tetap',
                       keyboardType: TextInputType.number,
+                      controller: controller.jumlahAktiva,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
                       ),
@@ -248,7 +289,8 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   ),
                   DataCell(
                     FormBuilderTextField(
-                      name: 'aktiva_tetap',
+                      name: 'jumlah_pasiva',
+                      controller: controller.jumlahPasiva,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',

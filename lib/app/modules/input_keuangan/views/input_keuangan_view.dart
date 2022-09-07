@@ -16,6 +16,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
   InputKeuanganView({Key? key}) : super(key: key);
 
   final pageController = PageController(initialPage: 0);
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {

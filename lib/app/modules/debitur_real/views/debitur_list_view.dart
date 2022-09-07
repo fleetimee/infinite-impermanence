@@ -246,7 +246,9 @@ class DetailDebitur extends StatelessWidget {
                           foregroundColor: Colors.blueGrey,
                         ),
                         onPressed: () {
-                          Get.toNamed(Routes.INPUT_KEUANGAN, arguments: debtor);
+                          Get.toNamed(Routes.INPUT_KEUANGAN,
+                              // Send debtor id to input keuangan page
+                              arguments: debtor.id);
                         },
                       ),
                     ),

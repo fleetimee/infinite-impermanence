@@ -283,8 +283,8 @@ class PorsekotTableController extends GetxController {
         parseAngsuranBunga48;
 
     // Rounded to nearest 1000
-    final hasilSumAngsuranBungaRounded =
-        (hasilSumAngsuranBunga / 1000).round() * 1000;
+    // final hasilSumAngsuranBungaRounded =
+    //     (hasilSumAngsuranBunga / 1000).round() * 1000;
 
     sumAngsuranBunga.text = hasilSumAngsuranBunga.toStringAsFixed(0);
 

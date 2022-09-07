@@ -183,7 +183,8 @@ class DebiturRealController extends GetxController {
         selectedDebtor.value = list!;
         debugPrint('selected: $list');
         update();
-        Get.back();
+
+        Navigator.pop(Get.context!);
       },
     );
   }

@@ -36,9 +36,8 @@ class Debtor {
     this.noSkpk,
     this.tglSekarang,
     this.deskripsiDebitur,
-    this.nonfixed,
-    this.fixed,
     this.createdBy,
+    this.inputKeuangan,
   });
 
   int? id;
@@ -69,8 +68,9 @@ class Debtor {
   String? noSkpk;
   DateTime? tglSekarang;
   String? deskripsiDebitur;
-  List<dynamic>? nonfixed;
-  List<dynamic>? fixed;
+
+  List<InputKeuangan>? inputKeuangan;
+
   int? createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
@@ -101,8 +101,8 @@ class Debtor {
         noSkpk: json["no_skpk"],
         tglSekarang: DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
-        nonfixed: List<dynamic>.from(json["nonfixed"].map((x) => x)),
-        fixed: List<dynamic>.from(json["fixed"].map((x) => x)),
+        inputKeuangan: List<InputKeuangan>.from(
+            json["inputKeuangan"].map((x) => InputKeuangan.fromJson(x))),
         createdBy: json["createdBy"],
       );
 
@@ -136,11 +136,27 @@ class Debtor {
         "tgl_sekarang":
             "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
-        "nonfixed": List<dynamic>.from(nonfixed!.map((x) => x)),
-        "fixed": List<dynamic>.from(fixed!.map((x) => x)),
+        "inputKeuangan":
+            List<dynamic>.from(inputKeuangan!.map((x) => x.toJson())),
         "createdBy": createdBy,
       };
 
   @override
   String toString() => toJson().toString();
+}
+
+class InputKeuangan {
+  InputKeuangan({
+    this.id,
+  });
+
+  int? id;
+
+  factory InputKeuangan.fromJson(Map<String, dynamic> json) => InputKeuangan(
+        id: json["id"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+      };
 }

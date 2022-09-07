@@ -19,53 +19,44 @@ class PorsekotTableController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
-
   final sumAngsuranPokok = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-
   final sumAngsuranBunga = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-
   final sumAngsuranTotal = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-
   final rerataPerbulan = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-
   final umum = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-
   final selisih = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-
   final bungaKeseluruhan = TextEditingController();
-
   final bungaFinal = TextEditingController();
-
   final plafon = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -93,6 +84,8 @@ class PorsekotTableController extends GetxController {
     final angsuranPokokResult = parsePlafon / jumlahBayarResult;
 
     angsuranPokok.text = angsuranPokokResult.toStringAsFixed(0);
+
+    // Table1().hitungTable1();
 
     hitungTable1();
     hitungTable2();
@@ -144,151 +137,206 @@ class PorsekotTableController extends GetxController {
     hitungTable48();
 
     final parseAngsuranBunga1 =
-        int.parse(angsuranBunga1.text.replaceAll('.', ''));
+        double.parse(angsuranBunga1.text.replaceAll('.', ''));
     final parseAngsuranBunga2 =
-        int.parse(angsuranBunga2.text.replaceAll('.', ''));
+        double.parse(angsuranBunga2.text.replaceAll('.', ''));
     final parseAngsuranBunga3 =
-        int.parse(angsuranBunga3.text.replaceAll('.', ''));
+        double.parse(angsuranBunga3.text.replaceAll('.', ''));
     final parseAngsuranBunga4 =
-        int.parse(angsuranBunga4.text.replaceAll('.', ''));
+        double.parse(angsuranBunga4.text.replaceAll('.', ''));
     final parseAngsuranBunga5 =
-        int.parse(angsuranBunga5.text.replaceAll('.', ''));
+        double.parse(angsuranBunga5.text.replaceAll('.', ''));
     final parseAngsuranBunga6 =
-        int.parse(angsuranBunga6.text.replaceAll('.', ''));
+        double.parse(angsuranBunga6.text.replaceAll('.', ''));
     final parseAngsuranBunga7 =
-        int.parse(angsuranBunga7.text.replaceAll('.', ''));
+        double.parse(angsuranBunga7.text.replaceAll('.', ''));
     final parseAngsuranBunga8 =
-        int.parse(angsuranBunga8.text.replaceAll('.', ''));
+        double.parse(angsuranBunga8.text.replaceAll('.', ''));
     final parseAngsuranBunga9 =
-        int.parse(angsuranBunga9.text.replaceAll('.', ''));
+        double.parse(angsuranBunga9.text.replaceAll('.', ''));
     final parseAngsuranBunga10 =
-        int.parse(angsuranBunga10.text.replaceAll('.', ''));
+        double.parse(angsuranBunga10.text.replaceAll('.', ''));
     final parseAngsuranBunga11 =
-        int.parse(angsuranBunga11.text.replaceAll('.', ''));
+        double.parse(angsuranBunga11.text.replaceAll('.', ''));
     final parseAngsuranBunga12 =
-        int.parse(angsuranBunga12.text.replaceAll('.', ''));
+        double.parse(angsuranBunga12.text.replaceAll('.', ''));
     final parseAngsuranBunga13 =
-        int.parse(angsuranBunga13.text.replaceAll('.', ''));
+        double.parse(angsuranBunga13.text.replaceAll('.', ''));
     final parseAngsuranBunga14 =
-        int.parse(angsuranBunga14.text.replaceAll('.', ''));
+        double.parse(angsuranBunga14.text.replaceAll('.', ''));
     final parseAngsuranBunga15 =
-        int.parse(angsuranBunga15.text.replaceAll('.', ''));
+        double.parse(angsuranBunga15.text.replaceAll('.', ''));
     final parseAngsuranBunga16 =
-        int.parse(angsuranBunga16.text.replaceAll('.', ''));
+        double.parse(angsuranBunga16.text.replaceAll('.', ''));
     final parseAngsuranBunga17 =
-        int.parse(angsuranBunga17.text.replaceAll('.', ''));
+        double.parse(angsuranBunga17.text.replaceAll('.', ''));
     final parseAngsuranBunga18 =
-        int.parse(angsuranBunga18.text.replaceAll('.', ''));
+        double.parse(angsuranBunga18.text.replaceAll('.', ''));
     final parseAngsuranBunga19 =
-        int.parse(angsuranBunga19.text.replaceAll('.', ''));
+        double.parse(angsuranBunga19.text.replaceAll('.', ''));
     final parseAngsuranBunga20 =
-        int.parse(angsuranBunga20.text.replaceAll('.', ''));
+        double.parse(angsuranBunga20.text.replaceAll('.', ''));
     final parseAngsuranBunga21 =
-        int.parse(angsuranBunga21.text.replaceAll('.', ''));
+        double.parse(angsuranBunga21.text.replaceAll('.', ''));
     final parseAngsuranBunga22 =
-        int.parse(angsuranBunga22.text.replaceAll('.', ''));
+        double.parse(angsuranBunga22.text.replaceAll('.', ''));
     final parseAngsuranBunga23 =
-        int.parse(angsuranBunga23.text.replaceAll('.', ''));
+        double.parse(angsuranBunga23.text.replaceAll('.', ''));
     final parseAngsuranBunga24 =
-        int.parse(angsuranBunga24.text.replaceAll('.', ''));
+        double.parse(angsuranBunga24.text.replaceAll('.', ''));
     final parseAngsuranBunga25 =
-        int.parse(angsuranBunga25.text.replaceAll('.', ''));
+        double.parse(angsuranBunga25.text.replaceAll('.', ''));
     final parseAngsuranBunga26 =
-        int.parse(angsuranBunga26.text.replaceAll('.', ''));
+        double.parse(angsuranBunga26.text.replaceAll('.', ''));
     final parseAngsuranBunga27 =
-        int.parse(angsuranBunga27.text.replaceAll('.', ''));
+        double.parse(angsuranBunga27.text.replaceAll('.', ''));
     final parseAngsuranBunga28 =
-        int.parse(angsuranBunga28.text.replaceAll('.', ''));
+        double.parse(angsuranBunga28.text.replaceAll('.', ''));
     final parseAngsuranBunga29 =
-        int.parse(angsuranBunga29.text.replaceAll('.', ''));
+        double.parse(angsuranBunga29.text.replaceAll('.', ''));
     final parseAngsuranBunga30 =
-        int.parse(angsuranBunga30.text.replaceAll('.', ''));
+        double.parse(angsuranBunga30.text.replaceAll('.', ''));
     final parseAngsuranBunga31 =
-        int.parse(angsuranBunga31.text.replaceAll('.', ''));
+        double.parse(angsuranBunga31.text.replaceAll('.', ''));
     final parseAngsuranBunga32 =
-        int.parse(angsuranBunga32.text.replaceAll('.', ''));
+        double.parse(angsuranBunga32.text.replaceAll('.', ''));
     final parseAngsuranBunga33 =
-        int.parse(angsuranBunga33.text.replaceAll('.', ''));
+        double.parse(angsuranBunga33.text.replaceAll('.', ''));
     final parseAngsuranBunga34 =
-        int.parse(angsuranBunga34.text.replaceAll('.', ''));
+        double.parse(angsuranBunga34.text.replaceAll('.', ''));
     final parseAngsuranBunga35 =
-        int.parse(angsuranBunga35.text.replaceAll('.', ''));
+        double.parse(angsuranBunga35.text.replaceAll('.', ''));
     final parseAngsuranBunga36 =
-        int.parse(angsuranBunga36.text.replaceAll('.', ''));
+        double.parse(angsuranBunga36.text.replaceAll('.', ''));
     final parseAngsuranBunga37 =
-        int.parse(angsuranBunga37.text.replaceAll('.', ''));
+        double.parse(angsuranBunga37.text.replaceAll('.', ''));
     final parseAngsuranBunga38 =
-        int.parse(angsuranBunga38.text.replaceAll('.', ''));
+        double.parse(angsuranBunga38.text.replaceAll('.', ''));
     final parseAngsuranBunga39 =
-        int.parse(angsuranBunga39.text.replaceAll('.', ''));
+        double.parse(angsuranBunga39.text.replaceAll('.', ''));
     final parseAngsuranBunga40 =
-        int.parse(angsuranBunga40.text.replaceAll('.', ''));
+        double.parse(angsuranBunga40.text.replaceAll('.', ''));
     final parseAngsuranBunga41 =
-        int.parse(angsuranBunga41.text.replaceAll('.', ''));
+        double.parse(angsuranBunga41.text.replaceAll('.', ''));
     final parseAngsuranBunga42 =
-        int.parse(angsuranBunga42.text.replaceAll('.', ''));
+        double.parse(angsuranBunga42.text.replaceAll('.', ''));
     final parseAngsuranBunga43 =
-        int.parse(angsuranBunga43.text.replaceAll('.', ''));
+        double.parse(angsuranBunga43.text.replaceAll('.', ''));
     final parseAngsuranBunga44 =
-        int.parse(angsuranBunga44.text.replaceAll('.', ''));
+        double.parse(angsuranBunga44.text.replaceAll('.', ''));
     final parseAngsuranBunga45 =
-        int.parse(angsuranBunga45.text.replaceAll('.', ''));
+        double.parse(angsuranBunga45.text.replaceAll('.', ''));
     final parseAngsuranBunga46 =
-        int.parse(angsuranBunga46.text.replaceAll('.', ''));
+        double.parse(angsuranBunga46.text.replaceAll('.', ''));
     final parseAngsuranBunga47 =
-        int.parse(angsuranBunga47.text.replaceAll('.', ''));
+        double.parse(angsuranBunga47.text.replaceAll('.', ''));
     final parseAngsuranBunga48 =
-        int.parse(angsuranBunga48.text.replaceAll('.', ''));
+        double.parse(angsuranBunga48.text.replaceAll('.', ''));
 
-    sumAngsuranBunga.text = (parseAngsuranBunga1 +
-            parseAngsuranBunga2 +
-            parseAngsuranBunga3 +
-            parseAngsuranBunga4 +
-            parseAngsuranBunga5 +
-            parseAngsuranBunga6 +
-            parseAngsuranBunga7 +
-            parseAngsuranBunga8 +
-            parseAngsuranBunga9 +
-            parseAngsuranBunga10 +
-            parseAngsuranBunga11 +
-            parseAngsuranBunga12 +
-            parseAngsuranBunga13 +
-            parseAngsuranBunga14 +
-            parseAngsuranBunga15 +
-            parseAngsuranBunga16 +
-            parseAngsuranBunga17 +
-            parseAngsuranBunga18 +
-            parseAngsuranBunga19 +
-            parseAngsuranBunga20 +
-            parseAngsuranBunga21 +
-            parseAngsuranBunga22 +
-            parseAngsuranBunga23 +
-            parseAngsuranBunga24 +
-            parseAngsuranBunga25 +
-            parseAngsuranBunga26 +
-            parseAngsuranBunga27 +
-            parseAngsuranBunga28 +
-            parseAngsuranBunga29 +
-            parseAngsuranBunga30 +
-            parseAngsuranBunga31 +
-            parseAngsuranBunga32 +
-            parseAngsuranBunga33 +
-            parseAngsuranBunga34 +
-            parseAngsuranBunga35 +
-            parseAngsuranBunga36 +
-            parseAngsuranBunga37 +
-            parseAngsuranBunga38 +
-            parseAngsuranBunga39 +
-            parseAngsuranBunga40 +
-            parseAngsuranBunga41 +
-            parseAngsuranBunga42 +
-            parseAngsuranBunga43 +
-            parseAngsuranBunga44 +
-            parseAngsuranBunga45 +
-            parseAngsuranBunga46 +
-            parseAngsuranBunga47 +
-            parseAngsuranBunga48)
-        .toStringAsFixed(0);
+    final hasilSumAngsuranBunga = parseAngsuranBunga1 +
+        parseAngsuranBunga2 +
+        parseAngsuranBunga3 +
+        parseAngsuranBunga4 +
+        parseAngsuranBunga5 +
+        parseAngsuranBunga6 +
+        parseAngsuranBunga7 +
+        parseAngsuranBunga8 +
+        parseAngsuranBunga9 +
+        parseAngsuranBunga10 +
+        parseAngsuranBunga11 +
+        parseAngsuranBunga12 +
+        parseAngsuranBunga13 +
+        parseAngsuranBunga14 +
+        parseAngsuranBunga15 +
+        parseAngsuranBunga16 +
+        parseAngsuranBunga17 +
+        parseAngsuranBunga18 +
+        parseAngsuranBunga19 +
+        parseAngsuranBunga20 +
+        parseAngsuranBunga21 +
+        parseAngsuranBunga22 +
+        parseAngsuranBunga23 +
+        parseAngsuranBunga24 +
+        parseAngsuranBunga25 +
+        parseAngsuranBunga26 +
+        parseAngsuranBunga27 +
+        parseAngsuranBunga28 +
+        parseAngsuranBunga29 +
+        parseAngsuranBunga30 +
+        parseAngsuranBunga31 +
+        parseAngsuranBunga32 +
+        parseAngsuranBunga33 +
+        parseAngsuranBunga34 +
+        parseAngsuranBunga35 +
+        parseAngsuranBunga36 +
+        parseAngsuranBunga37 +
+        parseAngsuranBunga38 +
+        parseAngsuranBunga39 +
+        parseAngsuranBunga40 +
+        parseAngsuranBunga41 +
+        parseAngsuranBunga42 +
+        parseAngsuranBunga43 +
+        parseAngsuranBunga44 +
+        parseAngsuranBunga45 +
+        parseAngsuranBunga46 +
+        parseAngsuranBunga47 +
+        parseAngsuranBunga48;
+
+    // Rounded to nearest 1000
+    final hasilSumAngsuranBungaRounded =
+        (hasilSumAngsuranBunga / 1000).round() * 1000;
+
+    sumAngsuranBunga.text = hasilSumAngsuranBunga.toStringAsFixed(0);
+
+    // sumAngsuranBunga.text = (parseAngsuranBunga1 +
+    //         parseAngsuranBunga2 +
+    //         parseAngsuranBunga3 +
+    //         parseAngsuranBunga4 +
+    //         parseAngsuranBunga5 +
+    //         parseAngsuranBunga6 +
+    //         parseAngsuranBunga7 +
+    //         parseAngsuranBunga8 +
+    //         parseAngsuranBunga9 +
+    //         parseAngsuranBunga10 +
+    //         parseAngsuranBunga11 +
+    //         parseAngsuranBunga12 +
+    //         parseAngsuranBunga13 +
+    //         parseAngsuranBunga14 +
+    //         parseAngsuranBunga15 +
+    //         parseAngsuranBunga16 +
+    //         parseAngsuranBunga17 +
+    //         parseAngsuranBunga18 +
+    //         parseAngsuranBunga19 +
+    //         parseAngsuranBunga20 +
+    //         parseAngsuranBunga21 +
+    //         parseAngsuranBunga22 +
+    //         parseAngsuranBunga23 +
+    //         parseAngsuranBunga24 +
+    //         parseAngsuranBunga25 +
+    //         parseAngsuranBunga26 +
+    //         parseAngsuranBunga27 +
+    //         parseAngsuranBunga28 +
+    //         parseAngsuranBunga29 +
+    //         parseAngsuranBunga30 +
+    //         parseAngsuranBunga31 +
+    //         parseAngsuranBunga32 +
+    //         parseAngsuranBunga33 +
+    //         parseAngsuranBunga34 +
+    //         parseAngsuranBunga35 +
+    //         parseAngsuranBunga36 +
+    //         parseAngsuranBunga37 +
+    //         parseAngsuranBunga38 +
+    //         parseAngsuranBunga39 +
+    //         parseAngsuranBunga40 +
+    //         parseAngsuranBunga41 +
+    //         parseAngsuranBunga42 +
+    //         parseAngsuranBunga43 +
+    //         parseAngsuranBunga44 +
+    //         parseAngsuranBunga45 +
+    //         parseAngsuranBunga46 +
+    //         parseAngsuranBunga47 +
+    //         parseAngsuranBunga48)
+    //     .toStringAsFixed(0);
 
     final parseAngsuranPokok1 =
         double.parse(angsuranPokok1.text.replaceAll('.', ''));
@@ -479,11 +527,11 @@ class PorsekotTableController extends GetxController {
 
     bungaKeseluruhan.text = hitungBungaKeseluruhanSecond.toStringAsFixed(0);
 
-    final parseBungaKeseluruhan = double.parse(bungaKeseluruhan.text);
+    final parseBungaKeseluruhan = double.parse(bungaKeseluruhan.text) / 100;
 
-    final hitungBungaFinal = parseBungaKeseluruhan / parseJangkaWaktu;
+    final hitungBungaFinal = (parseBungaKeseluruhan / parseJangkaWaktu) * 100;
 
-    bungaFinal.text = hitungBungaFinal.toStringAsFixed(0);
+    bungaFinal.text = hitungBungaFinal.toStringAsFixed(2);
   }
 
   // Bulan1

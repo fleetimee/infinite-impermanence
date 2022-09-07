@@ -420,22 +420,21 @@ class PorsekotTableView extends GetView<PorsekotTableController> {
                       width: 16.0,
                     ),
                     Expanded(
-                      // child: FormBuilderTextField(
-                      //   name: 'bunga_final',
-                      //   enabled: false,
-                      //   controller: controller.bungaFinal,
-                      //   decoration: const InputDecoration(
-                      //     suffixIcon: Icon(FontAwesomeIcons.percent),
-                      //     labelText: 'Bunga Final',
-                      //     border: OutlineInputBorder(
-                      //       borderRadius: BorderRadius.all(
-                      //         Radius.circular(10.0),
-                      //       ),
-                      //     ),
-                      //   ),
-                      //   keyboardType: TextInputType.number,
-                      // ),
-                      child: Container(),
+                      child: FormBuilderTextField(
+                        name: 'bunga_final',
+                        enabled: false,
+                        controller: controller.bungaFinal,
+                        decoration: const InputDecoration(
+                          suffixIcon: Icon(FontAwesomeIcons.percent),
+                          labelText: 'Bunga Final',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                      ),
                     ),
                   ],
                 ),

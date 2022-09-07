@@ -1,4 +1,5 @@
 // 📦 Package imports:
+import 'package:akm/app/modules/porsekot_table/controllers/hitung_table/table1.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -16,7 +17,10 @@ class PorsekotTableBinding extends Binding {
     return [
       Bind.lazyPut<PorsekotTableController>(
         () => PorsekotTableController(),
-      )
+      ),
+      Bind.lazyPut<Table1>(
+        () => Table1(),
+      ),
     ];
   }
 }

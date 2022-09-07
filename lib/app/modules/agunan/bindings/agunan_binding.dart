@@ -4,11 +4,19 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../controllers/agunan_controller.dart';
 
-class AgunanBinding extends Bindings {
+class AgunanBinding extends Binding {
+  // void dependencies() {
+  //   Get.lazyPut<AgunanController>(
+  //     () => AgunanController(),
+  //   );
+  // }
+
   @override
-  void dependencies() {
-    Get.lazyPut<AgunanController>(
-      () => AgunanController(),
-    );
+  List<Bind> dependencies() {
+    return [
+      Bind.lazyPut<AgunanController>(
+        () => AgunanController(),
+      )
+    ];
   }
 }

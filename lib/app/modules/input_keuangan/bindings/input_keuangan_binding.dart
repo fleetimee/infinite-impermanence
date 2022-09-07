@@ -4,11 +4,19 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../controllers/input_keuangan_controller.dart';
 
-class InputKeuanganBinding extends Bindings {
+class InputKeuanganBinding extends Binding {
   @override
-  void dependencies() {
-    Get.lazyPut<InputKeuanganController>(
-      () => InputKeuanganController(),
-    );
+  // void dependencies() {
+  //   Get.lazyPut<InputKeuanganController>(
+  //     () => InputKeuanganController(),
+  //   );
+  // }
+
+  List<Bind> dependencies() {
+    return [
+      Bind.lazyPut<InputKeuanganController>(
+        () => InputKeuanganController(),
+      )
+    ];
   }
 }

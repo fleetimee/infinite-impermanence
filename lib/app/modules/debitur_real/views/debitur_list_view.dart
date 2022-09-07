@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
-import 'package:akm/app/models/debtor.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +12,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';

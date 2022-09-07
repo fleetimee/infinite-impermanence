@@ -234,13 +234,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  flutter_expandable_fab:
-    dependency: "direct main"
-    description:
-      name: flutter_expandable_fab
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.0"
   flutter_form_builder:
     dependency: "direct main"
     description:
@@ -471,10 +464,12 @@ packages:
   get:
     dependency: "direct main"
     description:
-      name: get
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.6.5"
+      path: "."
+      ref: master
+      resolved-ref: "5229d40c75d135c121eb65411b10f883e91b4f56"
+      url: "https://github.com/jonataslaw/getx"
+    source: git
+    version: "5.0.0-beta.52"
   gif_view:
     dependency: "direct main"
     description:

@@ -1,5 +1,7 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -173,7 +175,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PORSEKOT_TABLE,
-      page: () => const PorsekotTableView(),
+      page: () => PorsekotTableView(),
       binding: PorsekotTableBinding(),
     ),
     GetPage(

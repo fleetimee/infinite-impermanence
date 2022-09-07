@@ -4,11 +4,20 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../controllers/penghasilan_xtetap_controller.dart';
 
-class PenghasilanXtetapBinding extends Bindings {
+class PenghasilanXtetapBinding extends Binding {
+  // @override
+  // void dependencies() {
+  //   Get.lazyPut<PenghasilanXtetapController>(
+  //     () => PenghasilanXtetapController(),
+  //   );
+  // }
+
   @override
-  void dependencies() {
-    Get.lazyPut<PenghasilanXtetapController>(
-      () => PenghasilanXtetapController(),
-    );
+  List<Bind> dependencies() {
+    return [
+      Bind.lazyPut<PenghasilanXtetapController>(
+        () => PenghasilanXtetapController(),
+      )
+    ];
   }
 }

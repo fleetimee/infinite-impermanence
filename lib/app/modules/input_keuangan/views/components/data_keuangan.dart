@@ -18,6 +18,7 @@ class DataKeuanganInput extends StatelessWidget {
   DataKeuanganInput({Key? key}) : super(key: key);
 
   final dataKeuanganCtrl = Get.put(InputKeuanganController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +40,23 @@ class DataKeuanganInput extends StatelessWidget {
             ),
             SvgPicture.asset(
               'assets/images/input_keuangan/page.svg',
+            ),
+            FormBuilderTextField(
+              name: 'debitur_id',
+              enabled: false,
+              controller: dataKeuanganCtrl.debitur = TextEditingController(
+                text: data.toString(),
+              ),
+              decoration: InputDecoration(
+                labelText: 'Debitur ID',
+                prefixIcon: const Icon(FontAwesomeIcons.person),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 16.0,
             ),
             Row(
               children: [

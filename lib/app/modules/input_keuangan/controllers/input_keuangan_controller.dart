@@ -25,6 +25,8 @@ class InputKeuanganController extends GetxController {
     precision: 0,
   );
 
+  var debitur = TextEditingController();
+
   final angsuranPerBulan = TextEditingController();
   final provisi = TextEditingController();
   final sistemAngsuran = ''.obs;
@@ -423,6 +425,7 @@ class InputKeuanganController extends GetxController {
       'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
       'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
       'trade_cycle': tradeCycle.text,
+      'debitur': debitur.text,
     };
 
     api.addKeuangan(data);

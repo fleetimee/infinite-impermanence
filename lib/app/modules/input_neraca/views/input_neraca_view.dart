@@ -11,18 +11,18 @@ import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/widget/drawer.dart';
 import '../controllers/input_neraca_controller.dart';
 
 class InputNeracaView extends GetView<InputNeracaController> {
-  const InputNeracaView({Key? key}) : super(key: key);
+  InputNeracaView({Key? key}) : super(key: key);
 
   // initialize textStyle for textField
+
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text('Input Neraca'),
         centerTitle: true,
@@ -31,6 +31,12 @@ class InputNeracaView extends GetView<InputNeracaController> {
         child: Container(
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
+            autovalidateMode: AutovalidateMode.disabled,
+            key: controller.formKey,
+            onChanged: () {
+              controller.formKey.currentState!.save();
+              debugPrint(controller.formKey.currentState!.value.toString());
+            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,16 +58,46 @@ class InputNeracaView extends GetView<InputNeracaController> {
                   ],
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 16,
                 ),
                 Row(
                   children: [
                     Expanded(
-                      child: Container(),
+                      child: Visibility(
+                        visible: true,
+                        child: FormBuilderTextField(
+                          name: 'debitur_id',
+                          readOnly: true,
+                          controller: controller.debitur =
+                              TextEditingController(
+                            text: data.toString(),
+                          ),
+                          decoration: const InputDecoration(
+                            prefixIcon: Icon(FontAwesomeIcons.person),
+                            labelText: 'Debitur ID',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 8,
                     ),
                     Expanded(
                       child: FormBuilderDateTimePicker(
                         resetIcon: null,
+                        onChanged: (value) {
+                          controller.tanggalInput.value = value!;
+                          debugPrint(value.toString());
+                        },
+                        onSaved: (value) {
+                          controller.tanggalInput.value = value!;
+                          debugPrint(value.toString());
+                        },
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
                           labelText: 'Pilih Tanggal',
@@ -73,7 +109,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           ),
                         ),
                         inputType: InputType.date,
-                        format: DateFormat('dd MMMM yyyy'),
+                        format: DateFormat('dd/MM/yyyy'),
                         validator: FormBuilderValidators.required(),
                         name: 'Tanggal',
                       ),
@@ -126,51 +162,59 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           ),
                         ),
                       ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('Tabungan')),
-                        DataCell(
-                          FormBuilderTextField(
-                            name: 'tabungan',
-                            decoration: const InputDecoration(
-                              hintText: 'Input disini',
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Tabungan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'tabungan',
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                              controller: controller.tabungan,
+                              keyboardType: TextInputType.number,
                             ),
-                            controller: controller.tabungan,
-                            keyboardType: TextInputType.number,
                           ),
-                        ),
-                      ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('Jumlah')),
-                        DataCell(FormBuilderTextField(
-                          name: 'jumlah_kas_bank',
-                          enabled: false,
-                          controller: controller.jumlahKasDanBank,
-                          keyboardType: TextInputType.number,
-                        )),
-                      ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('')),
-                        DataCell(
-                          OutlinedButton.icon(
-                            icon: const Icon(Icons.calculate),
-                            label: const Text(
-                              "Hitung",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 20),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'jumlah_kas_bank',
+                              enabled: false,
+                              controller: controller.jumlahKasDanBank,
+                              keyboardType: TextInputType.number,
                             ),
-                            style: OutlinedButton.styleFrom(
-                                foregroundColor: secondaryColor,
-                                backgroundColor: primaryColor,
-                                shape: const StadiumBorder(),
-                                maximumSize:
-                                    const Size.fromWidth(double.infinity),
-                                fixedSize: const Size(500, 5)),
-                            onPressed: () {
-                              controller.hitungKasDanBank();
-                            },
                           ),
-                        ),
-                      ]),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('')),
+                          DataCell(
+                            OutlinedButton.icon(
+                              icon: const Icon(Icons.calculate),
+                              label: const Text(
+                                "Hitung",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 20),
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                  foregroundColor: secondaryColor,
+                                  backgroundColor: primaryColor,
+                                  shape: const StadiumBorder(),
+                                  maximumSize:
+                                      const Size.fromWidth(double.infinity),
+                                  fixedSize: const Size(500, 5)),
+                              onPressed: () {
+                                controller.hitungKasDanBank();
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -393,19 +437,21 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       DataColumn2(label: Text('Nilai (Rp)')),
                     ],
                     rows: [
-                      DataRow2(cells: [
-                        const DataCell(Text('Jumlah')),
-                        DataCell(
-                          FormBuilderTextField(
-                            name: 'aktiva_tetap',
-                            controller: controller.aktivaTetap,
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                              hintText: 'Input disini',
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'aktiva_tetap',
+                              controller: controller.aktivaTetap,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
                             ),
                           ),
-                        ),
-                      ]),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -424,7 +470,18 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       shape: const StadiumBorder(),
                       maximumSize: const Size.fromWidth(double.infinity),
                       fixedSize: const Size(500, 50)),
-                  onPressed: () {},
+                  onPressed: () {
+                    if (controller.formKey.currentState?.saveAndValidate() ??
+                        false) {
+                      debugPrint(
+                          controller.formKey.currentState?.value.toString());
+                      controller.saveNeraca();
+                    } else {
+                      debugPrint(
+                          controller.formKey.currentState?.value.toString());
+                      debugPrint('validation failed');
+                    }
+                  },
                 ),
               ],
             ),

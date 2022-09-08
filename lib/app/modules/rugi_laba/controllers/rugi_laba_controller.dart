@@ -1,42 +1,49 @@
 // 📦 Package imports:
+// ignore_for_file: unnecessary_overrides
+
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class RugiLabaController extends GetxController {
-  final aktivaLancarKas = MoneyMaskedTextController(
+  final formKey = GlobalKey<FormBuilderState>();
+
+  var aktivaLancarKas = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final aktivaBank = MoneyMaskedTextController(
+  var aktivaBank = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final aktivaPiutangUsaha = MoneyMaskedTextController(
+  var aktivaPiutangUsaha = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final aktivaPersediaan = MoneyMaskedTextController(
+  var aktivaPersediaan = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final hutangUsaha = MoneyMaskedTextController(
+  var hutangUsaha = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final hutangBank = MoneyMaskedTextController(
+  var hutangBank = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final hutangLainnya = MoneyMaskedTextController(
+  var hutangLainnya = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
+    initialValue: 0,
   );
   final jumlahAktivaLancar = MoneyMaskedTextController(
     decimalSeparator: '',
@@ -48,7 +55,7 @@ class RugiLabaController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
-  final jumlahAktivaTetap = MoneyMaskedTextController(
+  var jumlahAktivaTetap = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -129,14 +136,32 @@ class RugiLabaController extends GetxController {
     precision: 0,
   );
 
-  void result() {
-    // sumAktivaLancar();
-    // sumAktiva();
-    // sumJumlahHutang();
-    // sumModal();
-    // sumPasiva();
+  @override
+  void onInit() {
+    // delay few second then execute result
+    // Future.delayed(const Duration(seconds: 1), () {
+    //   result();
+    // });
+    // result();
+    super.onInit();
+  }
 
-    sumLabaKotor();
+  void result() {
+    sumAktivaLancar();
+    sumAktiva();
+    sumJumlahHutang();
+    sumModal();
+    sumPasiva();
+
+    // sumLabaKotor();
+    // sumTotalBiaya();
+    // sumLabaSebelumPajak();
+    // sumPerkiraanPajak();
+    // sumLabaSetelahPajak();
+    // sumSisaPenghasilan();
+  }
+
+  void perkiraanLaba() {
     sumTotalBiaya();
     sumLabaSebelumPajak();
     sumPerkiraanPajak();

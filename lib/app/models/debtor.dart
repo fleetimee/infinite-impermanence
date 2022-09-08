@@ -1,4 +1,7 @@
-// 🎯 Dart imports:
+// To parse this JSON data, do
+//
+//     final debtor = debtorFromJson(jsonString);
+
 import 'dart:convert';
 
 List<Debtor> debtorFromJson(String str) =>
@@ -36,8 +39,7 @@ class Debtor {
     this.noSkpk,
     this.tglSekarang,
     this.deskripsiDebitur,
-    this.nonfixed,
-    this.fixed,
+    this.inputNeraca,
     this.createdBy,
   });
 
@@ -58,7 +60,6 @@ class Debtor {
   int? umur;
   String? statusKeluarga;
   int? jumlahTanggungan;
-
   int? lamanyaBerusaha;
   String? lokasiUsaha;
   String? jenisUsaha;
@@ -69,9 +70,8 @@ class Debtor {
   String? noSkpk;
   DateTime? tglSekarang;
   String? deskripsiDebitur;
-  List<dynamic>? nonfixed;
-  List<dynamic>? fixed;
-  int? createdBy;
+  InputNeraca? inputNeraca;
+  dynamic? createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
         id: json["id"],
@@ -101,8 +101,7 @@ class Debtor {
         noSkpk: json["no_skpk"],
         tglSekarang: DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
-        nonfixed: List<dynamic>.from(json["nonfixed"].map((x) => x)),
-        fixed: List<dynamic>.from(json["fixed"].map((x) => x)),
+        inputNeraca: InputNeraca.fromJson(json["inputNeraca"]),
         createdBy: json["createdBy"],
       );
 
@@ -136,11 +135,60 @@ class Debtor {
         "tgl_sekarang":
             "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
-        "nonfixed": List<dynamic>.from(nonfixed!.map((x) => x)),
-        "fixed": List<dynamic>.from(fixed!.map((x) => x)),
+        "inputNeraca": inputNeraca?.toJson(),
         "createdBy": createdBy,
       };
+}
 
-  @override
-  String toString() => toJson().toString();
+class InputNeraca {
+  InputNeraca({
+    this.id,
+    this.tanggalInput,
+    this.kasOnHand,
+    this.tabungan,
+    this.jumlahKasDanTabungan,
+    this.jumlahPiutang,
+    this.jumlahPersediaan,
+    this.hutangUsaha,
+    this.hutangBank,
+    this.aktivaTetap,
+  });
+
+  int? id;
+  DateTime? tanggalInput;
+  String? kasOnHand;
+  String? tabungan;
+  String? jumlahKasDanTabungan;
+  String? jumlahPiutang;
+  String? jumlahPersediaan;
+  String? hutangUsaha;
+  String? hutangBank;
+  String? aktivaTetap;
+
+  factory InputNeraca.fromJson(Map<String, dynamic> json) => InputNeraca(
+        id: json["id"],
+        tanggalInput: DateTime.parse(json["tanggal_input"]),
+        kasOnHand: json["kas_on_hand"],
+        tabungan: json["tabungan"],
+        jumlahKasDanTabungan: json["jumlah_kas_dan_tabungan"],
+        jumlahPiutang: json["jumlah_piutang"],
+        jumlahPersediaan: json["jumlah_persediaan"],
+        hutangUsaha: json["hutang_usaha"],
+        hutangBank: json["hutang_bank"],
+        aktivaTetap: json["aktiva_tetap"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "tanggal_input":
+            "${tanggalInput?.year.toString().padLeft(4, '0')}-${tanggalInput?.month.toString().padLeft(2, '0')}-${tanggalInput?.day.toString().padLeft(2, '0')}",
+        "kas_on_hand": kasOnHand,
+        "tabungan": tabungan,
+        "jumlah_kas_dan_tabungan": jumlahKasDanTabungan,
+        "jumlah_piutang": jumlahPiutang,
+        "jumlah_persediaan": jumlahPersediaan,
+        "hutang_usaha": hutangUsaha,
+        "hutang_bank": hutangBank,
+        "aktiva_tetap": aktivaTetap,
+      };
 }

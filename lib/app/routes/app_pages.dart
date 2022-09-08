@@ -180,7 +180,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INPUT_NERACA,
-      page: () => const InputNeracaView(),
+      page: () => InputNeracaView(),
       binding: InputNeracaBinding(),
     ),
     GetPage(

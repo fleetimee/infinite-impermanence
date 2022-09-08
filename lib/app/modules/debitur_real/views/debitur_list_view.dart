@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:empty_widget/empty_widget.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -218,26 +217,6 @@ class DetailDebitur extends StatelessWidget {
                   children: [
                     Expanded(
                       child: OutlinedButton.icon(
-                        icon: const Icon(Icons.remove_red_eye),
-                        label: const Text(
-                          "Data Neraca",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          showToast(
-                              'Data Keuangan Debitur belum tersedia, \n Silahkan input terlebih dahulu',
-                              context: context);
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: OutlinedButton.icon(
                         icon: const Icon(FontAwesomeIcons.scaleUnbalanced),
                         label: const Text(
                           "Input Neraca",
@@ -250,6 +229,26 @@ class DetailDebitur extends StatelessWidget {
                           Get.toNamed(Routes.INPUT_NERACA,
                               // Send debtor id to input keuangan page
                               arguments: debtor.id);
+                        },
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        icon: const Icon(FontAwesomeIcons.amazon),
+                        label: const Text(
+                          "Input Rugi Laba",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.blueGrey,
+                        ),
+                        onPressed: () {
+                          Get.toNamed(Routes.RUGI_LABA,
+                              // Send ID neraca to input rugi laba page
+                              arguments: debtor);
                         },
                       ),
                     ),

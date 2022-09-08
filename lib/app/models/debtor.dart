@@ -1,4 +1,7 @@
-// 🎯 Dart imports:
+// To parse this JSON data, do
+//
+//     final debtor = debtorFromJson(jsonString);
+
 import 'dart:convert';
 
 List<Debtor> debtorFromJson(String str) =>
@@ -67,8 +70,8 @@ class Debtor {
   String? noSkpk;
   DateTime? tglSekarang;
   String? deskripsiDebitur;
-  List<InputNeraca>? inputNeraca;
-  dynamic createdBy;
+  InputNeraca? inputNeraca;
+  dynamic? createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
         id: json["id"],
@@ -98,8 +101,7 @@ class Debtor {
         noSkpk: json["no_skpk"],
         tglSekarang: DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
-        inputNeraca: List<InputNeraca>.from(
-            json["inputNeraca"].map((x) => InputNeraca.fromJson(x))),
+        inputNeraca: InputNeraca.fromJson(json["inputNeraca"]),
         createdBy: json["createdBy"],
       );
 
@@ -133,7 +135,7 @@ class Debtor {
         "tgl_sekarang":
             "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
-        "inputNeraca": List<dynamic>.from(inputNeraca!.map((x) => x.toJson())),
+        "inputNeraca": inputNeraca?.toJson(),
         "createdBy": createdBy,
       };
 }

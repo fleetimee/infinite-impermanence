@@ -725,7 +725,6 @@ class DebiturRealView extends GetView<DebiturRealController> {
                     ),
                   ),
                   const SizedBox(height: 30),
-
                   Row(
                     children: <Widget>[
                       Expanded(

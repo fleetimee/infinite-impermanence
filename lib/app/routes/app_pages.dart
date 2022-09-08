@@ -177,16 +177,19 @@ class AppPages {
       name: _Paths.PORSEKOT_TABLE,
       page: () => PorsekotTableView(),
       binding: PorsekotTableBinding(),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.INPUT_NERACA,
       page: () => InputNeracaView(),
       binding: InputNeracaBinding(),
+      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.RUGI_LABA,
-      page: () => const RugiLabaView(),
+      page: () => RugiLabaView(),
       binding: RugiLabaBinding(),
+      transition: Transition.cupertino,
     ),
   ];
 }

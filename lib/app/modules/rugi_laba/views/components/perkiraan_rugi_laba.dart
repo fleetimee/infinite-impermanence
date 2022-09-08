@@ -8,6 +8,7 @@ import 'package:data_table_2/data_table_2.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class PerkiraanLabaRugi extends StatelessWidget {
@@ -81,6 +82,18 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       name: 'laba_kotor',
                       readOnly: true,
                       controller: controller.labaKotor,
+                      decoration: InputDecoration(
+                        suffixIcon: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () {
+                            controller.sumLabaKotor();
+                          },
+                          child: const Text("Hit"),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -129,7 +142,22 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       controller: controller.biayaLainnya,
                     ),
                   ),
-                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    ElevatedButton.icon(
+                      icon: const Icon(FontAwesomeIcons.calculator),
+                      label: const Text("Hitung Total"),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(500, 40),
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
+                        ),
+                      ),
+                      onPressed: () {
+                        controller.perkiraanLaba();
+                      },
+                    ),
+                  ),
                 ],
               ),
               DataRow2(

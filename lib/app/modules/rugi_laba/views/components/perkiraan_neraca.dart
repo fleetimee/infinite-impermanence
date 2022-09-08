@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,6 +15,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
   PerkiraanNeracaTabel({super.key});
 
   final controller = Get.put(RugiLabaController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +52,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   size: ColumnSize.L),
             ],
             rows: [
-              const DataRow2(
+              DataRow2(
                 cells: [
-                  DataCell(
+                  const DataCell(
                     Text('Aktiva Lancar', style: heading2),
                   ),
-                  DataCell(
+                  const DataCell(
                     SizedBox.shrink(),
                   ),
                   DataCell(
-                    Text('Hutang'),
+                    Text(data.peminjam1),
                   ),
-                  DataCell(
+                  const DataCell(
                     SizedBox.shrink(),
                   ),
                 ],
@@ -74,10 +76,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'aktiva_kas',
-                      controller: controller.aktivaLancarKas,
+                      readOnly: true,
+                      controller: controller.aktivaLancarKas =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.kasOnHand,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -89,10 +99,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'hutang_usaha',
-                      controller: controller.hutangUsaha,
+                      controller: controller.hutangUsaha =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.hutangUsaha,
+                              )),
                       keyboardType: TextInputType.number,
+                      readOnly: true,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -104,10 +122,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'aktiva_bank',
-                      controller: controller.aktivaBank,
+                      readOnly: true,
+                      controller: controller.aktivaBank =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.tabungan,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -115,10 +141,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'hutang_bank',
-                      controller: controller.hutangBank,
+                      readOnly: true,
+                      controller: controller.hutangBank =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.hutangBank,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -132,10 +166,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'aktiva_piutang_usaha',
-                      controller: controller.aktivaPiutangUsaha,
+                      readOnly: true,
+                      controller: controller.aktivaPiutangUsaha =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.jumlahPiutang,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -146,7 +188,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       controller: controller.hutangLainnya,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -160,10 +202,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'aktiva_persediaan',
-                      controller: controller.aktivaPersediaan,
+                      readOnly: true,
+                      controller: controller.aktivaPersediaan =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.jumlahPersediaan,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -180,10 +230,11 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_aktiva_lancar',
+                      readOnly: true,
                       controller: controller.jumlahAktivaLancar,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -193,10 +244,11 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_hutang',
+                      readOnly: true,
                       controller: controller.jumlahHutang,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -224,9 +276,10 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'modal',
                       controller: controller.modal,
+                      readOnly: true,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -241,10 +294,18 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_aktiva_tetap',
-                      controller: controller.jumlahAktivaTetap,
+                      readOnly: true,
+                      controller: controller.jumlahAktivaTetap =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.aktivaTetap,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -254,10 +315,11 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'modal_result',
+                      readOnly: true,
                       controller: controller.modal,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -274,10 +336,11 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'aktiva_tetap',
+                      readOnly: true,
                       keyboardType: TextInputType.number,
                       controller: controller.jumlahAktiva,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),
@@ -290,10 +353,11 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_pasiva',
+                      readOnly: true,
                       controller: controller.jumlahPasiva,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil perhitungan',
                       ),
                     ),
                   ),

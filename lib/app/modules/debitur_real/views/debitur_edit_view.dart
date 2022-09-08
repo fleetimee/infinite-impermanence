@@ -443,7 +443,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
                         // ),
                         child: FormBuilderDropdown(
                           name: 'status_keluarga',
-                          initialValue: data.status_keluarga,
+                          initialValue: data.statusKeluarga,
                           decoration: const InputDecoration(
                             labelText: 'Status Keluarga',
                             labelStyle: TextStyle(fontSize: 18),

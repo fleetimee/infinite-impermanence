@@ -150,6 +150,7 @@ class DetailDebitur extends StatelessWidget {
       child: ExpansionTile(
         title: const Text('Detail Debitur'),
         children: [
+          // Detail Debitur
           ExpansionTile(
             leading: const Icon(Icons.people),
             title: const Text(
@@ -203,12 +204,14 @@ class DetailDebitur extends StatelessWidget {
               ),
             ],
           ),
+          // Analisa Kuantitatif
           ExpansionTile(
             title: const Text('Analisa Kuantitatif'),
             leading: const Icon(
               Icons.attach_money,
             ),
             children: [
+              // Neraca
               ExpansionTile(
                 title: const Text('1. Neraca'),
                 children: [
@@ -218,23 +221,6 @@ class DetailDebitur extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Expanded(
-                        //   child: OutlinedButton.icon(
-                        //     icon: const Icon(FontAwesomeIcons.scaleUnbalanced),
-                        //     label: const Text(
-                        //       "Input Neraca",
-                        //       style: TextStyle(fontSize: 20),
-                        //     ),
-                        //     style: OutlinedButton.styleFrom(
-                        //       foregroundColor: Colors.blueGrey,
-                        //     ),
-                        //     onPressed: () {
-                        //       Get.toNamed(Routes.INPUT_NERACA,
-                        //           // Send debtor id to input keuangan page
-                        //           arguments: debtor.id);
-                        //     },
-                        //   ),
-                        // ),
                         const SizedBox(
                           width: 16,
                         ),
@@ -282,6 +268,7 @@ class DetailDebitur extends StatelessWidget {
                   ),
                 ],
               ),
+              // Rugi Laba
               ExpansionTile(
                 title: const Text('2. Rugi Laba'),
                 children: [
@@ -309,24 +296,3 @@ class DetailDebitur extends StatelessWidget {
     );
   }
 }
-
-// ListView.builder(
-//         itemCount: controller.listDebtor.length,
-//         itemBuilder: (context, index) {
-//           return Card(
-//             child: ListTile(
-//               title: Text(controller.listDebtor[index].peminjam1.toString()),
-//               subtitle: Text(controller.listDebtor[index].noKtp1.toString()),
-//               trailing: IconButton(
-//                 icon: Icon(Icons.delete),
-//                 onPressed: () {
-//                   // controller.deleteDebtor(index);
-//                 },
-//               ),
-//               onTap: () {
-//                 // Get.toNamed(AppPages.DEBITUR_DETAIL, arguments: controller.listDebtor[index]);
-//               },
-//             ),
-//           );
-//         },
-//       ),

@@ -136,162 +136,192 @@ class DebiturListView extends GetView<DebiturRealController> {
 }
 
 class DetailDebitur extends StatelessWidget {
-  const DetailDebitur({
+  DetailDebitur({
     Key? key,
     required this.debtor,
   }) : super(key: key);
 
   final Debtor debtor;
 
+  final controller = Get.put(DebiturRealController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: secondaryColor,
-      child: ExpansionTile(
-        title: const Text('Detail Debitur'),
-        children: [
-          // Detail Debitur
-          ExpansionTile(
-            leading: const Icon(Icons.people),
-            title: const Text(
-              'Data Pribadi Debitur',
-            ),
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        icon: const Icon(Icons.remove_red_eye),
-                        label: const Text(
-                          "Lihat Data",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          Get.toNamed(
-                            Routes.DEBITUR_DETAIL_BANGET,
-                            arguments: debtor.id,
-                          );
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        icon: const Icon(Icons.edit),
-                        label: const Text(
-                          "Edit Debitur",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          Get.toNamed(Routes.DEBITUR_EDIT, arguments: debtor);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          // Analisa Kuantitatif
-          ExpansionTile(
-            title: const Text('Analisa Kuantitatif'),
-            leading: const Icon(
-              Icons.attach_money,
-            ),
-            children: [
-              // Neraca
-              ExpansionTile(
-                title: const Text('1. Neraca'),
+      child: Obx(
+        () => controller.loadingFetch.value
+            ? const SizedBox()
+            : ExpansionTile(
+                title: const Text('Detail Debitur'),
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        // check if neraca is empty
-                        debtor.inputNeraca != null
-                            ? const SizedBox()
-                            : Expanded(
-                                child: OutlinedButton.icon(
-                                  icon: const Icon(FontAwesomeIcons.chartLine),
-                                  label: const Text(
-                                    "Input Neraca",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  style: OutlinedButton.styleFrom(
-                                    foregroundColor: Colors.blueGrey,
-                                  ),
-                                  onPressed: () {
-                                    Get.toNamed(Routes.INPUT_NERACA,
-                                        // Send debtor id to input keuangan page
-                                        arguments: debtor.id);
-                                  },
-                                ),
-                              ),
-                        debtor.inputNeraca == null
-                            ? const SizedBox()
-                            : Expanded(
-                                child: OutlinedButton.icon(
-                                  icon: const Icon(FontAwesomeIcons.amazon),
-                                  label: const Text(
-                                    "Lihat Neraca",
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                  style: OutlinedButton.styleFrom(
-                                    foregroundColor: Colors.blueGrey,
-                                  ),
-                                  onPressed: () {
-                                    // Get.toNamed(Routes.RUGI_LABA,
-                                    //     // Send ID neraca to input rugi laba page
-                                    //     arguments: debtor);
-                                  },
-                                ),
-                              ),
-                      ],
+                  // Detail Debitur
+                  ExpansionTile(
+                    leading: const Icon(Icons.people),
+                    title: const Text(
+                      'Data Pribadi Debitur',
                     ),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                icon: const Icon(Icons.remove_red_eye),
+                                label: const Text(
+                                  "Lihat Data",
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.blueGrey,
+                                ),
+                                onPressed: () {
+                                  Get.toNamed(
+                                    Routes.DEBITUR_DETAIL_BANGET,
+                                    arguments: debtor.id,
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                icon: const Icon(Icons.edit),
+                                label: const Text(
+                                  "Edit Debitur",
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: Colors.blueGrey,
+                                ),
+                                onPressed: () {
+                                  Get.toNamed(Routes.DEBITUR_EDIT,
+                                      arguments: debtor);
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+                  // Analisa Kuantitatif
+                  ExpansionTile(
+                    title: const Text('Analisa Kuantitatif'),
+                    leading: const Icon(
+                      Icons.attach_money,
+                    ),
+                    children: [
+                      // Neraca
+                      ExpansionTile(
+                        title: const Text('1. Neraca'),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(
+                                  width: 16,
+                                ),
+                                // check if neraca is not empty
+                                debtor.inputNeraca != null
+                                    ? const SizedBox()
+                                    : Expanded(
+                                        child: OutlinedButton.icon(
+                                          icon: const Icon(
+                                              FontAwesomeIcons.chartLine),
+                                          label: const Text(
+                                            "Input Neraca",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: Colors.blueGrey,
+                                          ),
+                                          onPressed: () {
+                                            Get.toNamed(Routes.INPUT_NERACA,
+                                                // Send debtor id to input keuangan page
+                                                arguments: debtor.id);
+                                          },
+                                        ),
+                                      ),
+                                //check if neraca is empty
+                                debtor.inputNeraca == null
+                                    ? const SizedBox()
+                                    : Expanded(
+                                        child: OutlinedButton.icon(
+                                          icon:
+                                              const Icon(FontAwesomeIcons.eye),
+                                          label: const Text(
+                                            "Lihat Neraca",
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: Colors.deepOrange,
+                                          ),
+                                          onPressed: () {
+                                            Get.toNamed(Routes.LIHAT_NERACA,
+                                                // Send debtor id to input keuangan page
+                                                arguments: debtor.inputNeraca);
+                                          },
+                                        ),
+                                      ),
+                                const SizedBox(
+                                  width: 10.0,
+                                ),
+                                Expanded(
+                                  child: OutlinedButton.icon(
+                                    icon: const Icon(FontAwesomeIcons.pencil),
+                                    label: const Text(
+                                      "Edit Neraca",
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    style: OutlinedButton.styleFrom(
+                                      foregroundColor: Colors.green,
+                                    ),
+                                    onPressed: () {
+                                      Get.toNamed(Routes.EDIT_NERACA,
+                                          // Send debtor id to input keuangan page
+                                          arguments: debtor.inputNeraca);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Rugi Laba
+                      ExpansionTile(
+                        title: const Text('2. Rugi Laba'),
+                        children: [
+                          OutlinedButton.icon(
+                            icon: const Icon(FontAwesomeIcons.amazon),
+                            label: const Text(
+                              "Input Rugi Laba",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.blueGrey,
+                            ),
+                            onPressed: () {
+                              Get.toNamed(Routes.RUGI_LABA,
+                                  // Send ID neraca to input rugi laba page
+                                  arguments: debtor);
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  )
                 ],
               ),
-              // Rugi Laba
-              ExpansionTile(
-                title: const Text('2. Rugi Laba'),
-                children: [
-                  OutlinedButton.icon(
-                    icon: const Icon(FontAwesomeIcons.amazon),
-                    label: const Text(
-                      "Input Rugi Laba",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.blueGrey,
-                    ),
-                    onPressed: () {
-                      Get.toNamed(Routes.RUGI_LABA,
-                          // Send ID neraca to input rugi laba page
-                          arguments: debtor);
-                    },
-                  ),
-                ],
-              )
-            ],
-          )
-        ],
       ),
     );
   }

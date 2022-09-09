@@ -2,6 +2,8 @@
 //
 //     final debtor = debtorFromJson(jsonString);
 
+// ignore_for_file: prefer_null_aware_operators
+
 import 'dart:convert';
 
 List<Debtor> debtorFromJson(String str) =>

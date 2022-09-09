@@ -1,4 +1,6 @@
 // 📦 Package imports:
+import 'package:akm/app/modules/input_neraca/views/edit_neraca_view.dart';
+import 'package:akm/app/modules/input_neraca/views/lihat_neraca_view.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -9,7 +11,7 @@ import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/debitur_detail_banget/bindings/debitur_detail_banget_binding.dart';
 import '../modules/debitur_detail_banget/views/debitur_detail_banget_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
-import '../modules/debitur_real/views/debitur_detail_view.dart';
+// import '../modules/debitur_real/views/debitur_detail_view.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
 import '../modules/debitur_real/views/debitur_list_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
@@ -40,18 +42,6 @@ import '../modules/search_nik/bindings/search_nik_binding.dart';
 import '../modules/search_nik/views/search_nik_view.dart';
 import '../modules/uploads/bindings/uploads_binding.dart';
 import '../modules/uploads/views/uploads_view.dart';
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
 
 // ignore_for_file: prefer_const_constructors
 
@@ -150,12 +140,6 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: _Paths.DEBITUR_DETAIL,
-      page: () => DebiturDetailView(),
-      binding: DebiturRealBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
       name: _Paths.DEBITUR_EDIT,
       page: () => DebiturEditView(),
       binding: DebiturRealBinding(),
@@ -183,6 +167,18 @@ class AppPages {
       name: _Paths.INPUT_NERACA,
       page: () => InputNeracaView(),
       binding: InputNeracaBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.LIHAT_NERACA,
+      page: () => LihatneracaView(),
+      binding: InputNeracaBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_NERACA,
+      page: () => EditNeracaView(),
+      binding: RugiLabaBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(

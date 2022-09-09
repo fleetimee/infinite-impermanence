@@ -25,6 +25,8 @@ abstract class Routes {
   static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
   static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
   static const INPUT_NERACA = _Paths.INPUT_NERACA;
+  static const LIHAT_NERACA = _Paths.LIHAT_NERACA;
+  static const EDIT_NERACA = _Paths.EDIT_NERACA;
   static const RUGI_LABA = _Paths.RUGI_LABA;
 }
 
@@ -49,5 +51,7 @@ abstract class _Paths {
   static const INPUT_KEUANGAN = '/input-keuangan';
   static const PORSEKOT_TABLE = '/porsekot-table';
   static const INPUT_NERACA = '/input-neraca';
+  static const EDIT_NERACA = '/edit-neraca';
+  static const LIHAT_NERACA = '/lihat-neraca';
   static const RUGI_LABA = '/rugi-laba';
 }

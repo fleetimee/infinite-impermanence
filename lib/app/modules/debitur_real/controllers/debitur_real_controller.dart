@@ -166,6 +166,8 @@ class DebiturRealController extends GetxController {
         loadingFetch.value = false;
       },
     );
+
+    listDebtor.refresh();
     update();
   }
 

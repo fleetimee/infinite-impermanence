@@ -8,48 +8,48 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class InputNeracaController extends GetxController {
-  final cashOnHand = MoneyMaskedTextController(
+  var cashOnHand = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final tabungan = MoneyMaskedTextController(
+  var tabungan = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final jumlahKasDanBank = MoneyMaskedTextController(
+  var jumlahKasDanBank = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
     initialValue: 0,
   );
-  final piutangUsaha = MoneyMaskedTextController(
+  var piutangUsaha = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final piutangLainnya = MoneyMaskedTextController(
+  var piutangLainnya = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final persediaan = MoneyMaskedTextController(
+  var persediaan = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final hutangUsaha = MoneyMaskedTextController(
+  var hutangUsaha = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final hutangBank = MoneyMaskedTextController(
+  var hutangBank = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final aktivaTetap = MoneyMaskedTextController(
+  var aktivaTetap = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,

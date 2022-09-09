@@ -40,7 +40,7 @@ class RugiLabaView extends GetView<RugiLabaController> {
             // onChanged: () {
             //   debugPrint(controller.formKey.currentState!.value.toString());
             // },
-
+            key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -310,7 +310,7 @@ class RugiLabaView extends GetView<RugiLabaController> {
                           ),
                         ),
                         inputType: InputType.date,
-                        format: DateFormat('dd/MMMM/yyyy'),
+                        format: DateFormat('dd/MM/yyyy'),
                         validator: FormBuilderValidators.required(),
                         name: 'Tanggal',
                       ),
@@ -318,7 +318,29 @@ class RugiLabaView extends GetView<RugiLabaController> {
                   ],
                 ),
                 const SizedBox(
-                  height: 16.0,
+                  height: 25.0,
+                ),
+                Center(
+                  child: ElevatedButton.icon(
+                    icon: const Icon(FontAwesomeIcons.shopify),
+                    label: const Text("Submit laba / rugi"),
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(600, 12),
+                      backgroundColor: primaryColor,
+                      shape: const StadiumBorder(),
+                    ),
+                    onPressed: () {
+                      if (controller.formKey.currentState?.saveAndValidate() ??
+                          false) {
+                        debugPrint(
+                            controller.formKey.currentState?.value.toString());
+                      } else {
+                        debugPrint(
+                            controller.formKey.currentState?.value.toString());
+                        debugPrint('validation failed');
+                      }
+                    },
+                  ),
                 ),
               ],
             ),

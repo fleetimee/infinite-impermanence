@@ -139,9 +139,9 @@ class RugiLabaController extends GetxController {
   @override
   void onInit() {
     // delay few second then execute result
-    // Future.delayed(const Duration(seconds: 1), () {
-    //   result();
-    // });
+    Future.delayed(const Duration(seconds: 1), () {
+      result();
+    });
     // result();
     super.onInit();
   }

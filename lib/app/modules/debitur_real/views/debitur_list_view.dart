@@ -209,52 +209,99 @@ class DetailDebitur extends StatelessWidget {
               Icons.attach_money,
             ),
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        icon: const Icon(FontAwesomeIcons.scaleUnbalanced),
-                        label: const Text(
-                          "Input Neraca",
-                          style: TextStyle(fontSize: 20),
+              ExpansionTile(
+                title: const Text('1. Neraca'),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        // Expanded(
+                        //   child: OutlinedButton.icon(
+                        //     icon: const Icon(FontAwesomeIcons.scaleUnbalanced),
+                        //     label: const Text(
+                        //       "Input Neraca",
+                        //       style: TextStyle(fontSize: 20),
+                        //     ),
+                        //     style: OutlinedButton.styleFrom(
+                        //       foregroundColor: Colors.blueGrey,
+                        //     ),
+                        //     onPressed: () {
+                        //       Get.toNamed(Routes.INPUT_NERACA,
+                        //           // Send debtor id to input keuangan page
+                        //           arguments: debtor.id);
+                        //     },
+                        //   ),
+                        // ),
+                        const SizedBox(
+                          width: 16,
                         ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          Get.toNamed(Routes.INPUT_NERACA,
-                              // Send debtor id to input keuangan page
-                              arguments: debtor.id);
-                        },
-                      ),
+                        // check if neraca is empty
+                        debtor.inputNeraca != null
+                            ? const SizedBox()
+                            : Expanded(
+                                child: OutlinedButton.icon(
+                                  icon: const Icon(FontAwesomeIcons.chartLine),
+                                  label: const Text(
+                                    "Input Neraca",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.INPUT_NERACA,
+                                        // Send debtor id to input keuangan page
+                                        arguments: debtor.id);
+                                  },
+                                ),
+                              ),
+                        debtor.inputNeraca == null
+                            ? const SizedBox()
+                            : Expanded(
+                                child: OutlinedButton.icon(
+                                  icon: const Icon(FontAwesomeIcons.amazon),
+                                  label: const Text(
+                                    "Lihat Neraca",
+                                    style: TextStyle(fontSize: 20),
+                                  ),
+                                  style: OutlinedButton.styleFrom(
+                                    foregroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    // Get.toNamed(Routes.RUGI_LABA,
+                                    //     // Send ID neraca to input rugi laba page
+                                    //     arguments: debtor);
+                                  },
+                                ),
+                              ),
+                      ],
                     ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Expanded(
-                      child: OutlinedButton.icon(
-                        icon: const Icon(FontAwesomeIcons.amazon),
-                        label: const Text(
-                          "Input Rugi Laba",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueGrey,
-                        ),
-                        onPressed: () {
-                          Get.toNamed(Routes.RUGI_LABA,
-                              // Send ID neraca to input rugi laba page
-                              arguments: debtor);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+              ExpansionTile(
+                title: const Text('2. Rugi Laba'),
+                children: [
+                  OutlinedButton.icon(
+                    icon: const Icon(FontAwesomeIcons.amazon),
+                    label: const Text(
+                      "Input Rugi Laba",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.blueGrey,
+                    ),
+                    onPressed: () {
+                      Get.toNamed(Routes.RUGI_LABA,
+                          // Send ID neraca to input rugi laba page
+                          arguments: debtor);
+                    },
+                  ),
+                ],
+              )
             ],
           )
         ],

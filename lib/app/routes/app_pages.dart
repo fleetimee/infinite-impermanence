@@ -178,7 +178,7 @@ class AppPages {
     GetPage(
       name: _Paths.EDIT_NERACA,
       page: () => EditNeracaView(),
-      binding: RugiLabaBinding(),
+      binding: InputNeracaBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(

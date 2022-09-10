@@ -1,11 +1,12 @@
 // 🐦 Flutter imports:
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -37,9 +38,11 @@ class RugiLabaView extends GetView<RugiLabaController> {
         child: Container(
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
-            // onChanged: () {
-            //   debugPrint(controller.formKey.currentState!.value.toString());
-            // },
+            onChanged: () {
+              controller.formKey.currentState!.save();
+              // debugPrint(controller.formKey.currentState!.value.toString());
+              log(controller.formKey.currentState!.value.toString());
+            },
             key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,40 +282,42 @@ class RugiLabaView extends GetView<RugiLabaController> {
                   children: [
                     const Expanded(
                         child: Text(
-                      'Tanggal',
+                      'Neraca ID',
                       style: subtitle2,
                     )),
                     const SizedBox(
                       width: 25.0,
                     ),
                     Expanded(
-                      child: FormBuilderDateTimePicker(
-                        resetIcon: null,
-                        onChanged: (value) {
-                          // controller.tglMulaiKredit.value =
-                          //     DateFormat('yyyy MM dd').format(value!);
-                        },
-                        onFieldSubmitted: (value) {
-                          // controller.tglMulaiKredit.value =
-                          //     DateFormat('dd MM yyyy').format(value!);
-                          // debugPrint(value.toString());
-                        },
-                        onSaved: (value) {
-                          // controller.tglMulaiKredit.value =
-                          //     DateFormat('dd MM yyyy').format(value!);
-                        },
-                        decoration: const InputDecoration(
-                          labelText: 'Pilih Tanggal',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                          ),
-                        ),
-                        inputType: InputType.date,
-                        format: DateFormat('dd/MM/yyyy'),
-                        validator: FormBuilderValidators.required(),
-                        name: 'Tanggal',
+                      child: FormBuilderTextField(
+                        name: 'neraca_id',
+                        readOnly: true,
+                        controller: controller.neracaId = TextEditingController(
+                            text: data.inputNeraca.id.toString()),
+                        // controller: controller.neracaId,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Row(
+                  children: [
+                    const Expanded(
+                        child: Text(
+                      'Debitur ID',
+                      style: subtitle2,
+                    )),
+                    const SizedBox(
+                      width: 25.0,
+                    ),
+                    Expanded(
+                      child: FormBuilderTextField(
+                        name: 'debitur_id',
+                        controller: controller.debiturId =
+                            TextEditingController(text: data.id.toString()),
+                        readOnly: true,
                       ),
                     ),
                   ],
@@ -332,6 +337,7 @@ class RugiLabaView extends GetView<RugiLabaController> {
                     onPressed: () {
                       if (controller.formKey.currentState?.saveAndValidate() ??
                           false) {
+                        controller.saveRugiLaba();
                         debugPrint(
                             controller.formKey.currentState?.value.toString());
                       } else {

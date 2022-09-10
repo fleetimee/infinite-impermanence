@@ -17,7 +17,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Input Neraca'),
+        title: Text('Detail Neraca #${data.id}'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

@@ -11,6 +11,7 @@ import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/neraca.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -54,7 +55,7 @@ class InputNeracaService {
           title: 'Sukses',
           desc: 'Data berhasil ditambahkan',
           btnOkOnPress: () {
-            Get.back();
+            Get.offAndToNamed(Routes.DEBITUR_LIST);
             // Then refresh the list
             Get.find<DebiturRealController>().fetchDebitur();
           },
@@ -115,6 +116,8 @@ class InputNeracaService {
             fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
+          dismissOnTouchOutside: false,
+          dismissOnBackKeyPress: false,
           title: 'Sukses',
           desc: 'Data berhasil diubah',
           btnOkOnPress: () {

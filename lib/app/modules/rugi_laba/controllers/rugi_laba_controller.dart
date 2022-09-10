@@ -1,6 +1,7 @@
 // 📦 Package imports:
 // ignore_for_file: unnecessary_overrides
 
+import 'package:akm/app/service/rugi_laba_service.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -8,6 +9,57 @@ import 'package:get/get.dart';
 
 class RugiLabaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
+
+  @override
+  void onInit() {
+    // delay few second then execute result
+    Future.delayed(const Duration(seconds: 1), () {
+      result();
+    });
+    // result();
+    super.onInit();
+  }
+
+  void saveRugiLaba() {
+    final api = RugiLabaService();
+    final data = {
+      'kas': aktivaLancarKas.text.replaceAll('.', ''),
+      'bank': aktivaBank.text.replaceAll('.', ''),
+      'piutang': aktivaPiutangUsaha.text.replaceAll('.', ''),
+      'persediaan': aktivaPersediaan.text.replaceAll('.', ''),
+      'jumlah_aktiva_lancar': jumlahAktivaLancar.text.replaceAll('.', ''),
+      'jumlah_aktiva_tetap': jumlahAktivaTetap.text.replaceAll('.', ''),
+      'sum_aktiva': jumlahAktiva.text.replaceAll('.', ''),
+      'hutang_usaha': hutangUsaha.text.replaceAll('.', ''),
+      'hutang_bank': hutangBank.text.replaceAll('.', ''),
+      'hutang_lainnya': hutangLainnya.text.replaceAll('.', ''),
+      'jumlah_hutang': jumlahHutang.text.replaceAll('.', ''),
+      'jumlah_modal': modal.text.replaceAll('.', ''),
+      'sum_pasiva': jumlahPasiva.text.replaceAll('.', ''),
+      'omzet': omzetPerBulan.text.replaceAll('.', ''),
+      'harga_pokok': hargaPokokPenjualan.text.replaceAll('.', ''),
+      'laba_kotor': labaKotor.text.replaceAll('.', ''),
+      'biaya_tenaga_kerja': biayaTenagaKerja.text.replaceAll('.', ''),
+      'biaya_operasional': biayaOperasional.text.replaceAll('.', ''),
+      'biaya_lainnya': biayaLainnya.text.replaceAll('.', ''),
+      'total_biaya': totalBiaya.text.replaceAll('.', ''),
+      'laba_sebelum_pajak': labaSebelumPajak.text.replaceAll('.', ''),
+      'perkiraan_pajak': perkiraanPajak.text.replaceAll('.', ''),
+      'laba_setelah_pajak': labaSetelahPajak.text.replaceAll('.', ''),
+      'penghasilan': labaSetelahPajak.text.replaceAll('.', ''),
+      'biaya_hidup': biayaHidupRataRata.text.replaceAll('.', ''),
+      'sisa_penghasilan': sisaPenghasilanBersih.text.replaceAll('.', ''),
+      'neraca': neracaId.text,
+      'debitur': debiturId.text,
+    };
+
+    api.addRugiLaba(data);
+
+    update();
+  }
+
+  var debiturId = TextEditingController();
+  var neracaId = TextEditingController();
 
   var aktivaLancarKas = MoneyMaskedTextController(
     decimalSeparator: '',
@@ -135,16 +187,6 @@ class RugiLabaController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
-
-  @override
-  void onInit() {
-    // delay few second then execute result
-    Future.delayed(const Duration(seconds: 1), () {
-      result();
-    });
-    // result();
-    super.onInit();
-  }
 
   void result() {
     sumAktivaLancar();

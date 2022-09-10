@@ -160,14 +160,14 @@ class DebiturRealController extends GetxController {
     loadingFetch.value = true;
 
     Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 1),
       () async {
         listDebtor.value = await DebtorService().getDebtors();
         loadingFetch.value = false;
+        listDebtor.refresh();
       },
     );
 
-    listDebtor.refresh();
     update();
   }
 

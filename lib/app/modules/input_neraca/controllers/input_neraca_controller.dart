@@ -87,4 +87,23 @@ class InputNeracaController extends GetxController {
 
     update();
   }
+
+  void updateNeraca(String id) async {
+    final api = InputNeracaService();
+    final data = {
+      'tanggal_input': tanggalInput.value.toString(),
+      'kas_on_hand': cashOnHand.text.replaceAll('.', ''),
+      'tabungan': tabungan.text.replaceAll('.', ''),
+      'jumlah_kas_dan_tabungan': jumlahKasDanBank.text.replaceAll('.', ''),
+      'jumlah_piutang': piutangLainnya.text.replaceAll('.', ''),
+      'jumlah_persediaan': persediaan.text.replaceAll('.', ''),
+      'hutang_usaha': hutangUsaha.text.replaceAll('.', ''),
+      'hutang_bank': hutangBank.text.replaceAll('.', ''),
+      'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
+    };
+
+    await api.editInputNeraca(id, data);
+
+    update();
+  }
 }

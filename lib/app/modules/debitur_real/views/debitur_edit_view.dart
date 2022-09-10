@@ -875,7 +875,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
                               },
                             ).show();
                           },
-                          // color: Theme.of(context).colorScheme.secondary,
                           child: Text(
                             'Reset',
                             style: TextStyle(
@@ -891,67 +890,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
           ),
         ),
       ),
-      // body: FormBuilder(
-      //   key: _formKey,
-      //   onChanged: () {
-      //     _formKey.currentState!.save();
-      //     debugPrint(_formKey.currentState!.value.toString());
-      //   },
-      //   // initialValue: {
-      //   //   'peminjam1edit': '${data.peminjam1}',
-      //   // },
-      //   child: Column(
-      //     children: [
-      //       FormBuilderTextField(
-      //         name: 'peminjam1',
-      //         // controller with initial value
-      //         controller: controller.peminjam1Edit.value =
-      //             TextEditingController(text: data.peminjam1),
-      //         // controller: controller.peminjam1.value,
-      //       ),
-      //       FormBuilderTextField(
-      //         name: 'peminjam2',
-      //         initialValue: data.peminjam2,
-      //         // controller: controller.peminjam2.value,
-      //       ),
-      //       Row(
-      //         children: <Widget>[
-      //           Expanded(
-      //             child: ElevatedButton(
-      //               onPressed: () {
-      //                 if (_formKey.currentState?.saveAndValidate() ?? false) {
-      //                   debugPrint(_formKey.currentState?.value.toString());
-      //                   controller.editDebitur(data.id.toString());
-      //                 } else {
-      //                   debugPrint(_formKey.currentState?.value.toString());
-      //                   debugPrint('validation failed');
-      //                 }
-      //               },
-      //               child: const Text(
-      //                 'Submit',
-      //                 style: TextStyle(color: Colors.white),
-      //               ),
-      //             ),
-      //           ),
-      //           const SizedBox(width: 20),
-      //           Expanded(
-      //             child: OutlinedButton(
-      //               onPressed: () {
-      //                 _formKey.currentState?.reset();
-      //               },
-      //               // color: Theme.of(context).colorScheme.secondary,
-      //               child: Text(
-      //                 'Reset',
-      //                 style: TextStyle(
-      //                     color: Theme.of(context).colorScheme.secondary),
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

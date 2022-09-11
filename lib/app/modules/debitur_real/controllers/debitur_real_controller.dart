@@ -173,7 +173,11 @@ class DebiturRealController extends GetxController {
 
   void filterDebtor() async {
     await FilterListDialog.display<Debtor>(
+      headlineText: 'Cari disini',
+      applyButtonText: 'Pilih',
+      enableOnlySingleSelection: true,
       Get.context!,
+      hideSelectedTextCount: true,
       listData: listDebtor,
       selectedListData: selectedDebtor,
       choiceChipLabel: (user) => user!.peminjam1,

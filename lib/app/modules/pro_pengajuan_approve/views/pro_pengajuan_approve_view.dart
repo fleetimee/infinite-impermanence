@@ -107,13 +107,13 @@ class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {
                     () => {
                           AwesomeDialog(
                             context: context,
-                            dialogType: DialogType.SUCCES,
+                            dialogType: DialogType.success,
                             dialogBackgroundColor: primaryColor,
                             titleTextStyle: const TextStyle(
                               color: secondaryColor,
                               fontSize: 20,
                             ),
-                            animType: AnimType.BOTTOMSLIDE,
+                            animType: AnimType.bottomSlide,
                             title: 'Berhasil Disetujui',
                             btnOkOnPress: () {},
                             autoHide: const Duration(seconds: 3),

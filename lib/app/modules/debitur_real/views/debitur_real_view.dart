@@ -1,10 +1,12 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,10 +33,10 @@ class DebiturRealView extends GetView<DebiturRealController> {
             child: FormBuilder(
               autovalidateMode: AutovalidateMode.disabled,
               key: controller.formKey,
-              onChanged: () {
-                controller.formKey.currentState!.save();
-                debugPrint(controller.formKey.currentState!.value.toString());
-              },
+              // onChanged: () {
+              //   controller.formKey.currentState!.save();
+              //   debugPrint(controller.formKey.currentState!.value.toString());
+              // },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -76,16 +78,47 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: FormBuilderTextField(
+                        // child: FormBuilderTextField(
+                        //   name: 'ktp1',
+                        //   validator: FormBuilderValidators.compose([
+                        //     FormBuilderValidators.required(),
+                        //   ]),
+                        //   controller: controller.ktp1.value,
+                        //   decoration: const InputDecoration(
+                        //     labelText: 'Asal KTP 1',
+                        //     labelStyle: TextStyle(fontSize: 18),
+                        //     hintText: 'Kota Yogyakarta',
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: primaryColor),
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: Colors.grey),
+                        //     ),
+                        //   ),
+                        // ),
+                        child: FormBuilderSearchableDropdown<String>(
                           name: 'ktp1',
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                          ]),
-                          controller: controller.ktp1.value,
+                          onChanged: (value) {
+                            controller.ktp1.value.text = value!;
+                          },
+                          onSaved: (value) {
+                            controller.ktp1.value.text = value!;
+                          },
+                          validator: FormBuilderValidators.required(),
+                          items: allProvinsi,
+                          popupProps:
+                              const PopupProps.menu(showSearchBox: true),
+                          dropdownSearchDecoration: const InputDecoration(
+                            hintText: 'Search',
+                            labelText: 'Search',
+                          ),
+                          filterFn: (provinsi, filter) => provinsi
+                              .toLowerCase()
+                              .contains(filter.toLowerCase()),
                           decoration: const InputDecoration(
                             labelText: 'Asal KTP 1',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Kota Yogyakarta',
+                            hintText: 'Asal KTP 1',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
@@ -119,13 +152,46 @@ class DebiturRealView extends GetView<DebiturRealController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: FormBuilderTextField(
+                        // child: FormBuilderTextField(
+                        //   name: 'ktp2',
+                        //   controller: controller.ktp2.value,
+                        //   decoration: const InputDecoration(
+                        //     labelText: 'Asal KTP 2',
+                        //     labelStyle: TextStyle(fontSize: 18),
+                        //     hintText: 'Kabupaten Sleman',
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: primaryColor),
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: Colors.grey),
+                        //     ),
+                        //   ),
+                        // ),
+                        child: FormBuilderSearchableDropdown<String>(
                           name: 'ktp2',
-                          controller: controller.ktp2.value,
+                          onChanged: (value) {
+                            controller.ktp2.value.text = value!;
+                            debugPrint(value);
+                          },
+                          onSaved: (value) {
+                            controller.ktp2.value.text = value!;
+                            debugPrint(value);
+                          },
+                          validator: FormBuilderValidators.required(),
+                          items: allProvinsi,
+                          popupProps:
+                              const PopupProps.menu(showSearchBox: true),
+                          dropdownSearchDecoration: const InputDecoration(
+                            hintText: 'Search',
+                            labelText: 'Search',
+                          ),
+                          filterFn: (provinsi, filter) => provinsi
+                              .toLowerCase()
+                              .contains(filter.toLowerCase()),
                           decoration: const InputDecoration(
-                            labelText: 'Asal KTP 2',
+                            labelText: 'Asal KTP 1',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Kabupaten Sleman',
+                            hintText: 'Asal KTP 1',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
@@ -331,22 +397,14 @@ class DebiturRealView extends GetView<DebiturRealController> {
                           errorFormatText: 'Format tanggal salah',
                           errorInvalidText: 'Tanggal tidak valid',
                           inputType: InputType.date,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: 'Tanggal Lahir',
-                            labelStyle: const TextStyle(fontSize: 18),
+                            labelStyle: TextStyle(fontSize: 18),
                             hintText: 'Masukkan Tanggal Lahir',
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                controller.formKey.currentState!
-                                    .fields['Tanggal Lahir']
-                                    ?.didChange(null);
-                              },
-                              icon: const Icon(Icons.abc),
-                            ),
-                            focusedBorder: const OutlineInputBorder(
+                            focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
-                            enabledBorder: const OutlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.grey),
                             ),
                           ),
@@ -680,31 +738,23 @@ class DebiturRealView extends GetView<DebiturRealController> {
                   // Current Date
                   FormBuilderDateTimePicker(
                     name: 'tgl_sekarang',
-                    resetIcon: null,
                     onChanged: (value) {
                       controller.tanggalSekarangInput.value = value!;
                       debugPrint(value.toString());
                     },
-                    decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            controller
-                                .formKey.currentState?.fields['tgl_sekarang']
-                                ?.didChange(null);
-                          },
-                          icon: const Icon(Icons.restore)),
+                    decoration: const InputDecoration(
                       labelText: 'Tanggal Sekarang',
-                      labelStyle: const TextStyle(fontSize: 18),
+                      labelStyle: TextStyle(fontSize: 18),
                       hintText: 'Masukkan Tanggal Sekarang',
-                      focusedBorder: const OutlineInputBorder(
+                      focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: primaryColor),
                       ),
-                      enabledBorder: const OutlineInputBorder(
+                      enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                     ),
                     inputType: InputType.date,
-                    format: DateFormat('dd/MM/yyyy'),
+                    format: DateFormat('dd MMMM yyyy'),
                   ),
                   const SizedBox(height: 16),
                   FormBuilderTextField(
@@ -740,8 +790,8 @@ class DebiturRealView extends GetView<DebiturRealController> {
                               debugPrint('validation failed');
                               AwesomeDialog(
                                 context: context,
-                                animType: AnimType.BOTTOMSLIDE,
-                                dialogType: DialogType.WARNING,
+                                animType: AnimType.bottomSlide,
+                                dialogType: DialogType.warning,
                                 dialogBackgroundColor: primaryColor,
                                 titleTextStyle: GoogleFonts.poppins(
                                   color: secondaryColor,
@@ -786,8 +836,8 @@ class DebiturRealView extends GetView<DebiturRealController> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w400,
                               ),
-                              dialogType: DialogType.SUCCES,
-                              animType: AnimType.SCALE,
+                              dialogType: DialogType.success,
+                              animType: AnimType.scale,
                               title: 'Success',
                               desc: 'Form has been reset',
                               btnOkOnPress: () {

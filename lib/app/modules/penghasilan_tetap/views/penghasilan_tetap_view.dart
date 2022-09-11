@@ -61,7 +61,7 @@ class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
                       if (isLastStep) {
                         AwesomeDialog(
                           context: context,
-                          dialogType: DialogType.SUCCES,
+                          dialogType: DialogType.success,
                           dialogBackgroundColor: primaryColor,
                           titleTextStyle: GoogleFonts.poppins(
                             color: secondaryColor,
@@ -73,7 +73,7 @@ class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
                             fontSize: 20,
                             fontWeight: FontWeight.w400,
                           ),
-                          animType: AnimType.BOTTOMSLIDE,
+                          animType: AnimType.bottomSlide,
                           title: 'Success',
                           desc: 'Data berhasil disetujui',
                           btnOkOnPress: () {},

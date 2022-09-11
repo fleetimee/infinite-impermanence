@@ -385,8 +385,8 @@ class KeuanganAnalisisController extends GetxController
     if (pinjamanMaksimal.text == '0' || pinjamanMaksimal.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Pinjaman Maksimal Masih Kosong',
         dialogBackgroundColor: primaryColor,
@@ -415,8 +415,8 @@ class KeuanganAnalisisController extends GetxController
         isKreditPassed.value = false;
         AwesomeDialog(
           context: Get.context!,
-          dialogType: DialogType.ERROR,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.error,
+          animType: AnimType.bottomSlide,
           title: 'Error',
           desc: 'Kredit yang diminta melebihi pinjaman maksimal',
           dialogBackgroundColor: primaryColor,
@@ -437,8 +437,8 @@ class KeuanganAnalisisController extends GetxController
         isKreditPassed.value = true;
         AwesomeDialog(
           context: Get.context!,
-          dialogType: DialogType.SUCCES,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
           title: 'Success',
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
@@ -581,7 +581,7 @@ class KeuanganAnalisisController extends GetxController
     } catch (e) {
       if (debtInput.text == '') {
         AwesomeDialog(
-          dialogType: DialogType.ERROR,
+          dialogType: DialogType.error,
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
@@ -593,7 +593,7 @@ class KeuanganAnalisisController extends GetxController
             fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
-          animType: AnimType.BOTTOMSLIDE,
+          animType: AnimType.bottomSlide,
           title: 'Error',
           desc: 'Field Pinjaman Masih Kosong',
           btnOkOnPress: () {},
@@ -603,7 +603,7 @@ class KeuanganAnalisisController extends GetxController
 
       if (equityInput.text == '') {
         AwesomeDialog(
-          dialogType: DialogType.ERROR,
+          dialogType: DialogType.error,
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
@@ -615,7 +615,7 @@ class KeuanganAnalisisController extends GetxController
             fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
-          animType: AnimType.BOTTOMSLIDE,
+          animType: AnimType.bottomSlide,
           title: 'Error',
           desc: 'Field Modal Masih Kosong',
           btnOkOnPress: () {},
@@ -706,8 +706,8 @@ class KeuanganAnalisisController extends GetxController
     if (biayaBahanKini.text == '' || biayaBahanYAD.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya bahan kini dan biaya bahan YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -743,8 +743,8 @@ class KeuanganAnalisisController extends GetxController
     if (upahKini.text == '' || upahYAD.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.RIGHSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.rightSlide,
         title: 'Error',
         desc: 'Upah kini dan upah YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -776,8 +776,8 @@ class KeuanganAnalisisController extends GetxController
     if (biayaOperasiKini.text == '' || biayaOperasiYAD.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya operasi kini dan biaya operasi YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -813,8 +813,8 @@ class KeuanganAnalisisController extends GetxController
     if (biayaHidupKini.text == '' || biayaHidupYAD.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya hidup kini dan biaya hidup YAD tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -950,8 +950,8 @@ class KeuanganAnalisisController extends GetxController
     if (netWorthPlusCredit.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Jumlah Asset + Pinjaman tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -973,8 +973,8 @@ class KeuanganAnalisisController extends GetxController
     if (labaUsahaKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Laba usaha tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -996,8 +996,8 @@ class KeuanganAnalisisController extends GetxController
     if (labaUsahaYAD.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Laba usaha tidak boleh kosong',
         dialogBackgroundColor: primaryColor,
@@ -1265,7 +1265,7 @@ class KeuanganAnalisisController extends GetxController
   //   } catch (e) {
   //     if (bungaPerTahun.text == '') {
   //       AwesomeDialog(
-  //         dialogType: DialogType.ERROR,
+  //         dialogType: DialogType.error,
   //         dialogBackgroundColor: primaryColor,
   //         titleTextStyle: GoogleFonts.poppins(
   //           color: secondaryColor,
@@ -1277,7 +1277,7 @@ class KeuanganAnalisisController extends GetxController
   //           fontSize: 20,
   //           fontWeight: FontWeight.w400,
   //         ),
-  //         animType: AnimType.BOTTOMSLIDE,
+  //         animType: AnimType.bottomSlide,
   //         title: 'Error',
   //         desc: 'Field bunga per tahun masih kosong',
   //         btnOkOnPress: () {},
@@ -1287,7 +1287,7 @@ class KeuanganAnalisisController extends GetxController
 
   //     if (angsuranPerBulan.text == '') {
   //       AwesomeDialog(
-  //         dialogType: DialogType.ERROR,
+  //         dialogType: DialogType.error,
   //         dialogBackgroundColor: primaryColor,
   //         titleTextStyle: GoogleFonts.poppins(
   //           color: secondaryColor,
@@ -1299,7 +1299,7 @@ class KeuanganAnalisisController extends GetxController
   //           fontSize: 20,
   //           fontWeight: FontWeight.w400,
   //         ),
-  //         animType: AnimType.BOTTOMSLIDE,
+  //         animType: AnimType.bottomSlide,
   //         title: 'Error',
   //         desc: 'Field Angsuran per bulan masih kosong',
   //         btnOkOnPress: () {},

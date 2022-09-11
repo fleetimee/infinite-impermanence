@@ -97,12 +97,12 @@ class RugiLabaController extends GetxController {
     precision: 0,
     initialValue: 0,
   );
-  final jumlahAktivaLancar = MoneyMaskedTextController(
+  var jumlahAktivaLancar = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final jumlahHutang = MoneyMaskedTextController(
+  var jumlahHutang = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -112,77 +112,77 @@ class RugiLabaController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
-  final modal = MoneyMaskedTextController(
+  var modal = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final jumlahAktiva = MoneyMaskedTextController(
+  var jumlahAktiva = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final jumlahPasiva = MoneyMaskedTextController(
+  var jumlahPasiva = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final omzetPerBulan = MoneyMaskedTextController(
+  var omzetPerBulan = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final hargaPokokPenjualan = MoneyMaskedTextController(
+  var hargaPokokPenjualan = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final labaKotor = MoneyMaskedTextController(
+  var labaKotor = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final biayaTenagaKerja = MoneyMaskedTextController(
+  var biayaTenagaKerja = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final biayaOperasional = MoneyMaskedTextController(
+  var biayaOperasional = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final biayaLainnya = MoneyMaskedTextController(
+  var biayaLainnya = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final totalBiaya = MoneyMaskedTextController(
+  var totalBiaya = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final labaSebelumPajak = MoneyMaskedTextController(
+  var labaSebelumPajak = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final perkiraanPajak = MoneyMaskedTextController(
+  var perkiraanPajak = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final labaSetelahPajak = MoneyMaskedTextController(
+  var labaSetelahPajak = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final biayaHidupRataRata = MoneyMaskedTextController(
+  var biayaHidupRataRata = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final sisaPenghasilanBersih = MoneyMaskedTextController(
+  var sisaPenghasilanBersih = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,

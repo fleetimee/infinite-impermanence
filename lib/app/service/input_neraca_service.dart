@@ -39,8 +39,8 @@ class InputNeracaService {
       if (response.statusCode == 201) {
         AwesomeDialog(
           context: Get.context!,
-          dialogType: DialogType.SUCCES,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
@@ -79,8 +79,8 @@ class InputNeracaService {
           fontSize: 20,
           fontWeight: FontWeight.w400,
         ),
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Terjadi kesalahan',
         btnOkOnPress: () {},
@@ -103,8 +103,8 @@ class InputNeracaService {
       if (response.statusCode == 200) {
         AwesomeDialog(
           context: Get.context!,
-          dialogType: DialogType.SUCCES,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
@@ -140,8 +140,8 @@ class InputNeracaService {
             fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
-          dialogType: DialogType.ERROR,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.error,
+          animType: AnimType.bottomSlide,
           title: 'Error',
           desc: 'Terjadi kesalahan',
           btnOkOnPress: () {},

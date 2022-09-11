@@ -278,49 +278,56 @@ class RugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(
                   height: 25.0,
                 ),
-                Row(
-                  children: [
-                    const Expanded(
-                        child: Text(
-                      'Neraca ID',
-                      style: subtitle2,
-                    )),
-                    const SizedBox(
-                      width: 25.0,
-                    ),
-                    Expanded(
-                      child: FormBuilderTextField(
-                        name: 'neraca_id',
-                        readOnly: true,
-                        controller: controller.neracaId = TextEditingController(
-                            text: data.inputNeraca.id.toString()),
-                        // controller: controller.neracaId,
+                Visibility(
+                  visible: false,
+                  child: Row(
+                    children: [
+                      const Expanded(
+                          child: Text(
+                        'Neraca ID',
+                        style: subtitle2,
+                      )),
+                      const SizedBox(
+                        width: 25.0,
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: FormBuilderTextField(
+                          name: 'neraca_id',
+                          readOnly: true,
+                          controller: controller.neracaId =
+                              TextEditingController(
+                                  text: data.inputNeraca.id.toString()),
+                          // controller: controller.neracaId,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 16.0,
                 ),
-                Row(
-                  children: [
-                    const Expanded(
-                        child: Text(
-                      'Debitur ID',
-                      style: subtitle2,
-                    )),
-                    const SizedBox(
-                      width: 25.0,
-                    ),
-                    Expanded(
-                      child: FormBuilderTextField(
-                        name: 'debitur_id',
-                        controller: controller.debiturId =
-                            TextEditingController(text: data.id.toString()),
-                        readOnly: true,
+                Visibility(
+                  visible: false,
+                  child: Row(
+                    children: [
+                      const Expanded(
+                          child: Text(
+                        'Debitur ID',
+                        style: subtitle2,
+                      )),
+                      const SizedBox(
+                        width: 25.0,
                       ),
-                    ),
-                  ],
+                      Expanded(
+                        child: FormBuilderTextField(
+                          name: 'debitur_id',
+                          controller: controller.debiturId =
+                              TextEditingController(text: data.id.toString()),
+                          readOnly: true,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 25.0,

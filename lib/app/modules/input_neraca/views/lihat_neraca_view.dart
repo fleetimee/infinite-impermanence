@@ -63,7 +63,6 @@ class LihatneracaView extends GetView<InputNeracaController> {
                     ),
                     Expanded(
                       child: FormBuilderDateTimePicker(
-                        resetIcon: null,
                         enabled: false,
                         initialValue: data.tanggalInput,
                         // onChanged: (value) {

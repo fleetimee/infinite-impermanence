@@ -68,8 +68,8 @@ class SearchService {
         if (list.isEmpty) {
           AwesomeDialog(
             context: Get.context!,
-            dialogType: DialogType.WARNING,
-            animType: AnimType.BOTTOMSLIDE,
+            dialogType: DialogType.warning,
+            animType: AnimType.bottomSlide,
             dialogBackgroundColor: primaryColor,
             titleTextStyle: GoogleFonts.poppins(
               color: secondaryColor,
@@ -113,8 +113,8 @@ class SearchService {
             fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
-          dialogType: DialogType.ERROR,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.error,
+          animType: AnimType.bottomSlide,
           title: 'Error',
           desc: 'Field input tidak boleh kosong',
           btnOkOnPress: () {},

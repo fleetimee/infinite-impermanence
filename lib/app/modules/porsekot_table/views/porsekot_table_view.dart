@@ -227,7 +227,6 @@ class PorsekotTableView extends GetView<PorsekotTableController> {
                         ),
                         Expanded(
                           child: FormBuilderDateTimePicker(
-                            resetIcon: null,
                             onChanged: (value) {
                               controller.tglMulaiKredit.value =
                                   DateFormat('yyyy MM dd').format(value!);

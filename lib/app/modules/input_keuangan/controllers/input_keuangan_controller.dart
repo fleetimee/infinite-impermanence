@@ -134,8 +134,8 @@ class InputKeuanganController extends GetxController {
     if (kreditYangDiusulkan.text == '0' || kreditYangDiusulkan.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Kredit yang diusulkan masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -157,8 +157,8 @@ class InputKeuanganController extends GetxController {
     if (angsuranPerBulan.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Angsuran per bulan masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -180,8 +180,8 @@ class InputKeuanganController extends GetxController {
     if (bungaPerTahun.text == '') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Bunga per tahun masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -235,8 +235,8 @@ class InputKeuanganController extends GetxController {
     if (penjualanKini.text == '' || penjualanKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Penjualan kini masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -268,8 +268,8 @@ class InputKeuanganController extends GetxController {
     if (penjualanKini.text == '' || penjualanKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Penjualan kini masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -291,8 +291,8 @@ class InputKeuanganController extends GetxController {
     if (biayaBahanKini.text == '' || biayaBahanKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya bahan kini masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -314,8 +314,8 @@ class InputKeuanganController extends GetxController {
     if (biayaUpahKini.text == '' || biayaUpahKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya upah kini masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -337,8 +337,8 @@ class InputKeuanganController extends GetxController {
     if (biayaOperasionalKini.text == '' || biayaOperasionalKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya operasional kini masih kosong',
         dialogBackgroundColor: primaryColor,
@@ -360,8 +360,8 @@ class InputKeuanganController extends GetxController {
     if (biayaHidupKini.text == '' || biayaHidupKini.text == '0') {
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         title: 'Error',
         desc: 'Biaya hidup kini masih kosong',
         dialogBackgroundColor: primaryColor,

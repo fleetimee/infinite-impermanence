@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,6 +15,8 @@ class HomeController extends GetxController {
     _getThemeStatus();
     super.onInit();
   }
+
+  final faker = Faker.instance;
 
   RxBool isDarkModeEnabled = false.obs;
 

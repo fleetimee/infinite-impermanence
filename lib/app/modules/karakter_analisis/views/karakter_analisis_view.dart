@@ -574,7 +574,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                     //   ),
                                     //   dialogBackgroundColor: primaryColor,
                                     //   dialogType: DialogType.INFO_REVERSED,
-                                    //   animType: AnimType.BOTTOMSLIDE,
+                                    //   animType: AnimType.bottomSlide,
                                     //   title: 'Sukses',
                                     //   desc:
                                     //       'Deskripsi bisnis pemohon berhasil ter-generate',

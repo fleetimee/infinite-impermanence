@@ -244,7 +244,6 @@ class Angsuran extends StatelessWidget {
                     ),
                   ),
                   initialValue: 'Efektif',
-                  hint: const Text('Pilih Flat/Nominal'),
                   alignment: Alignment.center,
                   name: 'Choice Pinjaman Kredit',
                   items: const [

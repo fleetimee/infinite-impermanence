@@ -1,6 +1,7 @@
 // 📦 Package imports:
 import 'package:akm/app/modules/input_neraca/views/edit_neraca_view.dart';
 import 'package:akm/app/modules/input_neraca/views/lihat_neraca_view.dart';
+import 'package:akm/app/modules/rugi_laba/views/view_rugi_laba_view.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -184,6 +185,12 @@ class AppPages {
     GetPage(
       name: _Paths.RUGI_LABA,
       page: () => RugiLabaView(),
+      binding: RugiLabaBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.VIEW_RUGI_LABA,
+      page: () => LihatRugiLabaView(),
       binding: RugiLabaBinding(),
       transition: Transition.cupertino,
     ),

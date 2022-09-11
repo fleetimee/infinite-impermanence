@@ -64,7 +64,6 @@ class EditNeracaView extends GetView<InputNeracaController> {
                     ),
                     Expanded(
                       child: FormBuilderDateTimePicker(
-                        resetIcon: null,
                         initialValue: data.tanggalInput,
                         onChanged: (value) {
                           controller.tanggalInput.value = value!;

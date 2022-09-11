@@ -32,8 +32,8 @@ class RugiLabaService {
       if (response.statusCode == 201) {
         AwesomeDialog(
           context: Get.context!,
-          dialogType: DialogType.SUCCES,
-          animType: AnimType.BOTTOMSLIDE,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
@@ -60,8 +60,8 @@ class RugiLabaService {
 
       AwesomeDialog(
         context: Get.context!,
-        dialogType: DialogType.ERROR,
-        animType: AnimType.BOTTOMSLIDE,
+        dialogType: DialogType.error,
+        animType: AnimType.bottomSlide,
         dialogBackgroundColor: primaryColor,
         titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,

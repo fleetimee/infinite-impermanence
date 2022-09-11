@@ -47,13 +47,20 @@ class Greeting extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const CircleAvatar(
-                backgroundColor: secondaryColor,
-                radius: 25,
-                child: Icon(
-                  Icons.person,
-                  color: primaryColor,
+              CircleAvatar(
+                backgroundImage: NetworkImage(
+                  controller.faker.image.unsplash.people(
+                    w: 50,
+                    h: 50,
+                    keyword: 'face',
+                  ),
                 ),
+                backgroundColor: secondaryColor,
+                radius: 28,
+                // child: const Icon(
+                //   Icons.person,
+                //   color: primaryColor,
+                // ),
               ),
               const SizedBox(
                 width: 15,
@@ -70,9 +77,9 @@ class Greeting extends StatelessWidget {
                       color: secondaryColor,
                     ),
                   ),
-                  const Text(
-                    'Aulia Octavia',
-                    style: TextStyle(
+                  Text(
+                    controller.faker.name.fullName(),
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,
                       color: secondaryColor,

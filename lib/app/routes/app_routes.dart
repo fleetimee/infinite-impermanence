@@ -28,6 +28,7 @@ abstract class Routes {
   static const LIHAT_NERACA = _Paths.LIHAT_NERACA;
   static const EDIT_NERACA = _Paths.EDIT_NERACA;
   static const RUGI_LABA = _Paths.RUGI_LABA;
+  static const VIEW_RUGI_LABA = _Paths.VIEW_RUGI_LABA;
 }
 
 abstract class _Paths {
@@ -54,4 +55,5 @@ abstract class _Paths {
   static const EDIT_NERACA = '/edit-neraca';
   static const LIHAT_NERACA = '/lihat-neraca';
   static const RUGI_LABA = '/rugi-laba';
+  static const VIEW_RUGI_LABA = '/view-rugi-laba';
 }

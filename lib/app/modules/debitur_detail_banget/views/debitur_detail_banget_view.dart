@@ -82,14 +82,23 @@ class _DebiturDetailBangetViewState extends State<DebiturDetailBangetView> {
                       builder: (_) => Column(
                         children: [
                           Container(
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                begin: Alignment.bottomRight,
-                                end: Alignment.topLeft,
-                                colors: [
-                                  primaryColor,
-                                  secondaryColor,
-                                ],
+                            decoration: BoxDecoration(
+                              // gradient: LinearGradient(
+                              //   begin: Alignment.bottomRight,
+                              //   end: Alignment.topLeft,
+                              //   colors: [
+                              //     primaryColor,
+                              //     secondaryColor,
+                              //   ],
+                              // ),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    controller.faker.image.unsplash.nature(
+                                  h: 500,
+                                  w: 500,
+                                  keyword: 'nature',
+                                )),
+                                fit: BoxFit.cover,
                               ),
                             ),
                             child: Padding(

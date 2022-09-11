@@ -33,8 +33,8 @@ class UploadsView extends GetView<UploadsController> {
         onPressed: () {
           AwesomeDialog(
             context: Get.context!,
-            dialogType: DialogType.SUCCES,
-            animType: AnimType.BOTTOMSLIDE,
+            dialogType: DialogType.success,
+            animType: AnimType.bottomSlide,
             title: 'Success',
             desc: 'Data berhasil diupload',
             dialogBackgroundColor: primaryColor,

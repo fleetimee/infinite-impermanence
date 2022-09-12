@@ -166,40 +166,9 @@ class SideMenu extends StatelessWidget {
                 leading: const Icon(Icons.analytics_outlined),
               ),
               ListTile(
-                title: const Text('Keuangan Analisis'),
-                onTap: () {
-                  Get.offNamed(Routes.KEUANGAN_ANALISIS);
-                },
-                leading: const Icon(Icons.credit_card_outlined),
-              ),
-              ListTile(
                 title: const Text('Printing'),
                 onTap: () {
                   Get.offNamed(Routes.PRINTING);
-                  Get.back();
-                },
-                leading: const Icon(Icons.print),
-              ),
-              ListTile(
-                title: const Text('Input Keuangan'),
-                onTap: () {
-                  Get.toNamed(Routes.INPUT_KEUANGAN);
-                  Get.back();
-                },
-                leading: const Icon(Icons.print),
-              ),
-              ListTile(
-                title: const Text('Input Neraca'),
-                onTap: () {
-                  Get.offNamed(Routes.INPUT_NERACA);
-                  Get.back();
-                },
-                leading: const Icon(Icons.print),
-              ),
-              ListTile(
-                title: const Text('Input Rugi Laba'),
-                onTap: () {
-                  Get.offNamed(Routes.RUGI_LABA);
                   Get.back();
                 },
                 leading: const Icon(Icons.print),

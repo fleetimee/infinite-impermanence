@@ -431,6 +431,9 @@ class InputNeraca {
     this.jumlahPersediaan,
     this.hutangUsaha,
     this.hutangBank,
+    this.peralatan,
+    this.kendaraan,
+    this.tanahDanBangunan,
     this.aktivaTetap,
   });
 
@@ -443,6 +446,9 @@ class InputNeraca {
   String? jumlahPersediaan;
   String? hutangUsaha;
   String? hutangBank;
+  String? peralatan;
+  String? kendaraan;
+  String? tanahDanBangunan;
   String? aktivaTetap;
 
   factory InputNeraca.fromJson(Map<String, dynamic> json) => InputNeraca(
@@ -455,6 +461,9 @@ class InputNeraca {
         jumlahPersediaan: json["jumlah_persediaan"],
         hutangUsaha: json["hutang_usaha"],
         hutangBank: json["hutang_bank"],
+        peralatan: json["peralatan"],
+        kendaraan: json["kendaraan"],
+        tanahDanBangunan: json["tanah_bangunan"],
         aktivaTetap: json["aktiva_tetap"],
       );
 
@@ -469,6 +478,9 @@ class InputNeraca {
         "jumlah_persediaan": jumlahPersediaan,
         "hutang_usaha": hutangUsaha,
         "hutang_bank": hutangBank,
+        "peralatan": peralatan,
+        "kendaraan": kendaraan,
+        "tanah_bangunan": tanahDanBangunan,
         "aktiva_tetap": aktivaTetap,
       };
 }

@@ -174,6 +174,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'jumlah_kas_bank',
+                              enabled: false,
                               controller: controller.jumlahKasDanBank =
                                   MoneyMaskedTextController(
                                 initialValue:
@@ -183,6 +184,31 @@ class EditNeracaView extends GetView<InputNeracaController> {
                                 precision: 0,
                               ),
                               keyboardType: TextInputType.number,
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('')),
+                          DataCell(
+                            OutlinedButton.icon(
+                              icon: const Icon(Icons.calculate),
+                              label: const Text(
+                                "Hitung",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 20),
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                  foregroundColor: secondaryColor,
+                                  backgroundColor: primaryColor,
+                                  shape: const StadiumBorder(),
+                                  maximumSize:
+                                      const Size.fromWidth(double.infinity),
+                                  fixedSize: const Size(500, 5)),
+                              onPressed: () {
+                                controller.hitungKasDanBank();
+                              },
                             ),
                           ),
                         ],
@@ -430,7 +456,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                 ),
                 // ! Aktiva Tetap Table
                 SizedBox(
-                  height: 150,
+                  height: 300,
                   child: DataTable2(
                     border: TableBorder.all(color: Colors.black),
                     columns: const [
@@ -440,10 +466,75 @@ class EditNeracaView extends GetView<InputNeracaController> {
                     rows: [
                       DataRow2(
                         cells: [
+                          const DataCell(Text('Peralatan / Mesin')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'peralatan_mesin',
+                              controller: controller.peralatan =
+                                  MoneyMaskedTextController(
+                                initialValue: double.parse(data.peralatan),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Kendaraan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'kendaraan',
+                              controller: controller.kendaraan =
+                                  MoneyMaskedTextController(
+                                initialValue: double.parse(data.kendaraan),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Tanah dan Bangunan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'tanah_bangunan',
+                              controller: controller.tanahDanBangunan =
+                                  MoneyMaskedTextController(
+                                initialValue:
+                                    double.parse(data.tanahDanBangunan),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
                           const DataCell(Text('Jumlah')),
                           DataCell(
                             FormBuilderTextField(
                               name: 'aktiva_tetap',
+                              enabled: false,
                               controller: controller.aktivaTetap =
                                   MoneyMaskedTextController(
                                 initialValue: double.parse(data.aktivaTetap),
@@ -455,6 +546,31 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(SizedBox.shrink()),
+                          DataCell(
+                            OutlinedButton.icon(
+                              icon: const Icon(Icons.calculate),
+                              label: const Text(
+                                "Hitung",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 20),
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                  foregroundColor: secondaryColor,
+                                  backgroundColor: primaryColor,
+                                  shape: const StadiumBorder(),
+                                  maximumSize:
+                                      const Size.fromWidth(double.infinity),
+                                  fixedSize: const Size(500, 5)),
+                              onPressed: () {
+                                controller.hitungAktivaTetap();
+                              },
                             ),
                           ),
                         ],

@@ -21,6 +21,9 @@ class InputNeraca {
     this.jumlahPersediaan,
     this.hutangUsaha,
     this.hutangBank,
+    this.peralatan,
+    this.kendaraan,
+    this.tanahDanBangunan,
     this.aktivaTetap,
     this.debitur,
   });
@@ -34,6 +37,9 @@ class InputNeraca {
   String? jumlahPersediaan;
   String? hutangUsaha;
   String? hutangBank;
+  String? peralatan;
+  String? kendaraan;
+  String? tanahDanBangunan;
   String? aktivaTetap;
   Debitur? debitur;
 
@@ -47,6 +53,9 @@ class InputNeraca {
         jumlahPersediaan: json["jumlah_persediaan"],
         hutangUsaha: json["hutang_usaha"],
         hutangBank: json["hutang_bank"],
+        peralatan: json["peralatan"],
+        kendaraan: json["kendaraan"],
+        tanahDanBangunan: json["tanah_dan_bangunan"],
         aktivaTetap: json["aktiva_tetap"],
         debitur: Debitur.fromJson(json["debitur"]),
       );
@@ -62,6 +71,9 @@ class InputNeraca {
         "jumlah_persediaan": jumlahPersediaan,
         "hutang_usaha": hutangUsaha,
         "hutang_bank": hutangBank,
+        "peralatan": peralatan,
+        "kendaraan": kendaraan,
+        "tanah_dan_bangunan": tanahDanBangunan,
         "aktiva_tetap": aktivaTetap,
         "debitur": debitur?.toJson(),
       };

@@ -438,7 +438,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                 ),
                 // ! Aktiva Tetap Table
                 SizedBox(
-                  height: 150,
+                  height: 300,
                   child: DataTable2(
                     border: TableBorder.all(color: Colors.black),
                     columns: const [
@@ -448,10 +448,78 @@ class LihatneracaView extends GetView<InputNeracaController> {
                     rows: [
                       DataRow2(
                         cells: [
+                          const DataCell(Text('Peralatan / Mesin')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'peralatan_mesin',
+                              enabled: false,
+                              controller: controller.peralatan =
+                                  MoneyMaskedTextController(
+                                initialValue: double.parse(data.peralatan),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Kendaraan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'kendaraan',
+                              enabled: false,
+                              controller: controller.kendaraan =
+                                  MoneyMaskedTextController(
+                                initialValue: double.parse(data.kendaraan),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Tanah dan Bangunan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'tanah_bangunan',
+                              enabled: false,
+                              controller: controller.tanahDanBangunan =
+                                  MoneyMaskedTextController(
+                                initialValue:
+                                    double.parse(data.tanahDanBangunan),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
                           const DataCell(Text('Jumlah')),
                           DataCell(
                             FormBuilderTextField(
                               name: 'aktiva_tetap',
+                              enabled: false,
                               controller: controller.aktivaTetap =
                                   MoneyMaskedTextController(
                                 initialValue: double.parse(data.aktivaTetap),

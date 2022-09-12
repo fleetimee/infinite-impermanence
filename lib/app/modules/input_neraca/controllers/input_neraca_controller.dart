@@ -82,7 +82,7 @@ class InputNeracaController extends GetxController {
     final tabunganValue = double.parse(tabungan.text.replaceAll('.', ''));
     final jumlahKasDanBankValue = cashOnHandValue + tabunganValue;
 
-    jumlahKasDanBank.text = jumlahKasDanBankValue.toString();
+    jumlahKasDanBank.text = jumlahKasDanBankValue.toStringAsFixed(0);
   }
 
   void hitungAktivaTetap() {
@@ -108,6 +108,9 @@ class InputNeracaController extends GetxController {
       'jumlah_persediaan': persediaan.text.replaceAll('.', ''),
       'hutang_usaha': hutangUsaha.text.replaceAll('.', ''),
       'hutang_bank': hutangBank.text.replaceAll('.', ''),
+      'peralatan': peralatan.text.replaceAll('.', ''),
+      'kendaraan': kendaraan.text.replaceAll('.', ''),
+      'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
       'debitur': debitur.text,
     };
@@ -128,6 +131,9 @@ class InputNeracaController extends GetxController {
       'jumlah_persediaan': persediaan.text.replaceAll('.', ''),
       'hutang_usaha': hutangUsaha.text.replaceAll('.', ''),
       'hutang_bank': hutangBank.text.replaceAll('.', ''),
+      'peralatan': peralatan.text.replaceAll('.', ''),
+      'kendaraan': kendaraan.text.replaceAll('.', ''),
+      'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
     };
 

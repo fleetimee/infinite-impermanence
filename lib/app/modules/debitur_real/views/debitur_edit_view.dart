@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 
@@ -39,12 +39,15 @@ class DebiturEditView extends GetView<DebiturRealController> {
                 // debugPrint(controller.formKey.currentState!.value.toString());
               },
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SvgPicture.asset(
-                    'assets/images/debitur_real/farmer.svg',
-                    height: 350,
-                    fit: BoxFit.contain,
+                  Center(
+                    child: SvgPicture.asset(
+                      'assets/images/debitur_real/farmer.svg',
+                      height: 350,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   const SizedBox(height: 30),
                   Padding(
@@ -87,11 +90,9 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           initialValue: data.ktp1,
                           onChanged: (value) {
                             controller.ktp1.value.text = value!;
-                            debugPrint(value);
                           },
                           onSaved: (value) {
                             controller.ktp1.value.text = value!;
-                            debugPrint(value);
                           },
                           validator: FormBuilderValidators.required(),
                           items: allProvinsi,
@@ -149,11 +150,9 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           initialValue: data.ktp2,
                           onChanged: (value) {
                             controller.ktp2.value.text = value!;
-                            debugPrint(value);
                           },
                           onSaved: (value) {
                             controller.ktp2.value.text = value!;
-                            debugPrint(value);
                           },
                           validator: FormBuilderValidators.required(),
                           items: allProvinsi,
@@ -361,16 +360,30 @@ class DebiturEditView extends GetView<DebiturRealController> {
                   Row(
                     children: [
                       Expanded(
-                        child: FormBuilderTextField(
+                        child: FormBuilderSearchableDropdown<String>(
                           name: 'tempat_lahir',
-                          controller: controller.tempatLahir.value =
-                              TextEditingController(
-                            text: data.tempatLahir,
+                          initialValue: data.tempatLahir,
+                          onChanged: (value) {
+                            controller.tempatLahir.value.text = value!;
+                          },
+                          onSaved: (value) {
+                            controller.tempatLahir.value.text = value!;
+                          },
+                          validator: FormBuilderValidators.required(),
+                          items: allProvinsi,
+                          popupProps:
+                              const PopupProps.menu(showSearchBox: true),
+                          dropdownSearchDecoration: const InputDecoration(
+                            hintText: 'Search',
+                            labelText: 'Search',
                           ),
+                          filterFn: (provinsi, filter) => provinsi
+                              .toLowerCase()
+                              .contains(filter.toLowerCase()),
                           decoration: const InputDecoration(
                             labelText: 'Tempat Lahir',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan Tempat Lahir',
+                            hintText: 'Tempat Lahir',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
@@ -748,10 +761,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: FormBuilderValidators.compose(
                       [
-                        FormBuilderValidators.required(),
                         FormBuilderValidators.numeric(),
-                        FormBuilderValidators.minLength(10,
-                            errorText: 'Min 10 Digit'),
                       ],
                     ),
                     keyboardType: TextInputType.number,

@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/debitur_real/views/components/detail_debitur.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +12,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/modules/debitur_real/views/components/detail_debitur.dart';
 
 class DebiturListView extends GetView<DebiturRealController> {
   const DebiturListView({Key? key}) : super(key: key);
@@ -20,17 +20,27 @@ class DebiturListView extends GetView<DebiturRealController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Obx(
-        () => controller.loadingFetch.value
-            ? const SizedBox.shrink()
-            : FloatingActionButton(
-                onPressed: () => controller.filterDebtor(),
-                child: const Icon(Icons.search),
-              ),
-      ),
+      // floatingActionButton: Obx(
+      //   () => controller.loadingFetch.value
+      //       ? const SizedBox.shrink()
+      //       : FloatingActionButton(
+      //           onPressed: () => controller.filterDebtor(),
+      //           child: const Icon(Icons.search),
+      //         ),
+      // ),
       appBar: AppBar(
         title: const Text('Cari Debitur'),
         centerTitle: true,
+        actions: [
+          Obx(
+            () => controller.loadingFetch.value
+                ? const SizedBox.shrink()
+                : IconButton(
+                    onPressed: () => controller.filterDebtor(),
+                    icon: const Icon(Icons.search),
+                  ),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Column(

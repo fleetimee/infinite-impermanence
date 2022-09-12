@@ -2,6 +2,7 @@
 //
 //     final inputNeraca = inputNeracaFromJson(jsonString);
 
+// 🎯 Dart imports:
 import 'dart:convert';
 
 InputNeraca inputNeracaFromJson(String str) =>

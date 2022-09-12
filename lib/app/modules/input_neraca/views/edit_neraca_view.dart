@@ -1,14 +1,18 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
 
 class EditNeracaView extends GetView<InputNeracaController> {
   EditNeracaView({Key? key}) : super(key: key);

@@ -45,10 +45,27 @@ class DataKeuanganInput extends StatelessWidget {
               name: 'debitur_id',
               enabled: false,
               controller: dataKeuanganCtrl.debitur = TextEditingController(
-                text: data.toString(),
+                text: data.id.toString(),
               ),
               decoration: InputDecoration(
                 labelText: 'Debitur ID',
+                prefixIcon: const Icon(FontAwesomeIcons.person),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            FormBuilderTextField(
+              name: 'rugi_laba_id',
+              enabled: false,
+              controller: dataKeuanganCtrl.rugiLaba = TextEditingController(
+                text: data.inputRugiLaba.id.toString(),
+              ),
+              decoration: InputDecoration(
+                labelText: 'Rugi Laba ID',
                 prefixIcon: const Icon(FontAwesomeIcons.person),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -158,8 +175,11 @@ class DataKeuanganInput extends StatelessWidget {
                 Expanded(
                   child: FormBuilderDropdown(
                     name: 'sistem_angsuran',
-                    initialValue: 'Efektif',
                     onChanged: (value) {
+                      dataKeuanganCtrl.sistemAngsuran.value = value.toString();
+                      debugPrint(value.toString());
+                    },
+                    onSaved: (value) {
                       dataKeuanganCtrl.sistemAngsuran.value = value.toString();
                       debugPrint(value.toString());
                     },

@@ -25,6 +25,7 @@ class InputKeuanganController extends GetxController {
     precision: 0,
   );
 
+  var rugiLaba = TextEditingController();
   var debitur = TextEditingController();
 
   final angsuranPerBulan = TextEditingController();
@@ -56,37 +57,34 @@ class InputKeuanganController extends GetxController {
     precision: 0,
   );
 
-  final penjualanKini = MoneyMaskedTextController(
-    initialValue: 0,
+  var penjualanKini = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final hpp = TextEditingController(text: '20');
+  final hpp = TextEditingController(text: '75');
 
-  final biayaBahanKini = MoneyMaskedTextController(
+  var biayaBahanKini = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
     initialValue: 0,
+  );
+
+  var biayaUpahKini = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final biayaUpahKini = MoneyMaskedTextController(
-    initialValue: 0,
+  var biayaOperasionalKini = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final biayaOperasionalKini = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  final biayaHidupKini = MoneyMaskedTextController(
+  var biayaHidupKini = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -426,6 +424,7 @@ class InputKeuanganController extends GetxController {
       'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
       'trade_cycle': tradeCycle.text,
       'debitur': debitur.text,
+      'rugilaba': rugiLaba.text,
     };
 
     api.addKeuangan(data);

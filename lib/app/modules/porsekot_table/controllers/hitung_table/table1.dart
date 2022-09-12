@@ -1,8 +1,13 @@
-import 'package:akm/app/modules/porsekot_table/controllers/porsekot_table_controller.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/porsekot_table/controllers/porsekot_table_controller.dart';
 
 class Table1 extends GetxController {
   final controller = Get.put(PorsekotTableController());

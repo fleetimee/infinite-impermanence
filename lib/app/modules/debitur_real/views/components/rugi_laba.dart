@@ -22,7 +22,22 @@ class RugiLaba extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text('2. Rugi Laba'),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text('2. Rugi Laba'),
+          // check if input rugi laba is not null then give success icon else give error icon
+          debtor.inputRugiLaba != null
+              ? const Icon(
+                  FontAwesomeIcons.check,
+                  color: Colors.green,
+                )
+              : const Icon(
+                  FontAwesomeIcons.exclamation,
+                  color: Colors.red,
+                ),
+        ],
+      ),
       children: [
         // check if neraca is empty
         debtor.inputNeraca == null

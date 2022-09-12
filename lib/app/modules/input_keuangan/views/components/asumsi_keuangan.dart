@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -18,6 +19,7 @@ class AsumsiKeuanganInput extends StatelessWidget {
   AsumsiKeuanganInput({Key? key}) : super(key: key);
 
   final controller = Get.put(InputKeuanganController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +159,13 @@ class AsumsiKeuanganInput extends StatelessWidget {
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),
               ]),
-              controller: controller.penjualanKini,
+              readOnly: true,
+              controller: controller.penjualanKini = MoneyMaskedTextController(
+                decimalSeparator: '',
+                thousandSeparator: '.',
+                precision: 0,
+                initialValue: double.parse(data.inputRugiLaba.omzet),
+              ),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 alignLabelWithHint: true,
@@ -244,11 +252,17 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'biaya_upah',
+              readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),
               ]),
-              controller: controller.biayaUpahKini,
+              controller: controller.biayaUpahKini = MoneyMaskedTextController(
+                decimalSeparator: '',
+                thousandSeparator: '.',
+                precision: 0,
+                initialValue: double.parse(data.inputRugiLaba.biayaTenagaKerja),
+              ),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Biaya Upah',
@@ -263,11 +277,18 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'biaya_operasional',
+              readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),
               ]),
-              controller: controller.biayaOperasionalKini,
+              controller: controller.biayaOperasionalKini =
+                  MoneyMaskedTextController(
+                decimalSeparator: '',
+                thousandSeparator: '.',
+                precision: 0,
+                initialValue: double.parse(data.inputRugiLaba.biayaOperasional),
+              ),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Biaya Operasional',
@@ -282,11 +303,17 @@ class AsumsiKeuanganInput extends StatelessWidget {
             ),
             FormBuilderTextField(
               name: 'biaya_hidup',
+              readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: FormBuilderValidators.compose([
                 FormBuilderValidators.required(),
               ]),
-              controller: controller.biayaHidupKini,
+              controller: controller.biayaHidupKini = MoneyMaskedTextController(
+                decimalSeparator: '',
+                thousandSeparator: '.',
+                precision: 0,
+                initialValue: double.parse(data.inputRugiLaba.biayaHidup),
+              ),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Biaya Hidup',

@@ -43,6 +43,7 @@ class Debtor {
     this.deskripsiDebitur,
     this.inputNeraca,
     this.inputRugiLaba,
+    this.inputKeuangan,
     this.createdBy,
   });
 
@@ -75,6 +76,7 @@ class Debtor {
   String? deskripsiDebitur;
   InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
+  InputKeuangan? inputKeuangan;
   dynamic createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
@@ -105,12 +107,13 @@ class Debtor {
         noSkpk: json["no_skpk"],
         tglSekarang: DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
-        inputNeraca: json["inputNeraca"] == null
-            ? null
-            : InputNeraca.fromJson(json["inputNeraca"]),
+        inputNeraca: InputNeraca.fromJson(json["inputNeraca"]),
         inputRugiLaba: json["inputRugiLaba"] == null
             ? null
             : InputRugiLaba.fromJson(json["inputRugiLaba"]),
+        inputKeuangan: json["inputKeuangan"] == null
+            ? null
+            : InputKeuangan.fromJson(json["inputKeuangan"]),
         createdBy: json["createdBy"],
       );
 
@@ -129,7 +132,7 @@ class Debtor {
         "alamat_2": alamat2,
         "tempat_lahir": tempatLahir,
         "tanggal_lahir":
-            "${tanggalLahir?.year.toString().padLeft(4, '0')}-${tanggalLahir?.month.toString().padLeft(2, '0')}-${tanggalLahir!.day.toString().padLeft(2, '0')}",
+            "${tanggalLahir?.year.toString().padLeft(4, '0')}-${tanggalLahir?.month.toString().padLeft(2, '0')}-${tanggalLahir?.day.toString().padLeft(2, '0')}",
         "umur": umur,
         "status_keluarga": statusKeluarga,
         "jumlah_tanggungan": jumlahTanggungan,
@@ -144,10 +147,102 @@ class Debtor {
         "tgl_sekarang":
             "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
-        "inputNeraca": inputNeraca == null ? null : inputNeraca?.toJson(),
+        "inputNeraca": inputNeraca?.toJson(),
         "inputRugiLaba": inputRugiLaba == null ? null : inputRugiLaba?.toJson(),
-        // convert inputRugiLaba to null aware operator
+        "inputKeuangan": inputKeuangan == null ? null : inputKeuangan?.toJson(),
         "createdBy": createdBy,
+      };
+}
+
+class InputKeuangan {
+  InputKeuangan({
+    this.id,
+    this.kreditDiusulkan,
+    this.angsuran,
+    this.bungaPerTahun,
+    this.provisi,
+    this.sistemAngsuran,
+    this.digunakanUntuk,
+    this.angsuranRp,
+    this.hpp,
+    this.penjualanKini,
+    this.biayaBahanKini,
+    this.biayaOperasionalKini,
+    this.biayaUpahKini,
+    this.biayaHidupKini,
+    this.penjualanAsumsi,
+    this.biayaBahanAsumsi,
+    this.biayaOperasionalAsumsi,
+    this.biayaUpahAsumsi,
+    this.biayaHidupAsumsi,
+    this.tradeCycle,
+  });
+
+  int? id;
+  String? kreditDiusulkan;
+  int? angsuran;
+  int? bungaPerTahun;
+  int? provisi;
+  String? sistemAngsuran;
+  String? digunakanUntuk;
+  String? angsuranRp;
+  int? hpp;
+  String? penjualanKini;
+  String? biayaBahanKini;
+  String? biayaOperasionalKini;
+  String? biayaUpahKini;
+  String? biayaHidupKini;
+  String? penjualanAsumsi;
+  String? biayaBahanAsumsi;
+  String? biayaOperasionalAsumsi;
+  String? biayaUpahAsumsi;
+  String? biayaHidupAsumsi;
+  int? tradeCycle;
+
+  factory InputKeuangan.fromJson(Map<String, dynamic> json) => InputKeuangan(
+        id: json["id"],
+        kreditDiusulkan: json["kredit_diusulkan"],
+        angsuran: json["angsuran"],
+        bungaPerTahun: json["bunga_per_tahun"],
+        provisi: json["provisi"],
+        sistemAngsuran: json["sistem_angsuran"],
+        digunakanUntuk: json["digunakan_untuk"],
+        angsuranRp: json["angsuran_rp"],
+        hpp: json["hpp"],
+        penjualanKini: json["penjualan_kini"],
+        biayaBahanKini: json["biaya_bahan_kini"],
+        biayaOperasionalKini: json["biaya_operasional_kini"],
+        biayaUpahKini: json["biaya_upah_kini"],
+        biayaHidupKini: json["biaya_hidup_kini"],
+        penjualanAsumsi: json["penjualan_asumsi"],
+        biayaBahanAsumsi: json["biaya_bahan_asumsi"],
+        biayaOperasionalAsumsi: json["biaya_operasional_asumsi"],
+        biayaUpahAsumsi: json["biaya_upah_asumsi"],
+        biayaHidupAsumsi: json["biaya_hidup_asumsi"],
+        tradeCycle: json["trade_cycle"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "kredit_diusulkan": kreditDiusulkan,
+        "angsuran": angsuran,
+        "bunga_per_tahun": bungaPerTahun,
+        "provisi": provisi,
+        "sistem_angsuran": sistemAngsuran,
+        "digunakan_untuk": digunakanUntuk,
+        "angsuran_rp": angsuranRp,
+        "hpp": hpp,
+        "penjualan_kini": penjualanKini,
+        "biaya_bahan_kini": biayaBahanKini,
+        "biaya_operasional_kini": biayaOperasionalKini,
+        "biaya_upah_kini": biayaUpahKini,
+        "biaya_hidup_kini": biayaHidupKini,
+        "penjualan_asumsi": penjualanAsumsi,
+        "biaya_bahan_asumsi": biayaBahanAsumsi,
+        "biaya_operasional_asumsi": biayaOperasionalAsumsi,
+        "biaya_upah_asumsi": biayaUpahAsumsi,
+        "biaya_hidup_asumsi": biayaHidupAsumsi,
+        "trade_cycle": tradeCycle,
       };
 }
 

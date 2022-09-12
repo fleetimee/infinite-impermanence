@@ -1,14 +1,21 @@
+// 🎯 Dart imports:
 import 'dart:developer';
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:data_table_2/data_table_2.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_neraca_view.dart';
 import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_rugi_laba_view.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class LihatRugiLabaView extends GetView<RugiLabaController> {
   LihatRugiLabaView({Key? key}) : super(key: key);
@@ -173,99 +180,109 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                   height: 2.0,
                 ),
                 PerkiraanLabaRugiView(),
-                // const SizedBox(
-                //   height: 25.0,
-                // ),
-                // const Center(
-                //   child: Text(
-                //     'PERKIRAAN PENGHASILAN BERSIH PER BULAN',
-                //     style: title,
-                //     textAlign: TextAlign.center,
-                //   ),
-                // ),
-                // const SizedBox(height: 16),
-                // const Center(
-                //   child: Text(
-                //     '(Tabel di bawah ini bisa di scroll secara horizontal)',
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 2.0,
-                // ),
-                // SizedBox(
-                //   height: 200,
-                //   child: DataTable2(
-                //     columnSpacing: 12,
-                //     horizontalMargin: 6,
-                //     minWidth: 350,
-                //     columns: const [
-                //       DataColumn2(label: SizedBox.shrink(), size: ColumnSize.S),
-                //       DataColumn2(label: SizedBox.shrink(), size: ColumnSize.S),
-                //     ],
-                //     rows: [
-                //       DataRow2(
-                //         cells: [
-                //           const DataCell(
-                //               Text('Penghasilan rata rata per bulan :')),
-                //           DataCell(
-                //             FormBuilderTextField(
-                //               name: 'penghasilan',
-                //               readOnly: true,
-                //               keyboardType: TextInputType.number,
-                //               controller: controller.labaSetelahPajak,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //       DataRow2(
-                //         cells: [
-                //           const DataCell(
-                //               Text('Biaya hidup rata rata perbulan :')),
-                //           DataCell(
-                //             FormBuilderTextField(
-                //               name: 'biaya_hidup',
-                //               keyboardType: TextInputType.number,
-                //               controller: controller.biayaHidupRataRata,
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //       DataRow2(
-                //         cells: [
-                //           const DataCell(
-                //             Text(
-                //               'Sisa penghasilan bersih per bulan :',
-                //             ),
-                //           ),
-                //           DataCell(
-                //             FormBuilderTextField(
-                //               name: 'sisa_penghasilan',
-                //               keyboardType: TextInputType.number,
-                //               readOnly: true,
-                //               controller: controller.sisaPenghasilanBersih,
-                //               decoration: InputDecoration(
-                //                 suffixIcon: ElevatedButton.icon(
-                //                   icon: const Icon(FontAwesomeIcons.calculator),
-                //                   label: const Text("Hit"),
-                //                   style: ElevatedButton.styleFrom(
-                //                     backgroundColor: primaryColor,
-                //                     shape: const StadiumBorder(),
-                //                   ),
-                //                   onPressed: () {
-                //                     controller.sumSisaPenghasilan();
-                //                   },
-                //                 ),
-                //               ),
-                //             ),
-                //           ),
-                //         ],
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                // const SizedBox(
-                //   height: 25.0,
-                // ),
+                const SizedBox(
+                  height: 25.0,
+                ),
+                const Center(
+                  child: Text(
+                    'PERKIRAAN PENGHASILAN BERSIH PER BULAN',
+                    style: title,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Center(
+                  child: Text(
+                    '(Tabel di bawah ini bisa di scroll secara horizontal)',
+                  ),
+                ),
+                const SizedBox(
+                  height: 2.0,
+                ),
+                SizedBox(
+                  height: 200,
+                  child: DataTable2(
+                    columnSpacing: 12,
+                    horizontalMargin: 6,
+                    minWidth: 350,
+                    columns: const [
+                      DataColumn2(label: SizedBox.shrink(), size: ColumnSize.S),
+                      DataColumn2(label: SizedBox.shrink(), size: ColumnSize.S),
+                    ],
+                    rows: [
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                              Text('Penghasilan rata rata per bulan :')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'penghasilan',
+                              readOnly: true,
+                              keyboardType: TextInputType.number,
+                              controller: controller.labaSetelahPajak =
+                                  MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                initialValue: double.parse(
+                                    data.inputRugiLaba.labaSetelahPajak),
+                                precision: 0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                              Text('Biaya hidup rata rata perbulan :')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'biaya_hidup',
+                              readOnly: true,
+                              keyboardType: TextInputType.number,
+                              controller: controller.biayaHidupRataRata =
+                                  MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                initialValue:
+                                    double.parse(data.inputRugiLaba.biayaHidup),
+                                precision: 0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                            Text(
+                              'Sisa penghasilan bersih per bulan :',
+                            ),
+                          ),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'sisa_penghasilan',
+                              keyboardType: TextInputType.number,
+                              readOnly: true,
+                              controller: controller.sisaPenghasilanBersih =
+                                  MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                initialValue: double.parse(
+                                    data.inputRugiLaba.sisaPenghasilan),
+                                precision: 0,
+                              ),
+                              decoration: const InputDecoration(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 25.0,
+                ),
                 // Row(
                 //   children: [
                 //     const Expanded(

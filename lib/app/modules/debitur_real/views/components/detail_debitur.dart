@@ -1,9 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/debitur_real/views/components/data_pribadi.dart';
-import 'package:akm/app/modules/debitur_real/views/components/neraca.dart';
-import 'package:akm/app/modules/debitur_real/views/components/rugi_laba.dart';
+import 'package:akm/app/modules/debitur_real/views/components/input_keuangan_fixed.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +11,9 @@ import 'package:get/get.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/modules/debitur_real/views/components/data_pribadi.dart';
+import 'package:akm/app/modules/debitur_real/views/components/neraca.dart';
+import 'package:akm/app/modules/debitur_real/views/components/rugi_laba.dart';
 
 class DetailDebitur extends StatelessWidget {
   DetailDebitur({
@@ -43,11 +44,10 @@ class DetailDebitur extends StatelessWidget {
                       Icons.attach_money,
                     ),
                     children: [
-                      // Neraca
                       Neraca(debtor: debtor),
-                      // Rugi Laba
-                      // check if neraca is empty
-                      RugiLaba(debtor: debtor)
+                      RugiLaba(debtor: debtor),
+                      InputKeuanganFixed(debtor: debtor),
+                      const ExpansionTile(title: Text('4. Analisa Keuangan')),
                     ],
                   )
                 ],

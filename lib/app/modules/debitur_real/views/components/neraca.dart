@@ -23,7 +23,22 @@ class Neraca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      title: const Text('1. Neraca'),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text('1. Neraca'),
+          // check if input neraca is not null then give success icon else give error icon
+          debtor.inputNeraca != null
+              ? const Icon(
+                  FontAwesomeIcons.check,
+                  color: Colors.green,
+                )
+              : const Icon(
+                  FontAwesomeIcons.exclamation,
+                  color: Colors.red,
+                ),
+        ],
+      ),
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),

@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
 import '../controllers/debitur_real_controller.dart';
 
@@ -38,12 +38,15 @@ class DebiturRealView extends GetView<DebiturRealController> {
               //   debugPrint(controller.formKey.currentState!.value.toString());
               // },
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SvgPicture.asset(
-                    'assets/images/debitur_real/farmer.svg',
-                    height: 350,
-                    fit: BoxFit.contain,
+                  Center(
+                    child: SvgPicture.asset(
+                      'assets/images/debitur_real/farmer.svg',
+                      height: 350,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                   const SizedBox(height: 30),
                   Padding(
@@ -369,13 +372,46 @@ class DebiturRealView extends GetView<DebiturRealController> {
                   Row(
                     children: [
                       Expanded(
-                        child: FormBuilderTextField(
+                        // child: FormBuilderTextField(
+                        //   name: 'tempat_lahir',
+                        //   controller: controller.tempatLahir.value,
+                        //   decoration: const InputDecoration(
+                        //     labelText: 'Tempat Lahir',
+                        //     labelStyle: TextStyle(fontSize: 18),
+                        //     hintText: 'Masukkan Tempat Lahir',
+                        //     focusedBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: primaryColor),
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //       borderSide: BorderSide(color: Colors.grey),
+                        //     ),
+                        //   ),
+                        // ),
+                        child: FormBuilderSearchableDropdown<String>(
                           name: 'tempat_lahir',
-                          controller: controller.tempatLahir.value,
+                          onChanged: (value) {
+                            controller.tempatLahir.value.text = value!;
+                            debugPrint(value);
+                          },
+                          onSaved: (value) {
+                            controller.tempatLahir.value.text = value!;
+                            debugPrint(value);
+                          },
+                          validator: FormBuilderValidators.required(),
+                          items: allProvinsi,
+                          popupProps:
+                              const PopupProps.menu(showSearchBox: true),
+                          dropdownSearchDecoration: const InputDecoration(
+                            hintText: 'Search',
+                            labelText: 'Search',
+                          ),
+                          filterFn: (provinsi, filter) => provinsi
+                              .toLowerCase()
+                              .contains(filter.toLowerCase()),
                           decoration: const InputDecoration(
                             labelText: 'Tempat Lahir',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan Tempat Lahir',
+                            hintText: 'Tempat Lahir',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),

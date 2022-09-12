@@ -21,17 +21,16 @@ import 'package:akm/app/modules/keuangan_analisis/views/components/asumsi_keuang
 import 'package:akm/app/modules/keuangan_analisis/views/components/data_keuangan.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/tutorial.dart';
-import 'package:akm/app/widget/drawer.dart';
 import '../controllers/keuangan_analisis_controller.dart';
 
-// ignore: depend_on_referenced_packages
-
 class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
-  const KeuanganAnalisisView({Key? key}) : super(key: key);
+  KeuanganAnalisisView({Key? key}) : super(key: key);
+
+  final data = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text('Analisis Keuangan'),
         centerTitle: true,

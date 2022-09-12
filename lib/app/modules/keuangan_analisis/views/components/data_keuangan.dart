@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -18,6 +19,8 @@ class DataKeuangan extends StatelessWidget {
   DataKeuangan({Key? key}) : super(key: key);
 
   final controller = Get.put(KeuanganAnalisisController());
+  final data = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,7 +41,12 @@ class DataKeuangan extends StatelessWidget {
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(),
                 ]),
-                controller: controller.equityInput,
+                controller: controller.equityInput = MoneyMaskedTextController(
+                  decimalSeparator: '',
+                  thousandSeparator: '.',
+                  precision: 0,
+                  initialValue: double.parse(data.inputRugiLaba.jumlahModal),
+                ),
                 // initialValue: controller.equity.format('19933998'),
                 decoration: InputDecoration(
                   labelText: 'Equity / Modal',

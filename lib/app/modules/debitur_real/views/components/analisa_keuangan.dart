@@ -4,15 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class InputKeuanganFixed extends StatelessWidget {
-  InputKeuanganFixed({
+class AnalisaKeuanganTile extends StatelessWidget {
+  const AnalisaKeuanganTile({
     Key? key,
     required this.debtor,
   }) : super(key: key);
 
   final Debtor debtor;
-
-  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +18,9 @@ class InputKeuanganFixed extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text('3. Input Keuangan'),
+          const Text('4. Analisa Keuangan'),
           // check if input keuangan is not null then give success icon else give error icon
-          debtor.inputKeuangan != null
+          debtor.analisaKeuangan != null
               ? const Icon(
                   FontAwesomeIcons.check,
                   color: Colors.green,
@@ -34,14 +32,15 @@ class InputKeuanganFixed extends StatelessWidget {
         ],
       ),
       children: [
-        debtor.inputRugiLaba == null
+        debtor.inputKeuangan == null
             ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   SizedBox(
                     height: 10,
                   ),
                   Text(
-                    'Input Rugi Laba terlebih dahulu',
+                    'Input Keuangan terlebih dahulu',
                     style: TextStyle(
                       color: Colors.red,
                       fontSize: 20,
@@ -52,9 +51,7 @@ class InputKeuanganFixed extends StatelessWidget {
                   ),
                 ],
               )
-            :
-            // check if input keuangan is not null
-            debtor.inputKeuangan != null
+            : debtor.analisaKeuangan != null
                 ? Row(
                     children: [
                       const SizedBox(
@@ -64,7 +61,7 @@ class InputKeuanganFixed extends StatelessWidget {
                         child: OutlinedButton.icon(
                           icon: const Icon(FontAwesomeIcons.eye),
                           label: const Text(
-                            "Lihat Keuangan",
+                            "Lihat Rugi Laba",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
@@ -87,7 +84,7 @@ class InputKeuanganFixed extends StatelessWidget {
                         child: OutlinedButton.icon(
                           icon: const Icon(FontAwesomeIcons.pencil),
                           label: const Text(
-                            "Edit Keuangan",
+                            "Edit Rugi Laba",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
@@ -104,29 +101,25 @@ class InputKeuanganFixed extends StatelessWidget {
                   )
                 : Row(
                     children: [
-                      const SizedBox(
-                        width: 16,
-                      ),
                       Expanded(
                         child: OutlinedButton.icon(
-                          icon: const Icon(Icons.add),
+                          icon: const Icon(FontAwesomeIcons.magnifyingGlass),
                           label: const Text(
-                            "Input Keuangan",
+                            "Analisa",
                             style: TextStyle(fontSize: 20),
                           ),
+                          style: OutlinedButton.styleFrom(
+                            foregroundColor: Colors.blueGrey,
+                          ),
                           onPressed: () {
-                            Get.toNamed(
-                              Routes.INPUT_KEUANGAN,
-                              arguments: debtor,
-                            );
+                            Get.toNamed(Routes.KEUANGAN_ANALISIS,
+                                // Send debtor id to input keuangan page
+                                arguments: debtor);
                           },
                         ),
                       ),
-                      const SizedBox(
-                        width: 16,
-                      ),
                     ],
-                  )
+                  ),
       ],
     );
   }

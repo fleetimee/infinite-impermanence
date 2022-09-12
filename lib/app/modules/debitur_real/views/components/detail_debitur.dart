@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/debitur_real/views/components/analisa_keuangan.dart';
 import 'package:akm/app/modules/debitur_real/views/components/input_keuangan_fixed.dart';
 import 'package:flutter/material.dart';
 
@@ -33,12 +34,14 @@ class DetailDebitur extends StatelessWidget {
         () => controller.loadingFetch.value
             ? const SizedBox()
             : ExpansionTile(
+                initiallyExpanded: true,
                 title: const Text('Detail Debitur'),
                 children: [
                   // Detail Debitur
                   DataPribadi(debtor: debtor),
                   // Analisa Kuantitatif
                   ExpansionTile(
+                    initiallyExpanded: true,
                     title: const Text('Analisa Kuantitatif'),
                     leading: const Icon(
                       Icons.attach_money,
@@ -47,7 +50,7 @@ class DetailDebitur extends StatelessWidget {
                       Neraca(debtor: debtor),
                       RugiLaba(debtor: debtor),
                       InputKeuanganFixed(debtor: debtor),
-                      const ExpansionTile(title: Text('4. Analisa Keuangan')),
+                      AnalisaKeuanganTile(debtor: debtor),
                     ],
                   )
                 ],

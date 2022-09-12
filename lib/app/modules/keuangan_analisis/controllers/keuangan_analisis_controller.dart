@@ -53,8 +53,7 @@ class KeuanganAnalisisController extends GetxController
   TabController? tabController;
 
   //! Data Keuangan
-  final equityInput = MoneyMaskedTextController(
-    initialValue: 19933998,
+  var equityInput = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,

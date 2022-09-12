@@ -26,7 +26,6 @@ class InputNeracaController extends GetxController {
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
-    initialValue: 0,
   );
   var piutangUsaha = MoneyMaskedTextController(
     decimalSeparator: '',
@@ -53,6 +52,21 @@ class InputNeracaController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
+  var peralatan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var kendaraan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var tanahDanBangunan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
   var aktivaTetap = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -64,11 +78,22 @@ class InputNeracaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
   void hitungKasDanBank() {
-    final cashOnHandValue = int.parse(cashOnHand.text.replaceAll('.', ''));
-    final tabunganValue = int.parse(tabungan.text.replaceAll('.', ''));
+    final cashOnHandValue = double.parse(cashOnHand.text.replaceAll('.', ''));
+    final tabunganValue = double.parse(tabungan.text.replaceAll('.', ''));
     final jumlahKasDanBankValue = cashOnHandValue + tabunganValue;
 
     jumlahKasDanBank.text = jumlahKasDanBankValue.toString();
+  }
+
+  void hitungAktivaTetap() {
+    final parsePeralatan = double.parse(peralatan.text.replaceAll('.', ''));
+    final parseKendaraan = double.parse(kendaraan.text.replaceAll('.', ''));
+    final parseTanahDanBangunan =
+        double.parse(tanahDanBangunan.text.replaceAll('.', ''));
+
+    final hasil = parsePeralatan + parseKendaraan + parseTanahDanBangunan;
+
+    aktivaTetap.text = hasil.toStringAsFixed(0);
   }
 
   void saveNeraca() {

@@ -113,7 +113,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.KEUANGAN_ANALISIS,
-      page: () => const KeuanganAnalisisView(),
+      page: () => KeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
       transition: Transition.cupertino,
     ),

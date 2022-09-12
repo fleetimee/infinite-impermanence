@@ -185,6 +185,8 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               enabled: false,
                               controller: controller.jumlahKasDanBank,
                               keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                  hintText: 'Hasil disini'),
                             ),
                           ),
                         ],
@@ -428,7 +430,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                 ),
                 // ! Aktiva Tetap Table
                 SizedBox(
-                  height: 150,
+                  height: 300,
                   child: DataTable2(
                     border: TableBorder.all(color: Colors.black),
                     columns: const [
@@ -438,15 +440,86 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     rows: [
                       DataRow2(
                         cells: [
-                          const DataCell(Text('Jumlah')),
+                          const DataCell(Text('Peralatan / Mesin')),
                           DataCell(
                             FormBuilderTextField(
-                              name: 'aktiva_tetap',
-                              controller: controller.aktivaTetap,
+                              name: 'peralatan_mesin',
+                              controller: controller.peralatan,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Kendaraan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'kendaraan',
+                              controller: controller.kendaraan,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Tanah dan Bangunan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'tanah_bangunan',
+                              controller: controller.tanahDanBangunan,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'aktiva_tetap',
+                              readOnly: true,
+                              controller: controller.aktivaTetap,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Hasil disini',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(SizedBox.shrink()),
+                          DataCell(
+                            OutlinedButton.icon(
+                              icon: const Icon(Icons.calculate),
+                              label: const Text(
+                                "Hitung",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 20),
+                              ),
+                              style: OutlinedButton.styleFrom(
+                                  foregroundColor: secondaryColor,
+                                  backgroundColor: primaryColor,
+                                  shape: const StadiumBorder(),
+                                  maximumSize:
+                                      const Size.fromWidth(double.infinity),
+                                  fixedSize: const Size(500, 5)),
+                              onPressed: () {
+                                controller.hitungAktivaTetap();
+                              },
                             ),
                           ),
                         ],

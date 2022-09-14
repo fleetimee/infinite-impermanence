@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -15,6 +16,7 @@ class AsumsiKeuangan extends StatelessWidget {
   AsumsiKeuangan({Key? key}) : super(key: key);
 
   final controller = Get.put(KeuanganAnalisisController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,13 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'omzet_kini',
-            controller: controller.omzetKini,
+            readOnly: true,
+            controller: controller.omzetKini = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.penjualanKini),
+            ),
             decoration: const InputDecoration(
               labelText: 'Omzet Kini',
               border: OutlineInputBorder(),
@@ -53,7 +61,13 @@ class AsumsiKeuangan extends StatelessWidget {
             height: 20,
           ),
           FormBuilderTextField(
-            controller: controller.omzetYAD,
+            readOnly: true,
+            controller: controller.omzetYAD = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.penjualanAsumsi),
+            ),
             name: 'omzet_yad',
             decoration: const InputDecoration(
               labelText: 'Omzet YAD',
@@ -115,7 +129,12 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'biaya_bahan_kini',
-            controller: controller.biayaBahanKini,
+            controller: controller.biayaBahanKini = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.biayaBahanKini),
+            ),
             decoration: const InputDecoration(
               labelText: 'Biaya bahan kini',
               border: OutlineInputBorder(),
@@ -128,7 +147,12 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'biaya_bahan_yad',
-            controller: controller.biayaBahanYAD,
+            controller: controller.biayaBahanYAD = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.biayaBahanAsumsi),
+            ),
             decoration: const InputDecoration(
               labelText: 'Biaya Bahan YAD',
               border: OutlineInputBorder(),
@@ -189,7 +213,12 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'upah_kini',
-            controller: controller.upahKini,
+            controller: controller.upahKini = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.biayaUpahKini),
+            ),
             decoration: const InputDecoration(
               labelText: 'Upah Kini',
               border: OutlineInputBorder(),
@@ -201,7 +230,12 @@ class AsumsiKeuangan extends StatelessWidget {
             height: 20,
           ),
           FormBuilderTextField(
-            controller: controller.upahYAD,
+            controller: controller.upahYAD = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.biayaUpahAsumsi),
+            ),
             name: 'upah_yad',
             decoration: const InputDecoration(
               labelText: 'Upah YAD',
@@ -263,7 +297,13 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_operasi_kini',
-            controller: controller.biayaOperasiKini,
+            controller: controller.biayaOperasiKini = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue:
+                  double.parse(data.inputKeuangan.biayaOperasionalKini),
+            ),
             decoration: const InputDecoration(
               labelText: 'Biaya operasi Kini',
               border: OutlineInputBorder(),
@@ -276,7 +316,13 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_operasi_yad',
-            controller: controller.biayaOperasiYAD,
+            controller: controller.biayaOperasiYAD = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue:
+                  double.parse(data.inputKeuangan.biayaOperasionalAsumsi),
+            ),
             decoration: const InputDecoration(
               labelText: 'Biaya operasi YAD',
               border: OutlineInputBorder(),
@@ -337,7 +383,12 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_hidup_kini',
-            controller: controller.biayaHidupKini,
+            controller: controller.biayaHidupKini = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.biayaHidupKini),
+            ),
             decoration: const InputDecoration(
               labelText: 'Biaya hidup Kini',
               border: OutlineInputBorder(),
@@ -350,7 +401,12 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_hidup_yad',
-            controller: controller.biayaHidupYAD,
+            controller: controller.biayaHidupYAD = MoneyMaskedTextController(
+              decimalSeparator: '',
+              thousandSeparator: '.',
+              precision: 0,
+              initialValue: double.parse(data.inputKeuangan.biayaHidupAsumsi),
+            ),
             decoration: const InputDecoration(
               labelText: 'Biaya hidup YAD',
               border: OutlineInputBorder(),

@@ -25,12 +25,6 @@ class RugiLabaView extends GetView<RugiLabaController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.result();
-        },
-        child: const Icon(Icons.calculate),
-      ),
       appBar: AppBar(
         title: const Text('Rugi / Laba'),
         centerTitle: true,
@@ -226,6 +220,9 @@ class RugiLabaView extends GetView<RugiLabaController> {
                               readOnly: true,
                               keyboardType: TextInputType.number,
                               controller: controller.labaSetelahPajak,
+                              decoration: const InputDecoration(
+                                hintText: 'Hasil',
+                              ),
                             ),
                           ),
                         ],
@@ -239,6 +236,9 @@ class RugiLabaView extends GetView<RugiLabaController> {
                               name: 'biaya_hidup',
                               keyboardType: TextInputType.number,
                               controller: controller.biayaHidupRataRata,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                              ),
                             ),
                           ),
                         ],
@@ -257,6 +257,7 @@ class RugiLabaView extends GetView<RugiLabaController> {
                               readOnly: true,
                               controller: controller.sisaPenghasilanBersih,
                               decoration: InputDecoration(
+                                hintText: 'Hasil',
                                 suffixIcon: ElevatedButton.icon(
                                   icon: const Icon(FontAwesomeIcons.calculator),
                                   label: const Text("Hit"),

@@ -49,10 +49,9 @@ class Greeting extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundImage: NetworkImage(
-                  controller.faker.image.unsplash.people(
-                    w: 50,
-                    h: 50,
-                    keyword: 'face',
+                  controller.faker.image.loremPixel.people(
+                    height: 50,
+                    width: 50,
                   ),
                 ),
                 backgroundColor: secondaryColor,

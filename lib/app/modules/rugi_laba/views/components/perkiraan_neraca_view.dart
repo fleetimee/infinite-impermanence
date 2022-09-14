@@ -20,10 +20,11 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      initiallyExpanded: true,
       title: const Text('Perkiraan Neraca'),
       children: [
         SizedBox(
-          height: 700,
+          height: 780,
           child: DataTable2(
             columnSpacing: 12,
             horizontalMargin: 12,
@@ -310,6 +311,103 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                         hintText: 'Hasil perhitungan',
                       ),
                     ),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
+                  const DataCell(
+                    Text(
+                      '1. Peralatan / Mesin',
+                    ),
+                  ),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'peralatan',
+                      readOnly: true,
+                      controller: controller.peralatan =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputRugiLaba.peralatan,
+                              )),
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil perhitungan',
+                      ),
+                    ),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
+                  const DataCell(
+                    Text('2. Kendaraan'),
+                  ),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'kendaraan',
+                      readOnly: true,
+                      controller: controller.kendaraan =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputRugiLaba.kendaraan,
+                              )),
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil perhitungan',
+                      ),
+                    ),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
+                  const DataCell(
+                    Text(
+                      '3. Tanah dan Bangunan',
+                    ),
+                  ),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'tanah_bangunan',
+                      readOnly: true,
+                      controller: controller.tanahDanBangunan =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputRugiLaba.tanahDanBangunan,
+                              )),
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil perhitungan',
+                      ),
+                    ),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
                   ),
                 ],
               ),

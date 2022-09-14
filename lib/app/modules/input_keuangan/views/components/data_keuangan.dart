@@ -41,34 +41,40 @@ class DataKeuanganInput extends StatelessWidget {
             SvgPicture.asset(
               'assets/images/input_keuangan/page.svg',
             ),
-            FormBuilderTextField(
-              name: 'debitur_id',
-              enabled: false,
-              controller: dataKeuanganCtrl.debitur = TextEditingController(
-                text: data.id.toString(),
-              ),
-              decoration: InputDecoration(
-                labelText: 'Debitur ID',
-                prefixIcon: const Icon(FontAwesomeIcons.person),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Visibility(
+              visible: false,
+              child: FormBuilderTextField(
+                name: 'debitur_id',
+                enabled: false,
+                controller: dataKeuanganCtrl.debitur = TextEditingController(
+                  text: data.id.toString(),
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Debitur ID',
+                  prefixIcon: const Icon(FontAwesomeIcons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ),
             const SizedBox(
               height: 10.0,
             ),
-            FormBuilderTextField(
-              name: 'rugi_laba_id',
-              enabled: false,
-              controller: dataKeuanganCtrl.rugiLaba = TextEditingController(
-                text: data.inputRugiLaba.id.toString(),
-              ),
-              decoration: InputDecoration(
-                labelText: 'Rugi Laba ID',
-                prefixIcon: const Icon(FontAwesomeIcons.person),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Visibility(
+              visible: false,
+              child: FormBuilderTextField(
+                name: 'rugi_laba_id',
+                enabled: false,
+                controller: dataKeuanganCtrl.rugiLaba = TextEditingController(
+                  text: data.inputRugiLaba.id.toString(),
+                ),
+                decoration: InputDecoration(
+                  labelText: 'Rugi Laba ID',
+                  prefixIcon: const Icon(FontAwesomeIcons.person),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ),

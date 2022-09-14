@@ -2,6 +2,7 @@
 // ignore_for_file: unused_field
 
 // 🐦 Flutter imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -138,7 +139,10 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                           FormBuilderTextField(
                             name: 'trade_cycle',
                             textAlign: TextAlign.center,
-                            controller: controller.tradeCycle,
+                            controller: controller.tradeCycle =
+                                TextEditingController(
+                                    text: data.inputKeuangan.tradeCycle
+                                        .toString()),
                             style: GoogleFonts.roboto(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -147,7 +151,8 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                             decoration: const InputDecoration(
                                 labelText: 'Trade Cycle',
                                 border: OutlineInputBorder(),
-                                prefixIcon: Icon(FontAwesomeIcons.nutritionix)),
+                                prefixIcon:
+                                    Icon(FontAwesomeIcons.arrowsRotate)),
                           ),
                           FormBuilderTextField(
                             name: 'kebutuhan_investasi',
@@ -221,7 +226,14 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                               Expanded(
                                 flex: 10,
                                 child: FormBuilderTextField(
-                                  controller: controller.kreditYangDiminta,
+                                  controller: controller.kreditYangDiminta =
+                                      MoneyMaskedTextController(
+                                    decimalSeparator: '',
+                                    thousandSeparator: '.',
+                                    precision: 0,
+                                    initialValue: double.parse(
+                                        data.inputKeuangan.kreditDiusulkan),
+                                  ),
                                   enabled: false,
                                   style: const TextStyle(
                                     fontSize: 30,

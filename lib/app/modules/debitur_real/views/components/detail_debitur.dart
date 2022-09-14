@@ -3,6 +3,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/debitur_real/views/components/analisa_keuangan.dart';
 import 'package:akm/app/modules/debitur_real/views/components/input_keuangan_fixed.dart';
+import 'package:akm/app/modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -52,7 +53,32 @@ class DetailDebitur extends StatelessWidget {
                       InputKeuanganFixed(debtor: debtor),
                       AnalisaKeuanganTile(debtor: debtor),
                     ],
-                  )
+                  ),
+                  ExpansionTile(
+                    title: const Text('Print'),
+                    leading: const Icon(
+                      Icons.print,
+                    ),
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(() => KeuanganPreview(), arguments: debtor);
+                        },
+                        child: const ListTile(
+                          title: Text('Print Analisa Kuantitatif'),
+                          leading: Icon(
+                            Icons.print,
+                          ),
+                        ),
+                      ),
+                      const ListTile(
+                        title: Text('Print Analisa Kualitatif'),
+                        leading: Icon(
+                          Icons.print,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
       ),

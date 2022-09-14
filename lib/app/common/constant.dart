@@ -1,8 +1,10 @@
 // For web based
-// const baseUrl = 'http://127.0.0.1:3000/';
+const baseUrl = 'http://127.0.0.1:3000/api/v1/';
 
 // For mobile based
-const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+
+// check if platform is web
 
 // For tethering
 // const baseUrl = 'http://192.168.42.148:3000/';
@@ -11,4 +13,5 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 // const baseUrl = 'http://192.168.100.79:3000/';
 
 // // for ngrok
-// const baseUrl = 'https://818d-36-80-230-161.ap.ngrok.io/';
+// const baseUrl =
+//     'https://009c-2001-448a-4049-22a3-cc66-ef0b-70c5-759e.ap.ngrok.io/api/v1/';

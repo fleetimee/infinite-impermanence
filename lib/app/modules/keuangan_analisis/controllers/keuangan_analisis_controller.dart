@@ -3,6 +3,7 @@
 
 // 🎯 Dart imports:
 import 'dart:async';
+import 'dart:math';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
@@ -27,6 +28,8 @@ class KeuanganAnalisisController extends GetxController
     tabController = TabController(length: 5, vsync: this);
     super.onInit();
   }
+
+  final data = Get.arguments;
 
   final Map<String, TextEditingController> listOfTextEditingController = {
     'Equity': TextEditingController(),
@@ -53,6 +56,9 @@ class KeuanganAnalisisController extends GetxController
   TabController? tabController;
 
   //! Data Keuangan
+  var debiturId = TextEditingController();
+  var keuanganId = TextEditingController();
+
   var equityInput = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -64,20 +70,17 @@ class KeuanganAnalisisController extends GetxController
     decimalDigits: 0,
   );
 
-  final debtInput = MoneyMaskedTextController(
-    initialValue: 15459590,
+  var debtInput = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final kreditYangDiminta = MoneyMaskedTextController(
-    initialValue: 200000000,
+  var kreditYangDiminta = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final netWorth = MoneyMaskedTextController(
-    initialValue: 204900000,
+  var netWorth = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -107,10 +110,9 @@ class KeuanganAnalisisController extends GetxController
   );
 
   // Angsuran Pinjaman Kredit
-  final bungaPerTahun = TextEditingController(text: '6');
-  final angsuranPerBulan = TextEditingController(text: '60');
-  final totalBunga = MoneyMaskedTextController(
-    initialValue: 0,
+  var bungaPerTahun = TextEditingController();
+  var angsuranPerBulan = TextEditingController();
+  var totalBunga = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -174,127 +176,117 @@ class KeuanganAnalisisController extends GetxController
 
   //! Asumsi Keuangan
   /// Omzet input
-  final omzetKini = MoneyMaskedTextController(
+  var omzetKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 30000000,
   );
-  final omzetYAD = MoneyMaskedTextController(
+  var omzetYAD = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 34500000,
   );
-  final omzetKiniPercent = TextEditingController(text: '100');
-  final omzetYADPercent = TextEditingController(text: '100');
+  var omzetKiniPercent = TextEditingController(text: '100');
+  var omzetYADPercent = TextEditingController(text: '100');
 
   /// Biaya bahan input
-  final biayaBahanKini = MoneyMaskedTextController(
+  var biayaBahanKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 21000000,
   );
-  final biayaBahanYAD = MoneyMaskedTextController(
+  var biayaBahanYAD = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 24150000,
   );
-  final biayaBahanKiniPercent = TextEditingController(text: '');
-  final biayaBahanYADPercent = TextEditingController(text: '');
-  final upahKini = MoneyMaskedTextController(
+  var biayaBahanKiniPercent = TextEditingController(text: '');
+  var biayaBahanYADPercent = TextEditingController(text: '');
+  var upahKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 800000,
   );
-  final upahYAD = MoneyMaskedTextController(
+  var upahYAD = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 920000,
   );
-  final upahKiniPercent = TextEditingController(text: '');
-  final upahYADPercent = TextEditingController(text: '');
+  var upahKiniPercent = TextEditingController(text: '');
+  var upahYADPercent = TextEditingController(text: '');
 
-  final biayaOperasiKini = MoneyMaskedTextController(
+  var biayaOperasiKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 500000,
   );
-  final biayaOperasiYAD = MoneyMaskedTextController(
+  var biayaOperasiYAD = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 575000,
   );
-  final biayaOperasiKiniPercent = TextEditingController(text: '');
-  final biayaOperasiYADPercent = TextEditingController(text: '');
+  var biayaOperasiKiniPercent = TextEditingController(text: '');
+  var biayaOperasiYADPercent = TextEditingController(text: '');
 
-  final biayaHidupKini = MoneyMaskedTextController(
+  var biayaHidupKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 2500000,
   );
-  final biayaHidupYAD = MoneyMaskedTextController(
+  var biayaHidupYAD = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
-    initialValue: 2500000,
   );
-  final biayaHidupKiniPercent = TextEditingController(text: '');
-  final biayaHidupYADPercent = TextEditingController(text: '');
+  var biayaHidupKiniPercent = TextEditingController(text: '');
+  var biayaHidupYADPercent = TextEditingController(text: '');
 
   // Laba Usaha
-  final labaUsahaKini = MoneyMaskedTextController(
+  var labaUsahaKini = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
     initialValue: 0,
   );
-  final labaUsahaYAD = MoneyMaskedTextController(
+  var labaUsahaYAD = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
     initialValue: 0,
   );
-  final labaUsahaKiniPercent = TextEditingController(text: '');
-  final labaUsahaYADPercent = TextEditingController(text: '');
+  var labaUsahaKiniPercent = TextEditingController(text: '');
+  var labaUsahaYADPercent = TextEditingController(text: '');
 
   //! Summary
-  final crr = TextEditingController(text: '0');
-  final pinjamanMaksimal = MoneyMaskedTextController(
+  var crr = TextEditingController(text: '0');
+  var pinjamanMaksimal = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final perhitunganModalKerja = MoneyMaskedTextController(
+  var perhitunganModalKerja = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final kebutuhanInvestasi = MoneyMaskedTextController(
+  var kebutuhanInvestasi = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final kebutuhanKredit = MoneyMaskedTextController(
+  var kebutuhanKredit = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final tradeCycle = TextEditingController(text: '8');
+  var tradeCycle = TextEditingController();
 
   //! Boolean and Loading
   final roeStatus = ''.obs;
@@ -490,7 +482,18 @@ class KeuanganAnalisisController extends GetxController
     }
   }
 
+  double roundDoubleDown(double value, int places) {
+    final mod = pow(10.0, places);
+    return ((value * mod).floor().toDouble() / mod);
+  }
+
   void hitungCrr() {
+    final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll('.', ''));
+    final parseTotalAngsuran =
+        double.parse(totalAngsuran.text.replaceAll('.', ''));
+
+    final dscYad = parseLabaYad / parseTotalAngsuran;
+
     final parseDscYad = double.parse(dscYAD.text);
     final parseDscFixed = double.parse(dscFixed.text);
     final parseIsKreditPassed = isKreditPassed.value;
@@ -502,8 +505,8 @@ class KeuanganAnalisisController extends GetxController
     } else if (parseDscYad < parseDscFixed) {
       crr.text = '0';
     } else {
-      final firstCount = parseDscYad - parseDscFixed;
-      final secondCount = 3 - parseDscFixed;
+      final firstCount = dscYad - parseDscFixed;
+      final secondCount = (3 - parseDscFixed);
       final thirdCount = firstCount / secondCount;
       final hasil = thirdCount * 35 + 60;
 
@@ -1091,8 +1094,7 @@ class KeuanganAnalisisController extends GetxController
       final result = parseDebt / percentage;
 
       final hitungDerYadFirst = parseDebt + parseKreditYangDiminta;
-      const hitungDerYadSecond = 3134404;
-      final hitungDerYadThird = hitungDerYadFirst / hitungDerYadSecond;
+      final hitungDerYadThird = hitungDerYadFirst / percentage;
 
       derKini.text = result.toStringAsFixed(0);
       derYAD.text = hitungDerYadThird.toStringAsFixed(1);
@@ -1138,9 +1140,9 @@ class KeuanganAnalisisController extends GetxController
     Future.delayed(const Duration(seconds: 2), () {
       final parseLabaUsahaKini =
           int.parse(labaUsahaKini.text.replaceAll('.', ''));
-      final parseLabaYad = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
+      final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll('.', ''));
       final parseTotalAngsuran =
-          int.parse(totalAngsuran.text.replaceAll('.', ''));
+          double.parse(totalAngsuran.text.replaceAll('.', ''));
 
       final firstCount = parseLabaUsahaKini / parseTotalAngsuran;
       final secondCount = parseLabaYad / parseTotalAngsuran;
@@ -1188,6 +1190,8 @@ class KeuanganAnalisisController extends GetxController
     final api = AnalisaKeuanganService();
 
     final data = {
+      'debitur': debiturId.text,
+      'keuangan': keuanganId.text,
       'total_aset': equityInput.text.replaceAll('.', ''),
       'jumlah_aset_kini': netWorth.text.replaceAll('.', ''),
       'total_angsuran_keseluruhan': netWorthPlusCredit.text.replaceAll('.', ''),

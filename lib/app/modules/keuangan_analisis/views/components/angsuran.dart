@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -15,6 +16,8 @@ class Angsuran extends StatelessWidget {
   Angsuran({Key? key}) : super(key: key);
 
   final controller = Get.put(KeuanganAnalisisController());
+  final data = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -201,7 +204,9 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'bunga_per_tahun_bpd',
-                  controller: controller.bungaPerTahun,
+                  readOnly: true,
+                  controller: controller.bungaPerTahun = TextEditingController(
+                      text: data.inputKeuangan.bungaPerTahun.toString()),
                   decoration: InputDecoration(
                     labelText: 'Bunga/tahun %',
                     border: OutlineInputBorder(
@@ -218,7 +223,11 @@ class Angsuran extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'tenor_bpd',
-                  controller: controller.angsuranPerBulan,
+                  readOnly: true,
+                  controller: controller.angsuranPerBulan =
+                      TextEditingController(
+                    text: data.inputKeuangan.angsuran.toString(),
+                  ),
                   decoration: InputDecoration(
                       labelText: 'Tenor',
                       border: OutlineInputBorder(
@@ -268,7 +277,12 @@ class Angsuran extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'Total Angsuran Kredit',
                   enabled: false,
-                  controller: controller.totalBunga,
+                  controller: controller.totalBunga = MoneyMaskedTextController(
+                      thousandSeparator: '.',
+                      decimalSeparator: '',
+                      precision: 0,
+                      initialValue:
+                          double.parse(data.inputKeuangan.angsuranRp)),
                   decoration: InputDecoration(
                     labelText: 'Angsuran Dibayarkan',
                     prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),

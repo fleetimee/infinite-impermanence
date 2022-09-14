@@ -379,15 +379,15 @@ class InputKeuanganController extends GetxController {
     }
 
     final parsePenjualanKini =
-        double.parse(penjualanKini.text.replaceAll('.', '')) * 1.15;
+        double.parse(penjualanKini.text.replaceAll('.', '')) * 1.1;
     final parseBiayaBahanKini =
-        double.parse(biayaBahanKini.text.replaceAll('.', '')) * 1.15;
+        double.parse(biayaBahanKini.text.replaceAll('.', '')) * 1.1;
     final parseBiayaUpahKini =
-        double.parse(biayaUpahKini.text.replaceAll('.', '')) * 1.15;
+        double.parse(biayaUpahKini.text.replaceAll('.', '')) * 1.1;
     final parseBiayaOperasionalKini =
-        double.parse(biayaOperasionalKini.text.replaceAll('.', '')) * 1.15;
+        double.parse(biayaOperasionalKini.text.replaceAll('.', '')) * 1.1;
     final parseBiayaHidupKini =
-        double.parse(biayaHidupKini.text.replaceAll('.', '')) * 1.15;
+        double.parse(biayaHidupKini.text.replaceAll('.', '')) * 1;
 
     penjualanYad.text = parsePenjualanKini.toStringAsFixed(0);
     biayaBahanYad.text = parseBiayaBahanKini.toStringAsFixed(0);
@@ -417,7 +417,7 @@ class InputKeuanganController extends GetxController {
       'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
       'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
       'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
-      'penjualan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
+      'penjualan_asumsi': penjualanYad.text.replaceAll('.', ''),
       'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
       'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
       'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),

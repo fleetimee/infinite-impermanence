@@ -19,6 +19,7 @@ class PerkiraanLabaRugi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
+      initiallyExpanded: true,
       title: const Text('Perkiraan Laba / Rugi'),
       children: [
         SizedBox(
@@ -55,6 +56,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'omzet_penjualan_rata_rata',
                       controller: controller.omzetPerBulan,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
                     ),
                   ),
                 ],
@@ -68,6 +72,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'harga_pokok_penjualan',
                       controller: controller.hargaPokokPenjualan,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
                     ),
                   ),
                 ],
@@ -83,6 +90,7 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       readOnly: true,
                       controller: controller.labaKotor,
                       decoration: InputDecoration(
+                        hintText: 'Hasil',
                         suffixIcon: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primaryColor,
@@ -114,6 +122,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'biaya_tenaga_kerja',
                       controller: controller.biayaTenagaKerja,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
                     ),
                   ),
                   const DataCell(SizedBox.shrink()),
@@ -127,6 +138,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'biaya_operasional',
                       controller: controller.biayaOperasional,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
                     ),
                   ),
                   const DataCell(SizedBox.shrink()),
@@ -140,6 +154,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'biaya_lainnya',
                       controller: controller.biayaLainnya,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
                     ),
                   ),
                   DataCell(
@@ -170,6 +187,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       name: 'total_biaya',
                       readOnly: true,
                       controller: controller.totalBiaya,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
+                      ),
                     ),
                   ),
                 ],
@@ -184,6 +204,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       name: 'laba_sebelum_pajak',
                       readOnly: true,
                       controller: controller.labaSebelumPajak,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
+                      ),
                     ),
                   ),
                 ],
@@ -198,6 +221,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       name: 'perkiraan_pajak',
                       readOnly: true,
                       controller: controller.perkiraanPajak,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
+                      ),
                     ),
                   ),
                 ],
@@ -212,6 +238,9 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       name: 'laba_setelah_pajak',
                       readOnly: true,
                       controller: controller.labaSetelahPajak,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
+                      ),
                     ),
                   ),
                 ],

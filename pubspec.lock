@@ -961,9 +961,11 @@ packages:
   responsive_framework:
     dependency: "direct main"
     description:
-      name: responsive_framework
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "61b0c9f9014d78da0992c8a45781bf8294208a99"
+      url: "https://github.com/Codelessly/ResponsiveFramework"
+    source: git
     version: "0.2.0"
   rive:
     dependency: transitive

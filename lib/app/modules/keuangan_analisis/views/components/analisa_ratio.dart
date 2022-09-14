@@ -315,7 +315,7 @@ class AnalisaRatio extends StatelessWidget {
             () => OutlinedButton.icon(
               icon: const Icon(Icons.percent),
               label: Text(
-                controller.isRoeLoading.value ? 'Loading..' : 'Hitung Roa',
+                controller.isRoaLoading.value ? 'Loading..' : 'Hitung Roa',
                 style:
                     const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
               ),

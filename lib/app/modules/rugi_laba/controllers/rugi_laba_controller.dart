@@ -33,6 +33,9 @@ class RugiLabaController extends GetxController {
       'piutang': aktivaPiutangUsaha.text.replaceAll('.', ''),
       'persediaan': aktivaPersediaan.text.replaceAll('.', ''),
       'jumlah_aktiva_lancar': jumlahAktivaLancar.text.replaceAll('.', ''),
+      'peralatan': peralatan.text.replaceAll('.', ''),
+      'kendaraan': kendaraan.text.replaceAll('.', ''),
+      'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
       'jumlah_aktiva_tetap': jumlahAktivaTetap.text.replaceAll('.', ''),
       'sum_aktiva': jumlahAktiva.text.replaceAll('.', ''),
       'hutang_usaha': hutangUsaha.text.replaceAll('.', ''),
@@ -108,6 +111,21 @@ class RugiLabaController extends GetxController {
     precision: 0,
   );
   var jumlahHutang = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var peralatan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var kendaraan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var tanahDanBangunan = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -199,6 +217,7 @@ class RugiLabaController extends GetxController {
     sumJumlahHutang();
     sumModal();
     sumPasiva();
+    sumAktivaTetap();
 
     // sumLabaKotor();
     // sumTotalBiaya();
@@ -214,6 +233,17 @@ class RugiLabaController extends GetxController {
     sumPerkiraanPajak();
     sumLabaSetelahPajak();
     sumSisaPenghasilan();
+  }
+
+  void sumAktivaTetap() {
+    final parsePeralatan = double.parse(peralatan.text.replaceAll('.', ''));
+    final parseKendaraan = double.parse(kendaraan.text.replaceAll('.', ''));
+    final parseTanahDanBangunan =
+        double.parse(tanahDanBangunan.text.replaceAll('.', ''));
+
+    final sum = parsePeralatan + parseKendaraan + parseTanahDanBangunan;
+
+    jumlahAktivaTetap.text = sum.toStringAsFixed(0);
   }
 
   void sumAktivaLancar() {

@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 
-class PerkiraanLabaRugiView extends StatelessWidget {
-  PerkiraanLabaRugiView({super.key});
+class EditPerkiraanLabaRugiView extends StatelessWidget {
+  EditPerkiraanLabaRugiView({super.key});
 
   final controller = Get.put(RugiLabaController());
   final data = Get.arguments;

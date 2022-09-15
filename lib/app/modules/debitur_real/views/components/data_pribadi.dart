@@ -1,7 +1,9 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
@@ -21,7 +23,7 @@ class DataPribadi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      leading: const Icon(Icons.people),
+      leading: const Icon(FontAwesomeIcons.userAstronaut),
       title: const Text(
         'Data Pribadi Debitur',
       ),
@@ -34,13 +36,13 @@ class DataPribadi extends StatelessWidget {
             children: [
               Expanded(
                 child: OutlinedButton.icon(
-                  icon: const Icon(Icons.remove_red_eye),
+                  icon: const Icon(FontAwesomeIcons.noteSticky),
                   label: const Text(
-                    "Lihat Data",
+                    "Lihat",
                     style: TextStyle(fontSize: 20),
                   ),
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.blueGrey,
+                    foregroundColor: forButton2,
                   ),
                   onPressed: () {
                     Get.toNamed(
@@ -55,13 +57,13 @@ class DataPribadi extends StatelessWidget {
               ),
               Expanded(
                 child: OutlinedButton.icon(
-                  icon: const Icon(Icons.edit),
+                  icon: const Icon(FontAwesomeIcons.pencil),
                   label: const Text(
-                    "Edit Debitur",
+                    "Edit",
                     style: TextStyle(fontSize: 20),
                   ),
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.blueGrey,
+                    foregroundColor: forButton2,
                   ),
                   onPressed: () {
                     Get.toNamed(Routes.DEBITUR_EDIT, arguments: debtor);

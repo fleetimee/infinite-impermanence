@@ -14,11 +14,11 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/service/input_keuangan_service.dart';
 
 class InputKeuanganController extends GetxController {
-  final context = Get.context;
+  var context = Get.context;
 
-  final formKeyInputKeuangan = GlobalKey<FormBuilderState>();
+  var formKeyInputKeuangan = GlobalKey<FormBuilderState>();
 
-  final kreditYangDiusulkan = MoneyMaskedTextController(
+  var kreditYangDiusulkan = MoneyMaskedTextController(
     initialValue: 0,
     thousandSeparator: '.',
     decimalSeparator: '',
@@ -28,29 +28,29 @@ class InputKeuanganController extends GetxController {
   var rugiLaba = TextEditingController();
   var debitur = TextEditingController();
 
-  final angsuranPerBulan = TextEditingController();
-  final provisi = TextEditingController();
-  final sistemAngsuran = ''.obs;
-  final digunakanUntuk = TextEditingController();
-  final bungaPerTahun = TextEditingController();
+  var angsuranPerBulan = TextEditingController();
+  var provisi = TextEditingController();
+  var sistemAngsuran = ''.obs;
+  var digunakanUntuk = TextEditingController();
+  var bungaPerTahun = TextEditingController();
 
-  final totalAngsuran = MoneyMaskedTextController(
+  var totalAngsuran = MoneyMaskedTextController(
     initialValue: 0,
     thousandSeparator: '.',
     decimalSeparator: '',
     precision: 0,
   );
 
-  final pinjamanLainnya = MoneyMaskedTextController(
+  var pinjamanLainnya = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final angsuranPinjamanLainnya = TextEditingController(text: '0');
+  var angsuranPinjamanLainnya = TextEditingController(text: '0');
 
-  final nilaiAset = MoneyMaskedTextController(
+  var nilaiAset = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -63,7 +63,7 @@ class InputKeuanganController extends GetxController {
     precision: 0,
   );
 
-  final hpp = TextEditingController(text: '75');
+  var hpp = TextEditingController(text: '75');
 
   var biayaBahanKini = MoneyMaskedTextController(
     decimalSeparator: '',
@@ -91,42 +91,42 @@ class InputKeuanganController extends GetxController {
     precision: 0,
   );
 
-  final penjualanYad = MoneyMaskedTextController(
+  var penjualanYad = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final biayaBahanYad = MoneyMaskedTextController(
+  var biayaBahanYad = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final biayaUpahYad = MoneyMaskedTextController(
+  var biayaUpahYad = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final biayaOperasionalYad = MoneyMaskedTextController(
+  var biayaOperasionalYad = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final biayaHidupYad = MoneyMaskedTextController(
+  var biayaHidupYad = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
 
-  final tradeCycle = TextEditingController(text: '0');
+  var tradeCycle = TextEditingController(text: '0');
 
   void mothlyPaymentCalculation() {
     if (kreditYangDiusulkan.text == '0' || kreditYangDiusulkan.text == '') {

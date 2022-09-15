@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -62,21 +63,21 @@ class InputKeuanganFixed extends StatelessWidget {
                       ),
                       Expanded(
                         child: OutlinedButton.icon(
-                          icon: const Icon(FontAwesomeIcons.eye),
+                          icon: const Icon(FontAwesomeIcons.noteSticky),
                           label: const Text(
-                            "Lihat Keuangan",
+                            "Lihat",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.deepOrange,
+                            foregroundColor: forButton2,
                           ),
                           onPressed: () {
                             // // Get.toNamed(Routes.LIHAT_RUGI_LABA,
                             // //     // Send debtor id to input keuangan page
                             // //     arguments: debtor.inputRugiLaba);
-                            // Get.toNamed(Routes.VIEW_RUGI_LABA,
-                            //     // Send debtor id to input keuangan page
-                            //     arguments: debtor);
+                            Get.toNamed(Routes.LIHAT_KEUANGAN,
+                                // Send debtor id to input keuangan page
+                                arguments: debtor);
                           },
                         ),
                       ),
@@ -87,11 +88,11 @@ class InputKeuanganFixed extends StatelessWidget {
                         child: OutlinedButton.icon(
                           icon: const Icon(FontAwesomeIcons.pencil),
                           label: const Text(
-                            "Edit Keuangan",
+                            "Edit",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.green,
+                            foregroundColor: forButton2,
                           ),
                           onPressed: () {
                             // Get.toNamed(Routes.EDIT_RUGI_LABA,

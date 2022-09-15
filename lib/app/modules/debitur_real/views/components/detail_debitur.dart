@@ -5,6 +5,7 @@ import 'package:akm/app/modules/debitur_real/views/components/analisa_keuangan.d
 import 'package:akm/app/modules/debitur_real/views/components/input_keuangan_fixed.dart';
 import 'package:akm/app/modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
@@ -45,7 +46,7 @@ class DetailDebitur extends StatelessWidget {
                     initiallyExpanded: true,
                     title: const Text('Analisa Kuantitatif'),
                     leading: const Icon(
-                      Icons.attach_money,
+                      FontAwesomeIcons.wallet,
                     ),
                     children: [
                       Neraca(debtor: debtor),

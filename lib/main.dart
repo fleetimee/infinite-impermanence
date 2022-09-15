@@ -17,14 +17,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(
-    // GetMaterialApp(
-    //   theme: lightTheme,
-    //   darkTheme: darkTheme,
-    //   debugShowCheckedModeBanner: false,
-    //   title: "Application",
-    //   initialRoute: AppPages.INITIAL,
-    //   getPages: AppPages.routes,
-    // ),
     GetMaterialApp(
       builder: (context, child) => ResponsiveWrapper.builder(
         child,
@@ -49,12 +41,12 @@ Future<void> main() async {
           color: const Color(0xFFF5F5F5),
         ),
       ),
+      debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.light,
       title: "Application",
       initialRoute: AppPages.INITIAL,
-      // home: const SuccessScreen(),
       getPages: AppPages.routes,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

@@ -1,4 +1,7 @@
 // 📦 Package imports:
+import 'package:akm/app/modules/input_keuangan/views/lihat_input_keuangan_view.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+import 'package:akm/app/modules/rugi_laba/views/edit_rugi_laba_view.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -38,6 +41,7 @@ import '../modules/pro_pengajuan_approve/bindings/pro_pengajuan_approve_binding.
 import '../modules/pro_pengajuan_approve/views/pro_pengajuan_approve_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
 import '../modules/rugi_laba/views/rugi_laba_view.dart';
+
 import '../modules/search_nik/bindings/search_nik_binding.dart';
 import '../modules/search_nik/views/search_nik_view.dart';
 import '../modules/uploads/bindings/uploads_binding.dart';
@@ -118,6 +122,12 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
+      name: _Paths.LIHAT_KEUANGAN_ANALISIS,
+      page: () => LihatKeuanganAnalisisView(),
+      binding: KeuanganAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
       name: _Paths.PRINTING,
       page: () => const PrintingView(),
       binding: PrintingBinding(),
@@ -160,6 +170,11 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
+        name: _Paths.LIHAT_KEUANGAN,
+        page: () => LihatInputKeuanganView(),
+        binding: InputKeuanganBinding(),
+        transition: Transition.cupertino),
+    GetPage(
       name: _Paths.PORSEKOT_TABLE,
       page: () => PorsekotTableView(),
       binding: PorsekotTableBinding(),
@@ -192,6 +207,12 @@ class AppPages {
     GetPage(
       name: _Paths.VIEW_RUGI_LABA,
       page: () => LihatRugiLabaView(),
+      binding: RugiLabaBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_RUGI_LABA,
+      page: () => EditRugiLabaView(),
       binding: RugiLabaBinding(),
       transition: Transition.cupertino,
     ),

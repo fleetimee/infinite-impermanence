@@ -99,6 +99,7 @@ class DebiturListView extends GetView<DebiturRealController> {
                                       Card(
                                         child: ListTile(
                                           leading: CircleAvatar(
+                                            backgroundColor: calmBlue,
                                             // Show first letter of name
                                             child: Text(
                                               debtor.peminjam1!.substring(0, 1),

@@ -15,6 +15,7 @@ abstract class Routes {
   static const BISNIS_ANALISIS = _Paths.BISNIS_ANALISIS;
   static const KARAKTER_ANALISIS = _Paths.KARAKTER_ANALISIS;
   static const KEUANGAN_ANALISIS = _Paths.KEUANGAN_ANALISIS;
+  static const LIHAT_KEUANGAN_ANALISIS = _Paths.LIHAT_KEUANGAN_ANALISIS;
   static const PRINTING = _Paths.PRINTING;
   static const DEBITUR_REAL = _Paths.DEBITUR_REAL;
   static const ADD_DEBITUR = _Paths.ADD_DEBITUR;
@@ -23,12 +24,14 @@ abstract class Routes {
   static const DEBITUR_EDIT = _Paths.DEBITUR_EDIT;
   static const DEBITUR_DETAIL_BANGET = _Paths.DEBITUR_DETAIL_BANGET;
   static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
+  static const LIHAT_KEUANGAN = _Paths.LIHAT_KEUANGAN;
   static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
   static const INPUT_NERACA = _Paths.INPUT_NERACA;
   static const LIHAT_NERACA = _Paths.LIHAT_NERACA;
   static const EDIT_NERACA = _Paths.EDIT_NERACA;
   static const RUGI_LABA = _Paths.RUGI_LABA;
   static const VIEW_RUGI_LABA = _Paths.VIEW_RUGI_LABA;
+  static const EDIT_RUGI_LABA = _Paths.EDIT_RUGI_LABA;
 }
 
 abstract class _Paths {
@@ -42,6 +45,7 @@ abstract class _Paths {
   static const BISNIS_ANALISIS = '/bisnis-analisis';
   static const KARAKTER_ANALISIS = '/karakter-analisis';
   static const KEUANGAN_ANALISIS = '/keuangan-analisis';
+  static const LIHAT_KEUANGAN_ANALISIS = '/lihat-keuangan-analisis';
   static const PRINTING = '/printing';
   static const DEBITUR_REAL = '/debitur-real';
   static const ADD_DEBITUR = '/add-debitur';
@@ -50,10 +54,12 @@ abstract class _Paths {
   static const DEBITUR_EDIT = '/debitur-edit';
   static const DEBITUR_DETAIL_BANGET = '/debitur-detail-banget';
   static const INPUT_KEUANGAN = '/input-keuangan';
+  static const LIHAT_KEUANGAN = '/lihat-keuangan';
   static const PORSEKOT_TABLE = '/porsekot-table';
   static const INPUT_NERACA = '/input-neraca';
   static const EDIT_NERACA = '/edit-neraca';
   static const LIHAT_NERACA = '/lihat-neraca';
   static const RUGI_LABA = '/rugi-laba';
   static const VIEW_RUGI_LABA = '/view-rugi-laba';
+  static const EDIT_RUGI_LABA = '/edit-rugi-laba';
 }

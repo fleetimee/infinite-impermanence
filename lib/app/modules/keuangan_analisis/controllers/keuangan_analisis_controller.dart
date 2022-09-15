@@ -85,7 +85,7 @@ class KeuanganAnalisisController extends GetxController
     thousandSeparator: '.',
     precision: 0,
   );
-  final netWorthPlusCredit = MoneyMaskedTextController(
+  var netWorthPlusCredit = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
@@ -93,16 +93,16 @@ class KeuanganAnalisisController extends GetxController
 
   //! Angsuran
   // Angsuran Pinjaman Lain
-  final bungaPerTahunLain = TextEditingController(text: '0');
-  final angsuranPerBulanLainAtas = TextEditingController(text: '0');
-  final angsuranPerBulanLainBawah = TextEditingController(text: '0');
-  final totalBungaLainAtas = MoneyMaskedTextController(
+  var bungaPerTahunLain = TextEditingController(text: '0');
+  var angsuranPerBulanLainAtas = TextEditingController(text: '0');
+  var angsuranPerBulanLainBawah = TextEditingController(text: '0');
+  var totalBungaLainAtas = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final totalBungaLainBawah = MoneyMaskedTextController(
+  var totalBungaLainBawah = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -119,16 +119,16 @@ class KeuanganAnalisisController extends GetxController
   );
 
   // Flat / Efektif
-  final flatInitial = TextEditingController(text: '0');
-  final efektifInitial = TextEditingController(text: '0');
-  final totalFlatEfektif = TextEditingController(text: '0');
-  final totalEfektif = MoneyMaskedTextController(
+  var flatInitial = TextEditingController(text: '0');
+  var efektifInitial = TextEditingController(text: '0');
+  var totalFlatEfektif = TextEditingController(text: '0');
+  var totalEfektif = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
     precision: 0,
   );
-  final totalFlat = MoneyMaskedTextController(
+  var totalFlat = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -136,7 +136,7 @@ class KeuanganAnalisisController extends GetxController
   );
 
   // Total Angsuran Keseluruhan
-  final totalAngsuran = MoneyMaskedTextController(
+  var totalAngsuran = MoneyMaskedTextController(
     initialValue: 0,
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -145,34 +145,34 @@ class KeuanganAnalisisController extends GetxController
 
   //! Analisa Ratio
   // Ratio profit
-  final ratioProfitKini = TextEditingController();
-  final ratioProfitYAD = TextEditingController();
+  var ratioProfitKini = TextEditingController();
+  var ratioProfitYAD = TextEditingController();
 
   /// ROE
-  final roeKini = TextEditingController();
-  final roeYAD = TextEditingController();
-  final keteranganRoe = TextEditingController();
+  var roeKini = TextEditingController();
+  var roeYAD = TextEditingController();
+  var keteranganRoe = TextEditingController();
 
   /// ROA
-  final roaKini = TextEditingController();
-  final roaYAD = TextEditingController();
-  final keteranganRoa = TextEditingController();
+  var roaKini = TextEditingController();
+  var roaYAD = TextEditingController();
+  var keteranganRoa = TextEditingController();
 
   /// DER
-  final derKini = TextEditingController();
-  final derYAD = TextEditingController();
-  final keteranganDer = TextEditingController();
+  var derKini = TextEditingController();
+  var derYAD = TextEditingController();
+  var keteranganDer = TextEditingController();
 
   /// DSC
-  final dscKini = TextEditingController();
-  final dscYAD = TextEditingController();
-  final keteranganDsc = TextEditingController();
+  var dscKini = TextEditingController();
+  var dscYAD = TextEditingController();
+  var keteranganDsc = TextEditingController();
 
   // Ini Nilai Tetap
-  final roeFixed = TextEditingController(text: '10');
-  final roaFixed = TextEditingController(text: '8');
-  final derFixed = TextEditingController(text: '200');
-  final dscFixed = TextEditingController(text: '1.3');
+  var roeFixed = TextEditingController(text: '10');
+  var roaFixed = TextEditingController(text: '8');
+  var derFixed = TextEditingController(text: '200');
+  var dscFixed = TextEditingController(text: '1.3');
 
   //! Asumsi Keuangan
   /// Omzet input

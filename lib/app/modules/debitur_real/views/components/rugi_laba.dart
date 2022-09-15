@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -69,20 +70,16 @@ class RugiLaba extends StatelessWidget {
                       ),
                       Expanded(
                         child: OutlinedButton.icon(
-                          icon: const Icon(FontAwesomeIcons.eye),
+                          icon: const Icon(FontAwesomeIcons.noteSticky),
                           label: const Text(
-                            "Lihat Rugi Laba",
+                            "Lihat",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.deepOrange,
+                            foregroundColor: forButton2,
                           ),
                           onPressed: () {
-                            // Get.toNamed(Routes.LIHAT_RUGI_LABA,
-                            //     // Send debtor id to input keuangan page
-                            //     arguments: debtor.inputRugiLaba);
                             Get.toNamed(Routes.VIEW_RUGI_LABA,
-                                // Send debtor id to input keuangan page
                                 arguments: debtor);
                           },
                         ),
@@ -94,11 +91,11 @@ class RugiLaba extends StatelessWidget {
                         child: OutlinedButton.icon(
                           icon: const Icon(FontAwesomeIcons.pencil),
                           label: const Text(
-                            "Edit Rugi Laba",
+                            "Edit",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.green,
+                            foregroundColor: forButton2,
                           ),
                           onPressed: () {
                             // Get.toNamed(Routes.EDIT_RUGI_LABA,

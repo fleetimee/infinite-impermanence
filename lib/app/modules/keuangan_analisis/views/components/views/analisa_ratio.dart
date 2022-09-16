@@ -44,8 +44,9 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitKini =
                       TextEditingController(
-                          text:
-                              data.analisaKeuangan.persenRatioKini.toString()),
+                    text: double.parse(data.analisaKeuangan.persenRatioKini)
+                        .toStringAsFixed(1),
+                  ),
                   enabled: false,
                   name: 'ratio_profit_kini',
                   decoration: const InputDecoration(
@@ -61,7 +62,8 @@ class ViewAnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitYAD = TextEditingController(
-                      text: data.analisaKeuangan.persenRatioYad.toString()),
+                      text: double.parse(data.analisaKeuangan.persenRatioYad)
+                          .toStringAsFixed(1)),
                   name: 'ratio_profit_yad',
                   enabled: false,
                   decoration: const InputDecoration(
@@ -232,7 +234,8 @@ class ViewAnalisaRatio extends StatelessWidget {
                   name: 'roa_kini',
                   enabled: false,
                   controller: controller.roaKini = TextEditingController(
-                      text: data.analisaKeuangan.persenRoaKini.toString()),
+                      text: double.parse(data.analisaKeuangan.persenRoaKini)
+                          .toStringAsFixed(1)),
                   decoration: const InputDecoration(
                     labelText: 'ROA Kini',
                     border: OutlineInputBorder(),
@@ -247,7 +250,8 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'roa_yad',
                   controller: controller.roaYAD = TextEditingController(
-                      text: data.analisaKeuangan.persenRoaYad.toString()),
+                      text: double.parse(data.analisaKeuangan.persenRoaYad)
+                          .toStringAsFixed(1)),
                   enabled: false,
                   decoration: const InputDecoration(
                     labelText: 'ROA YAD',
@@ -330,7 +334,12 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'der_kini',
                   controller: controller.derKini = TextEditingController(
-                      text: data.analisaKeuangan.persenDerKini.toString()),
+                    text:
+                        data.analisaKeuangan.persenDerKini.toString() == '0.00'
+                            ? '-'
+                            : double.parse(data.analisaKeuangan.persenDerKini)
+                                .toStringAsFixed(1),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'DER Kini',
                     border: OutlineInputBorder(),
@@ -345,7 +354,9 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'der_yad',
                   controller: controller.derYAD = TextEditingController(
-                      text: data.analisaKeuangan.persenDerYad.toString()),
+                    text: double.parse(data.analisaKeuangan.persenDerYad)
+                        .toStringAsFixed(1),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'DER YAD',
                     border: OutlineInputBorder(),

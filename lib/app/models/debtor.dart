@@ -45,6 +45,7 @@ class Debtor {
     this.inputRugiLaba,
     this.inputKeuangan,
     this.analisaKeuangan,
+    this.analisaBisnis,
     this.createdBy,
   });
 
@@ -79,6 +80,7 @@ class Debtor {
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
   AnalisaKeuangan? analisaKeuangan;
+  AnalisaBisnis? analisaBisnis;
   dynamic createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
@@ -121,6 +123,9 @@ class Debtor {
         analisaKeuangan: json["analisaKeuangan"] == null
             ? null
             : AnalisaKeuangan.fromJson(json["analisaKeuangan"]),
+        analisaBisnis: json["analisaBisnis"] == null
+            ? null
+            : AnalisaBisnis.fromJson(json["analisaBisnis"]),
         createdBy: json["createdBy"],
       );
 
@@ -159,7 +164,76 @@ class Debtor {
         "inputKeuangan": inputKeuangan == null ? null : inputKeuangan?.toJson(),
         "analisaKeuangan":
             analisaKeuangan == null ? null : analisaKeuangan?.toJson(),
+        "analisaBisnis": analisaBisnis == null ? null : analisaBisnis?.toJson(),
         "createdBy": createdBy,
+      };
+}
+
+class AnalisaBisnis {
+  AnalisaBisnis({
+    this.id,
+    this.nilaiOmzet,
+    this.keteranganOmzet,
+    this.nilaiHargaBersaing,
+    this.keteranganHargaBersaing,
+    this.nilaiPersaingan,
+    this.keteranganPersaingan,
+    this.nilaiLokasiUsaha,
+    this.keteranganLokasiUsaha,
+    this.nilaiProduktivitas,
+    this.keteranganProduktivitas,
+    this.nilaiKualitas,
+    this.keteranganKualitas,
+    this.deskripsiBisnis,
+  });
+
+  int? id;
+  int? nilaiOmzet;
+  String? keteranganOmzet;
+  int? nilaiHargaBersaing;
+  String? keteranganHargaBersaing;
+  int? nilaiPersaingan;
+  String? keteranganPersaingan;
+  int? nilaiLokasiUsaha;
+  String? keteranganLokasiUsaha;
+  int? nilaiProduktivitas;
+  String? keteranganProduktivitas;
+  int? nilaiKualitas;
+  String? keteranganKualitas;
+  String? deskripsiBisnis;
+
+  factory AnalisaBisnis.fromJson(Map<String, dynamic> json) => AnalisaBisnis(
+        id: json["id"],
+        nilaiOmzet: json["nilai_omzet"],
+        keteranganOmzet: json["keterangan_omzet"],
+        nilaiHargaBersaing: json["nilai_harga_bersaing"],
+        keteranganHargaBersaing: json["keterangan_harga_bersaing"],
+        nilaiPersaingan: json["nilai_persaingan"],
+        keteranganPersaingan: json["keterangan_persaingan"],
+        nilaiLokasiUsaha: json["nilai_lokasi_usaha"],
+        keteranganLokasiUsaha: json["keterangan_lokasi_usaha"],
+        nilaiProduktivitas: json["nilai_produktivitas"],
+        keteranganProduktivitas: json["keterangan_produktivitas"],
+        nilaiKualitas: json["nilai_kualitas"],
+        keteranganKualitas: json["keterangan_kualitas"],
+        deskripsiBisnis: json["deskripsi_bisnis"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "nilai_omzet": nilaiOmzet,
+        "keterangan_omzet": keteranganOmzet,
+        "nilai_harga_bersaing": nilaiHargaBersaing,
+        "keterangan_harga_bersaing": keteranganHargaBersaing,
+        "nilai_persaingan": nilaiPersaingan,
+        "keterangan_persaingan": keteranganPersaingan,
+        "nilai_lokasi_usaha": nilaiLokasiUsaha,
+        "keterangan_lokasi_usaha": keteranganLokasiUsaha,
+        "nilai_produktivitas": nilaiProduktivitas,
+        "keterangan_produktivitas": keteranganProduktivitas,
+        "nilai_kualitas": nilaiKualitas,
+        "keterangan_kualitas": keteranganKualitas,
+        "deskripsi_bisnis": deskripsiBisnis,
       };
 }
 

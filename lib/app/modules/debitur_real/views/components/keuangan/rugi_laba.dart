@@ -34,7 +34,7 @@ class RugiLaba extends StatelessWidget {
                   color: Colors.green,
                 )
               : const Icon(
-                  FontAwesomeIcons.exclamation,
+                  FontAwesomeIcons.xmark,
                   color: Colors.red,
                 ),
         ],
@@ -110,13 +110,13 @@ class RugiLaba extends StatelessWidget {
                     children: [
                       Expanded(
                         child: OutlinedButton.icon(
-                          icon: const Icon(FontAwesomeIcons.amazon),
+                          icon: const Icon(FontAwesomeIcons.plus),
                           label: const Text(
-                            "Input Rugi Laba",
+                            "Tambah",
                             style: TextStyle(fontSize: 20),
                           ),
                           style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.blueGrey,
+                            foregroundColor: forButton2,
                           ),
                           onPressed: () {
                             Get.toNamed(Routes.RUGI_LABA,

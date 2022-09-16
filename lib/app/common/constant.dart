@@ -14,4 +14,4 @@
 
 // // for ngrok
 const baseUrl =
-    'https://ada6-2001-448a-4049-22a3-649b-304c-f96c-1e0f.ap.ngrok.io/api/v1/';
+    'https://0adf-2001-448a-4049-22a3-58ee-e4dc-88ad-5fb3.ap.ngrok.io/api/v1/';

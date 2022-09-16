@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -110,7 +109,14 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                           FormBuilderTextField(
                             name: 'pinjaman_maksimal',
                             textAlign: TextAlign.center,
-                            controller: controller.pinjamanMaksimal,
+                            controller: controller.pinjamanMaksimal =
+                                MoneyMaskedTextController(
+                                    decimalSeparator: '',
+                                    thousandSeparator: '.',
+                                    precision: 0,
+                                    initialValue: double.parse(
+                                      data.analisaKeuangan.pinjamanMaksimal,
+                                    )),
                             style: GoogleFonts.roboto(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -125,7 +131,15 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                           FormBuilderTextField(
                             name: 'perhitungan_investasi',
                             textAlign: TextAlign.center,
-                            controller: controller.perhitunganModalKerja,
+                            controller: controller.perhitunganModalKerja =
+                                MoneyMaskedTextController(
+                                    decimalSeparator: '',
+                                    thousandSeparator: '.',
+                                    precision: 0,
+                                    initialValue: double.parse(
+                                      data.analisaKeuangan
+                                          .perhitunganModalKerja,
+                                    )),
                             style: GoogleFonts.roboto(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -157,7 +171,14 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                           FormBuilderTextField(
                             name: 'kebutuhan_investasi',
                             textAlign: TextAlign.center,
-                            controller: controller.kebutuhanInvestasi,
+                            controller: controller.kebutuhanInvestasi =
+                                MoneyMaskedTextController(
+                                    decimalSeparator: '',
+                                    thousandSeparator: '.',
+                                    precision: 0,
+                                    initialValue: double.parse(
+                                      data.analisaKeuangan.kebutuhanInvestasi,
+                                    )),
                             style: GoogleFonts.roboto(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -171,7 +192,14 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                           FormBuilderTextField(
                             name: 'kebutuhan_kredit',
                             textAlign: TextAlign.center,
-                            controller: controller.kebutuhanKredit,
+                            controller: controller.kebutuhanKredit =
+                                MoneyMaskedTextController(
+                                    decimalSeparator: '',
+                                    thousandSeparator: '.',
+                                    precision: 0,
+                                    initialValue: double.parse(
+                                      data.analisaKeuangan.kebutuhanKredit,
+                                    )),
                             style: GoogleFonts.roboto(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -182,45 +210,9 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                 border: OutlineInputBorder(),
                                 prefixIcon: Icon(FontAwesomeIcons.rupiahSign)),
                           ),
-                          OutlinedButton.icon(
-                            icon: const Icon(Icons.calculate),
-                            label: const Text(
-                              "Hitung Semua",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 20),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                                foregroundColor: secondaryColor,
-                                backgroundColor: primaryColor,
-                                shape: const StadiumBorder(),
-                                maximumSize:
-                                    const Size.fromWidth(double.infinity),
-                                fixedSize: const Size(500, 50)),
-                            onPressed: () {
-                              controller.hitungSemua();
-
-                              showToast(
-                                '👀 Berhasil dihitung semua',
-                                textStyle: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: secondaryColor,
-                                ),
-                                context: context,
-                                animation: StyledToastAnimation.scale,
-                                reverseAnimation: StyledToastAnimation.fade,
-                                position: StyledToastPosition.center,
-                                animDuration: const Duration(seconds: 1),
-                                duration: const Duration(seconds: 4),
-                                curve: Curves.elasticOut,
-                                reverseCurve: Curves.linear,
-                              );
-                            },
-                          ),
                           const SizedBox(
                             height: 5.0,
                           ),
-
                           Row(
                             children: [
                               Expanded(
@@ -258,117 +250,24 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                               ),
                               Expanded(
                                 flex: 2,
-                                child: Obx(
-                                  () {
-                                    return controller
-                                            .isVerificationButtonPressed.value
-                                        ? controller.isKreditPassed.isTrue
-                                            ? const Icon(
-                                                Icons.check_box,
-                                                color: Colors.green,
-                                                size: 35,
-                                              )
-                                            : const Icon(
-                                                Icons.close_outlined,
-                                                color: Colors.red,
-                                                size: 35,
-                                              )
-                                        : const SizedBox();
-                                  },
-                                ),
+                                child: controller.isKreditPassed.isFalse
+                                    ? const Icon(
+                                        FontAwesomeIcons.circleCheck,
+                                        color: Colors.green,
+                                      )
+                                    : const Icon(
+                                        FontAwesomeIcons.circleXmark,
+                                        color: Colors.red,
+                                      ),
                               ),
                             ],
-                          ),
-                          // FormBuilderSwitch(
-                          //   title: const Text('Kredit'),
-                          //   name: 'is_kredit_passed',
-                          //   onSaved: (value) {
-                          //     controller.isKreditPassed.value = value!;
-                          //   },
-                          //   onChanged: (value) {
-                          //     controller.isKreditPassed.value = value!;
-                          //   },
-                          // ),
-
-                          // Obx(
-                          //   () => FormBuilderSwitch(
-                          //     name: 'kredit_approved',
-                          //     enabled: controller.isKreditPassed.value
-                          //         ? true
-                          //         : false,
-                          //     inactiveThumbColor: secondaryColor,
-                          //     decoration: InputDecoration(
-                          //       labelText: 'Kredit di setujui',
-                          //       border: OutlineInputBorder(
-                          //         borderRadius: BorderRadius.circular(10),
-                          //       ),
-                          //       prefixIcon:
-                          //           controller.isVerificationButtonPressed.value
-                          //               ? controller.isKreditPassed.isTrue
-                          //                   ? const Icon(
-                          //                       Icons.check_box,
-                          //                       color: Colors.green,
-                          //                       size: 35,
-                          //                     )
-                          //                   : const Icon(
-                          //                       Icons.close_outlined,
-                          //                       color: Colors.red,
-                          //                       size: 35,
-                          //                     )
-                          //               : const SizedBox(),
-                          //     ),
-                          //     onChanged: (value) {
-                          //       controller.isKreditPassed.value = value!;
-                          //     },
-                          //     onSaved: (value) {
-                          //       controller.isKreditPassed.value = value!;
-                          //     },
-                          //     title: Text(controller.isKreditPassed.isTrue
-                          //         ? 'Kredit di setujui'
-                          //         : 'Kredit di tolak'),
-                          //   ),
-                          // ),
-                          OutlinedButton.icon(
-                            icon: const Icon(Icons.verified),
-                            label: const Text(
-                              "Verifikasi Kredit",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 20),
-                            ),
-                            style: OutlinedButton.styleFrom(
-                                foregroundColor: secondaryColor,
-                                backgroundColor: primaryColor,
-                                shape: const StadiumBorder(),
-                                maximumSize:
-                                    const Size.fromWidth(double.infinity),
-                                fixedSize: const Size(500, 50)),
-                            onPressed: () {
-                              controller.checkIfCreditPassed();
-
-                              showToast(
-                                'Status: ${controller.isKreditPassed.isTrue ? 'Lulus' : 'Gagal'}',
-                                textStyle: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: secondaryColor,
-                                ),
-                                context: context,
-                                animation: StyledToastAnimation.scale,
-                                reverseAnimation: StyledToastAnimation.fade,
-                                position: StyledToastPosition.center,
-                                animDuration: const Duration(seconds: 1),
-                                duration: const Duration(seconds: 4),
-                                curve: Curves.elasticOut,
-                                reverseCurve: Curves.linear,
-                              );
-                            },
                           ),
                           const SizedBox(
                             height: 5.0,
                           ),
                           LoadingAnimatedButton(
                             child: Text(
-                              'Lihat Hasil',
+                              'Lihat CRR',
                               style: GoogleFonts.andika(fontSize: 25),
                             ),
                             onTap: () {

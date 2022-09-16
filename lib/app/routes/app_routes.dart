@@ -32,6 +32,7 @@ abstract class Routes {
   static const RUGI_LABA = _Paths.RUGI_LABA;
   static const VIEW_RUGI_LABA = _Paths.VIEW_RUGI_LABA;
   static const EDIT_RUGI_LABA = _Paths.EDIT_RUGI_LABA;
+  static const KEUANGAN_PRINT = _Paths.KEUANGAN_PRINT;
 }
 
 abstract class _Paths {
@@ -62,4 +63,5 @@ abstract class _Paths {
   static const RUGI_LABA = '/rugi-laba';
   static const VIEW_RUGI_LABA = '/view-rugi-laba';
   static const EDIT_RUGI_LABA = '/edit-rugi-laba';
+  static const KEUANGAN_PRINT = '/print-keuangan';
 }

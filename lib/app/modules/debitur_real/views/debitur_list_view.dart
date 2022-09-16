@@ -20,14 +20,6 @@ class DebiturListView extends GetView<DebiturRealController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // floatingActionButton: Obx(
-      //   () => controller.loadingFetch.value
-      //       ? const SizedBox.shrink()
-      //       : FloatingActionButton(
-      //           onPressed: () => controller.filterDebtor(),
-      //           child: const Icon(Icons.search),
-      //         ),
-      // ),
       appBar: AppBar(
         title: const Text('Cari Debitur'),
         centerTitle: true,
@@ -46,11 +38,6 @@ class DebiturListView extends GetView<DebiturRealController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            // Search bar to filter list
-            // Selected debtor name
-
-            // If debtor selected show name
-
             Obx(
               () => Expanded(
                 child: controller.loadingFetch.value

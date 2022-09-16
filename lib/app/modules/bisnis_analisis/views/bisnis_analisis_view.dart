@@ -1,12 +1,13 @@
 // ignore_for_file: avoid_print
 
 // 🐦 Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -14,7 +15,6 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/bisnis_analisis/views/components/hitung_crr_bisnis.dart';
 import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
 import '../controllers/bisnis_analisis_controller.dart';
 
 class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
@@ -22,7 +22,6 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideMenu(),
       appBar: AppBar(
         title: const Text('Business Analysis'),
         centerTitle: true,
@@ -33,15 +32,15 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
               padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: Obx(
                 () => FormBuilder(
+                  key: controller.formKey,
+                  onChanged: () {
+                    controller.formKey.currentState!.save();
+                    debugPrint(
+                        controller.formKey.currentState!.value.toString());
+                  },
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      GifView.asset(
-                        'assets/images/business/header.gif',
-                        frameRate: 30,
-                        fit: BoxFit.cover,
-                        loop: false,
-                        height: 400,
-                      ),
                       const Padding(
                         padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
                         child: Divider(
@@ -62,7 +61,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         textAlign: TextAlign.left,
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 8,
                       ),
                       const Text(
                         'Berikut beberapa parameter yang harus diinputkan untuk mengetahui kelayakan bisnis dari debitur.',
@@ -72,35 +71,22 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           letterSpacing: 1,
                           height: 1.5,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 16,
                       ),
                       FormBuilderDropdown(
-                        name: 'Omzet Penjualan',
-                        items: const [
-                          DropdownMenuItem(
-                            value: 50,
-                            child: Text('s/d 50%'),
-                          ),
-                          DropdownMenuItem(
-                            value: 60,
-                            child: Text('s/d 60%'),
-                          ),
-                          DropdownMenuItem(
-                            value: 70,
-                            child: Text('s/d 70%'),
-                          ),
-                          DropdownMenuItem(
-                            value: 80,
-                            child: Text('s/d 80%'),
-                          ),
-                          DropdownMenuItem(
-                            value: 90,
-                            child: Text('s/d 90%++'),
-                          ),
-                        ],
+                        name: 'nilai_omzet',
+                        items: jsonDecode(controller.omzetList)
+                            .map<DropdownMenuItem<int>>(
+                              (item) => DropdownMenuItem<int>(
+                                value: item['value'],
+                                child: Text(
+                                  item['label'],
+                                ),
+                              ),
+                            )
+                            .toList(),
                         decoration: InputDecoration(
                           labelText: 'Omzet Penjualan',
                           labelStyle: const TextStyle(fontSize: 20),
@@ -110,7 +96,6 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ),
                         onChanged: (int? value) {
                           controller.omzetPenjualan.value = value!;
-                          print(controller.omzetPenjualan.value);
                         },
                       ),
                       const SizedBox(
@@ -118,7 +103,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       Column(
                         children: <Widget>[
-                          if (controller.omzetPenjualan.value == 90)
+                          if (controller.omzetPenjualan.value == '90')
                             Text(
                               'Score ${controller.omzetPenjualan.value}',
                               style: GoogleFonts.poppins(
@@ -161,10 +146,10 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ],
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 8,
                       ),
                       FormBuilderDropdown(
-                        name: 'Harga Bersaing',
+                        name: 'nilai_harga_bersaing',
                         items: const [
                           DropdownMenuItem(
                             value: 50,
@@ -283,7 +268,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                             child: Text('Tidak ketat'),
                           ),
                         ],
-                        name: 'Persaingan',
+                        name: 'nilai_persaingan',
                       ),
                       const SizedBox(
                         height: 10,
@@ -374,7 +359,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                             child: Text('Sangat strategis'),
                           ),
                         ],
-                        name: 'Lokasi Pasar',
+                        name: 'nilai_lokasi',
                       ),
                       const SizedBox(
                         height: 10,
@@ -461,7 +446,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                             child: Text('Lebih dari 80%'),
                           ),
                         ],
-                        name: 'Produktivitas (%) thd kap terpasang/omzet',
+                        name: 'nilai_produktivitas',
                       ),
                       const SizedBox(
                         height: 10,
@@ -547,7 +532,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                             child: Text('Sangat Baik'),
                           ),
                         ],
-                        name: 'Kwalitas produk/jasa',
+                        name: 'nilai_kualitas',
                       ),
                       const SizedBox(
                         height: 10,
@@ -606,7 +591,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           fontWeight: FontWeight.normal,
                         ),
                         textAlign: TextAlign.start,
-                        name: 'Deskripsi Bisnis Pemohon',
+                        name: 'deskripsi_bisnis',
                         decoration: const InputDecoration(
                           labelText: 'Deskripsi Bisnis Pemohon',
                           border: OutlineInputBorder(),

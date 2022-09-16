@@ -2,11 +2,14 @@
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
 
 class BisnisAnalisisController extends GetxController {
+  final formKey = GlobalKey<FormBuilderState>();
+
   final omzetPenjualan = 0.obs;
   final hargaBersaing = 0.obs;
   final persainganPasar = 0.obs;
@@ -47,6 +50,16 @@ class BisnisAnalisisController extends GetxController {
 
     resultCrrBisnis.value = hasil;
   }
+
+  final omzetList = '''[
+    {"value": 50, "label": "s/d 50%"},
+    {"value": 60, "label": "s/d 60%"},
+    {"value": 70, "label": "s/d 70%"},
+    {"value": 80, "label": "s/d 80%"},
+    {"value": 90, "label": "s/d 90%"}
+  ]''';
+
+  // Decode omzetList
 
   // void hasilUntukDeskripsiBisnis() {
   //   final omzetPenjualan =

@@ -35,7 +35,7 @@ class Neraca extends StatelessWidget {
                   color: Colors.green,
                 )
               : const Icon(
-                  FontAwesomeIcons.exclamation,
+                  FontAwesomeIcons.xmark,
                   color: Colors.red,
                 ),
         ],
@@ -55,13 +55,13 @@ class Neraca extends StatelessWidget {
                   ? const SizedBox()
                   : Expanded(
                       child: OutlinedButton.icon(
-                        icon: const Icon(FontAwesomeIcons.chartLine),
+                        icon: const Icon(FontAwesomeIcons.plus),
                         label: const Text(
-                          "Input Neraca",
+                          "Tambah",
                           style: TextStyle(fontSize: 20),
                         ),
                         style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blueGrey,
+                          foregroundColor: forButton2,
                         ),
                         onPressed: () {
                           Get.offAndToNamed(Routes.INPUT_NERACA,

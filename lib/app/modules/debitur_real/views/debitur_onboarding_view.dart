@@ -7,11 +7,10 @@ import 'package:get/get.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/widget/drawer.dart';
 
-class DebiturOnboardingView extends GetView<DebiturRealController> {
+class DebiturOnboardingView extends StatelessWidget {
   const DebiturOnboardingView({Key? key}) : super(key: key);
 
   @override

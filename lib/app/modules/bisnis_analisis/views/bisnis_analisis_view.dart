@@ -3,7 +3,10 @@
 // 🐦 Flutter imports:
 import 'dart:convert';
 
+import 'package:akm/app/modules/bisnis_analisis/views/components/input/keterangan_harga_bersaing.dart';
+import 'package:akm/app/modules/bisnis_analisis/views/components/input/keterangan_lokasi.dart';
 import 'package:akm/app/modules/bisnis_analisis/views/components/input/keterangan_omzet.dart';
+import 'package:akm/app/modules/bisnis_analisis/views/components/input/keterangan_persaingan.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -125,50 +128,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: <Widget>[
-                        if (controller.hargaBersaing.value == 90)
-                          Text(
-                            'Score ${controller.hargaBersaing.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.hargaBersaing.value == 80)
-                          Text(
-                            'Score ${controller.hargaBersaing.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.hargaBersaing.value == 70)
-                          Text(
-                            'Score ${controller.hargaBersaing.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.hargaBersaing.value == 60)
-                          Text(
-                            'Score ${controller.hargaBersaing.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.hargaBersaing.value == 50)
-                          Text(
-                            'Score ${controller.hargaBersaing.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                      ],
-                    ),
+                    KeteranganHargaBersaing(),
                     const SizedBox(
                       height: 40,
                     ),
@@ -199,55 +159,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: <Widget>[
-                        if (controller.persainganPasar.value == 90)
-                          Text(
-                            'Score ${controller.persainganPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        if (controller.persainganPasar.value == 80)
-                          Text(
-                            'Score ${controller.persainganPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        if (controller.persainganPasar.value == 70)
-                          Text(
-                            'Score ${controller.persainganPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        if (controller.persainganPasar.value == 60)
-                          Text(
-                            'Score ${controller.persainganPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                        if (controller.persainganPasar.value == 50)
-                          Text(
-                            'Score ${controller.persainganPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                      ],
-                    ),
+                    KeteranganPersainganPasar(),
                     const SizedBox(
                       height: 40,
                     ),
@@ -278,50 +190,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: <Widget>[
-                        if (controller.lokasiPasar.value == 90)
-                          Text(
-                            'Score ${controller.lokasiPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.lokasiPasar.value == 80)
-                          Text(
-                            'Score ${controller.lokasiPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.lokasiPasar.value == 70)
-                          Text(
-                            'Score ${controller.lokasiPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.lokasiPasar.value == 50)
-                          Text(
-                            'Score ${controller.lokasiPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.lokasiPasar.value == 40)
-                          Text(
-                            'Score ${controller.lokasiPasar.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                      ],
-                    ),
+                    KeteranganLokasi(),
                     const SizedBox(
                       height: 40,
                     ),
@@ -352,50 +221,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Column(
-                      children: <Widget>[
-                        if (controller.kapasitasTerpasan.value == 90)
-                          Text(
-                            'Score ${controller.kapasitasTerpasan.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.kapasitasTerpasan.value == 80)
-                          Text(
-                            'Score ${controller.kapasitasTerpasan.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.kapasitasTerpasan.value == 70)
-                          Text(
-                            'Score ${controller.kapasitasTerpasan.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.kapasitasTerpasan.value == 60)
-                          Text(
-                            'Score ${controller.kapasitasTerpasan.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        if (controller.kapasitasTerpasan.value == 50)
-                          Text(
-                            'Score ${controller.kapasitasTerpasan.value}',
-                            style: GoogleFonts.poppins(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                      ],
-                    ),
+                    KapasitasTerpasan(),
                     const SizedBox(
                       height: 40,
                     ),
@@ -514,6 +340,62 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class KapasitasTerpasan extends StatelessWidget {
+  KapasitasTerpasan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(BisnisAnalisisController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        if (controller.kapasitasTerpasan.value == 90)
+          Text(
+            'Score ${controller.kapasitasTerpasan.value}',
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        if (controller.kapasitasTerpasan.value == 80)
+          Text(
+            'Score ${controller.kapasitasTerpasan.value}',
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        if (controller.kapasitasTerpasan.value == 70)
+          Text(
+            'Score ${controller.kapasitasTerpasan.value}',
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        if (controller.kapasitasTerpasan.value == 60)
+          Text(
+            'Score ${controller.kapasitasTerpasan.value}',
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        if (controller.kapasitasTerpasan.value == 50)
+          Text(
+            'Score ${controller.kapasitasTerpasan.value}',
+            style: GoogleFonts.poppins(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+      ],
     );
   }
 }

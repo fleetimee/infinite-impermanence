@@ -1,0 +1,144 @@
+[
+  {
+    "_id": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "colName": "Accesscode Talker",
+    "created": "2022-07-01T21:32:19.213Z",
+    "sortNum": 10000,
+    "folders": [
+      {
+        "_id": "856c36ff-0fa5-49eb-b2b5-b199bfefc8fa",
+        "name": "Debitur",
+        "containerId": "",
+        "created": "2022-07-06T02:33:40.463Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "11269e40-da53-4a29-8635-bdae288ca8e5",
+        "name": "Penghasilan Tetap",
+        "containerId": "",
+        "created": "2022-07-06T02:33:58.928Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "2c98df92-734e-49b1-afdd-d4f583ee77a2",
+        "name": "Penghasilan Tidak Tetap",
+        "containerId": "",
+        "created": "2022-07-06T04:08:40.212Z",
+        "sortNum": 30000
+      },
+      {
+        "_id": "afeb3855-8ba9-4e18-8445-d35fe3fb1b8d",
+        "name": "Users",
+        "containerId": "",
+        "created": "2022-07-11T01:02:59.920Z",
+        "sortNum": 40000
+      },
+      {
+        "_id": "37cc2a2e-484a-42af-8e69-ce87ba83bffc",
+        "name": "Role",
+        "containerId": "",
+        "created": "2022-07-11T01:03:35.951Z",
+        "sortNum": 50000
+      },
+      {
+        "_id": "a37e001a-b116-4dda-8452-246da85dd8e2",
+        "name": "Pro Pengajuan",
+        "containerId": "",
+        "created": "2022-07-11T03:12:35.785Z",
+        "sortNum": 60000
+      },
+      {
+        "_id": "0e776d57-21a5-43fe-b762-89c20d81d1ef",
+        "name": "File Upload",
+        "containerId": "",
+        "created": "2022-07-13T02:39:09.533Z",
+        "sortNum": 70000
+      },
+      {
+        "_id": "4109a690-be92-431c-b24a-4d6748a6c18c",
+        "name": "Agunan",
+        "containerId": "",
+        "created": "2022-07-13T07:11:11.865Z",
+        "sortNum": 80000
+      },
+      {
+        "_id": "0c58901b-fee7-4c4e-8907-9415f57bd1dc",
+        "name": "Business Analytics",
+        "containerId": "",
+        "created": "2022-07-13T07:11:32.363Z",
+        "sortNum": 90000
+      },
+      {
+        "_id": "5b184829-c3d6-499a-b09a-774c34893892",
+        "name": "Character Analysis",
+        "containerId": "",
+        "created": "2022-07-13T15:02:02.707Z",
+        "sortNum": 100000
+      }
+    ]
+  },
+  {
+    "_id": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "colName": "Neo Claudius",
+    "created": "2022-09-07T02:10:10.872Z",
+    "sortNum": 20000,
+    "folders": [
+      {
+        "_id": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+        "name": "Debitur",
+        "containerId": "",
+        "created": "2022-08-20T00:12:10.565Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
+        "name": "Input Keuangan",
+        "containerId": "ca7bb5b6-4728-4fad-8875-bb5322c866d3",
+        "created": "2022-08-26T03:17:30.737Z",
+        "sortNum": 30000
+      },
+      {
+        "_id": "7425efbe-57a9-4164-ad9d-ca38f41a6257",
+        "name": "Analisis Keungan",
+        "containerId": "ca7bb5b6-4728-4fad-8875-bb5322c866d3",
+        "created": "2022-08-26T20:11:00.530Z",
+        "sortNum": 40000
+      },
+      {
+        "_id": "1e65817b-0416-4927-90a8-0a86d78e4647",
+        "name": "Input Neraca",
+        "containerId": "ca7bb5b6-4728-4fad-8875-bb5322c866d3",
+        "created": "2022-09-07T02:08:51.282Z",
+        "sortNum": 10000
+      },
+      {
+        "_id": "a49cdeda-9e90-4da8-83d5-dd8028abc1a6",
+        "name": "Rugi Laba",
+        "containerId": "ca7bb5b6-4728-4fad-8875-bb5322c866d3",
+        "created": "2022-09-08T04:40:06.322Z",
+        "sortNum": 20000
+      },
+      {
+        "_id": "ca7bb5b6-4728-4fad-8875-bb5322c866d3",
+        "name": "Keuangan",
+        "containerId": "",
+        "created": "2022-09-16T06:49:56.935Z",
+        "sortNum": 12500
+      },
+      {
+        "_id": "c733ac5c-7425-4c74-8251-7dfcbda32109",
+        "name": "Bisnis",
+        "containerId": "",
+        "created": "2022-09-16T06:50:27.940Z",
+        "sortNum": 50000
+      }
+    ]
+  },
+  {
+    "_id": "9d908a2c-69dd-4981-924d-db66ad3e7730",
+    "colName": "BPDSMART_API",
+    "created": "2022-09-16T23:12:30.932Z",
+    "sortNum": 30000,
+    "folders": []
+  }
+]

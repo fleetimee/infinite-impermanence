@@ -4,8 +4,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class KeteranganOmzet extends StatelessWidget {
-  KeteranganOmzet({
+class KeteranganHargaBersaing extends StatelessWidget {
+  KeteranganHargaBersaing({
     Key? key,
   }) : super(key: key);
 
@@ -17,7 +17,7 @@ class KeteranganOmzet extends StatelessWidget {
       child: Column(
         children: [
           ScoreView(controller: controller),
-          DescriptionView(controller: controller),
+          DescriptionView(controller: controller)
         ],
       ),
     );
@@ -38,41 +38,43 @@ class DescriptionView extends StatelessWidget {
       visible: false,
       child: Column(
         children: [
-          controller.omzetPenjualan.value == 90
+          controller.hargaBersaing.value == 90
               ? FormBuilderTextField(
-                  name: 'keteranganOmzet',
-                  controller: controller.omzetPenjualanKeterangan =
-                      TextEditingController(text: 's/d 90%'),
+                  name: 'keteranganHarga',
+                  controller: controller.hargaBersaingKeterangan =
+                      TextEditingController(text: 'Lebih murah diatas 10%'),
                 )
-              : controller.omzetPenjualan.value == 80
+              : controller.hargaBersaing.value == 80
                   ? FormBuilderTextField(
-                      name: 'keteranganOmzet',
-                      controller: controller.omzetPenjualanKeterangan =
-                          TextEditingController(text: 's/d 80%'),
+                      name: 'keteranganHarga',
+                      controller: controller.hargaBersaingKeterangan =
+                          TextEditingController(text: 'Lebih murah 5 - 10%'),
                     )
-                  : controller.omzetPenjualan.value == 70
+                  : controller.hargaBersaing.value == 70
                       ? FormBuilderTextField(
-                          name: 'keteranganOmzet',
-                          controller: controller.omzetPenjualanKeterangan =
-                              TextEditingController(text: 's/d 70%'),
+                          name: 'keteranganHarga',
+                          controller: controller.hargaBersaingKeterangan =
+                              TextEditingController(text: 'Lebih sd %5'),
                         )
-                      : controller.omzetPenjualan.value == 60
+                      : controller.hargaBersaing.value == 60
                           ? FormBuilderTextField(
-                              name: 'keteranganOmzet',
-                              controller: controller.omzetPenjualanKeterangan =
-                                  TextEditingController(text: 's/d 60%'),
+                              name: 'keteranganHarga',
+                              controller: controller.hargaBersaingKeterangan =
+                                  TextEditingController(
+                                      text: 'Sama dengan pesaing'),
                             )
-                          : controller.omzetPenjualan.value == 50
+                          : controller.hargaBersaing.value == 50
                               ? FormBuilderTextField(
-                                  name: 'keteranganOmzet',
-                                  controller: controller
-                                          .omzetPenjualanKeterangan =
-                                      TextEditingController(text: 's/d 50%'),
+                                  name: 'keteranganHarga',
+                                  controller:
+                                      controller.hargaBersaingKeterangan =
+                                          TextEditingController(
+                                              text: 'Lebih mahal dari pesaing'),
                                 )
                               : FormBuilderTextField(
-                                  name: 'keteranganOmzet',
+                                  name: 'keteranganHarga',
                                   controller:
-                                      controller.omzetPenjualanKeterangan =
+                                      controller.hargaBersaingKeterangan =
                                           TextEditingController(text: ''),
                                 ),
         ],
@@ -92,15 +94,15 @@ class ScoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      controller.omzetPenjualan.value == 90
+      controller.hargaBersaing.value == 90
           ? 'Score 90'
-          : controller.omzetPenjualan.value == 80
+          : controller.hargaBersaing.value == 80
               ? 'Score 80'
-              : controller.omzetPenjualan.value == 70
+              : controller.hargaBersaing.value == 70
                   ? 'Score 70'
-                  : controller.omzetPenjualan.value == 60
+                  : controller.hargaBersaing.value == 60
                       ? 'Score 60'
-                      : controller.omzetPenjualan.value == 50
+                      : controller.hargaBersaing.value == 50
                           ? 'Score 50'
                           : '',
       style: GoogleFonts.poppins(

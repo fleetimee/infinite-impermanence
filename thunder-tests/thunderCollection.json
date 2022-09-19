@@ -133,12 +133,5 @@
         "sortNum": 50000
       }
     ]
-  },
-  {
-    "_id": "9d908a2c-69dd-4981-924d-db66ad3e7730",
-    "colName": "BPDSMART_API",
-    "created": "2022-09-16T23:12:30.932Z",
-    "sortNum": 30000,
-    "folders": []
   }
 ]

@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/service/analisa_bisnis_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
@@ -55,6 +56,30 @@ class BisnisAnalisisController extends GetxController {
     sumCrrBisnis.text = '$sum';
 
     resultCrrBisnis.value = hasil;
+  }
+
+  void saveAnalisisBisnis() {
+    final api = AnalisaBisnisService();
+
+    final data = {
+      "nilai_omzet": omzetPenjualan.value,
+      "keterangan_omzet": omzetPenjualanKeterangan.text,
+      "nilai_harga_bersaing": hargaBersaing.value,
+      "keterangan_harga_bersaing": hargaBersaingKeterangan.text,
+      "nilai_persaingan": persainganPasar.value,
+      "keterangan_persaingan": persainganPasarKeterangan.text,
+      "nilai_lokasi_usaha": lokasiPasar.value,
+      "keterangan_lokasi_usaha": lokasiPasarKeterangan.text,
+      "nilai_produktivitas": kapasitasTerpasan.value,
+      "keterangan_produktivitas": kapasitasTerpasanKeterangan.text,
+      "nilai_kualitas": rating.value,
+      "keterangan_kualitas": ratingKeterangan.text,
+      "deskripsi_bisnis": deskripsi.text,
+    };
+
+    api.addAnalisaBisnis(data);
+
+    update();
   }
 
   final omzetList = '''[

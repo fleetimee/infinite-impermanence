@@ -29,7 +29,7 @@ Column keteranganOmzet() {
         ),
       ),
       Visibility(
-        visible: true,
+        visible: false,
         child: Column(
           children: [
             controller.omzetPenjualan.value == 90

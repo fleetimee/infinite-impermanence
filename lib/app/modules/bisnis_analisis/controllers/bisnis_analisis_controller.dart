@@ -11,11 +11,17 @@ class BisnisAnalisisController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
   final omzetPenjualan = 0.obs;
+  var omzetPenjualanKeterangan = TextEditingController();
   final hargaBersaing = 0.obs;
+  var hargaBersaingKeterangan = TextEditingController();
   final persainganPasar = 0.obs;
+  var persainganPasarKeterangan = TextEditingController();
   final lokasiPasar = 0.obs;
+  var lokasiPasarKeterangan = TextEditingController();
   final kapasitasTerpasan = 0.obs;
+  var kapasitasTerpasanKeterangan = TextEditingController();
   final rating = 0.obs;
+  var ratingKeterangan = TextEditingController();
   final deskripsi = TextEditingController();
 
   final resultOmzet = TextEditingController();
@@ -57,6 +63,46 @@ class BisnisAnalisisController extends GetxController {
     {"value": 70, "label": "s/d 70%"},
     {"value": 80, "label": "s/d 80%"},
     {"value": 90, "label": "s/d 90%"}
+  ]''';
+
+  final hargaBersaingList = '''[
+    {"value": 50, "label": "Lebih mahal dari pesaing"},
+    {"value": 60, "label": "Sama dengan pesaing"},
+    {"value": 70, "label": "Lebih murah sd 5%"},
+    {"value": 80, "label": "Lebih murah 5 - 10%"},
+    {"value": 90, "label": "Lebih murah diatas 10%"}
+  ]''';
+
+  final persainganPasarList = '''[
+    {"value": 50, "label": "Sangat ketat"},
+    {"value": 60, "label": "Ketat"},
+    {"value": 70, "label": "Cukup ketat"},
+    {"value": 80, "label": "Kurang ketat"},
+    {"value": 90, "label": "Tidak ketat"}
+  ]''';
+
+  final lokasiPasarList = '''[
+    {"value": 50, "label": "Tidak strategis"},
+    {"value": 60, "label": "Kurang strategis"},
+    {"value": 70, "label": "Cukup strategis"},
+    {"value": 80, "label": "Strategis"},
+    {"value": 90, "label": "Sangat strategis"}
+  ]''';
+
+  final kapasitasTerpasanList = '''[
+    {"value": 50, "label": "s/d 50%"},
+    {"value": 60, "label": "s/d 60%"},
+    {"value": 70, "label": "s/d 70%"},
+    {"value": 80, "label": "s/d 80%"},
+    {"value": 90, "label": "Lebih dari s/d 80%"}
+  ]''';
+
+  final ratingList = '''[
+    {"value": 50, "label": "Jelek"},
+    {"value": 60, "label": "Kurang Baik"},
+    {"value": 70, "label": "Cukup"},
+    {"value": 80, "label": "Baik"},
+    {"value": 90, "label": "Sangat Baik"}
   ]''';
 
   // Decode omzetList
@@ -137,5 +183,4 @@ class BisnisAnalisisController extends GetxController {
   //       'Debitur ini mendapatkan hasil yang $bintang. \n\n'
   //       'Memungkinkan debitur untuk menjalankan usaha sejenis dengan  $terpasan.';
   // }
-
 }

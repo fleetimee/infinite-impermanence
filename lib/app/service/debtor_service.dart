@@ -92,6 +92,7 @@ class DebtorService {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
+          'Access-Control_Allow_Origin': '*'
         },
       );
       if (response.statusCode == 200) {

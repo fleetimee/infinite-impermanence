@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -77,7 +78,9 @@ class Greeting extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    controller.faker.name.fullName(),
+                    controller.faker.name.firstName(
+                      gender: Gender.female,
+                    ),
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,

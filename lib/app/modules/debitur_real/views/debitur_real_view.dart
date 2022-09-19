@@ -16,8 +16,10 @@ import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
 import '../controllers/debitur_real_controller.dart';
 
-class DebiturRealView extends GetView<DebiturRealController> {
-  const DebiturRealView({Key? key}) : super(key: key);
+class DebiturRealView extends StatelessWidget {
+  DebiturRealView({Key? key}) : super(key: key);
+
+  final controller = Get.put(DebiturRealController());
 
   @override
   Widget build(BuildContext context) {

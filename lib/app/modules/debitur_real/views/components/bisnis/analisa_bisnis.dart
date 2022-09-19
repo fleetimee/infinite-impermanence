@@ -1,6 +1,5 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -84,7 +83,7 @@ class AnalisaBisnisTile extends StatelessWidget {
                       ),
                       onPressed: () {
                         Get.toNamed(Routes.BISNIS_ANALISIS, arguments: debtor);
-                        Get.delete<DebiturRealController>();
+                        // Get.delete<DebiturRealController>();
                       },
                     ),
                   ),

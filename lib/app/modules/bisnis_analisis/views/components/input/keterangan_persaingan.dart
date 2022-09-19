@@ -14,12 +14,14 @@ class KeteranganPersainganPasar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        children: [
-          ScoreView(controller: controller),
-          DeskripsiView(controller: controller)
-        ],
-      ),
+      child: Builder(builder: (context) {
+        return Column(
+          children: [
+            ScoreView(controller: controller),
+            DeskripsiView(controller: controller)
+          ],
+        );
+      }),
     );
   }
 }

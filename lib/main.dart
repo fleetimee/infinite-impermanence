@@ -41,6 +41,7 @@ Future<void> main() async {
           color: const Color(0xFFF5F5F5),
         ),
       ),
+      defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,

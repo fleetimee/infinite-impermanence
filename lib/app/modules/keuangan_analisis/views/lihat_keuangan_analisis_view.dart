@@ -6,6 +6,7 @@ import 'package:akm/app/modules/keuangan_analisis/views/components/views/analisa
 import 'package:akm/app/modules/keuangan_analisis/views/components/views/angsuran.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/views/asumsi_keuangan.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/views/data_keuangan.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/views/hasil.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,6 @@ import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/tutorial.dart';
 import '../controllers/keuangan_analisis_controller.dart';
 
@@ -32,8 +32,7 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Analisis Keuangan'),
-        centerTitle: true,
+        title: Text('Analisis Keuangan: ${data.peminjam1}'),
         actions: [
           IconButton(
               onPressed: () {
@@ -274,8 +273,7 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                               showBarModalBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  controller.hitungCrr();
-                                  return HasilAnalisa();
+                                  return HasilAnalisaView();
                                 },
                                 backgroundColor: secondaryColor,
                                 bounce: true,

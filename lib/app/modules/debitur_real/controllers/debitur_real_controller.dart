@@ -12,8 +12,17 @@ import 'package:akm/app/service/debtor_service.dart';
 
 class DebiturRealController extends GetxController {
   // List<Debtor> listDebtor = [].obs;
-  final listDebtor = <Debtor>[].obs;
-  final selectedDebtor = <Debtor>[].obs;
+  var listDebtor = Future.value(<Debtor>[]).obs;
+  var finalDebtpr = <Debtor>[].obs;
+  var selectedDebtor = <Debtor>[].obs;
+
+  void convertFutureToList() async {
+    var list = await listDebtor.value;
+    finalDebtpr.value = list;
+  }
+
+  // assign listDebtor to finalDebtor
+
   // List<Debtor>? selectedDebtor = [];
 
   Debtor debtor = Debtor();
@@ -56,22 +65,22 @@ class DebiturRealController extends GetxController {
 
   final loadingFetch = false.obs;
 
-  void searchDebtor(String query) {
-    final suggestion = listDebtor.where((debtor) {
-      final nama = debtor.peminjam1.toString().toLowerCase();
-      final input = query.toLowerCase();
+  // void searchDebtor(String query) {
+  //   final suggestion = listDebtor.where((debtor) {
+  //     final nama = debtor.peminjam1.toString().toLowerCase();
+  //     final input = query.toLowerCase();
 
-      return nama.contains(input);
-    }).toList();
+  //     return nama.contains(input);
+  //   }).toList();
 
-    if (suggestion.isNotEmpty) {
-      listDebtor.value = suggestion;
-    } else {
-      listDebtor.value = listDebtor;
-    }
+  //   if (suggestion.isNotEmpty) {
+  //     listDebtor.value = suggestion;
+  //   } else {
+  //     listDebtor.value = listDebtor;
+  //   }
 
-    update();
-  }
+  //   update();
+  // }
 
   void saveDebtor() {
     final api = DebtorService();
@@ -151,22 +160,16 @@ class DebiturRealController extends GetxController {
 
     await api.updateDebtor(id, data);
 
-    selectedDebtor.clear();
-
     update();
   }
 
   void fetchDebitur() async {
     loadingFetch.value = true;
 
-    Future.delayed(
-      const Duration(seconds: 1),
-      () async {
-        listDebtor.value = await DebtorService().getDebtors();
-        loadingFetch.value = false;
-        listDebtor.refresh();
-      },
-    );
+    final api = DebtorService().getDebtors();
+    listDebtor.value = api;
+    loadingFetch.value = false;
+    listDebtor.refresh();
 
     update();
   }
@@ -178,7 +181,7 @@ class DebiturRealController extends GetxController {
       enableOnlySingleSelection: true,
       Get.context!,
       hideSelectedTextCount: true,
-      listData: listDebtor,
+      listData: finalDebtpr,
       selectedListData: selectedDebtor,
       choiceChipLabel: (user) => user!.peminjam1,
       validateSelectedItem: (list, val) => list!.contains(val),
@@ -198,6 +201,7 @@ class DebiturRealController extends GetxController {
   @override
   void onInit() {
     fetchDebitur();
+    convertFutureToList();
     super.onInit();
   }
 

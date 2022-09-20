@@ -1,0 +1,862 @@
+[
+  {
+    "_id": "6ad95a8e-22b2-4b66-b5e5-362286edfc40",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "856c36ff-0fa5-49eb-b2b5-b199bfefc8fa",
+    "name": "Get all debitur",
+    "url": "http://localhost:3000/debiturs/",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-07-01T21:33:08.123Z",
+    "modified": "2022-08-24T04:19:41.862Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "41791ff4-03bd-4dd1-8e3f-8e6911a8b1fc",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "856c36ff-0fa5-49eb-b2b5-b199bfefc8fa",
+    "name": "Get debitur by id",
+    "url": "http://localhost:3000/debiturs/1",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-07-02T12:33:20.525Z",
+    "modified": "2022-07-06T04:25:04.692Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "fc459d0e-98b4-4cbd-88c8-435449b29002",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "856c36ff-0fa5-49eb-b2b5-b199bfefc8fa",
+    "name": "Delete debitur",
+    "url": "http://localhost:3000/debiturs/3",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2022-07-02T12:40:04.374Z",
+    "modified": "2022-07-14T02:19:26.373Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "156119f0-d287-4494-aeec-27cc40bdca34",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "11269e40-da53-4a29-8635-bdae288ca8e5",
+    "name": "Get fixed income",
+    "url": "http://localhost:3000/fixeds",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-07-05T02:08:52.999Z",
+    "modified": "2022-07-11T04:58:15.711Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "limit",
+        "value": "2",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "fields",
+        "value": "jenis_pengajuan,jenis_penggunaan",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "1e99e827-8277-4bfa-8ecf-51ab01c0933d",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "11269e40-da53-4a29-8635-bdae288ca8e5",
+    "name": "Get fixed income by id",
+    "url": "http://localhost:3000/fixeds/2",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-07-05T02:10:11.631Z",
+    "modified": "2022-07-06T02:34:04.451Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "ced545f2-4482-4da3-8289-1cbf8a8375dc",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "11269e40-da53-4a29-8635-bdae288ca8e5",
+    "name": "Delete fixed income",
+    "url": "http://localhost:3000/fixeds/27",
+    "method": "DELETE",
+    "sortNum": 50000,
+    "created": "2022-07-05T02:19:55.484Z",
+    "modified": "2022-07-14T02:18:21.656Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f3e8f1e5-9ca8-4ea3-a078-30ffef116b0f",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "11269e40-da53-4a29-8635-bdae288ca8e5",
+    "name": "Update fixed income",
+    "url": "http://localhost:3000/fixeds",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-07-05T06:52:25.886Z",
+    "modified": "2022-08-24T23:54:35.308Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"jenis_pengajuan\": \"BARU\",\n    \"plafon_fasilitas\": \"1000000\",\n    \"jenis_penggunaan\": \"INVESTASI\",\n    \"tujuan_penggunaan\": \"Membeli hewan qurban\",\n    \"jangka_waktu\": \"5 Bulan\",\n    \"penghasilan_pemohon\": \"250000\",\n    \"potongan_gaji\": \"10000\",\n    \"sisa_penghasilan\": \"230000\",\n    \"nama_pejabat_penanggung_jawab\": \"Evil La Twin\",\n    \"jabatan_pejabat_penanggung_jawab\": \"Platinum\",\n    \"nama_pejabat_pemotong_gaji\": \"Eldlich\",\n    \"jabatan_pejabat_pemotong_gaji\": \"Gold\",\n    \"no_rekening\": \"552454212\",\n    \"tanggal_mulai_kredit\": \"2022-06-11\",\n    \"jangka_waktu_kredit\": \"1 Tahun\",\n    \"plafon_kredit\": \"10000000\",\n    \"debitur\": \"76\",\n    \"createdBy\": 3\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "63660606-5a7c-4052-8a15-889ded7f2dd7",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "856c36ff-0fa5-49eb-b2b5-b199bfefc8fa",
+    "name": "Edit debitur",
+    "url": "http://localhost:3000/debiturs/",
+    "method": "POST",
+    "sortNum": 25000,
+    "created": "2022-07-06T04:25:16.463Z",
+    "modified": "2022-07-19T07:38:19.016Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"nik\": \"15421\",\n    \"nama_debitur\": \"Novian Andika\",\n    \"alamat\": \"Jln Affandi No 20\",\n    \"tempat_lahir\": \"Yogyakarta\",\n    \"tanggal_lahir\": \"1994-11-09\",\n    \"pekerjaan\": \"Customer Service\",\n    \"agama\": \"Islam\",\n    \"gender\": \"Perempuan\",\n    \"no_telp\": \"084545245454\",\n    \"no_seluler\": \"0828783232\",\n    \"instansi\": \"Swasta\",\n    \"email\": \"soniaekap2@gmail.com\",\n    \"nama_ibu\": \"Dunno\",\n    \"relationship\": \"Menikah\",\n    \"nama_pasangan\": \"Novian Andika\",\n    \"pekerjaan_pasangan\": \"Software Developer\",\n    \"tgl_lahir_pasangan\": \"1997-09-04\",\n    \"tempat_lahir_pasangan\": \"Jakarta\",\n    \"nik_pasangan\": 54545454,\n    \"total_income\": \"9999999999\",\n    \"bidang_usaha\": \"Jasa Pengiriman\",\n    \"jumlah_tanggungan\": \"0\",\n    \"provinsi\": \"Daerah Istimewa Yogyakarta\",\n    \"kabupaten\": \"Sleman\",\n    \"kecamatan\": \"Depok\",\n    \"kelurahan\": \"Condongcatur\",\n    \"rt\": \"01\",\n    \"rw\": \"05\",\n    \"kode_pos\": \"14045\",\n    \"createdBy\": 3\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "d7d446fa-8354-48f0-9ab8-7d24188fda86",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "856c36ff-0fa5-49eb-b2b5-b199bfefc8fa",
+    "name": "Filtering",
+    "url": "http://localhost:3000/debiturs/?s={\"no_ktp1\": \"12345678\"}",
+    "method": "GET",
+    "sortNum": 15000,
+    "created": "2022-07-06T04:26:15.140Z",
+    "modified": "2022-08-21T06:54:37.368Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "s",
+        "value": "{\"no_ktp1\": \"12345678\"}",
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "nik||$eq||500000",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "limit",
+        "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "fields",
+        "value": "id,nama_debitur",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "01242775-ea13-4a12-b5a5-5bf34a6fabdb",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "2c98df92-734e-49b1-afdd-d4f583ee77a2",
+    "name": "Get non-fixed income",
+    "url": "http://localhost:3000/non-fixeds",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-07-06T04:46:52.344Z",
+    "modified": "2022-07-06T13:40:27.085Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "11a9d56d-2e2c-49f1-ac91-46ff091e8f55",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "2c98df92-734e-49b1-afdd-d4f583ee77a2",
+    "name": "Create non-fixed income",
+    "url": "http://localhost:3000/non-fixeds",
+    "method": "POST",
+    "sortNum": 70000,
+    "created": "2022-07-06T04:47:20.033Z",
+    "modified": "2022-07-14T16:17:51.952Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"jenis_pengajuan\": \"ADENDUM\",\n    \"plafon_fasilitas\": 2500,\n    \"jenis_penggunaan\": \"KONSUMSI\",\n    \"tujuan_penggunaan\": \"Bermain Slot\",\n    \"jangka_waktu\": \"6 Bulan\",\n    \"no_rekening\": 8545454545,\n    \"plafon_kredit\": 2001000,\n    \"tanggal_mulai_kredit\": \"2022-05-21\",\n    \"jangka_waktu_kredit\": \"8 Bulan\",\n    \"debitur\": 5,\n    \"createdBy\": 3\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "960054fb-126a-43f8-a495-6ab23a01c2fe",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "2c98df92-734e-49b1-afdd-d4f583ee77a2",
+    "name": "Get non-fixed income by id",
+    "url": "http://localhost:3000/non-fixeds/2",
+    "method": "GET",
+    "sortNum": 77500,
+    "created": "2022-07-06T04:57:01.911Z",
+    "modified": "2022-07-06T05:09:57.682Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "60561953-9af4-4944-84f7-f7a0615318a7",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "2c98df92-734e-49b1-afdd-d4f583ee77a2",
+    "name": "Delete non-fixed income",
+    "url": "localhost:3000/non-fixeds/11",
+    "method": "DELETE",
+    "sortNum": 80000,
+    "created": "2022-07-06T04:58:17.074Z",
+    "modified": "2022-07-11T04:58:31.435Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "af892903-b7e2-481b-9f32-3392b15844e1",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "2c98df92-734e-49b1-afdd-d4f583ee77a2",
+    "name": "Edit non-fixed income",
+    "url": "http://localhost:3000/non-fixeds/17",
+    "method": "PUT",
+    "sortNum": 75000,
+    "created": "2022-07-06T05:09:32.030Z",
+    "modified": "2022-07-11T06:20:31.002Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"jenis_pengajuan\": \"ADENDUM\",\n    \"plafon_fasilitas\": 2500,\n    \"jenis_penggunaan\": \"KONSUMSI\",\n    \"tujuan_penggunaan\": \"Bermain Slot\",\n    \"jangka_waktu\": \"6 Bulan\",\n    \"no_rekening\": 21313131313,\n    \"plafon_kredit\": 2000000,\n    \"tanggal_mulai_kredit\": \"2022-05-21\",\n    \"jangka_waktu_kredit\": \"8 Bulan\",\n    \"debitur\": 1,\n    \"createdBy\": 1,\n    \"submission\": [{\n        \"id\": 1\n    }]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "548969f7-aff0-4e10-8e46-de44855ff4bc",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "37cc2a2e-484a-42af-8e69-ce87ba83bffc",
+    "name": "Create roles",
+    "url": "http://localhost:3000/roles/",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-07-08T06:54:23.768Z",
+    "modified": "2022-09-06T15:08:06.971Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"name\": \"User\"\n  \n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bf3aaf6f-c6fa-47d4-aa87-6a02db4568c1",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "afeb3855-8ba9-4e18-8445-d35fe3fb1b8d",
+    "name": "Get users",
+    "url": "https://1e07-2001-448a-4044-6b82-288f-ca2d-c154-52a5.ap.ngrok.io/users",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2022-07-11T01:03:10.735Z",
+    "modified": "2022-08-26T04:18:48.361Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "654b5e70-7ea5-4fcd-816c-61cc80a21981",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "afeb3855-8ba9-4e18-8445-d35fe3fb1b8d",
+    "name": "Create user",
+    "url": "http://localhost:3000/users",
+    "method": "POST",
+    "sortNum": 120000,
+    "created": "2022-07-11T01:28:32.372Z",
+    "modified": "2022-09-06T15:04:44.315Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"username\": \"asu\",\n    \"password\": \"123\",\n    \"roles\":  [\n    {\n      \"name\": \"Admin\"\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9c9adf22-b62b-46fc-b17b-8fd54d2db4f1",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "a37e001a-b116-4dda-8452-246da85dd8e2",
+    "name": "Get ProPengajuan",
+    "url": "localhost:3000/submissions",
+    "method": "GET",
+    "sortNum": 130000,
+    "created": "2022-07-11T03:12:44.732Z",
+    "modified": "2022-07-13T15:37:58.497Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "84f0fcbb-6e7a-4e31-a36c-e8a9426241b4",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "a37e001a-b116-4dda-8452-246da85dd8e2",
+    "name": "Edit ProPengajuan",
+    "url": "localhost:3000/submissions/1",
+    "method": "PUT",
+    "sortNum": 132500,
+    "created": "2022-07-11T03:21:26.759Z",
+    "modified": "2022-07-13T13:15:57.680Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"createdBy\": 1,\n    \"fixed\": [{\n        \"id\": 27,\n        \"is_approved\": false\n    }]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "47866816-d485-4edf-a5e3-c2b6ab94ab51",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "a37e001a-b116-4dda-8452-246da85dd8e2",
+    "name": "Delete ProPengajuan",
+    "url": "localhost:3000/submissions/1",
+    "method": "DELETE",
+    "sortNum": 150000,
+    "created": "2022-07-11T04:57:32.902Z",
+    "modified": "2022-07-14T02:17:49.253Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "db867624-c99f-4d60-add1-a3e851cd8945",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "0e776d57-21a5-43fe-b762-89c20d81d1ef",
+    "name": "Upload file",
+    "url": "localhost:3000/uploads/",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-07-12T02:10:15.768Z",
+    "modified": "2022-09-11T10:37:29.235Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "submission",
+          "value": "9",
+          "isDisabled": true
+        },
+        {
+          "name": "createdBy",
+          "value": "1",
+          "isDisabled": true
+        },
+        {
+          "name": "test",
+          "value": "1"
+        }
+      ],
+      "files": [
+        {
+          "name": "files",
+          "value": "D:\\Download\\Pengumuman Jasa Lainnya Perorangan.pdf",
+          "isDisabled": true
+        }
+      ]
+    },
+    "tests": []
+  },
+  {
+    "_id": "08a8c536-9e6b-4aac-a1a0-d9ccedf21df0",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "0e776d57-21a5-43fe-b762-89c20d81d1ef",
+    "name": "List of uploaded files",
+    "url": "localhost:3000/uploads/",
+    "method": "GET",
+    "sortNum": 5000,
+    "created": "2022-07-13T02:39:23.039Z",
+    "modified": "2022-07-13T02:39:36.459Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "056404e2-35b4-4da7-8f4d-7927292fbc24",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "0e776d57-21a5-43fe-b762-89c20d81d1ef",
+    "name": "Delete file",
+    "url": "localhost:3000/uploads/11",
+    "method": "DELETE",
+    "sortNum": 180000,
+    "created": "2022-07-13T02:40:03.818Z",
+    "modified": "2022-07-13T02:40:26.283Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4663bd02-79c5-4afb-8d92-36c33036ef80",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "0c58901b-fee7-4c4e-8907-9415f57bd1dc",
+    "name": "Get business analysis",
+    "url": "localhost:3000/business_analysis/",
+    "method": "GET",
+    "sortNum": 190000,
+    "created": "2022-07-13T07:11:54.075Z",
+    "modified": "2022-07-13T14:23:10.900Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d3647b4c-9208-4387-8b57-bddc40898c51",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "a37e001a-b116-4dda-8452-246da85dd8e2",
+    "name": "Create ProPengajuan",
+    "url": "localhost:3000/submissions/",
+    "method": "POST",
+    "sortNum": 131250,
+    "created": "2022-07-13T13:15:53.014Z",
+    "modified": "2022-08-24T23:55:23.590Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"createdBy\": 3,\n    \"fixed\": [{\n        \"id\": 36,\n        \"is_approved\": true\n    }]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5499835a-f4d6-41e8-9a5b-dabedba7f37d",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "4109a690-be92-431c-b24a-4d6748a6c18c",
+    "name": "Get Collateral",
+    "url": "localhost:3000/collaterals",
+    "method": "GET",
+    "sortNum": 200000,
+    "created": "2022-07-13T13:24:19.678Z",
+    "modified": "2022-07-13T13:24:32.967Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b2d89564-0b69-4373-a887-22d67f0106ed",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "4109a690-be92-431c-b24a-4d6748a6c18c",
+    "name": "Create Collateral",
+    "url": "localhost:3000/collaterals",
+    "method": "POST",
+    "sortNum": 210000,
+    "created": "2022-07-13T13:24:45.272Z",
+    "modified": "2022-07-13T13:43:08.857Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"barang_agunan\": \"Mobil\",\n    \"asuransi\": \"takimata iriure erat nulla est lobortis volutpat kasd\",\n    \"nilai_agunan\": 100000,\n    \"bukti_agunan\": \"Lorem ipsum\",\n    \"ijin_milik\": \"magna hendrerit labore velit placerat\",\n    \"deskripsi_agunan\": \"Consetetur ut sed ut feugait dolor labore eirmod est magna sadipscing elitr labore ipsum labore sanctus nonumy velit magna takimata invidunt magna hendrerit labore velit placerat no dolore dolores diam et sadipscing commodo voluptua consequat gubergren voluptua takimata elitr amet et amet no voluptua in stet doming nulla et sanctus\",\n    \"createdBy\": 1,\n    \"submission\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "54568c69-081c-4e0d-8cd5-1906350e2eb6",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "37cc2a2e-484a-42af-8e69-ce87ba83bffc",
+    "name": "Get role",
+    "url": "http://localhost:3000/roles/",
+    "method": "GET",
+    "sortNum": 5000,
+    "created": "2022-07-13T14:18:25.189Z",
+    "modified": "2022-07-13T14:19:02.732Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "54735a63-317a-4f32-9904-deb3bc7b6ac0",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "0c58901b-fee7-4c4e-8907-9415f57bd1dc",
+    "name": "Create business analysis",
+    "url": "localhost:3000/business_analysis/",
+    "method": "POST",
+    "sortNum": 230000,
+    "created": "2022-07-13T14:23:43.132Z",
+    "modified": "2022-07-13T14:28:59.118Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"omset_penjualan\": \"erat nulla est lobortis volutpat kasd\",\n    \"harga_bersaing\": \"lorem lorem delenit ut dolore et\",\n    \"persaingan\": \"sed at et elitr at sadipscing\",\n    \"lokasi\": \"strategis\",\n    \"kualitas\": \"bagus\",\n    \"deskripsi_bisnis\": \"Kasd accusam sea accusam iriure enim est elitr et sed sadipscing veniam nonumy lorem nonumy illum gubergren quod vel sea aliquam consetetur imperdiet aliquip et tempor tempor ut diam ipsum rebum sadipscing et stet option iriure voluptua sed sed consetetur nonumy sit consetetur takimata rebum amet clita ex et consetetur\",\n    \"createdBy\": 1,\n    \"submission\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b24f94a4-fc72-4d27-b72c-db84a0f7af53",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "5b184829-c3d6-499a-b09a-774c34893892",
+    "name": "Get character analysis",
+    "url": "localhost:3000/character_analysis",
+    "method": "GET",
+    "sortNum": 240000,
+    "created": "2022-07-13T15:02:17.299Z",
+    "modified": "2022-07-13T15:03:39.686Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e41dde0b-60c9-48e7-80e2-d1a58b88bdbd",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "5b184829-c3d6-499a-b09a-774c34893892",
+    "name": "Create character analysis",
+    "url": "localhost:3000/character_analysis",
+    "method": "POST",
+    "sortNum": 250000,
+    "created": "2022-07-13T15:03:51.708Z",
+    "modified": "2022-07-14T01:04:48.794Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"ulet_dalam_bisnis\": 75,\n    \"flexible_kaku\": 80,\n    \"kreatif_inovatif\": 87,\n    \"jujur_dlm_bisnis\": 95,\n    \"deskripsi_karakter\": \"Consequat erat rebum odio est sit dolor sea amet sed eirmod ipsum eu eirmod dolor no et ut invidunt nostrud est stet euismod clita voluptua tempor ipsum rebum et sit consetetur tempor tation kasd dolore erat diam labore sed eirmod feugiat et vero adipiscing diam consequat sanctus ut enim voluptua\",\n    \"createdBy\": 1,\n    \"submission\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "50f04b4e-a3d7-46f6-a4af-89a0e86ecbc0",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "a37e001a-b116-4dda-8452-246da85dd8e2",
+    "name": "Patch one or many items",
+    "url": "localhost:3000/submissions/10",
+    "method": "PATCH",
+    "sortNum": 260000,
+    "created": "2022-07-14T01:20:18.173Z",
+    "modified": "2022-07-15T01:28:59.558Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"character_analysis\": {\n        \"ulet_dalam_bisnis\": 75,\n        \"flexible_kaku\": 65,\n        \"kreatif_inovatif\": 87,\n        \"jujur_dlm_bisnis\": 95,\n        \"deskripsi_karakter\": \"Consequat erat rebum odio est sit dolor sea amet sed eirmod ipsum eu eirmod dolor no et ut invidunt nostrud est stet euismod clita voluptua tempor ipsum rebum et sit consetetur tempor tation kasd dolore erat diam labore sed eirmod feugiat et vero adipiscing diam consequat sanctus ut enim voluptua\",\n        \"createdById\": 3\n    },\n    \"collateral\": {\n        \"barang_agunan\": \"Mobil\",\n        \"asuransi\": \"takimata iriure erat nulla est lobortis volutpat kasd\",\n        \"nilai_agunan\": 100000,\n        \"bukti_agunan\": \"Lorem ipsum\",\n        \"ijin_milik\": \"magna hendrerit labore velit placerat\",\n        \"deskripsi_agunan\": \"Consetetur ut sed ut feugait dolor labore eirmod est magna sadipscing elitr labore ipsum labore sanctus nonumy velit magna takimata invidunt magna hendrerit labore velit placerat no dolore dolores diam et sadipscing commodo voluptua consequat gubergren voluptua takimata elitr amet et amet no voluptua in stet doming nulla et sanctus\",\n        \"createdBy\": 3\n    },\n    \"business_analysis\": {\n        \"omset_penjualan\": \"erat nulla est lobortis volutpat kasd\",\n        \"harga_bersaing\": \"lorem lorem delenit ut dolore et\",\n        \"persaingan\": \"sed at et elitr at sadipscing\",\n        \"lokasi\": \"strategis\",\n        \"kualitas\": \"bagus\",\n        \"deskripsi_bisnis\": \"Kasd accusam sea accusam iriure enim est elitr et sed sadipscing veniam nonumy lorem nonumy illum gubergren quod vel sea aliquam consetetur imperdiet aliquip et tempor tempor ut diam ipsum rebum sadipscing et stet option iriure voluptua sed sed consetetur nonumy sit consetetur takimata rebum amet clita ex et consetetur\",\n        \"createdBy\": 3\n    }\n    \n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6b2b27f6-c917-4379-9336-405ba243c773",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "5b184829-c3d6-499a-b09a-774c34893892",
+    "name": "Delete character analysis",
+    "url": "localhost:3000/character_analysis/11",
+    "method": "DELETE",
+    "sortNum": 270000,
+    "created": "2022-07-14T02:16:46.794Z",
+    "modified": "2022-07-14T02:17:13.803Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5c653682-4cba-4d3a-ad5d-5ec209f6aa76",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Get Debitur",
+    "url": "http://localhost:3000/api/v1/debiturs",
+    "method": "GET",
+    "sortNum": 280000,
+    "created": "2022-08-20T00:12:21.220Z",
+    "modified": "2022-09-12T02:00:35.174Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3dfd75bf-b1d6-464d-831c-608da41ca051",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "create",
+    "url": "http://localhost:3000/debiturs",
+    "method": "POST",
+    "sortNum": 300000,
+    "created": "2022-08-20T00:12:44.264Z",
+    "modified": "2022-09-09T11:29:06.924Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"peminjam1\": \"Octavia\",\n  \"ktp1\": \"Kota Yogyakarta\",\n  \"peminjam2\": \"October\",\n  \"ktp2\": \"Kabupaten Sleman\",\n  \"pemilik_agunan_1\": \"Octavia\",\n  \"no_ktp1\": \"3454545452454\",\n  \"pemilik_agunan_2\": \"Aulia\",\n  \"no_ktp2\": \"5454545454542\",\n  \"alamat_1\": \"Jalan Rajawali\",\n  \"alamat_2\": \"Jalan Manukan\",\n  \"tempat_lahir\": \"Jakarta\",\n  \"tanggal_lahir\": \"2022-08-12\",\n  \"umur\": 49,\n  \"status_keluarga\": \"Kawin\",\n  \"jumlah_tanggungan\": 1,\n  \"lamanya_berusaha\": 4,\n  \"lokasi_usaha\": \"Malioboro\",\n  \"jenis_usaha\": \"Perdagangan\",\n  \"bidang_usaha\": \"Jualan tas\",\n  \"pendidikan\": \"SLTA\",\n  \"pekerjaan1\": \"Berjualan\",\n  \"pekerjaan2\": \"Ngelonte\",\n  \"no_skpk\": \"87878787\",\n  \"tgl_sekarang\": \"2022-07-12\",\n  \"deskripsi_debitur\": \"Lorem ipsum\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5a3dc6a9-02d7-486a-a9ba-f55d223d2fed",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
+    "name": "Create Input Keuangan",
+    "url": "localhost:3000/input-keuangan",
+    "method": "POST",
+    "sortNum": 310000,
+    "created": "2022-08-26T03:17:42.075Z",
+    "modified": "2022-09-07T05:42:59.939Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"kredit_diusulkan\": 200000000,\n  \"angsuran\": 48,\n  \"bunga_per_tahun\": 6,\n  \"provisi\": 0,\n  \"sistem_angsuran\": \"Efektif\",\n  \"digunakan_untuk\": \"Bermain Slot\",\n  \"angsuran_rp\": 3866560,\n  \"pinjaman_lainnya\": 0,\n  \"angsuran_pinjaman_lainnya\": 0,\n  \"nilai_aset\": 19000000,\n  \"penjualan_kini\": 20000000,\n  \"hpp\": 75,\n  \"biaya_bahan_kini\": 1800000,\n  \"biaya_operasional_kini\": 800000,\n  \"biaya_upah_kini\": 200000,\n  \"biaya_hidup_kini\": 1500000,\n  \"penjualan_asumsi\": 22500000,\n  \"biaya_bahan_asumsi\": 19000000,\n  \"biaya_operasional_asumsi\": 900000,\n  \"biaya_upah_asumsi\": 500000,\n  \"biaya_hidup_asumsi\": 2500000,\n  \"trade_cycle\": 8,\n  \"debitur\": {\n    \"id\": 83\n  }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "4afd8416-a121-4d3e-bf27-32513a908934",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
+    "name": "Get Input Keuangan",
+    "url": "localhost:3000/api/v1/input-keuangan",
+    "method": "GET",
+    "sortNum": 155000,
+    "created": "2022-08-26T03:40:06.531Z",
+    "modified": "2022-09-12T02:04:06.347Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "d283dc2e-b7d9-4f5a-9a61-e9fd0d8a4a33",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "afeb3855-8ba9-4e18-8445-d35fe3fb1b8d",
+    "name": "edit roles",
+    "url": "localhost:3000/users/3",
+    "method": "PATCH",
+    "sortNum": 330000,
+    "created": "2022-08-26T04:11:06.664Z",
+    "modified": "2022-08-26T04:15:32.617Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"roles\": [\n    {\n      \"id\": 13,\n      \"name\": \"122\"\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "0d6fa835-11f2-49af-8d80-5d7eabe06c0b",
+    "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
+    "containerId": "afeb3855-8ba9-4e18-8445-d35fe3fb1b8d",
+    "name": "edittt",
+    "url": "http://localhost:3000/users/18",
+    "method": "PUT",
+    "sortNum": 340000,
+    "created": "2022-08-26T04:20:14.040Z",
+    "modified": "2022-09-06T15:08:16.971Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"username\": \"fleetimeeeeee11\",\n    \"password\": \"123\",\n    \"roles\": [\n      {\n        \"id\": 18\n      }\n    ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "bbfc6e76-a84f-43a9-b5aa-219dc7cf9121",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "7425efbe-57a9-4164-ad9d-ca38f41a6257",
+    "name": "create",
+    "url": "localhost:3000/api/v1/analisa-keuangan",
+    "method": "POST",
+    "sortNum": 350000,
+    "created": "2022-08-26T20:11:10.073Z",
+    "modified": "2022-09-12T04:24:15.420Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"total_aset\": 200000000,\n  \"jumlah_aset_kini\": 400000000,\n  \"total_angsuran_keseluruhan\": 4000000000,\n  \"persen_omzet_kini\": 100,\n  \"persen_omzet_yad\": 100,\n  \"persen_biaya_bahan_kini\": 0.67,\n  \"persen_biaya_bahan_yad\": 0.67,\n  \"persen_biaya_operasi_kini\": 0.1,\n  \"persen_biaya_operasi_yad\": 0.1,\n  \"persen_biaya_upah_kini\": 0.03,\n  \"persen_biaya_upah_yad\": 0.03,\n  \"persen_biaya_hidup_kini\": 0.08,\n  \"persen_biaya_hidup_yad\": 0.08,\n  \"total_laba_usaha_kini\": 200000000,\n  \"total_laba_usaha_yad\": 250000000,\n  \"persen_laba_usaha_kini\": 0.18,\n  \"persen_laba_usaha_yad\": 0.19,\n  \"persen_ratio_kini\": 0.18,\n  \"persen_ratio_yad\": 0.19,\n  \"persen_roe_kini\": 0.18,\n  \"persen_roe_yad\": 0.19,\n  \"keterangan_roe\": \"Baik\",\n  \"persen_roa_kini\": 0.18,\n  \"persen_roa_yad\": 0.19,\n  \"keterangan_roa\": \"Baik\",\n  \"persen_der_kini\": 0.18,\n  \"persen_der_yad\": 0.19,\n  \"keterangan_der\": \"Diterima\",\n  \"persen_dsc_kini\": 0.18,\n  \"persen_dsc_yad\": 0.19,\n  \"keterangan_dsc\": \"Diterima\",\n  \"kredit_disetujuin\": false,\n  \"pinjaman_maksimal\": 200000000,\n  \"perhitungan_modal_kerja\": 200000000,\n  \"kebutuhan_investasi\": 200000000,\n  \"kebutuhan_kredit\": 200000000,\n  \"total_crr_keuangan\": 65.5,\n  \"debitur\": 94,\n  \"keuangan\": 21\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "c82e2add-693a-4446-af4d-1983b539fb42",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "7425efbe-57a9-4164-ad9d-ca38f41a6257",
+    "name": "get",
+    "url": "localhost:3000/api/v1/analisa-keuangan",
+    "method": "GET",
+    "sortNum": 360000,
+    "created": "2022-08-26T23:52:30.276Z",
+    "modified": "2022-09-12T04:01:50.609Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "82014c56-1b9d-429f-b742-591c8963322c",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "1e65817b-0416-4927-90a8-0a86d78e4647",
+    "name": "Get",
+    "url": "localhost:3000/api/v1/input-neraca",
+    "method": "GET",
+    "sortNum": 370000,
+    "created": "2022-09-07T02:09:03.570Z",
+    "modified": "2022-09-12T08:58:54.423Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6a42a125-82d2-498e-9846-791266e921f1",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "1e65817b-0416-4927-90a8-0a86d78e4647",
+    "name": "Post",
+    "url": "localhost:3000/input-neraca",
+    "method": "POST",
+    "sortNum": 380000,
+    "created": "2022-09-07T02:09:37.792Z",
+    "modified": "2022-09-08T02:55:12.327Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"tanggal_input\": \"2022-10-01\",\n  \"kas_on_hand\": 1500000,\n  \"tabungan\": 1000000,\n  \"jumlah_kas_dan_tabungan\": 2500000,\n  \"jumlah_piutang\": 1000000,\n  \"jumlah_persediaan\": 500000,\n  \"hutang_usaha\": 500000,\n  \"hutang_bank\": 500000,\n  \"aktiva_tetap\": 1000000,\n  \"debitur\": 90\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "4ad6ed00-326c-4620-9ce7-46ee47790b7d",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
+    "name": "Update Input Keuangan",
+    "url": "localhost:3000/input-keuangan/10",
+    "method": "PUT",
+    "sortNum": 10000,
+    "created": "2022-09-07T03:59:25.308Z",
+    "modified": "2022-09-07T04:00:23.502Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"kredit_diusulkan\": 200000000,\n  \"angsuran\": 48,\n  \"bunga_per_tahun\": 6,\n  \"provisi\": 0,\n  \"sistem_angsuran\": \"Efektif\",\n  \"digunakan_untuk\": \"Bermain Slot\",\n  \"angsuran_rp\": 3866560,\n  \"pinjaman_lainnya\": 0,\n  \"angsuran_pinjaman_lainnya\": 0,\n  \"nilai_aset\": 19000000,\n  \"penjualan_kini\": 20000000,\n  \"hpp\": 75,\n  \"biaya_bahan_kini\": 1800000,\n  \"biaya_operasional_kini\": 800000,\n  \"biaya_upah_kini\": 200000,\n  \"biaya_hidup_kini\": 1500000,\n  \"penjualan_asumsi\": 22500000,\n  \"biaya_bahan_asumsi\": 19000000,\n  \"biaya_operasional_asumsi\": 900000,\n  \"biaya_upah_asumsi\": 500000,\n  \"biaya_hidup_asumsi\": 2500000,\n  \"trade_cycle\": 8,\n  \"debitur\": 77\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "23b5e7c1-0903-425c-85e5-450fb489a986",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "a49cdeda-9e90-4da8-83d5-dd8028abc1a6",
+    "name": "Post",
+    "url": "localhost:3000/input-rugi-laba",
+    "method": "POST",
+    "sortNum": 390000,
+    "created": "2022-09-08T04:40:12.281Z",
+    "modified": "2022-09-08T22:57:24.349Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"kas\": 5000000,\n  \"bank\": 5000000,\n  \"piutang\": 250000,\n  \"persediaan\": 1000000,\n  \"jumlah_aktiva_lancar\": 80000,\n  \"jumlah_aktiva_tetap\": 1000000,\n  \"sum_aktiva\": 1800000,\n  \"hutang_usaha\": 1000000,\n  \"hutang_bank\": 5000000,\n  \"hutang_lainnya\": 25000,\n  \"jumlah_hutang\": 800000,\n  \"jumlah_modal\": 1000000,\n  \"sum_pasiva\": 1800000,\n  \"omzet\": 150000,\n  \"harga_pokok\": 500000,\n  \"laba_kotor\": 100000,\n  \"biaya_tenaga_kerja\": 50000,\n  \"biaya_operasional\": 250000,\n  \"biaya_lainnya\": 50000,\n  \"total_biaya\": 350000,\n  \"laba_sebelum_pajak\": 250000,\n  \"perkiraan_pajak\": 50000,\n  \"laba_setelah_pajak\": 200000,\n  \"penghasilan\": 200000,\n  \"biaya_hidup\": 50000,\n  \"sisa_penghasilan\": 80000000,\n  \"neraca\": 14,\n  \"debitur\": 90\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "fda72ee5-d0a5-4493-bd4c-55abde069db9",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "a49cdeda-9e90-4da8-83d5-dd8028abc1a6",
+    "name": "Get",
+    "url": "localhost:3000/input-rugi-laba",
+    "method": "GET",
+    "sortNum": 195000,
+    "created": "2022-09-08T04:42:22.207Z",
+    "modified": "2022-09-08T04:44:23.009Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e40087ab-b7b5-4a54-b3bf-73db4f89a90c",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "1e65817b-0416-4927-90a8-0a86d78e4647",
+    "name": "Put",
+    "url": "localhost:3000/input-neraca/14",
+    "method": "PUT",
+    "sortNum": 400000,
+    "created": "2022-09-09T07:52:22.261Z",
+    "modified": "2022-09-09T07:53:02.687Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"kas_on_hand\": 1000\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9c10c881-0a59-4037-af2a-f7595a160e23",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "c733ac5c-7425-4c74-8251-7dfcbda32109",
+    "name": "Get",
+    "url": "localhost:3000/api/v1/analisa-bisnis",
+    "method": "GET",
+    "sortNum": 410000,
+    "created": "2022-09-16T06:50:37.897Z",
+    "modified": "2022-09-16T07:05:42.085Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "b5376ea6-4d23-4797-b8ed-15dd8b08cbb1",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "c733ac5c-7425-4c74-8251-7dfcbda32109",
+    "name": "Post",
+    "url": "localhost:3000/api/v1/analisa-bisnis",
+    "method": "POST",
+    "sortNum": 420000,
+    "created": "2022-09-16T07:05:49.995Z",
+    "modified": "2022-09-20T02:15:26.453Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"nilai_omzet\": 80,\r\n  \"keterangan_omzet\": \"s/d 80%\",\r\n  \"nilai_harga_bersaing\": 60,\r\n  \"keterangan_harga_bersaing\": \"Sama dgn pesaing\",\r\n  \"nilai_persaingan\": 70,\r\n  \"keterangan_persaingan\": \"Cukup ketat\",\r\n  \"nilai_lokasi_usaha\": 70,\r\n  \"keterangan_lokasi_usaha\": \"Cukup Strategis\",\r\n  \"nilai_produktivitas\": 70,\r\n  \"keterangan_produktivitas\": \"s/d 70%\",\r\n  \"nilai_kualitas\": 80,\r\n  \"keterangan_kualitas\": \"s/d 80%\",\r\n  \"deskripsi_bisnis\": \"Lorem ipsum\",\r\n  \"hasil_crr_bisnis\": 75,\r\n  \"debitur\": 100\r\n}\r\n",
+      "form": []
+    },
+    "tests": []
+  }
+]

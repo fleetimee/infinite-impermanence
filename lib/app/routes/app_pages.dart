@@ -106,7 +106,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BISNIS_ANALISIS,
-      page: () => const BisnisAnalisisView(),
+      page: () => BisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
       transition: Transition.cupertino,
     ),

@@ -25,7 +25,7 @@ class BisnisAnalisisController extends GetxController {
   var kapasitasTerpasanKeterangan = TextEditingController();
   final rating = 0.obs;
   var ratingKeterangan = TextEditingController();
-  final deskripsi = TextEditingController();
+  var deskripsi = TextEditingController();
 
   final resultOmzet = TextEditingController();
   final resultHarga = TextEditingController();
@@ -85,6 +85,8 @@ class BisnisAnalisisController extends GetxController {
 
     update();
   }
+
+  void editAnalisaBisnis() {}
 
   final omzetList = '''[
     {"value": 50, "label": "s/d 50%"},

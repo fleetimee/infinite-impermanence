@@ -13,6 +13,7 @@ abstract class Routes {
   static const PRO_PENGAJUAN_APPROVE = _Paths.PRO_PENGAJUAN_APPROVE;
   static const AGUNAN = _Paths.AGUNAN;
   static const BISNIS_ANALISIS = _Paths.BISNIS_ANALISIS;
+  static const LIHAT_BISNIS_ANALISIS = _Paths.LIHAT_BISNIS_ANALISIS;
   static const KARAKTER_ANALISIS = _Paths.KARAKTER_ANALISIS;
   static const KEUANGAN_ANALISIS = _Paths.KEUANGAN_ANALISIS;
   static const LIHAT_KEUANGAN_ANALISIS = _Paths.LIHAT_KEUANGAN_ANALISIS;
@@ -44,6 +45,7 @@ abstract class _Paths {
   static const PRO_PENGAJUAN_APPROVE = '/pro-pengajuan-approve';
   static const AGUNAN = '/agunan';
   static const BISNIS_ANALISIS = '/bisnis-analisis';
+  static const LIHAT_BISNIS_ANALISIS = '/lihat-bisnis-analisis';
   static const KARAKTER_ANALISIS = '/karakter-analisis';
   static const KEUANGAN_ANALISIS = '/keuangan-analisis';
   static const LIHAT_KEUANGAN_ANALISIS = '/lihat-keuangan-analisis';

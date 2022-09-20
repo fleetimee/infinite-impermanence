@@ -48,7 +48,10 @@ class AnalisaBisnisTile extends StatelessWidget {
                       style: OutlinedButton.styleFrom(
                         foregroundColor: forButton2,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.LIHAT_BISNIS_ANALISIS,
+                            arguments: debtor);
+                      },
                     ),
                   ),
                   const SizedBox(

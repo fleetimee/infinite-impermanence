@@ -849,12 +849,12 @@
     "method": "POST",
     "sortNum": 420000,
     "created": "2022-09-16T07:05:49.995Z",
-    "modified": "2022-09-16T07:13:46.728Z",
+    "modified": "2022-09-20T02:15:26.453Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\r\n  \"nilai_omzet\": 80,\r\n  \"keterangan_omzet\": \"s/d 80%\",\r\n  \"nilai_harga_bersaing\": 60,\r\n  \"keterangan_harga_bersaing\": \"Sama dgn pesaing\",\r\n  \"nilai_persaingan\": 70,\r\n  \"keterangan_persaingan\": \"Cukup ketat\",\r\n  \"nilai_lokasi_usaha\": 70,\r\n  \"keterangan_lokasi_usaha\": \"Cukup Strategis\",\r\n  \"nilai_produktivitas\": 70,\r\n  \"keterangan_produktivitas\": \"s/d 70%\",\r\n  \"nilai_kualitas\": 80,\r\n  \"keterangan_kualitas\": \"s/d 80%\",\r\n  \"deskripsi_bisnis\": \"Lorem ipsum\",\r\n  \"debitur\": 99\r\n}\r\n",
+      "raw": "{\r\n  \"nilai_omzet\": 80,\r\n  \"keterangan_omzet\": \"s/d 80%\",\r\n  \"nilai_harga_bersaing\": 60,\r\n  \"keterangan_harga_bersaing\": \"Sama dgn pesaing\",\r\n  \"nilai_persaingan\": 70,\r\n  \"keterangan_persaingan\": \"Cukup ketat\",\r\n  \"nilai_lokasi_usaha\": 70,\r\n  \"keterangan_lokasi_usaha\": \"Cukup Strategis\",\r\n  \"nilai_produktivitas\": 70,\r\n  \"keterangan_produktivitas\": \"s/d 70%\",\r\n  \"nilai_kualitas\": 80,\r\n  \"keterangan_kualitas\": \"s/d 80%\",\r\n  \"deskripsi_bisnis\": \"Lorem ipsum\",\r\n  \"hasil_crr_bisnis\": 75,\r\n  \"debitur\": 100\r\n}\r\n",
       "form": []
     },
     "tests": []

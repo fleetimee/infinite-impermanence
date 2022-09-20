@@ -3,6 +3,8 @@
 // 🐦 Flutter imports:
 import 'dart:convert';
 
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/bisnis_analisis/views/components/hitung_crr_bisnis.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -11,12 +13,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/widget/color_button.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../controllers/bisnis_analisis_controller.dart';
 
 class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
-  const BisnisAnalisisView({Key? key}) : super(key: key);
+  BisnisAnalisisView({Key? key}) : super(key: key);
+
+  final debiturId = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,16 +42,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   },
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                        child: Divider(
-                          color: primaryColor,
-                          thickness: 1,
-                        ),
-                      ),
+                    children: [
                       const SizedBox(
-                        height: 10,
+                        height: 20.0,
                       ),
                       const Text(
                         'Data Analisa Bisnis',
@@ -57,6 +54,14 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           letterSpacing: 1,
                         ),
                         textAlign: TextAlign.left,
+                      ),
+                      Visibility(
+                        visible: false,
+                        child: FormBuilderTextField(
+                          name: 'debiturId',
+                          controller: controller.debiturId =
+                              TextEditingController(text: debiturId.toString()),
+                        ),
                       ),
                       const SizedBox(
                         height: 8,
@@ -285,19 +290,30 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       const SizedBox(
                         height: 40,
                       ),
-                      colorButton(
-                        context,
-                        'Hitung CRR',
-                        // () => showBarModalBottomSheet(
-                        //   backgroundColor: secondaryColor,
-                        //   bounce: true,
-                        //   context: context,
-                        //   builder: (context) {
-                        //     controller.hasilHitungCrrBisnis();
-                        //     return HitungCrrBisnis();
-                        //   },
-                        // ),
-                        () => controller.saveAnalisisBisnis(),
+                      OutlinedButton.icon(
+                        icon: const Icon(Icons.check),
+                        label: const Text(
+                          "Hitung CRR",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                            foregroundColor: secondaryColor,
+                            backgroundColor: primaryColor,
+                            shape: const StadiumBorder(),
+                            maximumSize: const Size.fromWidth(double.infinity),
+                            fixedSize: const Size(500, 50)),
+                        onPressed: () {
+                          showBarModalBottomSheet(
+                            backgroundColor: secondaryColor,
+                            bounce: true,
+                            context: context,
+                            builder: (context) {
+                              controller.hasilHitungCrrBisnis();
+                              return HitungCrrBisnis();
+                            },
+                          );
+                        },
                       ),
                       const SizedBox(
                         height: 40,
@@ -334,41 +350,44 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: false,
           child: Column(
             children: [
               controller.hargaBersaing.value == 90
                   ? FormBuilderTextField(
                       name: 'keteranganHargaBersaing',
                       controller: controller.hargaBersaingKeterangan =
-                          TextEditingController(text: 's/d 90%'),
+                          TextEditingController(text: 'Lebih murah diatas 10%'),
                     )
                   : controller.hargaBersaing.value == 80
                       ? FormBuilderTextField(
                           name: 'keteranganHargaBersaing',
                           controller: controller.hargaBersaingKeterangan =
-                              TextEditingController(text: 's/d 80%'),
+                              TextEditingController(
+                                  text: 'lebih murah 5 - 10%'),
                         )
                       : controller.hargaBersaing.value == 70
                           ? FormBuilderTextField(
                               name: 'keteranganHargaBersaing',
                               controller: controller.hargaBersaingKeterangan =
-                                  TextEditingController(text: 's/d 70%'),
+                                  TextEditingController(
+                                      text: 'lebih murah s/d 5%'),
                             )
                           : controller.hargaBersaing.value == 60
                               ? FormBuilderTextField(
                                   name: 'keteranganHargaBersaing',
-                                  controller: controller
-                                          .hargaBersaingKeterangan =
-                                      TextEditingController(text: 's/d 60%'),
+                                  controller:
+                                      controller.hargaBersaingKeterangan =
+                                          TextEditingController(
+                                              text: 'Sama dengan pesaing'),
                                 )
                               : controller.hargaBersaing.value == 50
                                   ? FormBuilderTextField(
                                       name: 'keteranganHargaBersaing',
-                                      controller:
-                                          controller.hargaBersaingKeterangan =
-                                              TextEditingController(
-                                                  text: 's/d 50%'),
+                                      controller: controller
+                                              .hargaBersaingKeterangan =
+                                          TextEditingController(
+                                              text: 'Lebih mahal dari pesaing'),
                                     )
                                   : FormBuilderTextField(
                                       name: 'keteranganHargaBersaing',
@@ -406,33 +425,33 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: false,
           child: Column(
             children: [
               controller.persainganPasar.value == 90
                   ? FormBuilderTextField(
                       name: 'keteranganPersainganPasar',
                       controller: controller.persainganPasarKeterangan =
-                          TextEditingController(text: 's/d 90%'),
+                          TextEditingController(text: 'Tidak ketat'),
                     )
                   : controller.persainganPasar.value == 80
                       ? FormBuilderTextField(
                           name: 'keteranganPersainganPasar',
                           controller: controller.persainganPasarKeterangan =
-                              TextEditingController(text: 's/d 80%'),
+                              TextEditingController(text: 'Kurang ketat'),
                         )
                       : controller.persainganPasar.value == 70
                           ? FormBuilderTextField(
                               name: 'keteranganPersainganPasar',
                               controller: controller.persainganPasarKeterangan =
-                                  TextEditingController(text: 's/d 70%'),
+                                  TextEditingController(text: 'Cukup ketat'),
                             )
                           : controller.persainganPasar.value == 60
                               ? FormBuilderTextField(
                                   name: 'keteranganPersainganPasar',
-                                  controller: controller
-                                          .persainganPasarKeterangan =
-                                      TextEditingController(text: 's/d 60%'),
+                                  controller:
+                                      controller.persainganPasarKeterangan =
+                                          TextEditingController(text: 'Ketat'),
                                 )
                               : controller.persainganPasar.value == 50
                                   ? FormBuilderTextField(
@@ -440,7 +459,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                                       controller:
                                           controller.persainganPasarKeterangan =
                                               TextEditingController(
-                                                  text: 's/d 50%'),
+                                                  text: 'Sangat ketat'),
                                     )
                                   : FormBuilderTextField(
                                       name: 'keteranganPersainganPasar',
@@ -478,32 +497,34 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: false,
           child: Column(
             children: [
               controller.lokasiPasar.value == 90
                   ? FormBuilderTextField(
                       name: 'keteranganLokasiPasar',
                       controller: controller.lokasiPasarKeterangan =
-                          TextEditingController(text: 's/d 90%'),
+                          TextEditingController(text: 'Sangat strategis'),
                     )
                   : controller.lokasiPasar.value == 80
                       ? FormBuilderTextField(
                           name: 'keteranganLokasiPasar',
                           controller: controller.lokasiPasarKeterangan =
-                              TextEditingController(text: 's/d 80%'),
+                              TextEditingController(text: 'Strategis'),
                         )
                       : controller.lokasiPasar.value == 70
                           ? FormBuilderTextField(
                               name: 'keteranganLokasiPasar',
                               controller: controller.lokasiPasarKeterangan =
-                                  TextEditingController(text: 's/d 70%'),
+                                  TextEditingController(
+                                      text: 'Cukup strategis'),
                             )
                           : controller.lokasiPasar.value == 60
                               ? FormBuilderTextField(
                                   name: 'keteranganLokasiPasar',
                                   controller: controller.lokasiPasarKeterangan =
-                                      TextEditingController(text: 's/d 60%'),
+                                      TextEditingController(
+                                          text: 'Kurang strategis'),
                                 )
                               : controller.lokasiPasar.value == 50
                                   ? FormBuilderTextField(
@@ -511,7 +532,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                                       controller:
                                           controller.lokasiPasarKeterangan =
                                               TextEditingController(
-                                                  text: 's/d 50%'),
+                                                  text: 'Tidak strategis'),
                                     )
                                   : FormBuilderTextField(
                                       name: 'keteranganLokasiPasar',
@@ -549,14 +570,14 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: false,
           child: Column(
             children: [
               controller.kapasitasTerpasan.value == 90
                   ? FormBuilderTextField(
                       name: 'keteranganKapasitasTerpasan',
                       controller: controller.kapasitasTerpasanKeterangan =
-                          TextEditingController(text: 's/d 90%'),
+                          TextEditingController(text: 'Lebih dari 80%'),
                     )
                   : controller.kapasitasTerpasan.value == 80
                       ? FormBuilderTextField(
@@ -622,39 +643,39 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: false,
           child: Column(
             children: [
               controller.rating.value == 90
                   ? FormBuilderTextField(
                       name: 'keteranganRating',
                       controller: controller.ratingKeterangan =
-                          TextEditingController(text: 's/d 90%'),
+                          TextEditingController(text: 'Sangat baik'),
                     )
                   : controller.rating.value == 80
                       ? FormBuilderTextField(
                           name: 'keteranganRating',
                           controller: controller.ratingKeterangan =
-                              TextEditingController(text: 's/d 80%'),
+                              TextEditingController(text: 'Baik'),
                         )
                       : controller.rating.value == 70
                           ? FormBuilderTextField(
                               name: 'keteranganRating',
                               controller: controller.ratingKeterangan =
-                                  TextEditingController(text: 's/d 70%'),
+                                  TextEditingController(text: 'Cukup'),
                             )
                           : controller.rating.value == 60
                               ? FormBuilderTextField(
                                   name: 'keteranganRating',
                                   controller: controller.ratingKeterangan =
-                                      TextEditingController(text: 's/d 60%'),
+                                      TextEditingController(
+                                          text: 'Kurang Baik'),
                                 )
                               : controller.rating.value == 50
                                   ? FormBuilderTextField(
                                       name: 'keteranganRating',
                                       controller: controller.ratingKeterangan =
-                                          TextEditingController(
-                                              text: 's/d 50%'),
+                                          TextEditingController(text: 'Jelek'),
                                     )
                                   : FormBuilderTextField(
                                       name: 'keteranganRating',
@@ -691,14 +712,14 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: false,
           child: Column(
             children: [
               controller.omzetPenjualan.value == 90
                   ? FormBuilderTextField(
                       name: 'keteranganOmzet',
                       controller: controller.omzetPenjualanKeterangan =
-                          TextEditingController(text: 's/d 90%'),
+                          TextEditingController(text: 'Lebih dari 80%'),
                       onChanged: (value) {
                         controller.omzetPenjualanKeterangan.text = value!;
                       },

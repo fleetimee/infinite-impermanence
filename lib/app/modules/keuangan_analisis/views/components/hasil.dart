@@ -27,7 +27,8 @@ class HasilAnalisa extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              'Total CRR : ${data.analisaKeuangan.totalCrrKeuangan.toString()}',
+              // 'Total CRR : ${data.analisaKeuangan.totalCrrKeuangan.toString()}',
+              'Total CRR : ${controller.crr.text}',
               style: GoogleFonts.spaceGrotesk(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,

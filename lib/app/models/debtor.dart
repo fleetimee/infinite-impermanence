@@ -185,6 +185,7 @@ class AnalisaBisnis {
     this.nilaiKualitas,
     this.keteranganKualitas,
     this.deskripsiBisnis,
+    this.hasilCrrBisnis,
   });
 
   int? id;
@@ -201,6 +202,7 @@ class AnalisaBisnis {
   int? nilaiKualitas;
   String? keteranganKualitas;
   String? deskripsiBisnis;
+  int? hasilCrrBisnis;
 
   factory AnalisaBisnis.fromJson(Map<String, dynamic> json) => AnalisaBisnis(
         id: json["id"],
@@ -217,6 +219,7 @@ class AnalisaBisnis {
         nilaiKualitas: json["nilai_kualitas"],
         keteranganKualitas: json["keterangan_kualitas"],
         deskripsiBisnis: json["deskripsi_bisnis"],
+        hasilCrrBisnis: json["hasil_crr_bisnis"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -234,6 +237,7 @@ class AnalisaBisnis {
         "nilai_kualitas": nilaiKualitas,
         "keterangan_kualitas": keteranganKualitas,
         "deskripsi_bisnis": deskripsiBisnis,
+        "hasil_crr_bisnis": hasilCrrBisnis,
       };
 }
 

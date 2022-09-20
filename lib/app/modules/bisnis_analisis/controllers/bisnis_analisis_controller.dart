@@ -11,6 +11,8 @@ import 'package:get/get.dart';
 class BisnisAnalisisController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
+  var debiturId = TextEditingController();
+
   final omzetPenjualan = 0.obs;
   var omzetPenjualanKeterangan = TextEditingController();
   final hargaBersaing = 0.obs;
@@ -75,6 +77,8 @@ class BisnisAnalisisController extends GetxController {
       "nilai_kualitas": rating.value,
       "keterangan_kualitas": ratingKeterangan.text,
       "deskripsi_bisnis": deskripsi.text,
+      "debitur": debiturId.text,
+      "hasil_crr_bisnis": resultCrrBisnis.value,
     };
 
     api.addAnalisaBisnis(data);

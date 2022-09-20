@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -24,14 +25,14 @@ class HitungCrrBisnis extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Image.asset(
-                'assets/images/karakter/calculate.png',
-              ),
-              const TexImage(
-                r'''a + b + c + d + e + f''',
-                fontSize: 30,
-                displayMode: true,
-              ),
+              // Image.asset(
+              //   'assets/images/karakter/calculate.png',
+              // ),
+              // const TexImage(
+              //   r'''a + b + c + d + e + f''',
+              //   fontSize: 30,
+              //   displayMode: true,
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -195,22 +196,38 @@ class HitungCrrBisnis extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              if (controller.resultCrrBisnis.value >= 65.0)
-                Text(
-                  'Debitur melewati Passing Grade',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
+              // if (controller.resultCrrBisnis.value >= 65.0)
+              //   Text(
+              //     'Debitur melewati Passing Grade',
+              //     style: GoogleFonts.poppins(
+              //       fontSize: 15,
+              //       fontWeight: FontWeight.w600,
+              //     ),
+              //   ),
+              // if (controller.resultCrrBisnis.value < 65.0)
+              //   Text(
+              //     'Debitur belum melewati Passing Grade',
+              //     style: GoogleFonts.poppins(
+              //       fontSize: 15,
+              //       fontWeight: FontWeight.w600,
+              //     ),
+              //   ),
+              OutlinedButton.icon(
+                icon: const Icon(Icons.check),
+                label: const Text(
+                  "Submit",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
                 ),
-              if (controller.resultCrrBisnis.value < 65.0)
-                Text(
-                  'Debitur belum melewati Passing Grade',
-                  style: GoogleFonts.poppins(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
+                style: OutlinedButton.styleFrom(
+                    foregroundColor: secondaryColor,
+                    backgroundColor: primaryColor,
+                    shape: const StadiumBorder(),
+                    maximumSize: const Size.fromWidth(double.infinity),
+                    fixedSize: const Size(500, 50)),
+                onPressed: () {
+                  controller.saveAnalisisBisnis();
+                },
+              ),
             ],
           ),
         ),

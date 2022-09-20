@@ -12,10 +12,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 
-class HasilAnalisa extends StatelessWidget {
-  HasilAnalisa({Key? key}) : super(key: key);
+class HasilAnalisaView extends StatelessWidget {
+  HasilAnalisaView({Key? key}) : super(key: key);
 
   final controller = Get.put(KeuanganAnalisisController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class HasilAnalisa extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(
-              'Total CRR : ${controller.crr.text}',
+              'Total CRR : ${data.analisaKeuangan.totalCrrKeuangan.toString()}',
               style: GoogleFonts.spaceGrotesk(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,

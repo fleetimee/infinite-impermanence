@@ -82,7 +82,8 @@ class AnalisaBisnisTile extends StatelessWidget {
                         foregroundColor: forButton2,
                       ),
                       onPressed: () {
-                        Get.toNamed(Routes.BISNIS_ANALISIS, arguments: debtor);
+                        Get.toNamed(Routes.BISNIS_ANALISIS,
+                            arguments: debtor.id);
                         // Get.delete<DebiturRealController>();
                       },
                     ),

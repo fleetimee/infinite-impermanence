@@ -21,12 +21,6 @@ class DebiturListView extends GetView<DebiturRealController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.fetchDebitur();
-        },
-        child: const Icon(Icons.refresh),
-      ),
       appBar: AppBar(
         title: const Text('Cari Debitur'),
         centerTitle: true,

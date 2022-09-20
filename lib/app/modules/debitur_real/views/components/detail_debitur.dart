@@ -142,12 +142,31 @@ class DetailDebitur extends StatelessWidget {
                           debtor.analisaKeuangan == null
                               ? Get.snackbar(
                                   'Gagal',
-                                  'Data Analisa Kuantitatif Belum Lengkap',
+                                  'Data Analisa Keuangan Belum Lengkap',
                                   backgroundColor: Colors.red,
                                   colorText: Colors.white,
                                 )
                               : Get.toNamed(
                                   Routes.KEUANGAN_PRINT,
+                                  arguments: debtor,
+                                );
+                        },
+                        trailing: debtor.analisaKeuangan == null
+                            ? const Text('Not Ready 😭')
+                            : const Text('Ready 👍'),
+                      ),
+                      ListTile(
+                        title: const Text('Print Bisnis'),
+                        onTap: () {
+                          debtor.analisaBisnis == null
+                              ? Get.snackbar(
+                                  'Gagal',
+                                  'Data Analisa Bisnis Belum Lengkap',
+                                  backgroundColor: Colors.red,
+                                  colorText: Colors.white,
+                                )
+                              : Get.toNamed(
+                                  Routes.BISNIS_PRINT,
                                   arguments: debtor,
                                 );
                         },

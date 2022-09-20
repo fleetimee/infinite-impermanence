@@ -58,7 +58,7 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                     ),
                     // Text(debtor.peminjam1.toString()),
                     Text(
-                      'Data Bisnis',
+                      '${debtor.peminjam1}',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -77,7 +77,24 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
             ),
             Container(height: 15),
             Table(
-              border: TableBorder.all(),
+              columnWidths: {
+                0: const FlexColumnWidth(0.25),
+                1: const FlexColumnWidth(0.15),
+                2: const FlexColumnWidth(1.3),
+                3: const FlexColumnWidth(0.5),
+                4: const FlexColumnWidth(0.5),
+                5: const FlexColumnWidth(0.5),
+              },
+              border: TableBorder.symmetric(
+                inside: const BorderSide(
+                  color: PdfColors.grey,
+                  width: 0.5,
+                ),
+                outside: const BorderSide(
+                  color: PdfColors.white,
+                  width: 0.5,
+                ),
+              ),
               defaultVerticalAlignment: TableCellVerticalAlignment.full,
               tableWidth: TableWidth.max,
               children: [
@@ -224,7 +241,7 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                   children: [
                     SizedBox.shrink(),
                     alphabetText('e'),
-                    descText('80% >'),
+                    descText('> 80%'),
                     alphabetText(
                       '90',
                     ),
@@ -536,11 +553,6 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                 ),
               ],
             ),
-            Container(height: 25),
-            Footer(
-              trailing:
-                  Text('Page ${context.pageNumber} of ${context.pagesCount}'),
-            ),
           ],
         );
       },
@@ -571,7 +583,7 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                     ),
                     // Text(debtor.peminjam1.toString()),
                     Text(
-                      'Data Bisnis',
+                      '${debtor.peminjam1}',
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -591,79 +603,35 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
             Container(height: 15),
             Table(
               columnWidths: {
-                0: const FlexColumnWidth(0.5),
-                1: const FlexColumnWidth(0.25),
-                3: const FlexColumnWidth(1),
+                0: const FlexColumnWidth(0.25),
+                1: const FlexColumnWidth(0.15),
+                2: const FlexColumnWidth(1.3),
+                3: const FlexColumnWidth(0.5),
+                4: const FlexColumnWidth(0.5),
+                5: const FlexColumnWidth(0.5),
               },
-              border: TableBorder.all(),
+              border: TableBorder.symmetric(
+                inside: const BorderSide(
+                  color: PdfColors.grey,
+                  width: 0.5,
+                ),
+                outside: const BorderSide(
+                  color: PdfColors.white,
+                  width: 0.5,
+                ),
+              ),
               defaultVerticalAlignment: TableCellVerticalAlignment.full,
               tableWidth: TableWidth.max,
               children: [
                 TableRow(
                   children: [
                     SizedBox.shrink(),
-                    SizedBox.shrink(),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'Analisa Resiko',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'Nilai',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'CRR',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text(
-                        'Ket',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    titleText('A'),
-                    SizedBox.shrink(),
-                    titleText('Penguasaan Pasar'),
-                    SizedBox.shrink(),
-                    SizedBox.shrink(),
-                    SizedBox.shrink(),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    SizedBox.shrink(),
                     numberText('2'),
-                    headerText('Produktivitas terhadap terpasan/omzet'),
+                    Container(
+                      width: 50,
+                      child:
+                          headerText('Produktivitas terhadap terpasan/omzet'),
+                    ),
                     headerText(
                       debtor.analisaBisnis!.nilaiProduktivitas ==
                               debtor.analisaBisnis!.nilaiProduktivitas
@@ -743,7 +711,7 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                   children: [
                     SizedBox.shrink(),
                     alphabetText('e'),
-                    descText('s/d 90%'),
+                    descText('> 80%'),
                     alphabetText(
                       '90',
                     ),
@@ -752,6 +720,160 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                           ? debtor.analisaBisnis!.nilaiProduktivitas.toString()
                           : '-',
                     ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    numberText('3'),
+                    Container(
+                      width: 50,
+                      child: headerText('Kwalitas produk/jasa'),
+                    ),
+                    headerText(
+                      debtor.analisaBisnis!.nilaiKualitas ==
+                              debtor.analisaBisnis!.nilaiKualitas
+                          ? debtor.analisaBisnis!.keteranganKualitas.toString()
+                          : '',
+                    ),
+                    SizedBox.shrink(),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    alphabetText('a'),
+                    descText('Sangat baik'),
+                    alphabetText(
+                      '90',
+                    ),
+                    alphabetText(
+                      debtor.analisaBisnis!.nilaiKualitas == 90
+                          ? debtor.analisaBisnis!.nilaiKualitas.toString()
+                          : '-',
+                    ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    alphabetText('b'),
+                    descText('Baik'),
+                    alphabetText(
+                      '80',
+                    ),
+                    alphabetText(
+                      debtor.analisaBisnis!.nilaiKualitas == 80
+                          ? debtor.analisaBisnis!.nilaiKualitas.toString()
+                          : '-',
+                    ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    alphabetText('c'),
+                    descText('Cukup'),
+                    alphabetText(
+                      '70',
+                    ),
+                    alphabetText(
+                      debtor.analisaBisnis!.nilaiKualitas == 70
+                          ? debtor.analisaBisnis!.nilaiKualitas.toString()
+                          : '-',
+                    ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    alphabetText('d'),
+                    descText('Kurang baik'),
+                    alphabetText(
+                      '60',
+                    ),
+                    alphabetText(
+                      debtor.analisaBisnis!.nilaiKualitas == 60
+                          ? debtor.analisaBisnis!.nilaiKualitas.toString()
+                          : '-',
+                    ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    alphabetText('e'),
+                    descText('Jelek'),
+                    alphabetText(
+                      '50',
+                    ),
+                    alphabetText(
+                      debtor.analisaBisnis!.nilaiKualitas == 50
+                          ? debtor.analisaBisnis!.nilaiKualitas.toString()
+                          : '-',
+                    ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                //Tablerow with 6 columns sizedbox.shrink
+              ],
+            ),
+            Container(height: 25),
+            Table(
+              border: TableBorder.symmetric(
+                inside: const BorderSide(
+                  color: PdfColors.grey,
+                  width: 1,
+                ),
+                outside: const BorderSide(
+                  color: PdfColors.white,
+                  width: 1,
+                ),
+              ),
+              columnWidths: {
+                0: const FlexColumnWidth(0.25),
+                1: const FlexColumnWidth(0.15),
+                2: const FlexColumnWidth(1.3),
+                3: const FlexColumnWidth(0.5),
+                4: const FlexColumnWidth(0.5),
+                5: const FlexColumnWidth(0.5),
+              },
+              children: [
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    alphabetText(''),
+                    descText('Jumlah yang diisi (Max 10)'),
+                    alphabetText(
+                      '',
+                    ),
+                    alphabetText(
+                      (toNum(debtor.analisaBisnis!.nilaiOmzet) +
+                              toNum(debtor.analisaBisnis!.nilaiHargaBersaing) +
+                              toNum(debtor.analisaBisnis!.nilaiPersaingan) +
+                              toNum(debtor.analisaBisnis!.nilaiLokasiUsaha) +
+                              toNum(debtor.analisaBisnis!.nilaiProduktivitas) +
+                              toNum(debtor.analisaBisnis!.nilaiKualitas))
+                          .toString(),
+                    ),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    SizedBox.shrink(),
+                    SizedBox.shrink(),
+                    headerText('Avg CRR'),
+                    alphabetText(
+                        toDouble(debtor.analisaBisnis!.hasilCrrBisnis!.toInt())
+                            .toStringAsFixed(1)),
                     SizedBox.shrink(),
                   ],
                 ),
@@ -899,3 +1021,17 @@ Widget paddedTextBold(
         ),
       ),
     );
+
+// convert int? to num
+num toNum(int? value) {
+  if (value == null) {
+    return 0;
+  } else {
+    return value;
+  }
+}
+
+// convert int to double
+double toDouble(int value) {
+  return value.toDouble();
+}

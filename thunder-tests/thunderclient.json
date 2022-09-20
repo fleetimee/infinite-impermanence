@@ -858,5 +858,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "8532ea9e-dd83-4d8f-bb91-2e3a1c324730",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "c733ac5c-7425-4c74-8251-7dfcbda32109",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/analisa-bisnis/8",
+    "method": "DELETE",
+    "sortNum": 430000,
+    "created": "2022-09-20T13:00:51.273Z",
+    "modified": "2022-09-20T13:01:01.630Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

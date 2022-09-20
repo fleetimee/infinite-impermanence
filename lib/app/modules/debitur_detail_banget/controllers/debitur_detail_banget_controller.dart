@@ -5,11 +5,14 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/service/debtor_details_service.dart';
+import 'package:nekos/nekos.dart';
 
 class DebiturDetailBangetController extends GetxController {
   final faker = Faker.instance;
   final count = 0.obs;
   final loadingFetch = false.obs;
+
+  Future<String> img = Nekos().avatar();
 
   DebtorDetails debtorDetails = DebtorDetails();
 

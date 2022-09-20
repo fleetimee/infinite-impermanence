@@ -12,7 +12,7 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
+import 'package:shimmer/shimmer.dart';
 
 class DebiturDetailBangetView extends StatefulWidget {
   const DebiturDetailBangetView({Key? key}) : super(key: key);
@@ -41,12 +41,7 @@ class _DebiturDetailBangetViewState extends State<DebiturDetailBangetView> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Edit fab
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Get.toNamed(Routes.DEBITUR_EDIT, arguments: controller.debtorDetails);
-        },
-        child: const Icon(Icons.edit),
-      ),
+
       appBar: AppBar(
         title: Obx(
           () => controller.loadingFetch.value
@@ -81,71 +76,136 @@ class _DebiturDetailBangetViewState extends State<DebiturDetailBangetView> {
                       init: controller,
                       builder: (_) => Column(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              // gradient: LinearGradient(
-                              //   begin: Alignment.bottomRight,
-                              //   end: Alignment.topLeft,
-                              //   colors: [
-                              //     primaryColor,
-                              //     secondaryColor,
-                              //   ],
-                              // ),
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                    controller.faker.image.unsplash.nature(
-                                  h: 500,
-                                  w: 500,
-                                  keyword: 'nature',
-                                )),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      height: 10.0,
+                          FutureBuilder(
+                            future: controller.img,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.done) {
+                                return Container(
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        snapshot.data.toString(),
+                                      ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    CircleAvatar(
-                                      maxRadius: 75,
-                                      backgroundColor: primaryColor,
-                                      child: Text(
-                                        controller.debtorDetails.peminjam1
-                                            .toString()
-                                            .substring(0, 1),
-                                        style: GoogleFonts.andika(fontSize: 80),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: const [
+                                          SizedBox(
+                                            height: 400,
+                                          ),
+                                          // CircleAvatar(
+                                          //   maxRadius: 75,
+                                          //   backgroundColor: primaryColor,
+                                          //   child: Text(
+                                          //     controller.debtorDetails.peminjam1
+                                          //         .toString()
+                                          //         .substring(0, 1),
+                                          //     style: GoogleFonts.andika(
+                                          //         fontSize: 80),
+                                          //   ),
+                                          // ),
+                                          // const SizedBox(height: 20),
+                                          // Text(
+                                          //   controller.debtorDetails.peminjam1
+                                          //       .toString(),
+                                          //   style: GoogleFonts.aBeeZee(
+                                          //       fontSize: 30,
+                                          //       color: secondaryColor),
+                                          //   textAlign: TextAlign.center,
+                                          // ),
+                                          // const SizedBox(height: 10),
+                                          // Text(
+                                          //   controller.debtorDetails.noKtp1
+                                          //       .toString(),
+                                          //   style: GoogleFonts.aBeeZee(
+                                          //     fontSize: 25,
+                                          //     fontWeight: FontWeight.w600,
+                                          //     color: secondaryColor,
+                                          //   ),
+                                          //   textAlign: TextAlign.center,
+                                          // ),
+                                          // const SizedBox(height: 20),
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(height: 20),
-                                    Text(
-                                      controller.debtorDetails.peminjam1
-                                          .toString(),
-                                      style: GoogleFonts.aBeeZee(
-                                          fontSize: 30, color: secondaryColor),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      controller.debtorDetails.noKtp1
-                                          .toString(),
-                                      style: GoogleFonts.aBeeZee(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.w600,
-                                        color: secondaryColor,
+                                  ),
+                                );
+                              } else {
+                                return Shimmer.fromColors(
+                                  baseColor: Colors.red,
+                                  highlightColor: Colors.yellow,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                          snapshot.data.toString(),
+                                        ),
+                                        fit: BoxFit.cover,
                                       ),
-                                      textAlign: TextAlign.center,
                                     ),
-                                    const SizedBox(height: 20),
-                                  ],
-                                ),
-                              ),
-                            ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                          16, 0, 16, 0),
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: const [
+                                            SizedBox(
+                                              height: 300,
+                                            ),
+                                            // CircleAvatar(
+                                            //   maxRadius: 75,
+                                            //   backgroundColor: primaryColor,
+                                            //   child: Text(
+                                            //     controller.debtorDetails.peminjam1
+                                            //         .toString()
+                                            //         .substring(0, 1),
+                                            //     style: GoogleFonts.andika(
+                                            //         fontSize: 80),
+                                            //   ),
+                                            // ),
+                                            // const SizedBox(height: 20),
+                                            // Text(
+                                            //   controller.debtorDetails.peminjam1
+                                            //       .toString(),
+                                            //   style: GoogleFonts.aBeeZee(
+                                            //       fontSize: 30,
+                                            //       color: secondaryColor),
+                                            //   textAlign: TextAlign.center,
+                                            // ),
+                                            // const SizedBox(height: 10),
+                                            // Text(
+                                            //   controller.debtorDetails.noKtp1
+                                            //       .toString(),
+                                            //   style: GoogleFonts.aBeeZee(
+                                            //     fontSize: 25,
+                                            //     fontWeight: FontWeight.w600,
+                                            //     color: secondaryColor,
+                                            //   ),
+                                            //   textAlign: TextAlign.center,
+                                            // ),
+                                            // const SizedBox(height: 20),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
                           ),
                           const SizedBox(
                             height: 10.0,

@@ -748,6 +748,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
+  nekos:
+    dependency: "direct main"
+    description:
+      name: nekos
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   octo_image:
     dependency: transitive
     description:
@@ -1045,7 +1052,7 @@ packages:
     source: hosted
     version: "2.1.1"
   shimmer:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shimmer
       url: "https://pub.dartlang.org"

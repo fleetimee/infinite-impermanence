@@ -142,36 +142,12 @@ class SideMenu extends StatelessWidget {
                 leading: const Icon(Icons.car_rental_outlined),
               ),
               ListTile(
-                title: const Text('Upload Berkas'),
-                onTap: () {
-                  Get.offNamed(Routes.UPLOADS);
-                  Get.back();
-                },
-                leading: const Icon(Icons.cloud_upload),
-              ),
-              ListTile(
-                title: const Text('Bisnis Analisis'),
-                onTap: () {
-                  Get.offNamed(Routes.BISNIS_ANALISIS);
-                  Get.back();
-                },
-                leading: const Icon(Icons.business_center),
-              ),
-              ListTile(
                 title: const Text('Karakter Analisis'),
                 onTap: () {
                   Get.offNamed(Routes.KARAKTER_ANALISIS);
                   Get.back();
                 },
                 leading: const Icon(Icons.analytics_outlined),
-              ),
-              ListTile(
-                title: const Text('Printing'),
-                onTap: () {
-                  Get.offNamed(Routes.PRINTING);
-                  Get.back();
-                },
-                leading: const Icon(Icons.print),
               ),
               ListTile(
                 title: const Text('Porsekot'),

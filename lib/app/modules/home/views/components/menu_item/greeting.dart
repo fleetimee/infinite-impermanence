@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -48,19 +49,33 @@ class Greeting extends StatelessWidget {
           ),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                  controller.faker.image.loremPixel.people(
-                    height: 50,
-                    width: 50,
-                  ),
-                ),
-                backgroundColor: secondaryColor,
-                radius: 28,
-                // child: const Icon(
-                //   Icons.person,
-                //   color: primaryColor,
-                // ),
+              FutureBuilder(
+                future: controller.img,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Shimmer(
+                      gradient: const LinearGradient(
+                        colors: [
+                          Colors.white,
+                          Colors.grey,
+                        ],
+                      ),
+                      child: CircleAvatar(
+                        radius: 30,
+                        backgroundImage: NetworkImage(
+                          snapshot.data.toString(),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return CircleAvatar(
+                      radius: 30,
+                      backgroundImage: NetworkImage(
+                        snapshot.data.toString(),
+                      ),
+                    );
+                  }
+                },
               ),
               const SizedBox(
                 width: 15,

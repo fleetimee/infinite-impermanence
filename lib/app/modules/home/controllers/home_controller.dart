@@ -5,15 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:nekos/nekos.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: unnecessary_overrides
 
 class HomeController extends GetxController {
   @override
-  void onInit() {
+  void onInit() async {
+    nekos();
     _getThemeStatus();
     super.onInit();
+  }
+
+  Future<String> img = Nekos().avatar();
+
+  void nekos() async {
+    final neko = await Nekos().avatar();
+    print(neko);
   }
 
   final faker = Faker.instance;

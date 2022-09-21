@@ -13,17 +13,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeController extends GetxController {
   @override
   void onInit() async {
-    nekos();
     _getThemeStatus();
     super.onInit();
   }
 
   Future<String> img = Nekos().avatar();
-
-  void nekos() async {
-    final neko = await Nekos().avatar();
-    print(neko);
-  }
 
   final faker = Faker.instance;
 

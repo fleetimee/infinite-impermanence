@@ -23,7 +23,7 @@ class DebiturDetailBangetController extends GetxController {
 
     final api = DebtorDetailsService();
 
-    Future.delayed(const Duration(seconds: 2), () async {
+    Future.delayed(const Duration(seconds: 1), () async {
       final response = await api.getDebtorDetails(id);
       debtorDetails = response;
       loadingFetch.value = false;

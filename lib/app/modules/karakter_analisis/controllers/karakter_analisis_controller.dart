@@ -6,11 +6,12 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../service/analisa_karakter_service.dart';
+import '../../../service/analisa_karakter_service.dart';
 
 class KarakterAnalisisController extends GetxController {
   var nilaiUmur = TextEditingController();
   var scoreUmur = 0.0.obs;
+  var finalScoreUmur = 0.0.obs;
   var crrUmur = 0.0.obs;
 
   var pendidikanInput = ''.obs;
@@ -50,7 +51,7 @@ class KarakterAnalisisController extends GetxController {
 
     final data = {
       'nilai_umur': nilaiUmur.text,
-      'score_umur': scoreUmur.value,
+      'score_umur': finalScoreUmur.value,
       'crr_umur': crrUmur.value,
       'score_pendidikan': scorePendidikan.value,
       'crr_pendidikan': crrPendidikan.value,
@@ -123,7 +124,10 @@ class KarakterAnalisisController extends GetxController {
         scoreUmur.value = 0.0;
       }
       debugPrint('Score Umur: ${scoreUmur.value}');
-      crrUmur.value = showFewerDecimalPplaces(scoreUmur.value * 0.05);
+
+      final hitungCrr = scoreUmur.value * 0.05;
+      finalScoreUmur.value = scoreUmur.value;
+      crrUmur.value = showFewerDecimalPplaces(hitungCrr);
     } else {
       scoreUmur.value = 0.0;
     }
@@ -138,6 +142,7 @@ class KarakterAnalisisController extends GetxController {
         scoreUmur.value = 0.0;
       }
       debugPrint('Score Umur: ${scoreUmur.value}');
+      finalScoreUmur.value = scoreUmur.value;
       crrUmur.value = showFewerDecimalPplaces(scoreUmur.value * 0.05);
     } else {
       scoreUmur.value = 0.0;
@@ -153,6 +158,8 @@ class KarakterAnalisisController extends GetxController {
         scoreUmur.value = 0.0;
       }
       debugPrint('Score Umur: ${scoreUmur.value}');
+      finalScoreUmur.value = scoreUmur.value;
+
       crrUmur.value = showFewerDecimalPplaces(scoreUmur.value * 0.05);
     } else {
       scoreUmur.value = 0.0;
@@ -168,6 +175,8 @@ class KarakterAnalisisController extends GetxController {
         scoreUmur.value = 0.0;
       }
       debugPrint('Score Umur: ${scoreUmur.value}');
+      finalScoreUmur.value = scoreUmur.value;
+
       crrUmur.value = showFewerDecimalPplaces(scoreUmur.value * 0.05);
     } else {
       scoreUmur.value = 0.0;

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
- import '../bisnis/bisnis_export.dart';
+import 'karakter_export.dart';
 
 class KarakterPreview extends StatelessWidget {
   KarakterPreview({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class KarakterPreview extends StatelessWidget {
       ),
       body: PdfPreview(
         // Make color red
-        build: (context) => makeAnalisaBisnisPdf(data),
+        build: (context) => makeAnalisaKarakterPdf(data),
       ),
     );
   }

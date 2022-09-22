@@ -8,10 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../../common/style.dart';
- import '../../../../models/debtor.dart';
- import '../../../../routes/app_pages.dart';
- import '../../controllers/debitur_real_controller.dart';
+import '../../../../common/style.dart';
+import '../../../../models/debtor.dart';
+import '../../../../routes/app_pages.dart';
+import '../../controllers/debitur_real_controller.dart';
 import 'bisnis/analisa_bisnis.dart';
 import 'data_pribadi/data_pribadi.dart';
 import 'karakter/analisa_karakter.dart';
@@ -188,7 +188,7 @@ class DetailDebitur extends StatelessWidget {
                                   colorText: Colors.white,
                                 )
                               : Get.toNamed(
-                                  Routes.BISNIS_PRINT,
+                                  Routes.KARAKTER_PRINT,
                                   arguments: debtor,
                                 );
                         },

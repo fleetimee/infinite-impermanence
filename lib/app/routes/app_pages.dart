@@ -1,17 +1,18 @@
 // 📦 Package imports:
+import 'package:akm/app/modules/debitur_real/views/components/printing/karakter/karakter_preview.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view%20.dart';
- import '../modules/debitur_real/views/components/printing/bisnis/bisnis_preview.dart';
- import '../modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
- import '../modules/input_keuangan/views/lihat_input_keuangan_view.dart';
- import '../modules/input_neraca/views/edit_neraca_view.dart';
- import '../modules/input_neraca/views/lihat_neraca_view.dart';
- import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
- import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
- import '../modules/rugi_laba/views/edit_rugi_laba_view.dart';
- import '../modules/rugi_laba/views/view_rugi_laba_view.dart';
+import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view%20.dart';
+import '../modules/debitur_real/views/components/printing/bisnis/bisnis_preview.dart';
+import '../modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
+import '../modules/input_keuangan/views/lihat_input_keuangan_view.dart';
+import '../modules/input_neraca/views/edit_neraca_view.dart';
+import '../modules/input_neraca/views/lihat_neraca_view.dart';
+import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
+import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+import '../modules/rugi_laba/views/edit_rugi_laba_view.dart';
+import '../modules/rugi_laba/views/view_rugi_laba_view.dart';
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -133,6 +134,11 @@ class AppPages {
       name: _Paths.LIHAT_KARAKTER_ANALISIS,
       page: () => LihatKarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.KARAKTER_PRINT,
+      page: () => KarakterPreview(),
       transition: Transition.cupertino,
     ),
     GetPage(

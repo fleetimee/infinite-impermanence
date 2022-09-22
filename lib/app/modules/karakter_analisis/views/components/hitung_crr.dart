@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../../common/style.dart';
- import '../../controllers/karakter_analisis_controller.dart';
+import '../../../../common/style.dart';
+import '../../controllers/karakter_analisis_controller.dart';
 
 class HitungCrr extends StatelessWidget {
   HitungCrr({Key? key}) : super(key: key);

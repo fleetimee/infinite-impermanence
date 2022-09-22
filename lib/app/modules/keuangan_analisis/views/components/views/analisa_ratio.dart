@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+ import '../../../controllers/keuangan_analisis_controller.dart';
 
 class ViewAnalisaRatio extends StatelessWidget {
   ViewAnalisaRatio({Key? key}) : super(key: key);

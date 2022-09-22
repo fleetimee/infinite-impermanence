@@ -9,7 +9,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/models/debtor.dart';
+ import '../../../../../../models/debtor.dart';
 
 // 📦 Package imports:
 

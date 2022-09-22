@@ -6,8 +6,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/penghasilan_tetap/controllers/penghasilan_tetap_controller.dart';
+ import '../../../../common/style.dart';
+ import '../../controllers/penghasilan_tetap_controller.dart';
 
 class StepTwoForm extends StatelessWidget {
   StepTwoForm({Key? key}) : super(key: key);

@@ -8,10 +8,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/modules/debitur_real/views/components/detail_debitur.dart';
+ import '../../../common/style.dart';
+ import '../../../models/debtor.dart';
+ import '../controllers/debitur_real_controller.dart';
+import 'components/detail_debitur.dart';
 
 // ignore_for_file: unnecessary_const
 

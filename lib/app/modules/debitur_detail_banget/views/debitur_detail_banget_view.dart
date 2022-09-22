@@ -8,10 +8,10 @@ import 'package:intl/intl.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/models/debtor_details.dart';
-import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
+ import '../../../common/style.dart';
+ import '../../../models/debtor.dart';
+ import '../../../models/debtor_details.dart';
+ import '../controllers/debitur_detail_banget_controller.dart';
 
 class DebiturDetailBangetView extends StatefulWidget {
   const DebiturDetailBangetView({Key? key}) : super(key: key);

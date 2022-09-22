@@ -12,8 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/provinsi_kabupaten.dart';
-import 'package:akm/app/common/style.dart';
+ import '../../../common/provinsi_kabupaten.dart';
+ import '../../../common/style.dart';
 import '../controllers/debitur_real_controller.dart';
 
 class DebiturRealView extends StatelessWidget {

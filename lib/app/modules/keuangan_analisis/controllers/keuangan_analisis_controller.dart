@@ -18,7 +18,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/service/analisa_keuangan_service.dart';
+ import '../../../service/analisa_keuangan_service.dart';
 import '../../../common/style.dart';
 
 class KeuanganAnalisisController extends GetxController

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/printing/views/printing_detail_view_view.dart';
-import 'package:akm/app/widget/drawer.dart';
+ import '../../../widget/drawer.dart';
+import 'printing_detail_view_view.dart';
 import '../controllers/printing_controller.dart';
 
 class PrintingView extends GetView<PrintingController> {

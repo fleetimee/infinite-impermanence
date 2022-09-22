@@ -8,8 +8,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+ import '../../../../common/style.dart';
+ import '../../controllers/rugi_laba_controller.dart';
 
 class PerkiraanLabaRugiView extends StatelessWidget {
   PerkiraanLabaRugiView({super.key});

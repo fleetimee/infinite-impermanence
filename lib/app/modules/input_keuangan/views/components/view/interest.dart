@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
+ import '../../../controllers/input_keuangan_controller.dart';
 
 class ViewInterest extends StatelessWidget {
   ViewInterest({Key? key}) : super(key: key);

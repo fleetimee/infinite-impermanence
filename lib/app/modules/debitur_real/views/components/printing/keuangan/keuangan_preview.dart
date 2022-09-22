@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/debitur_real/views/components/printing/keuangan/keuangan_export.dart';
+import 'keuangan_export.dart';
 
 class KeuanganPreview extends StatelessWidget {
   KeuanganPreview({Key? key}) : super(key: key);

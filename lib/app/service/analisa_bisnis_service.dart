@@ -14,9 +14,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/debtor.dart';
+ import '../common/constant.dart';
+ import '../common/style.dart';
+ import '../models/debtor.dart';
 
 class AnalisaBisnisService {
   final httpClient = http.Client();

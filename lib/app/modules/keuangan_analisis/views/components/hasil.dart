@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+ import '../../../../common/style.dart';
+ import '../../controllers/keuangan_analisis_controller.dart';
 
 class HasilAnalisa extends StatelessWidget {
   HasilAnalisa({Key? key}) : super(key: key);

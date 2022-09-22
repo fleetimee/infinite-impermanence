@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
+ import '../../../../../common/style.dart';
+ import '../../../../../routes/app_pages.dart';
 
 class FirstRow extends StatelessWidget {
   const FirstRow({

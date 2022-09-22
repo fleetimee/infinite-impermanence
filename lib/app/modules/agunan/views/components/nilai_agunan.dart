@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/agunan/controllers/agunan_controller.dart';
-import 'package:akm/app/widget/color_button.dart';
+ import '../../../../common/style.dart';
+ import '../../../../widget/color_button.dart';
+ import '../../controllers/agunan_controller.dart';
 
 class NilaiAgunan extends StatelessWidget {
   NilaiAgunan({Key? key}) : super(key: key);

@@ -7,7 +7,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/porsekot_table/controllers/porsekot_table_controller.dart';
+ import '../../controllers/porsekot_table_controller.dart';
 
 class TabelPorsekot extends StatelessWidget {
   TabelPorsekot({super.key});

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/porsekot_table/controllers/porsekot_table_controller.dart';
+ import '../porsekot_table_controller.dart';
 
 class Table1 extends GetxController {
   final controller = Get.put(PorsekotTableController());

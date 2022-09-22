@@ -7,7 +7,7 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/penghasilan_tetap/controllers/penghasilan_tetap_controller.dart';
+ import '../../controllers/penghasilan_tetap_controller.dart';
 
 class StepZeroForm extends StatelessWidget {
   StepZeroForm({Key? key}) : super(key: key);

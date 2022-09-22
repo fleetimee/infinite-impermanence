@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/printing/controllers/printing_controller.dart';
-import 'package:akm/app/modules/printing/views/pdfexport/pdf_preview.dart';
+ import '../controllers/printing_controller.dart';
+import 'pdfexport/pdf_preview.dart';
 
 class PrintingDetailViewView extends GetView {
   PrintingDetailViewView({Key? key}) : super(key: key);

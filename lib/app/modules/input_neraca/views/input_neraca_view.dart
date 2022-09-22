@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
+ import '../../../common/style.dart';
 import '../controllers/input_neraca_controller.dart';
 
 class InputNeracaView extends GetView<InputNeracaController> {

@@ -12,9 +12,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_neraca.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_rugi_laba.dart';
+ import '../../../common/style.dart';
+import 'components/perkiraan_neraca.dart';
+import 'components/perkiraan_rugi_laba.dart';
 import '../controllers/rugi_laba_controller.dart';
 
 class RugiLabaView extends GetView<RugiLabaController> {

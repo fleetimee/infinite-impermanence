@@ -11,9 +11,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/analisa_keuangan.dart';
+ import '../common/constant.dart';
+ import '../common/style.dart';
+ import '../models/analisa_keuangan.dart';
 
 class AnalisaKeuanganService {
   final httpClient = http.Client();

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/debitur_real/views/components/printing/bisnis/bisnis_export.dart';
+ import '../bisnis/bisnis_export.dart';
 
 class KarakterPreview extends StatelessWidget {
   KarakterPreview({Key? key}) : super(key: key);

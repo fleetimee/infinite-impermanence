@@ -8,8 +8,8 @@ import 'package:get/get.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/models/invoice.dart';
-import 'package:akm/app/modules/printing/views/pdfexport/pdf/pdfexport.dart';
+ import '../../../../models/invoice.dart';
+import 'pdf/pdfexport.dart';
 
 class PdfPreviewPage extends StatelessWidget {
   Invoice? invoice;

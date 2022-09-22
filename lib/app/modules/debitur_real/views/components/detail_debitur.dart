@@ -8,17 +8,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/modules/debitur_real/views/components/bisnis/analisa_bisnis.dart';
-import 'package:akm/app/modules/debitur_real/views/components/data_pribadi/data_pribadi.dart';
-import 'package:akm/app/modules/debitur_real/views/components/karakter/analisa_karakter.dart';
-import 'package:akm/app/modules/debitur_real/views/components/keuangan/analisa_keuangan.dart';
-import 'package:akm/app/modules/debitur_real/views/components/keuangan/input_keuangan_fixed.dart';
-import 'package:akm/app/modules/debitur_real/views/components/keuangan/neraca.dart';
-import 'package:akm/app/modules/debitur_real/views/components/keuangan/rugi_laba.dart';
-import 'package:akm/app/routes/app_pages.dart';
+ import '../../../../common/style.dart';
+ import '../../../../models/debtor.dart';
+ import '../../../../routes/app_pages.dart';
+ import '../../controllers/debitur_real_controller.dart';
+import 'bisnis/analisa_bisnis.dart';
+import 'data_pribadi/data_pribadi.dart';
+import 'karakter/analisa_karakter.dart';
+import 'keuangan/analisa_keuangan.dart';
+import 'keuangan/input_keuangan_fixed.dart';
+import 'keuangan/neraca.dart';
+import 'keuangan/rugi_laba.dart';
 
 class DetailDebitur extends StatelessWidget {
   DetailDebitur({

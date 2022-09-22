@@ -9,8 +9,8 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+ import '../../../../../common/style.dart';
+ import '../../../controllers/keuangan_analisis_controller.dart';
 
 class ViewDataKeuangan extends StatelessWidget {
   ViewDataKeuangan({Key? key}) : super(key: key);

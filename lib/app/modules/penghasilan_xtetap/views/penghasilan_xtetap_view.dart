@@ -7,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/widget/drawer.dart';
+ import '../../../common/style.dart';
+ import '../../../widget/drawer.dart';
 import '../controllers/penghasilan_xtetap_controller.dart';
 
 class PenghasilanXtetapView extends GetView<PenghasilanXtetapController> {

@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/porsekot_table/views/components/table_porsekot.dart';
+ import '../../../common/style.dart';
+import 'components/table_porsekot.dart';
 import '../controllers/porsekot_table_controller.dart';
 
 class PorsekotTableView extends GetView<PorsekotTableController> {

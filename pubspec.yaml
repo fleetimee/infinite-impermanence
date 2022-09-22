@@ -76,7 +76,10 @@ dev_dependencies:
   change_app_package_name: ^1.1.0
   flutter_launcher_icons: "^0.10.0"
   flutter_lints: 2.0.1
-  import_sorter: ^4.6.0
+  import_sorter: 
+   git:
+      url: https://github.com/gupta-shrinath/import_sorter
+      ref: master
 
 flutter:
   uses-material-design: true

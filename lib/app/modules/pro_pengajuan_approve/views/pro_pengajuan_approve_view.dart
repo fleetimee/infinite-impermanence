@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
+ import '../../../common/style.dart';
+ import '../../../widget/color_button.dart';
+ import '../../../widget/drawer.dart';
 import '../controllers/pro_pengajuan_approve_controller.dart';
 
 class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {

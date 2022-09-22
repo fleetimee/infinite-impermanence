@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
+ import '../../../../common/style.dart';
+ import '../../controllers/input_keuangan_controller.dart';
 
 class Interest extends StatelessWidget {
   Interest({Key? key}) : super(key: key);

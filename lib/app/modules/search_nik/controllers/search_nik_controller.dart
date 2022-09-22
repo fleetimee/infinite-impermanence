@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/service/search_service.dart';
+ import '../../../models/debtor.dart';
+ import '../../../service/search_service.dart';
 
 class SearchNikController extends GetxController {
   final listDebtor = <Debtor>[].obs;

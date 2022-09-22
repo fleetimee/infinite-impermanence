@@ -15,13 +15,13 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/analisa_ratio.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/angsuran.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/asumsi_keuangan.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/data_keuangan.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/hasil.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/tutorial.dart';
+ import '../../../common/style.dart';
+import 'components/analisa_ratio.dart';
+import 'components/angsuran.dart';
+import 'components/asumsi_keuangan.dart';
+import 'components/data_keuangan.dart';
+import 'components/hasil.dart';
+import 'components/tutorial.dart';
 import '../controllers/keuangan_analisis_controller.dart';
 
 class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {

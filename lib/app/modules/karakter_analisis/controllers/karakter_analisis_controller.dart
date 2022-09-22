@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/service/analisa_karakter_service.dart';
+ import '../../../service/analisa_karakter_service.dart';
 
 class KarakterAnalisisController extends GetxController {
   var nilaiUmur = TextEditingController();

@@ -6,9 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
-import 'package:akm/app/widget/drawer.dart';
+ import '../../../common/style.dart';
+ import '../../../routes/app_pages.dart';
+ import '../../../widget/drawer.dart';
 
 class DebiturOnboardingView extends StatelessWidget {
   const DebiturOnboardingView({Key? key}) : super(key: key);

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/models/debtor_details.dart';
+ import '../common/constant.dart';
+ import '../models/debtor_details.dart';
 
 // import http as http
 

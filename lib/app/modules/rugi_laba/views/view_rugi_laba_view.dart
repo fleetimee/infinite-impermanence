@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_neraca_view.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/perkiraan_rugi_laba_view.dart';
+ import '../../../common/style.dart';
+ import '../controllers/rugi_laba_controller.dart';
+import 'components/perkiraan_neraca_view.dart';
+import 'components/perkiraan_rugi_laba_view.dart';
 
 class LihatRugiLabaView extends GetView<RugiLabaController> {
   LihatRugiLabaView({Key? key}) : super(key: key);

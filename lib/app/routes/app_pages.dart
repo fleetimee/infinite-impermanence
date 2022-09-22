@@ -2,16 +2,16 @@
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/bisnis_analisis/views/lihat_bisnis_analisis_view%20.dart';
-import 'package:akm/app/modules/debitur_real/views/components/printing/bisnis/bisnis_preview.dart';
-import 'package:akm/app/modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
-import 'package:akm/app/modules/input_keuangan/views/lihat_input_keuangan_view.dart';
-import 'package:akm/app/modules/input_neraca/views/edit_neraca_view.dart';
-import 'package:akm/app/modules/input_neraca/views/lihat_neraca_view.dart';
-import 'package:akm/app/modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
-import 'package:akm/app/modules/rugi_laba/views/edit_rugi_laba_view.dart';
-import 'package:akm/app/modules/rugi_laba/views/view_rugi_laba_view.dart';
+ import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view%20.dart';
+ import '../modules/debitur_real/views/components/printing/bisnis/bisnis_preview.dart';
+ import '../modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
+ import '../modules/input_keuangan/views/lihat_input_keuangan_view.dart';
+ import '../modules/input_neraca/views/edit_neraca_view.dart';
+ import '../modules/input_neraca/views/lihat_neraca_view.dart';
+ import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
+ import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+ import '../modules/rugi_laba/views/edit_rugi_laba_view.dart';
+ import '../modules/rugi_laba/views/view_rugi_laba_view.dart';
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';

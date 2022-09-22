@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/service/input_keuangan_service.dart';
+ import '../../../common/style.dart';
+ import '../../../service/input_keuangan_service.dart';
 
 class InputKeuanganController extends GetxController {
   var context = Get.context;

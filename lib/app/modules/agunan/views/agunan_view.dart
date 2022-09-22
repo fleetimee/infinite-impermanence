@@ -10,11 +10,11 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/agunan/views/components/hitung_agunan.dart';
-import 'package:akm/app/modules/agunan/views/components/nilai_agunan.dart';
-import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
+ import '../../../common/style.dart';
+ import '../../../widget/color_button.dart';
+ import '../../../widget/drawer.dart';
+import 'components/hitung_agunan.dart';
+import 'components/nilai_agunan.dart';
 import '../controllers/agunan_controller.dart';
 
 class AgunanView extends GetView<AgunanController> {

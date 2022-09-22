@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+ import '../../controllers/keuangan_analisis_controller.dart';
 
 // ignore: must_be_immutable
 class Tutorial extends StatelessWidget {

@@ -8,11 +8,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/penghasilan_tetap/views/components/step_one_form.dart';
-import 'package:akm/app/modules/penghasilan_tetap/views/components/step_three_form.dart';
-import 'package:akm/app/modules/penghasilan_tetap/views/components/step_two_form.dart';
-import 'package:akm/app/modules/penghasilan_tetap/views/components/step_zero_form.dart';
-import 'package:akm/app/service/dropdown_service.dart';
+ import '../../../service/dropdown_service.dart';
+ import '../views/components/step_one_form.dart';
+ import '../views/components/step_three_form.dart';
+ import '../views/components/step_two_form.dart';
+ import '../views/components/step_zero_form.dart';
 
 class PenghasilanTetapController extends GetxController {
   // Form Related

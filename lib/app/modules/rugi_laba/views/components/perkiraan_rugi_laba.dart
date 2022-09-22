@@ -8,8 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+ import '../../../../common/style.dart';
+ import '../../controllers/rugi_laba_controller.dart';
 
 class PerkiraanLabaRugi extends StatelessWidget {
   PerkiraanLabaRugi({super.key});

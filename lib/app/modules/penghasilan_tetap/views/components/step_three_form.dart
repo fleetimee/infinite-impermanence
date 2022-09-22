@@ -6,7 +6,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/penghasilan_tetap/controllers/penghasilan_tetap_controller.dart';
+ import '../../controllers/penghasilan_tetap_controller.dart';
 
 class StepThreeForm extends StatelessWidget {
   StepThreeForm({Key? key}) : super(key: key);

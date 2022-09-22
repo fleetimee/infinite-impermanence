@@ -2,7 +2,7 @@
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/porsekot_table/controllers/hitung_table/table1.dart';
+ import '../controllers/hitung_table/table1.dart';
 import '../controllers/porsekot_table_controller.dart';
 
 class PorsekotTableBinding extends Binding {

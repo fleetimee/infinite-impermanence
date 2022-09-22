@@ -7,8 +7,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/models/debitur_dropdown.dart';
+ import '../common/constant.dart';
+ import '../models/debitur_dropdown.dart';
 
 // Get debitur name
 Future<List<Dropdown>> getData() async {

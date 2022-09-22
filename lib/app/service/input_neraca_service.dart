@@ -17,11 +17,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/neraca.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
+ import '../common/constant.dart';
+ import '../common/style.dart';
+ import '../models/neraca.dart';
+ import '../modules/debitur_real/controllers/debitur_real_controller.dart';
+ import '../routes/app_pages.dart';
 
 class InputNeracaService {
   final httpClient = http.Client();

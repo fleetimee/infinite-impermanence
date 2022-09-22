@@ -13,8 +13,8 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/bisnis_analisis/views/components/lihat_hitung_crr_bisnis.dart';
+ import '../../../common/style.dart';
+import 'components/lihat_hitung_crr_bisnis.dart';
 import '../controllers/bisnis_analisis_controller.dart';
 
 class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {

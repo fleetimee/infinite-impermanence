@@ -7,8 +7,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/service/debtor_service.dart';
+ import '../../../models/debtor.dart';
+ import '../../../service/debtor_service.dart';
 
 class DebiturRealController extends GetxController {
   // List<Debtor> listDebtor = [].obs;

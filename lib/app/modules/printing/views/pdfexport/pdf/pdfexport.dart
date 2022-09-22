@@ -8,7 +8,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/models/invoice.dart';
+ import '../../../../../models/invoice.dart';
 
 Future<Uint8List> makePdf(Invoice invoice) async {
   final pdf = Document();

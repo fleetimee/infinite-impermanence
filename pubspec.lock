@@ -618,9 +618,11 @@ packages:
   import_sorter:
     dependency: "direct dev"
     description:
-      name: import_sorter
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "3df30072059a6b19885ce9ecbda9b7592a9fd38d"
+      url: "https://github.com/gupta-shrinath/import_sorter"
+    source: git
     version: "4.6.0"
   intl:
     dependency: "direct main"

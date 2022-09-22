@@ -8,10 +8,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
+ import '../../../../../common/style.dart';
+ import '../../../../../models/debtor.dart';
+ import '../../../../../routes/app_pages.dart';
+ import '../../../controllers/debitur_real_controller.dart';
 
 class Neraca extends StatelessWidget {
   const Neraca({

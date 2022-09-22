@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
+ import '../../controllers/bisnis_analisis_controller.dart';
 
 class LihatHitungCrrBisnis extends StatelessWidget {
   LihatHitungCrrBisnis({Key? key}) : super(key: key);

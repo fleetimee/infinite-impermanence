@@ -249,7 +249,7 @@ class DebiturRealController extends GetxController {
   final pendidikanList = [
     'Tidak Sekolah',
     'SD',
-    'SMP',
+    'SLTP',
     'SLTA',
     'D3',
     'S1',

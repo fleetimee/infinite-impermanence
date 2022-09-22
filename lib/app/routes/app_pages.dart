@@ -125,7 +125,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.KARAKTER_ANALISIS,
-      page: () => const KarakterAnalisisView(),
+      page: () => KarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
       transition: Transition.cupertino,
     ),

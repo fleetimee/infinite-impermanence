@@ -872,5 +872,38 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "7501c499-345f-42d9-84da-3ab37372cfe2",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cce22abd-916c-494c-8798-57ac92adee7b",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/analisa-karakter",
+    "method": "GET",
+    "sortNum": 440000,
+    "created": "2022-09-21T02:59:07.425Z",
+    "modified": "2022-09-21T02:59:24.877Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "954db5e7-5bcf-4ac5-beb5-38bb79979fd5",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cce22abd-916c-494c-8798-57ac92adee7b",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/analisa-karakter",
+    "method": "POST",
+    "sortNum": 450000,
+    "created": "2022-09-21T02:59:30.350Z",
+    "modified": "2022-09-21T03:00:14.071Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"nilai_umur\": 37,\r\n  \"score_umur\": 75.0,\r\n  \"crr_umur\": 3.9,\r\n  \"score_pendidikan\": 80.0,\r\n  \"crr_pendidikan\": 8.0,\r\n  \"nilai_lamanya_berusaha\": 5,\r\n  \"score_lamanya_berusaha\": 80.0,\r\n  \"crr_lamanya_berusaha\": 16.0,\r\n  \"score_ulet\": 75.0,\r\n  \"keterangan_ulet\": \"Lorem ipsum\",\r\n  \"crr_ulet\": 15.0,\r\n  \"score_kaku\": 70.0,\r\n  \"keterangan_kaku\": \"Lorem ipsum\",\r\n  \"crr_kaku\": 10.5,\r\n  \"score_kreatif\": 75.0,\r\n  \"keterangan_kreatif\": \"Lorem ipsum\",\r\n  \"crr_kreatif\": 11.3,\r\n  \"score_kejujuran\": 75.0,\r\n  \"keterangan_kejujuran\": \"Lorem ipsum\",\r\n  \"crr_kejujuran\": 11.3,\r\n  \"deskripsi_karakter\": \"Lorem ipsum\",\r\n  \"total_crr_karakter\": 75.9,\r\n  \"debitur\": 101\r\n}\r\n",
+      "form": []
+    },
+    "tests": []
   }
 ]

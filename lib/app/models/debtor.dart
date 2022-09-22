@@ -2,7 +2,7 @@
 //
 //     final debtor = debtorFromJson(jsonString);
 
-// ignore_for_file: prefer_null_aware_operators
+// ignore_for_file: prefer_null_aware_operators, unnecessary_null_in_if_null_operators
 
 import 'dart:convert';
 
@@ -46,6 +46,7 @@ class Debtor {
     this.inputKeuangan,
     this.analisaKeuangan,
     this.analisaBisnis,
+    this.analisaKarakter,
     this.createdBy,
   });
 
@@ -81,6 +82,7 @@ class Debtor {
   InputKeuangan? inputKeuangan;
   AnalisaKeuangan? analisaKeuangan;
   AnalisaBisnis? analisaBisnis;
+  AnalisaKarakter? analisaKarakter;
   dynamic createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
@@ -126,6 +128,9 @@ class Debtor {
         analisaBisnis: json["analisaBisnis"] == null
             ? null
             : AnalisaBisnis.fromJson(json["analisaBisnis"]),
+        analisaKarakter: json["analisaKarakter"] == null
+            ? null
+            : AnalisaKarakter.fromJson(json["analisaKarakter"]),
         createdBy: json["createdBy"],
       );
 
@@ -165,6 +170,8 @@ class Debtor {
         "analisaKeuangan":
             analisaKeuangan == null ? null : analisaKeuangan?.toJson(),
         "analisaBisnis": analisaBisnis == null ? null : analisaBisnis?.toJson(),
+        "analisaKarakter":
+            analisaKarakter == null ? null : analisaKarakter?.toJson(),
         "createdBy": createdBy,
       };
 }
@@ -238,6 +245,111 @@ class AnalisaBisnis {
         "keterangan_kualitas": keteranganKualitas,
         "deskripsi_bisnis": deskripsiBisnis,
         "hasil_crr_bisnis": hasilCrrBisnis,
+      };
+}
+
+class AnalisaKarakter {
+  AnalisaKarakter({
+    this.id,
+    this.nilaiUmur,
+    this.scoreUmur,
+    this.crrUmur,
+    this.scorePendidikan,
+    this.crrPendidikan,
+    this.nilaiLamanyaBerusaha,
+    this.scoreLamanyaBerusaha,
+    this.crrLamanyaBerusaha,
+    this.scoreUlet,
+    this.keteranganUlet,
+    this.crrUlet,
+    this.scoreKaku,
+    this.keteranganKaku,
+    this.crrKaku,
+    this.scoreKreatif,
+    this.keteranganKreatif,
+    this.crrKreatif,
+    this.scoreKejujuran,
+    this.keteranganKejujuran,
+    this.crrKejujuran,
+    this.deskripsiKarakter,
+    this.totalCrrKarakter,
+  });
+
+  int? id;
+  int? nilaiUmur;
+  String? scoreUmur;
+  String? crrUmur;
+  String? scorePendidikan;
+  String? crrPendidikan;
+  int? nilaiLamanyaBerusaha;
+  String? scoreLamanyaBerusaha;
+  String? crrLamanyaBerusaha;
+  String? scoreUlet;
+  String? keteranganUlet;
+  String? crrUlet;
+  String? scoreKaku;
+  String? keteranganKaku;
+  String? crrKaku;
+  String? scoreKreatif;
+  String? keteranganKreatif;
+  String? crrKreatif;
+  String? scoreKejujuran;
+  String? keteranganKejujuran;
+  String? crrKejujuran;
+  String? deskripsiKarakter;
+  String? totalCrrKarakter;
+
+  factory AnalisaKarakter.fromJson(Map<String, dynamic> json) =>
+      AnalisaKarakter(
+        id: json["id"] ?? null,
+        nilaiUmur: json["nilai_umur"] ?? null,
+        scoreUmur: json["score_umur"] ?? null,
+        crrUmur: json["crr_umur"] ?? null,
+        scorePendidikan: json["score_pendidikan"] ?? null,
+        crrPendidikan: json["crr_pendidikan"] ?? null,
+        nilaiLamanyaBerusaha: json["nilai_lamanya_berusaha"] ?? null,
+        scoreLamanyaBerusaha: json["score_lamanya_berusaha"] ?? null,
+        crrLamanyaBerusaha: json["crr_lamanya_berusaha"] ?? null,
+        scoreUlet: json["score_ulet"] ?? null,
+        keteranganUlet: json["keterangan_ulet"] ?? null,
+        crrUlet: json["crr_ulet"] ?? null,
+        scoreKaku: json["score_kaku"] ?? null,
+        keteranganKaku: json["keterangan_kaku"] ?? null,
+        crrKaku: json["crr_kaku"] ?? null,
+        scoreKreatif: json["score_kreatif"] ?? null,
+        keteranganKreatif: json["keterangan_kreatif"] ?? null,
+        crrKreatif: json["crr_kreatif"] ?? null,
+        scoreKejujuran: json["score_kejujuran"] ?? null,
+        keteranganKejujuran: json["keterangan_kejujuran"] ?? null,
+        crrKejujuran: json["crr_kejujuran"] ?? null,
+        deskripsiKarakter: json["deskripsi_karakter"] ?? null,
+        totalCrrKarakter: json["total_crr_karakter"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "nilai_umur": nilaiUmur ?? null,
+        "score_umur": scoreUmur ?? null,
+        "crr_umur": crrUmur ?? null,
+        "score_pendidikan": scorePendidikan ?? null,
+        "crr_pendidikan": crrPendidikan ?? null,
+        "nilai_lamanya_berusaha": nilaiLamanyaBerusaha ?? null,
+        "score_lamanya_berusaha": scoreLamanyaBerusaha ?? null,
+        "crr_lamanya_berusaha": crrLamanyaBerusaha ?? null,
+        "score_ulet": scoreUlet ?? null,
+        "keterangan_ulet": keteranganUlet ?? null,
+        "crr_ulet": crrUlet ?? null,
+        "score_kaku": scoreKaku ?? null,
+        "keterangan_kaku": keteranganKaku ?? null,
+        "crr_kaku": crrKaku ?? null,
+        "score_kreatif": scoreKreatif ?? null,
+        "keterangan_kreatif": keteranganKreatif ?? null,
+        "crr_kreatif": crrKreatif ?? null,
+        "score_kejujuran": scoreKejujuran ?? null,
+        "keterangan_kejujuran": keteranganKejujuran ?? null,
+        "crr_kejujuran": crrKejujuran ?? null,
+        "deskripsi_karakter": deskripsiKarakter ?? null,
+        "total_crr_karakter": totalCrrKarakter ?? null,
       };
 }
 

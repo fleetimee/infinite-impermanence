@@ -1,35 +1,30 @@
 // ignore_for_file: avoid_print
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/karakter_analisis/views/components/hitung_crr.dart';
+import 'package:akm/app/widget/color_button.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/karakter_analisis/views/components/hitung_crr.dart';
-import 'package:akm/app/modules/karakter_analisis/views/components/score_pendidikan.dart';
-import 'package:akm/app/modules/karakter_analisis/views/components/score_pengalaman.dart';
-import 'package:akm/app/modules/karakter_analisis/views/components/score_umur.dart';
-import 'package:akm/app/widget/color_button.dart';
-import 'package:akm/app/widget/drawer.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import '../controllers/karakter_analisis_controller.dart';
 
 class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
-  const KarakterAnalisisView({Key? key}) : super(key: key);
+  KarakterAnalisisView({Key? key}) : super(key: key);
+
+  final data = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: secondaryColor,
-      drawer: SideMenu(),
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
@@ -101,22 +96,15 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
               padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
               child: Obx(
                 () => FormBuilder(
+                  key: controller.formKey,
+                  onChanged: () {
+                    controller.formKey.currentState!.save();
+                    debugPrint(
+                        controller.formKey.currentState!.value.toString());
+                  },
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      GifView.asset(
-                        'assets/images/karakter/header.gif',
-                        frameRate: 30,
-                        fit: BoxFit.cover,
-                        loop: false,
-                        height: 400,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
-                        child: Divider(
-                          color: primaryColor,
-                          thickness: 1,
-                        ),
-                      ),
                       const SizedBox(
                         height: 10,
                       ),
@@ -127,7 +115,6 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           fontWeight: FontWeight.w200,
                           letterSpacing: 1,
                         ),
-                        textAlign: TextAlign.left,
                       ),
                       const SizedBox(
                         height: 20,
@@ -140,146 +127,93 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           letterSpacing: 1,
                           height: 1.5,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                       const SizedBox(
                         height: 40,
                       ),
-                      FormBuilderTouchSpin(
-                        displayFormat: NumberFormat('# Tahun'),
-                        name: 'Umur',
-                        decoration: InputDecoration(
+                      Visibility(
+                        visible: false,
+                        child: FormBuilderTextField(
+                          name: 'debiturId',
+                          controller: controller.debiturId =
+                              TextEditingController(
+                            text: data.id.toString(),
+                          ),
+                        ),
+                      ),
+                      FormBuilderTextField(
+                        enabled: false,
+                        name: 'nilai_umur',
+                        controller: controller.nilaiUmur =
+                            TextEditingController(
+                          text: data.umur.toString(),
+                        ),
+                        decoration: const InputDecoration(
                           labelText: 'Umur',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
-                        onChanged: (value) {
-                          controller.umur.value = value as int;
-                          print(controller.umur.value);
-                        },
-                        min: 21,
-                        max: 65,
-                        step: 1,
-                        initialValue: 21,
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      ScoreUmur(),
                       const SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                       FormBuilderDropdown(
-                        name: 'Pendidikan',
-                        items: const [
-                          DropdownMenuItem(
-                            value: 60,
-                            child: Text('Tanpa Pendidikan'),
-                          ),
-                          DropdownMenuItem(
-                            value: 70,
-                            child: Text('SD'),
-                          ),
-                          DropdownMenuItem(
-                            value: 75,
-                            child: Text('SLTP'),
-                          ),
-                          DropdownMenuItem(
-                            value: 80,
-                            child: Text('SLTA'),
-                          ),
-                          DropdownMenuItem(
-                            value: 85,
-                            child: Text('D3'),
-                          ),
-                          DropdownMenuItem(
-                            value: 90,
-                            child: Text('S1'),
-                          ),
-                          DropdownMenuItem(
-                            value: 95,
-                            child: Text('S2'),
-                          ),
-                          DropdownMenuItem(
-                            value: 96,
-                            child: Text('S3'),
-                          ),
-                        ],
-                        decoration: InputDecoration(
+                        enabled: false,
+                        name: 'pendidikan',
+                        initialValue: data.pendidikan,
+                        onChanged: (value) {
+                          controller.pendidikanInput.value = value.toString();
+                        },
+                        onSaved: (value) {
+                          controller.pendidikanInput.value = value.toString();
+                        },
+                        decoration: const InputDecoration(
                           labelText: 'Pendidikan',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          labelStyle: TextStyle(fontSize: 18),
+                          border: OutlineInputBorder(),
                         ),
-                        onChanged: (value) {
-                          controller.scorePendidikan.value = value as int;
-                          print(controller.scorePendidikan.value);
-                        },
+                        items: controller.pendidikanList
+                            .map(
+                              (element) => DropdownMenuItem(
+                                value: element,
+                                child: Text(element),
+                              ),
+                            )
+                            .toList(),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      ScorePendidikan(),
                       const SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
-                      FormBuilderDropdown(
-                        name: 'Pengalaman dalam bisnis',
-                        items: const [
-                          DropdownMenuItem(
-                            value: 60,
-                            child: Text('1 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 65,
-                            child: Text('2 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 70,
-                            child: Text('3 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 75,
-                            child: Text('4 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 80,
-                            child: Text('5 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 85,
-                            child: Text('6 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 90,
-                            child: Text('7 Tahun'),
-                          ),
-                          DropdownMenuItem(
-                            value: 95,
-                            child: Text('8 Tahun +'),
-                          ),
-                        ],
-                        decoration: InputDecoration(
-                          labelText: 'Lamanya berusaha',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                      FormBuilderTextField(
+                        name: 'lamanya_berusaha',
+                        enabled: false,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.numeric(),
+                          FormBuilderValidators.maxLength(2,
+                              errorText: 'Impposibru'),
+                        ]),
+                        controller: controller.lamanyaBerusaha =
+                            TextEditingController(
+                          text: data.lamanyaBerusaha.toString(),
                         ),
-                        onChanged: (value) {
-                          controller.scorePengalaman.value = value as int;
-                          print(controller.scorePengalaman.value);
-                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          labelText: 'Lamanya Berusaha',
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      ScorePengalaman(),
                       const SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                       FormBuilderSlider(
                         divisions: 19,
@@ -288,9 +222,8 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         max: 95,
                         onChanged: (double? value) {
                           controller.uletDalamBisnis.value = value!;
-                          print(controller.uletDalamBisnis.value);
                         },
-                        name: 'Ulet Dalam Bisnis',
+                        name: 'ulet',
                         decoration: InputDecoration(
                           labelText: 'Ulet Dalam Bisnis',
                           labelStyle: const TextStyle(fontSize: 20),
@@ -302,50 +235,28 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: <Widget>[
-                          if (controller.uletDalamBisnis.value == 95)
-                            Text(
-                              'Sangat ulet dalam mengelola usahanya dan memiliki banyak langganan',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.uletDalamBisnis.value >= 75 &&
-                              controller.uletDalamBisnis.value < 95)
-                            Text(
-                              'Cukup ulet dalam mengelola usahanya dan memiliki langganan.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.uletDalamBisnis.value >= 50 &&
-                              controller.uletDalamBisnis.value < 75)
-                            Text(
-                              'Kurang ulet dalam mengelola usahanya dan memiliki sedikit langganan.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.uletDalamBisnis.value < 50)
-                            Text(
-                              'Tidak ulet dalam mengelola usahanya dan tidak memiliki langganan.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 40,
+                      FormBuilderTextField(
+                        name: 'keterangan_ulet',
+                        enabled: false,
+                        maxLines: 3,
+                        textAlign: TextAlign.center,
+                        controller: controller.keteranganUletDalamBisnis =
+                            TextEditingController(
+                          text: controller.uletDalamBisnis.value == 95
+                              ? 'Sangat ulet dalam mengelola usahanya dan memiliki banyak langganan'
+                              : controller.uletDalamBisnis.value >= 75 &&
+                                      controller.uletDalamBisnis.value < 95
+                                  ? 'Cukup ulet dalam mengelola usahanya dan memiliki langganan.'
+                                  : controller.uletDalamBisnis.value >= 50 &&
+                                          controller.uletDalamBisnis.value < 75
+                                      ? 'Kurang ulet dalam mengelola usahanya dan memiliki sedikit langganan.'
+                                      : controller.uletDalamBisnis.value < 50
+                                          ? 'Tidak ulet dalam mengelola usahanya dan memiliki sedikit langganan.'
+                                          : '',
+                        ),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
                       ),
                       FormBuilderSlider(
                         divisions: 19,
@@ -356,7 +267,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           controller.kakuFleksibel.value = value!;
                           print(controller.kakuFleksibel.value);
                         },
-                        name: 'Kaku / Fleksibel',
+                        name: 'kaku',
                         decoration: InputDecoration(
                           labelText: 'Kaku / Fleksibel',
                           labelStyle: const TextStyle(fontSize: 20),
@@ -368,50 +279,28 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: <Widget>[
-                          if (controller.kakuFleksibel.value == 95)
-                            Text(
-                              'Sangat fleksibel dalam berusaha dan menentukan harga',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.kakuFleksibel.value > 70 &&
-                              controller.kakuFleksibel.value < 95)
-                            Text(
-                              'Fleksibel dalam berusaha dan menentukan harga.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.kakuFleksibel.value > 50 &&
-                              controller.kakuFleksibel.value <= 70)
-                            Text(
-                              'Kaku dalam berusaha dan menentukan harga.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.kakuFleksibel.value <= 50)
-                            Text(
-                              'Sangat kaku dalam berusaha dan menentukan harga.',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 40,
+                      FormBuilderTextField(
+                        name: 'keterangan_kaku',
+                        enabled: false,
+                        maxLines: 3,
+                        textAlign: TextAlign.center,
+                        controller: controller.keteranganKakuFleksibel =
+                            TextEditingController(
+                          text: controller.kakuFleksibel.value == 95
+                              ? 'Sangat fleksibel dalam berusaha dan menentukan harga'
+                              : controller.kakuFleksibel.value >= 75 &&
+                                      controller.kakuFleksibel.value < 95
+                                  ? 'Fleksibel dalam berusaha dan menentukan harga.'
+                                  : controller.kakuFleksibel.value >= 50 &&
+                                          controller.kakuFleksibel.value < 75
+                                      ? 'Kaku dalam berusaha dan menentukan harga.'
+                                      : controller.kakuFleksibel.value < 50
+                                          ? 'Sangat kaku dalam berusaha dan menentukan harga.'
+                                          : '',
+                        ),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
                       ),
                       FormBuilderSlider(
                         divisions: 19,
@@ -422,7 +311,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           controller.inovatifKreatif.value = value!;
                           print(controller.inovatifKreatif.value);
                         },
-                        name: 'Kreatif / Inovatif',
+                        name: 'kreatif',
                         decoration: InputDecoration(
                           labelText: 'Kreatif / Inovatif',
                           labelStyle: const TextStyle(fontSize: 20),
@@ -434,60 +323,39 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: <Widget>[
-                          if (controller.inovatifKreatif.value == 95)
-                            Text(
-                              'Sangat kreatif dan inovatif dalam mengembangkan usahanya',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          if (controller.inovatifKreatif.value >= 75 &&
-                              controller.inovatifKreatif.value < 95)
-                            Text(
-                              'Kratif dan selalu ingin mempunyai usaha kecil lebih lebih dari yang ada sekarang',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.inovatifKreatif.value >= 50 &&
-                              controller.inovatifKreatif.value < 75)
-                            Text(
-                              'Kurang kreatif dan enggan mempunyai usaha kecil lebih dari yang ada sekarang',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.inovatifKreatif.value < 50)
-                            Text(
-                              'Sangat tidak kreatif dan malah menyepelekan usahanya',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 40,
+                      FormBuilderTextField(
+                        name: 'keterangan_inovatif',
+                        enabled: false,
+                        maxLines: 3,
+                        textAlign: TextAlign.center,
+                        controller: controller.keteranganInovatifKreatif =
+                            TextEditingController(
+                          text: controller.inovatifKreatif.value == 95
+                              ? 'Sangat kreatif dan inovatif dalam mengembangkan usahanya'
+                              : controller.inovatifKreatif.value >= 75 &&
+                                      controller.inovatifKreatif.value < 95
+                                  ? 'Kreatif dan selalu ingin mempunyai usaha kecil lebih lebih dari yang ada sekarang'
+                                  : controller.inovatifKreatif.value >= 50 &&
+                                          controller.inovatifKreatif.value < 75
+                                      ? 'Kurang kreatif dan enggan mempunyai usaha kecil lebih dari yang ada sekarang'
+                                      : controller.inovatifKreatif.value < 50
+                                          ? 'Sangat tidak kreatif dan malah menyepelekan usahanya.'
+                                          : '',
+                        ),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
                       ),
                       FormBuilderSlider(
-                        divisions: 10,
+                        divisions: 19,
                         initialValue: 0,
                         min: 0,
-                        max: 100,
+                        max: 95,
                         onChanged: (double? value) {
                           controller.jujur.value = value!;
                           print(controller.jujur.value);
                         },
-                        name: 'Memiliki kejujuran dalam bisnis',
+                        name: 'jujur',
                         decoration: InputDecoration(
                           labelText: 'Memiliki kejujuran dalam bisnis',
                           labelStyle: const TextStyle(fontSize: 20),
@@ -499,50 +367,28 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Column(
-                        children: <Widget>[
-                          if (controller.jujur.value == 95)
-                            Text(
-                              'Memiliki kejujuran yang sangat baik dalam berusaha',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.jujur.value >= 75 &&
-                              controller.jujur.value < 95)
-                            Text(
-                              'Memiliki kejujuran yang memadai dalam berusaha',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.jujur.value >= 50 &&
-                              controller.jujur.value < 75)
-                            Text(
-                              'Memiliki kejujuran yang kurang memadai dalam berusaha',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          if (controller.jujur.value < 50)
-                            Text(
-                              'Memiliki kejujuran yang sangat tidak memadai dalam berusaha',
-                              style: GoogleFonts.poppins(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 40,
+                      FormBuilderTextField(
+                        name: 'keterangan_jujur',
+                        enabled: false,
+                        maxLines: 3,
+                        textAlign: TextAlign.center,
+                        controller: controller.keteranganJujur =
+                            TextEditingController(
+                          text: controller.jujur.value == 95
+                              ? 'Sangat jujur dalam berbisnis'
+                              : controller.jujur.value >= 75 &&
+                                      controller.jujur.value < 100
+                                  ? 'Cukup jujur dalam berbisnis'
+                                  : controller.jujur.value >= 50 &&
+                                          controller.jujur.value < 75
+                                      ? 'Kurang jujur dalam berbisnis'
+                                      : controller.jujur.value < 50
+                                          ? 'Tidak jujur dalam berbisnis'
+                                          : '',
+                        ),
+                        decoration: const InputDecoration(
+                          border: InputBorder.none,
+                        ),
                       ),
                       FormBuilderTextField(
                         keyboardType: TextInputType.multiline,
@@ -552,55 +398,51 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           fontWeight: FontWeight.normal,
                         ),
                         textAlign: TextAlign.start,
-                        name: 'Deskripsi Bisnis Pemohon',
-                        decoration: InputDecoration(
+                        name: 'deskripsi_karakter',
+                        decoration: const InputDecoration(
                           labelText: 'Deskripsi Bisnis Pemohon',
-                          border: const OutlineInputBorder(),
+                          border: OutlineInputBorder(),
                           alignLabelWithHint: true,
-                          suffixIcon: IconButton(
-                              onPressed: () => {
-                                    // controller.hasilUntukDeskripsiBisnis(),
-                                    // AwesomeDialog(
-                                    //   context: context,
-                                    //   titleTextStyle: const TextStyle(
-                                    //     fontSize: 20,
-                                    //     fontWeight: FontWeight.bold,
-                                    //     color: secondaryColor,
-                                    //   ),
-                                    //   descTextStyle: const TextStyle(
-                                    //     fontSize: 15,
-                                    //     fontWeight: FontWeight.normal,
-                                    //     color: secondaryColor,
-                                    //   ),
-                                    //   dialogBackgroundColor: primaryColor,
-                                    //   dialogType: DialogType.INFO_REVERSED,
-                                    //   animType: AnimType.bottomSlide,
-                                    //   title: 'Sukses',
-                                    //   desc:
-                                    //       'Deskripsi bisnis pemohon berhasil ter-generate',
-                                    //   btnOkOnPress: () {},
-                                    // ).show()
-                                  },
-                              icon: const Icon(Icons.refresh_rounded)),
                         ),
                         maxLines: 10,
                         textInputAction: TextInputAction.newline,
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 20,
                       ),
                       colorButton(
                         context,
                         'Hitung CRR',
                         () {
-                          controller.hitungCrr();
-                          showBarModalBottomSheet(
-                              backgroundColor: secondaryColor,
-                              bounce: true,
-                              context: context,
-                              builder: (context) {
-                                return HitungCrr();
-                              });
+                          // controller.hitungCrr();
+                          // showBarModalBottomSheet(
+                          //     backgroundColor: secondaryColor,
+                          //     bounce: true,
+                          //     context: context,
+                          //     builder: (context) {
+                          //       return HitungCrr();
+                          //     });
+                          if (controller.formKey.currentState
+                                  ?.saveAndValidate() ??
+                              false) {
+                            // controller.hitungCrr();
+                            controller.result();
+                            showBarModalBottomSheet(
+                                backgroundColor: secondaryColor,
+                                bounce: true,
+                                context: context,
+                                builder: (context) {
+                                  return HitungCrr();
+                                });
+                            // controller.hitungCrrUmur();
+                            // controller.hitungCrrPendidikan();
+                            // controller.hitungLamanyaBerusaha();
+                            // controller.hitungUletDalamBisnis();
+                            // controller.hitungKakuFleksibel();
+                            // controller.hitungInovatifKreatif();
+                            // controller.hitungJujur();
+
+                          }
                         },
                       ),
                       const SizedBox(

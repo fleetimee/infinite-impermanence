@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/debitur_real/views/components/karakter/analisa_karakter.dart';
 import 'package:akm/app/modules/debitur_real/views/components/keuangan/analisa_keuangan.dart';
 import 'package:akm/app/modules/debitur_real/views/components/bisnis/analisa_bisnis.dart';
 import 'package:akm/app/modules/debitur_real/views/components/keuangan/input_keuangan_fixed.dart';
@@ -71,13 +72,15 @@ class DetailDebitur extends StatelessWidget {
                       FontAwesomeIcons.chartPie,
                     ),
                     children: [
-                      const ExpansionTile(
+                      ExpansionTile(
                         initiallyExpanded: true,
-                        title: Text(
+                        title: const Text(
                           'A. KARAKTER',
                           style: TextStyle(fontWeight: FontWeight.w800),
                         ),
-                        children: [],
+                        children: [
+                          AnalisaKarakterTile(debtor: debtor),
+                        ],
                       ),
                       ExpansionTile(
                         initiallyExpanded: true,

@@ -12,7 +12,6 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/modules/debitur_detail_banget/controllers/debitur_detail_banget_controller.dart';
-import 'package:shimmer/shimmer.dart';
 
 class DebiturDetailBangetView extends StatefulWidget {
   const DebiturDetailBangetView({Key? key}) : super(key: key);
@@ -141,65 +140,61 @@ class _DebiturDetailBangetViewState extends State<DebiturDetailBangetView> {
                                   ),
                                 );
                               } else {
-                                return Shimmer.fromColors(
-                                  baseColor: Colors.red,
-                                  highlightColor: Colors.yellow,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                          snapshot.data.toString(),
-                                        ),
-                                        fit: BoxFit.cover,
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        'https://dummyimage.com/600x400/dbd0db/0011ff.jpg&text=Loading+image...',
                                       ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          16, 0, 16, 0),
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: const [
-                                            SizedBox(
-                                              height: 300,
-                                            ),
-                                            // CircleAvatar(
-                                            //   maxRadius: 75,
-                                            //   backgroundColor: primaryColor,
-                                            //   child: Text(
-                                            //     controller.debtorDetails.peminjam1
-                                            //         .toString()
-                                            //         .substring(0, 1),
-                                            //     style: GoogleFonts.andika(
-                                            //         fontSize: 80),
-                                            //   ),
-                                            // ),
-                                            // const SizedBox(height: 20),
-                                            // Text(
-                                            //   controller.debtorDetails.peminjam1
-                                            //       .toString(),
-                                            //   style: GoogleFonts.aBeeZee(
-                                            //       fontSize: 30,
-                                            //       color: secondaryColor),
-                                            //   textAlign: TextAlign.center,
-                                            // ),
-                                            // const SizedBox(height: 10),
-                                            // Text(
-                                            //   controller.debtorDetails.noKtp1
-                                            //       .toString(),
-                                            //   style: GoogleFonts.aBeeZee(
-                                            //     fontSize: 25,
-                                            //     fontWeight: FontWeight.w600,
-                                            //     color: secondaryColor,
-                                            //   ),
-                                            //   textAlign: TextAlign.center,
-                                            // ),
-                                            // const SizedBox(height: 20),
-                                          ],
-                                        ),
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(16, 0, 16, 0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: const [
+                                          SizedBox(
+                                            height: 400,
+                                          ),
+                                          // CircleAvatar(
+                                          //   maxRadius: 75,
+                                          //   backgroundColor: primaryColor,
+                                          //   child: Text(
+                                          //     controller.debtorDetails.peminjam1
+                                          //         .toString()
+                                          //         .substring(0, 1),
+                                          //     style: GoogleFonts.andika(
+                                          //         fontSize: 80),
+                                          //   ),
+                                          // ),
+                                          // const SizedBox(height: 20),
+                                          // Text(
+                                          //   controller.debtorDetails.peminjam1
+                                          //       .toString(),
+                                          //   style: GoogleFonts.aBeeZee(
+                                          //       fontSize: 30,
+                                          //       color: secondaryColor),
+                                          //   textAlign: TextAlign.center,
+                                          // ),
+                                          // const SizedBox(height: 10),
+                                          // Text(
+                                          //   controller.debtorDetails.noKtp1
+                                          //       .toString(),
+                                          //   style: GoogleFonts.aBeeZee(
+                                          //     fontSize: 25,
+                                          //     fontWeight: FontWeight.w600,
+                                          //     color: secondaryColor,
+                                          //   ),
+                                          //   textAlign: TextAlign.center,
+                                          // ),
+                                          // const SizedBox(height: 20),
+                                        ],
                                       ),
                                     ),
                                   ),

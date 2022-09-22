@@ -142,14 +142,6 @@ class SideMenu extends StatelessWidget {
                 leading: const Icon(Icons.car_rental_outlined),
               ),
               ListTile(
-                title: const Text('Karakter Analisis'),
-                onTap: () {
-                  Get.offNamed(Routes.KARAKTER_ANALISIS);
-                  Get.back();
-                },
-                leading: const Icon(Icons.analytics_outlined),
-              ),
-              ListTile(
                 title: const Text('Porsekot'),
                 onTap: () {
                   Get.offNamed(Routes.PORSEKOT_TABLE);

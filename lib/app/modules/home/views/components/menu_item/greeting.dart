@@ -53,8 +53,8 @@ class Greeting extends StatelessWidget {
                 future: controller.img,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Shimmer(
-                      gradient: const LinearGradient(
+                    return const Shimmer(
+                      gradient: LinearGradient(
                         colors: [
                           Colors.white,
                           Colors.grey,
@@ -62,9 +62,7 @@ class Greeting extends StatelessWidget {
                       ),
                       child: CircleAvatar(
                         radius: 30,
-                        backgroundImage: NetworkImage(
-                          snapshot.data.toString(),
-                        ),
+                        backgroundColor: Colors.white,
                       ),
                     );
                   } else {

@@ -49,7 +49,7 @@ class AnalisaKarakterTile extends StatelessWidget {
                         foregroundColor: forButton2,
                       ),
                       onPressed: () {
-                        Get.toNamed(Routes.LIHAT_BISNIS_ANALISIS,
+                        Get.toNamed(Routes.LIHAT_KARAKTER_ANALISIS,
                             arguments: debtor);
                       },
                     ),

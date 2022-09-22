@@ -3,6 +3,7 @@ import 'package:akm/app/modules/bisnis_analisis/views/lihat_bisnis_analisis_view
 import 'package:akm/app/modules/debitur_real/views/components/printing/karakter/bisnis_preview.dart';
 import 'package:akm/app/modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
 import 'package:akm/app/modules/input_keuangan/views/lihat_input_keuangan_view.dart';
+import 'package:akm/app/modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
 import 'package:akm/app/modules/rugi_laba/views/edit_rugi_laba_view.dart';
 import 'package:get/get.dart';
@@ -126,6 +127,12 @@ class AppPages {
     GetPage(
       name: _Paths.KARAKTER_ANALISIS,
       page: () => KarakterAnalisisView(),
+      binding: KarakterAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.LIHAT_KARAKTER_ANALISIS,
+      page: () => LihatKarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
       transition: Transition.cupertino,
     ),

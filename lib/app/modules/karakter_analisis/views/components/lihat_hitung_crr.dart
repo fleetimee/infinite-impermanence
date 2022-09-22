@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,10 +9,12 @@ import 'package:google_fonts/google_fonts.dart';
 // 🌎 Project imports:
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 
-class HitungCrr extends StatelessWidget {
-  HitungCrr({Key? key}) : super(key: key);
+class LihatHitungCrr extends StatelessWidget {
+  LihatHitungCrr({Key? key}) : super(key: key);
 
   final controller = Get.put(KarakterAnalisisController());
+
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +29,9 @@ class HitungCrr extends StatelessWidget {
             ),
             FormBuilderTextField(
               enabled: false,
-              initialValue: controller.crrUmur.value.toString(),
+              initialValue: data.analisaKarakter.crrUmur.toString(),
               name: 'umur_crr',
+              textAlign: TextAlign.center,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
                 labelText: 'Umur CRR',
@@ -48,7 +50,7 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.crrPendidikan.value.toString(),
+                    initialValue: data.analisaKarakter.crrPendidikan.toString(),
                     name: 'pendidikan_crr',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -66,7 +68,8 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.crrPengalaman.value.toString(),
+                    initialValue:
+                        data.analisaKarakter.crrLamanyaBerusaha.toString(),
                     name: 'pengalaman_crr',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -89,7 +92,7 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.uletDalamBisnis.value.toString(),
+                    initialValue: data.analisaKarakter.crrUlet.toString(),
                     name: 'Keuletan CRR',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -107,7 +110,7 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.crrKaku.value.toString(),
+                    initialValue: data.analisaKarakter.crrKaku.toString(),
                     name: 'Flexible CRR',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -130,7 +133,7 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.crrInovatif.value.toString(),
+                    initialValue: data.analisaKarakter.crrKreatif.toString(),
                     name: 'inovatif_crr',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -148,7 +151,7 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.crrJujur.value.toString(),
+                    initialValue: data.analisaKarakter.crrKejujuran.toString(),
                     name: 'jujur_crr',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),
@@ -166,41 +169,18 @@ class HitungCrr extends StatelessWidget {
               height: 50,
             ),
             Text(
-              controller.resultCrr.toString(),
+              data.analisaKarakter.totalCrrKarakter.toString(),
               style: GoogleFonts.poppins(
                 fontSize: 35,
                 fontWeight: FontWeight.w600,
                 color: // Make text green if value exceed 65 and red if below 65
-                    controller.resultCrr.value >= 65.0
+                    double.parse(data.analisaKarakter.totalCrrKarakter) >= 65.0
                         ? Colors.green
                         : Colors.red,
               ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            OutlinedButton.icon(
-              icon: const Icon(Icons.check),
-              label: const Text(
-                "Submit",
-                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-              ),
-              style: OutlinedButton.styleFrom(
-                  foregroundColor: secondaryColor,
-                  backgroundColor: primaryColor,
-                  shape: const StadiumBorder(),
-                  maximumSize: const Size.fromWidth(double.infinity),
-                  fixedSize: const Size(500, 50)),
-              onPressed: () {
-                if (controller.formKey.currentState?.saveAndValidate() ??
-                    false) {
-                  controller.saveAnalisaKarakter();
-                  debugPrint(controller.formKey.currentState?.value.toString());
-                } else {
-                  debugPrint(controller.formKey.currentState?.value.toString());
-                  debugPrint('validation failed');
-                }
-              },
             ),
           ],
         ),

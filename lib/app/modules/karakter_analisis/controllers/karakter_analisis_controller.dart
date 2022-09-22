@@ -37,7 +37,7 @@ class KarakterAnalisisController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  final deskripsi = TextEditingController();
+  var deskripsi = TextEditingController();
 
   final resultCrr = 0.0.obs;
 

@@ -15,6 +15,7 @@ abstract class Routes {
   static const BISNIS_ANALISIS = _Paths.BISNIS_ANALISIS;
   static const LIHAT_BISNIS_ANALISIS = _Paths.LIHAT_BISNIS_ANALISIS;
   static const KARAKTER_ANALISIS = _Paths.KARAKTER_ANALISIS;
+  static const LIHAT_KARAKTER_ANALISIS = _Paths.LIHAT_KARAKTER_ANALISIS;
   static const KEUANGAN_ANALISIS = _Paths.KEUANGAN_ANALISIS;
   static const LIHAT_KEUANGAN_ANALISIS = _Paths.LIHAT_KEUANGAN_ANALISIS;
   static const PRINTING = _Paths.PRINTING;
@@ -48,6 +49,7 @@ abstract class _Paths {
   static const BISNIS_ANALISIS = '/bisnis-analisis';
   static const LIHAT_BISNIS_ANALISIS = '/lihat-bisnis-analisis';
   static const KARAKTER_ANALISIS = '/karakter-analisis';
+  static const LIHAT_KARAKTER_ANALISIS = '/lihat-karakter-analisis';
   static const KEUANGAN_ANALISIS = '/keuangan-analisis';
   static const LIHAT_KEUANGAN_ANALISIS = '/lihat-keuangan-analisis';
   static const PRINTING = '/printing';

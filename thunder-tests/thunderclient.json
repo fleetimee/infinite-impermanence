@@ -905,5 +905,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "012f7993-2c50-4fae-99fd-774fa643392b",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cce22abd-916c-494c-8798-57ac92adee7b",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/analisa-karakter/2",
+    "method": "DELETE",
+    "sortNum": 460000,
+    "created": "2022-09-22T08:23:41.793Z",
+    "modified": "2022-09-22T08:24:05.416Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

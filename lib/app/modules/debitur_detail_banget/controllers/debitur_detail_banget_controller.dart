@@ -1,11 +1,11 @@
 // 📦 Package imports:
 import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
+import 'package:nekos/nekos.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/models/debtor_details.dart';
 import 'package:akm/app/service/debtor_details_service.dart';
-import 'package:nekos/nekos.dart';
 
 class DebiturDetailBangetController extends GetxController {
   final faker = Faker.instance;

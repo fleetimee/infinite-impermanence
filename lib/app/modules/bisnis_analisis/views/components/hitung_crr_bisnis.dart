@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 
 class HitungCrrBisnis extends StatelessWidget {

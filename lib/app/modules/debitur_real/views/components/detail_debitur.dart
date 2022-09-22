@@ -1,24 +1,24 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/debitur_real/views/components/karakter/analisa_karakter.dart';
-import 'package:akm/app/modules/debitur_real/views/components/keuangan/analisa_keuangan.dart';
-import 'package:akm/app/modules/debitur_real/views/components/bisnis/analisa_bisnis.dart';
-import 'package:akm/app/modules/debitur_real/views/components/keuangan/input_keuangan_fixed.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/models/debtor.dart';
 import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/modules/debitur_real/views/components/bisnis/analisa_bisnis.dart';
 import 'package:akm/app/modules/debitur_real/views/components/data_pribadi/data_pribadi.dart';
+import 'package:akm/app/modules/debitur_real/views/components/karakter/analisa_karakter.dart';
+import 'package:akm/app/modules/debitur_real/views/components/keuangan/analisa_keuangan.dart';
+import 'package:akm/app/modules/debitur_real/views/components/keuangan/input_keuangan_fixed.dart';
 import 'package:akm/app/modules/debitur_real/views/components/keuangan/neraca.dart';
 import 'package:akm/app/modules/debitur_real/views/components/keuangan/rugi_laba.dart';
+import 'package:akm/app/routes/app_pages.dart';
 
 class DetailDebitur extends StatelessWidget {
   DetailDebitur({
@@ -174,6 +174,25 @@ class DetailDebitur extends StatelessWidget {
                                 );
                         },
                         trailing: debtor.analisaKeuangan == null
+                            ? const Text('Not Ready 😭')
+                            : const Text('Ready 👍'),
+                      ),
+                      ListTile(
+                        title: const Text('Print Karakter'),
+                        onTap: () {
+                          debtor.analisaKarakter == null
+                              ? Get.snackbar(
+                                  'Gagal',
+                                  'Data Analisa Karakter Belum Lengkap',
+                                  backgroundColor: Colors.red,
+                                  colorText: Colors.white,
+                                )
+                              : Get.toNamed(
+                                  Routes.BISNIS_PRINT,
+                                  arguments: debtor,
+                                );
+                        },
+                        trailing: debtor.analisaKarakter == null
                             ? const Text('Not Ready 😭')
                             : const Text('Ready 👍'),
                       ),

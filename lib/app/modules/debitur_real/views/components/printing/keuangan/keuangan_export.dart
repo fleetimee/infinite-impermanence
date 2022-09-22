@@ -1,10 +1,15 @@
 // 🐦 Flutter imports:
 
-import 'package:akm/app/models/debtor.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/debtor.dart';
 
 // 📦 Package imports:
 

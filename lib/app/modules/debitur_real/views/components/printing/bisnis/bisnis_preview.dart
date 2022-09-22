@@ -1,7 +1,12 @@
-import 'package:akm/app/modules/debitur_real/views/components/printing/karakter/bisnis_export.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:printing/printing.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/debitur_real/views/components/printing/bisnis/bisnis_export.dart';
 
 class BisnisPreview extends StatelessWidget {
   BisnisPreview({Key? key}) : super(key: key);

@@ -1,9 +1,14 @@
 // 🐦 Flutter imports:
 
-import 'package:akm/app/models/debtor.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
+
+// 📦 Package imports:
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/debtor.dart';
 
 // 📦 Package imports:
 

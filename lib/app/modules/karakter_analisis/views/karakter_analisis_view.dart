@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_print
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/karakter_analisis/views/components/hitung_crr.dart';
-import 'package:akm/app/widget/color_button.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,10 +8,11 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:akm/app/modules/karakter_analisis/views/components/hitung_crr.dart';
 import '../controllers/karakter_analisis_controller.dart';
 
 class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
@@ -410,38 +409,68 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       const SizedBox(
                         height: 20,
                       ),
-                      colorButton(
-                        context,
-                        'Hitung CRR',
-                        () {
-                          // controller.hitungCrr();
-                          // showBarModalBottomSheet(
-                          //     backgroundColor: secondaryColor,
-                          //     bounce: true,
-                          //     context: context,
-                          //     builder: (context) {
-                          //       return HitungCrr();
-                          //     });
+                      // colorButton(
+                      //   context,
+                      //   'Hitung CRR',
+                      //   () {
+                      //     // controller.hitungCrr();
+                      //     // showBarModalBottomSheet(
+                      //     //     backgroundColor: secondaryColor,
+                      //     //     bounce: true,
+                      //     //     context: context,
+                      //     //     builder: (context) {
+                      //     //       return HitungCrr();
+                      //     //     });
+                      //     if (controller.formKey.currentState
+                      //             ?.saveAndValidate() ??
+                      //         false) {
+                      //       // controller.hitungCrr();
+                      //       controller.result();
+                      //       showBarModalBottomSheet(
+                      //           backgroundColor: secondaryColor,
+                      //           bounce: true,
+                      //           context: context,
+                      //           builder: (context) {
+                      //             return HitungCrr();
+                      //           });
+                      //       // controller.hitungCrrUmur();
+                      //       // controller.hitungCrrPendidikan();
+                      //       // controller.hitungLamanyaBerusaha();
+                      //       // controller.hitungUletDalamBisnis();
+                      //       // controller.hitungKakuFleksibel();
+                      //       // controller.hitungInovatifKreatif();
+                      //       // controller.hitungJujur();
+
+                      //     }
+                      //   },
+                      // ),
+                      OutlinedButton.icon(
+                        icon: const Icon(Icons.check),
+                        label: const Text(
+                          "Hitung CRR",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 20),
+                        ),
+                        style: OutlinedButton.styleFrom(
+                            foregroundColor: secondaryColor,
+                            backgroundColor: primaryColor,
+                            shape: const StadiumBorder(),
+                            maximumSize: const Size.fromWidth(double.infinity),
+                            fixedSize: const Size(500, 50)),
+                        onPressed: () {
                           if (controller.formKey.currentState
                                   ?.saveAndValidate() ??
                               false) {
                             // controller.hitungCrr();
                             controller.result();
                             showBarModalBottomSheet(
-                                backgroundColor: secondaryColor,
-                                bounce: true,
-                                context: context,
-                                builder: (context) {
-                                  return HitungCrr();
-                                });
-                            // controller.hitungCrrUmur();
-                            // controller.hitungCrrPendidikan();
-                            // controller.hitungLamanyaBerusaha();
-                            // controller.hitungUletDalamBisnis();
-                            // controller.hitungKakuFleksibel();
-                            // controller.hitungInovatifKreatif();
-                            // controller.hitungJujur();
-
+                              backgroundColor: secondaryColor,
+                              bounce: true,
+                              context: context,
+                              builder: (context) {
+                                return HitungCrr();
+                              },
+                            );
                           }
                         },
                       ),

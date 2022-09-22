@@ -1,7 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/input_keuangan/views/components/view/asumsi_keuangan.dart';
-import 'package:akm/app/modules/input_keuangan/views/components/view/data_keuangan.dart';
-import 'package:akm/app/modules/input_keuangan/views/components/view/interest.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,6 +7,9 @@ import 'package:get/get.dart';
 import 'package:stepper_page_view/stepper_page_view.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/modules/input_keuangan/views/components/view/asumsi_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/view/data_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/view/interest.dart';
 import '../controllers/input_keuangan_controller.dart';
 
 class LihatInputKeuanganView extends GetView<InputKeuanganController> {

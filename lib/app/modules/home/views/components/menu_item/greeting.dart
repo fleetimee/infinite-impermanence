@@ -1,8 +1,8 @@
 // 🐦 Flutter imports:
-import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wave/config.dart';

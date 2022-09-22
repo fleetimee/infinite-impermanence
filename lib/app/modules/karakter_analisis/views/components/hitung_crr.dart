@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 
 class HitungCrr extends StatelessWidget {
@@ -89,7 +89,7 @@ class HitungCrr extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     enabled: false,
-                    initialValue: controller.uletDalamBisnis.value.toString(),
+                    initialValue: controller.crrUlet.value.toString(),
                     name: 'Keuletan CRR',
                     decoration: InputDecoration(
                       border: const OutlineInputBorder(),

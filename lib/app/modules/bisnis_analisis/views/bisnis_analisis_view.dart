@@ -1,19 +1,20 @@
 // ignore_for_file: avoid_print
 
-// 🐦 Flutter imports:
+// 🎯 Dart imports:
 import 'dart:convert';
 
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/bisnis_analisis/views/components/hitung_crr_bisnis.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/bisnis_analisis/views/components/hitung_crr_bisnis.dart';
 import '../controllers/bisnis_analisis_controller.dart';
 
 class BisnisAnalisisView extends GetView<BisnisAnalisisController> {

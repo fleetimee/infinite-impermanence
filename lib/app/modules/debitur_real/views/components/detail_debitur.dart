@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/debitur_real/views/components/jenis_usaha/jenis_usaha.dart';
+import 'package:akm/app/modules/debitur_real/views/components/printing/printing_tile.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,7 +12,6 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../../../../common/style.dart';
 import '../../../../models/debtor.dart';
-import '../../../../routes/app_pages.dart';
 import '../../controllers/debitur_real_controller.dart';
 import 'bisnis/analisa_bisnis.dart';
 import 'data_pribadi/data_pribadi.dart';
@@ -92,13 +93,15 @@ class DetailDebitur extends StatelessWidget {
                           AnalisaBisnisTile(debtor: debtor),
                         ],
                       ),
-                      const ExpansionTile(
+                      ExpansionTile(
                         initiallyExpanded: true,
-                        title: Text(
+                        title: const Text(
                           'C. JENIS USAHA',
                           style: TextStyle(fontWeight: FontWeight.w800),
                         ),
-                        children: [],
+                        children: [
+                          AnalisaJenisUsahaTile(debtor: debtor),
+                        ],
                       ),
                     ],
                   ),
@@ -133,71 +136,7 @@ class DetailDebitur extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ExpansionTile(
-                    title: const Text('Berkas untuk di print'),
-                    leading: const Icon(
-                      FontAwesomeIcons.print,
-                    ),
-                    children: [
-                      ListTile(
-                        title: const Text('Print Keuangan'),
-                        onTap: () {
-                          debtor.analisaKeuangan == null
-                              ? Get.snackbar(
-                                  'Gagal',
-                                  'Data Analisa Keuangan Belum Lengkap',
-                                  backgroundColor: Colors.red,
-                                  colorText: Colors.white,
-                                )
-                              : Get.toNamed(
-                                  Routes.KEUANGAN_PRINT,
-                                  arguments: debtor,
-                                );
-                        },
-                        trailing: debtor.analisaKeuangan == null
-                            ? const Text('Not Ready 😭')
-                            : const Text('Ready 👍'),
-                      ),
-                      ListTile(
-                        title: const Text('Print Bisnis'),
-                        onTap: () {
-                          debtor.analisaBisnis == null
-                              ? Get.snackbar(
-                                  'Gagal',
-                                  'Data Analisa Bisnis Belum Lengkap',
-                                  backgroundColor: Colors.red,
-                                  colorText: Colors.white,
-                                )
-                              : Get.toNamed(
-                                  Routes.BISNIS_PRINT,
-                                  arguments: debtor,
-                                );
-                        },
-                        trailing: debtor.analisaKeuangan == null
-                            ? const Text('Not Ready 😭')
-                            : const Text('Ready 👍'),
-                      ),
-                      ListTile(
-                        title: const Text('Print Karakter'),
-                        onTap: () {
-                          debtor.analisaKarakter == null
-                              ? Get.snackbar(
-                                  'Gagal',
-                                  'Data Analisa Karakter Belum Lengkap',
-                                  backgroundColor: Colors.red,
-                                  colorText: Colors.white,
-                                )
-                              : Get.toNamed(
-                                  Routes.KARAKTER_PRINT,
-                                  arguments: debtor,
-                                );
-                        },
-                        trailing: debtor.analisaKarakter == null
-                            ? const Text('Not Ready 😭')
-                            : const Text('Ready 👍'),
-                      ),
-                    ],
-                  ),
+                  PrintingTile(debtor: debtor),
                 ],
               ),
       ),

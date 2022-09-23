@@ -37,6 +37,7 @@ abstract class Routes {
   static const KEUANGAN_PRINT = _Paths.KEUANGAN_PRINT;
   static const BISNIS_PRINT = _Paths.BISNIS_PRINT;
   static const KARAKTER_PRINT = _Paths.KARAKTER_PRINT;
+  static const USAHA_ANALISIS = _Paths.USAHA_ANALISIS;
 }
 
 abstract class _Paths {
@@ -72,4 +73,5 @@ abstract class _Paths {
   static const KEUANGAN_PRINT = '/print-keuangan';
   static const BISNIS_PRINT = '/print-bisnis';
   static const KARAKTER_PRINT = '/print-karakter';
+  static const USAHA_ANALISIS = '/usaha-analisis';
 }

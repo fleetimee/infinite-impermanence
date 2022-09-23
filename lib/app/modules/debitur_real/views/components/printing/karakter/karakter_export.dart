@@ -25,12 +25,13 @@ Future<Uint8List> makeAnalisaKarakterPdf(Debtor debtor) async {
 
   final pdf = Document(
     theme: myTheme,
-    title: 'Analisa Bisnis',
+    title: 'Analisa Karakter',
     author: 'fleetime',
     compress: true,
     creator: 'fleetime',
     pageMode: PdfPageMode.fullscreen,
     version: PdfVersion.pdf_1_5,
+    producer: 'fleetime',
   );
 
   // logo
@@ -672,8 +673,9 @@ Future<Uint8List> makeAnalisaKarakterPdf(Debtor debtor) async {
                         SizedBox.shrink(),
                         SizedBox.shrink(),
                         textUmurBold('Jumlah'),
-                        textUmurBold(
-                            debtor.analisaKarakter!.scorePendidikan.toString()),
+                        textUmurBold(debtor
+                            .analisaKarakter!.scoreLamanyaBerusaha
+                            .toString()),
                         SizedBox.shrink(),
                         SizedBox.shrink(),
                         SizedBox.shrink(),

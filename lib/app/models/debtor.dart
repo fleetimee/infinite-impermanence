@@ -48,6 +48,7 @@ class Debtor {
     this.analisaKeuangan,
     this.analisaBisnis,
     this.analisaKarakter,
+    this.analisaJenisUsaha,
     this.createdBy,
   });
 
@@ -84,6 +85,7 @@ class Debtor {
   AnalisaKeuangan? analisaKeuangan;
   AnalisaBisnis? analisaBisnis;
   AnalisaKarakter? analisaKarakter;
+  AnalisaJenisUsaha? analisaJenisUsaha;
   dynamic createdBy;
 
   factory Debtor.fromJson(Map<String, dynamic> json) => Debtor(
@@ -132,6 +134,9 @@ class Debtor {
         analisaKarakter: json["analisaKarakter"] == null
             ? null
             : AnalisaKarakter.fromJson(json["analisaKarakter"]),
+        analisaJenisUsaha: json["analisaJenisUsaha"] == null
+            ? null
+            : AnalisaJenisUsaha.fromJson(json["analisaJenisUsaha"]),
         createdBy: json["createdBy"],
       );
 
@@ -173,6 +178,8 @@ class Debtor {
         "analisaBisnis": analisaBisnis == null ? null : analisaBisnis?.toJson(),
         "analisaKarakter":
             analisaKarakter == null ? null : analisaKarakter?.toJson(),
+        "analisaJenisUsaha":
+            analisaJenisUsaha == null ? null : analisaJenisUsaha?.toJson(),
         "createdBy": createdBy,
       };
 }
@@ -246,6 +253,27 @@ class AnalisaBisnis {
         "keterangan_kualitas": keteranganKualitas,
         "deskripsi_bisnis": deskripsiBisnis,
         "hasil_crr_bisnis": hasilCrrBisnis,
+      };
+}
+
+class AnalisaJenisUsaha {
+  AnalisaJenisUsaha({
+    this.id,
+    this.totalCrrUsaha,
+  });
+
+  int? id;
+  int? totalCrrUsaha;
+
+  factory AnalisaJenisUsaha.fromJson(Map<String, dynamic> json) =>
+      AnalisaJenisUsaha(
+        id: json["id"] ?? null,
+        totalCrrUsaha: json["total_crr_usaha"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "total_crr_usaha": totalCrrUsaha ?? null,
       };
 }
 

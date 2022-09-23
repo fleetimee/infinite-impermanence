@@ -919,5 +919,38 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "8abd3374-922a-47e1-be53-b8816bd4ef2e",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "941a0b4e-7b93-4dea-8bf7-b0a3dbafdc54",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/analisa-jenis-usaha",
+    "method": "GET",
+    "sortNum": 470000,
+    "created": "2022-09-23T07:21:46.981Z",
+    "modified": "2022-09-23T07:22:13.899Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9b31414b-b948-452f-902d-4b82c3b96b75",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "941a0b4e-7b93-4dea-8bf7-b0a3dbafdc54",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/analisa-jenis-usaha",
+    "method": "POST",
+    "sortNum": 480000,
+    "created": "2022-09-23T07:22:21.913Z",
+    "modified": "2022-09-23T07:23:40.932Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"total_crr_usaha\": 85,\n  \"debitur\": 99\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

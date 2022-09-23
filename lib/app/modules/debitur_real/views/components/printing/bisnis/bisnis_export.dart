@@ -8,7 +8,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
- import '../../../../../../models/debtor.dart';
+import '../../../../../../models/debtor.dart';
 
 // 📦 Package imports:
 
@@ -101,7 +101,7 @@ Future<Uint8List> makeAnalisaBisnisPdf(Debtor debtor) async {
                 ),
               ),
               defaultVerticalAlignment: TableCellVerticalAlignment.full,
-              tableWidth: TableWidth.max,
+              tableWidth: TableWidth.min,
               children: [
                 TableRow(
                   children: [

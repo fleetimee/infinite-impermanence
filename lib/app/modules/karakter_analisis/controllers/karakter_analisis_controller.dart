@@ -169,7 +169,25 @@ class KarakterAnalisisController extends GetxController {
     if (parseUmur > 50) {
       if (parseUmur <= 55) {
         final firstCount = parseUmur - 51;
-        final secondCount = firstCount / 10 * 10 + 71;
+        final secondCount = firstCount / 5 * 10 + 71;
+        scoreUmur.value = secondCount;
+      } else {
+        scoreUmur.value = 0.0;
+      }
+      debugPrint('Score Umur: ${scoreUmur.value}');
+      finalScoreUmur.value = scoreUmur.value;
+
+      crrUmur.value = showFewerDecimalPplaces(scoreUmur.value * 0.05);
+    } else {
+      scoreUmur.value = 0.0;
+    }
+
+    // Umur 56 - 65
+    if (parseUmur > 55) {
+      if (parseUmur <= 65) {
+        final firstCount = parseUmur - 65;
+        final firstCountToPosivite = firstCount.abs();
+        final secondCount = firstCountToPosivite / 10 * 15 + 51;
         scoreUmur.value = secondCount;
       } else {
         scoreUmur.value = 0.0;

@@ -232,25 +232,458 @@ Future<Uint8List> makeAnalisaKarakterPdf(Debtor debtor) async {
                 ),
               ],
             ),
-            Table(
-                border: TableBorder.symmetric(
-                  inside: const BorderSide(
-                    color: PdfColors.grey,
-                    width: 0.1,
-                  ),
-                  outside: const BorderSide(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(height: 5),
+                Text(
+                  'Umur',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
                     color: PdfColors.black,
-                    width: 0.5,
                   ),
                 ),
-                defaultVerticalAlignment: TableCellVerticalAlignment.full,
-                tableWidth: TableWidth.min,
-                children: [
-                  TableRow(children: [
-                    titleTextNo('No'),
-                    titleTextNo('Data'),
-                  ])
-                ])
+                Table(
+                  // border: TableBorder.all(),
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.12),
+                    1: const FlexColumnWidth(0.2),
+                    2: const FlexColumnWidth(0.2),
+                    3: const FlexColumnWidth(0.2),
+                    4: const FlexColumnWidth(0.3),
+                    5: const FlexColumnWidth(0.3),
+                    6: const FlexColumnWidth(0.3),
+                    7: const FlexColumnWidth(0.5),
+                  },
+                  defaultVerticalAlignment: TableCellVerticalAlignment.full,
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        titleTextNo('NO'),
+                        titleTextNo('UMUR'),
+                        titleTextNo('NILAI'),
+                        titleTextNo('SCORE'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('1'),
+                        textUmur('21 - 30'),
+                        textUmur('61 - 70'),
+                        textUmur(int.parse(debtor.umur.toString()) > 20
+                            ? (int.parse(debtor.umur.toString()) <= 30)
+                                ? ((int.parse(debtor.umur.toString()) - 21) /
+                                            10 *
+                                            10 +
+                                        61)
+                                    .toStringAsFixed(0)
+                                : '-'
+                            : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('2'),
+                        textUmur('31 - 40'),
+                        textUmur('71 - 80'),
+                        textUmur(int.parse(debtor.umur.toString()) > 30
+                            ? (int.parse(debtor.umur.toString()) <= 40)
+                                ? ((int.parse(debtor.umur.toString()) - 31) /
+                                            10 *
+                                            10 +
+                                        71)
+                                    .toStringAsFixed(0)
+                                : '-'
+                            : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('3'),
+                        textUmur('41 - 50'),
+                        textUmur('81 - 90'),
+                        textUmur(int.parse(debtor.umur.toString()) > 40
+                            ? (int.parse(debtor.umur.toString()) <= 50)
+                                ? ((int.parse(debtor.umur.toString()) - 41) /
+                                            5 *
+                                            10 +
+                                        81)
+                                    .toStringAsFixed(0)
+                                : '-'
+                            : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('4'),
+                        textUmur('51 - 55'),
+                        textUmur('71 - 80'),
+                        textUmur(int.parse(debtor.umur.toString()) > 50
+                            ? (int.parse(debtor.umur.toString()) <= 55)
+                                ? ((int.parse(debtor.umur.toString()) - 51) /
+                                            5 *
+                                            10 +
+                                        71)
+                                    .toStringAsFixed(0)
+                                : '-'
+                            : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('5'),
+                        textUmur('56 - 65'),
+                        textUmur('51 - 65'),
+                        textUmur(int.parse(debtor.umur.toString()) > 55
+                            ? (int.parse(debtor.umur.toString()) <= 65)
+                                ? ((int.parse(debtor.umur.toString()) - 65)
+                                                .abs() /
+                                            10 *
+                                            15 +
+                                        51)
+                                    .toStringAsFixed(0)
+                                : '-'
+                            : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        textUmurBold('Jumlah'),
+                        textUmurBold(
+                            debtor.analisaKarakter!.scoreUmur.toString()),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(height: 5),
+                Text(
+                  'Pendidikan',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: PdfColors.black,
+                  ),
+                ),
+                Table(
+                  // border: TableBorder.all(),
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.12),
+                    1: const FlexColumnWidth(0.4),
+                    2: const FlexColumnWidth(0.2),
+                    3: const FlexColumnWidth(0.2),
+                    4: const FlexColumnWidth(0.3),
+                    5: const FlexColumnWidth(0.3),
+                    6: const FlexColumnWidth(0.3),
+                    7: const FlexColumnWidth(0.5),
+                  },
+                  defaultVerticalAlignment: TableCellVerticalAlignment.full,
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        titleTextNo('No'),
+                        titleTextNo('Pendidikan'),
+                        titleTextNo('Nilai'),
+                        titleTextNo('CRR'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('1'),
+                        textUmur('Tnp Pendidikan'),
+                        textUmur('60'),
+                        textUmur(
+                            debtor.pendidikan == 'Tidak Sekolah' ? '60' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('2'),
+                        textUmur('SD'),
+                        textUmur('70'),
+                        textUmur(debtor.pendidikan == 'SD' ? '70' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('3'),
+                        textUmur('SLTP'),
+                        textUmur('75'),
+                        textUmur(debtor.pendidikan == 'SLTP' ? '75' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('4'),
+                        textUmur('SLTA'),
+                        textUmur('80'),
+                        textUmur(debtor.pendidikan == 'SLTA' ? '80' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('5'),
+                        textUmur('D3'),
+                        textUmur('85'),
+                        textUmur(debtor.pendidikan == 'D3' ? '85' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('6'),
+                        textUmur('S1'),
+                        textUmur('90'),
+                        textUmur(debtor.pendidikan == 'S1' ? '90' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('7'),
+                        textUmur('S2'),
+                        textUmur('95'),
+                        textUmur(debtor.pendidikan == 'S2' ? '95' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('8'),
+                        textUmur('S3'),
+                        textUmur('95'),
+                        textUmur(debtor.pendidikan == 'S3' ? '95' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        textUmurBold('Jumlah'),
+                        textUmurBold(
+                            debtor.analisaKarakter!.scorePendidikan.toString()),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                  ],
+                ),
+                Container(height: 5),
+                Text(
+                  'Pengalaman dalam bisnis sejenis',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: PdfColors.black,
+                  ),
+                ),
+                Table(
+                  // border: TableBorder.all(),
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.12),
+                    1: const FlexColumnWidth(0.15),
+                    2: const FlexColumnWidth(0.2),
+                    3: const FlexColumnWidth(0.2),
+                    4: const FlexColumnWidth(0.3),
+                    5: const FlexColumnWidth(0.3),
+                    6: const FlexColumnWidth(0.3),
+                    7: const FlexColumnWidth(0.5),
+                  },
+                  defaultVerticalAlignment: TableCellVerticalAlignment.full,
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        titleTextNo('No'),
+                        titleTextNo('Tahun'),
+                        titleTextNo('Nilai'),
+                        titleTextNo('CRR'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('1'),
+                        textUmur('1'),
+                        textUmur('60'),
+                        textUmur(debtor.lamanyaBerusaha == 1 ? '60' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('2'),
+                        textUmur('2'),
+                        textUmur('65'),
+                        textUmur(debtor.lamanyaBerusaha == 2 ? '65' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('3'),
+                        textUmur('3'),
+                        textUmur('70'),
+                        textUmur(debtor.lamanyaBerusaha == 3 ? '70' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('4'),
+                        textUmur('4'),
+                        textUmur('75'),
+                        textUmur(debtor.lamanyaBerusaha == 4 ? '75' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('5'),
+                        textUmur('5'),
+                        textUmur('80'),
+                        textUmur(debtor.lamanyaBerusaha == 5 ? '80' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('6'),
+                        textUmur('6'),
+                        textUmur('85'),
+                        textUmur(debtor.lamanyaBerusaha == 6 ? '85' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('7'),
+                        textUmur('7'),
+                        textUmur('90'),
+                        textUmur(debtor.lamanyaBerusaha == 7 ? '90' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        alphabetText('8'),
+                        textUmur('8'),
+                        textUmur('95'),
+                        textUmur(debtor.lamanyaBerusaha == 8 ? '95' : '-'),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        textUmurBold('Jumlah'),
+                        textUmurBold(
+                            debtor.analisaKarakter!.scorePendidikan.toString()),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                        SizedBox.shrink(),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            )
           ],
         );
       },
@@ -589,6 +1022,37 @@ Future<Uint8List> makeAnalisaKarakterPdf(Debtor debtor) async {
 Widget titleTextNo(
   final String text, {
   final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
+Widget textUmur(
+  final String text, {
+  final TextAlign align = TextAlign.center,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 10,
+        ),
+      ),
+    );
+
+Widget textUmurBold(
+  final String text, {
+  final TextAlign align = TextAlign.right,
 }) =>
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),

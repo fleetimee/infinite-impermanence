@@ -2,13 +2,12 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../routes/app_pages.dart';
- import '../../../widget/drawer.dart';
+import '../../../common/style.dart';
+import '../../../routes/app_pages.dart';
+import '../../../widget/drawer.dart';
 
 class DebiturOnboardingView extends StatelessWidget {
   const DebiturOnboardingView({Key? key}) : super(key: key);
@@ -25,11 +24,6 @@ class DebiturOnboardingView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          SvgPicture.asset(
-            'assets/images/debitur_real/debitur_onboarding.svg',
-            height: 450,
-            fit: BoxFit.cover,
-          ),
           InkWell(
             onTap: () => Get.toNamed(Routes.ADD_DEBITUR),
             child: Stack(

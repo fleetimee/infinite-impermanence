@@ -3,7 +3,7 @@ import 'package:akm/app/modules/debitur_real/views/components/printing/karakter/
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view%20.dart';
+import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view.dart';
 import '../modules/debitur_real/views/components/printing/bisnis/bisnis_preview.dart';
 import '../modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
 import '../modules/input_keuangan/views/lihat_input_keuangan_view.dart';

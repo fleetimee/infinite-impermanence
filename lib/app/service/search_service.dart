@@ -11,10 +11,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
+import '../common/constant.dart';
+
+// 🌎 Project imports:
  import '../common/style.dart';
  import '../models/debtor.dart';
  import '../routes/app_pages.dart';
-import '../common/constant.dart';
 
 class SearchService {
   // Future<Debtor> searchNik(String noKtp1) async {

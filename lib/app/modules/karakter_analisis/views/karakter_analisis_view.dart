@@ -11,9 +11,11 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
-import 'components/hitung_crr.dart';
 import '../controllers/karakter_analisis_controller.dart';
+import 'components/hitung_crr.dart';
+
+// 🌎 Project imports:
+ import '../../../common/style.dart';
 
 class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
   KarakterAnalisisView({Key? key}) : super(key: key);

@@ -2,8 +2,10 @@
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../controllers/hitung_table/table1.dart';
 import '../controllers/porsekot_table_controller.dart';
+
+// 🌎 Project imports:
+ import '../controllers/hitung_table/table1.dart';
 
 class PorsekotTableBinding extends Binding {
   @override

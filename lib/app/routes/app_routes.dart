@@ -71,5 +71,5 @@ abstract class _Paths {
   static const EDIT_RUGI_LABA = '/edit-rugi-laba';
   static const KEUANGAN_PRINT = '/print-keuangan';
   static const BISNIS_PRINT = '/print-bisnis';
-  static const KARAKTER_PRINT = '/print-keuangan';
+  static const KARAKTER_PRINT = '/print-karakter';
 }

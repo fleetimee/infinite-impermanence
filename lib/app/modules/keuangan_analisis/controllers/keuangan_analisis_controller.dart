@@ -18,8 +18,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../service/analisa_keuangan_service.dart';
 import '../../../common/style.dart';
+
+// 🌎 Project imports:
+ import '../../../service/analisa_keuangan_service.dart';
 
 class KeuanganAnalisisController extends GetxController
     with GetSingleTickerProviderStateMixin {

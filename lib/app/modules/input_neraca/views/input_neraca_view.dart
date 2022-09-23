@@ -10,8 +10,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
 import '../controllers/input_neraca_controller.dart';
+
+// 🌎 Project imports:
+ import '../../../common/style.dart';
 
 class InputNeracaView extends GetView<InputNeracaController> {
   InputNeracaView({Key? key}) : super(key: key);

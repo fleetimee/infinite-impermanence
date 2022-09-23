@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 
 // 🌎 Project imports:
+import '../controllers/penghasilan_xtetap_controller.dart';
+
+// 🌎 Project imports:
  import '../../../common/style.dart';
  import '../../../widget/drawer.dart';
-import '../controllers/penghasilan_xtetap_controller.dart';
 
 class PenghasilanXtetapView extends GetView<PenghasilanXtetapController> {
   const PenghasilanXtetapView({Key? key}) : super(key: key);

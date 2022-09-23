@@ -9,10 +9,12 @@ import 'package:get/get.dart';
 import 'package:gif_view/gif_view.dart';
 
 // 🌎 Project imports:
+import '../controllers/pro_pengajuan_approve_controller.dart';
+
+// 🌎 Project imports:
  import '../../../common/style.dart';
  import '../../../widget/color_button.dart';
  import '../../../widget/drawer.dart';
-import '../controllers/pro_pengajuan_approve_controller.dart';
 
 class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {
   const ProPengajuanApproveView({Key? key}) : super(key: key);

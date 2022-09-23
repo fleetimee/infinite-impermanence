@@ -15,14 +15,16 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../controllers/keuangan_analisis_controller.dart';
 import 'components/analisa_ratio.dart';
 import 'components/angsuran.dart';
 import 'components/asumsi_keuangan.dart';
 import 'components/data_keuangan.dart';
 import 'components/hasil.dart';
 import 'components/tutorial.dart';
-import '../controllers/keuangan_analisis_controller.dart';
+
+// 🌎 Project imports:
+ import '../../../common/style.dart';
 
 class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   KeuanganAnalisisView({Key? key}) : super(key: key);

@@ -10,12 +10,14 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
+import '../controllers/agunan_controller.dart';
+import 'components/hitung_agunan.dart';
+import 'components/nilai_agunan.dart';
+
+// 🌎 Project imports:
  import '../../../common/style.dart';
  import '../../../widget/color_button.dart';
  import '../../../widget/drawer.dart';
-import 'components/hitung_agunan.dart';
-import 'components/nilai_agunan.dart';
-import '../controllers/agunan_controller.dart';
 
 class AgunanView extends GetView<AgunanController> {
   const AgunanView({Key? key}) : super(key: key);

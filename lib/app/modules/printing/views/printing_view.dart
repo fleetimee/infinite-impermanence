@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../widget/drawer.dart';
-import 'printing_detail_view_view.dart';
 import '../controllers/printing_controller.dart';
+import 'printing_detail_view_view.dart';
+
+// 🌎 Project imports:
+ import '../../../widget/drawer.dart';
 
 class PrintingView extends GetView<PrintingController> {
   const PrintingView({Key? key}) : super(key: key);

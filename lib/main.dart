@@ -9,9 +9,9 @@ import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
 
 // 🌎 Project imports:
+import 'app/routes/app_pages.dart';
 import 'app/themes/dark.dart';
 import 'app/themes/light.dart';
-import 'app/routes/app_pages.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

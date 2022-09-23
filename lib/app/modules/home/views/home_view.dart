@@ -6,9 +6,11 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../widget/drawer.dart';
-import 'components/home_menu.dart';
 import '../controllers/home_controller.dart';
+import 'components/home_menu.dart';
+
+// 🌎 Project imports:
+ import '../../../widget/drawer.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);

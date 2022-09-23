@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import '../controllers/search_nik_controller.dart';
+
+// 🌎 Project imports:
  import '../../../routes/app_pages.dart';
  import '../../../widget/color_button.dart';
-import '../controllers/search_nik_controller.dart';
 
 class SearchNikView extends GetView<SearchNikController> {
   const SearchNikView({Key? key}) : super(key: key);

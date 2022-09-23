@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-// ignore_for_file: file_names
 
 // 🎯 Dart imports:
 import 'dart:convert';
@@ -13,9 +12,11 @@ import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
-import 'components/lihat_hitung_crr_bisnis.dart';
 import '../controllers/bisnis_analisis_controller.dart';
+import 'components/lihat_hitung_crr_bisnis.dart';
+
+// 🌎 Project imports:
+import '../../../common/style.dart';
 
 class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
   LihatBisnisAnalisisView({Key? key}) : super(key: key);

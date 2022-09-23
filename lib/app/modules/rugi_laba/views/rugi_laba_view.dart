@@ -12,10 +12,12 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../controllers/rugi_laba_controller.dart';
 import 'components/perkiraan_neraca.dart';
 import 'components/perkiraan_rugi_laba.dart';
-import '../controllers/rugi_laba_controller.dart';
+
+// 🌎 Project imports:
+ import '../../../common/style.dart';
 
 class RugiLabaView extends GetView<RugiLabaController> {
   RugiLabaView({Key? key}) : super(key: key);

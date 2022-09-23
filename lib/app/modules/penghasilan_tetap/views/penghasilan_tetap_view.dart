@@ -8,9 +8,11 @@ import 'package:gif_view/gif_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import '../controllers/penghasilan_tetap_controller.dart';
+
+// 🌎 Project imports:
  import '../../../common/style.dart';
  import '../../../widget/drawer.dart';
-import '../controllers/penghasilan_tetap_controller.dart';
 
 class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
   const PenghasilanTetapView({Key? key}) : super(key: key);

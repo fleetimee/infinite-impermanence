@@ -60,7 +60,7 @@ class PrintingTile extends StatelessWidget {
                     arguments: debtor,
                   );
           },
-          trailing: debtor.analisaKeuangan == null
+          trailing: debtor.analisaBisnis == null
               ? const Text('Not Ready 😭')
               : const Text('Ready 👍'),
         ),
@@ -101,6 +101,16 @@ class PrintingTile extends StatelessWidget {
           trailing: debtor.analisaJenisUsaha == null
               ? const Text('Not Ready 😭')
               : const Text('Ready 👍'),
+        ),
+        ListTile(
+          title: const Text('Print Model'),
+          onTap: () {
+            Get.toNamed(
+              Routes.MODEL_PRINT,
+              arguments: debtor,
+            );
+          },
+          trailing: const Text('Ready 👍'),
         ),
       ],
     );

@@ -1,5 +1,6 @@
 // 📦 Package imports:
 import 'package:akm/app/modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
+import 'package:akm/app/modules/debitur_real/views/components/printing/model/model_preview.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -270,6 +271,11 @@ class AppPages {
     GetPage(
       name: _Paths.PRINT_USAHA,
       page: () => JenisUsahaPreview(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.PRINT_MODEL,
+      page: () => ModelPreview(),
       transition: Transition.cupertino,
     ),
   ];

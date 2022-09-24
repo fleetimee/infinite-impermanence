@@ -320,7 +320,7 @@ Future<Uint8List> makeAnalisaKarakterPdf(Debtor debtor) async {
                         textUmur(int.parse(debtor.umur.toString()) > 40
                             ? (int.parse(debtor.umur.toString()) <= 50)
                                 ? ((int.parse(debtor.umur.toString()) - 41) /
-                                            5 *
+                                            10 *
                                             10 +
                                         81)
                                     .toStringAsFixed(0)

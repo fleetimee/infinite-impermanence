@@ -952,5 +952,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "9aa42731-e7c5-4f0e-bd3c-2c4fae77870f",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "941a0b4e-7b93-4dea-8bf7-b0a3dbafdc54",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/analisa-jenis-usaha/1",
+    "method": "DELETE",
+    "sortNum": 490000,
+    "created": "2022-09-23T13:00:10.240Z",
+    "modified": "2022-09-23T13:00:18.124Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

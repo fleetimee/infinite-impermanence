@@ -8,17 +8,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 // 🌎 Project imports:
+import '../../../common/style.dart';
+import '../../../models/debtor.dart';
+import '../controllers/debitur_real_controller.dart';
 import 'components/detail_debitur.dart';
 
-// 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../models/debtor.dart';
- import '../controllers/debitur_real_controller.dart';
-
 // ignore_for_file: unnecessary_const
-
-
-
 
 class DebiturListView extends GetView<DebiturRealController> {
   const DebiturListView({Key? key}) : super(key: key);
@@ -96,8 +91,9 @@ class DebiturListView extends GetView<DebiturRealController> {
                                               return Container(
                                                 padding:
                                                     const EdgeInsets.symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 32),
+                                                  horizontal: 16,
+                                                  vertical: 32,
+                                                ),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.min,

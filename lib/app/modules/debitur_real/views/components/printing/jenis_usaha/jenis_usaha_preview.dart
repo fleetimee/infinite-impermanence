@@ -9,10 +9,10 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
-import 'bisnis_export.dart';
+import 'jenis_usaha_export.dart';
 
-class BisnisPreview extends StatelessWidget {
-  BisnisPreview({Key? key}) : super(key: key);
+class JenisUsahaPreview extends StatelessWidget {
+  JenisUsahaPreview({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
@@ -20,13 +20,11 @@ class BisnisPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Analisa Bisnis: ${data.peminjam1}'),
+        title: Text('Analisa Usaha: ${data.peminjam1}'),
         centerTitle: true,
       ),
       body: Theme(
-        data: Theme.of(context).copyWith(
-          primaryColor: primaryColor,
-        ),
+        data: Theme.of(context).copyWith(primaryColor: primaryColor),
         child: PdfPreview(
           dynamicLayout: true,
           canDebug: false,
@@ -41,7 +39,7 @@ class BisnisPreview extends StatelessWidget {
             )
           },
           pdfFileName: // date
-              '${DateFormat('dd-MM-yy').format(DateTime.now())}_BISNIS_${data.peminjam1}.pdf',
+              '${DateFormat('dd-MM-yy').format(DateTime.now())}_USAHA_${data.peminjam1}.pdf',
           onShared: (context) {
             Get.snackbar(
               'Berhasil',
@@ -51,7 +49,7 @@ class BisnisPreview extends StatelessWidget {
               colorText: Colors.white,
             );
           },
-          build: (context) => makeAnalisaBisnisPdf(data),
+          build: (context) => makeAnalisausahaPdf(data),
         ),
       ),
     );

@@ -1,9 +1,13 @@
-import 'package:akm/app/models/debtor.dart';
-import 'package:akm/app/routes/app_pages.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
+ import '../../../../../models/debtor.dart';
+ import '../../../../../routes/app_pages.dart';
 import '../../../../../common/style.dart';
 
 class AnalisaJenisUsahaTile extends StatelessWidget {
@@ -17,7 +21,6 @@ class AnalisaJenisUsahaTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
-      initiallyExpanded: true,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -51,25 +54,9 @@ class AnalisaJenisUsahaTile extends StatelessWidget {
                         foregroundColor: forButton2,
                       ),
                       onPressed: () {
-                        Get.toNamed(Routes.LIHAT_BISNIS_ANALISIS,
+                        Get.toNamed(Routes.LIHAT_USAHA_ANALISIS,
                             arguments: debtor);
                       },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10.0,
-                  ),
-                  Expanded(
-                    child: OutlinedButton.icon(
-                      icon: const Icon(FontAwesomeIcons.pencil),
-                      label: const Text(
-                        "Edit",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: forButton2,
-                      ),
-                      onPressed: () {},
                     ),
                   ),
                 ],

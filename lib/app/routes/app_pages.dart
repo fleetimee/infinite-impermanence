@@ -1,5 +1,9 @@
+// 📦 Package imports:
+import 'package:akm/app/modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
+import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -255,6 +259,18 @@ class AppPages {
       name: _Paths.USAHA_ANALISIS,
       page: () => UsahaAnalisisView(),
       binding: UsahaAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.LIHAT_USAHA_ANALISIS,
+      page: () => LihatUsahaAnalisisView(),
+      binding: UsahaAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.PRINT_USAHA,
+      page: () => JenisUsahaPreview(),
+      transition: Transition.cupertino,
     ),
   ];
 }

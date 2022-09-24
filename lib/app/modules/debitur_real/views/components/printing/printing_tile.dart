@@ -1,8 +1,12 @@
-import 'package:akm/app/models/debtor.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
+import '../../../../../models/debtor.dart';
 import '../../../../../routes/app_pages.dart';
 
 class PrintingTile extends StatelessWidget {
@@ -76,6 +80,25 @@ class PrintingTile extends StatelessWidget {
                   );
           },
           trailing: debtor.analisaKarakter == null
+              ? const Text('Not Ready 😭')
+              : const Text('Ready 👍'),
+        ),
+        ListTile(
+          title: const Text('Print Jenis Usaha'),
+          onTap: () {
+            debtor.analisaJenisUsaha == null
+                ? Get.snackbar(
+                    'Gagal',
+                    'Data Analisa Jenis Usaha Belum Lengkap',
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  )
+                : Get.toNamed(
+                    Routes.USAHA_PRINT,
+                    arguments: debtor,
+                  );
+          },
+          trailing: debtor.analisaJenisUsaha == null
               ? const Text('Not Ready 😭')
               : const Text('Ready 👍'),
         ),

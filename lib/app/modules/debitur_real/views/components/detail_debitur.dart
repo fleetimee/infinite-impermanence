@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_const
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/debitur_real/views/components/jenis_usaha/jenis_usaha.dart';
-import 'package:akm/app/modules/debitur_real/views/components/printing/printing_tile.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,6 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
+import 'jenis_usaha/jenis_usaha.dart';
+import 'printing/printing_tile.dart';
 import '../../../../common/style.dart';
 import '../../../../models/debtor.dart';
 import '../../controllers/debitur_real_controller.dart';
@@ -39,6 +39,7 @@ class DetailDebitur extends StatelessWidget {
         () => controller.loadingFetch.value
             ? const SizedBox()
             : ExpansionTile(
+                backgroundColor: secondaryColor,
                 initiallyExpanded: true,
                 title: const Text('Detail Debitur'),
                 children: [

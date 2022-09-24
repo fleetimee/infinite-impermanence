@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,8 +9,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../models/debtor.dart';
- import '../../../service/debtor_service.dart';
+ import '../../../common/style.dart';
+import '../../../models/debtor.dart';
+import '../../../service/debtor_service.dart';
 
 class DebiturRealController extends GetxController {
   // List<Debtor> listDebtor = [].obs;
@@ -176,9 +179,42 @@ class DebiturRealController extends GetxController {
 
   void filterDebtor() async {
     await FilterListDialog.display<Debtor>(
-      headlineText: 'Cari disini',
+      useSafeArea: true,
+      themeData: FilterListThemeData(
+        Get.context!,
+        choiceChipTheme: const ChoiceChipThemeData(
+          selectedBackgroundColor: primaryColor, elevation: 5,
+
+          // textStyle: TextStyle(color: Colors.black, fontSize: 12),
+        ),
+        headerTheme: const HeaderThemeData(
+          backgroundColor: primaryColor,
+          headerTextStyle: TextStyle(color: Colors.white, fontSize: 16),
+          searchFieldHintText: 'Cari Debitur',
+          closeIconColor: Colors.white,
+        ),
+        controlButtonBarTheme: ControlButtonBarThemeData(
+          Get.context!,
+          backgroundColor: secondaryColor,
+          controlButtonTheme: const ControlButtonThemeData(
+            primaryButtonBackgroundColor: primaryColor,
+          ),
+        ),
+        // Disable chip selection
+        // Change reset button
+        // Change apply button
+        // Change search bar
+        // Change search bar hint text
+        // Change search bar text style
+        // Change search bar text input type
+        // Change search bar text input action
+        // Disable chip selection
+        borderRadius: 20,
+      ),
+      backgroundColor: Colors.white,
       applyButtonText: 'Pilih',
       enableOnlySingleSelection: true,
+      barrierDismissible: false,
       Get.context!,
       hideSelectedTextCount: true,
       listData: finalDebtpr,

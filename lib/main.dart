@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
@@ -10,7 +11,6 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 
 // 🌎 Project imports:
 import 'app/routes/app_pages.dart';
-import 'app/themes/dark.dart';
 import 'app/themes/light.dart';
 
 Future<void> main() async {
@@ -44,7 +44,7 @@ Future<void> main() async {
       defaultTransition: Transition.cupertino,
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
-      darkTheme: darkTheme,
+      darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
       themeMode: ThemeMode.light,
       title: "Application",
       initialRoute: AppPages.INITIAL,

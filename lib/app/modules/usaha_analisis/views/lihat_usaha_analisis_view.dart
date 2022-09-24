@@ -7,11 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
 import '../controllers/usaha_analisis_controller.dart';
 
-class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
-  UsahaAnalisisView({Key? key}) : super(key: key);
+class LihatUsahaAnalisisView extends GetView<UsahaAnalisisController> {
+  LihatUsahaAnalisisView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
@@ -57,7 +56,10 @@ class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
                   FormBuilderTextField(
                     name: 'crr_jenis_usaha',
                     enabled: false,
-                    controller: controller.crrJenisUsaha,
+                    controller: controller.crrJenisUsaha =
+                        TextEditingController(
+                      text: data.analisaJenisUsaha.totalCrrUsaha.toString(),
+                    ),
                     decoration: const InputDecoration(
                         labelText: 'CRR Jenis Usaha',
                         border: OutlineInputBorder()),
@@ -65,40 +67,18 @@ class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
                   const SizedBox(
                     height: 20.0,
                   ),
-                  FormBuilderTextField(
-                    name: 'debiturId',
-                    controller: controller.debiturId = TextEditingController(
-                      text: data.id.toString(),
-                    ),
-                    enabled: false,
-                    decoration: const InputDecoration(
-                        labelText: 'Debitur', border: OutlineInputBorder()),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.add),
-                      label: const Text("Submit"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: const StadiumBorder(),
+                  Visibility(
+                    visible: false,
+                    child: FormBuilderTextField(
+                      name: 'debiturId',
+                      controller: controller.debiturId = TextEditingController(
+                        text: data.id.toString(),
                       ),
-                      onPressed: () {
-                        if (controller.formKey.currentState
-                                ?.saveAndValidate() ??
-                            false) {
-                          debugPrint(controller.formKey.currentState?.value
-                              .toString());
-                          controller.saveAnalisaUsaha();
-                        } else {
-                          debugPrint(controller.formKey.currentState?.value
-                              .toString());
-                          debugPrint('validation failed');
-                        }
-                      },
+                      enabled: false,
+                      decoration: const InputDecoration(
+                        labelText: 'Debitur',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                   ),
                 ],

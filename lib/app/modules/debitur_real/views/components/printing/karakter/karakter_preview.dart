@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,6 +8,7 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
+import '../../../../../../common/style.dart';
 import 'karakter_export.dart';
 
 class KarakterPreview extends StatelessWidget {
@@ -24,7 +24,9 @@ class KarakterPreview extends StatelessWidget {
         centerTitle: true,
       ),
       body: Theme(
-        data: Theme.of(context).copyWith(primaryColor: primaryColor),
+        data: Theme.of(context).copyWith(
+          primaryColor: primaryColor,
+        ),
         child: PdfPreview(
           dynamicLayout: true,
           canDebug: false,

@@ -112,6 +112,16 @@ class PrintingTile extends StatelessWidget {
           },
           trailing: const Text('Ready 👍'),
         ),
+        ListTile(
+          title: const Text('Print Surat Putusan'),
+          onTap: () {
+            Get.toNamed(
+              Routes.PUTUSAN_PRINT,
+              arguments: debtor,
+            );
+          },
+          trailing: const Text('Ready 👍'),
+        ),
       ],
     );
   }

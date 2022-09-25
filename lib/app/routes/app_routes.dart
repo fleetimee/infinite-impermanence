@@ -41,6 +41,7 @@ abstract class Routes {
   static const LIHAT_USAHA_ANALISIS = _Paths.LIHAT_USAHA_ANALISIS;
   static const USAHA_PRINT = _Paths.PRINT_USAHA;
   static const MODEL_PRINT = _Paths.PRINT_MODEL;
+  static const PUTUSAN_PRINT = _Paths.PRINT_PUTUSAN;
 }
 
 abstract class _Paths {
@@ -80,4 +81,5 @@ abstract class _Paths {
   static const LIHAT_USAHA_ANALISIS = '/lihat-usaha-analisis';
   static const PRINT_USAHA = '/print-usaha';
   static const PRINT_MODEL = '/print-model';
+  static const PRINT_PUTUSAN = '/print-putusan';
 }

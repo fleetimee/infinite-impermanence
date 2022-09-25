@@ -12,7 +12,7 @@ import 'menu_item/second_row.dart';
 import 'menu_item/third_row.dart';
 
 // 🌎 Project imports:
- import '../../controllers/home_controller.dart';
+import '../../controllers/home_controller.dart';
 
 class HomeMenu extends StatelessWidget {
   HomeMenu({
@@ -63,61 +63,61 @@ class HomeMenu extends StatelessWidget {
         ),
         const ThirdRow(),
         const SizedBox(
-          height: 20,
+          height: 40,
         ),
-        Obx(
-          () => Center(
-            // child: Text(
-            //   '${controller.isDarkModeEnabled.value ? 'Dark' : 'Light'} Mode',
-            // ),
-            child: Column(
-              children: [
-                Text(
-                  controller.isDarkModeEnabled.value
-                      ? 'Dark Mode (Beta)'
-                      : 'Light Mode',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: controller.isDarkModeEnabled.value
-                        ? Colors.white
-                        : Colors.black,
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Icon(
-                  controller.isDarkModeEnabled.value
-                      ? Icons.brightness_3
-                      : Icons.brightness_7,
-                  size: 30,
-                  color: controller.isDarkModeEnabled.value
-                      ? Colors.yellow
-                      : Colors.black,
-                ),
-              ],
-            ),
-          ),
-        ),
-        ObxValue(
-          (data) => Switch(
-            value: controller.isDarkModeEnabled.value,
-            onChanged: (val) {
-              controller.isDarkModeEnabled.value = val;
-              Get.changeThemeMode(
-                controller.isDarkModeEnabled.value
-                    ? ThemeMode.dark
-                    : ThemeMode.light,
-              );
-              controller.saveThemeStatus();
-            },
-          ),
-          false.obs,
-        ),
-        const SizedBox(
-          height: 20,
-        ),
+        // Obx(
+        //   () => Center(
+        //     // child: Text(
+        //     //   '${controller.isDarkModeEnabled.value ? 'Dark' : 'Light'} Mode',
+        //     // ),
+        //     child: Column(
+        //       children: [
+        //         Text(
+        //           controller.isDarkModeEnabled.value
+        //               ? 'Dark Mode (Beta)'
+        //               : 'Light Mode',
+        //           style: TextStyle(
+        //             fontSize: 20,
+        //             fontWeight: FontWeight.bold,
+        //             color: controller.isDarkModeEnabled.value
+        //                 ? Colors.white
+        //                 : Colors.black,
+        //           ),
+        //         ),
+        //         const SizedBox(
+        //           height: 20,
+        //         ),
+        //         Icon(
+        //           controller.isDarkModeEnabled.value
+        //               ? Icons.brightness_3
+        //               : Icons.brightness_7,
+        //           size: 30,
+        //           color: controller.isDarkModeEnabled.value
+        //               ? Colors.yellow
+        //               : Colors.black,
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),
+        // ObxValue(
+        //   (data) => Switch(
+        //     value: controller.isDarkModeEnabled.value,
+        //     onChanged: (val) {
+        //       controller.isDarkModeEnabled.value = val;
+        //       Get.changeThemeMode(
+        //         controller.isDarkModeEnabled.value
+        //             ? ThemeMode.dark
+        //             : ThemeMode.light,
+        //       );
+        //       controller.saveThemeStatus();
+        //     },
+        //   ),
+        //   false.obs,
+        // ),
+        // const SizedBox(
+        //   height: 20,
+        // ),
         Obx(
           () => Text(
             'Version 1.0.0',

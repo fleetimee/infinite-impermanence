@@ -189,7 +189,7 @@ Future<Uint8List> makeAnalisausahaPdf(Debtor debtor) async {
                   children: [
                     alphabetText('9'),
                     textUmur('Perdagangan'),
-                    contentIsi('70'),
+                    contentIsi('85'),
                     textUmurBold(
                       debtor.jenisUsaha == 'Perdagangan' ? '85' : '-',
                     ),

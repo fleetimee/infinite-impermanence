@@ -1,18 +1,20 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:terbilang_id/terbilang_id.dart';
 
 // 🌎 Project imports:
 import '../../../../../../models/debtor.dart';
 
 // 📦 Package imports:
 
-Future<Uint8List> makeModelPdf(Debtor debtor) async {
+Future<Uint8List> makePutusanPdf(Debtor debtor) async {
   var myTheme = ThemeData.withFont(
     base: Font.ttf(await rootBundle.load('assets/fonts/times-new-roman.ttf')),
     bold: Font.ttf(
@@ -48,186 +50,128 @@ Future<Uint8List> makeModelPdf(Debtor debtor) async {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            Table(
+              border: TableBorder.symmetric(
+                outside: const BorderSide(
+                  color: PdfColors.black,
+                  width: 1,
+                ),
+              ),
+              columnWidths: {
+                0: const FlexColumnWidth(1),
+                1: const FlexColumnWidth(0.2),
+                2: const FlexColumnWidth(1),
+              },
+              tableWidth: TableWidth.max,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                TableRow(
                   children: [
-                    Text(
-                      'Model',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        color: PdfColors.blue900,
-                      ),
+                    SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: Image(imageLogo),
                     ),
-                    // Text(debtor.peminjam1.toString()),
-                    Text(
-                      '${debtor.peminjam1}',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: PdfColors.black,
+                    SizedBox.shrink(),
+                    Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(1),
+                        1: const FlexColumnWidth(0.85),
+                      },
+                      border: TableBorder.symmetric(
+                        outside: const BorderSide(
+                          color: PdfColors.black,
+                          width: 1,
+                        ),
                       ),
+                      children: [
+                        TableRow(
+                          children: [
+                            textUmur('Tgl rapat komite kredit'),
+                            textUmurR('March 2022')
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textUmur('Nomor MKK'),
+                            textUmurR('MKK/2021/03/01')
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textUmur('No SKPK'),
+                            textUmurR('SKPK/2021/03/01')
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
-                Spacer(),
-                SizedBox(
-                  height: 175,
-                  width: 175,
-                  child: Image(imageLogo),
+                TableRow(
+                  children: [
+                    Text('.'),
+                    SizedBox.shrink(),
+                    SizedBox.shrink(),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    SizedBox.shrink(),
+                    SizedBox.shrink(),
+                    textUmurRB('PUTUSAN KREDIT'),
+                  ],
                 ),
               ],
             ),
-            Container(height: 15),
             Table(
               border: TableBorder.symmetric(
                 outside: const BorderSide(
                   color: PdfColors.black,
-                  width: 0.5,
+                  width: 1,
                 ),
               ),
-              children: [
-                TableRow(
-                  children: [
-                    contentText('MODEL PARAMETER YANG DIGUNAKAN'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    contentText('(Kredit Mikro)'),
-                  ],
-                ),
-              ],
-              tableWidth: TableWidth.max,
-            ),
-            Container(height: 15),
-            Table(
-              border: TableBorder.symmetric(
-                outside: const BorderSide(
-                  color: PdfColors.black,
-                  width: 0.5,
-                ),
-              ),
+              // border: TableBorder.all(),
               columnWidths: {
-                0: const FlexColumnWidth(0.15),
+                0: const FlexColumnWidth(0.3),
                 1: const FlexColumnWidth(1),
-                2: const FlexColumnWidth(0.5),
-                3: const FlexColumnWidth(1),
               },
+              tableWidth: TableWidth.max,
               children: [
                 TableRow(
                   children: [
-                    titleTextNo('NO'),
-                    textUmurBold('PARAMETER RESIKO YANG DIUKUR'),
-                    textUmurBold('Bobot (%)'),
-                    SizedBox.shrink(),
+                    textDeskripsiNoBold('Nama Pemohon'),
+                    textDeskripsi(debtor.peminjam1.toString()),
                   ],
                 ),
                 TableRow(
                   children: [
-                    SizedBox.shrink(),
-                    SizedBox.shrink(),
-                    textUmurBold('(dgn agunan)'),
-                    SizedBox.shrink(),
+                    textDeskripsiNoBold('Alamat'),
+                    textDeskripsi(debtor.alamat1.toString()),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    textDeskripsiNoBold('Jenis Kredit'),
+                    textDeskripsi(
+                        debtor.inputKeuangan?.digunakanUntuk.toString() ?? ''),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    textDeskripsiNoBold('Plafon Kredit'),
+                    textDeskripsi(
+                      "Rp ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString())).text} ( ${Terbilang().terbilang(double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()))} Rupiah )",
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    textDeskripsiNoBold('Kolektabilitas'),
+                    textDeskripsi(
+                      "Lancar",
+                    ),
                   ],
                 ),
               ],
-              tableWidth: TableWidth.max,
-            ),
-            Table(
-              columnWidths: {
-                0: const FlexColumnWidth(0.15),
-                1: const FlexColumnWidth(1),
-                2: const FlexColumnWidth(0.5),
-                3: const FlexColumnWidth(1),
-              },
-              children: [
-                TableRow(
-                  children: [
-                    alphabetText('1'),
-                    textUmur('Jenis Usaha'),
-                    contentIsi('10'),
-                    SizedBox.shrink(),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    alphabetText('2'),
-                    textUmur('Karakter'),
-                    contentIsi('30'),
-                    SizedBox.shrink(),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    alphabetText('3'),
-                    textUmur('Usaha Bisnis'),
-                    contentIsi('25'),
-                    SizedBox.shrink(),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    alphabetText('4'),
-                    textUmur('Keuangan'),
-                    contentIsi('25'),
-                    SizedBox.shrink(),
-                  ],
-                ),
-                TableRow(children: [
-                  alphabetText('5'),
-                  textUmur('Agunan'),
-                  contentIsi('10'),
-                  SizedBox.shrink(),
-                ]),
-              ],
-              tableWidth: TableWidth.max,
-            ),
-            Table(
-              columnWidths: {
-                0: const FlexColumnWidth(0.15),
-                1: const FlexColumnWidth(1),
-                2: const FlexColumnWidth(0.5),
-                3: const FlexColumnWidth(1),
-              },
-              border: TableBorder.symmetric(
-                outside: const BorderSide(
-                  color: PdfColors.black,
-                  width: 0.5,
-                ),
-              ),
-              children: [
-                TableRow(
-                  children: [
-                    SizedBox.shrink(),
-                    total('Total'),
-                    contentIsi('100'),
-                    SizedBox.shrink(),
-                  ],
-                ),
-              ],
-              tableWidth: TableWidth.max,
-            ),
-            Table(
-              columnWidths: {
-                0: const FlexColumnWidth(0.15),
-                1: const FlexColumnWidth(1),
-                2: const FlexColumnWidth(0.5),
-                3: const FlexColumnWidth(1),
-              },
-              children: [
-                TableRow(
-                  children: [
-                    SizedBox.shrink(),
-                    passingGrade('Passing Grade'),
-                    contentIsi('65'),
-                    SizedBox.shrink(),
-                  ],
-                ),
-              ],
-              tableWidth: TableWidth.max,
             ),
           ],
         );
@@ -297,6 +241,68 @@ Widget textUmur(
         textAlign: align,
         style: const TextStyle(
           fontSize: 10,
+        ),
+      ),
+    );
+
+Widget textDeskripsiNoBold(
+  final String text, {
+  final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 11,
+        ),
+      ),
+    );
+
+Widget textDeskripsi(
+  final String text, {
+  final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
+Widget textUmurR(
+  final String text, {
+  final TextAlign align = TextAlign.right,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 10,
+        ),
+      ),
+    );
+
+Widget textUmurRB(
+  final String text, {
+  final TextAlign align = TextAlign.right,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: TextStyle(
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

@@ -1,19 +1,17 @@
 // 🐦 Flutter imports:
-import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:nekos/nekos.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: unnecessary_overrides
 
 class HomeController extends GetxController {
   @override
   void onInit() async {
-    _getThemeStatus();
+    // _getThemeStatus();
     super.onInit();
   }
 
@@ -44,19 +42,19 @@ class HomeController extends GetxController {
     return format.format(date);
   }
 
-  final Future<SharedPreferences> initPref = SharedPreferences.getInstance();
+  // final Future<SharedPreferences> initPref = SharedPreferences.getInstance();
 
-  saveThemeStatus() async {
-    SharedPreferences pref = await initPref;
-    pref.setBool('theme', isDarkModeEnabled.value);
-  }
+  // saveThemeStatus() async {
+  //   SharedPreferences pref = await initPref;
+  //   pref.setBool('theme', isDarkModeEnabled.value);
+  // }
 
-  _getThemeStatus() async {
-    var isLight = initPref.then((SharedPreferences prefs) {
-      return prefs.getBool('theme') ?? true;
-    }).obs;
-    isDarkModeEnabled.value = (await isLight.value);
-    Get.changeThemeMode(
-        isDarkModeEnabled.value ? ThemeMode.dark : ThemeMode.light);
-  }
+  // _getThemeStatus() async {
+  //   var isLight = initPref.then((SharedPreferences prefs) {
+  //     return prefs.getBool('theme') ?? true;
+  //   }).obs;
+  //   isDarkModeEnabled.value = (await isLight.value);
+  //   Get.changeThemeMode(
+  //       isDarkModeEnabled.value ? ThemeMode.dark : ThemeMode.light);
+  // }
 }

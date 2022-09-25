@@ -1,8 +1,11 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/modules/debitur_real/views/components/printing/print_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 // 📦 Package imports:
 import 'package:pdf/pdf.dart';
@@ -35,6 +38,8 @@ Future<Uint8List> makePutusanPdf(Debtor debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
+  final controller = Get.put(DebiturRealController());
+
   // logo
   final imageLogo = MemoryImage(
       (await rootBundle.load('assets/images/pdf/logo.png'))
@@ -50,6 +55,7 @@ Future<Uint8List> makePutusanPdf(Debtor debtor) async {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Header
             Table(
               border: TableBorder.symmetric(
                 outside: const BorderSide(
@@ -122,6 +128,7 @@ Future<Uint8List> makePutusanPdf(Debtor debtor) async {
                 ),
               ],
             ),
+            // Detail Debitur
             Table(
               border: TableBorder.symmetric(
                 outside: const BorderSide(
@@ -131,7 +138,7 @@ Future<Uint8List> makePutusanPdf(Debtor debtor) async {
               ),
               // border: TableBorder.all(),
               columnWidths: {
-                0: const FlexColumnWidth(0.3),
+                0: const FlexColumnWidth(0.45),
                 1: const FlexColumnWidth(1),
               },
               tableWidth: TableWidth.max,
@@ -173,6 +180,423 @@ Future<Uint8List> makePutusanPdf(Debtor debtor) async {
                 ),
               ],
             ),
+            // Konten
+            Table(
+              // border: TableBorder.all(),
+              border: TableBorder.symmetric(
+                outside: const BorderSide(
+                  color: PdfColors.black,
+                  width: 1,
+                ),
+              ),
+              columnWidths: {},
+              tableWidth: TableWidth.max,
+              children: [
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    contentText(
+                        'DISETUJUI: Untuk Kredit Baru Atas Nama ${debtor.peminjam1}'),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    textUmurL(
+                        'Dalam hal ini agar diperhatikan bentuk persyaratan baku sebagai berikut : ')
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.07),
+                        1: const FlexColumnWidth(0.38),
+                        2: const FlexColumnWidth(1),
+                      },
+                      tableWidth: TableWidth.max,
+                      children: [
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('1.'),
+                            textDeskripsiNoBold("Debitur"),
+                            textDeskripsiNoBold("1. ${debtor.peminjam1}"),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            SizedBox.shrink(),
+                            SizedBox.shrink(),
+                            textDeskripsiNoBold("2. ${debtor.peminjam2}"),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('2.'),
+                            textDeskripsiNoBold("Pemilik Agunan"),
+                            textDeskripsiNoBold("${debtor.pemilikAgunan1}"),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('3.'),
+                            textDeskripsiNoBold("Plafon Kredit"),
+                            textDeskripsiNoBold(
+                              "Rp ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString())).text} ( ${Terbilang().terbilang(double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()))} Rupiah )",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('4.'),
+                            textDeskripsiNoBold("Keperluan Kredit"),
+                            textDeskripsiNoBold(
+                              debtor.inputKeuangan!.digunakanUntuk.toString(),
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('5.'),
+                            textDeskripsiNoBold("Jenis Kredit"),
+                            textDeskripsiNoBold(
+                              "UMKM/${double.parse(debtor.inputRugiLaba!.omzet.toString()) <= 100000000 ? "Mikro" : "Kecil"}/Angsuran Tetap/${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 25000000 ? "KUR Kecil" : "KUR Mikro"}",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('6.'),
+                            textDeskripsiNoBold("Jangka Waktu"),
+                            textDeskripsiNoBold(
+                              "${debtor.inputKeuangan!.angsuran.toString()} (${Terbilang().terbilang(double.parse(debtor.inputKeuangan!.angsuran.toString()))}) Bulan",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('7.'),
+                            textDeskripsiNoBold("Angsuran per bulan"),
+                            textDeskripsiNoBold(
+                              "Bulan 1 - ${int.parse(debtor.inputKeuangan!.angsuran!.toString()) - 1} :                Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            SizedBox.shrink(),
+                            SizedBox.shrink(),
+                            textDeskripsiNoBold(
+                              "Bulan ${int.parse(debtor.inputKeuangan!.angsuran!.toString())}      :                Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('8.'),
+                            textDeskripsiNoBold("Bunga kredit"),
+                            textDeskripsiNoBold(
+                              "${debtor.inputKeuangan!.bungaPerTahun.toString()}% efektif floating rate per tahun",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('9.'),
+                            textDeskripsiNoBold("Denda"),
+                            textDeskripsiNoBold(
+                              "50% dari suku bunga yang berlaku",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('10.'),
+                            textDeskripsiNoBold("Denda Pelunasan"),
+                            textDeskripsiNoBold(
+                              "-",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('11.'),
+                            textDeskripsiNoBold("Provisi Kredit"),
+                            textDeskripsiNoBold(
+                              "-",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('12.'),
+                            textDeskripsiNoBold("Biaya Administrasi"),
+                            textDeskripsiNoBold(
+                              "-",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('13.'),
+                            textDeskripsiNoBold("Biaya Materai"),
+                            textDeskripsiNoBold(
+                              "Sesuai ketentuan",
+                            ),
+                          ],
+                        ),
+
+                        // TODO AGUNAN
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('14.'),
+                            textDeskripsiNoBold("Agunan I"),
+                            textDeskripsiNoBold(
+                              "-",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold(''),
+                            textDeskripsiNoBold("Agunan II"),
+                            textDeskripsiNoBold(
+                              "-",
+                            ),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold('15.'),
+                            textDeskripsiNoBold("Syarat lain :"),
+                            textDeskripsiNoBold(
+                              "",
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.054),
+                        1: const FlexColumnWidth(0.6),
+                        2: const FlexColumnWidth(0.4),
+                      },
+                      tableWidth: TableWidth.max,
+                      children: [
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold(''),
+                            textDeskripsiNoBold(
+                                "a. Bukti kepemilikan agunan asli disimpan di Bank"),
+                            SizedBox.shrink(),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold(''),
+                            textDeskripsiNoBold(
+                                "b. Telah lolos verifikasi SIKP di Kementrian"),
+                            SizedBox.shrink(),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textDeskripsiNoBold(''),
+                            textDeskripsiNoBold(
+                                "c. Memiliki rekening tabungan di PT. BANK BPD DIY"),
+                            SizedBox.shrink(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Table(
+                      // columnWidths: {
+                      //   0: const FlexColumnWidth(0.054),
+                      //   1: const FlexColumnWidth(0.6),
+                      //   2: const FlexColumnWidth(0.4),
+                      // },
+                      tableWidth: TableWidth.max,
+                      children: [
+                        TableRow(
+                          children: [
+                            // textDeskripsiNoBold(''),
+                            center("Yogyakarta, March 2022"),
+                            // SizedBox.shrink(),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            // Footer
+            Table(
+              border: TableBorder.symmetric(
+                outside: const BorderSide(
+                  color: PdfColors.black,
+                  width: 1,
+                ),
+              ),
+              // border: TableBorder.all(),
+              columnWidths: {},
+              tableWidth: TableWidth.max,
+              children: [
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    center(controller.faker.name.fullName()),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    center('Pemimpin Cabang Pembantu'),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+                TableRow(
+                  children: [
+                    Text(
+                      '.',
+                      style: const TextStyle(color: PdfColors.white),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         );
       },
@@ -180,320 +604,4 @@ Future<Uint8List> makePutusanPdf(Debtor debtor) async {
   );
 
   return pdf.save();
-}
-
-Widget passingGrade(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget total(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget titleTextNo(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget textUmur(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget textDeskripsiNoBold(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 11,
-        ),
-      ),
-    );
-
-Widget textDeskripsi(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget textUmurR(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget textUmurRB(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 11,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget textUmurBold(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget contentIsi(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget scoreText(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-      ),
-    );
-
-Widget contentTextKarakter(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget alphabetText(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget descText(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 12,
-        ),
-      ),
-    );
-
-Widget headerText(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget numberText(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget contentText(
-  final String text, {
-  final TextAlign align = TextAlign.center,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget paddedTextDescription(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        text,
-        textAlign: align,
-      ),
-    );
-
-Widget paddedTextDescriptionBold(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-
-Widget paddedTextBold(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-// convert int? to num
-num toNum(int? value) {
-  if (value == null) {
-    return 0;
-  } else {
-    return value;
-  }
-}
-
-// convert int to double
-double toDouble(int value) {
-  return value.toDouble();
 }

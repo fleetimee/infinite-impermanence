@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,7 +10,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../../../common/style.dart';
 import '../../../models/debtor.dart';
 import '../../../service/debtor_service.dart';
 
@@ -215,6 +216,7 @@ class DebiturRealController extends GetxController {
       applyButtonText: 'Pilih',
       enableOnlySingleSelection: true,
       barrierDismissible: false,
+      selectedItemsText: 'Debitur Terpilih',
       Get.context!,
       hideSelectedTextCount: true,
       listData: finalDebtpr,
@@ -229,10 +231,20 @@ class DebiturRealController extends GetxController {
         debugPrint('selected: $list');
         update();
 
+        Get.snackbar(
+          '${list[0].peminjam1}',
+          'Dipilih',
+          snackPosition: SnackPosition.bottom,
+          backgroundColor: primaryColor,
+          colorText: Colors.white,
+        );
+
         Navigator.pop(Get.context!);
       },
     );
   }
+
+  final faker = Faker.instance;
 
   @override
   void onInit() {

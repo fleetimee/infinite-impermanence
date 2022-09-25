@@ -27,6 +27,26 @@ class PrintingTile extends StatelessWidget {
       ),
       children: [
         ListTile(
+          title: const Text('Print Surat Putusan'),
+          onTap: () {
+            Get.toNamed(
+              Routes.PUTUSAN_PRINT,
+              arguments: debtor,
+            );
+          },
+          trailing: const Text('Ready 👍'),
+        ),
+        ListTile(
+          title: const Text('Print Surat Usulan Baru'),
+          onTap: () {
+            Get.toNamed(
+              Routes.USULAN_BARU_PRINT,
+              arguments: debtor,
+            );
+          },
+          trailing: const Text('Ready 👍'),
+        ),
+        ListTile(
           title: const Text('Print Keuangan'),
           onTap: () {
             debtor.analisaKeuangan == null
@@ -107,16 +127,6 @@ class PrintingTile extends StatelessWidget {
           onTap: () {
             Get.toNamed(
               Routes.MODEL_PRINT,
-              arguments: debtor,
-            );
-          },
-          trailing: const Text('Ready 👍'),
-        ),
-        ListTile(
-          title: const Text('Print Surat Putusan'),
-          onTap: () {
-            Get.toNamed(
-              Routes.PUTUSAN_PRINT,
               arguments: debtor,
             );
           },

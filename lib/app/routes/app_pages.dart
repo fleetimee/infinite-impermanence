@@ -2,6 +2,7 @@
 import 'package:akm/app/modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
 import 'package:akm/app/modules/debitur_real/views/components/printing/model/model_preview.dart';
 import 'package:akm/app/modules/debitur_real/views/components/printing/putusan/putusan_preview.dart';
+import 'package:akm/app/modules/debitur_real/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -282,6 +283,11 @@ class AppPages {
     GetPage(
       name: _Paths.PRINT_PUTUSAN,
       page: () => PutusanPreview(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.PRINT_USULAN_BARU,
+      page: () => UsulanBaruPreview(),
       transition: Transition.cupertino,
     ),
   ];

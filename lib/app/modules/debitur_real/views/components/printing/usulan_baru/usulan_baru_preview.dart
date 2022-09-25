@@ -9,10 +9,10 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
-import 'putusan_export.dart';
+import 'usulan_baru_export.dart';
 
-class PutusanPreview extends StatelessWidget {
-  PutusanPreview({Key? key}) : super(key: key);
+class UsulanBaruPreview extends StatelessWidget {
+  UsulanBaruPreview({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
@@ -20,7 +20,7 @@ class PutusanPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Putusan: ${data.peminjam1}'),
+        title: Text('Usulan Baru: ${data.peminjam1}'),
         centerTitle: true,
       ),
       body: Theme(
@@ -39,7 +39,7 @@ class PutusanPreview extends StatelessWidget {
             )
           },
           pdfFileName: // date
-              '${DateFormat('dd-MM-yy').format(DateTime.now())}_PUTUSAN_${data.peminjam1}.pdf',
+              '${DateFormat('dd-MM-yy').format(DateTime.now())}_USULAN_BARU_${data.peminjam1}.pdf',
           onShared: (context) {
             Get.snackbar(
               'Berhasil',
@@ -49,7 +49,7 @@ class PutusanPreview extends StatelessWidget {
               colorText: Colors.white,
             );
           },
-          build: (context) => makePutusanPdf(data),
+          build: (context) => makeUsulanBaruPdf(data),
         ),
       ),
     );

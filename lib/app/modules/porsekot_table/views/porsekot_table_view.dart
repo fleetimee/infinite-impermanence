@@ -13,7 +13,7 @@ import '../controllers/porsekot_table_controller.dart';
 import 'components/table_porsekot.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../../../common/style.dart';
 
 class PorsekotTableView extends GetView<PorsekotTableController> {
   const PorsekotTableView({Key? key}) : super(key: key);
@@ -22,8 +22,7 @@ class PorsekotTableView extends GetView<PorsekotTableController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('PorsekotTableView'),
-        centerTitle: true,
+        title: const Text('Simulasi Angsuran Porsekot'),
       ),
       body: SingleChildScrollView(
         child: Container(

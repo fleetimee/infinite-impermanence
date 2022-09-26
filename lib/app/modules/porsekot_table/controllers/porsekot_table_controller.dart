@@ -1,10 +1,13 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:finance/finance.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 class PorsekotTableController extends GetxController {
@@ -62,6 +65,38 @@ class PorsekotTableController extends GetxController {
     thousandSeparator: '.',
     precision: 0,
   );
+
+  void warning() {
+    AwesomeDialog(
+      context: Get.context!,
+      dialogType: DialogType.warning,
+      animType: AnimType.bottomSlide,
+      title: 'Perhatian',
+      desc:
+          'Simulasi Angsuran ini tidak mengikat ke debitur manapun, perhitungan ini hanya untuk simulasi secara standalone saja, jika ingin menghitung Angsuran untuk debitur silahkan masuk ke menu Debitur pada halaman Homepage.',
+      dialogBackgroundColor: primaryColor,
+      titleTextStyle: GoogleFonts.poppins(
+        color: secondaryColor,
+        fontSize: 30,
+        fontWeight: FontWeight.w500,
+      ),
+      descTextStyle: GoogleFonts.poppins(
+        color: secondaryColor,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+      ),
+      btnOkOnPress: () {},
+      dismissOnTouchOutside: false,
+      dismissOnBackKeyPress: false,
+      btnOkText: 'Baik, saya mengerti',
+    ).show();
+  }
+
+  @override
+  void onReady() {
+    warning();
+    super.onReady();
+  }
 
   final sistemAngsuran = [
     'Efektif',

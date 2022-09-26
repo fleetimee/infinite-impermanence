@@ -4,15 +4,14 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 import '../controllers/penghasilan_tetap_controller.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../widget/drawer.dart';
+import '../../../common/style.dart';
+import '../../../widget/drawer.dart';
 
 class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
   const PenghasilanTetapView({Key? key}) : super(key: key);
@@ -28,12 +27,6 @@ class PenghasilanTetapView extends GetView<PenghasilanTetapController> {
         shrinkWrap: true,
         padding: const EdgeInsets.all(16),
         children: <Widget>[
-          GifView.asset(
-            'assets/images/fixed_nonfixed/fixed.gif',
-            frameRate: 30,
-            fit: BoxFit.cover,
-            loop: false,
-          ),
           const Divider(
             color: Colors.black,
           ),

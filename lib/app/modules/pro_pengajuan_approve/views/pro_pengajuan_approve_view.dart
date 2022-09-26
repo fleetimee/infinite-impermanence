@@ -6,15 +6,14 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
-import 'package:gif_view/gif_view.dart';
 
 // 🌎 Project imports:
 import '../controllers/pro_pengajuan_approve_controller.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../widget/color_button.dart';
- import '../../../widget/drawer.dart';
+import '../../../common/style.dart';
+import '../../../widget/color_button.dart';
+import '../../../widget/drawer.dart';
 
 class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {
   const ProPengajuanApproveView({Key? key}) : super(key: key);
@@ -33,13 +32,6 @@ class ProPengajuanApproveView extends GetView<ProPengajuanApproveController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                GifView.asset(
-                  'assets/images/approve/approve_header.gif',
-                  frameRate: 30,
-                  fit: BoxFit.cover,
-                  loop: false,
-                  height: 400,
-                ),
                 const Padding(
                   padding: EdgeInsets.fromLTRB(50, 0, 50, 0),
                   child: Divider(

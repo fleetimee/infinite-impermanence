@@ -87,17 +87,12 @@ flutter:
   assets:
     - assets/images/search_section/
     - assets/images/splash_side/
-    - assets/images/fixed_nonfixed/
     - assets/images/home/
     - assets/images/splash_screen/
     - assets/images/upload/
-    - assets/images/approve/
-    - assets/images/success_screen/
     - assets/images/agunan/
-    - assets/images/business/
-    - assets/images/karakter/
-    - assets/images/keuangan_analisis/
     - assets/images/pdf/
+    - assets/images/karakter/
     - assets/images/debitur_real/
     - assets/images/input_keuangan/
     - assets/fonts/times-new-roman.ttf

@@ -1,11 +1,7 @@
-// 📦 Package imports:
 import 'package:get/get.dart';
 
-// 🌎 Project imports:
-import '../modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
-import '../modules/debitur_real/views/components/printing/model/model_preview.dart';
-import '../modules/debitur_real/views/components/printing/putusan/putusan_preview.dart';
-import '../modules/debitur_real/views/components/printing/usulan_baru/usulan_baru_preview.dart';
+import '../modules/about/bindings/about_binding.dart';
+import '../modules/about/views/about_view.dart';
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -15,8 +11,12 @@ import '../modules/debitur_detail_banget/bindings/debitur_detail_banget_binding.
 import '../modules/debitur_detail_banget/views/debitur_detail_banget_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
 import '../modules/debitur_real/views/components/printing/bisnis/bisnis_preview.dart';
+import '../modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
 import '../modules/debitur_real/views/components/printing/karakter/karakter_preview.dart';
 import '../modules/debitur_real/views/components/printing/keuangan/keuangan_preview.dart';
+import '../modules/debitur_real/views/components/printing/model/model_preview.dart';
+import '../modules/debitur_real/views/components/printing/putusan/putusan_preview.dart';
+import '../modules/debitur_real/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
 import '../modules/debitur_real/views/debitur_list_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
@@ -49,6 +49,10 @@ import '../modules/uploads/views/uploads_view.dart';
 import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 // 📦 Package imports:
 
@@ -257,6 +261,11 @@ class AppPages {
       name: _Paths.PRINT_USULAN_BARU,
       page: () => UsulanBaruPreview(),
       transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.ABOUT,
+      page: () => const AboutView(),
+      binding: AboutBinding(),
     ),
   ];
 }

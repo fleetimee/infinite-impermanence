@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -415,6 +416,69 @@ class HomeView extends GetView<HomeController> {
                                       'assets/images/home/about.svg',
                                       fit: BoxFit.cover,
                                       height: 250,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () => SystemNavigator.pop(),
+                        child: SizedBox(
+                          width: 200,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 10,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      // Gradient color
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Colors.blue,
+                                          primaryColor,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: Container(
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                  ),
+                                  const Positioned(
+                                    top: 15,
+                                    right: 70,
+                                    child: Text(
+                                      'Keluar',
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: -15,
+                                    right: -75,
+                                    // child: Image.asset(
+                                    //   'assets/images/home/money.png',
+                                    //   fit: BoxFit.cover,
+                                    //   height: 250,
+                                    // ),
+                                    child: SvgPicture.asset(
+                                      'assets/images/home/exit.svg',
+                                      fit: BoxFit.cover,
+                                      height: 200,
                                     ),
                                   ),
                                 ],

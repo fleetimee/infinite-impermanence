@@ -13,4 +13,5 @@
 // const baseUrl = 'http://192.168.100.79:3000/';
 
 // // for ngrok
-const baseUrl = 'https://b684-125-160-98-79.ap.ngrok.io/api/v1/';
+const baseUrl =
+    'https://8749-2001-448a-4048-4954-3c6b-4ee5-3cf5-9a53.ap.ngrok.io/api/v1/';

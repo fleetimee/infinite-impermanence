@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class AboutController extends GetxController {
-  //TODO: Implement AboutController
+class SimulasiTetapController extends GetxController {
+  //TODO: Implement SimulasiTetapController
 
   final count = 0.obs;
   @override

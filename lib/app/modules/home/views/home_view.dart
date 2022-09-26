@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:about/about.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,6 +8,7 @@ import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
@@ -153,7 +155,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                       InkWell(
                         onTap: () => Get.toNamed(
-                          Routes.DEBITUR_REAL,
+                          Routes.SIMULASI_TETAP,
                         ),
                         child: SizedBox(
                           width: 200,
@@ -424,8 +426,34 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                       ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
                       InkWell(
-                        onTap: () => SystemNavigator.pop(),
+                        onTap: () => AwesomeDialog(
+                          context: Get.context!,
+                          dialogType: DialogType.infoReverse,
+                          animType: AnimType.bottomSlide,
+                          title: 'Keluar ?',
+                          desc: 'Apakah anda yakin ingin keluar ?',
+                          dialogBackgroundColor: primaryColor,
+                          titleTextStyle: GoogleFonts.poppins(
+                            color: secondaryColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          descTextStyle: GoogleFonts.poppins(
+                            color: secondaryColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          btnOkOnPress: () {
+                            SystemNavigator.pop();
+                          },
+                          btnCancelText: 'Tidak',
+                          btnOkText: 'Ya',
+                          btnCancelOnPress: () => Get.back(),
+                        ).show(),
                         child: SizedBox(
                           width: 200,
                           child: Card(

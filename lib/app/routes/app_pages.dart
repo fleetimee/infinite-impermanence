@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import '../modules/about/bindings/about_binding.dart';
-import '../modules/about/views/about_view.dart';
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -44,6 +42,8 @@ import '../modules/rugi_laba/views/rugi_laba_view.dart';
 import '../modules/rugi_laba/views/view_rugi_laba_view.dart';
 import '../modules/search_nik/bindings/search_nik_binding.dart';
 import '../modules/search_nik/views/search_nik_view.dart';
+import '../modules/simulasi_tetap/bindings/simulasi_tetap_binding.dart';
+import '../modules/simulasi_tetap/views/simulasi_tetap_view.dart';
 import '../modules/uploads/bindings/uploads_binding.dart';
 import '../modules/uploads/views/uploads_view.dart';
 import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
@@ -263,9 +263,9 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: _Paths.ABOUT,
-      page: () => const AboutView(),
-      binding: AboutBinding(),
+      name: _Paths.SIMULASI_TETAP,
+      page: () => const SimulasiTetapView(),
+      binding: SimulasiTetapBinding(),
     ),
   ];
 }

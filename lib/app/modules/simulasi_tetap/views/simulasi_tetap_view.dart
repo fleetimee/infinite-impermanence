@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/about_controller.dart';
+import '../controllers/simulasi_tetap_controller.dart';
 
-class AboutView extends GetView<AboutController> {
-  const AboutView({Key? key}) : super(key: key);
+class SimulasiTetapView extends GetView<SimulasiTetapController> {
+  const SimulasiTetapView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AboutView'),
+        title: const Text('SimulasiTetapView'),
         centerTitle: true,
       ),
       body: const Center(
         child: Text(
-          'AboutView is working',
+          'SimulasiTetapView is working',
           style: TextStyle(fontSize: 20),
         ),
       ),

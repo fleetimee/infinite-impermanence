@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:about/about.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,8 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../routes/app_pages.dart';
+import '../../../common/style.dart';
+import '../../../routes/app_pages.dart';
 import '../../../widget/drawer.dart';
 import '../controllers/home_controller.dart';
 import 'components/home_menu.dart';
@@ -296,6 +297,122 @@ class HomeView extends GetView<HomeController> {
                                     // ),
                                     child: SvgPicture.asset(
                                       'assets/images/home/money.svg',
+                                      fit: BoxFit.cover,
+                                      height: 250,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      InkWell(
+                        onTap: () => showAboutPage(
+                          applicationName: 'Analisis Kredit Mikro',
+                          context: context,
+                          values: {
+                            'version': '0.1.9 (alpha)',
+                            'year': DateTime.now().year.toString(),
+                          },
+                          applicationLegalese:
+                              'Copyright © Novian Andika, {{ year }}',
+                          applicationDescription: const Text(
+                              'Analisis Kredit Mikro bertujuan untuk memudahkan penginputan calon debitur serta aplikasi ini juga dapat langsung menganalisa diterima atau tidaknya debitur tersebut dengan berbagai parameter yang sudah dibuat.'),
+                          children: const <Widget>[
+                            MarkdownPageListTile(
+                              filename: 'README.md',
+                              title: Text('View Readme'),
+                              icon: Icon(Icons.all_inclusive),
+                            ),
+                            MarkdownPageListTile(
+                              icon: Icon(Icons.list),
+                              title: Text('Changelog'),
+                              filename: 'CHANGELOG.md',
+                            ),
+                            MarkdownPageListTile(
+                              filename: 'LICENSE.md',
+                              title: Text('View License'),
+                              icon: Icon(Icons.description),
+                            ),
+                            MarkdownPageListTile(
+                              filename: 'CONTRIBUTING.md',
+                              title: Text('Contributing'),
+                              icon: Icon(Icons.share),
+                            ),
+                            MarkdownPageListTile(
+                              filename: 'CODE_OF_CONDUCT.md',
+                              title: Text('Code of conduct'),
+                              icon: Icon(Icons.sentiment_satisfied),
+                            ),
+                            LicensesPageListTile(
+                              title: Text('Open source Licenses'),
+                              icon: Icon(Icons.favorite),
+                            ),
+                          ],
+                          applicationIcon: const SizedBox(
+                            width: 100,
+                            height: 100,
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/images/splash_screen/splash_icon.png'),
+                            ),
+                          ),
+                        ),
+                        child: SizedBox(
+                          width: 200,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 10,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      // Gradient color
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Colors.blue,
+                                          primaryColor,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: Container(
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                  ),
+                                  const Positioned(
+                                    top: 15,
+                                    right: 70,
+                                    child: Text(
+                                      'About',
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: -50,
+                                    right: -15,
+                                    // child: Image.asset(
+                                    //   'assets/images/home/money.png',
+                                    //   fit: BoxFit.cover,
+                                    //   height: 250,
+                                    // ),
+                                    child: SvgPicture.asset(
+                                      'assets/images/home/about.svg',
                                       fit: BoxFit.cover,
                                       height: 250,
                                     ),

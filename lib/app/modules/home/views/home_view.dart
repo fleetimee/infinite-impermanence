@@ -1,6 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,11 +7,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
+ import '../../../common/style.dart';
+ import '../../../routes/app_pages.dart';
+import '../../../widget/drawer.dart';
 import '../controllers/home_controller.dart';
 import 'components/home_menu.dart';
-
-// 🌎 Project imports:
-import '../../../widget/drawer.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);

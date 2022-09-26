@@ -25,6 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_custom_clippers: ^2.0.0
+  flutter_echarts: ^2.4.0
   flutter_form_builder: ^7.6.0
   flutter_localizations:
     sdk: flutter

@@ -8,18 +8,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'jenis_usaha/jenis_usaha.dart';
-import 'printing/printing_tile.dart';
 import '../../../../common/style.dart';
 import '../../../../models/debtor.dart';
 import '../../controllers/debitur_real_controller.dart';
 import 'bisnis/analisa_bisnis.dart';
 import 'data_pribadi/data_pribadi.dart';
+import 'jenis_usaha/jenis_usaha.dart';
 import 'karakter/analisa_karakter.dart';
 import 'keuangan/analisa_keuangan.dart';
 import 'keuangan/input_keuangan_fixed.dart';
 import 'keuangan/neraca.dart';
 import 'keuangan/rugi_laba.dart';
+import 'printing/printing_tile.dart';
 
 class DetailDebitur extends StatelessWidget {
   DetailDebitur({

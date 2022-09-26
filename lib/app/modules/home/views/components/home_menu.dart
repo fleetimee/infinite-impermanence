@@ -6,10 +6,8 @@ import 'package:get/get.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 // 🌎 Project imports:
-import 'menu_item/greeting.dart';
-
-// 🌎 Project imports:
 import '../../controllers/home_controller.dart';
+import 'menu_item/greeting.dart';
 
 class HomeMenu extends StatelessWidget {
   HomeMenu({

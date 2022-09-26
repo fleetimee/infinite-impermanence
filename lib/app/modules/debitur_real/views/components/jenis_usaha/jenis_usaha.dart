@@ -6,9 +6,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
+import '../../../../../common/style.dart';
+
+// 🌎 Project imports:
  import '../../../../../models/debtor.dart';
  import '../../../../../routes/app_pages.dart';
-import '../../../../../common/style.dart';
 
 class AnalisaJenisUsahaTile extends StatelessWidget {
   const AnalisaJenisUsahaTile({

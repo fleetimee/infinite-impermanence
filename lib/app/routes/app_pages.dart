@@ -1,12 +1,11 @@
 // 📦 Package imports:
-import 'package:akm/app/modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
-import 'package:akm/app/modules/debitur_real/views/components/printing/model/model_preview.dart';
-import 'package:akm/app/modules/debitur_real/views/components/printing/putusan/putusan_preview.dart';
-import 'package:akm/app/modules/debitur_real/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
+import '../modules/debitur_real/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
+import '../modules/debitur_real/views/components/printing/model/model_preview.dart';
+import '../modules/debitur_real/views/components/printing/putusan/putusan_preview.dart';
+import '../modules/debitur_real/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -37,16 +36,8 @@ import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
 import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
 import '../modules/keuangan_analisis/views/keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
-import '../modules/penghasilan_tetap/bindings/penghasilan_tetap_binding.dart';
-import '../modules/penghasilan_tetap/views/penghasilan_tetap_view.dart';
-import '../modules/penghasilan_xtetap/bindings/penghasilan_xtetap_binding.dart';
-import '../modules/penghasilan_xtetap/views/penghasilan_xtetap_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
-import '../modules/printing/bindings/printing_binding.dart';
-import '../modules/printing/views/printing_view.dart';
-import '../modules/pro_pengajuan_approve/bindings/pro_pengajuan_approve_binding.dart';
-import '../modules/pro_pengajuan_approve/views/pro_pengajuan_approve_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
 import '../modules/rugi_laba/views/edit_rugi_laba_view.dart';
 import '../modules/rugi_laba/views/rugi_laba_view.dart';
@@ -56,6 +47,7 @@ import '../modules/search_nik/views/search_nik_view.dart';
 import '../modules/uploads/bindings/uploads_binding.dart';
 import '../modules/uploads/views/uploads_view.dart';
 import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
+import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
 
 // 📦 Package imports:
@@ -89,27 +81,9 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: _Paths.PENGHASILAN_TETAP,
-      page: () => const PenghasilanTetapView(),
-      binding: PenghasilanTetapBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
-      name: _Paths.PENGHASILAN_XTETAP,
-      page: () => const PenghasilanXtetapView(),
-      binding: PenghasilanXtetapBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
       name: _Paths.UPLOADS,
       page: () => const UploadsView(),
       binding: UploadsBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
-      name: _Paths.PRO_PENGAJUAN_APPROVE,
-      page: () => const ProPengajuanApproveView(),
-      binding: ProPengajuanApproveBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(
@@ -162,12 +136,6 @@ class AppPages {
       name: _Paths.LIHAT_KEUANGAN_ANALISIS,
       page: () => LihatKeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
-      name: _Paths.PRINTING,
-      page: () => const PrintingView(),
-      binding: PrintingBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(

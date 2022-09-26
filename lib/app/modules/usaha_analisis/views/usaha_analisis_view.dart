@@ -7,8 +7,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
 import '../controllers/usaha_analisis_controller.dart';
+
+// 🌎 Project imports:
+ import '../../../common/style.dart';
 
 class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
   UsahaAnalisisView({Key? key}) : super(key: key);

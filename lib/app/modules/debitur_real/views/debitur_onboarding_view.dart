@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../../../common/style.dart';
 import '../../../routes/app_pages.dart';
-import '../../../widget/drawer.dart';
 
 class DebiturOnboardingView extends StatelessWidget {
   const DebiturOnboardingView({Key? key}) : super(key: key);
@@ -15,7 +14,6 @@ class DebiturOnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: SideMenu(),
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Debitur Onboarding'),

@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_echarts/flutter_echarts.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
@@ -15,13 +16,33 @@ class DebiturOnboardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Debitur Onboarding'),
+        title: const Text('Debitur Panel'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+          SizedBox(
+            width: 300,
+            height: 250,
+            child: Echarts(
+              option: '''
+    {
+      xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+      }]
+    }
+  ''',
+            ),
+          ),
           InkWell(
             onTap: () => Get.toNamed(Routes.ADD_DEBITUR),
             child: Stack(

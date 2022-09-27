@@ -234,7 +234,7 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
     Colors.white24,
   ];
 
-  static const _durations = [32000, 21000, 18000, 5000];
+  static const _durations = [100000, 200000, 500000, 100000];
 
   static const _heightPercentages = [0.25, 0.26, 0.28, 0.31];
 }

@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur",
-    "url": "{{baseUrl}}api/v1/debiturs",
+    "url": "{{baseUrl}}api/v1/debiturs/101",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-09-20T05:17:21.720Z",
+    "modified": "2022-09-27T13:48:23.087Z",
     "headers": [],
     "params": [],
     "tests": []

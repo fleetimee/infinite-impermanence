@@ -61,7 +61,7 @@ class DebiturRealController extends GetxController {
   final pekerjaan1 = TextEditingController().obs;
   final pekerjaan2 = TextEditingController().obs;
 
-  final noSkpk = TextEditingController().obs;
+  final noSkpk = TextEditingController(text: '0').obs;
   final tanggalSekarangInput = DateTime.now().obs;
   final deskripsiDebitur = TextEditingController().obs;
 

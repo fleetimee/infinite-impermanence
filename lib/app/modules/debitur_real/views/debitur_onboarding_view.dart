@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
@@ -44,6 +45,12 @@ class DebiturOnboardingView extends StatelessWidget {
               ),
             ),
             Row(
+                children: AnimateList(
+              interval: 100.ms,
+              effects: [
+                const FadeEffect(),
+                const ScaleEffect(),
+              ],
               children: [
                 Expanded(
                   child: InkWell(
@@ -141,7 +148,7 @@ class DebiturOnboardingView extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
+            )),
           ],
         ),
       ),

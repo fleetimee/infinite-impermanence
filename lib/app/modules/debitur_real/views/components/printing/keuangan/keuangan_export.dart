@@ -9,7 +9,7 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
- import '../../../../../../models/debtor.dart';
+import '../../../../../../models/debtor.dart';
 
 // 📦 Package imports:
 
@@ -39,6 +39,8 @@ Future<Uint8List> makeAnalisaKeuanganPdf(Debtor debtor) async {
       (await rootBundle.load('assets/images/pdf/logo.png'))
           .buffer
           .asUint8List());
+
+// Multipage
 
   pdf.addPage(
     Page(

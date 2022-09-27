@@ -15,8 +15,8 @@ import 'package:intl/intl.dart';
 import '../controllers/debitur_real_controller.dart';
 
 // 🌎 Project imports:
- import '../../../common/provinsi_kabupaten.dart';
- import '../../../common/style.dart';
+import '../../../common/provinsi_kabupaten.dart';
+import '../../../common/style.dart';
 
 class DebiturRealView extends StatelessWidget {
   DebiturRealView({Key? key}) : super(key: key);
@@ -217,7 +217,6 @@ class DebiturRealView extends StatelessWidget {
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_1',
                           controller: controller.pemilikAgunan1.value,
-                          validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 1',
                             labelStyle: TextStyle(fontSize: 18),
@@ -266,7 +265,6 @@ class DebiturRealView extends StatelessWidget {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_2',
-                          validator: FormBuilderValidators.required(),
                           controller: controller.pemilikAgunan2.value,
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 2',
@@ -285,7 +283,6 @@ class DebiturRealView extends StatelessWidget {
                         child: FormBuilderTextField(
                           name: 'no_ktp2',
                           validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
                             FormBuilderValidators.numeric(),
                             FormBuilderValidators.minLength(16,
                                 errorText: 'Min 16 Karakter'),
@@ -754,13 +751,13 @@ class DebiturRealView extends StatelessWidget {
                     name: 'no_skpk',
                     controller: controller.noSkpk.value,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: FormBuilderValidators.compose(
-                      [
-                        FormBuilderValidators.numeric(),
-                        FormBuilderValidators.minLength(10,
-                            errorText: 'Min 10 Digit'),
-                      ],
-                    ),
+                    // validator: FormBuilderValidators.compose(
+                    //   [
+                    //     FormBuilderValidators.numeric(),
+                    //     FormBuilderValidators.minLength(10,
+                    //         errorText: 'Min 10 Digit'),
+                    //   ],
+                    // ),
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: 'No SKPK',

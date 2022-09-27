@@ -12,8 +12,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../../common/style.dart';
- import '../../controllers/input_keuangan_controller.dart';
+import '../../../../common/style.dart';
+import '../../controllers/input_keuangan_controller.dart';
 
 class AsumsiKeuanganInput extends StatelessWidget {
   AsumsiKeuanganInput({Key? key}) : super(key: key);
@@ -179,67 +179,18 @@ class AsumsiKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            FormBuilderTextField(
-              name: 'hpp',
-              controller: controller.hpp,
-              textAlign: TextAlign.right,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-                FormBuilderValidators.numeric(),
-                FormBuilderValidators.max(100),
-                FormBuilderValidators.min(20),
-              ]),
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                suffixIcon: const Icon(FontAwesomeIcons.percent),
-                labelText: 'HPP per bulan',
-                labelStyle: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
-                floatingLabelAlignment: FloatingLabelAlignment.center,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
+
             FormBuilderTextField(
               name: 'biaya_bahan',
-              controller: controller.biayaBahanKini,
+              controller: controller.biayaBahanKini = MoneyMaskedTextController(
+                decimalSeparator: '',
+                thousandSeparator: '.',
+                precision: 0,
+                initialValue: double.parse(data.inputRugiLaba.hargaPokok),
+              ),
               readOnly: true,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                suffixIcon: ElevatedButton.icon(
-                  icon: const Icon(Icons.calculate_outlined),
-                  label: const Text("Hitung HPP"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    shape: const StadiumBorder(),
-                  ),
-                  onPressed: () {
-                    controller.hitungBiayaBahanHpp();
-                    showToast(
-                      'Biaya Bahan: Rp. ${controller.biayaBahanKini.text}',
-                      textStyle: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: secondaryColor,
-                      ),
-                      context: context,
-                      animation: StyledToastAnimation.scale,
-                      reverseAnimation: StyledToastAnimation.fade,
-                      position: StyledToastPosition.center,
-                      animDuration: const Duration(seconds: 1),
-                      duration: const Duration(seconds: 4),
-                      curve: Curves.elasticOut,
-                      reverseCurve: Curves.linear,
-                    );
-                  },
-                ),
                 labelText: 'Biaya bahan HPP',
                 prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                 border: OutlineInputBorder(

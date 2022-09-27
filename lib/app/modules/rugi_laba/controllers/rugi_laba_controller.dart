@@ -10,7 +10,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../service/rugi_laba_service.dart';
+import '../../../service/rugi_laba_service.dart';
 
 class RugiLabaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
@@ -68,6 +68,8 @@ class RugiLabaController extends GetxController {
 
   var debiturId = TextEditingController();
   var neracaId = TextEditingController();
+
+  var persentaseHpp = TextEditingController();
 
   var aktivaLancarKas = MoneyMaskedTextController(
     decimalSeparator: '',
@@ -367,5 +369,15 @@ class RugiLabaController extends GetxController {
     final hasil = parseLabaSetelahPajak - parseBiayaHidupRataRata;
 
     sisaPenghasilanBersih.text = hasil.toStringAsFixed(0);
+  }
+
+  void hitungHpp() {
+    final parseOmzetPerBulan =
+        double.parse(omzetPerBulan.text.replaceAll('.', ''));
+    final parseHpp = double.parse(persentaseHpp.text) / 100;
+
+    final hitungHargaPokokPenjualan = parseOmzetPerBulan * parseHpp;
+
+    hargaPokokPenjualan.text = hitungHargaPokokPenjualan.toStringAsFixed(0);
   }
 }

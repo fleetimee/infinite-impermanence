@@ -1,4 +1,8 @@
 // 🐦 Flutter imports:
+
+import 'dart:io';
+
+import 'package:akm/app/widget/ssl.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,6 +18,7 @@ import 'app/themes/light.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  HttpOverrides.global = MyHttpOverrides();
 
   runApp(
     GetMaterialApp(

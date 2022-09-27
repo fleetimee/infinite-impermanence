@@ -8,8 +8,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../../common/style.dart';
- import '../../controllers/rugi_laba_controller.dart';
+import '../../../../common/style.dart';
+import '../../controllers/rugi_laba_controller.dart';
 
 class PerkiraanLabaRugi extends StatelessWidget {
   PerkiraanLabaRugi({super.key});
@@ -65,15 +65,32 @@ class PerkiraanLabaRugi extends StatelessWidget {
               ),
               DataRow2(
                 cells: [
+                  const DataCell(Text('Persen harga pokok penjualan :')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'persen_hpp',
+                      controller: controller.persentaseHpp,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
                   const DataCell(Text('Harga pokok penjualan')),
                   const DataCell(SizedBox.shrink()),
                   const DataCell(SizedBox.shrink()),
                   DataCell(
                     FormBuilderTextField(
+                      enabled: false,
                       name: 'harga_pokok_penjualan',
                       controller: controller.hargaPokokPenjualan,
                       decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                        hintText: 'Hasil disini',
                       ),
                     ),
                   ),
@@ -97,6 +114,7 @@ class PerkiraanLabaRugi extends StatelessWidget {
                             shape: const StadiumBorder(),
                           ),
                           onPressed: () {
+                            controller.hitungHpp();
                             controller.sumLabaKotor();
                           },
                           child: const Text("Hit"),

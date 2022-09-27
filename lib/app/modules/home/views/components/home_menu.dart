@@ -26,23 +26,23 @@ class HomeMenu extends StatelessWidget {
           const SizedBox(
             height: 40,
           ),
-          Obx(
-            () => DigitalClock(
-              digitAnimationStyle: Curves.elasticOut,
-              is24HourTimeFormat: true,
-              areaDecoration: const BoxDecoration(
-                color: Colors.transparent,
-              ),
-              hourMinuteDigitTextStyle: const TextStyle(
-                color: secondaryColor,
-                fontSize: 50,
-              ),
-              amPmDigitTextStyle: const TextStyle(
-                color: secondaryColor,
-                fontWeight: FontWeight.bold,
-              ),
+
+          DigitalClock(
+            digitAnimationStyle: Curves.elasticOut,
+            is24HourTimeFormat: true,
+            areaDecoration: const BoxDecoration(
+              color: Colors.transparent,
+            ),
+            hourMinuteDigitTextStyle: const TextStyle(
+              color: secondaryColor,
+              fontSize: 50,
+            ),
+            amPmDigitTextStyle: const TextStyle(
+              color: secondaryColor,
+              fontWeight: FontWeight.bold,
             ),
           ),
+
           const SizedBox(
             height: 40,
           ),

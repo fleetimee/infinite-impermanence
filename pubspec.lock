@@ -1032,6 +1032,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
+  scaffold_gradient_background:
+    dependency: "direct main"
+    description:
+      name: scaffold_gradient_background
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3+1"
   shared_preferences:
     dependency: "direct main"
     description:

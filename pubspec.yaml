@@ -67,6 +67,7 @@ dependencies:
     git:
       url: https://github.com/Codelessly/ResponsiveFramework
       ref: master
+  scaffold_gradient_background: ^1.0.3+1
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   slide_digital_clock: ^1.0.2

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -32,16 +33,12 @@ class HomeMenu extends StatelessWidget {
               areaDecoration: const BoxDecoration(
                 color: Colors.transparent,
               ),
-              hourMinuteDigitTextStyle: TextStyle(
-                color: controller.isDarkModeEnabled.value
-                    ? Colors.white
-                    : Colors.black,
+              hourMinuteDigitTextStyle: const TextStyle(
+                color: secondaryColor,
                 fontSize: 50,
               ),
-              amPmDigitTextStyle: TextStyle(
-                color: controller.isDarkModeEnabled.value
-                    ? Colors.white
-                    : Colors.black,
+              amPmDigitTextStyle: const TextStyle(
+                color: secondaryColor,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -60,6 +57,7 @@ class HomeMenu extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
+                    color: secondaryColor,
                   ),
                 ),
               ),

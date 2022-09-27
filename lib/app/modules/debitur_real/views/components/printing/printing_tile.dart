@@ -29,10 +29,17 @@ class PrintingTile extends StatelessWidget {
         ListTile(
           title: const Text('Print Surat Putusan'),
           onTap: () {
-            Get.toNamed(
-              Routes.PUTUSAN_PRINT,
-              arguments: debtor,
-            );
+            debtor.analisaKeuangan == null
+                ? Get.snackbar(
+                    'Gagal',
+                    'Data Analisa Keuangan Belum Lengkap',
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  )
+                : Get.toNamed(
+                    Routes.PUTUSAN_PRINT,
+                    arguments: debtor,
+                  );
           },
           trailing: const Text('Ready 👍'),
         ),

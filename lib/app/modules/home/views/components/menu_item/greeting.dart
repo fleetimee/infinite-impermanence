@@ -9,9 +9,9 @@ import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
 // 🌎 Project imports:
- import '../../../../../common/style.dart';
- import '../../../../../common/waves.dart';
- import '../../../controllers/home_controller.dart';
+import '../../../../../common/style.dart';
+import '../../../../../common/waves.dart';
+import '../../../controllers/home_controller.dart';
 
 class Greeting extends StatelessWidget {
   Greeting({Key? key}) : super(key: key);
@@ -118,25 +118,6 @@ class Greeting extends StatelessWidget {
             ),
           ),
         ),
-        Positioned(
-          right: -45,
-          top: -40,
-          child: Obx(
-            () => Container(
-              padding: const EdgeInsets.all(30),
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: controller.isDarkModeEnabled.value
-                      ? const Color.fromARGB(255, 48, 48, 48)
-                      : secondaryColor,
-                  width: 18,
-                ),
-              ),
-            ),
-          ),
-        )
       ],
     );
   }

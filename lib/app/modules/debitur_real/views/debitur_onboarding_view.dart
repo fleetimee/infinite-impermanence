@@ -1,9 +1,10 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_echarts/flutter_echarts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
@@ -14,179 +15,135 @@ class DebiturOnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        colors: [
+          blue200,
+          blue300,
+        ],
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+      ),
       appBar: AppBar(
         title: const Text('Debitur Panel'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            width: 300,
-            height: 250,
-            child: Echarts(
-              option: '''
-    {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value'
-      },
-      series: [{
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
-        type: 'line'
-      }]
-    }
-  ''',
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(24),
+              child: Text(
+                "What's happening ?",
+                style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: secondaryColor,
+                ),
+              ),
             ),
-          ),
-          InkWell(
-            onTap: () => Get.toNamed(Routes.ADD_DEBITUR),
-            child: Stack(
+            Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Container(
-                    height: 100,
-                    width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () => Get.toNamed(Routes.ADD_DEBITUR),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Container(
+                            height: 200,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(30),
+                                bottomRight: Radius.circular(30),
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Add text and icon inside stack
+                        const Positioned(
+                          bottom: 40,
+                          right: 77,
+                          child: Text(
+                            'Add',
+                            style: TextStyle(
+                              fontSize: 45,
+                              color: secondaryColor,
+                            ),
+                          ),
+                        ),
+                        const Positioned(
+                          bottom: 100,
+                          right: 70,
+                          child: Icon(
+                            FontAwesomeIcons.plus,
+                            color: secondaryColor,
+                            size: 100,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-                // Add text and icon inside stack
-                const Positioned(
-                  bottom: 50,
-                  right: 150,
-                  child: Text(
-                    'Tambah Debitur',
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: secondaryColor,
-                    ),
-                  ),
+                const SizedBox(
+                  width: 10.0,
                 ),
-                const Positioned(
-                  bottom: 50,
-                  right: 50,
-                  child: Icon(
-                    Icons.add,
-                    color: secondaryColor,
-                    size: 30,
+                Expanded(
+                  child: InkWell(
+                    onTap: () => Get.toNamed(Routes.DEBITUR_LIST),
+                    child: Stack(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Container(
+                            height: 200,
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(30),
+                                bottomRight: Radius.circular(30),
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // Add text and icon inside stack
+                        const Positioned(
+                          bottom: 40,
+                          right: 40,
+                          child: Text(
+                            'Search',
+                            style: TextStyle(
+                              fontSize: 45,
+                              color: secondaryColor,
+                            ),
+                          ),
+                        ),
+                        const Positioned(
+                          bottom: 100,
+                          right: 70,
+                          child: Icon(
+                            FontAwesomeIcons.userAstronaut,
+                            color: secondaryColor,
+                            size: 100,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  onTap: () => Get.toNamed(Routes.DEBITUR_LIST),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          height: 200,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(30),
-                              bottomRight: Radius.circular(30),
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Add text and icon inside stack
-                      const Positioned(
-                        bottom: 50,
-                        right: 85,
-                        child: Text(
-                          'List',
-                          style: TextStyle(
-                            fontSize: 45,
-                            color: secondaryColor,
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        bottom: 100,
-                        right: 70,
-                        child: Icon(
-                          Icons.list_alt_rounded,
-                          color: secondaryColor,
-                          size: 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 10.0,
-              ),
-              Expanded(
-                child: InkWell(
-                  onTap: () => Get.toNamed(Routes.SEARCH_NIK),
-                  child: Stack(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Container(
-                          height: 200,
-                          width: double.infinity,
-                          decoration: const BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(30),
-                              bottomRight: Radius.circular(30),
-                              topLeft: Radius.circular(30),
-                              topRight: Radius.circular(30),
-                            ),
-                          ),
-                        ),
-                      ),
-                      // Add text and icon inside stack
-                      const Positioned(
-                        bottom: 50,
-                        right: 40,
-                        child: Text(
-                          'Search',
-                          style: TextStyle(
-                            fontSize: 45,
-                            color: secondaryColor,
-                          ),
-                        ),
-                      ),
-                      const Positioned(
-                        bottom: 100,
-                        right: 70,
-                        child: Icon(
-                          Icons.search_rounded,
-                          color: secondaryColor,
-                          size: 100,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

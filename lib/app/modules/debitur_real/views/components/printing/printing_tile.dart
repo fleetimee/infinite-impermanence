@@ -29,22 +29,40 @@ class PrintingTile extends StatelessWidget {
         ListTile(
           title: const Text('Print Surat Putusan'),
           onTap: () {
-            Get.toNamed(
-              Routes.PUTUSAN_PRINT,
-              arguments: debtor,
-            );
+            debtor.analisaKeuangan == null
+                ? Get.snackbar(
+                    'Gagal',
+                    'Data Analisa Keuangan Belum Lengkap',
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  )
+                : Get.toNamed(
+                    Routes.PUTUSAN_PRINT,
+                    arguments: debtor,
+                  );
           },
-          trailing: const Text('Ready 👍'),
+          trailing: debtor.analisaKeuangan == null
+              ? const Text('Not Ready 😭')
+              : const Text('Ready 👍'),
         ),
         ListTile(
           title: const Text('Print Surat Usulan Baru'),
           onTap: () {
-            Get.toNamed(
-              Routes.USULAN_BARU_PRINT,
-              arguments: debtor,
-            );
+            debtor.analisaKeuangan == null
+                ? Get.snackbar(
+                    'Gagal',
+                    'Data Analisa Keuangan Belum Lengkap',
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  )
+                : Get.toNamed(
+                    Routes.USULAN_BARU_PRINT,
+                    arguments: debtor,
+                  );
           },
-          trailing: const Text('Ready 👍'),
+          trailing: debtor.analisaKeuangan == null
+              ? const Text('Not Ready 😭')
+              : const Text('Ready 👍'),
         ),
         ListTile(
           title: const Text('Print Keuangan'),

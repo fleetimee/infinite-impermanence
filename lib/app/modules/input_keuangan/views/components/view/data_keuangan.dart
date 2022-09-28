@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../controllers/input_keuangan_controller.dart';
+import '../../../controllers/input_keuangan_controller.dart';
 
 class ViewDataKeuanganInput extends StatelessWidget {
   ViewDataKeuanganInput({Key? key}) : super(key: key);
@@ -231,24 +231,24 @@ class ViewDataKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            FormBuilderTextField(
-              name: 'digunakan_untuk',
-              controller: dataKeuanganCtrl.digunakanUntuk =
-                  TextEditingController(
-                text: data.inputKeuangan.digunakanUntuk.toString(),
-              ),
-              keyboardType: TextInputType.text,
-              validator:
-                  FormBuilderValidators.required(errorText: 'Harus diisi'),
-              decoration: InputDecoration(
-                alignLabelWithHint: true,
-                labelText: 'Digunakan Untuk',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            FormBuilderDropdown(
+                name: 'digunakan_untuk',
+                enabled: false,
+                initialValue: data.inputKeuangan.digunakanUntuk.toString(),
+                decoration: InputDecoration(
+                  labelText: 'Digunakan Untuk',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-              ),
-              maxLines: 3,
-            ),
+                items: dataKeuanganCtrl.digunakanUntukList
+                    .map(
+                      (element) => DropdownMenuItem(
+                        value: element,
+                        child: Text(element),
+                      ),
+                    )
+                    .toList()),
             const SizedBox(
               height: 16.0,
             ),

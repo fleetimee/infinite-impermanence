@@ -23,7 +23,7 @@ import 'components/views/data_keuangan.dart';
 import 'components/views/hasil.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../../../common/style.dart';
 
 class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   LihatKeuanganAnalisisView({Key? key}) : super(key: key);
@@ -146,10 +146,14 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                               fontWeight: FontWeight.w500,
                             ),
                             enabled: false,
-                            decoration: const InputDecoration(
-                                labelText: 'Perhitungan Investasi',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(FontAwesomeIcons.rupiahSign)),
+                            decoration: InputDecoration(
+                                labelText: data.inputKeuangan.digunakanUntuk ==
+                                        'Modal Kerja'
+                                    ? 'Perhitungan Modal Kerja'
+                                    : 'Perhitungan Modal Investasi',
+                                border: const OutlineInputBorder(),
+                                prefixIcon:
+                                    const Icon(FontAwesomeIcons.rupiahSign)),
                           ),
                           FormBuilderTextField(
                             name: 'trade_cycle',

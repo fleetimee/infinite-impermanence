@@ -20,6 +20,8 @@ class DebiturRealController extends GetxController {
   var finalDebtpr = <Debtor>[].obs;
   var selectedDebtor = <Debtor>[].obs;
 
+  final isEditLoading = false.obs;
+
   void convertFutureToList() async {
     var list = await listDebtor.value;
     finalDebtpr.value = list;
@@ -133,6 +135,8 @@ class DebiturRealController extends GetxController {
   }
 
   void editDebitur(String id) async {
+    isEditLoading.value = true;
+
     final api = DebtorService();
     final data = {
       'peminjam1': peminjam1.value.text,
@@ -165,6 +169,8 @@ class DebiturRealController extends GetxController {
     await api.updateDebtor(id, data);
 
     update();
+
+    isEditLoading.value = false;
   }
 
   void fetchDebitur() async {

@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../../common/style.dart';
- import '../../controllers/input_keuangan_controller.dart';
+import '../../../../common/style.dart';
+import '../../controllers/input_keuangan_controller.dart';
 
 class DataKeuanganInput extends StatelessWidget {
   DataKeuanganInput({Key? key}) : super(key: key);
@@ -213,20 +213,38 @@ class DataKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            FormBuilderTextField(
+            // FormBuilderTextField(
+            //   name: 'digunakan_untuk',
+            //   controller: dataKeuanganCtrl.digunakanUntuk,
+            //   keyboardType: TextInputType.text,
+            //   validator:
+            //       FormBuilderValidators.required(errorText: 'Harus diisi'),
+            //   decoration: InputDecoration(
+            //     alignLabelWithHint: true,
+            //     labelText: 'Digunakan Untuk',
+            //     border: OutlineInputBorder(
+            //       borderRadius: BorderRadius.circular(10),
+            //     ),
+            //   ),
+            //   maxLines: 3,
+            // ),
+            FormBuilderDropdown(
               name: 'digunakan_untuk',
-              controller: dataKeuanganCtrl.digunakanUntuk,
-              keyboardType: TextInputType.text,
-              validator:
-                  FormBuilderValidators.required(errorText: 'Harus diisi'),
+              items: dataKeuanganCtrl.digunakanUntukList
+                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
+                  .toList(),
+              onChanged: (value) {
+                dataKeuanganCtrl.digunakanUntuk.value = value.toString();
+              },
+              onSaved: (value) {
+                dataKeuanganCtrl.digunakanUntuk.value = value.toString();
+              },
               decoration: InputDecoration(
-                alignLabelWithHint: true,
                 labelText: 'Digunakan Untuk',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              maxLines: 3,
             ),
             const SizedBox(
               height: 16.0,

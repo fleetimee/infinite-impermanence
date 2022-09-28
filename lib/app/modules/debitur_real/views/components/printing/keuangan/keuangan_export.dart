@@ -633,7 +633,10 @@ Future<Uint8List> makeAnalisaKeuanganPdf(Debtor debtor) async {
                   children: [
                     SizedBox.shrink(),
                     SizedBox.shrink(),
-                    paddedTextBold('Keb Investasi'),
+                    paddedTextBold(
+                        debtor.inputKeuangan!.digunakanUntuk == 'Modal Kerja'
+                            ? 'Modal Kerja'
+                            : 'Investasi'),
                     paddedText(
                       MoneyMaskedTextController(
                         decimalSeparator: '',

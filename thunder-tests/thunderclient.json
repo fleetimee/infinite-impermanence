@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur",
-    "url": "{{baseUrl}}api/v1/debiturs/101",
+    "url": "{{baseUrl}}api/v1/debiturs/",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-09-27T13:48:23.087Z",
+    "modified": "2022-09-28T02:37:45.877Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -965,6 +965,39 @@
     "modified": "2022-09-23T13:00:18.124Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "553fc98e-3120-468f-8629-c2b075f2048f",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/input-keuangan/31",
+    "method": "DELETE",
+    "sortNum": 500000,
+    "created": "2022-09-28T02:47:15.367Z",
+    "modified": "2022-09-28T02:47:42.026Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5c53ea58-fb78-4a7a-acfc-38978187ee40",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
+    "name": "Patch",
+    "url": "{{baseUrl}}api/v1/input-keuangan/32",
+    "method": "PATCH",
+    "sortNum": 510000,
+    "created": "2022-09-28T02:48:36.760Z",
+    "modified": "2022-09-28T06:04:55.512Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"trade_cycle\": 4\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

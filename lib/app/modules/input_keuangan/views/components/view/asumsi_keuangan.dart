@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../controllers/input_keuangan_controller.dart';
+import '../../../controllers/input_keuangan_controller.dart';
 
 class ViewAsumsiKeuanganInput extends StatelessWidget {
   ViewAsumsiKeuanganInput({Key? key}) : super(key: key);
@@ -170,37 +170,6 @@ class ViewAsumsiKeuanganInput extends StatelessWidget {
                 alignLabelWithHint: true,
                 prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
                 labelText: 'Penjualan per bulan',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 16.0,
-            ),
-            FormBuilderTextField(
-              name: 'hpp',
-              enabled: false,
-              controller: controller.hpp = TextEditingController(
-                text: data.inputKeuangan.hpp.toString(),
-              ),
-              textAlign: TextAlign.right,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: FormBuilderValidators.compose([
-                FormBuilderValidators.required(),
-                FormBuilderValidators.numeric(),
-                FormBuilderValidators.max(100),
-                FormBuilderValidators.min(20),
-              ]),
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                suffixIcon: const Icon(FontAwesomeIcons.percent),
-                labelText: 'HPP per bulan',
-                labelStyle: const TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w400,
-                ),
-                floatingLabelAlignment: FloatingLabelAlignment.center,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

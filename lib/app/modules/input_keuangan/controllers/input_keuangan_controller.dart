@@ -10,10 +10,15 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../service/input_keuangan_service.dart';
+import '../../../common/style.dart';
+import '../../../service/input_keuangan_service.dart';
 
 class InputKeuanganController extends GetxController {
+  final digunakanUntukList = [
+    'Modal Kerja',
+    'Investasi',
+  ];
+
   var context = Get.context;
 
   var formKeyInputKeuangan = GlobalKey<FormBuilderState>();
@@ -31,7 +36,7 @@ class InputKeuanganController extends GetxController {
   var angsuranPerBulan = TextEditingController();
   var provisi = TextEditingController();
   var sistemAngsuran = ''.obs;
-  var digunakanUntuk = TextEditingController();
+  var digunakanUntuk = ''.obs;
   var bungaPerTahun = TextEditingController();
 
   var totalAngsuran = MoneyMaskedTextController(
@@ -405,7 +410,7 @@ class InputKeuanganController extends GetxController {
       'bunga_per_tahun': bungaPerTahun.text,
       'provisi': provisi.text,
       'sistem_angsuran': sistemAngsuran.toString(),
-      'digunakan_untuk': digunakanUntuk.text,
+      'digunakan_untuk': digunakanUntuk.toString(),
       'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
       // 'pinjaman_lainnya': pinjamanLainnya.text.replaceAll('.', ''),
       // 'angsuran_pinjaman_lainnya':

@@ -34,6 +34,8 @@ import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
 import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
 import '../modules/keuangan_analisis/views/keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+import '../modules/list_debitur/bindings/list_debitur_binding.dart';
+import '../modules/list_debitur/views/list_debitur_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
@@ -266,6 +268,11 @@ class AppPages {
       name: _Paths.SIMULASI_TETAP,
       page: () => const SimulasiTetapView(),
       binding: SimulasiTetapBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_DEBITUR,
+      page: () => const ListDebiturView(),
+      binding: ListDebiturBinding(),
     ),
   ];
 }

@@ -103,7 +103,7 @@ class DebiturOnboardingView extends StatelessWidget {
                 ),
                 Expanded(
                   child: InkWell(
-                    onTap: () => Get.toNamed(Routes.DEBITUR_LIST),
+                    onTap: () => Get.toNamed(Routes.LIST_DEBITUR),
                     child: Stack(
                       children: [
                         Padding(

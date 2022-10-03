@@ -28,6 +28,8 @@ import '../modules/input_neraca/bindings/input_neraca_binding.dart';
 import '../modules/input_neraca/views/edit_neraca_view.dart';
 import '../modules/input_neraca/views/input_neraca_view.dart';
 import '../modules/input_neraca/views/lihat_neraca_view.dart';
+import '../modules/insight_debitur/bindings/insight_debitur_binding.dart';
+import '../modules/insight_debitur/views/insight_debitur_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
 import '../modules/karakter_analisis/views/karakter_analisis_view.dart';
 import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
@@ -273,6 +275,11 @@ class AppPages {
       name: _Paths.LIST_DEBITUR,
       page: () => const ListDebiturView(),
       binding: ListDebiturBinding(),
+    ),
+    GetPage(
+      name: _Paths.INSIGHT_DEBITUR,
+      page: () => const InsightDebiturView(),
+      binding: InsightDebiturBinding(),
     ),
   ];
 }

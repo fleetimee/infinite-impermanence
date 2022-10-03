@@ -1,6 +1,9 @@
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/list_debitur_controller.dart';
 
@@ -8,7 +11,15 @@ class ListDebiturView extends GetView<ListDebiturController> {
   const ListDebiturView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          blue200,
+          blue300,
+        ],
+      ),
       appBar: AppBar(
         title: const Text('Debitur Yang Terdaftar'),
       ),
@@ -47,12 +58,12 @@ class ListDebiturView extends GetView<ListDebiturController> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 TextButton(
-                                  onPressed: () {},
-                                  child: const Text('Edit'),
-                                ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: const Text('Delete'),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.INSIGHT_DEBITUR,
+                                        arguments:
+                                            controller.listDebitur[index].id);
+                                  },
+                                  child: const Text('Details'),
                                 ),
                               ],
                             ),

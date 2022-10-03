@@ -46,6 +46,7 @@ abstract class Routes {
   static const ABOUT = _Paths.ABOUT;
   static const SIMULASI_TETAP = _Paths.SIMULASI_TETAP;
   static const LIST_DEBITUR = _Paths.LIST_DEBITUR;
+  static const INSIGHT_DEBITUR = _Paths.INSIGHT_DEBITUR;
 }
 
 abstract class _Paths {
@@ -90,4 +91,5 @@ abstract class _Paths {
   static const ABOUT = '/about';
   static const SIMULASI_TETAP = '/simulasi-tetap';
   static const LIST_DEBITUR = '/list-debitur';
+  static const INSIGHT_DEBITUR = '/insight-debitur';
 }

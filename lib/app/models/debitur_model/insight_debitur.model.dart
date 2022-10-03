@@ -602,21 +602,21 @@ class AnalisaBisnis {
     this.hasilCrrBisnis,
   });
 
-  int id;
-  int nilaiOmzet;
-  String keteranganOmzet;
-  int nilaiHargaBersaing;
-  String keteranganHargaBersaing;
-  int nilaiPersaingan;
-  String keteranganPersaingan;
-  int nilaiLokasiUsaha;
-  String keteranganLokasiUsaha;
-  int nilaiProduktivitas;
-  String keteranganProduktivitas;
-  int nilaiKualitas;
-  String keteranganKualitas;
-  String deskripsiBisnis;
-  int hasilCrrBisnis;
+  int? id;
+  int? nilaiOmzet;
+  String? keteranganOmzet;
+  int? nilaiHargaBersaing;
+  String? keteranganHargaBersaing;
+  int? nilaiPersaingan;
+  String? keteranganPersaingan;
+  int? nilaiLokasiUsaha;
+  String? keteranganLokasiUsaha;
+  int? nilaiProduktivitas;
+  String? keteranganProduktivitas;
+  int? nilaiKualitas;
+  String? keteranganKualitas;
+  String? deskripsiBisnis;
+  int? hasilCrrBisnis;
 
   factory AnalisaBisnis.fromJson(Map<String, dynamic> json) => AnalisaBisnis(
         id: json["id"],
@@ -661,8 +661,8 @@ class AnalisaJenisUsaha {
     this.totalCrrUsaha,
   });
 
-  int id;
-  int totalCrrUsaha;
+  int? id;
+  int? totalCrrUsaha;
 
   factory AnalisaJenisUsaha.fromJson(Map<String, dynamic> json) =>
       AnalisaJenisUsaha(
@@ -703,29 +703,29 @@ class AnalisaKarakter {
     this.totalCrrKarakter,
   });
 
-  int id;
-  int nilaiUmur;
-  String scoreUmur;
-  String crrUmur;
-  String scorePendidikan;
-  String crrPendidikan;
-  int nilaiLamanyaBerusaha;
-  String scoreLamanyaBerusaha;
-  String crrLamanyaBerusaha;
-  String scoreUlet;
-  String keteranganUlet;
-  String crrUlet;
-  String scoreKaku;
-  String keteranganKaku;
-  String crrKaku;
-  String scoreKreatif;
-  String keteranganKreatif;
-  String crrKreatif;
-  String scoreKejujuran;
-  String keteranganKejujuran;
-  String crrKejujuran;
-  String deskripsiKarakter;
-  String totalCrrKarakter;
+  int? id;
+  int? nilaiUmur;
+  String? scoreUmur;
+  String? crrUmur;
+  String? scorePendidikan;
+  String? crrPendidikan;
+  int? nilaiLamanyaBerusaha;
+  String? scoreLamanyaBerusaha;
+  String? crrLamanyaBerusaha;
+  String? scoreUlet;
+  String? keteranganUlet;
+  String? crrUlet;
+  String? scoreKaku;
+  String? keteranganKaku;
+  String? crrKaku;
+  String? scoreKreatif;
+  String? keteranganKreatif;
+  String? crrKreatif;
+  String? scoreKejujuran;
+  String? keteranganKejujuran;
+  String? crrKejujuran;
+  String? deskripsiKarakter;
+  String? totalCrrKarakter;
 
   factory AnalisaKarakter.fromJson(Map<String, dynamic> json) =>
       AnalisaKarakter(
@@ -823,44 +823,44 @@ class AnalisaKeuangan {
     this.totalCrrKeuangan,
   });
 
-  int id;
-  String totalAset;
-  String jumlahAsetKini;
-  String totalAngsuranKeseluruhan;
-  String persenOmzetKini;
-  String persenOmzetYad;
-  String persenBiayaBahanKini;
-  String persenBiayaBahanYad;
-  String persenBiayaOperasiKini;
-  String persenBiayaOperasiYad;
-  String persenBiayaUpahKini;
-  String persenBiayaUpahYad;
-  String persenBiayaHidupKini;
-  String persenBiayaHidupYad;
-  String totalLabaUsahaKini;
-  String totalLabaUsahaYad;
-  String persenLabaUsahaKini;
-  String persenLabaUsahaYad;
-  String persenRatioKini;
-  String persenRatioYad;
-  String persenRoeKini;
-  String persenRoeYad;
-  String keteranganRoe;
-  String persenRoaKini;
-  String persenRoaYad;
-  String keteranganRoa;
-  String persenDerKini;
-  String persenDerYad;
-  String keteranganDer;
-  String persenDscKini;
-  String persenDscYad;
-  String keteranganDsc;
-  bool kreditDisetujuin;
-  String pinjamanMaksimal;
-  String perhitunganModalKerja;
-  String kebutuhanInvestasi;
-  String kebutuhanKredit;
-  double totalCrrKeuangan;
+  int? id;
+  String? totalAset;
+  String? jumlahAsetKini;
+  String? totalAngsuranKeseluruhan;
+  String? persenOmzetKini;
+  String? persenOmzetYad;
+  String? persenBiayaBahanKini;
+  String? persenBiayaBahanYad;
+  String? persenBiayaOperasiKini;
+  String? persenBiayaOperasiYad;
+  String? persenBiayaUpahKini;
+  String? persenBiayaUpahYad;
+  String? persenBiayaHidupKini;
+  String? persenBiayaHidupYad;
+  String? totalLabaUsahaKini;
+  String? totalLabaUsahaYad;
+  String? persenLabaUsahaKini;
+  String? persenLabaUsahaYad;
+  String? persenRatioKini;
+  String? persenRatioYad;
+  String? persenRoeKini;
+  String? persenRoeYad;
+  String? keteranganRoe;
+  String? persenRoaKini;
+  String? persenRoaYad;
+  String? keteranganRoa;
+  String? persenDerKini;
+  String? persenDerYad;
+  String? keteranganDer;
+  String? persenDscKini;
+  String? persenDscYad;
+  String? keteranganDsc;
+  bool? kreditDisetujuin;
+  String? pinjamanMaksimal;
+  String? perhitunganModalKerja;
+  String? kebutuhanInvestasi;
+  String? kebutuhanKredit;
+  double? totalCrrKeuangan;
 
   factory AnalisaKeuangan.fromJson(Map<String, dynamic> json) =>
       AnalisaKeuangan(
@@ -972,26 +972,26 @@ class InputKeuangan {
     this.tradeCycle,
   });
 
-  int id;
-  String kreditDiusulkan;
-  int angsuran;
-  int bungaPerTahun;
-  int provisi;
-  String sistemAngsuran;
-  String digunakanUntuk;
-  String angsuranRp;
-  int hpp;
-  String penjualanKini;
-  String biayaBahanKini;
-  String biayaOperasionalKini;
-  String biayaUpahKini;
-  String biayaHidupKini;
-  String penjualanAsumsi;
-  String biayaBahanAsumsi;
-  String biayaOperasionalAsumsi;
-  String biayaUpahAsumsi;
-  String biayaHidupAsumsi;
-  int tradeCycle;
+  int? id;
+  String? kreditDiusulkan;
+  int? angsuran;
+  int? bungaPerTahun;
+  int? provisi;
+  String? sistemAngsuran;
+  String? digunakanUntuk;
+  String? angsuranRp;
+  int? hpp;
+  String? penjualanKini;
+  String? biayaBahanKini;
+  String? biayaOperasionalKini;
+  String? biayaUpahKini;
+  String? biayaHidupKini;
+  String? penjualanAsumsi;
+  String? biayaBahanAsumsi;
+  String? biayaOperasionalAsumsi;
+  String? biayaUpahAsumsi;
+  String? biayaHidupAsumsi;
+  int? tradeCycle;
 
   factory InputKeuangan.fromJson(Map<String, dynamic> json) => InputKeuangan(
         id: json["id"],
@@ -1057,19 +1057,19 @@ class InputNeraca {
     this.aktivaTetap,
   });
 
-  int id;
-  DateTime tanggalInput;
-  String kasOnHand;
-  String tabungan;
-  String jumlahKasDanTabungan;
-  String jumlahPiutang;
-  String jumlahPersediaan;
-  String hutangUsaha;
-  String hutangBank;
-  String peralatan;
-  String kendaraan;
-  String tanahBangunan;
-  String aktivaTetap;
+  int? id;
+  DateTime? tanggalInput;
+  String? kasOnHand;
+  String? tabungan;
+  String? jumlahKasDanTabungan;
+  String? jumlahPiutang;
+  String? jumlahPersediaan;
+  String? hutangUsaha;
+  String? hutangBank;
+  String? peralatan;
+  String? kendaraan;
+  String? tanahBangunan;
+  String? aktivaTetap;
 
   factory InputNeraca.fromJson(Map<String, dynamic> json) => InputNeraca(
         id: json["id"],
@@ -1093,7 +1093,7 @@ class InputNeraca {
         "id": id,
         "tanggal_input": tanggalInput == null
             ? null
-            : "${tanggalInput.year.toString().padLeft(4, '0')}-${tanggalInput.month.toString().padLeft(2, '0')}-${tanggalInput.day.toString().padLeft(2, '0')}",
+            : "${tanggalInput?.year.toString().padLeft(4, '0')}-${tanggalInput?.month.toString().padLeft(2, '0')}-${tanggalInput?.day.toString().padLeft(2, '0')}",
         "kas_on_hand": kasOnHand,
         "tabungan": tabungan,
         "jumlah_kas_dan_tabungan": jumlahKasDanTabungan,
@@ -1142,36 +1142,36 @@ class InputRugiLaba {
     this.sisaPenghasilan,
   });
 
-  int id;
-  String kas;
-  String bank;
-  String piutang;
-  String persediaan;
-  String jumlahAktivaLancar;
-  String peralatan;
-  String kendaraan;
-  String tanahBangunan;
-  String jumlahAktivaTetap;
-  String sumAktiva;
-  String hutangUsaha;
-  String hutangBank;
-  String hutangLainnya;
-  String jumlahHutang;
-  String jumlahModal;
-  String sumPasiva;
-  String omzet;
-  String hargaPokok;
-  String labaKotor;
-  String biayaTenagaKerja;
-  String biayaOperasional;
-  String biayaLainnya;
-  String totalBiaya;
-  String labaSebelumPajak;
-  String perkiraanPajak;
-  String labaSetelahPajak;
-  String penghasilan;
-  String biayaHidup;
-  String sisaPenghasilan;
+  int? id;
+  String? kas;
+  String? bank;
+  String? piutang;
+  String? persediaan;
+  String? jumlahAktivaLancar;
+  String? peralatan;
+  String? kendaraan;
+  String? tanahBangunan;
+  String? jumlahAktivaTetap;
+  String? sumAktiva;
+  String? hutangUsaha;
+  String? hutangBank;
+  String? hutangLainnya;
+  String? jumlahHutang;
+  String? jumlahModal;
+  String? sumPasiva;
+  String? omzet;
+  String? hargaPokok;
+  String? labaKotor;
+  String? biayaTenagaKerja;
+  String? biayaOperasional;
+  String? biayaLainnya;
+  String? totalBiaya;
+  String? labaSebelumPajak;
+  String? perkiraanPajak;
+  String? labaSetelahPajak;
+  String? penghasilan;
+  String? biayaHidup;
+  String? sisaPenghasilan;
 
   factory InputRugiLaba.fromJson(Map<String, dynamic> json) => InputRugiLaba(
         id: json["id"],

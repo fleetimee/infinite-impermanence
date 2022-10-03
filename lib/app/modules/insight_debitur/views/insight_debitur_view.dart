@@ -1,6 +1,7 @@
 import 'package:akm/app/common/style.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 
@@ -90,8 +91,9 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                         ),
                       ),
                       const Icon(
-                        Icons.bookmark_add_outlined,
+                        FontAwesomeIcons.userNinja,
                         size: 30,
+                        color: primaryColor,
                       ),
                     ],
                   ),
@@ -102,13 +104,96 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                 Obx(
                   () => controller.isDataLoading.value
                       ? const Center(child: CircularProgressIndicator())
-                      : Column(
-                          children: [
-                            Text(
-                              controller.insightDebitur.value.peminjam1
-                                  .toString(),
-                            ),
-                          ],
+                      : Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 5,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(children: [
+                                    paddedText('No. Debitur'),
+                                    paddedText(controller
+                                        .insightDebitur.value.noDebitur
+                                        .toString()),
+                                  ]),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Peminjam 1'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.peminjam1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Peminjam 2'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.peminjam2
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Asal KTP 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value.ktp1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Asal KTP 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value.ktp2
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Alamat 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value.alamat1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Alamat 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value.alamat2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.alamat2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                 ),
               ],
@@ -118,4 +203,14 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
       ),
     );
   }
+}
+
+Widget paddedText(String text) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 17),
+    ),
+  );
 }

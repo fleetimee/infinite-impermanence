@@ -14,7 +14,7 @@
 
 // for ngrok
 const baseUrl =
-    'https://192d-2001-448a-404d-7832-b50f-310c-c78e-f443.ap.ngrok.io/api/v1/';
+    'https://9695-2001-448a-4042-7508-59b0-22da-b34d-5ac7.ap.ngrok.io/api/v1/';
 
 // Insight debitur query string
 const joinTable =

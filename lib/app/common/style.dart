@@ -46,3 +46,10 @@ const TextStyle subtitle2 = TextStyle(
   fontWeight: FontWeight.w500,
   color: Colors.black,
 );
+
+// Detail Debitur Font
+const TextStyle detailDebiturHeading = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.w700,
+  color: primaryColor,
+);

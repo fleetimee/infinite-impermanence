@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/insight_debitur_controller.dart';
 
@@ -72,28 +73,51 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     horizontal: 25,
                     vertical: 20,
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Obx(
-                          () => controller.isDataLoading.value
-                              ? const Text('Loading...')
-                              : Text(
-                                  controller.insightDebitur.value.peminjam1
-                                      .toString(),
-                                  style: const TextStyle(
-                                    color: primaryColor,
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                      Obx(
+                        () => controller.isDataLoading.value
+                            ? const Text(
+                                'Loading...',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                        ),
+                              )
+                            : Text(
+                                'Di-input oleh ${controller.insightDebitur.value.createdBy ?? 'Admin'} pada ${DateFormat('dd MMMM yyyy').format(
+                                  DateTime.parse(controller
+                                      .insightDebitur.value.tglSekarang
+                                      .toString()),
+                                )}',
+                                style: Theme.of(context).textTheme.subtitle1,
+                              ),
                       ),
-                      const Icon(
-                        FontAwesomeIcons.userNinja,
-                        size: 30,
-                        color: primaryColor,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Obx(
+                              () => controller.isDataLoading.value
+                                  ? const Text('Loading...')
+                                  : Text(
+                                      controller.insightDebitur.value.peminjam1
+                                          .toString(),
+                                      style: const TextStyle(
+                                        color: primaryColor,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                            ),
+                          ),
+                          const Icon(
+                            FontAwesomeIcons.userNinja,
+                            size: 30,
+                            color: primaryColor,
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -112,6 +136,14 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              const Text(
+                                'Data Pribadi',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Data Pribadi
                               Table(
                                 columnWidths: const {
                                   0: FlexColumnWidth(0.4),
@@ -190,8 +222,283 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                       ),
                                     ],
                                   ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('No. KTP 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value.noKtp1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('No. KTP 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value.noKtp2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.noKtp2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pekerjaan 1'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.pekerjaan1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pekerjaan 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                                    .pekerjaan2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.pekerjaan2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('TTL'),
+                                      paddedText(
+                                        '${controller.insightDebitur.value.tempatLahir.toString()}, ${DateFormat('dd MMMM yyyy').format(
+                                          DateTime.parse(
+                                            controller.insightDebitur.value
+                                                .tanggalLahir
+                                                .toString(),
+                                          ),
+                                        )}',
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Umur'),
+                                      paddedText(
+                                        controller.insightDebitur.value.umur
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Deskripsi'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                            .deskripsiDebitur
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
                                 ],
-                              )
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Agunan',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pemilik Agunan 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                                    .pemilikAgunan1
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller.insightDebitur.value
+                                                .pemilikAgunan1
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pemilik Agunan 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                                    .pemilikAgunan2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller.insightDebitur.value
+                                                .pemilikAgunan2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Relasi',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Relasi
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Sts Keluarga'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.statusKeluarga
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Tanggungan'),
+                                      paddedText(
+                                        '${controller.insightDebitur.value.jumlahTanggungan.toString()} Orang',
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Pendidikan',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Pendidikan
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pendidikan Terakhir'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.pendidikan
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Usaha',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Usaha
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Lamanya Berusaha'),
+                                      paddedText(
+                                        '${controller.insightDebitur.value.lamanyaBerusaha.toString()} Tahun',
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Jenis Usaha'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.jenisUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Bidang Usaha'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.bidangUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Lokasi Usaha'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.lokasiUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
                             ],
                           ),
                         ),

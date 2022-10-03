@@ -276,11 +276,11 @@
     "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
     "containerId": "afeb3855-8ba9-4e18-8445-d35fe3fb1b8d",
     "name": "Get users",
-    "url": "https://1e07-2001-448a-4044-6b82-288f-ca2d-c154-52a5.ap.ngrok.io/users",
+    "url": "{{baseUrl}}api/v1/users",
     "method": "GET",
     "sortNum": 110000,
     "created": "2022-07-11T01:03:10.735Z",
-    "modified": "2022-08-26T04:18:48.361Z",
+    "modified": "2022-09-29T02:49:04.509Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -491,11 +491,11 @@
     "colId": "55df9d89-9cac-4748-9c41-d53dff5232d8",
     "containerId": "37cc2a2e-484a-42af-8e69-ce87ba83bffc",
     "name": "Get role",
-    "url": "http://localhost:3000/roles/",
+    "url": "{{baseUrl}}api/v1/roles",
     "method": "GET",
     "sortNum": 5000,
     "created": "2022-07-13T14:18:25.189Z",
-    "modified": "2022-07-13T14:19:02.732Z",
+    "modified": "2022-09-29T02:50:48.439Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -589,14 +589,85 @@
     "_id": "5c653682-4cba-4d3a-ad5d-5ec209f6aa76",
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
-    "name": "Get Debitur",
-    "url": "{{baseUrl}}api/v1/debiturs/",
+    "name": "Get Debitur By Id",
+    "url": "{{baseUrl}}api/v1/debiturs/1?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-09-28T02:37:45.877Z",
+    "modified": "2022-10-03T11:02:51.902Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "join",
+        "value": "inputNeraca",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "inputRugiLaba",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "inputKeuangan",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "analisaKeuangan",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "analisaKarakter",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "analisaBisnis",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "analisaJenisUsaha",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan.form_tanah",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan.form_kendaraan",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan.form_los",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan.form_peralatan",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan.form_cash",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "agunan.form_lainnya",
+        "isPath": false
+      }
+    ],
     "tests": []
   },
   {
@@ -929,7 +1000,7 @@
     "method": "GET",
     "sortNum": 470000,
     "created": "2022-09-23T07:21:46.981Z",
-    "modified": "2022-09-23T07:22:13.899Z",
+    "modified": "2022-09-29T01:20:37.463Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -996,6 +1067,349 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"trade_cycle\": 4\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "047c060e-9370-4881-b774-c9e522eab1ec",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/debiturs/103/agunan/",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-09-29T01:19:31.962Z",
+    "modified": "2022-10-02T22:44:02.355Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "173d8b94-35e6-41bf-856a-1e0865f95646",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/debiturs/103/agunan",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-09-29T01:20:24.033Z",
+    "modified": "2022-10-02T22:44:10.926Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "\n{\n  \"kode_agunan\": 1,\n  \"jenis_agunan\": \"Tanah\",\n  \"is_tanah\": true,\n  \"is_los\": false,\n  \"is_kendaraan\": false\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "106d511f-3ebf-4a77-b103-8080ae76d868",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Patch Agunan",
+    "url": "{{baseUrl}}api/v1/debiturs/101",
+    "method": "PATCH",
+    "sortNum": 310000,
+    "created": "2022-09-29T02:56:19.172Z",
+    "modified": "2022-09-29T08:53:39.114Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"agunan\": [\n    {\n      \"id\": 12\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6b0a35ba-6c78-4b2d-a8d5-5b35a45a6891",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "effe6610-3568-442d-88b5-39899cd617a8",
+    "name": "Post Bulk",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-tanah/bulk",
+    "method": "POST",
+    "sortNum": 570000,
+    "created": "2022-09-30T09:15:30.684Z",
+    "modified": "2022-10-01T00:58:07.725Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"bulk\": [\r\n    {\r\n      \"deskripsi_pendek\": \"Tes\",\r\n      \"nama_pemilik\": \"Ponireah\",\r\n      \"bukti_kepemilikan\": \"BPKB\",\r\n      \"luas_tanah\": 20,\r\n      \"tanggal\": \"1997-09-09\",\r\n      \"nilai_pasar\": \"25000000\",\r\n      \"nilai_liquidasi\": \"12000000\",\r\n      \"nilai_pengikatan\": \"200000000\",\r\n      \"pengikatan\": \"SURAT KUASA\",\r\n      \"lokasi\": \"Jl. Kebon Jeruk\",\r\n      \"titik_koordinat\": \"123.123\",\r\n      \"deskripsi_panjang\": \"Lorem\",\r\n      \"agunan\": 2\r\n    },\r\n    {\r\n      \"deskripsi_pendek\": \"Tes2\",\r\n      \"nama_pemilik\": \"Ponireah\",\r\n      \"bukti_kepemilikan\": \"BPKB\",\r\n      \"luas_tanah\": 20,\r\n      \"tanggal\": \"1997-09-09\",\r\n      \"nilai_pasar\": \"25000000\",\r\n      \"nilai_liquidasi\": \"12000000\",\r\n      \"nilai_pengikatan\": \"200000000\",\r\n      \"pengikatan\": \"SURAT KUASA\",\r\n      \"lokasi\": \"Jl. Kebon Jeruk\",\r\n      \"titik_koordinat\": \"123.123\",\r\n      \"deskripsi_panjang\": \"Lorem\",\r\n      \"agunan\": 2\r\n    }\r\n  ]\r\n}\r\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "b1dda95c-1190-4374-9805-fd00c5bb23b5",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "effe6610-3568-442d-88b5-39899cd617a8",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-tanah",
+    "method": "POST",
+    "sortNum": 560000,
+    "created": "2022-09-30T11:30:47.585Z",
+    "modified": "2022-10-03T04:37:57.694Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"deskripsi_pendek\": \"Tes\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "58272b58-e43a-4c19-9023-6948ece720c7",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "effe6610-3568-442d-88b5-39899cd617a8",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-tanah/",
+    "method": "GET",
+    "sortNum": 555000,
+    "created": "2022-09-30T20:45:19.699Z",
+    "modified": "2022-10-03T04:37:52.058Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e9ce7965-67c9-47d0-b7ee-0c21595bcc35",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "caf08432-a89d-4ce6-8ad6-f55c0bc8c156",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-kendaraan/",
+    "method": "GET",
+    "sortNum": 560000,
+    "created": "2022-10-01T00:36:04.368Z",
+    "modified": "2022-10-01T01:08:34.590Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3da7a2c4-b9c2-4434-b854-be6cd892d958",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "caf08432-a89d-4ce6-8ad6-f55c0bc8c156",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-kendaraan/",
+    "method": "POST",
+    "sortNum": 570000,
+    "created": "2022-10-01T00:36:08.466Z",
+    "modified": "2022-10-01T01:15:20.937Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"jenis\": \"Spd Motor\",\r\n  \"merk\": \"Honda\",\r\n  \"type\": \"All New Vario 160 FI\",\r\n  \"warna\": \"Hitam Metalik\",\r\n  \"tahun\": 2022,\r\n  \"no_polisi\": \"AB-2124-XZ\",\r\n  \"no_rangka\": \"MH3SG464OHK005250\",\r\n  \"no_mesin\": \"G3J8E0005507\",\r\n  \"no_bpkb\": \"N-08388524 I\",\r\n  \"nama_pemilik\": \"Maulana Aris Budiyanto (telah dibeli Debitur)\",\r\n  \"kondisi\": \"Baik\",\r\n  \"nilai_pasar\": \"1828232389\",\r\n  \"nilai_liquidasi\": \"1828232389\",\r\n  \"nilai_pengikatan\": \"19299209192\",\r\n  \"pengikatan\": \"Surat Kuasa Untuk Menjual (SKUM)\",\r\n  \"deskripsi_panjang\": \"Lorem ipsum\"\r\n}\r\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "71e7a084-58e9-4ee5-be54-82786fba6acf",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "caf08432-a89d-4ce6-8ad6-f55c0bc8c156",
+    "name": "Post Bulk",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-kendaraan/bulk",
+    "method": "POST",
+    "sortNum": 580000,
+    "created": "2022-10-01T00:36:17.035Z",
+    "modified": "2022-10-01T01:18:37.575Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"bulk\": [\r\n    {\r\n      \"jenis\": \"Spd Motor\",\r\n      \"merk\": \"Honda\",\r\n      \"type\": \"All New Vario 160 FI\",\r\n      \"warna\": \"Hitam Metalik\",\r\n      \"tahun\": 2022,\r\n      \"no_polisi\": \"AB-2124-XZ\",\r\n      \"no_rangka\": \"MH3SG464OHK005250\",\r\n      \"no_mesin\": \"G3J8E0005507\",\r\n      \"no_bpkb\": \"N-08388524 I\",\r\n      \"nama_pemilik\": \"Maulana Aris Budiyanto (telah dibeli Debitur)\",\r\n      \"kondisi\": \"Baik\",\r\n      \"nilai_pasar\": \"1828232389\",\r\n      \"nilai_liquidasi\": \"1828232389\",\r\n      \"nilai_pengikatan\": \"19299209192\",\r\n      \"pengikatan\": \"Surat Kuasa Untuk Menjual (SKUM)\",\r\n      \"deskripsi_panjang\": \"Lorem ipsum\"\r\n    },\r\n    {\r\n      \"jenis\": \"Spd Motor\",\r\n      \"merk\": \"Honda\",\r\n      \"type\": \"All New Vario 160 FI\",\r\n      \"warna\": \"Hitam Metalik\",\r\n      \"tahun\": 2022,\r\n      \"no_polisi\": \"AB-2124-XZ\",\r\n      \"no_rangka\": \"MH3SG464OHK005250\",\r\n      \"no_mesin\": \"G3J8E0005507\",\r\n      \"no_bpkb\": \"N-08388524 I\",\r\n      \"nama_pemilik\": \"Maulana Aris Budiyanto (telah dibeli Debitur)\",\r\n      \"kondisi\": \"Baik\",\r\n      \"nilai_pasar\": \"1828232389\",\r\n      \"nilai_liquidasi\": \"1828232389\",\r\n      \"nilai_pengikatan\": \"19299209192\",\r\n      \"pengikatan\": \"Surat Kuasa Untuk Menjual (SKUM)\",\r\n      \"deskripsi_panjang\": \"Lorem ipsum\"\r\n    },\r\n    {\r\n      \"jenis\": \"Spd Motor\",\r\n      \"merk\": \"Honda\",\r\n      \"type\": \"All New Vario 160 FI\",\r\n      \"warna\": \"Hitam Metalik\",\r\n      \"tahun\": 2022,\r\n      \"no_polisi\": \"AB-2124-XZ\",\r\n      \"no_rangka\": \"MH3SG464OHK005250\",\r\n      \"no_mesin\": \"G3J8E0005507\",\r\n      \"no_bpkb\": \"N-08388524 I\",\r\n      \"nama_pemilik\": \"Maulana Aris Budiyanto (telah dibeli Debitur)\",\r\n      \"kondisi\": \"Baik\",\r\n      \"nilai_pasar\": \"1828232389\",\r\n      \"nilai_liquidasi\": \"1828232389\",\r\n      \"nilai_pengikatan\": \"19299209192\",\r\n      \"pengikatan\": \"Surat Kuasa Untuk Menjual (SKUM)\",\r\n      \"deskripsi_panjang\": \"Lorem ipsum\"\r\n    }\r\n  ]\r\n}\r\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "9f33138b-8ef7-4092-b022-8b52c415c00c",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=7&page=1&fields=peminjam1,bidang_usaha,tgl_sekarang",
+    "method": "GET",
+    "sortNum": 140000,
+    "created": "2022-10-01T12:22:30.534Z",
+    "modified": "2022-10-03T02:07:42.045Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "limit",
+        "value": "7",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "peminjam1",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "fields",
+        "value": "peminjam1,bidang_usaha,tgl_sekarang",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "c6563890-165e-49d5-b37a-3ef6bd84c954",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "b56355bd-7bad-4370-9ac7-a04045235146",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/agunan/8/agunan-los/",
+    "method": "GET",
+    "sortNum": 600000,
+    "created": "2022-10-01T14:29:29.509Z",
+    "modified": "2022-10-01T14:29:37.426Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4e6bb1e5-18f4-41ef-a195-eb53bcc28994",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "b56355bd-7bad-4370-9ac7-a04045235146",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-los/",
+    "method": "POST",
+    "sortNum": 610000,
+    "created": "2022-10-01T21:54:44.264Z",
+    "modified": "2022-10-03T04:38:07.152Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"deskripsi_pendek\": \"Lorem ipsum\",\n  \"nama_pemilik\": \"Lorem ipsum\",\n  \"tempat_lahir\": \"Lorem ipsum\",\n  \"tanggal_lahir\": \"1997-01-01\",\n  \"alamat_pemilik\": \"Lorem ipsum\",\n  \"tempat_dasaran\": \"Lorem ipsum\",\n  \"no_registrasi\": \"5454545\",\n  \"luas_los\": \"100\",\n  \"jenis_dagangan\": \"Lorem ipsum\",\n  \"lokasi_pasar\": \"Lorem ipsum\",\n  \"waktu_buka\": \"08:00:00\",\n  \"waktu_tutup\": \"17:00:00\",\n  \"berlaku_sampai\": \"2020-01-01\",\n  \"nilai_pasar\": \"1000000\",\n  \"nilai_liquidasi\": \"1000000\",\n  \"nilai_pengikatan\": \"1000000\",\n  \"pengikatan\": \"Lorem ipsum\",\n  \"deskripsi_panjang\": \"Lorem ipsum\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "aac23dc7-3135-4fa8-9dc8-2bb61a222a8b",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "87546ec2-6126-4bed-b6ef-106f7b9afeb2",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/agunan/8/agunan-peralatan/",
+    "method": "GET",
+    "sortNum": 620000,
+    "created": "2022-10-02T10:12:10.725Z",
+    "modified": "2022-10-02T10:13:36.540Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9f87a050-fa67-408b-8d46-2589ba06d79c",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "87546ec2-6126-4bed-b6ef-106f7b9afeb2",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-peralatan/",
+    "method": "POST",
+    "sortNum": 630000,
+    "created": "2022-10-02T10:15:09.238Z",
+    "modified": "2022-10-03T04:38:13.549Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"deskripsi_panjang\": \"Lorem\",\n  \"nilai_pasar\": 1000000,\n  \"nilai_liquidasi\": 1000000,\n  \"nilai_pengikatan\": 1000000,\n  \"pengikatan\": \"Lorem\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "260133d4-6c64-48fe-b5be-2855976f92c8",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
+    "name": "Post Bulk",
+    "url": "{{baseUrl}}api/v1/debiturs/102/agunan/bulk",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-10-02T11:21:26.538Z",
+    "modified": "2022-10-02T11:22:59.952Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"bulk\": [\n    {\n      \"kode_agunan\": 3,\n      \"jenis_agunan\": \"Kendaraan\",\n      \"is_tanah\": false,\n      \"is_los\": false,\n      \"is_kendaraan\": true\n    },\n    {\n      \"kode_agunan\": 1,\n      \"jenis_agunan\": \"Tanah dan Banguna\",\n      \"is_tanah\": false,\n      \"is_los\": false,\n      \"is_kendaraan\": true\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "0164f55e-c1a8-42e8-9ead-04e08fbd67e3",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "3916d8a4-29e5-44af-a556-62613e984955",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/agunan/15/agunan-cash",
+    "method": "GET",
+    "sortNum": 640000,
+    "created": "2022-10-02T22:43:26.157Z",
+    "modified": "2022-10-02T22:45:39.641Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "5a084cca-54f3-42c3-a811-eb1e0cbfff24",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "3916d8a4-29e5-44af-a556-62613e984955",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-cash",
+    "method": "POST",
+    "sortNum": 650000,
+    "created": "2022-10-02T22:48:28.789Z",
+    "modified": "2022-10-03T04:38:19.510Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"deskripsi_panjang\": \"Lorem\",\n  \"nilai_pasar\": 100000000,\n  \"nilai_liquidasi\": 100000000,\n  \"nilai_pengikatan\": 100000000,\n  \"pengikatan\": \"Lorem\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "955d34a9-adfb-40c8-af26-3638efafcc73",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e13763d4-42eb-4d2e-bbb9-0c8de16e2aa4",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/agunan/15/agunan-lainnya",
+    "method": "GET",
+    "sortNum": 660000,
+    "created": "2022-10-03T01:48:16.801Z",
+    "modified": "2022-10-03T01:48:29.704Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "587da26e-106b-4d13-b29b-073587f4ba52",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e13763d4-42eb-4d2e-bbb9-0c8de16e2aa4",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/agunan/6/agunan-lainnya",
+    "method": "POST",
+    "sortNum": 670000,
+    "created": "2022-10-03T01:48:45.058Z",
+    "modified": "2022-10-03T04:38:24.861Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"deskripsi_panjang\": \"Lorem\",\n  \"nama_asuransi_penjamin\": \"ASKRINDO\",\n  \"nilai_pasar\": 100000000,\n  \"nilai_liquidasi\": 100000000,\n  \"nilai_pengikatan\": 100000000,\n  \"pengikatan\": \"Lorem\"\n}\n",
       "form": []
     },
     "tests": []

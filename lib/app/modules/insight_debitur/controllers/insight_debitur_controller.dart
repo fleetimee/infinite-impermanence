@@ -1,15 +1,28 @@
 import 'package:akm/app/data/provider/debitur/detail_debitur.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nekos/nekos.dart';
 
-class InsightDebiturController extends GetxController {
+class InsightDebiturController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   // Initialize on Init and get debiturs details
   @override
   void onInit() {
     super.onInit();
     fetchOneDebitur(debiturId);
+    // Define how many tabs you want to show
+    tabController = TabController(length: 3, vsync: this);
   }
+
+  @override
+  void onClose() {
+    super.onClose();
+    tabController?.dispose();
+  }
+
+  // For tab Controller
+  TabController? tabController;
 
   // For nekos api
   Future<String> img = Nekos().smug();

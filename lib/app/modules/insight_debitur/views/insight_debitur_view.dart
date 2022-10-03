@@ -125,6 +125,57 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                 const SizedBox(
                   height: 5.0,
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 20,
+                  ),
+                  child: Container(
+                    width: double.maxFinite,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(
+                        10.0,
+                      ),
+                    ),
+                    child: TabBar(
+                      controller: controller.tabController,
+                      // give the indicator a decoration (color and border radius)
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                          10.0,
+                        ),
+                        color: primaryColor,
+                      ),
+                      labelColor: Colors.white,
+                      unselectedLabelColor: primaryColor,
+                      tabs: const [
+                        // first tab [you can add an icon using the icon property]
+                        Tab(
+                          icon: Icon(
+                            FontAwesomeIcons.user,
+                            size: 28,
+                          ),
+                        ),
+
+                        // second tab [you can add an icon using the icon property]
+                        Tab(
+                          icon: Icon(
+                            FontAwesomeIcons.chartLine,
+                            size: 28,
+                          ),
+                        ),
+                        Tab(
+                          icon: Icon(
+                            FontAwesomeIcons.print,
+                            size: 28,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Obx(
                   () => controller.isDataLoading.value
                       ? const Center(child: CircularProgressIndicator())

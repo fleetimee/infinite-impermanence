@@ -129,6 +129,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                       child: HeaderKeuangan(),
                     ),
                     MenuNeraca(),
+                    MenuRugiLaba()
                   ],
                 ),
                 Padding(
@@ -516,49 +517,6 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           ),
                         ),
                 ),
-                // Expanded(
-                //   child: TabBarView(
-                //     controller: controller.tabController,
-                //     children: const [
-                //       // first tab bar view widget
-                //       SliverToBoxAdapter(
-                //         child: Center(
-                //           child: Text(
-                //             'Place Bid',
-                //             style: TextStyle(
-                //               fontSize: 25,
-                //               fontWeight: FontWeight.w600,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-
-                //       // second tab bar view widget
-                //       SliverToBoxAdapter(
-                //         child: Center(
-                //           child: Text(
-                //             'Buy Now',
-                //             style: TextStyle(
-                //               fontSize: 25,
-                //               fontWeight: FontWeight.w600,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       SliverToBoxAdapter(
-                //         child: Center(
-                //           child: Text(
-                //             'Buy Now',
-                //             style: TextStyle(
-                //               fontSize: 25,
-                //               fontWeight: FontWeight.w600,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -712,7 +670,7 @@ class MenuNeraca extends StatelessWidget {
       ),
       child: GFAccordion(
           titleChild: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 'Neraca Menu',
@@ -720,9 +678,6 @@ class MenuNeraca extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
                 ),
-              ),
-              const SizedBox(
-                width: 16.0,
               ),
               Obx(
                 () {
@@ -734,13 +689,40 @@ class MenuNeraca extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.inputNeraca == null) {
-                      return const Icon(
-                        FontAwesomeIcons.xmark,
-                        color: Colors.red,
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
                       );
                     } else {
-                      return const Icon(FontAwesomeIcons.check,
-                          color: Colors.green);
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
                     }
                   }
                 },
@@ -750,9 +732,6 @@ class MenuNeraca extends StatelessWidget {
           contentChild: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Neraca keuangan (balance sheet) adalah bagian dalam laporan finansial dalam akuntansi yang mencatat informasi terkait aset, kewajiban pembayaran pada pihak terkait dalam operasional perusahaan, dan modal pada waktu tertentu.',
-              ),
               const SizedBox(
                 height: 5.0,
               ),
@@ -813,6 +792,157 @@ class MenuNeraca extends StatelessWidget {
                                   child: const Text("Edit"),
                                 ),
                               ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
+    );
+  }
+}
+
+class MenuRugiLaba extends StatelessWidget {
+  MenuRugiLaba({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final neracaController = Get.put(InputNeracaController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Rugi / Laba Menu',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (neracaController.isNeracaProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.inputRugiLaba == null) {
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (neracaController.isNeracaProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        //Check if neraca is empty
+                        controller.insightDebitur.value.inputNeraca == null
+                            ? Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.redAccent,
+                                  ),
+                                  onPressed: () {
+                                    Get.snackbar('Error', 'Dibilangin batu',
+                                        backgroundColor: Colors.redAccent,
+                                        colorText: Colors.white);
+                                  },
+                                  child: const Text(
+                                      "Input Neraca terlebih dahulu"),
+                                ),
+                              )
+                            : controller.insightDebitur.value.inputRugiLaba !=
+                                    null
+                                ? Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.redAccent,
+                                      ),
+                                      onPressed: () {
+                                        Get.snackbar('Error', 'Dibilangin batu',
+                                            backgroundColor: Colors.redAccent,
+                                            colorText: Colors.white);
+                                      },
+                                      child: const Text(
+                                          "Input Neraca terlebih dahulu"),
+                                    ),
+                                  )
+                                : Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blueGrey,
+                                      ),
+                                      onPressed: () {
+                                        Get.snackbar('Error', 'Dibilangin batu',
+                                            backgroundColor: Colors.redAccent,
+                                            colorText: Colors.white);
+                                      },
+                                      child: const Text("Input"),
+                                    ),
+                                  ),
                       ],
                     );
                   }

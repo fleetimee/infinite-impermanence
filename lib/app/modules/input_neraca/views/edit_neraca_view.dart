@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../controllers/input_neraca_controller.dart';
+import '../../../common/style.dart';
+import '../controllers/input_neraca_controller.dart';
 
 class EditNeracaView extends GetView<InputNeracaController> {
   EditNeracaView({Key? key}) : super(key: key);
@@ -600,6 +600,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           controller.formKey.currentState?.value.toString());
                       // controller.updateNeraca();
                       controller.updateNeraca(data.id.toString());
+                      Get.back();
                     } else {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());

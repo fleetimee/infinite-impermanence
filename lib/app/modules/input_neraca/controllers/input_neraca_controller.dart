@@ -11,7 +11,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../service/input_neraca_service.dart';
 
 class InputNeracaController extends GetxController {
   final isNeracaProcessing = false.obs;
@@ -135,9 +134,8 @@ class InputNeracaController extends GetxController {
     }
   }
 
-  void updateNeraca(String id) async {
-    final api = InputNeracaService();
-    final data = {
+  void updateNeraca(id) async {
+    final body = {
       'tanggal_input': tanggalInput.value.toString(),
       'kas_on_hand': cashOnHand.text.replaceAll('.', ''),
       'tabungan': tabungan.text.replaceAll('.', ''),
@@ -152,9 +150,20 @@ class InputNeracaController extends GetxController {
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
     };
 
-    await api.editInputNeraca(id, data);
-
-    update();
+    try {
+      isNeracaProcessing(true);
+      NeracaProvider().putNeraca(id, body).then((resp) {
+        isNeracaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(id));
+        Get.snackbar('Sucess', 'Data updated');
+      }, onError: (err) {
+        isNeracaProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isNeracaProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
   }
 }
 

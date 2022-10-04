@@ -75,7 +75,7 @@ class DebiturInsight {
   DateTime? tglSekarang;
   String? deskripsiDebitur;
   dynamic createdBy;
-  InputNeracaFix? inputNeraca;
+  InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
   AnalisaKeuangan? analisaKeuangan;
@@ -119,7 +119,7 @@ class DebiturInsight {
         createdBy: json["createdBy"],
         inputNeraca: json["inputNeraca"] == null
             ? null
-            : InputNeracaFix.fromJson(json["inputNeraca"]),
+            : InputNeraca.fromJson(json["inputNeraca"]),
         inputRugiLaba: json["inputRugiLaba"] == null
             ? null
             : InputRugiLaba.fromJson(json["inputRugiLaba"]),
@@ -1042,8 +1042,8 @@ class InputKeuangan {
       };
 }
 
-class InputNeracaFix {
-  InputNeracaFix({
+class InputNeraca {
+  InputNeraca({
     this.id,
     this.tanggalInput,
     this.kasOnHand,
@@ -1055,7 +1055,7 @@ class InputNeracaFix {
     this.hutangBank,
     this.peralatan,
     this.kendaraan,
-    this.tanahBangunan,
+    this.tanahDanBangunan,
     this.aktivaTetap,
   });
 
@@ -1070,14 +1070,12 @@ class InputNeracaFix {
   String? hutangBank;
   String? peralatan;
   String? kendaraan;
-  String? tanahBangunan;
+  String? tanahDanBangunan;
   String? aktivaTetap;
 
-  factory InputNeracaFix.fromJson(Map<String, dynamic> json) => InputNeracaFix(
+  factory InputNeraca.fromJson(Map<String, dynamic> json) => InputNeraca(
         id: json["id"],
-        tanggalInput: json["tanggal_input"] == null
-            ? null
-            : DateTime.parse(json["tanggal_input"]),
+        tanggalInput: DateTime.parse(json["tanggal_input"]),
         kasOnHand: json["kas_on_hand"],
         tabungan: json["tabungan"],
         jumlahKasDanTabungan: json["jumlah_kas_dan_tabungan"],
@@ -1087,15 +1085,14 @@ class InputNeracaFix {
         hutangBank: json["hutang_bank"],
         peralatan: json["peralatan"],
         kendaraan: json["kendaraan"],
-        tanahBangunan: json["tanah_bangunan"],
+        tanahDanBangunan: json["tanah_bangunan"],
         aktivaTetap: json["aktiva_tetap"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "tanggal_input": tanggalInput == null
-            ? null
-            : "${tanggalInput?.year.toString().padLeft(4, '0')}-${tanggalInput?.month.toString().padLeft(2, '0')}-${tanggalInput?.day.toString().padLeft(2, '0')}",
+        "tanggal_input":
+            "${tanggalInput?.year.toString().padLeft(4, '0')}-${tanggalInput?.month.toString().padLeft(2, '0')}-${tanggalInput?.day.toString().padLeft(2, '0')}",
         "kas_on_hand": kasOnHand,
         "tabungan": tabungan,
         "jumlah_kas_dan_tabungan": jumlahKasDanTabungan,
@@ -1105,7 +1102,7 @@ class InputNeracaFix {
         "hutang_bank": hutangBank,
         "peralatan": peralatan,
         "kendaraan": kendaraan,
-        "tanah_bangunan": tanahBangunan,
+        "tanah_bangunan": tanahDanBangunan,
         "aktiva_tetap": aktivaTetap,
       };
 }

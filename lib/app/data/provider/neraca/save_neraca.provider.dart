@@ -28,4 +28,25 @@ class NeracaProvider {
       return Future.error(e);
     }
   }
+
+  Future<void> putNeraca(id, Map body) async {
+    try {
+      final response = await httpClient.put(
+        Uri.parse('${baseUrl}input-neraca/$id'),
+        body: jsonEncode(body),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        debugPrint('It works');
+      } else {
+        throw Exception('Failed to save data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

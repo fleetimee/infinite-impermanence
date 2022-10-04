@@ -20,19 +20,6 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: FutureBuilder(
-      //     future:
-      //         InsightDebiturProvider().fetchDebiturById(controller.debiturId),
-      //     builder: (context, AsyncSnapshot snapshot) {
-      //       if (snapshot.hasData) {
-      //         return Text(snapshot.data.peminjam1.toString());
-      //       } else {
-      //         return const Text('Insight Debitur');
-      //       }
-      //     },
-      //   ),
-      // ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -139,119 +126,9 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                         horizontal: 25,
                         vertical: 20,
                       ),
-                      child: Container(
-                        width: double.maxFinite,
-                        height: 45,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(
-                            10.0,
-                          ),
-                        ),
-                        child: TabBar(
-                          controller: controller.tabController,
-                          // give the indicator a decoration (color and border radius)
-                          indicator: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              10.0,
-                            ),
-                            color: primaryColor,
-                          ),
-                          labelColor: Colors.white,
-                          unselectedLabelColor: primaryColor,
-                          tabs: [
-                            // first tab [you can add an icon using the icon property]
-                            Tab(
-                              icon: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Expanded(
-                                    child: Icon(
-                                      FontAwesomeIcons.playstation,
-                                      size: 28,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  const Expanded(
-                                    flex: 3,
-                                    child: Text(
-                                      'Neraca',
-                                      style: TextStyle(fontSize: 22),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Obx(() {
-                                    if (neracaController
-                                        .isNeracaProcessing.value) {
-                                      return const Expanded(
-                                        child: Center(
-                                          child: CircularProgressIndicator(),
-                                        ),
-                                      );
-                                    } else {
-                                      if (controller.insightDebitur.value
-                                              .inputNeraca ==
-                                          null) {
-                                        return const Icon(
-                                            FontAwesomeIcons.xmark);
-                                      } else {
-                                        return const Icon(
-                                            FontAwesomeIcons.check);
-                                      }
-                                    }
-                                  }),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      child: HeaderKeuangan(),
                     ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 15,
-                      ),
-                      child: GFAccordion(
-                          title: 'Neraca Menu',
-
-                          // content:
-                          //     'GetFlutter is an open source library that comes with pre-build 1000+ UI components.',
-                          contentChild: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'Neraca keuangan (balance sheet) adalah bagian dalam laporan finansial dalam akuntansi yang mencatat informasi terkait aset, kewajiban pembayaran pada pihak terkait dalam operasional perusahaan, dan modal pada waktu tertentu.',
-                              ),
-                              const SizedBox(
-                                height: 5.0,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.blueGrey,
-                                      ),
-                                      onPressed: () {
-                                        Get.toNamed(Routes.INPUT_NERACA,
-                                            arguments: controller
-                                                .insightDebitur.value.id);
-                                      },
-                                      child: const Text("Input"),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          collapsedIcon: const Icon(Icons.add),
-                          expandedIcon: const Icon(Icons.minimize)),
-                    ),
+                    MenuNeraca(),
                   ],
                 ),
                 Padding(
@@ -259,37 +136,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     horizontal: 25,
                     vertical: 20,
                   ),
-                  child: Container(
-                    width: double.maxFinite,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(
-                        10.0,
-                      ),
-                    ),
-                    child: TabBar(
-                      controller: controller.tabController,
-                      // give the indicator a decoration (color and border radius)
-                      indicator: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          10.0,
-                        ),
-                        color: primaryColor,
-                      ),
-                      labelColor: Colors.white,
-                      unselectedLabelColor: primaryColor,
-                      tabs: const [
-                        // first tab [you can add an icon using the icon property]
-                        Tab(
-                          icon: Icon(
-                            FontAwesomeIcons.user,
-                            size: 28,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: HeaderDetailDebitur(controller: controller),
                 ),
                 Obx(
                   () => controller.isDataLoading.value
@@ -717,6 +564,264 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
           ),
         ],
       ),
+    );
+  }
+}
+
+class HeaderDetailDebitur extends StatelessWidget {
+  const HeaderDetailDebitur({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final InsightDebiturController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.maxFinite,
+      height: 45,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(
+          10.0,
+        ),
+      ),
+      child: TabBar(
+        controller: controller.tabController,
+        // give the indicator a decoration (color and border radius)
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+          color: primaryColor,
+        ),
+        labelColor: Colors.white,
+        unselectedLabelColor: primaryColor,
+        tabs: [
+          // first tab [you can add an icon using the icon property]
+          Tab(
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Expanded(
+                  child: Icon(
+                    FontAwesomeIcons.userInjured,
+                    size: 28,
+                  ),
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Detail Debitur',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HeaderKeuangan extends StatelessWidget {
+  HeaderKeuangan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final neracaController = Get.put(InputNeracaController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.maxFinite,
+      height: 45,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(
+          10.0,
+        ),
+      ),
+      child: TabBar(
+        controller: controller.tabController,
+        // give the indicator a decoration (color and border radius)
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+          color: primaryColor,
+        ),
+        labelColor: Colors.white,
+        unselectedLabelColor: primaryColor,
+        tabs: [
+          // first tab [you can add an icon using the icon property]
+          Tab(
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Expanded(
+                  child: Icon(
+                    FontAwesomeIcons.paypal,
+                    size: 28,
+                  ),
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Keuangan',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MenuNeraca extends StatelessWidget {
+  MenuNeraca({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final neracaController = Get.put(InputNeracaController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Text(
+                'Neraca Menu',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (neracaController.isNeracaProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.inputNeraca == null) {
+                      return const Icon(
+                        FontAwesomeIcons.xmark,
+                        color: Colors.red,
+                      );
+                    } else {
+                      return const Icon(FontAwesomeIcons.check,
+                          color: Colors.green);
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Neraca keuangan (balance sheet) adalah bagian dalam laporan finansial dalam akuntansi yang mencatat informasi terkait aset, kewajiban pembayaran pada pihak terkait dalam operasional perusahaan, dan modal pada waktu tertentu.',
+              ),
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (neracaController.isNeracaProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        controller.insightDebitur.value.inputNeraca != null
+                            ? const SizedBox()
+                            : Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.INPUT_NERACA,
+                                        arguments:
+                                            controller.insightDebitur.value.id);
+                                  },
+                                  child: const Text("Input"),
+                                ),
+                              ),
+                        controller.insightDebitur.value.inputNeraca == null
+                            ? const SizedBox()
+                            : Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.LIHAT_NERACA,
+                                        arguments: controller
+                                            .insightDebitur.value.inputNeraca);
+                                  },
+                                  child: const Text("Lihat"),
+                                ),
+                              ),
+                        const SizedBox(
+                          width: 10.0,
+                        ),
+                        controller.insightDebitur.value.inputNeraca == null
+                            ? const SizedBox()
+                            : Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.EDIT_NERACA,
+                                        arguments: controller
+                                            .insightDebitur.value.inputNeraca);
+                                  },
+                                  child: const Text("Edit"),
+                                ),
+                              ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
     );
   }
 }

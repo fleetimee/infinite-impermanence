@@ -2,6 +2,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/rugi_laba/save_rugi_laba.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
@@ -76,14 +77,93 @@ class RugiLabaController extends GetxController {
       RugiLabaProvider().deployRugiLaba(body).then((value) {
         isRugiLabaProcessing.value = false;
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar('Success', 'Data berhasil disimpan');
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
       }).catchError((e) {
         isRugiLabaProcessing.value = false;
-        Get.snackbar('Error', e.toString());
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
       });
     } catch (e) {
       isRugiLabaProcessing.value = false;
-      Get.snackbar('Error', e.toString());
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void updateRugiLaba(id) async {
+    final body = {
+      'kas': aktivaLancarKas.text.replaceAll('.', ''),
+      'bank': aktivaBank.text.replaceAll('.', ''),
+      'piutang': aktivaPiutangUsaha.text.replaceAll('.', ''),
+      'persediaan': aktivaPersediaan.text.replaceAll('.', ''),
+      'jumlah_aktiva_lancar': jumlahAktivaLancar.text.replaceAll('.', ''),
+      'peralatan': peralatan.text.replaceAll('.', ''),
+      'kendaraan': kendaraan.text.replaceAll('.', ''),
+      'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
+      'jumlah_aktiva_tetap': jumlahAktivaTetap.text.replaceAll('.', ''),
+      'sum_aktiva': jumlahAktiva.text.replaceAll('.', ''),
+      'hutang_usaha': hutangUsaha.text.replaceAll('.', ''),
+      'hutang_bank': hutangBank.text.replaceAll('.', ''),
+      'hutang_lainnya': hutangLainnya.text.replaceAll('.', ''),
+      'jumlah_hutang': jumlahHutang.text.replaceAll('.', ''),
+      'jumlah_modal': modal.text.replaceAll('.', ''),
+      'sum_pasiva': jumlahPasiva.text.replaceAll('.', ''),
+      'omzet': omzetPerBulan.text.replaceAll('.', ''),
+      'harga_pokok': hargaPokokPenjualan.text.replaceAll('.', ''),
+      'laba_kotor': labaKotor.text.replaceAll('.', ''),
+      'biaya_tenaga_kerja': biayaTenagaKerja.text.replaceAll('.', ''),
+      'biaya_operasional': biayaOperasional.text.replaceAll('.', ''),
+      'biaya_lainnya': biayaLainnya.text.replaceAll('.', ''),
+      'total_biaya': totalBiaya.text.replaceAll('.', ''),
+      'laba_sebelum_pajak': labaSebelumPajak.text.replaceAll('.', ''),
+      'perkiraan_pajak': perkiraanPajak.text.replaceAll('.', ''),
+      'laba_setelah_pajak': labaSetelahPajak.text.replaceAll('.', ''),
+      'penghasilan': labaSetelahPajak.text.replaceAll('.', ''),
+      'biaya_hidup': biayaHidupRataRata.text.replaceAll('.', ''),
+      'sisa_penghasilan': sisaPenghasilanBersih.text.replaceAll('.', ''),
+    };
+    try {
+      isRugiLabaProcessing.value = true;
+      RugiLabaProvider().putRugiLaba(id, body).then((resp) {
+        isRugiLabaProcessing.value = false;
+        debiturController.fetchOneDebitur(int.parse(id.toString()));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }).catchError((e) {
+        isRugiLabaProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+        debugPrint(e.toString());
+      });
+    } catch (e) {
+      isRugiLabaProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
     }
   }
 

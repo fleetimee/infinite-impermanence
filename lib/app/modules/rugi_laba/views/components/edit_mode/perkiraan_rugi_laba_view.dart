@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../../../common/style.dart';
- import '../../../controllers/rugi_laba_controller.dart';
+import '../../../../../common/style.dart';
+import '../../../controllers/rugi_laba_controller.dart';
 
 class EditPerkiraanLabaRugiView extends StatelessWidget {
   EditPerkiraanLabaRugiView({super.key});
@@ -24,7 +25,7 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
       title: const Text('Perkiraan Laba / Rugi'),
       children: [
         SizedBox(
-          height: 600,
+          height: 650,
           child: DataTable2(
             columnSpacing: 12,
             horizontalMargin: 12,
@@ -69,6 +70,22 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
               ),
               DataRow2(
                 cells: [
+                  const DataCell(Text('Persen harga pokok penjualan :')),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    FormBuilderTextField(
+                      name: 'persen_hpp',
+                      controller: controller.persentaseHpp,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
                   const DataCell(Text('Harga pokok penjualan')),
                   const DataCell(SizedBox.shrink()),
                   const DataCell(SizedBox.shrink()),
@@ -105,7 +122,20 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
-                      decoration: const InputDecoration(),
+                      decoration: InputDecoration(
+                        hintText: 'Hasil',
+                        suffixIcon: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: primaryColor,
+                            shape: const StadiumBorder(),
+                          ),
+                          onPressed: () {
+                            controller.hitungHpp();
+                            controller.sumLabaKotor();
+                          },
+                          child: const Text("Hit"),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -125,7 +155,6 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_tenaga_kerja',
-                      readOnly: true,
                       controller: controller.biayaTenagaKerja =
                           MoneyMaskedTextController(
                         initialValue:
@@ -145,7 +174,6 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   const DataCell(SizedBox.shrink()),
                   DataCell(
                     FormBuilderTextField(
-                      readOnly: true,
                       name: 'biaya_operasional',
                       controller: controller.biayaOperasional =
                           MoneyMaskedTextController(
@@ -167,7 +195,6 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_lainnya',
-                      readOnly: true,
                       controller: controller.biayaLainnya =
                           MoneyMaskedTextController(
                         initialValue:
@@ -176,10 +203,26 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
+                      ),
                     ),
                   ),
-                  const DataCell(
-                    SizedBox.shrink(),
+                  DataCell(
+                    ElevatedButton.icon(
+                      icon: const Icon(FontAwesomeIcons.calculator),
+                      label: const Text("Hitung Total"),
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(500, 40),
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12), // <-- Radius
+                        ),
+                      ),
+                      onPressed: () {
+                        controller.perkiraanLaba();
+                      },
+                    ),
                   ),
                 ],
               ),

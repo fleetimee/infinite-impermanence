@@ -772,7 +772,14 @@ class MenuNeraca extends StatelessWidget {
                                         arguments: controller
                                             .insightDebitur.value.inputNeraca);
                                   },
-                                  child: const Text("Lihat"),
+                                  child: const Text(
+                                    "Lihat",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
                         const SizedBox(
@@ -790,7 +797,14 @@ class MenuNeraca extends StatelessWidget {
                                         arguments: controller
                                             .insightDebitur.value.inputNeraca);
                                   },
-                                  child: const Text("Edit"),
+                                  child: const Text(
+                                    "Edit",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
                       ],
@@ -918,17 +932,52 @@ class MenuRugiLaba extends StatelessWidget {
                             : controller.insightDebitur.value.inputRugiLaba !=
                                     null
                                 ? Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.redAccent,
-                                      ),
-                                      onPressed: () {
-                                        Get.snackbar('Error', 'Dibilangin batu',
-                                            backgroundColor: Colors.redAccent,
-                                            colorText: Colors.white);
-                                      },
-                                      child: const Text(
-                                          "Input Neraca terlebih dahulu"),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(Routes.VIEW_RUGI_LABA,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Lihat",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(Routes.EDIT_RUGI_LABA,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Edit",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   )
                                 : Expanded(

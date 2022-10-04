@@ -21,7 +21,7 @@ class RugiLabaInput {
     this.jumlahAktivaLancar,
     this.peralatan,
     this.kendaraan,
-    this.tanahBangunan,
+    this.tanahDanBangunan,
     this.jumlahAktivaTetap,
     this.sumAktiva,
     this.hutangUsaha,
@@ -55,7 +55,7 @@ class RugiLabaInput {
   String? jumlahAktivaLancar;
   String? peralatan;
   String? kendaraan;
-  String? tanahBangunan;
+  String? tanahDanBangunan;
   String? jumlahAktivaTetap;
   String? sumAktiva;
   String? hutangUsaha;
@@ -89,7 +89,7 @@ class RugiLabaInput {
         jumlahAktivaLancar: json["jumlah_aktiva_lancar"] ?? null,
         peralatan: json["peralatan"],
         kendaraan: json["kendaraan"],
-        tanahBangunan: json["tanah_bangunan"],
+        tanahDanBangunan: json["tanah_bangunan"],
         jumlahAktivaTetap: json["jumlah_aktiva_tetap"] ?? null,
         sumAktiva: json["sum_aktiva"] ?? null,
         hutangUsaha: json["hutang_usaha"] ?? null,
@@ -125,7 +125,7 @@ class RugiLabaInput {
         "jumlah_aktiva_lancar": jumlahAktivaLancar ?? null,
         "peralatan": peralatan,
         "kendaraan": kendaraan,
-        "tanah_bangunan": tanahBangunan,
+        "tanah_bangunan": tanahDanBangunan,
         "jumlah_aktiva_tetap": jumlahAktivaTetap ?? null,
         "sum_aktiva": sumAktiva ?? null,
         "hutang_usaha": hutangUsaha ?? null,
@@ -293,7 +293,7 @@ class Neraca {
     this.hutangBank,
     this.peralatan,
     this.kendaraan,
-    this.tanahBangunan,
+    this.tanahDanBangunan,
     this.aktivaTetap,
   });
 
@@ -308,7 +308,7 @@ class Neraca {
   String? hutangBank;
   String? peralatan;
   String? kendaraan;
-  String? tanahBangunan;
+  String? tanahDanBangunan;
   String? aktivaTetap;
 
   factory Neraca.fromJson(Map<String, dynamic> json) => Neraca(
@@ -325,7 +325,7 @@ class Neraca {
         hutangBank: json["hutang_bank"] ?? null,
         peralatan: json["peralatan"] ?? null,
         kendaraan: json["kendaraan"] ?? null,
-        tanahBangunan: json["tanah_bangunan"] ?? null,
+        tanahDanBangunan: json["tanah_bangunan"] ?? null,
         aktivaTetap: json["aktiva_tetap"] ?? null,
       );
 
@@ -343,7 +343,7 @@ class Neraca {
         "hutang_bank": hutangBank ?? null,
         "peralatan": peralatan ?? null,
         "kendaraan": kendaraan ?? null,
-        "tanah_bangunan": tanahBangunan ?? null,
+        "tanah_bangunan": tanahDanBangunan ?? null,
         "aktiva_tetap": aktivaTetap ?? null,
       };
 }

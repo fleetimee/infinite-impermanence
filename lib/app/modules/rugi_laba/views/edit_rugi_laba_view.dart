@@ -2,22 +2,24 @@
 import 'dart:developer';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/rugi_laba/views/components/edit_mode/perkiraan_neraca_view.dart';
+import 'package:akm/app/modules/rugi_laba/views/components/edit_mode/perkiraan_rugi_laba_view.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import 'components/perkiraan_neraca_view.dart';
-import 'components/perkiraan_rugi_laba_view.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../controllers/rugi_laba_controller.dart';
+import '../../../common/style.dart';
+import '../controllers/rugi_laba_controller.dart';
 
 class EditRugiLabaView extends GetView<RugiLabaController> {
   EditRugiLabaView({Key? key}) : super(key: key);
@@ -155,7 +157,7 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(
                   height: 2.0,
                 ),
-                PerkiraanNeracaTabelView(),
+                EditPerkiraanNeracaTabelView(),
                 const SizedBox(height: 25),
                 const Center(
                   child: Text(
@@ -181,7 +183,7 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(
                   height: 2.0,
                 ),
-                PerkiraanLabaRugiView(),
+                EditPerkiraanLabaRugiView(),
                 const SizedBox(
                   height: 25.0,
                 ),
@@ -240,7 +242,6 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'biaya_hidup',
-                              readOnly: true,
                               keyboardType: TextInputType.number,
                               controller: controller.biayaHidupRataRata =
                                   MoneyMaskedTextController(
@@ -274,7 +275,19 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                                     data.inputRugiLaba.sisaPenghasilan),
                                 precision: 0,
                               ),
-                              decoration: const InputDecoration(),
+                              decoration: InputDecoration(
+                                suffixIcon: ElevatedButton.icon(
+                                  icon: const Icon(FontAwesomeIcons.calculator),
+                                  label: const Text("Hit"),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: primaryColor,
+                                    shape: const StadiumBorder(),
+                                  ),
+                                  onPressed: () {
+                                    controller.sumSisaPenghasilan();
+                                  },
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -329,32 +342,21 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                 //     ),
                 //   ],
                 // ),
-                // const SizedBox(
-                //   height: 25.0,
-                // ),
-                // Center(
-                //   child: ElevatedButton.icon(
-                //     icon: const Icon(FontAwesomeIcons.shopify),
-                //     label: const Text("Submit laba / rugi"),
-                //     style: ElevatedButton.styleFrom(
-                //       fixedSize: const Size(600, 12),
-                //       backgroundColor: primaryColor,
-                //       shape: const StadiumBorder(),
-                //     ),
-                //     onPressed: () {
-                //       if (controller.formKey.currentState?.saveAndValidate() ??
-                //           false) {
-                //         controller.saveRugiLaba();
-                //         debugPrint(
-                //             controller.formKey.currentState?.value.toString());
-                //       } else {
-                //         debugPrint(
-                //             controller.formKey.currentState?.value.toString());
-                //         debugPrint('validation failed');
-                //       }
-                //     },
-                //   ),
-                // ),
+                const SizedBox(
+                  height: 25.0,
+                ),
+                Center(
+                  child: GFButton(
+                    onPressed: () {
+                      controller.updateRugiLaba(data.inputRugiLaba.id);
+                      Get.back();
+                    },
+                    text: 'Update',
+                    size: GFSize.LARGE,
+                    fullWidthButton: true,
+                    type: GFButtonType.outline,
+                  ),
+                ),
               ],
             ),
           ),

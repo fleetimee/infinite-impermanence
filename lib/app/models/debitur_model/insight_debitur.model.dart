@@ -1117,7 +1117,7 @@ class InputRugiLaba {
     this.jumlahAktivaLancar,
     this.peralatan,
     this.kendaraan,
-    this.tanahBangunan,
+    this.tanahDanBangunan,
     this.jumlahAktivaTetap,
     this.sumAktiva,
     this.hutangUsaha,
@@ -1149,7 +1149,7 @@ class InputRugiLaba {
   String? jumlahAktivaLancar;
   String? peralatan;
   String? kendaraan;
-  String? tanahBangunan;
+  String? tanahDanBangunan;
   String? jumlahAktivaTetap;
   String? sumAktiva;
   String? hutangUsaha;
@@ -1181,7 +1181,7 @@ class InputRugiLaba {
         jumlahAktivaLancar: json["jumlah_aktiva_lancar"],
         peralatan: json["peralatan"],
         kendaraan: json["kendaraan"],
-        tanahBangunan: json["tanah_bangunan"],
+        tanahDanBangunan: json["tanah_bangunan"],
         jumlahAktivaTetap: json["jumlah_aktiva_tetap"],
         sumAktiva: json["sum_aktiva"],
         hutangUsaha: json["hutang_usaha"],
@@ -1214,7 +1214,7 @@ class InputRugiLaba {
         "jumlah_aktiva_lancar": jumlahAktivaLancar,
         "peralatan": peralatan,
         "kendaraan": kendaraan,
-        "tanah_bangunan": tanahBangunan,
+        "tanah_bangunan": tanahDanBangunan,
         "jumlah_aktiva_tetap": jumlahAktivaTetap,
         "sum_aktiva": sumAktiva,
         "hutang_usaha": hutangUsaha,

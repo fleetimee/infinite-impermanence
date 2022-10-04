@@ -47,6 +47,7 @@ dependencies:
     git:
       url: https://github.com/jonataslaw/getx
       ref: master
+  getwidget: ^3.0.1
   gif_view: ^0.2.2
   google_fonts: ^3.0.1
   http: ^0.13.5

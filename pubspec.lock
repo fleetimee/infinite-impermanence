@@ -566,6 +566,13 @@ packages:
       url: "https://github.com/jonataslaw/getx"
     source: git
     version: "5.0.0-beta.52"
+  getwidget:
+    dependency: "direct main"
+    description:
+      name: getwidget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   gif_view:
     dependency: "direct main"
     description:

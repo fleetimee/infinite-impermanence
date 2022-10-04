@@ -75,7 +75,7 @@ class DebiturInsight {
   DateTime? tglSekarang;
   String? deskripsiDebitur;
   dynamic createdBy;
-  InputNeraca? inputNeraca;
+  InputNeracaFix? inputNeraca;
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
   AnalisaKeuangan? analisaKeuangan;
@@ -119,7 +119,7 @@ class DebiturInsight {
         createdBy: json["createdBy"],
         inputNeraca: json["inputNeraca"] == null
             ? null
-            : InputNeraca.fromJson(json["inputNeraca"]),
+            : InputNeracaFix.fromJson(json["inputNeraca"]),
         inputRugiLaba: json["inputRugiLaba"] == null
             ? null
             : InputRugiLaba.fromJson(json["inputRugiLaba"]),
@@ -1042,8 +1042,8 @@ class InputKeuangan {
       };
 }
 
-class InputNeraca {
-  InputNeraca({
+class InputNeracaFix {
+  InputNeracaFix({
     this.id,
     this.tanggalInput,
     this.kasOnHand,
@@ -1073,7 +1073,7 @@ class InputNeraca {
   String? tanahBangunan;
   String? aktivaTetap;
 
-  factory InputNeraca.fromJson(Map<String, dynamic> json) => InputNeraca(
+  factory InputNeracaFix.fromJson(Map<String, dynamic> json) => InputNeracaFix(
         id: json["id"],
         tanggalInput: json["tanggal_input"] == null
             ? null

@@ -12,7 +12,7 @@ class InsightDebiturController extends GetxController
     super.onInit();
     fetchOneDebitur(debiturId);
     // Define how many tabs you want to show
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 1, vsync: this);
   }
 
   @override

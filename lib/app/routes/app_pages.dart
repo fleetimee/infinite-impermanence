@@ -278,7 +278,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INSIGHT_DEBITUR,
-      page: () => const InsightDebiturView(),
+      page: () => InsightDebiturView(),
       binding: InsightDebiturBinding(),
     ),
   ];

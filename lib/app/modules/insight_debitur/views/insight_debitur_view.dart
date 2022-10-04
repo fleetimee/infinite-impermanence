@@ -1,7 +1,11 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'package:getwidget/getwidget.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +13,9 @@ import 'package:intl/intl.dart';
 import '../controllers/insight_debitur_controller.dart';
 
 class InsightDebiturView extends GetView<InsightDebiturController> {
-  const InsightDebiturView({Key? key}) : super(key: key);
+  InsightDebiturView({Key? key}) : super(key: key);
+
+  final neracaController = Get.put(InputNeracaController());
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +131,129 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                 const SizedBox(
                   height: 5.0,
                 ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: Container(
+                        width: double.maxFinite,
+                        height: 45,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(
+                            10.0,
+                          ),
+                        ),
+                        child: TabBar(
+                          controller: controller.tabController,
+                          // give the indicator a decoration (color and border radius)
+                          indicator: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              10.0,
+                            ),
+                            color: primaryColor,
+                          ),
+                          labelColor: Colors.white,
+                          unselectedLabelColor: primaryColor,
+                          tabs: [
+                            // first tab [you can add an icon using the icon property]
+                            Tab(
+                              icon: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Expanded(
+                                    child: Icon(
+                                      FontAwesomeIcons.playstation,
+                                      size: 28,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  const Expanded(
+                                    flex: 3,
+                                    child: Text(
+                                      'Neraca',
+                                      style: TextStyle(fontSize: 22),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  Obx(() {
+                                    if (neracaController
+                                        .isNeracaProcessing.value) {
+                                      return const Expanded(
+                                        child: Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                                    } else {
+                                      if (controller.insightDebitur.value
+                                              .inputNeraca ==
+                                          null) {
+                                        return const Icon(
+                                            FontAwesomeIcons.xmark);
+                                      } else {
+                                        return const Icon(
+                                            FontAwesomeIcons.check);
+                                      }
+                                    }
+                                  }),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 15,
+                      ),
+                      child: GFAccordion(
+                          title: 'Neraca Menu',
+
+                          // content:
+                          //     'GetFlutter is an open source library that comes with pre-build 1000+ UI components.',
+                          contentChild: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Neraca keuangan (balance sheet) adalah bagian dalam laporan finansial dalam akuntansi yang mencatat informasi terkait aset, kewajiban pembayaran pada pihak terkait dalam operasional perusahaan, dan modal pada waktu tertentu.',
+                              ),
+                              const SizedBox(
+                                height: 5.0,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blueGrey,
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(Routes.INPUT_NERACA,
+                                            arguments: controller
+                                                .insightDebitur.value.id);
+                                      },
+                                      child: const Text("Input"),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          collapsedIcon: const Icon(Icons.add),
+                          expandedIcon: const Icon(Icons.minimize)),
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 25,
@@ -155,20 +284,6 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                         Tab(
                           icon: Icon(
                             FontAwesomeIcons.user,
-                            size: 28,
-                          ),
-                        ),
-
-                        // second tab [you can add an icon using the icon property]
-                        Tab(
-                          icon: Icon(
-                            FontAwesomeIcons.chartLine,
-                            size: 28,
-                          ),
-                        ),
-                        Tab(
-                          icon: Icon(
-                            FontAwesomeIcons.print,
                             size: 28,
                           ),
                         ),
@@ -554,9 +669,52 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           ),
                         ),
                 ),
+                // Expanded(
+                //   child: TabBarView(
+                //     controller: controller.tabController,
+                //     children: const [
+                //       // first tab bar view widget
+                //       SliverToBoxAdapter(
+                //         child: Center(
+                //           child: Text(
+                //             'Place Bid',
+                //             style: TextStyle(
+                //               fontSize: 25,
+                //               fontWeight: FontWeight.w600,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+
+                //       // second tab bar view widget
+                //       SliverToBoxAdapter(
+                //         child: Center(
+                //           child: Text(
+                //             'Buy Now',
+                //             style: TextStyle(
+                //               fontSize: 25,
+                //               fontWeight: FontWeight.w600,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //       SliverToBoxAdapter(
+                //         child: Center(
+                //           child: Text(
+                //             'Buy Now',
+                //             style: TextStyle(
+                //               fontSize: 25,
+                //               fontWeight: FontWeight.w600,
+                //             ),
+                //           ),
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

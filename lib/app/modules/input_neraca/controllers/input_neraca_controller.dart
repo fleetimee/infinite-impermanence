@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/data/provider/neraca/save_neraca.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/cupertino.dart';
 
 // 📦 Package imports:
@@ -9,9 +11,13 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../service/input_neraca_service.dart';
+import '../../../service/input_neraca_service.dart';
 
 class InputNeracaController extends GetxController {
+  final isNeracaProcessing = false.obs;
+
+  final debiturController = Get.put(InsightDebiturController());
+
   var cashOnHand = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -97,9 +103,7 @@ class InputNeracaController extends GetxController {
   }
 
   void saveNeraca() {
-    final api = InputNeracaService();
-
-    final data = {
+    final body = {
       'tanggal_input': tanggalInput.value.toString(),
       'kas_on_hand': cashOnHand.text.replaceAll('.', ''),
       'tabungan': tabungan.text.replaceAll('.', ''),
@@ -115,9 +119,20 @@ class InputNeracaController extends GetxController {
       'debitur': debitur.text,
     };
 
-    api.addInputNeraca(data);
-
-    update();
+    try {
+      isNeracaProcessing(true);
+      NeracaProvider().deployNeraca(body).then((resp) {
+        isNeracaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        Get.snackbar('Sucess', 'Data saved');
+      }, onError: (err) {
+        isNeracaProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isNeracaProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
   }
 
   void updateNeraca(String id) async {
@@ -141,4 +156,8 @@ class InputNeracaController extends GetxController {
 
     update();
   }
+}
+
+convertStringToInt(String value) {
+  return int.parse(value.replaceAll('.', ''));
 }

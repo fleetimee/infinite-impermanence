@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
 import '../controllers/input_neraca_controller.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../../../common/style.dart';
 
 class InputNeracaView extends GetView<InputNeracaController> {
   InputNeracaView({Key? key}) : super(key: key);
@@ -550,6 +550,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());
                       controller.saveNeraca();
+                      Get.back();
                     } else {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());

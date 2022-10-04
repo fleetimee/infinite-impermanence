@@ -139,7 +139,7 @@ class RugiLabaController extends GetxController {
       isRugiLabaProcessing.value = true;
       RugiLabaProvider().putRugiLaba(id, body).then((resp) {
         isRugiLabaProcessing.value = false;
-        debiturController.fetchOneDebitur(int.parse(id.toString()));
+        debiturController.fetchOneDebitur(int.parse(id));
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

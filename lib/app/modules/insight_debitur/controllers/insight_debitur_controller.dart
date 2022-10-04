@@ -28,7 +28,7 @@ class InsightDebiturController extends GetxController
   Future<String> img = Nekos().smug();
 
   // Get debitur id from previous page
-  final int debiturId = Get.arguments;
+  final debiturId = Get.arguments;
 
   // Initialize map for insight debitur
   var insightDebitur = DebiturInsight().obs;

@@ -2,7 +2,7 @@
 //
 //     final neracaInput = neracaInputFromJson(jsonString);
 
-// ignore_for_file: unnecessary_null_in_if_null_operators
+// ignore_for_file: unnecessary_null_in_if_null_operators, prefer_null_aware_operators
 
 import 'dart:convert';
 

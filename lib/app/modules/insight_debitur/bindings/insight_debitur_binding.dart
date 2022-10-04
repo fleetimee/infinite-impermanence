@@ -8,7 +8,7 @@ class InsightDebiturBinding extends Binding {
     return [
       Bind.lazyPut<InsightDebiturController>(
         () => InsightDebiturController(),
-      )
+      ),
     ];
   }
 }

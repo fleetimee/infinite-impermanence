@@ -2,6 +2,8 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/data/provider/rugi_laba/save_rugi_laba.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,24 +12,32 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../service/rugi_laba_service.dart';
 
 class RugiLabaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
+  final isRugiLabaProcessing = false.obs;
+
+  final debiturController = Get.put(InsightDebiturController());
+
   @override
   void onInit() {
-    // delay few second then execute result
-    Future.delayed(const Duration(seconds: 1), () {
-      result();
-    });
-    // result();
     super.onInit();
+    // delay few second then execute result
+    // Future.delayed(const Duration(seconds: 1), () {
+    //   result();
+    // });
+    // result();
   }
 
+  // @override
+  // void onReady() {
+  //   result();
+  //   super.onReady();
+  // }
+
   void saveRugiLaba() {
-    final api = RugiLabaService();
-    final data = {
+    final body = {
       'kas': aktivaLancarKas.text.replaceAll('.', ''),
       'bank': aktivaBank.text.replaceAll('.', ''),
       'piutang': aktivaPiutangUsaha.text.replaceAll('.', ''),
@@ -61,9 +71,20 @@ class RugiLabaController extends GetxController {
       'debitur': debiturId.text,
     };
 
-    api.addRugiLaba(data);
-
-    update();
+    try {
+      isRugiLabaProcessing.value = true;
+      RugiLabaProvider().deployRugiLaba(body).then((value) {
+        isRugiLabaProcessing.value = false;
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar('Success', 'Data berhasil disimpan');
+      }).catchError((e) {
+        isRugiLabaProcessing.value = false;
+        Get.snackbar('Error', e.toString());
+      });
+    } catch (e) {
+      isRugiLabaProcessing.value = false;
+      Get.snackbar('Error', e.toString());
+    }
   }
 
   var debiturId = TextEditingController();
@@ -234,7 +255,6 @@ class RugiLabaController extends GetxController {
     sumLabaSebelumPajak();
     sumPerkiraanPajak();
     sumLabaSetelahPajak();
-    sumSisaPenghasilan();
   }
 
   void sumAktivaTetap() {

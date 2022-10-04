@@ -1,5 +1,6 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -811,7 +812,7 @@ class MenuRugiLaba extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final neracaController = Get.put(InputNeracaController());
+  final rugiLabaController = Get.put(RugiLabaController());
 
   @override
   Widget build(BuildContext context) {
@@ -835,7 +836,7 @@ class MenuRugiLaba extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (neracaController.isNeracaProcessing.value) {
+                  if (rugiLabaController.isRugiLabaProcessing.value) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(),
@@ -891,7 +892,7 @@ class MenuRugiLaba extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (neracaController.isNeracaProcessing.value) {
+                  if (rugiLabaController.isRugiLabaProcessing.value) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -936,9 +937,9 @@ class MenuRugiLaba extends StatelessWidget {
                                         backgroundColor: Colors.blueGrey,
                                       ),
                                       onPressed: () {
-                                        Get.snackbar('Error', 'Dibilangin batu',
-                                            backgroundColor: Colors.redAccent,
-                                            colorText: Colors.white);
+                                        Get.toNamed(Routes.RUGI_LABA,
+                                            arguments: controller
+                                                .insightDebitur.value);
                                       },
                                       child: const Text("Input"),
                                     ),

@@ -1,6 +1,7 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -43,30 +44,40 @@ class ListDebiturView extends GetView<ListDebiturController> {
                   } else {
                     return Container(
                       padding: const EdgeInsets.all(10),
-                      child: Card(
-                        child: Column(
-                          children: [
-                            ListTile(
-                              title: Text(
-                                controller.listDebitur[index].peminjam1!,
-                              ),
-                              subtitle: Text(
-                                controller.listDebitur[index].bidangUsaha!,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                      child: Column(
+                        children: [
+                          Card(
+                            child: Column(
                               children: [
-                                TextButton(
-                                  onPressed: () {
-                                    Get.toNamed(Routes.INSIGHT_DEBITUR,
-                                        arguments:
-                                            controller.listDebitur[index].id);
-                                  },
-                                  child: const Text('Details'),
+                                ListTile(
+                                  title: Text(
+                                    controller.listDebitur[index].peminjam1!,
+                                  ),
+                                  subtitle: Text(
+                                    controller.listDebitur[index].bidangUsaha!,
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.INSIGHT_DEBITUR,
+                                            arguments: controller
+                                                .listDebitur[index].id);
+                                      },
+                                      child: const Text('Details'),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
+                          ),
+                        ].animate(
+                          interval: 100.ms,
+                          effects: [
+                            const FadeEffect(),
+                            const ScaleEffect(),
                           ],
                         ),
                       ),

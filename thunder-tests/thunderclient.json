@@ -854,12 +854,12 @@
     "method": "POST",
     "sortNum": 390000,
     "created": "2022-09-08T04:40:12.281Z",
-    "modified": "2022-09-20T05:22:03.311Z",
+    "modified": "2022-10-04T11:17:20.237Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"kas\": 5000000,\n  \"bank\": 5000000,\n  \"piutang\": 250000,\n  \"persediaan\": 1000000,\n  \"jumlah_aktiva_lancar\": 80000,\n  \"jumlah_aktiva_tetap\": 1000000,\n  \"sum_aktiva\": 1800000,\n  \"hutang_usaha\": 1000000,\n  \"hutang_bank\": 5000000,\n  \"hutang_lainnya\": 25000,\n  \"jumlah_hutang\": 800000,\n  \"jumlah_modal\": 1000000,\n  \"sum_pasiva\": 1800000,\n  \"omzet\": 150000,\n  \"harga_pokok\": 500000,\n  \"laba_kotor\": 100000,\n  \"biaya_tenaga_kerja\": 50000,\n  \"biaya_operasional\": 250000,\n  \"biaya_lainnya\": 50000,\n  \"total_biaya\": 350000,\n  \"laba_sebelum_pajak\": 250000,\n  \"perkiraan_pajak\": 50000,\n  \"laba_setelah_pajak\": 200000,\n  \"penghasilan\": 200000,\n  \"biaya_hidup\": 50000,\n  \"sisa_penghasilan\": 80000000,\n  \"neraca\": 14,\n  \"debitur\": 90\n}\n",
+      "raw": "{\n  \"kas\": 5000000,\n  \"bank\": 5000000,\n  \"piutang\": 250000,\n  \"persediaan\": 1000000,\n  \"jumlah_aktiva_lancar\": 80000,\n  \"jumlah_aktiva_tetap\": 1000000,\n  \"sum_aktiva\": 1800000,\n  \"hutang_usaha\": 1000000,\n  \"hutang_bank\": 5000000,\n  \"hutang_lainnya\": 25000,\n  \"jumlah_hutang\": 800000,\n  \"jumlah_modal\": 1000000,\n  \"sum_pasiva\": 1800000,\n  \"omzet\": 150000,\n  \"harga_pokok\": 500000,\n  \"laba_kotor\": 100000,\n  \"biaya_tenaga_kerja\": 50000,\n  \"biaya_operasional\": 250000,\n  \"biaya_lainnya\": 50000,\n  \"total_biaya\": 350000,\n  \"laba_sebelum_pajak\": 250000,\n  \"perkiraan_pajak\": 50000,\n  \"laba_setelah_pajak\": 200000,\n  \"penghasilan\": 200000,\n  \"biaya_hidup\": 50000,\n  \"sisa_penghasilan\": 80000000,\n  \"neraca\": 1,\n  \"debitur\": 1\n}\n",
       "form": []
     },
     "tests": []
@@ -1410,6 +1410,25 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"deskripsi_panjang\": \"Lorem\",\n  \"nama_asuransi_penjamin\": \"ASKRINDO\",\n  \"nilai_pasar\": 100000000,\n  \"nilai_liquidasi\": 100000000,\n  \"nilai_pengikatan\": 100000000,\n  \"pengikatan\": \"Lorem\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "151fe291-03e0-4aec-a1f4-f2ae8852a6a6",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "a49cdeda-9e90-4da8-83d5-dd8028abc1a6",
+    "name": "Deete",
+    "url": "{{baseUrl}}api/v1/input-rugi-laba/4",
+    "method": "DELETE",
+    "sortNum": 400000,
+    "created": "2022-10-04T11:56:44.205Z",
+    "modified": "2022-10-04T13:58:08.265Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"kas\": 5000000,\n  \"bank\": 5000000,\n  \"piutang\": 250000,\n  \"persediaan\": 1000000,\n  \"jumlah_aktiva_lancar\": 80000,\n  \"jumlah_aktiva_tetap\": 1000000,\n  \"sum_aktiva\": 1800000,\n  \"hutang_usaha\": 1000000,\n  \"hutang_bank\": 5000000,\n  \"hutang_lainnya\": 25000,\n  \"jumlah_hutang\": 800000,\n  \"jumlah_modal\": 1000000,\n  \"sum_pasiva\": 1800000,\n  \"omzet\": 150000,\n  \"harga_pokok\": 500000,\n  \"laba_kotor\": 100000,\n  \"biaya_tenaga_kerja\": 50000,\n  \"biaya_operasional\": 250000,\n  \"biaya_lainnya\": 50000,\n  \"total_biaya\": 350000,\n  \"laba_sebelum_pajak\": 250000,\n  \"perkiraan_pajak\": 50000,\n  \"laba_setelah_pajak\": 200000,\n  \"penghasilan\": 200000,\n  \"biaya_hidup\": 50000,\n  \"sisa_penghasilan\": 80000000,\n  \"neraca\": 1,\n  \"debitur\": 1\n}\n",
       "form": []
     },
     "tests": []

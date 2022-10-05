@@ -1,20 +1,21 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../../common/style.dart';
-import '../../controllers/rugi_laba_controller.dart';
 
-class PerkiraanLabaRugi extends StatelessWidget {
-  PerkiraanLabaRugi({super.key});
+class PerkiraanLabaRugiView extends StatelessWidget {
+  PerkiraanLabaRugiView({super.key});
 
   final controller = Get.put(RugiLabaController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -55,25 +56,12 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'omzet_penjualan_rata_rata',
-                      controller: controller.omzetPerBulan,
-                      decoration: const InputDecoration(
-                        hintText: 'Input disini',
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              DataRow2(
-                cells: [
-                  const DataCell(Text('Persen harga pokok penjualan :')),
-                  const DataCell(SizedBox.shrink()),
-                  const DataCell(SizedBox.shrink()),
-                  DataCell(
-                    FormBuilderTextField(
-                      name: 'persen_hpp',
-                      controller: controller.persentaseHpp,
-                      decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                      controller: controller.omzetPerBulan =
+                          MoneyMaskedTextController(
+                        initialValue: double.parse(data.inputRugiLaba.omzet),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -86,11 +74,15 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   const DataCell(SizedBox.shrink()),
                   DataCell(
                     FormBuilderTextField(
-                      enabled: false,
                       name: 'harga_pokok_penjualan',
-                      controller: controller.hargaPokokPenjualan,
-                      decoration: const InputDecoration(
-                        hintText: 'Hasil disini',
+                      readOnly: true,
+                      controller: controller.hargaPokokPenjualan =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.hargaPokok),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -105,21 +97,15 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'laba_kotor',
                       readOnly: true,
-                      controller: controller.labaKotor,
-                      decoration: InputDecoration(
-                        hintText: 'Hasil',
-                        suffixIcon: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            shape: const StadiumBorder(),
-                          ),
-                          onPressed: () {
-                            controller.hitungHpp();
-                            controller.sumLabaKotor();
-                          },
-                          child: const Text("Hit"),
-                        ),
+                      controller: controller.labaKotor =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.labaKotor),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
+                      decoration: const InputDecoration(),
                     ),
                   ),
                 ],
@@ -139,9 +125,14 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_tenaga_kerja',
-                      controller: controller.biayaTenagaKerja,
-                      decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                      readOnly: true,
+                      controller: controller.biayaTenagaKerja =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.biayaTenagaKerja),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -154,10 +145,15 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   const DataCell(SizedBox.shrink()),
                   DataCell(
                     FormBuilderTextField(
+                      readOnly: true,
                       name: 'biaya_operasional',
-                      controller: controller.biayaOperasional,
-                      decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                      controller: controller.biayaOperasional =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.biayaOperasional),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -171,27 +167,19 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_lainnya',
-                      controller: controller.biayaLainnya,
-                      decoration: const InputDecoration(
-                        hintText: 'Input disini',
+                      readOnly: true,
+                      controller: controller.biayaLainnya =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.biayaLainnya),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
-                  DataCell(
-                    ElevatedButton.icon(
-                      icon: const Icon(FontAwesomeIcons.calculator),
-                      label: const Text("Hitung Total"),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(500, 40),
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), // <-- Radius
-                        ),
-                      ),
-                      onPressed: () {
-                        controller.perkiraanLaba();
-                      },
-                    ),
+                  const DataCell(
+                    SizedBox.shrink(),
                   ),
                 ],
               ),
@@ -204,9 +192,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'total_biaya',
                       readOnly: true,
-                      controller: controller.totalBiaya,
-                      decoration: const InputDecoration(
-                        hintText: 'Hasil',
+                      controller: controller.totalBiaya =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.totalBiaya),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -221,9 +213,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'laba_sebelum_pajak',
                       readOnly: true,
-                      controller: controller.labaSebelumPajak,
-                      decoration: const InputDecoration(
-                        hintText: 'Hasil',
+                      controller: controller.labaSebelumPajak =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.labaSebelumPajak),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -238,9 +234,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'perkiraan_pajak',
                       readOnly: true,
-                      controller: controller.perkiraanPajak,
-                      decoration: const InputDecoration(
-                        hintText: 'Hasil',
+                      controller: controller.perkiraanPajak =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.perkiraanPajak),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),
@@ -255,9 +255,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'laba_setelah_pajak',
                       readOnly: true,
-                      controller: controller.labaSetelahPajak,
-                      decoration: const InputDecoration(
-                        hintText: 'Hasil',
+                      controller: controller.labaSetelahPajak =
+                          MoneyMaskedTextController(
+                        initialValue:
+                            double.parse(data.inputRugiLaba.labaSetelahPajak),
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
                       ),
                     ),
                   ),

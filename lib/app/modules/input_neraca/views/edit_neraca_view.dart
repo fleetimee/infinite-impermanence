@@ -11,8 +11,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../controllers/input_neraca_controller.dart';
+import '../../../common/style.dart';
+import '../controllers/input_neraca_controller.dart';
 
 class EditNeracaView extends GetView<InputNeracaController> {
   EditNeracaView({Key? key}) : super(key: key);
@@ -261,24 +261,20 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           ),
                         ),
                       ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('Jumlah')),
-                        DataCell(
-                          FormBuilderTextField(
-                            name: 'jumlah_piutang',
-                            controller: controller.piutangLainnya =
-                                MoneyMaskedTextController(
-                              initialValue: double.parse(data.jumlahPiutang),
-                              thousandSeparator: '.',
-                              decimalSeparator: '',
-                              precision: 0,
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'jumlah_piutang',
+                              controller: controller.piutangLainnya,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                  hintText: 'Hasil disini'),
                             ),
-                            keyboardType: TextInputType.number,
-                            decoration:
-                                const InputDecoration(hintText: 'Hasil disini'),
                           ),
-                        ),
-                      ]),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -600,6 +596,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           controller.formKey.currentState?.value.toString());
                       // controller.updateNeraca();
                       controller.updateNeraca(data.id.toString());
+                      Get.back();
                     } else {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());

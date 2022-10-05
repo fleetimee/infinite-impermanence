@@ -16,6 +16,7 @@ class RugiLabaBinding extends Binding {
     return [
       Bind.lazyPut<RugiLabaController>(
         () => RugiLabaController(),
+        fenix: true,
       )
     ];
   }

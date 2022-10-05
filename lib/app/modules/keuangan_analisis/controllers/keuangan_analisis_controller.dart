@@ -6,6 +6,8 @@ import 'dart:async';
 import 'dart:math';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/data/provider/analisis_keuangan/save_analis_keuangan.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -21,7 +23,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../common/style.dart';
 
 // 🌎 Project imports:
- import '../../../service/analisa_keuangan_service.dart';
 
 class KeuanganAnalisisController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -31,7 +32,12 @@ class KeuanganAnalisisController extends GetxController
     super.onInit();
   }
 
+  final isKeuanganAnalisisProcessing = false.obs;
+  final debiturController = Get.put(InsightDebiturController());
+
   final data = Get.arguments;
+
+  final isAnalisaKeuanganProcessing = false.obs;
 
   final Map<String, TextEditingController> listOfTextEditingController = {
     'Equity': TextEditingController(),
@@ -858,95 +864,82 @@ class KeuanganAnalisisController extends GetxController
     final parseOmzetKini = int.parse(omzetKini.text.replaceAll('.', ''));
     final parseOmzetYAD = int.parse(omzetYAD.text.replaceAll('.', ''));
 
-    // Delay 1 detik
-    Future.delayed(
-      const Duration(seconds: 1),
-      () {
-        ratioProfitKini.text =
-            (parseLabaUsahaKini / parseOmzetKini * 100).toStringAsFixed(1);
+    ratioProfitKini.text =
+        (parseLabaUsahaKini / parseOmzetKini * 100).toStringAsFixed(1);
 
-        ratioProfitYAD.text =
-            (parseLabaUsahaYAD / parseOmzetYAD * 100).toStringAsFixed(1);
+    ratioProfitYAD.text =
+        (parseLabaUsahaYAD / parseOmzetYAD * 100).toStringAsFixed(1);
 
-        isRatioProfitLoading.value = false;
-        Get.snackbar(
-          'Success',
-          'Ratio Profit berhasil dihitung',
-          backgroundColor: primaryColor,
-          icon: const Icon(
-            Icons.check,
-            color: Colors.white,
-          ),
-          snackPosition: SnackPosition.bottom,
-          colorText: secondaryColor,
-          duration: const Duration(seconds: 2),
-        );
-      },
+    isRatioProfitLoading.value = false;
+    Get.snackbar(
+      'Success',
+      'Ratio Profit berhasil dihitung',
+      backgroundColor: primaryColor,
+      icon: const Icon(
+        Icons.check,
+        color: Colors.white,
+      ),
+      snackPosition: SnackPosition.bottom,
+      colorText: secondaryColor,
+      duration: const Duration(seconds: 2),
     );
   }
 
   void hitungRoe() {
     isRoeLoading.value = true;
 
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        final parseLabaUsaha =
-            int.parse(labaUsahaKini.text.replaceAll('.', ''));
-        final parseTotalAngsuran =
-            int.parse(totalAngsuran.text.replaceAll('.', ''));
-        final parseModal = int.parse(equityInput.text.replaceAll('.', ''));
+    final parseLabaUsaha = int.parse(labaUsahaKini.text.replaceAll('.', ''));
+    final parseTotalAngsuran =
+        int.parse(totalAngsuran.text.replaceAll('.', ''));
+    final parseModal = int.parse(equityInput.text.replaceAll('.', ''));
 
-        final parseLabaUsahaYad =
-            int.parse(labaUsahaYAD.text.replaceAll('.', ''));
+    final parseLabaUsahaYad = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
 
-        final firstCount = parseLabaUsaha - parseTotalAngsuran;
-        final parseModalPercentage = parseModal / 100;
-        final secondCount = firstCount / parseModalPercentage;
-        final thirdCount = secondCount * 24;
+    final firstCount = parseLabaUsaha - parseTotalAngsuran;
+    final parseModalPercentage = parseModal / 100;
+    final secondCount = firstCount / parseModalPercentage;
+    final thirdCount = secondCount * 24;
 
-        final firstCountSecond = parseLabaUsahaYad - parseTotalAngsuran;
-        final parseModalPercentageSecond = parseModal / 100;
-        final secondCountSecond = firstCountSecond / parseModalPercentageSecond;
-        final thirdCountSecond = secondCountSecond * 24;
+    final firstCountSecond = parseLabaUsahaYad - parseTotalAngsuran;
+    final parseModalPercentageSecond = parseModal / 100;
+    final secondCountSecond = firstCountSecond / parseModalPercentageSecond;
+    final thirdCountSecond = secondCountSecond * 24;
 
-        roeKini.text = thirdCount.toStringAsFixed(2);
-        roeYAD.text = thirdCountSecond.toStringAsFixed(2);
+    roeKini.text = thirdCount.toStringAsFixed(2);
+    roeYAD.text = thirdCountSecond.toStringAsFixed(2);
 
-        if (double.parse(roeYAD.text) > int.parse(roeFixed.text)) {
-          isRoeDescLoading.value = true;
+    if (double.parse(roeYAD.text) > int.parse(roeFixed.text)) {
+      isRoeDescLoading.value = true;
 
-          Future.delayed(const Duration(seconds: 1), () {
-            roeStatus.value = 'Baik 🥰';
-            keteranganRoe.text = 'Baik';
-            isRoeDescLoading.value = false;
-          });
-        }
+      Future.delayed(const Duration(seconds: 1), () {
+        roeStatus.value = 'Baik 🥰';
+        keteranganRoe.text = 'Baik';
+        isRoeDescLoading.value = false;
+      });
+    }
 
-        if (double.parse(roeYAD.text) < int.parse(roeFixed.text)) {
-          isRoeDescLoading.value = true;
-          // Delay for 2 seconds then run some code
-          Future.delayed(const Duration(seconds: 1), () {
-            roeStatus.value = 'Jelek 🤣';
-            keteranganRoe.text = 'Jelek';
-            isRoeDescLoading.value = false;
-          });
-        }
+    if (double.parse(roeYAD.text) < int.parse(roeFixed.text)) {
+      isRoeDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        roeStatus.value = 'Jelek 🤣';
+        keteranganRoe.text = 'Jelek';
+        isRoeDescLoading.value = false;
+      });
+    }
 
-        isRoeLoading.value = false;
-        Get.snackbar(
-          'Success',
-          'ROE berhasil dihitung',
-          backgroundColor: primaryColor,
-          icon: const Icon(
-            Icons.check,
-            color: Colors.white,
-          ),
-          snackPosition: SnackPosition.bottom,
-          colorText: secondaryColor,
-          duration: const Duration(seconds: 2),
-        );
-      },
+    isRoeLoading.value = false;
+    Get.snackbar(
+      'Success',
+      'ROE berhasil dihitung',
+      backgroundColor: primaryColor,
+      icon: const Icon(
+        Icons.check,
+        color: Colors.white,
+      ),
+      snackPosition: SnackPosition.bottom,
+      colorText: secondaryColor,
+      duration: const Duration(seconds: 2),
     );
   }
 
@@ -1021,177 +1014,171 @@ class KeuanganAnalisisController extends GetxController
     }
 
     isRoaLoading.value = true;
+    final parseLabaUsahaKini =
+        int.parse(labaUsahaKini.text.replaceAll('.', ''));
+    final parseAngsuranPerBulanLainAtas =
+        int.parse(angsuranPerBulanLainAtas.text.replaceAll('.', ''));
+    final parseNetWorthPlusCredit =
+        int.parse(netWorthPlusCredit.text.replaceAll('.', ''));
+    final parseTotalBunga = int.parse(totalBunga.text.replaceAll('.', ''));
+    final parseLabaUsahaYad = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
+
+    final firstCount = parseLabaUsahaKini - parseAngsuranPerBulanLainAtas;
+    final parseModalPercentage = parseNetWorthPlusCredit / 100;
+    final secondCount = firstCount / parseModalPercentage;
+    final thirdCount = secondCount * 12;
+
+    final firstCountSecond = parseLabaUsahaYad - parseTotalBunga;
+    final parseModalPercentageSecond = parseNetWorthPlusCredit / 100;
+    final secondCountSecond = firstCountSecond / parseModalPercentageSecond;
+    final thirdCountSecond = secondCountSecond * 24;
+    roaKini.text = thirdCount.toStringAsFixed(1);
+    roaYAD.text = thirdCountSecond.toStringAsFixed(1);
+
+    if (double.parse(roaYAD.text) > int.parse(roaFixed.text)) {
+      isRoaDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        roaStatus.value = 'Baik 🥰';
+        keteranganRoa.text = 'Baik';
+        isRoaDescLoading.value = false;
+      });
+    }
+
+    if (double.parse(roaYAD.text) < int.parse(roaFixed.text)) {
+      isRoaDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        keteranganRoa.text = 'Jelek';
+        roaStatus.value = 'Jelek 🤣';
+        isRoaDescLoading.value = false;
+      });
+    }
+
+    isRoaLoading.value = false;
+    Get.snackbar(
+      'Success',
+      'ROA berhasil dihitung',
+      backgroundColor: primaryColor,
+      icon: const Icon(
+        Icons.check,
+        color: Colors.white,
+      ),
+      snackPosition: SnackPosition.bottom,
+      colorText: secondaryColor,
+      duration: const Duration(seconds: 2),
+    );
 
     Future.delayed(
       const Duration(seconds: 2),
-      () {
-        final parseLabaUsahaKini =
-            int.parse(labaUsahaKini.text.replaceAll('.', ''));
-        final parseAngsuranPerBulanLainAtas =
-            int.parse(angsuranPerBulanLainAtas.text.replaceAll('.', ''));
-        final parseNetWorthPlusCredit =
-            int.parse(netWorthPlusCredit.text.replaceAll('.', ''));
-        final parseTotalBunga = int.parse(totalBunga.text.replaceAll('.', ''));
-        final parseLabaUsahaYad =
-            int.parse(labaUsahaYAD.text.replaceAll('.', ''));
-
-        final firstCount = parseLabaUsahaKini - parseAngsuranPerBulanLainAtas;
-        final parseModalPercentage = parseNetWorthPlusCredit / 100;
-        final secondCount = firstCount / parseModalPercentage;
-        final thirdCount = secondCount * 12;
-
-        final firstCountSecond = parseLabaUsahaYad - parseTotalBunga;
-        final parseModalPercentageSecond = parseNetWorthPlusCredit / 100;
-        final secondCountSecond = firstCountSecond / parseModalPercentageSecond;
-        final thirdCountSecond = secondCountSecond * 24;
-        roaKini.text = thirdCount.toStringAsFixed(1);
-        roaYAD.text = thirdCountSecond.toStringAsFixed(1);
-
-        if (double.parse(roaYAD.text) > int.parse(roaFixed.text)) {
-          isRoaDescLoading.value = true;
-          // Delay for 2 seconds then run some code
-          Future.delayed(const Duration(seconds: 1), () {
-            roaStatus.value = 'Baik 🥰';
-            keteranganRoa.text = 'Baik';
-            isRoaDescLoading.value = false;
-          });
-        }
-
-        if (double.parse(roaYAD.text) < int.parse(roaFixed.text)) {
-          isRoaDescLoading.value = true;
-          // Delay for 2 seconds then run some code
-          Future.delayed(const Duration(seconds: 1), () {
-            keteranganRoa.text = 'Jelek';
-            roaStatus.value = 'Jelek 🤣';
-            isRoaDescLoading.value = false;
-          });
-        }
-
-        isRoaLoading.value = false;
-        Get.snackbar(
-          'Success',
-          'ROA berhasil dihitung',
-          backgroundColor: primaryColor,
-          icon: const Icon(
-            Icons.check,
-            color: Colors.white,
-          ),
-          snackPosition: SnackPosition.bottom,
-          colorText: secondaryColor,
-          duration: const Duration(seconds: 2),
-        );
-      },
+      () {},
     );
   }
 
   void hitungDer() {
     isDerLoading.value = true;
-    Future.delayed(const Duration(seconds: 2), () {
-      final parseDebt = double.parse(debtInput.text.replaceAll('.', ''));
-      final parseEquity = int.parse(equityInput.text.replaceAll('.', ''));
-      final parseKreditYangDiminta =
-          int.parse(kreditYangDiminta.text.replaceAll('.', ''));
 
-      final percentage = parseEquity / 100;
-      final result = parseDebt / percentage;
+    final parseDebt = double.parse(debtInput.text.replaceAll('.', ''));
+    final parseEquity = int.parse(equityInput.text.replaceAll('.', ''));
+    final parseKreditYangDiminta =
+        int.parse(kreditYangDiminta.text.replaceAll('.', ''));
 
-      final hitungDerYadFirst = parseDebt + parseKreditYangDiminta;
-      final hitungDerYadThird = hitungDerYadFirst / percentage;
+    final percentage = parseEquity / 100;
+    final result = parseDebt / percentage;
 
-      derKini.text = result.toStringAsFixed(0);
-      derYAD.text = hitungDerYadThird.toStringAsFixed(1);
+    final hitungDerYadFirst = parseDebt + parseKreditYangDiminta;
+    final hitungDerYadThird = hitungDerYadFirst / percentage;
 
-      if (double.parse(derYAD.text) > int.parse(derFixed.text)) {
-        isDerDescLoading.value = true;
-        // Delay for 2 seconds then run some code
-        Future.delayed(const Duration(seconds: 1), () {
-          derStatus.value = 'Ditolak ❌';
-          keteranganDer.text = 'Ditolak';
-          isDerDescLoading.value = false;
-        });
-      }
+    derKini.text = result.toStringAsFixed(0);
+    derYAD.text = hitungDerYadThird.toStringAsFixed(1);
 
-      if (double.parse(derYAD.text) <= int.parse(derFixed.text)) {
-        isDerDescLoading.value = true;
-        // Delay for 2 seconds then run some code
-        Future.delayed(const Duration(seconds: 1), () {
-          derStatus.value = 'Diterima 🤝';
-          keteranganDer.text = 'Diterima';
-          isDerDescLoading.value = false;
-        });
-      }
+    if (double.parse(derYAD.text) > int.parse(derFixed.text)) {
+      isDerDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        derStatus.value = 'Ditolak ❌';
+        keteranganDer.text = 'Ditolak';
+        isDerDescLoading.value = false;
+      });
+    }
 
-      isDerLoading.value = false;
-      Get.snackbar(
-        'Success',
-        'DER berhasil dihitung',
-        backgroundColor: primaryColor,
-        icon: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
-        snackPosition: SnackPosition.bottom,
-        colorText: secondaryColor,
-        duration: const Duration(seconds: 2),
-      );
-    });
+    if (double.parse(derYAD.text) <= int.parse(derFixed.text)) {
+      isDerDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        derStatus.value = 'Diterima 🤝';
+        keteranganDer.text = 'Diterima';
+        isDerDescLoading.value = false;
+      });
+    }
+
+    isDerLoading.value = false;
+    Get.snackbar(
+      'Success',
+      'DER berhasil dihitung',
+      backgroundColor: primaryColor,
+      icon: const Icon(
+        Icons.check,
+        color: Colors.white,
+      ),
+      snackPosition: SnackPosition.bottom,
+      colorText: secondaryColor,
+      duration: const Duration(seconds: 2),
+    );
   }
 
   void hitungDsc() {
     isDscLoading.value = true;
-    Future.delayed(const Duration(seconds: 2), () {
-      final parseLabaUsahaKini =
-          int.parse(labaUsahaKini.text.replaceAll('.', ''));
-      final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll('.', ''));
-      final parseTotalAngsuran =
-          double.parse(totalAngsuran.text.replaceAll('.', ''));
 
-      final firstCount = parseLabaUsahaKini / parseTotalAngsuran;
-      final secondCount = parseLabaYad / parseTotalAngsuran;
+    final parseLabaUsahaKini =
+        int.parse(labaUsahaKini.text.replaceAll('.', ''));
+    final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll('.', ''));
+    final parseTotalAngsuran =
+        double.parse(totalAngsuran.text.replaceAll('.', ''));
 
-      dscKini.text = firstCount.toStringAsFixed(1);
-      dscYAD.text = secondCount.toStringAsFixed(1);
+    final firstCount = parseLabaUsahaKini / parseTotalAngsuran;
+    final secondCount = parseLabaYad / parseTotalAngsuran;
 
-      if (double.parse(dscYAD.text) >= double.parse(dscFixed.text)) {
-        isDscDescLoading.value = true;
-        // Delay for 2 seconds then run some code
-        Future.delayed(const Duration(seconds: 1), () {
-          dscStatus.value = 'Diterima 🤝';
-          keteranganDsc.text = 'Diterima';
-          isDscDescLoading.value = false;
-        });
-      }
+    dscKini.text = firstCount.toStringAsFixed(1);
+    dscYAD.text = secondCount.toStringAsFixed(1);
 
-      if (double.parse(dscYAD.text) < double.parse(dscFixed.text)) {
-        isDscDescLoading.value = true;
-        // Delay for 2 seconds then run some code
-        Future.delayed(const Duration(seconds: 1), () {
-          dscStatus.value = 'Ditolak ❌';
-          keteranganDsc.text = 'Ditolak';
-          isDscDescLoading.value = false;
-        });
-      }
+    if (double.parse(dscYAD.text) >= double.parse(dscFixed.text)) {
+      isDscDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        dscStatus.value = 'Diterima 🤝';
+        keteranganDsc.text = 'Diterima';
+        isDscDescLoading.value = false;
+      });
+    }
 
-      isDscLoading.value = false;
-      Get.snackbar(
-        'Success',
-        'DSC berhasil dihitung',
-        backgroundColor: primaryColor,
-        icon: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
-        snackPosition: SnackPosition.bottom,
-        colorText: secondaryColor,
-        duration: const Duration(seconds: 2),
-      );
-    });
+    if (double.parse(dscYAD.text) < double.parse(dscFixed.text)) {
+      isDscDescLoading.value = true;
+      // Delay for 2 seconds then run some code
+      Future.delayed(const Duration(seconds: 1), () {
+        dscStatus.value = 'Ditolak ❌';
+        keteranganDsc.text = 'Ditolak';
+        isDscDescLoading.value = false;
+      });
+    }
+
+    isDscLoading.value = false;
+    Get.snackbar(
+      'Success',
+      'DSC berhasil dihitung',
+      backgroundColor: primaryColor,
+      icon: const Icon(
+        Icons.check,
+        color: Colors.white,
+      ),
+      snackPosition: SnackPosition.bottom,
+      colorText: secondaryColor,
+      duration: const Duration(seconds: 2),
+    );
   }
 
   void saveAnalisisKeuangan() {
-    final api = AnalisaKeuanganService();
-
-    final data = {
+    final body = {
       'debitur': debiturId.text,
       'keuangan': keuanganId.text,
       'total_aset': equityInput.text.replaceAll('.', ''),
@@ -1233,22 +1220,35 @@ class KeuanganAnalisisController extends GetxController
       'total_crr_keuangan': crr.text,
     };
 
-    api.addAnalisaKeuangan(data).then((value) {
+    try {
+      isKeuanganAnalisisProcessing(true);
+      AnalisisKeuanganProvider().deployAnalisaKeuangan(body).then((resp) {
+        isKeuanganAnalisisProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (err) {
+        isKeuanganAnalisisProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isKeuanganAnalisisProcessing(false);
       Get.snackbar(
-        'Success',
-        'Analisis Keuangan berhasil disimpan',
-        backgroundColor: primaryColor,
-        icon: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
-        snackPosition: SnackPosition.bottom,
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
         colorText: secondaryColor,
-        duration: const Duration(seconds: 2),
       );
-    });
-
-    update();
+    }
   }
 
   // void hitungFlatAndEfektif() {

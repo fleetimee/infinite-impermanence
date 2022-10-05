@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/input_keuangan/views/edit_input_keuangan_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -28,12 +29,16 @@ import '../modules/input_neraca/bindings/input_neraca_binding.dart';
 import '../modules/input_neraca/views/edit_neraca_view.dart';
 import '../modules/input_neraca/views/input_neraca_view.dart';
 import '../modules/input_neraca/views/lihat_neraca_view.dart';
+import '../modules/insight_debitur/bindings/insight_debitur_binding.dart';
+import '../modules/insight_debitur/views/insight_debitur_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
 import '../modules/karakter_analisis/views/karakter_analisis_view.dart';
 import '../modules/karakter_analisis/views/lihat_karakter_analisis_view.dart';
 import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
 import '../modules/keuangan_analisis/views/keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+import '../modules/list_debitur/bindings/list_debitur_binding.dart';
+import '../modules/list_debitur/views/list_debitur_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
@@ -184,10 +189,17 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-        name: _Paths.LIHAT_KEUANGAN,
-        page: () => LihatInputKeuanganView(),
-        binding: InputKeuanganBinding(),
-        transition: Transition.cupertino),
+      name: _Paths.LIHAT_KEUANGAN,
+      page: () => LihatInputKeuanganView(),
+      binding: InputKeuanganBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_KEUANGAN,
+      page: () => EditInputKeuanganView(),
+      binding: InputKeuanganBinding(),
+      transition: Transition.cupertino,
+    ),
     GetPage(
       name: _Paths.PORSEKOT_TABLE,
       page: () => PorsekotTableView(),
@@ -266,6 +278,16 @@ class AppPages {
       name: _Paths.SIMULASI_TETAP,
       page: () => const SimulasiTetapView(),
       binding: SimulasiTetapBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_DEBITUR,
+      page: () => const ListDebiturView(),
+      binding: ListDebiturBinding(),
+    ),
+    GetPage(
+      name: _Paths.INSIGHT_DEBITUR,
+      page: () => InsightDebiturView(),
+      binding: InsightDebiturBinding(),
     ),
   ];
 }

@@ -1,0 +1,31 @@
+import 'dart:convert';
+
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class InsightDebiturProvider {
+  final httpClient = http.Client();
+
+  Future<DebiturInsight> fetchDebiturById(int id) async {
+    try {
+      final response = await httpClient.get(
+        Uri.parse('${baseUrl}debiturs/$id?$joinTable'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return DebiturInsight.fromJson(data);
+      } else {
+        throw Exception('Failed to load debitur');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+}

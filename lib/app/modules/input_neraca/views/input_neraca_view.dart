@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
 import '../controllers/input_neraca_controller.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../../../common/style.dart';
 
 class InputNeracaView extends GetView<InputNeracaController> {
   InputNeracaView({Key? key}) : super(key: key);
@@ -260,19 +260,21 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           ),
                         ),
                       ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('Jumlah')),
-                        DataCell(
-                          FormBuilderTextField(
-                            name: 'jumlah_piutang',
-                            enabled: false,
-                            controller: controller.piutangLainnya,
-                            keyboardType: TextInputType.number,
-                            decoration:
-                                const InputDecoration(hintText: 'Hasil disini'),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'jumlah_piutang',
+                              enabled: false,
+                              controller: controller.piutangLainnya,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                  hintText: 'Hasil disini'),
+                            ),
                           ),
-                        ),
-                      ]),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -550,6 +552,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());
                       controller.saveNeraca();
+                      Get.back();
                     } else {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());

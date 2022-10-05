@@ -1,17 +1,25 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
-import 'package:flutter/cupertino.dart';
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/neraca/save_neraca.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../service/input_neraca_service.dart';
 
 class InputNeracaController extends GetxController {
+  final isNeracaProcessing = false.obs;
+
+  final debiturController = Get.put(InsightDebiturController());
+
   var cashOnHand = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -97,9 +105,7 @@ class InputNeracaController extends GetxController {
   }
 
   void saveNeraca() {
-    final api = InputNeracaService();
-
-    final data = {
+    final body = {
       'tanggal_input': tanggalInput.value.toString(),
       'kas_on_hand': cashOnHand.text.replaceAll('.', ''),
       'tabungan': tabungan.text.replaceAll('.', ''),
@@ -115,14 +121,39 @@ class InputNeracaController extends GetxController {
       'debitur': debitur.text,
     };
 
-    api.addInputNeraca(data);
-
-    update();
+    try {
+      isNeracaProcessing(true);
+      NeracaProvider().deployNeraca(body).then((resp) {
+        isNeracaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        Get.snackbar(
+          'Sucess',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (err) {
+        isNeracaProcessing(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isNeracaProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 
-  void updateNeraca(String id) async {
-    final api = InputNeracaService();
-    final data = {
+  void updateNeraca(id) async {
+    final body = {
       'tanggal_input': tanggalInput.value.toString(),
       'kas_on_hand': cashOnHand.text.replaceAll('.', ''),
       'tabungan': tabungan.text.replaceAll('.', ''),
@@ -137,8 +168,54 @@ class InputNeracaController extends GetxController {
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
     };
 
-    await api.editInputNeraca(id, data);
-
-    update();
+    try {
+      isNeracaProcessing(true);
+      NeracaProvider().putNeraca(id, body).then((resp) {
+        isNeracaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(id));
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc:
+              'Data berhasil diperbarui, \n\n Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (err) {
+        isNeracaProcessing(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isNeracaProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
+}
+
+convertStringToInt(String value) {
+  return int.parse(value.replaceAll('.', ''));
 }

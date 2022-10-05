@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:nekos/nekos.dart';
 
 // 🌎 Project imports:
- import '../../../models/debtor_details.dart';
- import '../../../service/debtor_details_service.dart';
+import '../../../models/debtor_details.dart';
+import '../../../service/debtor_details_service.dart';
 
 class DebiturDetailBangetController extends GetxController {
   final faker = Faker.instance;

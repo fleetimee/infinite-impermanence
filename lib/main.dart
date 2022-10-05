@@ -1,8 +1,5 @@
 // 🐦 Flutter imports:
 
-import 'dart:io';
-
-import 'package:akm/app/widget/ssl.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -16,9 +13,8 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'app/routes/app_pages.dart';
 import 'app/themes/light.dart';
 
-Future<void> main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  HttpOverrides.global = MyHttpOverrides();
 
   runApp(
     GetMaterialApp(

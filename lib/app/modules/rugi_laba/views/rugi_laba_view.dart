@@ -2,6 +2,8 @@
 import 'dart:developer';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/rugi_laba/views/components/input_mode/perkiraan_neraca.dart';
+import 'package:akm/app/modules/rugi_laba/views/components/input_mode/perkiraan_rugi_laba.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,16 +15,15 @@ import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
 import '../controllers/rugi_laba_controller.dart';
-import 'components/perkiraan_neraca.dart';
-import 'components/perkiraan_rugi_laba.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
+import '../../../common/style.dart';
 
-class RugiLabaView extends GetView<RugiLabaController> {
+class RugiLabaView extends StatelessWidget {
   RugiLabaView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
+  final controller = Get.put(RugiLabaController());
 
   @override
   Widget build(BuildContext context) {
@@ -349,6 +350,7 @@ class RugiLabaView extends GetView<RugiLabaController> {
                       if (controller.formKey.currentState?.saveAndValidate() ??
                           false) {
                         controller.saveRugiLaba();
+                        Get.back();
                         debugPrint(
                             controller.formKey.currentState?.value.toString());
                       } else {

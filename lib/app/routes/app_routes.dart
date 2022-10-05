@@ -27,6 +27,7 @@ abstract class Routes {
   static const DEBITUR_DETAIL_BANGET = _Paths.DEBITUR_DETAIL_BANGET;
   static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
   static const LIHAT_KEUANGAN = _Paths.LIHAT_KEUANGAN;
+  static const EDIT_KEUANGAN = _Paths.EDIT_KEUANGAN;
   static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
   static const INPUT_NERACA = _Paths.INPUT_NERACA;
   static const LIHAT_NERACA = _Paths.LIHAT_NERACA;
@@ -45,6 +46,8 @@ abstract class Routes {
   static const USULAN_BARU_PRINT = _Paths.PRINT_USULAN_BARU;
   static const ABOUT = _Paths.ABOUT;
   static const SIMULASI_TETAP = _Paths.SIMULASI_TETAP;
+  static const LIST_DEBITUR = _Paths.LIST_DEBITUR;
+  static const INSIGHT_DEBITUR = _Paths.INSIGHT_DEBITUR;
 }
 
 abstract class _Paths {
@@ -70,6 +73,7 @@ abstract class _Paths {
   static const DEBITUR_DETAIL_BANGET = '/debitur-detail-banget';
   static const INPUT_KEUANGAN = '/input-keuangan';
   static const LIHAT_KEUANGAN = '/lihat-keuangan';
+  static const EDIT_KEUANGAN = '/edit-keuangan';
   static const PORSEKOT_TABLE = '/porsekot-table';
   static const INPUT_NERACA = '/input-neraca';
   static const EDIT_NERACA = '/edit-neraca';
@@ -88,4 +92,6 @@ abstract class _Paths {
   static const PRINT_USULAN_BARU = '/print-usulan-baru';
   static const ABOUT = '/about';
   static const SIMULASI_TETAP = '/simulasi-tetap';
+  static const LIST_DEBITUR = '/list-debitur';
+  static const INSIGHT_DEBITUR = '/insight-debitur';
 }

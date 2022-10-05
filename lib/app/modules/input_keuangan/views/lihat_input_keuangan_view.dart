@@ -8,9 +8,9 @@ import 'package:stepper_page_view/stepper_page_view.dart';
 
 // 🌎 Project imports:
 import '../controllers/input_keuangan_controller.dart';
-import 'components/view/asumsi_keuangan.dart';
-import 'components/view/data_keuangan.dart';
-import 'components/view/interest.dart';
+import 'components/view/view_asumsi_keuangan.dart';
+import 'components/view/view_data_keuangan.dart';
+import 'components/view/view_interest.dart';
 
 class LihatInputKeuanganView extends GetView<InputKeuanganController> {
   LihatInputKeuanganView({Key? key}) : super(key: key);

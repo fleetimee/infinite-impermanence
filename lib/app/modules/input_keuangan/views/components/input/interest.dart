@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,8 +11,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../../../common/style.dart';
- import '../../controllers/input_keuangan_controller.dart';
 
 class Interest extends StatelessWidget {
   Interest({Key? key}) : super(key: key);
@@ -108,6 +108,7 @@ class Interest extends StatelessWidget {
                         ?.saveAndValidate() ??
                     false) {
                   controller.saveKeuangan();
+                  Get.back();
                 } else {
                   debugPrint('validation failed');
                 }

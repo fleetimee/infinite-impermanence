@@ -33,7 +33,7 @@ class RugiLabaProvider {
 
   Future<void> putRugiLaba(id, Map body) async {
     try {
-      final response = await httpClient.put(
+      final response = await httpClient.patch(
         Uri.parse('${baseUrl}input-rugi-laba/$id'),
         body: jsonEncode(body),
         headers: {

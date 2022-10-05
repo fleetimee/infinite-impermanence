@@ -17,6 +17,8 @@ import 'package:get/get.dart';
 class RugiLabaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
+  final data = Get.arguments;
+
   final isRugiLabaProcessing = false.obs;
 
   final debiturController = Get.put(InsightDebiturController());
@@ -139,7 +141,7 @@ class RugiLabaController extends GetxController {
       isRugiLabaProcessing.value = true;
       RugiLabaProvider().putRugiLaba(id, body).then((resp) {
         isRugiLabaProcessing.value = false;
-        debiturController.fetchOneDebitur(int.parse(id));
+        debiturController.fetchOneDebitur(data);
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

@@ -85,7 +85,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.kas,
+                                data.inputNeraca.kasOnHand,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(

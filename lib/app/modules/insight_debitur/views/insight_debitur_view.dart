@@ -1,6 +1,7 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
+import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
@@ -133,7 +134,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     MenuNeraca(),
                     MenuRugiLaba(),
                     MenuInputKeuangan(),
-                    MenuRugiLaba()
+                    MenuAnalisaKeuangan(),
                   ],
                 ),
                 Padding(
@@ -1130,6 +1131,208 @@ class MenuInputKeuangan extends StatelessWidget {
                                   },
                                   child: const Text(
                                     "Input Rugi Laba terlebih dahulu",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : controller.insightDebitur.value.inputKeuangan !=
+                                    null
+                                ? Expanded(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(Routes.LIHAT_KEUANGAN,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Lihat",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(Routes.EDIT_KEUANGAN,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Edit",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blueGrey,
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(Routes.INPUT_KEUANGAN,
+                                            arguments: controller
+                                                .insightDebitur.value);
+                                      },
+                                      child: const Text(
+                                        "Input",
+                                        style: TextStyle(
+                                          color: secondaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
+    );
+  }
+}
+
+class MenuAnalisaKeuangan extends StatelessWidget {
+  MenuAnalisaKeuangan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final inputKeuanganController = Get.put(InputKeuanganController());
+  final analisaKeuanganController = Get.put(KeuanganAnalisisController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Analisa Keuangan',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (analisaKeuanganController
+                      .isAnalisaKeuanganProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.analisaKeuangan ==
+                        null) {
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (analisaKeuanganController
+                      .isAnalisaKeuanganProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        //Check if neraca is empty
+                        controller.insightDebitur.value.inputKeuangan == null
+                            ? Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.redAccent,
+                                  ),
+                                  onPressed: () {
+                                    Get.snackbar('Error', 'Dibilangin batu',
+                                        backgroundColor: Colors.redAccent,
+                                        colorText: Colors.white);
+                                  },
+                                  child: const Text(
+                                    "Input Keuangan terlebih dahulu",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,

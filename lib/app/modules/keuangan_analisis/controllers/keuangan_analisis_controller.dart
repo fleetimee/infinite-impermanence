@@ -21,7 +21,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../common/style.dart';
 
 // 🌎 Project imports:
- import '../../../service/analisa_keuangan_service.dart';
+import '../../../service/analisa_keuangan_service.dart';
 
 class KeuanganAnalisisController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -32,6 +32,8 @@ class KeuanganAnalisisController extends GetxController
   }
 
   final data = Get.arguments;
+
+  final isAnalisaKeuanganProcessing = false.obs;
 
   final Map<String, TextEditingController> listOfTextEditingController = {
     'Equity': TextEditingController(),

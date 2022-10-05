@@ -25,7 +25,7 @@ class InsightDebiturController extends GetxController
   TabController? tabController;
 
   // For nekos api
-  Future<String> img = Nekos().smug();
+  Future<String> img = Nekos().ngif();
 
   // Get debitur id from previous page
   final debiturId = Get.arguments;

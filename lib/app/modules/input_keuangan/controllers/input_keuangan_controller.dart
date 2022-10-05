@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/data/provider/input_keuangan/save_keuangan.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -11,13 +13,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
-import '../../../service/input_keuangan_service.dart';
 
 class InputKeuanganController extends GetxController {
   final digunakanUntukList = [
     'Modal Kerja',
     'Investasi',
   ];
+
+  final isInputKeuanganProcessing = false.obs;
+  final debiturController = Get.put(InsightDebiturController());
 
   var context = Get.context;
 
@@ -402,9 +406,7 @@ class InputKeuanganController extends GetxController {
   }
 
   void saveKeuangan() {
-    final api = InputKeuanganService();
-
-    final data = {
+    final body = {
       'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
       'angsuran': angsuranPerBulan.text,
       'bunga_per_tahun': bungaPerTahun.text,
@@ -432,8 +434,34 @@ class InputKeuanganController extends GetxController {
       'rugilaba': rugiLaba.text,
     };
 
-    api.addKeuangan(data);
-
-    update();
+    try {
+      isInputKeuanganProcessing(true);
+      InputKeuanganProvider().deployInputKeuangan(body).then((resp) {
+        isInputKeuanganProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }).catchError((e) {
+        isInputKeuanganProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isInputKeuanganProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 }

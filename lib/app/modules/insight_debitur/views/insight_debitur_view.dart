@@ -1,4 +1,5 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
@@ -130,6 +131,8 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                       child: HeaderKeuangan(),
                     ),
                     MenuNeraca(),
+                    MenuRugiLaba(),
+                    MenuInputKeuangan(),
                     MenuRugiLaba()
                   ],
                 ),
@@ -674,7 +677,7 @@ class MenuNeraca extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Neraca Menu',
+                'Neraca',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -846,7 +849,7 @@ class MenuRugiLaba extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Rugi / Laba Menu',
+                'Rugi / Laba',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -994,6 +997,204 @@ class MenuRugiLaba extends StatelessWidget {
                                       ),
                                       onPressed: () {
                                         Get.toNamed(Routes.RUGI_LABA,
+                                            arguments: controller
+                                                .insightDebitur.value);
+                                      },
+                                      child: const Text(
+                                        "Input",
+                                        style: TextStyle(
+                                          color: secondaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
+    );
+  }
+}
+
+class MenuInputKeuangan extends StatelessWidget {
+  MenuInputKeuangan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final inputKeuanganController = Get.put(InputKeuanganController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Input Keuangan',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (inputKeuanganController.isInputKeuanganProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.inputKeuangan == null) {
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (inputKeuanganController.isInputKeuanganProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        //Check if neraca is empty
+                        controller.insightDebitur.value.inputRugiLaba == null
+                            ? Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.redAccent,
+                                  ),
+                                  onPressed: () {
+                                    Get.snackbar('Error', 'Dibilangin batu',
+                                        backgroundColor: Colors.redAccent,
+                                        colorText: Colors.white);
+                                  },
+                                  child: const Text(
+                                    "Input Rugi Laba terlebih dahulu",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : controller.insightDebitur.value.inputKeuangan !=
+                                    null
+                                ? Expanded(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(Routes.VIEW_RUGI_LABA,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Lihat",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10.0,
+                                        ),
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(Routes.EDIT_RUGI_LABA,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Edit",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                : Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blueGrey,
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(Routes.INPUT_KEUANGAN,
                                             arguments: controller
                                                 .insightDebitur.value);
                                       },

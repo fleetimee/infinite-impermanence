@@ -1,4 +1,7 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/input_keuangan/views/components/edit/edit_asumsi_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/edit/edit_data_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/edit/edit_interest.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,12 +11,9 @@ import 'package:stepper_page_view/stepper_page_view.dart';
 
 // 🌎 Project imports:
 import '../controllers/input_keuangan_controller.dart';
-import 'components/view/view_asumsi_keuangan.dart';
-import 'components/view/view_data_keuangan.dart';
-import 'components/view/view_interest.dart';
 
-class LihatInputKeuanganView extends GetView<InputKeuanganController> {
-  LihatInputKeuanganView({Key? key}) : super(key: key);
+class EditInputKeuanganView extends GetView<InputKeuanganController> {
+  EditInputKeuanganView({Key? key}) : super(key: key);
 
   final pageController = PageController(initialPage: 0);
   final data = Get.arguments;
@@ -61,15 +61,15 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
               PageStep(
                 subtitle: const Text('Subtitle 1'),
                 title: const Text('Step 1'),
-                content: ViewDataKeuanganInput(),
+                content: EditDataKeuanganInput(),
               ),
               PageStep(
                 title: const Text('Step 2'),
-                content: ViewAsumsiKeuanganInput(),
+                content: EditAsumsiKeuanganInput(),
               ),
               PageStep(
                 title: const Text('Step 3'),
-                content: ViewInterest(),
+                content: EditInterest(),
               ),
             ],
           ),

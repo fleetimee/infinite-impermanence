@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/input_keuangan/views/edit_input_keuangan_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -188,10 +189,17 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-        name: _Paths.LIHAT_KEUANGAN,
-        page: () => LihatInputKeuanganView(),
-        binding: InputKeuanganBinding(),
-        transition: Transition.cupertino),
+      name: _Paths.LIHAT_KEUANGAN,
+      page: () => LihatInputKeuanganView(),
+      binding: InputKeuanganBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_KEUANGAN,
+      page: () => EditInputKeuanganView(),
+      binding: InputKeuanganBinding(),
+      transition: Transition.cupertino,
+    ),
     GetPage(
       name: _Paths.PORSEKOT_TABLE,
       page: () => PorsekotTableView(),

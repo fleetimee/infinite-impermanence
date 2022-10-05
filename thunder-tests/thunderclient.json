@@ -1043,11 +1043,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/input-keuangan/31",
+    "url": "{{baseUrl}}api/v1/input-keuangan/30",
     "method": "DELETE",
     "sortNum": 500000,
     "created": "2022-09-28T02:47:15.367Z",
-    "modified": "2022-09-28T02:47:42.026Z",
+    "modified": "2022-10-05T08:19:45.421Z",
     "headers": [],
     "params": [],
     "tests": []

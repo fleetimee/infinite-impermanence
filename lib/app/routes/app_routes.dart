@@ -27,6 +27,7 @@ abstract class Routes {
   static const DEBITUR_DETAIL_BANGET = _Paths.DEBITUR_DETAIL_BANGET;
   static const INPUT_KEUANGAN = _Paths.INPUT_KEUANGAN;
   static const LIHAT_KEUANGAN = _Paths.LIHAT_KEUANGAN;
+  static const EDIT_KEUANGAN = _Paths.EDIT_KEUANGAN;
   static const PORSEKOT_TABLE = _Paths.PORSEKOT_TABLE;
   static const INPUT_NERACA = _Paths.INPUT_NERACA;
   static const LIHAT_NERACA = _Paths.LIHAT_NERACA;
@@ -72,6 +73,7 @@ abstract class _Paths {
   static const DEBITUR_DETAIL_BANGET = '/debitur-detail-banget';
   static const INPUT_KEUANGAN = '/input-keuangan';
   static const LIHAT_KEUANGAN = '/lihat-keuangan';
+  static const EDIT_KEUANGAN = '/edit-keuangan';
   static const PORSEKOT_TABLE = '/porsekot-table';
   static const INPUT_NERACA = '/input-neraca';
   static const EDIT_NERACA = '/edit-neraca';

@@ -1148,7 +1148,7 @@ class MenuInputKeuangan extends StatelessWidget {
                                               backgroundColor: Colors.blueGrey,
                                             ),
                                             onPressed: () {
-                                              Get.toNamed(Routes.VIEW_RUGI_LABA,
+                                              Get.toNamed(Routes.LIHAT_KEUANGAN,
                                                   arguments: controller
                                                       .insightDebitur.value);
                                             },
@@ -1171,7 +1171,7 @@ class MenuInputKeuangan extends StatelessWidget {
                                               backgroundColor: Colors.blueGrey,
                                             ),
                                             onPressed: () {
-                                              Get.toNamed(Routes.EDIT_RUGI_LABA,
+                                              Get.toNamed(Routes.EDIT_KEUANGAN,
                                                   arguments: controller
                                                       .insightDebitur.value);
                                             },

@@ -464,4 +464,90 @@ class InputKeuanganController extends GetxController {
       );
     }
   }
+
+  void clearTextEditing() {
+    kreditYangDiusulkan.clear();
+    angsuranPerBulan.clear();
+    bungaPerTahun.clear();
+    provisi.clear();
+    totalAngsuran.clear();
+    pinjamanLainnya.clear();
+    angsuranPinjamanLainnya.clear();
+    nilaiAset.clear();
+    penjualanKini.clear();
+    hpp.clear();
+    biayaBahanKini.clear();
+    biayaOperasionalKini.clear();
+    biayaUpahKini.clear();
+    biayaHidupKini.clear();
+    penjualanYad.clear();
+    biayaBahanYad.clear();
+    biayaOperasionalYad.clear();
+    biayaUpahYad.clear();
+    biayaHidupYad.clear();
+    tradeCycle.clear();
+    rugiLaba.clear();
+    digunakanUntuk.value = '';
+    sistemAngsuran.value = '';
+  }
+
+  void updateKeuangan(id) async {
+    final body = {
+      'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
+      'angsuran': angsuranPerBulan.text,
+      'bunga_per_tahun': bungaPerTahun.text,
+      'provisi': provisi.text,
+      'sistem_angsuran': sistemAngsuran.toString(),
+      'digunakan_untuk': digunakanUntuk.toString(),
+      'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
+      // 'pinjaman_lainnya': pinjamanLainnya.text.replaceAll('.', ''),
+      // 'angsuran_pinjaman_lainnya':
+      //     angsuranPinjamanLainnya.text.replaceAll('.', ''),
+      // 'nilai_aset': nilaiAset.text.replaceAll('.', ''),
+      'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
+      'hpp': hpp.text,
+      'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),
+      'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
+      'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
+      'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
+      'penjualan_asumsi': penjualanYad.text.replaceAll('.', ''),
+      'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
+      'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
+      'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
+      'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
+      'trade_cycle': tradeCycle.text,
+      'debitur': debitur.text,
+      'rugilaba': rugiLaba.text,
+    };
+
+    try {
+      isInputKeuanganProcessing(true);
+      InputKeuanganProvider().putInputKeuangan(id, body).then((resp) {
+        isInputKeuanganProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (e) {
+        isInputKeuanganProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isInputKeuanganProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
 }

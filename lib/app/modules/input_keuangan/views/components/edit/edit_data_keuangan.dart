@@ -1,7 +1,9 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -11,11 +13,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import '../../../../common/style.dart';
-import '../../controllers/input_keuangan_controller.dart';
+import '../../../controllers/input_keuangan_controller.dart';
 
-class DataKeuanganInput extends StatelessWidget {
-  DataKeuanganInput({Key? key}) : super(key: key);
+class EditDataKeuanganInput extends StatelessWidget {
+  EditDataKeuanganInput({Key? key}) : super(key: key);
 
   final dataKeuanganCtrl = Get.put(InputKeuanganController());
   final data = Get.arguments;
@@ -78,9 +79,6 @@ class DataKeuanganInput extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 16.0,
-            ),
             Row(
               children: [
                 Expanded(
@@ -91,7 +89,14 @@ class DataKeuanganInput extends StatelessWidget {
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                     ]),
-                    controller: dataKeuanganCtrl.kreditYangDiusulkan,
+                    controller: dataKeuanganCtrl.kreditYangDiusulkan =
+                        MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      precision: 0,
+                      initialValue: double.parse(
+                          data.inputKeuangan.kreditDiusulkan.toString()),
+                    ),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Kredit Diusulkan',
@@ -112,7 +117,10 @@ class DataKeuanganInput extends StatelessWidget {
                       FormBuilderValidators.maxLength(3,
                           errorText: 'Max 3 digit'),
                     ]),
-                    controller: dataKeuanganCtrl.angsuranPerBulan,
+                    controller: dataKeuanganCtrl.angsuranPerBulan =
+                        TextEditingController(
+                      text: data.inputKeuangan.angsuran.toString(),
+                    ),
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Jangka Waktu (bln)',
@@ -137,7 +145,9 @@ class DataKeuanganInput extends StatelessWidget {
                 FormBuilderValidators.max(500),
                 FormBuilderValidators.maxLength(3, errorText: 'Max 3 digit'),
               ]),
-              controller: dataKeuanganCtrl.bungaPerTahun,
+              controller: dataKeuanganCtrl.bungaPerTahun =
+                  TextEditingController(
+                      text: data.inputKeuangan.bungaPerTahun.toString()),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Bunga per tahun',
@@ -155,7 +165,10 @@ class DataKeuanganInput extends StatelessWidget {
                 Expanded(
                   child: FormBuilderTextField(
                     name: 'provisi',
-                    controller: dataKeuanganCtrl.provisi,
+                    controller: dataKeuanganCtrl.provisi =
+                        TextEditingController(
+                      text: data.inputKeuangan.provisi.toString(),
+                    ),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(errorText: 'Harus diisi'),
@@ -181,6 +194,7 @@ class DataKeuanganInput extends StatelessWidget {
                 Expanded(
                   child: FormBuilderDropdown(
                     name: 'sistem_angsuran',
+                    initialValue: data.inputKeuangan.sistemAngsuran.toString(),
                     onChanged: (value) {
                       dataKeuanganCtrl.sistemAngsuran.value = value.toString();
                       debugPrint(value.toString());
@@ -213,46 +227,45 @@ class DataKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            // FormBuilderTextField(
-            //   name: 'digunakan_untuk',
-            //   controller: dataKeuanganCtrl.digunakanUntuk,
-            //   keyboardType: TextInputType.text,
-            //   validator:
-            //       FormBuilderValidators.required(errorText: 'Harus diisi'),
-            //   decoration: InputDecoration(
-            //     alignLabelWithHint: true,
-            //     labelText: 'Digunakan Untuk',
-            //     border: OutlineInputBorder(
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //   ),
-            //   maxLines: 3,
-            // ),
             FormBuilderDropdown(
-              name: 'digunakan_untuk',
-              items: dataKeuanganCtrl.digunakanUntukList
-                  .map((e) => DropdownMenuItem(value: e, child: Text(e)))
-                  .toList(),
-              onChanged: (value) {
-                dataKeuanganCtrl.digunakanUntuk.value = value.toString();
-              },
-              onSaved: (value) {
-                dataKeuanganCtrl.digunakanUntuk.value = value.toString();
-              },
-              decoration: InputDecoration(
-                labelText: 'Digunakan Untuk',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                name: 'digunakan_untuk',
+                initialValue: data.inputKeuangan.digunakanUntuk.toString(),
+                onChanged: (value) {
+                  dataKeuanganCtrl.digunakanUntuk.value = value.toString();
+                  debugPrint(value.toString());
+                },
+                onSaved: (value) {
+                  dataKeuanganCtrl.digunakanUntuk.value = value.toString();
+                  debugPrint(value.toString());
+                },
+                decoration: InputDecoration(
+                  labelText: 'Digunakan Untuk',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-              ),
-            ),
+                items: dataKeuanganCtrl.digunakanUntukList
+                    .map(
+                      (element) => DropdownMenuItem(
+                        value: element,
+                        child: Text(element),
+                      ),
+                    )
+                    .toList()),
             const SizedBox(
               height: 16.0,
             ),
             FormBuilderTextField(
               name: 'angsuran_rp',
               readOnly: true,
-              controller: dataKeuanganCtrl.totalAngsuran,
+              controller: dataKeuanganCtrl.totalAngsuran =
+                  MoneyMaskedTextController(
+                decimalSeparator: '',
+                thousandSeparator: '.',
+                precision: 0,
+                initialValue:
+                    double.parse(data.inputKeuangan.angsuranRp.toString()),
+              ),
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'Angsuran (Rp)',

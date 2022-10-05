@@ -22,7 +22,7 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Input Keuangan'),
+        title: Text('Editing Keuangan : ${data.peminjam1}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_back),
@@ -48,12 +48,11 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
         padding: const EdgeInsets.all(16.0),
         child: FormBuilder(
           key: controller.formKeyInputKeuangan,
-          // onChanged: () {
-          //   controller.formKeyInputKeuangan.currentState!.save();
-          //   debugPrint(
-          //       controller.formKeyInputKeuangan.currentState!.value.toString());
-          // },
-          autovalidateMode: AutovalidateMode.disabled,
+          onChanged: () {
+            controller.formKeyInputKeuangan.currentState!.save();
+            debugPrint(
+                controller.formKeyInputKeuangan.currentState!.value.toString());
+          },
           child: StepperPageView(
             physics: const BouncingScrollPhysics(),
             pageController: pageController,

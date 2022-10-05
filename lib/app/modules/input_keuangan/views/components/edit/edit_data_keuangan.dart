@@ -193,8 +193,25 @@ class EditDataKeuanganInput extends StatelessWidget {
                 ),
                 Expanded(
                   child: FormBuilderDropdown(
+                    items: [
+                      'Efektif',
+                      'Flat',
+                    ]
+                        .map(
+                          (val) => DropdownMenuItem(
+                            value: val,
+                            child: Text(val),
+                          ),
+                        )
+                        .toList(),
                     name: 'sistem_angsuran',
-                    initialValue: data.inputKeuangan.sistemAngsuran.toString(),
+                    validator: FormBuilderValidators.compose(
+                      [
+                        FormBuilderValidators.required(
+                            errorText: 'Harus diisi'),
+                      ],
+                    ),
+                    initialValue: data.inputKeuangan.sistemAngsuran,
                     onChanged: (value) {
                       dataKeuanganCtrl.sistemAngsuran.value = value.toString();
                       debugPrint(value.toString());
@@ -209,17 +226,6 @@ class EditDataKeuanganInput extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    items: [
-                      'Efektif',
-                      'Flat',
-                    ]
-                        .map(
-                          (val) => DropdownMenuItem(
-                            value: val,
-                            child: Text(val),
-                          ),
-                        )
-                        .toList(),
                   ),
                 ),
               ],
@@ -229,13 +235,13 @@ class EditDataKeuanganInput extends StatelessWidget {
             ),
             FormBuilderDropdown(
                 name: 'digunakan_untuk',
-                initialValue: data.inputKeuangan.digunakanUntuk.toString(),
+                initialValue: data.inputKeuangan.digunakanUntuk,
                 onChanged: (value) {
-                  dataKeuanganCtrl.digunakanUntuk.value = value.toString();
+                  dataKeuanganCtrl.digunakanUntuk.value = value!.toString();
                   debugPrint(value.toString());
                 },
                 onSaved: (value) {
-                  dataKeuanganCtrl.digunakanUntuk.value = value.toString();
+                  dataKeuanganCtrl.digunakanUntuk.value = value!.toString();
                   debugPrint(value.toString());
                 },
                 decoration: InputDecoration(

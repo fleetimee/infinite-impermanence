@@ -110,6 +110,7 @@ class EditInterest extends StatelessWidget {
                 if (controller.formKeyInputKeuangan.currentState
                         ?.saveAndValidate() ??
                     false) {
+                  controller.formKeyInputKeuangan.currentState?.save();
                   controller.updateKeuangan(data.inputKeuangan.id);
                   Get.back();
                 } else {

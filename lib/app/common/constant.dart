@@ -13,7 +13,9 @@
 // const baseUrl = 'http://192.168.100.79:3000/';
 
 // for ngrok
-const baseUrl = 'https://659e-36-73-50-156.ap.ngrok.io/api/v1/';
+// const baseUrl = 'https://659e-36-73-50-156.ap.ngrok.io/api/v1/';
+
+const baseUrl = 'https://api.fleetime.my.id/api/v1/';
 
 // Insight debitur query string
 const joinTable =

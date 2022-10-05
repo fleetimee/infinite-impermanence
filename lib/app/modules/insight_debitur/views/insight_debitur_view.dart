@@ -12,6 +12,7 @@ import 'package:getwidget/getwidget.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/insight_debitur_controller.dart';
 
@@ -22,7 +23,15 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          secondaryColor,
+          Colors.white60,
+        ],
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -118,6 +127,26 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     ],
                   ),
                 ),
+                // Container(
+                //   padding: const EdgeInsets.symmetric(
+                //     horizontal: 25,
+                //   ),
+                //   child: GFItemsCarousel(
+                //       rowCount: 2,
+                //       children: controller.imageList.map(
+                //         (url) {
+                //           return Container(
+                //             margin: const EdgeInsets.all(5.0),
+                //             child: ClipRRect(
+                //               borderRadius:
+                //                   const BorderRadius.all(Radius.circular(5.0)),
+                //               child: Image.network(url,
+                //                   fit: BoxFit.cover, width: 1000.0),
+                //             ),
+                //           );
+                //         },
+                //       ).toList()),
+                // ),
                 const SizedBox(
                   height: 5.0,
                 ),
@@ -1340,7 +1369,7 @@ class MenuAnalisaKeuangan extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : controller.insightDebitur.value.inputKeuangan !=
+                            : controller.insightDebitur.value.analisaKeuangan !=
                                     null
                                 ? Expanded(
                                     child: Row(
@@ -1397,7 +1426,7 @@ class MenuAnalisaKeuangan extends StatelessWidget {
                                         backgroundColor: Colors.blueGrey,
                                       ),
                                       onPressed: () {
-                                        Get.toNamed(Routes.INPUT_KEUANGAN,
+                                        Get.toNamed(Routes.KEUANGAN_ANALISIS,
                                             arguments: controller
                                                 .insightDebitur.value);
                                       },

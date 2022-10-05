@@ -35,7 +35,8 @@ class ListDebiturView extends GetView<ListDebiturController> {
             if (controller.listDebitur.isNotEmpty) {
               return Column(
                 children: [
-                  Container(
+                  Animate(
+                      child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: GFCard(
                       boxFit: BoxFit.cover,
@@ -68,53 +69,64 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             fontWeight: FontWeight.bold),
                       ),
                     ),
-                  ),
+                  )
+                          .animate()
+                          .fadeIn() // uses `Animate.defaultDuration`
+                          .scale() // inherits duration from fadeIn
+                          .move(
+                              delay: 300.ms,
+                              duration:
+                                  600.ms) // runs after the above w/new duration
+                      // inherits the delay & duration from move,
+                      ),
                   Expanded(
-                    child: ListView.builder(
-                      controller: controller.scrollController,
-                      itemCount: controller.listDebitur.length,
-                      itemBuilder: (context, index) {
-                        if (index == controller.listDebitur.length - 1 &&
-                            controller.isMoreDataAvailable.value == true) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return Container(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              children: [
-                                GFListTile(
-                                  avatar: const GFAvatar(
-                                      //
-                                      ),
-                                  color: secondaryColor,
-                                  titleText:
-                                      controller.listDebitur[index].peminjam1!,
-                                  subTitleText: controller
-                                      .listDebitur[index].bidangUsaha!,
-                                  icon: GFButton(
-                                    onPressed: () {
-                                      Get.toNamed(Routes.INSIGHT_DEBITUR,
-                                          arguments:
-                                              controller.listDebitur[index].id);
-                                    },
-                                    text: 'Details',
-                                    color: primaryColor,
-                                    type: GFButtonType.outline,
+                    child: Scrollbar(
+                      child: ListView.builder(
+                        controller: controller.scrollController,
+                        itemCount: controller.listDebitur.length,
+                        itemBuilder: (context, index) {
+                          if (index == controller.listDebitur.length - 1 &&
+                              controller.isMoreDataAvailable.value == true) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            return Container(
+                              padding: const EdgeInsets.all(10),
+                              child: Column(
+                                children: [
+                                  GFListTile(
+                                    avatar: const GFAvatar(
+                                        //
+                                        ),
+                                    color: secondaryColor,
+                                    titleText: controller
+                                        .listDebitur[index].peminjam1!,
+                                    subTitleText: controller
+                                        .listDebitur[index].bidangUsaha!,
+                                    icon: GFButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.INSIGHT_DEBITUR,
+                                            arguments: controller
+                                                .listDebitur[index].id);
+                                      },
+                                      text: 'Details',
+                                      color: primaryColor,
+                                      type: GFButtonType.outline,
+                                    ),
                                   ),
+                                ].animate(
+                                  interval: 100.ms,
+                                  effects: [
+                                    const FadeEffect(),
+                                    const ScaleEffect(),
+                                  ],
                                 ),
-                              ].animate(
-                                interval: 100.ms,
-                                effects: [
-                                  const FadeEffect(),
-                                  const ScaleEffect(),
-                                ],
                               ),
-                            ),
-                          );
-                        }
-                      },
+                            );
+                          }
+                        },
+                      ),
                     ),
                   ),
                 ],

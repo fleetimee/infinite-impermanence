@@ -34,7 +34,7 @@ class InputKeuanganProvider {
 
   Future<void> putInputKeuangan(id, Map body) async {
     try {
-      final response = await httpClient.patch(
+      final response = await httpClient.put(
         Uri.parse('${baseUrl}input-keuangan/$id'),
         body: jsonEncode(body),
         headers: {

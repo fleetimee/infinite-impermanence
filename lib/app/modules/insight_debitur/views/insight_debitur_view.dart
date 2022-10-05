@@ -1257,7 +1257,6 @@ class MenuAnalisaKeuangan extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final inputKeuanganController = Get.put(InputKeuanganController());
   final analisaKeuanganController = Get.put(KeuanganAnalisisController());
 
   @override
@@ -1283,7 +1282,7 @@ class MenuAnalisaKeuangan extends StatelessWidget {
               Obx(
                 () {
                   if (analisaKeuanganController
-                      .isAnalisaKeuanganProcessing.value) {
+                      .isKeuanganAnalisisProcessing.value) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(),
@@ -1341,7 +1340,7 @@ class MenuAnalisaKeuangan extends StatelessWidget {
               Obx(
                 () {
                   if (analisaKeuanganController
-                      .isAnalisaKeuanganProcessing.value) {
+                      .isKeuanganAnalisisProcessing.value) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );

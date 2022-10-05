@@ -6,6 +6,7 @@ import 'dart:async';
 import 'dart:math';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/data/provider/analisis_keuangan/save_analis_keuangan.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../common/style.dart';
 
 // 🌎 Project imports:
-import '../../../service/analisa_keuangan_service.dart';
 
 class KeuanganAnalisisController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -1178,9 +1178,7 @@ class KeuanganAnalisisController extends GetxController
   }
 
   void saveAnalisisKeuangan() {
-    final api = AnalisaKeuanganService();
-
-    final data = {
+    final body = {
       'debitur': debiturId.text,
       'keuangan': keuanganId.text,
       'total_aset': equityInput.text.replaceAll('.', ''),
@@ -1222,22 +1220,35 @@ class KeuanganAnalisisController extends GetxController
       'total_crr_keuangan': crr.text,
     };
 
-    api.addAnalisaKeuangan(data).then((value) {
+    try {
+      isKeuanganAnalisisProcessing(true);
+      AnalisisKeuanganProvider().deployAnalisaKeuangan(body).then((resp) {
+        isKeuanganAnalisisProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (err) {
+        isKeuanganAnalisisProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isKeuanganAnalisisProcessing(false);
       Get.snackbar(
-        'Success',
-        'Analisis Keuangan berhasil disimpan',
-        backgroundColor: primaryColor,
-        icon: const Icon(
-          Icons.check,
-          color: Colors.white,
-        ),
-        snackPosition: SnackPosition.bottom,
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
         colorText: secondaryColor,
-        duration: const Duration(seconds: 2),
       );
-    });
-
-    update();
+    }
   }
 
   // void hitungFlatAndEfektif() {

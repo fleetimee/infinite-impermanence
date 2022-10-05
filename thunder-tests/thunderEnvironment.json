@@ -5,11 +5,11 @@
     "default": true,
     "sortNum": 10000,
     "created": "2022-07-05T23:42:20.152Z",
-    "modified": "2022-09-29T03:15:19.429Z",
+    "modified": "2022-10-05T22:45:27.865Z",
     "data": [
       {
         "name": "baseUrl",
-        "value": "http://127.0.0.1:3000/"
+        "value": "http://api.fleetime.my.id/"
       }
     ]
   },

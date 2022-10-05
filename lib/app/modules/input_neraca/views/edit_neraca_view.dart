@@ -261,24 +261,20 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           ),
                         ),
                       ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('Jumlah')),
-                        DataCell(
-                          FormBuilderTextField(
-                            name: 'jumlah_piutang',
-                            controller: controller.piutangLainnya =
-                                MoneyMaskedTextController(
-                              initialValue: double.parse(data.jumlahPiutang),
-                              thousandSeparator: '.',
-                              decimalSeparator: '',
-                              precision: 0,
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'jumlah_piutang',
+                              controller: controller.piutangLainnya,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                  hintText: 'Hasil disini'),
                             ),
-                            keyboardType: TextInputType.number,
-                            decoration:
-                                const InputDecoration(hintText: 'Hasil disini'),
                           ),
-                        ),
-                      ]),
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -8,11 +8,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../../common/style.dart';
-import '../../controllers/rugi_laba_controller.dart';
+import '../../../../../common/style.dart';
+import '../../../controllers/rugi_laba_controller.dart';
 
-class PerkiraanNeracaTabel extends StatelessWidget {
-  PerkiraanNeracaTabel({super.key});
+class EditPerkiraanNeracaTabelView extends StatelessWidget {
+  EditPerkiraanNeracaTabelView({super.key});
 
   final controller = Get.put(RugiLabaController());
   final data = Get.arguments;

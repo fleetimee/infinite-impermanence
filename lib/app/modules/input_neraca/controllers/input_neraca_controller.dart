@@ -1,12 +1,13 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/neraca/save_neraca.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
-import 'package:flutter/cupertino.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
@@ -123,14 +124,29 @@ class InputNeracaController extends GetxController {
       NeracaProvider().deployNeraca(body).then((resp) {
         isNeracaProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debitur.text));
-        Get.snackbar('Sucess', 'Data saved');
+        Get.snackbar(
+          'Sucess',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
       }, onError: (err) {
         isNeracaProcessing(false);
-        Get.snackbar('Error', err.toString());
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
       });
     } catch (e) {
       isNeracaProcessing(false);
-      Get.snackbar('Error', e.toString());
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
     }
   }
 
@@ -155,14 +171,29 @@ class InputNeracaController extends GetxController {
       NeracaProvider().putNeraca(id, body).then((resp) {
         isNeracaProcessing(false);
         debiturController.fetchOneDebitur(int.parse(id));
-        Get.snackbar('Sucess', 'Data updated');
+        Get.snackbar(
+          'Sucess',
+          'Data berhasil diperbarui',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
       }, onError: (err) {
         isNeracaProcessing(false);
-        Get.snackbar('Error', err.toString());
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
       });
     } catch (e) {
       isNeracaProcessing(false);
-      Get.snackbar('Error', e.toString());
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
     }
   }
 }

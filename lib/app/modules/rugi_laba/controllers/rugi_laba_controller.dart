@@ -24,20 +24,39 @@ class RugiLabaController extends GetxController {
   final debiturController = Get.put(InsightDebiturController());
 
   @override
-  void onInit() {
+  void onClose() {
     super.onInit();
-    // delay few second then execute result
-    // Future.delayed(const Duration(seconds: 1), () {
-    //   result();
-    // });
-    // result();
+    //Dispose text editing controllers
+    aktivaLancarKas.dispose();
+    aktivaBank.dispose();
+    aktivaPiutangUsaha.dispose();
+    aktivaPersediaan.dispose();
+    hutangUsaha.dispose();
+    hutangBank.dispose();
+    hutangLainnya.dispose();
+    jumlahAktivaLancar.dispose();
+    jumlahHutang.dispose();
+    peralatan.dispose();
+    kendaraan.dispose();
+    tanahDanBangunan.dispose();
+    jumlahAktivaTetap.dispose();
+    modal.dispose();
+    jumlahAktiva.dispose();
+    jumlahPasiva.dispose();
+    omzetPerBulan.dispose();
+    hargaPokokPenjualan.dispose();
+    labaKotor.dispose();
+    biayaTenagaKerja.dispose();
+    biayaOperasional.dispose();
+    biayaLainnya.dispose();
+    totalBiaya.dispose();
+    labaSebelumPajak.dispose();
+    perkiraanPajak.dispose();
+    labaSetelahPajak.dispose();
+    biayaHidupRataRata.dispose();
+    sisaPenghasilanBersih.dispose();
+    persentaseHpp.dispose();
   }
-
-  // @override
-  // void onReady() {
-  //   result();
-  //   super.onReady();
-  // }
 
   void saveRugiLaba() {
     final body = {
@@ -78,6 +97,7 @@ class RugiLabaController extends GetxController {
       isRugiLabaProcessing.value = true;
       RugiLabaProvider().deployRugiLaba(body).then((value) {
         isRugiLabaProcessing.value = false;
+        clearTextEditing();
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
         Get.snackbar(
           'Success',
@@ -141,10 +161,11 @@ class RugiLabaController extends GetxController {
       isRugiLabaProcessing.value = true;
       RugiLabaProvider().putRugiLaba(id, body).then((resp) {
         isRugiLabaProcessing.value = false;
+        clearTextEditing();
         debiturController.fetchOneDebitur(data);
         Get.snackbar(
           'Success',
-          'Data berhasil disimpan',
+          'Data berhasil diperbarui',
           backgroundColor: Colors.green,
           colorText: secondaryColor,
         );
@@ -323,13 +344,6 @@ class RugiLabaController extends GetxController {
     sumModal();
     sumPasiva();
     sumAktivaTetap();
-
-    // sumLabaKotor();
-    // sumTotalBiaya();
-    // sumLabaSebelumPajak();
-    // sumPerkiraanPajak();
-    // sumLabaSetelahPajak();
-    // sumSisaPenghasilan();
   }
 
   void perkiraanLaba() {
@@ -337,6 +351,38 @@ class RugiLabaController extends GetxController {
     sumLabaSebelumPajak();
     sumPerkiraanPajak();
     sumLabaSetelahPajak();
+  }
+
+  void clearTextEditing() {
+    aktivaLancarKas.clear();
+    aktivaBank.clear();
+    aktivaPiutangUsaha.clear();
+    aktivaPersediaan.clear();
+    hutangUsaha.clear();
+    hutangBank.clear();
+    jumlahAktivaLancar.clear();
+    jumlahHutang.clear();
+    peralatan.clear();
+    kendaraan.clear();
+    tanahDanBangunan.clear();
+    jumlahAktivaTetap.clear();
+    modal.clear();
+    jumlahAktiva.clear();
+    jumlahPasiva.clear();
+    omzetPerBulan.clear();
+    hargaPokokPenjualan.clear();
+    labaKotor.clear();
+    biayaTenagaKerja.clear();
+    biayaOperasional.clear();
+    biayaLainnya.clear();
+    totalBiaya.clear();
+    labaSebelumPajak.clear();
+    perkiraanPajak.clear();
+    labaSetelahPajak.clear();
+    biayaHidupRataRata.clear();
+    sisaPenghasilanBersih.clear();
+    hargaPokokPenjualan.clear();
+    persentaseHpp.clear();
   }
 
   void sumAktivaTetap() {

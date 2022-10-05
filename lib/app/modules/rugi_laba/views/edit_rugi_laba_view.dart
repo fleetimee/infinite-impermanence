@@ -2,8 +2,8 @@
 import 'dart:developer';
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/rugi_laba/views/components/edit_mode/perkiraan_neraca_view.dart';
-import 'package:akm/app/modules/rugi_laba/views/components/edit_mode/perkiraan_rugi_laba_view.dart';
+import 'package:akm/app/modules/rugi_laba/views/components/edit_mode/perkiraan_neraca_edit.dart';
+import 'package:akm/app/modules/rugi_laba/views/components/edit_mode/perkiraan_rugi_laba_edit.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -220,18 +220,9 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                               Text('Penghasilan rata rata per bulan :')),
                           DataCell(
                             FormBuilderTextField(
-                              name: 'penghasilan',
-                              readOnly: true,
-                              keyboardType: TextInputType.number,
-                              controller: controller.labaSetelahPajak =
-                                  MoneyMaskedTextController(
-                                decimalSeparator: '',
-                                thousandSeparator: '.',
-                                initialValue: double.parse(
-                                    data.inputRugiLaba.labaSetelahPajak),
-                                precision: 0,
-                              ),
-                            ),
+                                name: 'penghasilan',
+                                keyboardType: TextInputType.number,
+                                controller: controller.labaSetelahPajak),
                           ),
                         ],
                       ),

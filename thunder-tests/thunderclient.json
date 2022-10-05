@@ -1419,11 +1419,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "a49cdeda-9e90-4da8-83d5-dd8028abc1a6",
     "name": "Deete",
-    "url": "{{baseUrl}}api/v1/input-rugi-laba/4",
+    "url": "{{baseUrl}}api/v1/input-rugi-laba/14",
     "method": "DELETE",
     "sortNum": 400000,
     "created": "2022-10-04T11:56:44.205Z",
-    "modified": "2022-10-04T13:58:08.265Z",
+    "modified": "2022-10-05T04:50:49.057Z",
     "headers": [],
     "params": [],
     "body": {

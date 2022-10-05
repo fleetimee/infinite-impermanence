@@ -757,7 +757,14 @@ class MenuNeraca extends StatelessWidget {
                                         arguments:
                                             controller.insightDebitur.value.id);
                                   },
-                                  child: const Text("Input"),
+                                  child: const Text(
+                                    "Input",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
                         controller.insightDebitur.value.inputNeraca == null
@@ -990,7 +997,14 @@ class MenuRugiLaba extends StatelessWidget {
                                             arguments: controller
                                                 .insightDebitur.value);
                                       },
-                                      child: const Text("Input"),
+                                      child: const Text(
+                                        "Input",
+                                        style: TextStyle(
+                                          color: secondaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ),
                                   ),
                       ],

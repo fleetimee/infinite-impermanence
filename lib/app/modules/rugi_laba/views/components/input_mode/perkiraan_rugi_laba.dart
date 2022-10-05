@@ -1,22 +1,20 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../../../common/style.dart';
-import '../../../controllers/rugi_laba_controller.dart';
 
-class EditPerkiraanLabaRugiView extends StatelessWidget {
-  EditPerkiraanLabaRugiView({super.key});
+class PerkiraanLabaRugi extends StatelessWidget {
+  PerkiraanLabaRugi({super.key});
 
   final controller = Get.put(RugiLabaController());
-  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +55,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'omzet_penjualan_rata_rata',
-                      controller: controller.omzetPerBulan =
-                          MoneyMaskedTextController(
-                        initialValue: double.parse(data.inputRugiLaba.omzet),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.omzetPerBulan,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
                       ),
                     ),
                   ),
@@ -91,15 +86,11 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   const DataCell(SizedBox.shrink()),
                   DataCell(
                     FormBuilderTextField(
+                      enabled: false,
                       name: 'harga_pokok_penjualan',
-                      readOnly: true,
-                      controller: controller.hargaPokokPenjualan =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.hargaPokok),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.hargaPokokPenjualan,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil disini',
                       ),
                     ),
                   ),
@@ -114,14 +105,7 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'laba_kotor',
                       readOnly: true,
-                      controller: controller.labaKotor =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.labaKotor),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
-                      ),
+                      controller: controller.labaKotor,
                       decoration: InputDecoration(
                         hintText: 'Hasil',
                         suffixIcon: ElevatedButton(
@@ -155,13 +139,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_tenaga_kerja',
-                      controller: controller.biayaTenagaKerja =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.biayaTenagaKerja),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.biayaTenagaKerja,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
                       ),
                     ),
                   ),
@@ -175,13 +155,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_operasional',
-                      controller: controller.biayaOperasional =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.biayaOperasional),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.biayaOperasional,
+                      decoration: const InputDecoration(
+                        hintText: 'Input disini',
                       ),
                     ),
                   ),
@@ -195,14 +171,7 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'biaya_lainnya',
-                      controller: controller.biayaLainnya =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.biayaLainnya),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
-                      ),
+                      controller: controller.biayaLainnya,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
                       ),
@@ -235,13 +204,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'total_biaya',
                       readOnly: true,
-                      controller: controller.totalBiaya =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.totalBiaya),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.totalBiaya,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
                       ),
                     ),
                   ),
@@ -256,13 +221,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'laba_sebelum_pajak',
                       readOnly: true,
-                      controller: controller.labaSebelumPajak =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.labaSebelumPajak),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.labaSebelumPajak,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
                       ),
                     ),
                   ),
@@ -277,13 +238,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'perkiraan_pajak',
                       readOnly: true,
-                      controller: controller.perkiraanPajak =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.perkiraanPajak),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.perkiraanPajak,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
                       ),
                     ),
                   ),
@@ -298,13 +255,9 @@ class EditPerkiraanLabaRugiView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'laba_setelah_pajak',
                       readOnly: true,
-                      controller: controller.labaSetelahPajak =
-                          MoneyMaskedTextController(
-                        initialValue:
-                            double.parse(data.inputRugiLaba.labaSetelahPajak),
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
+                      controller: controller.labaSetelahPajak,
+                      decoration: const InputDecoration(
+                        hintText: 'Hasil',
                       ),
                     ),
                   ),

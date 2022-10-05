@@ -260,19 +260,21 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           ),
                         ),
                       ]),
-                      DataRow2(cells: [
-                        const DataCell(Text('Jumlah')),
-                        DataCell(
-                          FormBuilderTextField(
-                            name: 'jumlah_piutang',
-                            enabled: false,
-                            controller: controller.piutangLainnya,
-                            keyboardType: TextInputType.number,
-                            decoration:
-                                const InputDecoration(hintText: 'Hasil disini'),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Jumlah')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'jumlah_piutang',
+                              enabled: false,
+                              controller: controller.piutangLainnya,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                  hintText: 'Hasil disini'),
+                            ),
                           ),
-                        ),
-                      ]),
+                        ],
+                      ),
                     ],
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:akm/app/data/provider/debitur/list_debitur.provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nekos/nekos.dart';
 
 import '../../../models/debitur_model/list_debitur.model.dart';
 
@@ -12,6 +13,9 @@ class ListDebiturController extends GetxController {
 
     paginateDebitur();
   }
+
+  // For nekos api
+  Future<String> img = Nekos().avatar();
 
   // Initialize empty list with page
   var listDebitur = List<Datum>.empty(growable: true).obs;
@@ -49,12 +53,7 @@ class ListDebiturController extends GetxController {
           isMoreDataAvailable(true);
         } else {
           isMoreDataAvailable(false);
-          Get.snackbar(
-            'Gagal',
-            'Tidak ada data lagi',
-            backgroundColor: Colors.red,
-            colorText: Colors.white,
-          );
+          debugPrint('No more data');
         }
         listDebitur.addAll(resp);
       }, onError: (err) {

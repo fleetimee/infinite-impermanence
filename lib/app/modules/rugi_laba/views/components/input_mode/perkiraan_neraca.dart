@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,11 +10,9 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../../../common/style.dart';
-import '../../../controllers/rugi_laba_controller.dart';
 
-class EditPerkiraanNeracaTabelView extends StatelessWidget {
-  EditPerkiraanNeracaTabelView({super.key});
+class PerkiraanNeracaTabel extends StatelessWidget {
+  PerkiraanNeracaTabel({super.key});
 
   final controller = Get.put(RugiLabaController());
   final data = Get.arguments;
@@ -24,7 +24,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
       title: const Text('Perkiraan Neraca'),
       children: [
         SizedBox(
-          height: 780,
+          height: 830,
           child: DataTable2(
             columnSpacing: 12,
             horizontalMargin: 12,
@@ -53,18 +53,18 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                   size: ColumnSize.L),
             ],
             rows: [
-              DataRow2(
+              const DataRow2(
                 cells: [
-                  const DataCell(
+                  DataCell(
                     Text('Aktiva Lancar', style: heading2),
                   ),
-                  const DataCell(
+                  DataCell(
                     SizedBox.shrink(),
                   ),
                   DataCell(
-                    Text(data.peminjam1),
+                    Text('Hutang', style: heading2),
                   ),
-                  const DataCell(
+                  DataCell(
                     SizedBox.shrink(),
                   ),
                 ],
@@ -78,7 +78,6 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'aktiva_kas',
                       readOnly: true,
-                      enabled: false,
                       controller: controller.aktivaLancarKas =
                           MoneyMaskedTextController(
                               decimalSeparator: '',
@@ -107,7 +106,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.hutangUsaha,
+                                data.inputNeraca.hutangUsaha,
                               )),
                       keyboardType: TextInputType.number,
                       readOnly: true,
@@ -131,7 +130,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.bank,
+                                data.inputNeraca.tabungan,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -150,7 +149,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.hutangBank,
+                                data.inputNeraca.hutangBank,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -175,7 +174,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.piutang,
+                                data.inputNeraca.jumlahPiutang,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -187,15 +186,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'hutang_lainnya',
-                      readOnly: true,
-                      controller: controller.hutangLainnya =
-                          MoneyMaskedTextController(
-                              decimalSeparator: '',
-                              thousandSeparator: '.',
-                              precision: 0,
-                              initialValue: double.parse(
-                                data.inputRugiLaba.hutangLainnya,
-                              )),
+                      controller: controller.hutangLainnya,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
@@ -219,7 +210,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.persediaan,
+                                data.inputNeraca.jumlahPersediaan,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -241,14 +232,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_aktiva_lancar',
                       readOnly: true,
-                      controller: controller.jumlahAktivaLancar =
-                          MoneyMaskedTextController(
-                              decimalSeparator: '',
-                              thousandSeparator: '.',
-                              precision: 0,
-                              initialValue: double.parse(
-                                data.inputRugiLaba.jumlahAktivaLancar,
-                              )),
+                      controller: controller.jumlahAktivaLancar,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
@@ -262,14 +246,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_hutang',
                       readOnly: true,
-                      controller: controller.jumlahHutang =
-                          MoneyMaskedTextController(
-                              decimalSeparator: '',
-                              thousandSeparator: '.',
-                              precision: 0,
-                              initialValue: double.parse(
-                                data.inputRugiLaba.jumlahHutang,
-                              )),
+                      controller: controller.jumlahHutang,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
@@ -299,13 +276,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'modal',
-                      controller: controller.modal = MoneyMaskedTextController(
-                          decimalSeparator: '',
-                          thousandSeparator: '.',
-                          precision: 0,
-                          initialValue: double.parse(
-                            data.inputRugiLaba.jumlahModal,
-                          )),
+                      controller: controller.modal,
                       readOnly: true,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -332,7 +303,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.peralatan,
+                                data.inputNeraca.peralatan,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -363,7 +334,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.kendaraan,
+                                data.inputNeraca.kendaraan,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -396,7 +367,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.tanahDanBangunan,
+                                data.inputNeraca.tanahDanBangunan,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -428,7 +399,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputRugiLaba.jumlahAktivaTetap,
+                                data.inputNeraca.aktivaTetap,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -443,14 +414,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'modal_result',
                       readOnly: true,
-                      controller: controller.modal = MoneyMaskedTextController(
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
-                        initialValue: double.parse(
-                          data.inputRugiLaba.jumlahModal,
-                        ),
-                      ),
+                      controller: controller.modal,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
@@ -472,15 +436,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       name: 'aktiva_tetap',
                       readOnly: true,
                       keyboardType: TextInputType.number,
-                      controller: controller.jumlahAktiva =
-                          MoneyMaskedTextController(
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
-                        initialValue: double.parse(
-                          data.inputRugiLaba.sumAktiva,
-                        ),
-                      ),
+                      controller: controller.jumlahAktiva,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
                       ),
@@ -496,20 +452,44 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_pasiva',
                       readOnly: true,
-                      controller: controller.jumlahPasiva =
-                          MoneyMaskedTextController(
-                        decimalSeparator: '',
-                        thousandSeparator: '.',
-                        precision: 0,
-                        initialValue: double.parse(
-                          data.inputRugiLaba.sumPasiva,
-                        ),
-                      ),
+                      controller: controller.jumlahPasiva,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
                       ),
                     ),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        fixedSize: const Size(500, 40),
+                      ),
+                      onPressed: () {
+                        controller.result();
+                      },
+                      child: const Text("Hitung"),
+                    ),
+                  ),
+                  DataCell(
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: primaryColor,
+                        fixedSize: const Size(500, 40),
+                      ),
+                      onPressed: () {
+                        controller.result();
+                      },
+                      child: const Text("Perkiraan Neraca"),
+                    ),
+                  ),
+                  const DataCell(
+                    SizedBox.shrink(),
                   ),
                 ],
               ),

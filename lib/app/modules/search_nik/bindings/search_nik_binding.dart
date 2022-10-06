@@ -4,19 +4,19 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../controllers/search_nik_controller.dart';
 
-class SearchNikBinding extends Binding {
+class SearchNikBinding extends Bindings {
   @override
-  // void dependencies() {
-  //   Get.lazyPut<SearchNikController>(
-  //     () => SearchNikController(),
-  //   );
-  // }
-
-  List<Bind> dependencies() {
-    return [
-      Bind.lazyPut<SearchNikController>(
-        () => SearchNikController(),
-      )
-    ];
+  void dependencies() {
+    Get.lazyPut<SearchNikController>(
+      () => SearchNikController(),
+    );
   }
+
+  // List<Bind> dependencies() {
+  //   return [
+  //     Bind.lazyPut<SearchNikController>(
+  //       () => SearchNikController(),
+  //     )
+  //   ];
+  // }
 }

@@ -4,19 +4,19 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../controllers/bisnis_analisis_controller.dart';
 
-class BisnisAnalisisBinding extends Binding {
+class BisnisAnalisisBinding extends Bindings {
   @override
-  // void dependencies() {
-  //   Get.lazyPut<BisnisAnalisisController>(
-  //     () => BisnisAnalisisController(),
-  //   );
-  // }
-
-  List<Bind> dependencies() {
-    return [
-      Bind.lazyPut<BisnisAnalisisController>(
-        () => BisnisAnalisisController(),
-      )
-    ];
+  void dependencies() {
+    Get.lazyPut<BisnisAnalisisController>(
+      () => BisnisAnalisisController(),
+    );
   }
+
+  // List<Bind> dependencies() {
+  //   return [
+  //     Bind.lazyPut<BisnisAnalisisController>(
+  //       () => BisnisAnalisisController(),
+  //     )
+  //   ];
+  // }
 }

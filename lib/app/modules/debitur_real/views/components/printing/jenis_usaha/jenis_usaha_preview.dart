@@ -8,7 +8,7 @@ import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
 // 🌎 Project imports:
- import '../../../../../../common/style.dart';
+import '../../../../../../common/style.dart';
 import 'jenis_usaha_export.dart';
 
 class JenisUsahaPreview extends StatelessWidget {
@@ -33,7 +33,7 @@ class JenisUsahaPreview extends StatelessWidget {
             Get.snackbar(
               'Berhasil',
               'Berhasil mencetak',
-              snackPosition: SnackPosition.top,
+              snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.green,
               colorText: Colors.white,
             )
@@ -44,7 +44,7 @@ class JenisUsahaPreview extends StatelessWidget {
             Get.snackbar(
               'Berhasil',
               'File berhasil dibagikan',
-              snackPosition: SnackPosition.top,
+              snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.green,
               colorText: Colors.white,
             );

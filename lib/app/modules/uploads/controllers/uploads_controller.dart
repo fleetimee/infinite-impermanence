@@ -34,10 +34,10 @@ class UploadsController extends GetxController {
       Get.snackbar(
         'Error',
         'Gagal membuka kamera',
-        snackPosition: SnackPosition.bottom,
+        snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,
         margin: const EdgeInsets.all(10),
-        snackStyle: SnackStyle.floating,
+        snackStyle: SnackStyle.FLOATING,
         duration: const Duration(seconds: 2),
         animationDuration: const Duration(seconds: 2),
       );

@@ -2,10 +2,10 @@
 // ignore_for_file: unused_field
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/analisa_ratio.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/angsuran.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/asumsi_keuangan.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/data_keuangan.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_analisa_ratio.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_angsuran.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_asumsi_keuangan.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_data_keuangan.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/input/hasil.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +26,9 @@ import '../controllers/keuangan_analisis_controller.dart';
 // 🌎 Project imports:
 import '../../../common/style.dart';
 
-class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
-  KeuanganAnalisisView({Key? key}) : super(key: key);
+class EditLihatKeuanganAnalisisView
+    extends GetView<KeuanganAnalisisController> {
+  EditLihatKeuanganAnalisisView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
@@ -35,8 +36,7 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Analisis Keuangan'),
-        centerTitle: true,
+        title: Text('Editing: ${data.peminjam1}'),
         actions: [
           IconButton(
               onPressed: () {
@@ -102,10 +102,10 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [
-                      DataKeuangan(),
-                      Angsuran(),
-                      AsumsiKeuangan(),
-                      AnalisaRatio(),
+                      EditDataKeuangan(),
+                      EditAngsuran(),
+                      EditAsumsiKeuangan(),
+                      EditAnalisaRatio(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

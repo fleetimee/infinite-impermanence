@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
- import '../../controllers/keuangan_analisis_controller.dart';
 
 // ignore: must_be_immutable
 class Tutorial extends StatelessWidget {

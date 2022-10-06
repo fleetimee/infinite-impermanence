@@ -2,7 +2,7 @@
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/';
 
 // For mobile based
-// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
 
@@ -15,7 +15,8 @@
 // for ngrok
 // const baseUrl = 'https://659e-36-73-50-156.ap.ngrok.io/api/v1/';
 
-const baseUrl = 'https://api.fleetime.my.id/api/v1/';
+// const baseUrl =
+//     'https://number-41-bagooska-the-terribly-tired-tapir.fleetimee.repl.co/api/v1/';
 
 // Insight debitur query string
 const joinTable =

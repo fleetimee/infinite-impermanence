@@ -2,6 +2,8 @@
 import 'dart:developer';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,11 +11,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
-import '../../../../common/style.dart';
-import '../../controllers/keuangan_analisis_controller.dart';
 
-class HasilAnalisa extends StatelessWidget {
-  HasilAnalisa({Key? key}) : super(key: key);
+class EditHasilAnalisa extends StatelessWidget {
+  EditHasilAnalisa({Key? key}) : super(key: key);
 
   final controller = Get.put(KeuanganAnalisisController());
   final data = Get.arguments;

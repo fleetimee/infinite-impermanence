@@ -1,9 +1,11 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -407,6 +409,33 @@ class EditAsumsiKeuanganInput extends StatelessWidget {
             ),
             const SizedBox(
               height: 16.0,
+            ),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.calculate),
+              label: const Text(
+                "Hitung Asumsi Keuangan",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
+              style: OutlinedButton.styleFrom(
+                  foregroundColor: secondaryColor,
+                  backgroundColor: primaryColor,
+                  shape: const StadiumBorder(),
+                  maximumSize: const Size.fromWidth(double.infinity),
+                  fixedSize: const Size(500, 50)),
+              onPressed: () {
+                controller.hitungAsumsiPenjualan();
+                showToast(
+                  'Asumsi Penjualan Berhasil Dihitung',
+                  context: context,
+                  animation: StyledToastAnimation.scale,
+                  reverseAnimation: StyledToastAnimation.fade,
+                  position: StyledToastPosition.center,
+                  animDuration: const Duration(seconds: 1),
+                  duration: const Duration(seconds: 4),
+                  curve: Curves.elasticOut,
+                  reverseCurve: Curves.linear,
+                );
+              },
             ),
           ],
         ),

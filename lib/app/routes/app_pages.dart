@@ -1,4 +1,5 @@
 import 'package:akm/app/modules/input_keuangan/views/edit_input_keuangan_view.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/edit_keuangan_analisis_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -144,6 +145,12 @@ class AppPages {
     GetPage(
       name: _Paths.LIHAT_KEUANGAN_ANALISIS,
       page: () => LihatKeuanganAnalisisView(),
+      binding: KeuanganAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_KEUANGAN_ANALISIS,
+      page: () => EditLihatKeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
       transition: Transition.cupertino,
     ),

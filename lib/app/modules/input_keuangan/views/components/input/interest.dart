@@ -104,8 +104,7 @@ class Interest extends StatelessWidget {
                   maximumSize: const Size.fromWidth(double.infinity),
                   fixedSize: const Size(500, 50)),
               onPressed: () {
-                if (controller.formKeyInputKeuangan.currentState
-                        ?.saveAndValidate() ??
+                if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
                   controller.saveKeuangan();
                   Get.back();

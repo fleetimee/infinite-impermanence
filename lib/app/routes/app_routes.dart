@@ -18,6 +18,7 @@ abstract class Routes {
   static const LIHAT_KARAKTER_ANALISIS = _Paths.LIHAT_KARAKTER_ANALISIS;
   static const KEUANGAN_ANALISIS = _Paths.KEUANGAN_ANALISIS;
   static const LIHAT_KEUANGAN_ANALISIS = _Paths.LIHAT_KEUANGAN_ANALISIS;
+  static const EDIT_KEUANGAN_ANALISIS = _Paths.EDIT_KEUANGAN_ANALISIS;
   static const PRINTING = _Paths.PRINTING;
   static const DEBITUR_REAL = _Paths.DEBITUR_REAL;
   static const ADD_DEBITUR = _Paths.ADD_DEBITUR;
@@ -64,6 +65,7 @@ abstract class _Paths {
   static const LIHAT_KARAKTER_ANALISIS = '/lihat-karakter-analisis';
   static const KEUANGAN_ANALISIS = '/keuangan-analisis';
   static const LIHAT_KEUANGAN_ANALISIS = '/lihat-keuangan-analisis';
+  static const EDIT_KEUANGAN_ANALISIS = '/edit-keuangan-analisis';
   static const PRINTING = '/printing';
   static const DEBITUR_REAL = '/debitur-real';
   static const ADD_DEBITUR = '/add-debitur';

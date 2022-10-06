@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/widgets.dart';
 
 // 📦 Package imports:
@@ -9,6 +10,9 @@ import 'package:get/get.dart';
 import '../../../service/analisa_karakter_service.dart';
 
 class KarakterAnalisisController extends GetxController {
+  final isAnalisaKarakterProcessing = false.obs;
+  final debiturController = Get.put(InsightDebiturController());
+
   var nilaiUmur = TextEditingController();
   var scoreUmur = 0.0.obs;
   var finalScoreUmur = 0.0.obs;

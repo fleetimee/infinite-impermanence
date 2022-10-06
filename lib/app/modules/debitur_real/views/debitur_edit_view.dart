@@ -12,9 +12,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
- import '../../../common/provinsi_kabupaten.dart';
- import '../../../common/style.dart';
- import '../controllers/debitur_real_controller.dart';
+import '../../../common/provinsi_kabupaten.dart';
+import '../../../common/style.dart';
+import '../controllers/debitur_real_controller.dart';
 
 class DebiturEditView extends GetView<DebiturRealController> {
   DebiturEditView({Key? key}) : super(key: key);

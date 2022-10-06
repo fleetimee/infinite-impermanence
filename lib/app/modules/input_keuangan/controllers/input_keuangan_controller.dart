@@ -25,7 +25,7 @@ class InputKeuanganController extends GetxController {
 
   var context = Get.context;
 
-  var formKeyInputKeuangan = GlobalKey<FormBuilderState>();
+  final formKey = GlobalKey<FormBuilderState>();
 
   var kreditYangDiusulkan = MoneyMaskedTextController(
     initialValue: 0,

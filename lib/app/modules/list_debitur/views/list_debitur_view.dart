@@ -97,8 +97,11 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                 children: [
                                   GFListTile(
                                     avatar: const GFAvatar(
-                                        //
-                                        ),
+                                      backgroundImage: NetworkImage(
+                                        'https://avatars.githubusercontent.com/u/68892527?v=4',
+                                      ),
+                                      shape: GFAvatarShape.square,
+                                    ),
                                     color: secondaryColor,
                                     titleText: controller
                                         .listDebitur[index].peminjam1!,

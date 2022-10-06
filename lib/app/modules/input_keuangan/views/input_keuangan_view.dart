@@ -47,11 +47,11 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: FormBuilder(
-          key: controller.formKeyInputKeuangan,
+          key: controller.formKey,
           // onChanged: () {
-          //   controller.formKeyInputKeuangan.currentState!.save();
+          //   controller.formKey.currentState!.save();
           //   debugPrint(
-          //       controller.formKeyInputKeuangan.currentState!.value.toString());
+          //       controller.formKey.currentState!.value.toString());
           // },
           autovalidateMode: AutovalidateMode.disabled,
           child: StepperPageView(

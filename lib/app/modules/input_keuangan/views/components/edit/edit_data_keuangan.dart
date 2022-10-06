@@ -192,7 +192,7 @@ class EditDataKeuanganInput extends StatelessWidget {
                   width: 16.0,
                 ),
                 Expanded(
-                  child: FormBuilderDropdown(
+                  child: FormBuilderDropdown<String>(
                     items: [
                       'Efektif',
                       'Flat',
@@ -205,13 +205,7 @@ class EditDataKeuanganInput extends StatelessWidget {
                         )
                         .toList(),
                     name: 'sistem_angsuran',
-                    validator: FormBuilderValidators.compose(
-                      [
-                        FormBuilderValidators.required(
-                            errorText: 'Harus diisi'),
-                      ],
-                    ),
-                    initialValue: data.inputKeuangan.sistemAngsuran,
+                    validator: FormBuilderValidators.required(),
                     onChanged: (value) {
                       dataKeuanganCtrl.sistemAngsuran.value = value.toString();
                       debugPrint(value.toString());
@@ -222,6 +216,7 @@ class EditDataKeuanganInput extends StatelessWidget {
                     },
                     decoration: InputDecoration(
                       labelText: 'Sistem Angsuran',
+                      hintText: 'Pilih..',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -233,19 +228,19 @@ class EditDataKeuanganInput extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            FormBuilderDropdown(
+            FormBuilderDropdown<String>(
                 name: 'digunakan_untuk',
-                initialValue: data.inputKeuangan.digunakanUntuk,
                 onChanged: (value) {
-                  dataKeuanganCtrl.digunakanUntuk.value = value!.toString();
+                  dataKeuanganCtrl.digunakanUntuk.value = value.toString();
                   debugPrint(value.toString());
                 },
                 onSaved: (value) {
-                  dataKeuanganCtrl.digunakanUntuk.value = value!.toString();
+                  dataKeuanganCtrl.digunakanUntuk.value = value.toString();
                   debugPrint(value.toString());
                 },
                 decoration: InputDecoration(
                   labelText: 'Digunakan Untuk',
+                  hintText: 'Pilih..',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

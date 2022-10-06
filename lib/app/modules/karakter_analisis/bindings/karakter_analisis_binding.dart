@@ -4,19 +4,19 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import '../controllers/karakter_analisis_controller.dart';
 
-class KarakterAnalisisBinding extends Binding {
+class KarakterAnalisisBinding extends Bindings {
   @override
-  // void dependencies() {
-  //   Get.lazyPut<KarakterAnalisisController>(
-  //     () => KarakterAnalisisController(),
-  //   );
-  // }
-
-  List<Bind> dependencies() {
-    return [
-      Bind.lazyPut<KarakterAnalisisController>(
-        () => KarakterAnalisisController(),
-      )
-    ];
+  void dependencies() {
+    Get.lazyPut<KarakterAnalisisController>(
+      () => KarakterAnalisisController(),
+    );
   }
+
+  // List<Bind> dependencies() {
+  //   return [
+  //     Bind.lazyPut<KarakterAnalisisController>(
+  //       () => KarakterAnalisisController(),
+  //     )
+  //   ];
+  // }
 }

@@ -35,7 +35,7 @@ class KarakterPreview extends StatelessWidget {
             Get.snackbar(
               'Berhasil',
               'Berhasil mencetak',
-              snackPosition: SnackPosition.top,
+              snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.green,
               colorText: Colors.white,
             )
@@ -46,7 +46,7 @@ class KarakterPreview extends StatelessWidget {
             Get.snackbar(
               'Berhasil',
               'File berhasil dibagikan',
-              snackPosition: SnackPosition.top,
+              snackPosition: SnackPosition.TOP,
               backgroundColor: Colors.green,
               colorText: Colors.white,
             );

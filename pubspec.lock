@@ -553,12 +553,10 @@ packages:
   get:
     dependency: "direct main"
     description:
-      path: "."
-      ref: master
-      resolved-ref: "5229d40c75d135c121eb65411b10f883e91b4f56"
-      url: "https://github.com/jonataslaw/getx"
-    source: git
-    version: "5.0.0-beta.52"
+      name: get
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.6.5"
   getwidget:
     dependency: "direct main"
     description:

@@ -240,7 +240,7 @@ class DebiturRealController extends GetxController {
         Get.snackbar(
           '${list[0].peminjam1}',
           'Dipilih',
-          snackPosition: SnackPosition.bottom,
+          snackPosition: SnackPosition.BOTTOM,
           backgroundColor: primaryColor,
           colorText: Colors.white,
         );

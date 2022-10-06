@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../../../common/style.dart';
- import '../../../../../routes/app_pages.dart';
+import '../../../../../common/style.dart';
+import '../../../../../routes/app_pages.dart';
 
 class ThirdRow extends StatelessWidget {
   const ThirdRow({
@@ -106,7 +106,7 @@ class ThirdRow extends StatelessWidget {
               'This feature is still under development',
               backgroundColor: primaryColor,
               colorText: secondaryColor,
-              snackPosition: SnackPosition.top,
+              snackPosition: SnackPosition.TOP,
               duration: const Duration(seconds: 2),
               icon: const Icon(
                 Icons.construction,

@@ -906,7 +906,7 @@
     "method": "GET",
     "sortNum": 410000,
     "created": "2022-09-16T06:50:37.897Z",
-    "modified": "2022-09-20T05:18:12.166Z",
+    "modified": "2022-10-06T08:18:25.458Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -935,11 +935,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "c733ac5c-7425-4c74-8251-7dfcbda32109",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/analisa-bisnis/8",
+    "url": "{{baseUrl}}api/v1/analisa-bisnis/13",
     "method": "DELETE",
     "sortNum": 430000,
     "created": "2022-09-20T13:00:51.273Z",
-    "modified": "2022-09-20T13:01:01.630Z",
+    "modified": "2022-10-06T08:18:51.890Z",
     "headers": [],
     "params": [],
     "tests": []

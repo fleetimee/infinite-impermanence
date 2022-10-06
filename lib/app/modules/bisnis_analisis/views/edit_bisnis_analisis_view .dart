@@ -19,8 +19,8 @@ import 'components/hitung_crr_bisnis.dart';
 // 🌎 Project imports:
 import '../../../common/style.dart';
 
-class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
-  BisnisAnalisisView({Key? key}) : super(key: key);
+class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
+  EditBisnisAnalisisView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 

@@ -1122,7 +1122,12 @@ class MenuRugiLaba extends StatelessWidget {
                                         colorText: Colors.white);
                                   },
                                   child: const Text(
-                                      "Input Neraca terlebih dahulu"),
+                                    "Input Neraca terlebih dahulu",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 18,
+                                    ),
+                                  ),
                                 ),
                               )
                             : controller.insightDebitur.value.inputRugiLaba !=

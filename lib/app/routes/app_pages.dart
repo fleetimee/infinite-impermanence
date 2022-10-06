@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/bisnis_analisis/views/edit_bisnis_analisis_view%20.dart';
 import 'package:akm/app/modules/input_keuangan/views/edit_input_keuangan_view.dart';
 import 'package:akm/app/modules/karakter_analisis/views/edit_karakter_analisis_view.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/edit_keuangan_analisis_view.dart';
@@ -112,6 +113,12 @@ class AppPages {
     GetPage(
       name: _Paths.LIHAT_BISNIS_ANALISIS,
       page: () => LihatBisnisAnalisisView(),
+      binding: BisnisAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_BISNIS_ANALISIS,
+      page: () => EditBisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
       transition: Transition.cupertino,
     ),

@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/analisis_bisnis/save_analis_bisnis.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +11,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../service/analisa_bisnis_service.dart';
 
 class BisnisAnalisisController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
@@ -67,8 +68,6 @@ class BisnisAnalisisController extends GetxController {
   }
 
   void saveAnalisisBisnis() {
-    final api = AnalisaBisnisService();
-
     final data = {
       "nilai_omzet": omzetPenjualan.value,
       "keterangan_omzet": omzetPenjualanKeterangan.text,
@@ -87,12 +86,89 @@ class BisnisAnalisisController extends GetxController {
       "hasil_crr_bisnis": resultCrrBisnis.value,
     };
 
-    api.addAnalisaBisnis(data);
-
-    update();
+    try {
+      isAnalisaBisnisProcessing(true);
+      AnalisaBisnisProvider().deployAnalisaBisnis(data).then(
+        (resp) {
+          isAnalisaBisnisProcessing(false);
+          debiturController.fetchOneDebitur(int.parse(debiturId.text));
+          Get.snackbar(
+            'Success',
+            'Data berhasil disimpan',
+            backgroundColor: Colors.green,
+            colorText: secondaryColor,
+          );
+        },
+        onError: (e) {
+          isAnalisaBisnisProcessing(false);
+          Get.snackbar(
+            'Error',
+            e.toString(),
+            backgroundColor: Colors.red,
+            colorText: secondaryColor,
+          );
+        },
+      );
+    } catch (e) {
+      isAnalisaBisnisProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 
-  void editAnalisaBisnis() {}
+  void updateAnalisaBisnis(id) async {
+    final data = {
+      "nilai_omzet": omzetPenjualan.value,
+      "keterangan_omzet": omzetPenjualanKeterangan.text,
+      "nilai_harga_bersaing": hargaBersaing.value,
+      "keterangan_harga_bersaing": hargaBersaingKeterangan.text,
+      "nilai_persaingan": persainganPasar.value,
+      "keterangan_persaingan": persainganPasarKeterangan.text,
+      "nilai_lokasi_usaha": lokasiPasar.value,
+      "keterangan_lokasi_usaha": lokasiPasarKeterangan.text,
+      "nilai_produktivitas": kapasitasTerpasan.value,
+      "keterangan_produktivitas": kapasitasTerpasanKeterangan.text,
+      "nilai_kualitas": rating.value,
+      "keterangan_kualitas": ratingKeterangan.text,
+      "deskripsi_bisnis": deskripsi.text,
+      "debitur": debiturId.text,
+      "hasil_crr_bisnis": resultCrrBisnis.value,
+    };
+
+    try {
+      isAnalisaBisnisProcessing(true);
+      AnalisaBisnisProvider().putAnalisaBisnis(id, data).then((resp) {
+        isAnalisaBisnisProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil diperbarui',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (e) {
+        isAnalisaBisnisProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isAnalisaBisnisProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
 
   final omzetList =
       '''[

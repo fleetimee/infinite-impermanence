@@ -8,10 +8,10 @@ import 'package:intl/intl.dart';
 import 'package:liquid_progress_indicator/liquid_progress_indicator.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../../../models/debtor.dart';
- import '../../../models/debtor_details.dart';
- import '../controllers/debitur_detail_banget_controller.dart';
+import '../../../common/style.dart';
+import '../../../models/debtor.dart';
+import '../../../models/debtor_details.dart';
+import '../controllers/debitur_detail_banget_controller.dart';
 
 class DebiturDetailBangetView extends StatefulWidget {
   const DebiturDetailBangetView({Key? key}) : super(key: key);
@@ -381,9 +381,11 @@ class _DebiturDetailBangetViewState extends State<DebiturDetailBangetView> {
                                         // Format tanggal
                                         title: Text(
                                           DateFormat('dd MMMM yyyy').format(
-                                            DateTime.parse(controller
-                                                .debtorDetails.tanggalLahir
-                                                .toString()),
+                                            DateTime.parse(
+                                              controller
+                                                  .debtorDetails.tanggalLahir
+                                                  .toString(),
+                                            ),
                                           ),
                                         ),
                                         subtitle: const Text('Tgl Lahir'),

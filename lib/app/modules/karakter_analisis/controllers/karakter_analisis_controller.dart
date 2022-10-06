@@ -1,13 +1,14 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/analisis_karakter/save_analis_karakter.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../service/analisa_karakter_service.dart';
 
 class KarakterAnalisisController extends GetxController {
   final isAnalisaKarakterProcessing = false.obs;
@@ -51,8 +52,6 @@ class KarakterAnalisisController extends GetxController {
   var debiturId = TextEditingController();
 
   void saveAnalisaKarakter() {
-    final api = AnalisaKarakterService();
-
     final data = {
       'nilai_umur': nilaiUmur.text,
       'score_umur': finalScoreUmur.value,
@@ -79,9 +78,93 @@ class KarakterAnalisisController extends GetxController {
       'debitur': debiturId.text,
     };
 
-    api.addAnalisaKarakter(data);
+    try {
+      isAnalisaKarakterProcessing.value = true;
+      AnalisaKarakterProvider().deployAnalisaKarakter(data).then((value) {
+        isAnalisaKarakterProcessing.value = false;
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (error) {
+        isAnalisaKarakterProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          error.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isAnalisaKarakterProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
 
-    update();
+  void updateAnalisaKarakter(id) {
+    final data = {
+      'nilai_umur': nilaiUmur.text,
+      'score_umur': finalScoreUmur.value,
+      'crr_umur': crrUmur.value,
+      'score_pendidikan': scorePendidikan.value,
+      'crr_pendidikan': crrPendidikan.value,
+      'nilai_lamanya_berusaha': lamanyaBerusaha.text,
+      'score_lamanya_berusaha': scorePengalaman.value,
+      'crr_lamanya_berusaha': crrPengalaman.value,
+      'score_ulet': uletDalamBisnis.value,
+      'keterangan_ulet': keteranganUletDalamBisnis.text,
+      'crr_ulet': crrUlet.value,
+      'score_kaku': kakuFleksibel.value,
+      'keterangan_kaku': keteranganKakuFleksibel.text,
+      'crr_kaku': crrKaku.value,
+      'score_kreatif': inovatifKreatif.value,
+      'keterangan_kreatif': keteranganInovatifKreatif.text,
+      'crr_kreatif': crrInovatif.value,
+      'score_kejujuran': jujur.value,
+      'keterangan_kejujuran': keteranganJujur.text,
+      'crr_kejujuran': crrJujur.value,
+      'deskripsi_karakter': deskripsi.text,
+      'total_crr_karakter': resultCrr.value,
+      'debitur': debiturId.text,
+    };
+
+    try {
+      isAnalisaKarakterProcessing(true);
+      AnalisaKarakterProvider().putAnalisaKarakter(id, data).then((value) {
+        isAnalisaKarakterProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil diupdate',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (error) {
+        isAnalisaKarakterProcessing(false);
+        Get.snackbar(
+          'Error',
+          error.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isAnalisaKarakterProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 
   void result() {

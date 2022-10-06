@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:intl/intl.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/list_debitur_controller.dart';
@@ -56,7 +57,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                           'Ada ${controller.listDebitur.length} debitur yang terdaftar',
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 33,
+                            fontSize: 47,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -103,10 +104,35 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                       shape: GFAvatarShape.square,
                                     ),
                                     color: secondaryColor,
-                                    titleText: controller
-                                        .listDebitur[index].peminjam1!,
-                                    subTitleText: controller
-                                        .listDebitur[index].bidangUsaha!,
+                                    description: Text(
+                                      'Tanggal Input : ${DateFormat('dd / MM / yyyy').format(
+                                        DateTime.parse(
+                                          controller
+                                              .listDebitur[index].tglSekarang!
+                                              .toString(),
+                                        ),
+                                      )}',
+                                      style: const TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w200,
+                                      ),
+                                    ),
+                                    title: Text(
+                                      controller.listDebitur[index].peminjam1!,
+                                      style: const TextStyle(
+                                          color: primaryColor,
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    focusColor: primaryColor,
+                                    subTitle: Text(
+                                      'Usaha : ${controller.listDebitur[index].bidangUsaha!}',
+                                      style: const TextStyle(
+                                          color: Colors.blueGrey,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w300),
+                                    ),
                                     icon: GFButton(
                                       onPressed: () {
                                         Get.toNamed(Routes.INSIGHT_DEBITUR,

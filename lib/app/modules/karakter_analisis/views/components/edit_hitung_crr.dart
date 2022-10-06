@@ -10,10 +10,12 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../common/style.dart';
 import '../../controllers/karakter_analisis_controller.dart';
 
-class HitungCrr extends StatelessWidget {
-  HitungCrr({Key? key}) : super(key: key);
+class EditHitungCrr extends StatelessWidget {
+  EditHitungCrr({Key? key}) : super(key: key);
 
   final controller = Get.put(KarakterAnalisisController());
+
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -194,7 +196,7 @@ class HitungCrr extends StatelessWidget {
               onPressed: () {
                 if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
-                  controller.saveAnalisaKarakter();
+                  controller.updateAnalisaKarakter(data.analisaKarakter.id);
                   Get.back();
                   debugPrint(controller.formKey.currentState?.value.toString());
                 } else {

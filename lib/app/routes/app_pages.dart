@@ -1,4 +1,5 @@
 import 'package:akm/app/modules/input_keuangan/views/edit_input_keuangan_view.dart';
+import 'package:akm/app/modules/karakter_analisis/views/edit_karakter_analisis_view.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/edit_keuangan_analisis_view.dart';
 import 'package:get/get.dart';
 
@@ -128,6 +129,12 @@ class AppPages {
     GetPage(
       name: _Paths.LIHAT_KARAKTER_ANALISIS,
       page: () => LihatKarakterAnalisisView(),
+      binding: KarakterAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_KARAKTER_ANALISIS,
+      page: () => EditKarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
       transition: Transition.cupertino,
     ),

@@ -12,6 +12,8 @@ import 'package:stepper_page_view/stepper_page_view.dart';
 // 🌎 Project imports:
 import '../controllers/input_keuangan_controller.dart';
 
+// TODO: Remake Input Keuangan without PageStepper (this one is dogshit)
+
 class InputKeuanganView extends GetView<InputKeuanganController> {
   InputKeuanganView({Key? key}) : super(key: key);
 

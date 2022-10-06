@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,10 +9,13 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../service/analisa_bisnis_service.dart';
+import '../../../service/analisa_bisnis_service.dart';
 
 class BisnisAnalisisController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
+
+  final isAnalisaBisnisProcessing = false.obs;
+  final debiturController = Get.put(InsightDebiturController());
 
   var debiturId = TextEditingController();
 
@@ -90,7 +94,8 @@ class BisnisAnalisisController extends GetxController {
 
   void editAnalisaBisnis() {}
 
-  final omzetList = '''[
+  final omzetList =
+      '''[
     {"value": 50, "label": "s/d 50%"},
     {"value": 60, "label": "s/d 60%"},
     {"value": 70, "label": "s/d 70%"},
@@ -98,7 +103,8 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "s/d 90%"}
   ]''';
 
-  final hargaBersaingList = '''[
+  final hargaBersaingList =
+      '''[
     {"value": 50, "label": "Lebih mahal dari pesaing"},
     {"value": 60, "label": "Sama dengan pesaing"},
     {"value": 70, "label": "Lebih murah sd 5%"},
@@ -106,7 +112,8 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Lebih murah diatas 10%"}
   ]''';
 
-  final persainganPasarList = '''[
+  final persainganPasarList =
+      '''[
     {"value": 50, "label": "Sangat ketat"},
     {"value": 60, "label": "Ketat"},
     {"value": 70, "label": "Cukup ketat"},
@@ -114,7 +121,8 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Tidak ketat"}
   ]''';
 
-  final lokasiPasarList = '''[
+  final lokasiPasarList =
+      '''[
     {"value": 50, "label": "Tidak strategis"},
     {"value": 60, "label": "Kurang strategis"},
     {"value": 70, "label": "Cukup strategis"},
@@ -122,7 +130,8 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Sangat strategis"}
   ]''';
 
-  final kapasitasTerpasanList = '''[
+  final kapasitasTerpasanList =
+      '''[
     {"value": 50, "label": "s/d 50%"},
     {"value": 60, "label": "s/d 60%"},
     {"value": 70, "label": "s/d 70%"},
@@ -130,7 +139,8 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Lebih dari s/d 80%"}
   ]''';
 
-  final ratingList = '''[
+  final ratingList =
+      '''[
     {"value": 50, "label": "Jelek"},
     {"value": 60, "label": "Kurang Baik"},
     {"value": 70, "label": "Cukup"},

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/karakter_analisis/views/components/edit_hitung_crr.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -12,13 +13,12 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
 import '../controllers/karakter_analisis_controller.dart';
-import 'components/hitung_crr.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
 
-class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
-  KarakterAnalisisView({Key? key}) : super(key: key);
+class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
+  EditKarakterAnalisisView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
@@ -218,10 +218,14 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                       FormBuilderSlider(
                         divisions: 19,
-                        initialValue: 0,
+                        initialValue:
+                            double.parse(data.analisaKarakter.scoreUlet),
                         min: 0,
                         max: 95,
                         onChanged: (double? value) {
+                          controller.uletDalamBisnis.value = value!;
+                        },
+                        onSaved: (double? value) {
                           controller.uletDalamBisnis.value = value!;
                         },
                         name: 'ulet',
@@ -261,12 +265,16 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                       FormBuilderSlider(
                         divisions: 19,
-                        initialValue: 0,
+                        initialValue:
+                            double.parse(data.analisaKarakter.scoreKaku),
                         min: 0,
                         max: 95,
                         onChanged: (double? value) {
                           controller.kakuFleksibel.value = value!;
                           print(controller.kakuFleksibel.value);
+                        },
+                        onSaved: (double? value) {
+                          controller.kakuFleksibel.value = value!;
                         },
                         name: 'kaku',
                         decoration: InputDecoration(
@@ -305,12 +313,16 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                       FormBuilderSlider(
                         divisions: 19,
-                        initialValue: 0,
+                        initialValue:
+                            double.parse(data.analisaKarakter.scoreKreatif),
                         min: 0,
                         max: 95,
                         onChanged: (double? value) {
                           controller.inovatifKreatif.value = value!;
                           print(controller.inovatifKreatif.value);
+                        },
+                        onSaved: (double? value) {
+                          controller.inovatifKreatif.value = value!;
                         },
                         name: 'kreatif',
                         decoration: InputDecoration(
@@ -349,12 +361,16 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                       FormBuilderSlider(
                         divisions: 19,
-                        initialValue: 0,
+                        initialValue:
+                            double.parse(data.analisaKarakter.scoreKejujuran),
                         min: 0,
                         max: 95,
                         onChanged: (double? value) {
                           controller.jujur.value = value!;
                           print(controller.jujur.value);
+                        },
+                        onSaved: (double? value) {
+                          controller.jujur.value = value!;
                         },
                         name: 'jujur',
                         decoration: InputDecoration(
@@ -391,9 +407,12 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           border: InputBorder.none,
                         ),
                       ),
+                      // TODO: Deskripsi Karakter selalu ke reset
                       FormBuilderTextField(
                         keyboardType: TextInputType.multiline,
-                        controller: controller.deskripsi,
+                        controller: controller.deskripsi =
+                            TextEditingController(
+                                text: data.analisaKarakter.deskripsiKarakter),
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.normal,
@@ -467,7 +486,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                             bounce: true,
                             context: context,
                             builder: (context) {
-                              return HitungCrr();
+                              return EditHitungCrr();
                             },
                           );
                         },

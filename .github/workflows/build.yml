@@ -37,9 +37,6 @@ jobs:
       - name: Build APPBUNDLE
         run: flutter build appbundle --release
 
-      - name: Build FAT APK
-        run: flutter build --release
-
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:

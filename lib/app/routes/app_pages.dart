@@ -10,8 +10,7 @@ import '../modules/agunan/views/agunan_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view.dart';
-import '../modules/debitur_detail_banget/bindings/debitur_detail_banget_binding.dart';
-import '../modules/debitur_detail_banget/views/debitur_detail_banget_view.dart';
+
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
 import '../modules/insight_debitur/views/components/printing/bisnis/bisnis_preview.dart';
 import '../modules/insight_debitur/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
@@ -21,7 +20,6 @@ import '../modules/insight_debitur/views/components/printing/model/model_preview
 import '../modules/insight_debitur/views/components/printing/putusan/putusan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
-import '../modules/debitur_real/views/debitur_list_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
 import '../modules/debitur_real/views/debitur_real_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -187,21 +185,9 @@ class AppPages {
       transition: Transition.cupertino,
     ),
     GetPage(
-      name: _Paths.DEBITUR_LIST,
-      page: () => DebiturListView(),
-      binding: DebiturRealBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
       name: _Paths.DEBITUR_EDIT,
       page: () => DebiturEditView(),
       binding: DebiturRealBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
-      name: _Paths.DEBITUR_DETAIL_BANGET,
-      page: () => DebiturDetailBangetView(),
-      binding: DebiturDetailBangetBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(

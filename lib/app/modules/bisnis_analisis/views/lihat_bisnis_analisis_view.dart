@@ -9,12 +9,12 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
 import '../controllers/bisnis_analisis_controller.dart';
-import 'components/lihat_hitung_crr_bisnis.dart';
 
 class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
   LihatBisnisAnalisisView({Key? key}) : super(key: key);
@@ -263,7 +263,49 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         bounce: true,
                         context: context,
                         builder: (context) {
-                          return LihatHitungCrrBisnis();
+                          return SingleChildScrollView(
+                            child: Container(
+                              padding: const EdgeInsets.all(32),
+                              child: FormBuilder(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Text(
+                                      'Total CRR: ${data.analisaBisnis.hasilCrrBisnis.toString()}',
+                                      style: GoogleFonts.poppins(
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.w600,
+                                        color: // Make text green if value exceed 65 and red if below 65
+                                            data.analisaBisnis.hasilCrrBisnis >=
+                                                    50.0
+                                                ? Colors.green
+                                                : Colors.red,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    // if (controller.resultCrrBisnis.value >= 65.0)
+                                    //   Text(
+                                    //     'Debitur melewati Passing Grade',
+                                    //     style: GoogleFonts.poppins(
+                                    //       fontSize: 15,
+                                    //       fontWeight: FontWeight.w600,
+                                    //     ),
+                                    //   ),
+                                    // if (controller.resultCrrBisnis.value < 65.0)
+                                    //   Text(
+                                    //     'Debitur belum melewati Passing Grade',
+                                    //     style: GoogleFonts.poppins(
+                                    //       fontSize: 15,
+                                    //       fontWeight: FontWeight.w600,
+                                    //     ),
+                                    //   ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
                         },
                       );
                     },

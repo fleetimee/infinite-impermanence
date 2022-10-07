@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/data/provider/analisis_jenis_usaha/save_analis_jenis_usaha.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -6,10 +8,13 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../service/analisa_usaha_services.dart';
 
 class UsahaAnalisisController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
+
+  final isAnalisaUsahaProcessing = false.obs;
+
+  final debiturController = Get.put(InsightDebiturController());
 
   var jenisUsaha = TextEditingController();
   var crrJenisUsaha = TextEditingController();
@@ -62,15 +67,40 @@ class UsahaAnalisisController extends GetxController {
   }
 
   void saveAnalisaUsaha() {
-    final api = AnalisaJenisUsahaService();
     final data = {
       'jenis_usaha': jenisUsaha.text,
       'total_crr_usaha': crrJenisUsaha.text,
       'debitur': debiturId.text,
     };
 
-    api.addAnalisaJenisUsaha(data);
-
-    update();
+    try {
+      isAnalisaUsahaProcessing(true);
+      AnalisaJenisUsahaProvider().deployAnalisaJenisUsaha(data).then((resp) {
+        isAnalisaUsahaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Sukses',
+          'Berhasil Menyimpan Analisa Usaha',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }, onError: (err) {
+        isAnalisaUsahaProcessing(false);
+        Get.snackbar(
+          'Gagal',
+          'Gagal Menyimpan Analisa Usaha',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAnalisaUsahaProcessing(false);
+      Get.snackbar(
+        'Gagal',
+        'Gagal Menyimpan Analisa Usaha',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 }

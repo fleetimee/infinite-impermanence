@@ -12,8 +12,8 @@ import '../controllers/usaha_analisis_controller.dart';
 // 🌎 Project imports:
 import '../../../common/style.dart';
 
-class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
-  UsahaAnalisisView({Key? key}) : super(key: key);
+class EditUsahaAnalisisView extends GetView<UsahaAnalisisController> {
+  EditUsahaAnalisisView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 

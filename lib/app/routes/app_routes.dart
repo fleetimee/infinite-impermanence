@@ -43,6 +43,7 @@ abstract class Routes {
   static const KARAKTER_PRINT = _Paths.KARAKTER_PRINT;
   static const USAHA_ANALISIS = _Paths.USAHA_ANALISIS;
   static const LIHAT_USAHA_ANALISIS = _Paths.LIHAT_USAHA_ANALISIS;
+  static const EDIT_USAHA_ANALISIS = _Paths.EDIT_USAHA_ANALISIS;
   static const USAHA_PRINT = _Paths.PRINT_USAHA;
   static const MODEL_PRINT = _Paths.PRINT_MODEL;
   static const PUTUSAN_PRINT = _Paths.PRINT_PUTUSAN;
@@ -92,6 +93,7 @@ abstract class _Paths {
   static const KARAKTER_PRINT = '/print-karakter';
   static const USAHA_ANALISIS = '/usaha-analisis';
   static const LIHAT_USAHA_ANALISIS = '/lihat-usaha-analisis';
+  static const EDIT_USAHA_ANALISIS = '/edit-usaha-analisis';
   static const PRINT_USAHA = '/print-usaha';
   static const PRINT_MODEL = '/print-model';
   static const PRINT_PUTUSAN = '/print-putusan';

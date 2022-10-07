@@ -21,7 +21,6 @@ import 'components/views/view_analisa_ratio.dart';
 import 'components/views/view_angsuran.dart';
 import 'components/views/view_asumsi_keuangan.dart';
 import 'components/views/view_data_keuangan.dart';
-import 'components/views/view_hasil.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
@@ -280,7 +279,23 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                               showBarModalBottomSheet(
                                 context: context,
                                 builder: (context) {
-                                  return HasilAnalisaView();
+                                  return SingleChildScrollView(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(32),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          Text(
+                                            'Total CRR : ${data.analisaKeuangan.totalCrrKeuangan.toString()}',
+                                            style: GoogleFonts.spaceGrotesk(
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
                                 },
                                 backgroundColor: secondaryColor,
                                 bounce: true,

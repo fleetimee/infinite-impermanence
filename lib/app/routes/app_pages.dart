@@ -2,6 +2,7 @@ import 'package:akm/app/modules/bisnis_analisis/views/edit_bisnis_analisis_view.
 import 'package:akm/app/modules/input_keuangan/views/edit_input_keuangan_view.dart';
 import 'package:akm/app/modules/karakter_analisis/views/edit_karakter_analisis_view.dart';
 import 'package:akm/app/modules/keuangan_analisis/views/edit_keuangan_analisis_view.dart';
+import 'package:akm/app/modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -272,6 +273,12 @@ class AppPages {
     GetPage(
       name: _Paths.LIHAT_USAHA_ANALISIS,
       page: () => LihatUsahaAnalisisView(),
+      binding: UsahaAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.EDIT_USAHA_ANALISIS,
+      page: () => EditUsahaAnalisisView(),
       binding: UsahaAnalisisBinding(),
       transition: Transition.cupertino,
     ),

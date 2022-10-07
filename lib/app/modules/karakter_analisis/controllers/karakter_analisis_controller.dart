@@ -141,6 +141,8 @@ class KarakterAnalisisController extends GetxController {
       AnalisaKarakterProvider().putAnalisaKarakter(id, data).then((value) {
         isAnalisaKarakterProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.back();
+        Get.back();
         Get.snackbar(
           'Success',
           'Data berhasil diupdate',

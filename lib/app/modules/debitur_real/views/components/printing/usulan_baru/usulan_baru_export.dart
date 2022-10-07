@@ -1,6 +1,8 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
@@ -11,13 +13,11 @@ import 'package:pdf/widgets.dart';
 import 'package:terbilang_id/terbilang_id.dart';
 
 // 🌎 Project imports:
- import '../../../../controllers/debitur_real_controller.dart';
- import '../print_widget.dart';
-import '../../../../../../models/debtor.dart';
+import '../print_widget.dart';
 
 // 📦 Package imports:
 
-Future<Uint8List> makeUsulanBaruPdf(Debtor debtor) async {
+Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
   var myTheme = ThemeData.withFont(
     base: Font.ttf(await rootBundle.load('assets/fonts/times-new-roman.ttf')),
     bold: Font.ttf(
@@ -38,7 +38,7 @@ Future<Uint8List> makeUsulanBaruPdf(Debtor debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
-  final controller = Get.put(DebiturRealController());
+  final controller = Get.put(InsightDebiturController());
 
   // logo
   final imageLogo = MemoryImage(

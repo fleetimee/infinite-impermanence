@@ -1,5 +1,6 @@
 import 'package:akm/app/data/provider/debitur/detail_debitur.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nekos/nekos.dart';
@@ -30,6 +31,9 @@ class InsightDebiturController extends GetxController
     "https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg",
     "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg"
   ];
+
+  // For Faker
+  final faker = Faker.instance;
 
   // For tab Controller
   TabController? tabController;

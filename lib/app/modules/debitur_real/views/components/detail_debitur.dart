@@ -19,7 +19,7 @@ import 'keuangan/analisa_keuangan.dart';
 import 'keuangan/input_keuangan_fixed.dart';
 import 'keuangan/neraca.dart';
 import 'keuangan/rugi_laba.dart';
-import 'printing/printing_tile.dart';
+import '../../../insight_debitur/views/components/printing/printing_tile.dart';
 
 class DetailDebitur extends StatelessWidget {
   DetailDebitur({

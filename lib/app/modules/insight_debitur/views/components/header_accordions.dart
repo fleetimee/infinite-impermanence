@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_is_empty
+
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
@@ -53,7 +55,7 @@ class HeaderDetailDebitur extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.userInjured,
+                    FontAwesomeIcons.keybase,
                     size: 28,
                   ),
                 ),
@@ -128,6 +130,70 @@ class HeaderKeuangan extends StatelessWidget {
                   flex: 3,
                   child: Text(
                     'Keuangan',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class HeaderAgunan extends StatelessWidget {
+  HeaderAgunan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final neracaController = Get.put(InputNeracaController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.maxFinite,
+      height: 45,
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        borderRadius: BorderRadius.circular(
+          10.0,
+        ),
+      ),
+      child: TabBar(
+        controller: controller.tabController,
+        // give the indicator a decoration (color and border radius)
+        indicator: BoxDecoration(
+          borderRadius: BorderRadius.circular(
+            10.0,
+          ),
+          color: primaryColor,
+        ),
+        labelColor: Colors.white,
+        unselectedLabelColor: primaryColor,
+        tabs: [
+          // first tab [you can add an icon using the icon property]
+          Tab(
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                Expanded(
+                  child: Icon(
+                    FontAwesomeIcons.drupal,
+                    size: 28,
+                  ),
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Text(
+                    'Agunan',
                     style: TextStyle(fontSize: 22),
                   ),
                 ),
@@ -1574,6 +1640,188 @@ class MenuAnalisaJenisUsaha extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     Get.toNamed(Routes.USAHA_ANALISIS,
+                                        arguments:
+                                            controller.insightDebitur.value);
+                                  },
+                                  child: const Text(
+                                    "Input",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Expanded(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.blueGrey,
+                                        ),
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              Routes.LIHAT_USAHA_ANALISIS,
+                                              arguments: controller
+                                                  .insightDebitur.value);
+                                        },
+                                        child: const Text(
+                                          "Lihat",
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.blueGrey,
+                                        ),
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              Routes.EDIT_USAHA_ANALISIS,
+                                              arguments: controller
+                                                  .insightDebitur.value);
+                                        },
+                                        child: const Text(
+                                          "Edit",
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
+    );
+  }
+}
+
+class MenuPilihAgunan extends StatelessWidget {
+  MenuPilihAgunan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final analisaKarakterController = Get.put(KarakterAnalisisController());
+  final analisaBisnisController = Get.put(BisnisAnalisisController());
+  final analisaJenisUsahaController = Get.put(UsahaAnalisisController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Pilih Jenis Agunan',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (analisaJenisUsahaController
+                      .isAnalisaUsahaProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.agunan?.length == 0) {
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (analisaJenisUsahaController
+                      .isAnalisaUsahaProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        controller.insightDebitur.value.agunan!.isEmpty == true
+                            ? Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.AGUNAN_PILIH,
                                         arguments:
                                             controller.insightDebitur.value);
                                   },

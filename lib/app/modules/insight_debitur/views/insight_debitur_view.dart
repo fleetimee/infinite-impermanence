@@ -2,10 +2,10 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordions.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/list_tile_printing.dart';
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 import 'package:akm/app/modules/usaha_analisis/controllers/usaha_analisis_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -187,66 +187,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
-                                                  return GFListTile(
-                                                    title: const Text(
-                                                      'Putusan',
-                                                      style: TextStyle(
-                                                        color: primaryColor,
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    avatar: const GFAvatar(
-                                                      backgroundColor:
-                                                          primaryColor,
-                                                      child: Icon(
-                                                        FontAwesomeIcons.rebel,
-                                                        color: secondaryColor,
-                                                      ),
-                                                    ),
-                                                    subTitleText:
-                                                        'Print surat putusan',
-                                                    icon: controller
-                                                                .insightDebitur
-                                                                .value
-                                                                .analisaKeuangan !=
-                                                            null
-                                                        ? GFButton(
-                                                            onPressed: () {
-                                                              Get.toNamed(
-                                                                  Routes
-                                                                      .PUTUSAN_PRINT,
-                                                                  arguments:
-                                                                      controller
-                                                                          .insightDebitur
-                                                                          .value);
-                                                            },
-                                                            text: "READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color: GFColors
-                                                                .SUCCESS,
-                                                          )
-                                                        : GFButton(
-                                                            onPressed: () {
-                                                              Get.snackbar(
-                                                                'Error',
-                                                                'Data Keuangan belum lengkap',
-                                                                backgroundColor:
-                                                                    Colors.red,
-                                                                colorText:
-                                                                    Colors
-                                                                        .white,
-                                                              );
-                                                            },
-                                                            text: "NOT READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color:
-                                                                GFColors.DANGER,
-                                                          ),
-                                                  );
+                                                  return PrintPutusan();
                                                 }
                                               },
                                             ),
@@ -260,66 +201,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
-                                                  return GFListTile(
-                                                    title: const Text(
-                                                      'Usulan',
-                                                      style: TextStyle(
-                                                        color: primaryColor,
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    avatar: const GFAvatar(
-                                                      backgroundColor:
-                                                          primaryColor,
-                                                      child: Icon(
-                                                        FontAwesomeIcons.uikit,
-                                                        color: secondaryColor,
-                                                      ),
-                                                    ),
-                                                    subTitleText:
-                                                        'Print surat usulan',
-                                                    icon: controller
-                                                                .insightDebitur
-                                                                .value
-                                                                .analisaKeuangan !=
-                                                            null
-                                                        ? GFButton(
-                                                            onPressed: () {
-                                                              Get.toNamed(
-                                                                  Routes
-                                                                      .USULAN_BARU_PRINT,
-                                                                  arguments:
-                                                                      controller
-                                                                          .insightDebitur
-                                                                          .value);
-                                                            },
-                                                            text: "READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color: GFColors
-                                                                .SUCCESS,
-                                                          )
-                                                        : GFButton(
-                                                            onPressed: () {
-                                                              Get.snackbar(
-                                                                'Error',
-                                                                'Data Keuangan belum lengkap',
-                                                                backgroundColor:
-                                                                    Colors.red,
-                                                                colorText:
-                                                                    Colors
-                                                                        .white,
-                                                              );
-                                                            },
-                                                            text: "NOT READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color:
-                                                                GFColors.DANGER,
-                                                          ),
-                                                  );
+                                                  return PrintUsulan();
                                                 }
                                               },
                                             ),
@@ -333,66 +215,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
-                                                  return GFListTile(
-                                                    title: const Text(
-                                                      'Keuangan',
-                                                      style: TextStyle(
-                                                        color: primaryColor,
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    avatar: const GFAvatar(
-                                                      backgroundColor:
-                                                          primaryColor,
-                                                      child: Icon(
-                                                        FontAwesomeIcons.gitlab,
-                                                        color: secondaryColor,
-                                                      ),
-                                                    ),
-                                                    subTitleText:
-                                                        'Print hasil Analisa Keuangan',
-                                                    icon: controller
-                                                                .insightDebitur
-                                                                .value
-                                                                .analisaKeuangan !=
-                                                            null
-                                                        ? GFButton(
-                                                            onPressed: () {
-                                                              Get.toNamed(
-                                                                  Routes
-                                                                      .KEUANGAN_PRINT,
-                                                                  arguments:
-                                                                      controller
-                                                                          .insightDebitur
-                                                                          .value);
-                                                            },
-                                                            text: "READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color: GFColors
-                                                                .SUCCESS,
-                                                          )
-                                                        : GFButton(
-                                                            onPressed: () {
-                                                              Get.snackbar(
-                                                                'Error',
-                                                                'Data Keuangan belum lengkap',
-                                                                backgroundColor:
-                                                                    Colors.red,
-                                                                colorText:
-                                                                    Colors
-                                                                        .white,
-                                                              );
-                                                            },
-                                                            text: "NOT READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color:
-                                                                GFColors.DANGER,
-                                                          ),
-                                                  );
+                                                  return PrintKeuangan();
                                                 }
                                               },
                                             ),
@@ -406,66 +229,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
-                                                  return GFListTile(
-                                                    title: const Text(
-                                                      'Bisnis',
-                                                      style: TextStyle(
-                                                        color: primaryColor,
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                    ),
-                                                    avatar: const GFAvatar(
-                                                      backgroundColor:
-                                                          primaryColor,
-                                                      child: Icon(
-                                                        FontAwesomeIcons.docker,
-                                                        color: secondaryColor,
-                                                      ),
-                                                    ),
-                                                    subTitleText:
-                                                        'Print hasil Analisa Bisnis',
-                                                    icon: controller
-                                                                .insightDebitur
-                                                                .value
-                                                                .analisaBisnis !=
-                                                            null
-                                                        ? GFButton(
-                                                            onPressed: () {
-                                                              Get.toNamed(
-                                                                  Routes
-                                                                      .BISNIS_PRINT,
-                                                                  arguments:
-                                                                      controller
-                                                                          .insightDebitur
-                                                                          .value);
-                                                            },
-                                                            text: "READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color: GFColors
-                                                                .SUCCESS,
-                                                          )
-                                                        : GFButton(
-                                                            onPressed: () {
-                                                              Get.snackbar(
-                                                                'Error',
-                                                                'Data Bisnis belum lengkap',
-                                                                backgroundColor:
-                                                                    Colors.red,
-                                                                colorText:
-                                                                    Colors
-                                                                        .white,
-                                                              );
-                                                            },
-                                                            text: "NOT READY",
-                                                            buttonBoxShadow:
-                                                                true,
-                                                            color:
-                                                                GFColors.DANGER,
-                                                          ),
-                                                  );
+                                                  return BisnisPrint();
                                                 }
                                               },
                                             ),
@@ -478,128 +242,24 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                       CircularProgressIndicator(),
                                                 );
                                               } else {
-                                                return GFListTile(
-                                                  title: const Text(
-                                                    'Karakter',
-                                                    style: TextStyle(
-                                                      color: primaryColor,
-                                                      fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
-                                                  ),
-                                                  avatar: const GFAvatar(
-                                                    backgroundColor:
-                                                        primaryColor,
-                                                    child: Icon(
-                                                      FontAwesomeIcons
-                                                          .teamspeak,
-                                                      color: secondaryColor,
-                                                    ),
-                                                  ),
-                                                  subTitleText:
-                                                      'Print hasil Analisa Karakter',
-                                                  icon: controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaKarakter !=
-                                                          null
-                                                      ? GFButton(
-                                                          onPressed: () {
-                                                            Get.toNamed(
-                                                                Routes
-                                                                    .BISNIS_PRINT,
-                                                                arguments:
-                                                                    controller
-                                                                        .insightDebitur
-                                                                        .value);
-                                                          },
-                                                          text: "READY",
-                                                          buttonBoxShadow: true,
-                                                          color:
-                                                              GFColors.SUCCESS,
-                                                        )
-                                                      : GFButton(
-                                                          onPressed: () {
-                                                            Get.snackbar(
-                                                              'Error',
-                                                              'Data Karakter belum lengkap',
-                                                              backgroundColor:
-                                                                  Colors.red,
-                                                              colorText:
-                                                                  Colors.white,
-                                                            );
-                                                          },
-                                                          text: "NOT READY",
-                                                          buttonBoxShadow: true,
-                                                          color:
-                                                              GFColors.DANGER,
-                                                        ),
-                                                );
+                                                return KarakterPrint();
                                               }
                                             }),
-                                            GFListTile(
-                                              title: const Text(
-                                                'Jenis Usaha',
-                                                style: TextStyle(
-                                                  color: primaryColor,
-                                                  fontSize: 25,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              avatar: const GFAvatar(
-                                                backgroundColor: primaryColor,
-                                                child: Icon(
-                                                  FontAwesomeIcons.unity,
-                                                  color: secondaryColor,
-                                                ),
-                                              ),
-                                              subTitleText:
-                                                  'Print hasil Analisa Jenis Usaha',
-                                              icon: GFButton(
-                                                onPressed: () {
-                                                  Get.toNamed(
-                                                      Routes.BISNIS_PRINT,
-                                                      arguments: controller
-                                                          .insightDebitur
-                                                          .value);
-                                                },
-                                                text: "READY",
-                                                buttonBoxShadow: true,
-                                                color: GFColors.SUCCESS,
-                                              ),
+                                            Obx(
+                                              () {
+                                                if (analisaJenisUsahaController
+                                                    .isAnalisaUsahaProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return JenisUsahaPrint();
+                                                }
+                                              },
                                             ),
-                                            GFListTile(
-                                              title: const Text(
-                                                'Model',
-                                                style: TextStyle(
-                                                  color: primaryColor,
-                                                  fontSize: 25,
-                                                  fontWeight: FontWeight.w500,
-                                                ),
-                                              ),
-                                              avatar: const GFAvatar(
-                                                backgroundColor: primaryColor,
-                                                child: Icon(
-                                                  FontAwesomeIcons.pagelines,
-                                                  color: secondaryColor,
-                                                ),
-                                              ),
-                                              subTitleText:
-                                                  'Print model bobot yang digunakan',
-                                              icon: GFButton(
-                                                onPressed: () {
-                                                  Get.toNamed(
-                                                      Routes.BISNIS_PRINT,
-                                                      arguments: controller
-                                                          .insightDebitur
-                                                          .value);
-                                                },
-                                                text: "READY",
-                                                buttonBoxShadow: true,
-                                                color: GFColors.SUCCESS,
-                                              ),
-                                            ),
+                                            ModelPrint(controller: controller),
                                           ],
                                         ),
                                       ),
@@ -691,6 +351,19 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                       child: HeaderJenisUsaha(),
                     ),
                     MenuAnalisaJenisUsaha(),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: HeaderAgunan(),
+                    ),
+                    MenuPilihAgunan(),
                   ],
                 ),
                 Padding(

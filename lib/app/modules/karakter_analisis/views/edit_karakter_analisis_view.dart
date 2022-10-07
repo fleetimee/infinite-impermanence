@@ -407,7 +407,6 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           border: InputBorder.none,
                         ),
                       ),
-                      // TODO: Deskripsi Karakter selalu ke reset
                       FormBuilderTextField(
                         keyboardType: TextInputType.multiline,
                         controller: controller.deskripsi =
@@ -691,6 +690,8 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                               false) {
                                             controller.updateAnalisaKarakter(
                                                 data.analisaKarakter.id);
+                                            Get.back();
+                                            Get.back();
                                             debugPrint(controller
                                                 .formKey.currentState?.value
                                                 .toString());

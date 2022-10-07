@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
@@ -8,11 +9,10 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
-import '../../../../../../models/debtor.dart';
 
 // 📦 Package imports:
 
-Future<Uint8List> makeAnalisausahaPdf(Debtor debtor) async {
+Future<Uint8List> makeAnalisausahaPdf(DebiturInsight debtor) async {
   var myTheme = ThemeData.withFont(
     base: Font.ttf(await rootBundle.load('assets/fonts/times-new-roman.ttf')),
     bold: Font.ttf(

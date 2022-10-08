@@ -39,6 +39,20 @@ import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
 import '../modules/keuangan_analisis/views/edit_keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+import '../modules/list_agunan_cash/bindings/list_agunan_cash_binding.dart';
+import '../modules/list_agunan_cash/views/list_agunan_cash_view.dart';
+import '../modules/list_agunan_kendaraan/bindings/list_agunan_kendaraan_binding.dart';
+import '../modules/list_agunan_kendaraan/views/list_agunan_kendaraan_view.dart';
+import '../modules/list_agunan_lainnya/bindings/list_agunan_lainnya_binding.dart';
+import '../modules/list_agunan_lainnya/views/list_agunan_lainnya_view.dart';
+import '../modules/list_agunan_los/bindings/list_agunan_los_binding.dart';
+import '../modules/list_agunan_los/views/list_agunan_los_view.dart';
+import '../modules/list_agunan_peralatan/bindings/list_agunan_peralatan_binding.dart';
+import '../modules/list_agunan_peralatan/views/list_agunan_peralatan_view.dart';
+import '../modules/list_agunan_tanah/bindings/list_agunan_tanah_binding.dart';
+import '../modules/list_agunan_tanah/views/list_agunan_tanah_view.dart';
+import '../modules/list_agunan_tanah_bangunan/bindings/list_agunan_tanah_bangunan_binding.dart';
+import '../modules/list_agunan_tanah_bangunan/views/list_agunan_tanah_bangunan_view.dart';
 import '../modules/list_debitur/bindings/list_debitur_binding.dart';
 import '../modules/list_debitur/views/list_debitur_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
@@ -308,6 +322,41 @@ class AppPages {
       name: _Paths.AGUNAN_PILIH,
       page: () => const AgunanPilihView(),
       binding: AgunanPilihBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_TANAH,
+      page: () => const ListAgunanTanahView(),
+      binding: ListAgunanTanahBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_TANAH_BANGUNAN,
+      page: () => const ListAgunanTanahBangunanView(),
+      binding: ListAgunanTanahBangunanBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_KENDARAAN,
+      page: () => const ListAgunanKendaraanView(),
+      binding: ListAgunanKendaraanBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_PERALATAN,
+      page: () => const ListAgunanPeralatanView(),
+      binding: ListAgunanPeralatanBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_CASH,
+      page: () => const ListAgunanCashView(),
+      binding: ListAgunanCashBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_LOS,
+      page: () => const ListAgunanLosView(),
+      binding: ListAgunanLosBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_AGUNAN_LAINNYA,
+      page: () => const ListAgunanLainnyaView(),
+      binding: ListAgunanLainnyaBinding(),
     ),
   ];
 }

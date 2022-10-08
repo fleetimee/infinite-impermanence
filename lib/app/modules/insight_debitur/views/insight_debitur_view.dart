@@ -1,7 +1,12 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/header_accordions.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/bisnis.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/detail_debitur.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/karakter.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/keuangan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/jenis_usaha.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/list_tile_printing.dart';
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';

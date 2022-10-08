@@ -52,6 +52,14 @@ abstract class Routes {
   static const SIMULASI_TETAP = _Paths.SIMULASI_TETAP;
   static const LIST_DEBITUR = _Paths.LIST_DEBITUR;
   static const INSIGHT_DEBITUR = _Paths.INSIGHT_DEBITUR;
+  static const AGUNAN_PILIH = _Paths.AGUNAN_PILIH;
+  static const LIST_AGUNAN_TANAH = _Paths.LIST_AGUNAN_TANAH;
+  static const LIST_AGUNAN_TANAH_BANGUNAN = _Paths.LIST_AGUNAN_TANAH_BANGUNAN;
+  static const LIST_AGUNAN_KENDARAAN = _Paths.LIST_AGUNAN_KENDARAAN;
+  static const LIST_AGUNAN_PERALATAN = _Paths.LIST_AGUNAN_PERALATAN;
+  static const LIST_AGUNAN_CASH = _Paths.LIST_AGUNAN_CASH;
+  static const LIST_AGUNAN_LOS = _Paths.LIST_AGUNAN_LOS;
+  static const LIST_AGUNAN_LAINNYA = _Paths.LIST_AGUNAN_LAINNYA;
 }
 
 abstract class _Paths {
@@ -102,4 +110,12 @@ abstract class _Paths {
   static const SIMULASI_TETAP = '/simulasi-tetap';
   static const LIST_DEBITUR = '/list-debitur';
   static const INSIGHT_DEBITUR = '/insight-debitur';
+  static const AGUNAN_PILIH = '/agunan-pilih';
+  static const LIST_AGUNAN_TANAH = '/list-agunan-tanah';
+  static const LIST_AGUNAN_TANAH_BANGUNAN = '/list-agunan-tanah-bangunan';
+  static const LIST_AGUNAN_KENDARAAN = '/list-agunan-kendaraan';
+  static const LIST_AGUNAN_PERALATAN = '/list-agunan-peralatan';
+  static const LIST_AGUNAN_CASH = '/list-agunan-cash';
+  static const LIST_AGUNAN_LOS = '/list-agunan-los';
+  static const LIST_AGUNAN_LAINNYA = '/list-agunan-lainnya';
 }

@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/1?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya",
+    "url": "{{baseUrl}}api/v1/debiturs/15?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-10-03T11:02:51.902Z",
+    "modified": "2022-10-07T23:29:55.825Z",
     "headers": [],
     "params": [
       {
@@ -1076,11 +1076,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/103/agunan/",
+    "url": "{{baseUrl}}api/v1/debiturs/15/agunan/",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-29T01:19:31.962Z",
-    "modified": "2022-10-02T22:44:02.355Z",
+    "modified": "2022-10-07T22:58:25.181Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1090,11 +1090,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Post",
-    "url": "{{baseUrl}}api/v1/debiturs/103/agunan",
+    "url": "{{baseUrl}}api/v1/debiturs/1/agunan",
     "method": "POST",
     "sortNum": 30000,
     "created": "2022-09-29T01:20:24.033Z",
-    "modified": "2022-10-02T22:44:10.926Z",
+    "modified": "2022-10-07T21:29:58.229Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1236,7 +1236,7 @@
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-10-05T22:21:59.363Z",
+    "modified": "2022-10-08T04:22:53.206Z",
     "headers": [],
     "params": [
       {
@@ -1258,6 +1258,12 @@
       {
         "name": "fields",
         "value": "peminjam1,bidang_usaha,tgl_sekarang",
+        "isPath": false
+      },
+      {
+        "name": "s",
+        "value": "{\"peminjam1\": \"Floyd Merrington\"}",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -1334,16 +1340,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Post Bulk",
-    "url": "{{baseUrl}}api/v1/debiturs/102/agunan/bulk",
+    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/bulk",
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-10-02T11:21:26.538Z",
-    "modified": "2022-10-02T11:22:59.952Z",
+    "modified": "2022-10-07T21:31:35.204Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"bulk\": [\n    {\n      \"kode_agunan\": 3,\n      \"jenis_agunan\": \"Kendaraan\",\n      \"is_tanah\": false,\n      \"is_los\": false,\n      \"is_kendaraan\": true\n    },\n    {\n      \"kode_agunan\": 1,\n      \"jenis_agunan\": \"Tanah dan Banguna\",\n      \"is_tanah\": false,\n      \"is_los\": false,\n      \"is_kendaraan\": true\n    }\n  ]\n}",
+      "raw": "{\n  \"bulk\": [\n    {\n      \"kode_agunan\": 3,\n      \"jenis_agunan\": \"Kendaraan\",\n      \"is_tanah\": false,\n      \"is_los\": false,\n      \"is_kendaraan\": true\n    },\n    {\n      \"kode_agunan\": 2,\n      \"jenis_agunan\": \"Tanah dan Bangunan\",\n      \"is_tanah\": true,\n      \"is_los\": false,\n      \"is_kendaraan\": false\n    }\n  ]\n}",
       "form": []
     },
     "tests": []
@@ -1431,6 +1437,20 @@
       "raw": "{\n  \"kas\": 5000000,\n  \"bank\": 5000000,\n  \"piutang\": 250000,\n  \"persediaan\": 1000000,\n  \"jumlah_aktiva_lancar\": 80000,\n  \"jumlah_aktiva_tetap\": 1000000,\n  \"sum_aktiva\": 1800000,\n  \"hutang_usaha\": 1000000,\n  \"hutang_bank\": 5000000,\n  \"hutang_lainnya\": 25000,\n  \"jumlah_hutang\": 800000,\n  \"jumlah_modal\": 1000000,\n  \"sum_pasiva\": 1800000,\n  \"omzet\": 150000,\n  \"harga_pokok\": 500000,\n  \"laba_kotor\": 100000,\n  \"biaya_tenaga_kerja\": 50000,\n  \"biaya_operasional\": 250000,\n  \"biaya_lainnya\": 50000,\n  \"total_biaya\": 350000,\n  \"laba_sebelum_pajak\": 250000,\n  \"perkiraan_pajak\": 50000,\n  \"laba_setelah_pajak\": 200000,\n  \"penghasilan\": 200000,\n  \"biaya_hidup\": 50000,\n  \"sisa_penghasilan\": 80000000,\n  \"neraca\": 1,\n  \"debitur\": 1\n}\n",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "ca5b87dd-d08d-4f5d-80db-eb9250be4db8",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/1",
+    "method": "DELETE",
+    "sortNum": 680000,
+    "created": "2022-10-07T21:30:41.112Z",
+    "modified": "2022-10-07T21:30:56.500Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

@@ -11,6 +11,8 @@ class InsightDebiturController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    fetchAgunan(debiturId);
+
     fetchOneDebitur(debiturId);
     // Define how many tabs you want to show
     tabController = TabController(length: 1, vsync: this);
@@ -47,8 +49,12 @@ class InsightDebiturController extends GetxController
   // Initialize map for insight debitur
   var insightDebitur = DebiturInsight().obs;
 
+  // Parse list agunan
+  var listAgunan = List<Agunan>.empty(growable: true).obs;
+
   // Variable for loading
   var isDataLoading = false.obs;
+  var isAgunanLoading = false.obs;
 
   // Fetch Debitur by id
   void fetchOneDebitur(int id) async {
@@ -63,6 +69,23 @@ class InsightDebiturController extends GetxController
       });
     } catch (e) {
       isDataLoading(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  // Fetch agunan
+  void fetchAgunan(int id) async {
+    try {
+      isAgunanLoading(true);
+      InsightDebiturProvider().fetchAgunan(debiturId).then((resp) {
+        isAgunanLoading(false);
+        listAgunan.addAll(resp);
+      }, onError: (err) {
+        isAgunanLoading(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isAgunanLoading(false);
       Get.snackbar('Error', e.toString());
     }
   }

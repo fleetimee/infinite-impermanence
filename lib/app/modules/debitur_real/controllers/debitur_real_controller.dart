@@ -253,13 +253,6 @@ class DebiturRealController extends GetxController {
   final faker = Faker.instance;
 
   @override
-  void onInit() {
-    fetchDebitur();
-    convertFutureToList();
-    super.onInit();
-  }
-
-  @override
   void onClose() {
     peminjam1.value.dispose();
     ktp1.value.dispose();

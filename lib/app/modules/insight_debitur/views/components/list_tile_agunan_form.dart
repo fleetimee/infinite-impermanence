@@ -1,4 +1,5 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -7,18 +8,19 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 class TanahForm extends StatelessWidget {
-  const TanahForm({
+  TanahForm({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   final InsightDebiturController controller;
+  final selectedAgunanController = Get.put(AgunanPilihController());
 
   @override
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Model',
+        'Agunan Tanah',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -28,20 +30,29 @@ class TanahForm extends StatelessWidget {
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
         child: Icon(
-          FontAwesomeIcons.pagelines,
+          FontAwesomeIcons.earthAsia,
           color: secondaryColor,
         ),
       ),
-      subTitleText: 'Print model bobot yang digunakan',
-      icon: GFButton(
-        onPressed: () {
-          Get.toNamed(Routes.MODEL_PRINT,
-              arguments: controller.insightDebitur.value);
-        },
-        text: "READY",
-        buttonBoxShadow: true,
-        color: GFColors.SUCCESS,
-      ),
+      icon: controller.listAgunan.any((element) => element.kodeAgunan == 1)
+          ? GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.MODEL_PRINT,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+            )
+          : GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.MODEL_PRINT,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "PRINT",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+            ),
     );
   }
 }

@@ -1444,11 +1444,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/1",
+    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/52",
     "method": "DELETE",
     "sortNum": 680000,
     "created": "2022-10-07T21:30:41.112Z",
-    "modified": "2022-10-07T21:30:56.500Z",
+    "modified": "2022-10-08T22:24:44.024Z",
     "headers": [],
     "params": [],
     "tests": []

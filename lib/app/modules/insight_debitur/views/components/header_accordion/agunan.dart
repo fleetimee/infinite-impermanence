@@ -294,13 +294,22 @@ class KumpulanForm extends StatelessWidget {
               const SizedBox(
                 height: 5.0,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: FormMultipleButton(controller: controller),
-                  ),
-                ],
-              ),
+              Obx(() {
+                if (selectedAgunanController.isAgunanInputProcessing.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return Row(
+                    children: [
+                      Expanded(
+                        // ! HERE
+                        child: FormMultipleButton(controller: controller),
+                      ),
+                    ],
+                  );
+                }
+              })
             ],
           ),
           collapsedIcon: const Icon(Icons.add),
@@ -1400,12 +1409,13 @@ class ViewButton extends StatelessWidget {
 }
 
 class FormMultipleButton extends StatelessWidget {
-  const FormMultipleButton({
+  FormMultipleButton({
     Key? key,
     required this.controller,
   }) : super(key: key);
 
   final InsightDebiturController controller;
+  final selectedAgunanController = Get.put(AgunanPilihController());
 
   @override
   Widget build(BuildContext context) {
@@ -1459,7 +1469,16 @@ class FormMultipleButton extends StatelessWidget {
                       Expanded(
                         child: ListView(
                           children: [
-                            TanahForm(controller: controller),
+                            Obx(() {
+                              if (selectedAgunanController
+                                  .isAgunanInputProcessing.value) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                return TanahForm(controller: controller);
+                              }
+                            }),
                           ],
                         ),
                       ),

@@ -137,7 +137,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                       backgroundImage: NetworkImage(
                                         'https://avatars.githubusercontent.com/u/68892527?v=4',
                                       ),
-                                      shape: GFAvatarShape.square,
+                                      shape: GFAvatarShape.circle,
                                     ),
                                     color: secondaryColor,
                                     description: Text(

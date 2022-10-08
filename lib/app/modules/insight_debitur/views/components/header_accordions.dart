@@ -16,6 +16,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:getwidget/getwidget.dart';
 
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HeaderDetailDebitur extends StatelessWidget {
   const HeaderDetailDebitur({
@@ -1844,37 +1845,119 @@ class MenuPilihAgunan extends StatelessWidget {
                                           backgroundColor: Colors.blueGrey,
                                         ),
                                         onPressed: () {
-                                          Get.toNamed(
-                                              Routes.LIHAT_USAHA_ANALISIS,
-                                              arguments: controller
-                                                  .insightDebitur.value);
+                                          showBarModalBottomSheet(
+                                              context: context,
+                                              builder: (context) => SizedBox(
+                                                  height: 425,
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            32),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        const Text(
+                                                          'Jenis Agunan',
+                                                          style: TextStyle(
+                                                              fontSize: 25,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        const SizedBox(
+                                                          height: 10.0,
+                                                        ),
+                                                        Text(
+                                                          'Berdasarkan data yang diinputkan debitur ini memiliki ${controller.insightDebitur.value.agunan!.length} jenis agunan diantara lain adalah',
+                                                          style: const TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                        Expanded(
+                                                          child:
+                                                              ListView.builder(
+                                                            itemCount: controller
+                                                                .insightDebitur
+                                                                .value
+                                                                .agunan!
+                                                                .length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              // return ListTile(
+                                                              //   title: Text(controller
+                                                              //       .insightDebitur
+                                                              //       .value
+                                                              //       .agunan![
+                                                              //           index]
+                                                              //       .jenisAgunan!),
+                                                              //   subtitle: Text(controller
+                                                              //       .insightDebitur
+                                                              //       .value
+                                                              //       .agunan![
+                                                              //           index]
+                                                              //       .kodeAgunan
+                                                              //       .toString()),
+                                                              // );
+                                                              return GFListTile(
+                                                                avatar:
+                                                                    GFAvatar(
+                                                                  backgroundColor:
+                                                                      primaryColor,
+                                                                  foregroundColor:
+                                                                      Colors
+                                                                          .white,
+                                                                  shape: GFAvatarShape
+                                                                      .standard,
+                                                                  child: Icon(
+                                                                    controller.insightDebitur.value.agunan![index].kodeAgunan ==
+                                                                            1
+                                                                        ? FontAwesomeIcons
+                                                                            .earthAsia
+                                                                        : controller.insightDebitur.value.agunan![index].kodeAgunan ==
+                                                                                2
+                                                                            ? FontAwesomeIcons.house
+                                                                            : controller.insightDebitur.value.agunan![index].kodeAgunan == 3
+                                                                                ? FontAwesomeIcons.car
+                                                                                : controller.insightDebitur.value.agunan![index].kodeAgunan == 4
+                                                                                    ? FontAwesomeIcons.screwdriverWrench
+                                                                                    : controller.insightDebitur.value.agunan![index].kodeAgunan == 5
+                                                                                        ? FontAwesomeIcons.moneyBill
+                                                                                        : controller.insightDebitur.value.agunan![index].kodeAgunan == 6
+                                                                                            ? FontAwesomeIcons.shop
+                                                                                            : controller.insightDebitur.value.agunan![index].kodeAgunan == 7
+                                                                                                ? FontAwesomeIcons.algolia
+                                                                                                : FontAwesomeIcons.arrowUpFromGroundWater,
+                                                                  ),
+                                                                ),
+                                                                title: Text(
+                                                                  controller
+                                                                      .insightDebitur
+                                                                      .value
+                                                                      .agunan![
+                                                                          index]
+                                                                      .jenisAgunan!,
+                                                                  style: const TextStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w800),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )));
                                         },
                                         child: const Text(
                                           "Lihat",
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blueGrey,
-                                        ),
-                                        onPressed: () {
-                                          Get.toNamed(
-                                              Routes.EDIT_USAHA_ANALISIS,
-                                              arguments: controller
-                                                  .insightDebitur.value);
-                                        },
-                                        child: const Text(
-                                          "Edit",
                                           style: TextStyle(
                                             color: secondaryColor,
                                             fontSize: 20,

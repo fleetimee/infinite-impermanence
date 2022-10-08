@@ -25,7 +25,7 @@ class AgunanPilihController extends GetxController {
     try {
       isAgunanInputProcessing(true);
       AgunanPilihanProvider().deployAgunanPilihan(data.id, body).then((resp) {
-        isAgunanInputProcessing(false);
+        // isAgunanInputProcessing(false);
         debiturController.fetchOneDebitur(data.id);
       }, onError: (e) {
         isAgunanInputProcessing(false);

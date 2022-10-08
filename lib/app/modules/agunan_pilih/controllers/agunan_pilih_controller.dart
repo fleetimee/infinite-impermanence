@@ -14,6 +14,7 @@ class AgunanPilihController extends GetxController {
   final debiturController = Get.put(InsightDebiturController());
 
   final isAgunanInputProcessing = false.obs;
+  final isAgunanWidgetReload = false.obs;
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -24,11 +25,13 @@ class AgunanPilihController extends GetxController {
 
     try {
       isAgunanInputProcessing(true);
+      isAgunanWidgetReload(true);
       AgunanPilihanProvider().deployAgunanPilihan(data.id, body).then((resp) {
         // isAgunanInputProcessing(false);
         debiturController.fetchOneDebitur(data.id);
       }, onError: (e) {
         isAgunanInputProcessing(false);
+        isAgunanWidgetReload(false);
         // TODO: this is fake message
         debiturController.fetchOneDebitur(data.id);
         Get.snackbar(

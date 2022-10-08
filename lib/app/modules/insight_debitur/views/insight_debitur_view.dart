@@ -358,19 +358,63 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     MenuAnalisaJenisUsaha(),
                   ],
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25,
-                        vertical: 20,
-                      ),
-                      child: HeaderAgunan(),
-                    ),
-                    MenuPilihAgunan(),
-                  ],
-                ),
+                Obx(() {
+                  if (controller.isAgunanLoading.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 20,
+                          ),
+                          child: HeaderAgunan(),
+                        ),
+                        MenuPilihAgunan(),
+                        // if the list contains "Tanah" then show the menu
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 3)
+                            ? MenuAgunanKendaraan()
+                            : const SizedBox(),
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 1)
+                            ? MenuAgunanTanah()
+                            : const SizedBox(),
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 2)
+                            ? MenuAgunanTanahDanBangunan()
+                            : const SizedBox(),
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 4)
+                            ? MenuAgunanPeralatan()
+                            : const SizedBox(),
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 5)
+                            ? MenuAgunanCash()
+                            : const SizedBox(),
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 6)
+                            ? MenuAgunanLos()
+                            : const SizedBox(),
+
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 7)
+                            ? MenuAgunanLainnya()
+                            : const SizedBox(),
+                      ],
+                    );
+                  }
+                }),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 25,

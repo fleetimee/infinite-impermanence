@@ -19,8 +19,29 @@ class InsightDebiturProvider {
       );
       if (response.statusCode == 200) {
         Map<String, dynamic> data = jsonDecode(response.body);
-        debugPrint(data.toString());
+        // debugPrint(data.toString());
         return DebiturInsight.fromJson(data);
+      } else {
+        throw Exception('Failed to load debitur');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<List<Agunan>> fetchAgunan(int id) async {
+    try {
+      final response = await httpClient.get(
+        Uri.parse('${baseUrl}debiturs/$id?$joinTable'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return DebiturInsight.fromJson(data).agunan!;
       } else {
         throw Exception('Failed to load debitur');
       }

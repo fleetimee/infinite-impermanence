@@ -1,4 +1,5 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan.dart';
@@ -32,6 +33,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
   final analisaBisnisController = Get.put(BisnisAnalisisController());
   final analisaKarakterController = Get.put(KarakterAnalisisController());
   final analisaJenisUsahaController = Get.put(UsahaAnalisisController());
+  final selectAgunanController = Get.put(AgunanPilihController());
 
   @override
   Widget build(BuildContext context) {
@@ -375,38 +377,38 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           child: HeaderAgunan(),
                         ),
                         MenuPilihAgunan(),
-                        // if the list contains "Tanah" then show the menu
 
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 3)
-                            ? MenuAgunanKendaraan()
-                            : const SizedBox(),
+                        selectAgunanController.isAgunanInputProcessing.value
+                            ? const Center(child: CircularProgressIndicator())
+                            : controller.listAgunan
+                                    .any((element) => element.kodeAgunan == 1)
+                                ? MenuAgunanTanah()
+                                : const SizedBox(),
 
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 1)
-                            ? MenuAgunanTanah()
-                            : const SizedBox(),
-
+                        // controller.listAgunan
+                        //         .any((element) => element.kodeAgunan == 1)
+                        //     ? MenuAgunanTanah()
+                        //     : const SizedBox(),
                         controller.listAgunan
                                 .any((element) => element.kodeAgunan == 2)
                             ? MenuAgunanTanahDanBangunan()
                             : const SizedBox(),
-
+                        controller.listAgunan
+                                .any((element) => element.kodeAgunan == 3)
+                            ? MenuAgunanKendaraan()
+                            : const SizedBox(),
                         controller.listAgunan
                                 .any((element) => element.kodeAgunan == 4)
                             ? MenuAgunanPeralatan()
                             : const SizedBox(),
-
                         controller.listAgunan
                                 .any((element) => element.kodeAgunan == 5)
                             ? MenuAgunanCash()
                             : const SizedBox(),
-
                         controller.listAgunan
                                 .any((element) => element.kodeAgunan == 6)
                             ? MenuAgunanLos()
                             : const SizedBox(),
-
                         controller.listAgunan
                                 .any((element) => element.kodeAgunan == 7)
                             ? MenuAgunanLainnya()

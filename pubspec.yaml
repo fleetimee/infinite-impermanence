@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   currency_text_input_formatter: ^2.1.7
   data_table_2: ^2.3.7
+  dio: ^4.0.6
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
   extended_masked_text: ^2.3.1

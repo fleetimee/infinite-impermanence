@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_is_empty
 
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
-import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 import 'package:akm/app/modules/usaha_analisis/controllers/usaha_analisis_controller.dart';
@@ -21,7 +21,6 @@ class HeaderAgunan extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final neracaController = Get.put(InputNeracaController());
 
   @override
   Widget build(BuildContext context) {
@@ -79,15 +78,14 @@ class HeaderAgunan extends StatelessWidget {
   }
 }
 
+// TODO: MAKE FORM AGUNAN LIKE PRINT
 class MenuPilihAgunan extends StatelessWidget {
   MenuPilihAgunan({
     Key? key,
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final analisaKarakterController = Get.put(KarakterAnalisisController());
-  final analisaBisnisController = Get.put(BisnisAnalisisController());
-  final analisaJenisUsahaController = Get.put(UsahaAnalisisController());
+  final selectedAgunanController = Get.put(AgunanPilihController());
 
   @override
   Widget build(BuildContext context) {
@@ -111,8 +109,7 @@ class MenuPilihAgunan extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (analisaJenisUsahaController
-                      .isAnalisaUsahaProcessing.value) {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(),
@@ -168,8 +165,137 @@ class MenuPilihAgunan extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (analisaJenisUsahaController
-                      .isAnalisaUsahaProcessing.value) {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        controller.insightDebitur.value.agunan!.isEmpty == true
+                            ? Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.AGUNAN_PILIH,
+                                        arguments:
+                                            controller.insightDebitur.value);
+                                  },
+                                  child: const Text(
+                                    "Input",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Expanded(
+                                child: ViewButton(controller: controller),
+                              ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
+    );
+  }
+}
+
+class KumpulanForm extends StatelessWidget {
+  KumpulanForm({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final selectedAgunanController = Get.put(AgunanPilihController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Form Agunan Tanah',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.agunan?.length == 0) {
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -219,9 +345,7 @@ class MenuAgunanTanah extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final analisaKarakterController = Get.put(KarakterAnalisisController());
-  final analisaBisnisController = Get.put(BisnisAnalisisController());
-  final analisaJenisUsahaController = Get.put(UsahaAnalisisController());
+  final selectedAgunanController = Get.put(AgunanPilihController());
 
   @override
   Widget build(BuildContext context) {
@@ -245,8 +369,7 @@ class MenuAgunanTanah extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (analisaJenisUsahaController
-                      .isAnalisaUsahaProcessing.value) {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(),
@@ -302,8 +425,7 @@ class MenuAgunanTanah extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (analisaJenisUsahaController
-                      .isAnalisaUsahaProcessing.value) {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
@@ -721,7 +843,7 @@ class MenuAgunanPeralatan extends StatelessWidget {
                                   onPressed: () {
                                     Get.toNamed(Routes.AGUNAN_PILIH,
                                         arguments:
-                                            controller.insightDebitur.value);
+                                            controller.insightDebitur.value.id);
                                   },
                                   child: const Text(
                                     "Input",

@@ -8,7 +8,8 @@ import 'package:http/http.dart' as http;
 class AgunanPilihanProvider {
   final httpClient = http.Client();
 
-  Future<AgunanInput> deployAgunanPilihan(int id, body) async {
+  Future<List<AgunanInput>> deployAgunanPilihan(
+      id, Map<String, dynamic> body) async {
     try {
       final response = await httpClient.post(
         Uri.parse('${baseUrl}debiturs/$id/agunan/bulk/'),
@@ -20,7 +21,9 @@ class AgunanPilihanProvider {
       );
       debugPrint(response.body);
       if (response.statusCode == 201) {
-        return AgunanInput.fromJson(jsonDecode(response.body));
+        var data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return (data as List).map((e) => AgunanInput.fromJson(e)).toList();
       } else {
         throw Exception('Failed to load data');
       }

@@ -10,11 +10,10 @@ class AgunanPilihController extends GetxController {
   // ignore: todo
   //TODO: Implement AgunanPilihController
 
-  final data = Get.arguments;
+  final int data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
 
   final isAgunanInputProcessing = false.obs;
-  final isAgunanWidgetReload = false.obs;
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -22,28 +21,30 @@ class AgunanPilihController extends GetxController {
     final body = {
       'bulk': formKey.currentState!.value['languages'],
     };
-
     try {
-      isAgunanInputProcessing(true);
-      isAgunanWidgetReload(true);
-      AgunanPilihanProvider().deployAgunanPilihan(data.id, body).then((resp) {
-        // isAgunanInputProcessing(false);
-        debiturController.fetchOneDebitur(data.id);
-      }, onError: (e) {
-        isAgunanInputProcessing(false);
-        isAgunanWidgetReload(false);
-        // TODO: this is fake message
-        debiturController.fetchOneDebitur(data.id);
+      isAgunanInputProcessing.value = true;
+      AgunanPilihanProvider().deployAgunanPilihan(data, body).then((resp) {
+        isAgunanInputProcessing.value = false;
+        debiturController.fetchOneDebitur(data);
         Get.snackbar(
-          'Success',
+          'Sukses',
           'Agunan berhasil ditambahkan',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+      }, onError: (e) {
+        isAgunanInputProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
       });
     } catch (e) {
-      isAgunanInputProcessing(false);
+      isAgunanInputProcessing.value = false;
       Get.snackbar('Error', e.toString());
     }
   }

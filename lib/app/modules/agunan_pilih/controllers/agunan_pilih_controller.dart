@@ -25,8 +25,9 @@ class AgunanPilihController extends GetxController {
       isAgunanInputProcessing.value = true;
       AgunanPilihanProvider().deployAgunanPilihan(data, body).then((resp) {
         isAgunanInputProcessing.value = false;
-
+        debiturController.fetchAgunan(data);
         debiturController.fetchOneDebitur(data);
+
         Get.snackbar(
           'Sukses',
           'Agunan berhasil ditambahkan',

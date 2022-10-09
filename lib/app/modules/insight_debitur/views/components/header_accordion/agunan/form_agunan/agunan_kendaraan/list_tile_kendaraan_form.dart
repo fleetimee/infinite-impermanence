@@ -18,6 +18,7 @@ class KendaraanForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: secondaryColor,
       title: const Text(
         'Agunan Kendaraan',
         style: TextStyle(

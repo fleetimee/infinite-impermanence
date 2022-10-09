@@ -10,7 +10,6 @@ class ListDebiturController extends GetxController {
   void onInit() {
     super.onInit();
     getAllDebitur(page.toString());
-
     paginateDebitur();
   }
 

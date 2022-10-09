@@ -1,6 +1,7 @@
 import 'package:akm/app/models/agunan/agunan_input.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 
@@ -33,8 +34,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   const InputDecoration(labelText: 'The language of my people'),
               name: 'languages',
               onChanged: _onChanged,
-
-              // initialValue: const ['Dart'],
+              validator: FormBuilderValidators.required(),
               options: [
                 FormBuilderFieldOption(
                   value: Bulk(

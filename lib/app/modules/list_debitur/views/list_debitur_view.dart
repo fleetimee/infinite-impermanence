@@ -29,44 +29,8 @@ class ListDebiturView extends GetView<ListDebiturController> {
       body: Obx(
         () {
           if (controller.isDataProcessing.value) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GFLoader(
-                    type: GFLoaderType.custom,
-                    child: ClipOval(
-                        child: const Image(
-                      image: AssetImage(
-                        'assets/images/home/satania-gabriel.gif',
-                      ),
-                      height: 250,
-                    )
-                            .animate(
-                                onPlay: (controller) => controller.repeat())
-                            .shimmer(duration: 1200.ms, color: secondaryColor)
-                            .animate() // this wraps the previous Animate in another Animate
-                            .fadeIn(
-                                duration: 1200.ms, curve: Curves.easeOutQuad)
-                            .slide()),
-                  ),
-                  const Text(
-                    'Loading...',
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: secondaryColor,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.5,
-                    ),
-                  )
-                      .animate(onPlay: (controller) => controller.repeat())
-                      .shimmer(
-                          duration: 1200.ms, color: const Color(0xFF80DDFF))
-                      .animate() // this wraps the previous Animate in another Animate
-                      .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
-                      .slide()
-                ],
-              ),
+            return const Center(
+              child: SataniaLoading(),
             );
           } else {
             if (controller.listDebitur.isNotEmpty) {
@@ -204,6 +168,50 @@ class ListDebiturView extends GetView<ListDebiturController> {
           }
         },
       ),
+    );
+  }
+}
+
+class SataniaLoading extends StatelessWidget {
+  const SataniaLoading({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GFLoader(
+          type: GFLoaderType.custom,
+          child: ClipOval(
+              child: const Image(
+            image: AssetImage(
+              'assets/images/home/satania-gabriel.gif',
+            ),
+            height: 250,
+          )
+                  .animate(onPlay: (controller) => controller.repeat())
+                  .shimmer(duration: 1200.ms, color: secondaryColor)
+                  .animate() // this wraps the previous Animate in another Animate
+                  .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
+                  .slide()),
+        ),
+        const Text(
+          'Loading...',
+          style: TextStyle(
+            fontSize: 25,
+            color: secondaryColor,
+            fontWeight: FontWeight.w800,
+            letterSpacing: 1.5,
+          ),
+        )
+            .animate(onPlay: (controller) => controller.repeat())
+            .shimmer(duration: 1200.ms, color: const Color(0xFF80DDFF))
+            .animate() // this wraps the previous Animate in another Animate
+            .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
+            .slide()
+      ],
     );
   }
 }

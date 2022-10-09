@@ -7,8 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
-class TanahForm extends StatelessWidget {
-  TanahForm({
+class CashForm extends StatelessWidget {
+  CashForm({
     Key? key,
   }) : super(key: key);
 
@@ -20,7 +20,7 @@ class TanahForm extends StatelessWidget {
     return GFListTile(
       color: secondaryColor,
       title: const Text(
-        'Agunan Tanah',
+        'Agunan Cash',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -30,17 +30,15 @@ class TanahForm extends StatelessWidget {
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
         child: Icon(
-          FontAwesomeIcons.earthAsia,
+          FontAwesomeIcons.fileInvoiceDollar,
           color: secondaryColor,
         ),
       ),
-      icon: controller.listAgunan.any((element) => element.kodeAgunan == 1)
+      icon: controller.listAgunan.any((element) => element.kodeAgunan == 5)
           ? GFButton(
               onPressed: () {
-                Get.toNamed(Routes.LIST_AGUNAN_TANAH,
-                    arguments: controller.listAgunan.elementAt(controller
-                        .listAgunan
-                        .indexWhere((element) => element.kodeAgunan == 1)));
+                Get.toNamed(Routes.LIST_AGUNAN_CASH,
+                    arguments: controller.insightDebitur.value);
               },
               text: "READY",
               buttonBoxShadow: true,

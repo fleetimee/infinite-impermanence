@@ -18,6 +18,7 @@ class TanahBangunanForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: secondaryColor,
       title: const Text(
         'Agunan Tanah dan Bangunan',
         style: TextStyle(
@@ -36,7 +37,7 @@ class TanahBangunanForm extends StatelessWidget {
       icon: controller.listAgunan.any((element) => element.kodeAgunan == 2)
           ? GFButton(
               onPressed: () {
-                Get.toNamed(Routes.MODEL_PRINT,
+                Get.toNamed(Routes.LIST_AGUNAN_TANAH_BANGUNAN,
                     arguments: controller.insightDebitur.value);
               },
               text: "READY",

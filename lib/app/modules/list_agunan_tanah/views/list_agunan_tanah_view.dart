@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,12 +14,32 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
         title: const Text('ListAgunanTanahView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'ListAgunanTanahView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: Obx(() {
+        if (controller.isAgunanTanahProcessing.value) {
+          return const Center(
+            child: SataniaLoading(),
+          );
+        } else {
+          if (controller.listAgunanTanah.isNotEmpty) {
+            return ListView.builder(
+              itemCount: controller.listAgunanTanah.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title: Text(
+                      controller.listAgunanTanah[index].namaPemilik.toString(),
+                    ),
+                  ),
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: Text('Data Kosong'),
+            );
+          }
+        }
+      }),
     );
   }
 }

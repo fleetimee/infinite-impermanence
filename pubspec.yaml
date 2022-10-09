@@ -41,12 +41,13 @@ dependencies:
   form_builder_file_picker: ^2.3.0
   form_builder_image_picker: ^3.1.0
   form_builder_validators: ^8.3.0
-  get: 4.6.5  
+  get: 4.6.5
   getwidget: ^3.0.1
   google_fonts: ^3.0.1
   http: ^0.13.5
   image_picker: ^0.8.5+3
   intl: ^0.17.0
+  jikan_api: ^2.0.0
   liquid_progress_indicator: ^0.4.0
   loading_animation_widget: ^1.2.0+3
   material_design_icons_flutter: ^5.0.6996
@@ -71,9 +72,9 @@ dependencies:
   wave: ^0.2.2
 
 dev_dependencies:
-  dependency_validator: ^3.0.0
-  dart_code_metrics: ^4.19.1
   change_app_package_name: ^1.1.0
+  dart_code_metrics: ^4.19.1
+  dependency_validator: ^3.0.0
   flutter_launcher_icons: "^0.10.0"
   flutter_lints: 2.0.1
   import_sorter:

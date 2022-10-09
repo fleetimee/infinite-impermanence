@@ -1,6 +1,10 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_cash/list_tile_cash_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_kendaraan/list_tile_kendaraan_form.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_kios/list_tile_kios.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_lainnya/list_tile_lainnya.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_peralatan/list_tile_peralatan_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah/list_tile_tanah_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah_bangunan/list_tile_tanah_bangunan_form.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/components/card/gf_card.dart';
 import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 import 'package:getwidget/position/gf_position.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/agunan_form_onboarding_controller.dart';
 
@@ -19,7 +24,15 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          blue200,
+          blue300,
+        ],
+      ),
       appBar: AppBar(
         title: const Text('AgunanFormOnboardingView'),
         centerTitle: true,
@@ -85,6 +98,42 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
                     );
                   } else {
                     return KendaraanForm();
+                  }
+                }),
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return PeralatanForm();
+                  }
+                }),
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return CashForm();
+                  }
+                }),
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return KiosForm();
+                  }
+                }),
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return LainnyaForm();
                   }
                 }),
               ],

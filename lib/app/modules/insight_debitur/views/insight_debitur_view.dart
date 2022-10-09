@@ -2,7 +2,9 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/header_agunan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_form_dashboard.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/select_agunan/menu_pilih_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/bisnis.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/detail_debitur.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/karakter.dart';
@@ -378,7 +380,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           child: HeaderAgunan(),
                         ),
                         MenuPilihAgunan(),
-                        KumpulanForm(),
+                        MenuMasukFormAgunan(),
                         // selectAgunanController.isAgunanInputProcessing.value
                         //     ? const Center(child: CircularProgressIndicator())
                         //     : controller.listAgunan

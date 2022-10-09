@@ -362,7 +362,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AGUNAN_FORM_ONBOARDING,
-      page: () => const AgunanFormOnboardingView(),
+      page: () => AgunanFormOnboardingView(),
       binding: AgunanFormOnboardingBinding(),
     ),
   ];

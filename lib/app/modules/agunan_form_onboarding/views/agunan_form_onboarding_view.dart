@@ -1,11 +1,20 @@
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/list_tile_agunan_form.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:getwidget/components/card/gf_card.dart';
+import 'package:getwidget/components/list_tile/gf_list_tile.dart';
+import 'package:getwidget/position/gf_position.dart';
 
 import '../controllers/agunan_form_onboarding_controller.dart';
 
 class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
-  const AgunanFormOnboardingView({Key? key}) : super(key: key);
+  AgunanFormOnboardingView({Key? key}) : super(key: key);
+
+  final selectedAgunanController = Get.put(AgunanPilihController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,11 +22,55 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
         title: const Text('AgunanFormOnboardingView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'AgunanFormOnboardingView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const GFCard(
+            boxFit: BoxFit.cover,
+            titlePosition: GFPosition.start,
+            showOverlayImage: true,
+            imageOverlay: AssetImage(
+              'assets/images/home/printing.jpg',
+            ),
+            colorFilter: ColorFilter.mode(
+              Color.fromARGB(221, 8, 8, 8),
+              BlendMode.darken,
+            ),
+            title: GFListTile(
+              title: Text(
+                'Tambah Agunan',
+                style: TextStyle(
+                  color: secondaryColor,
+                  fontSize: 47,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            content: Text(
+              "Kumpulan form agunan yang ditujukan untuk penginputan sesuai dengan jenis agunan yang dipilih.",
+              style: TextStyle(
+                color: secondaryColor,
+                fontSize: 28,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView(
+              children: [
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return TanahForm();
+                  }
+                }),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

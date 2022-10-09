@@ -10,10 +10,9 @@ import 'package:getwidget/getwidget.dart';
 class TanahForm extends StatelessWidget {
   TanahForm({
     Key? key,
-    required this.controller,
   }) : super(key: key);
 
-  final InsightDebiturController controller;
+  final controller = Get.put(InsightDebiturController());
   final selectedAgunanController = Get.put(AgunanPilihController());
 
   @override

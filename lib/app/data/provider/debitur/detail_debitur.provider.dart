@@ -19,7 +19,7 @@ class InsightDebiturProvider {
       );
       if (response.statusCode == 200) {
         Map<String, dynamic> data = jsonDecode(response.body);
-        // debugPrint(data.toString());
+        debugPrint(data.toString());
         return DebiturInsight.fromJson(data);
       } else {
         throw Exception('Failed to load debitur');

@@ -2,7 +2,9 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/header_agunan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_form_dashboard.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/select_agunan/menu_pilih_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/bisnis.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/detail_debitur.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/karakter.dart';
@@ -360,6 +362,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     MenuAnalisaJenisUsaha(),
                   ],
                 ),
+                // This is for dynamic widget
                 Obx(() {
                   if (controller.isAgunanLoading.value) {
                     return const Center(
@@ -377,42 +380,43 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           child: HeaderAgunan(),
                         ),
                         MenuPilihAgunan(),
+                        // TODO: Tidak mau refresh
+                        MenuMasukFormAgunan(),
+                        // selectAgunanController.isAgunanInputProcessing.value
+                        //     ? const Center(child: CircularProgressIndicator())
+                        //     : controller.listAgunan
+                        //             .any((element) => element.kodeAgunan == 1)
+                        //         ? MenuAgunanTanah()
+                        //         : const SizedBox(),
 
-                        selectAgunanController.isAgunanInputProcessing.value
-                            ? const Center(child: CircularProgressIndicator())
-                            : controller.listAgunan
-                                    .any((element) => element.kodeAgunan == 1)
-                                ? MenuAgunanTanah()
-                                : const SizedBox(),
-
+                        // // controller.listAgunan
+                        // //         .any((element) => element.kodeAgunan == 1)
+                        // //     ? MenuAgunanTanah()
+                        // //     : const SizedBox(),
                         // controller.listAgunan
-                        //         .any((element) => element.kodeAgunan == 1)
-                        //     ? MenuAgunanTanah()
+                        //         .any((element) => element.kodeAgunan == 2)
+                        //     ? MenuAgunanTanahDanBangunan()
                         //     : const SizedBox(),
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 2)
-                            ? MenuAgunanTanahDanBangunan()
-                            : const SizedBox(),
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 3)
-                            ? MenuAgunanKendaraan()
-                            : const SizedBox(),
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 4)
-                            ? MenuAgunanPeralatan()
-                            : const SizedBox(),
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 5)
-                            ? MenuAgunanCash()
-                            : const SizedBox(),
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 6)
-                            ? MenuAgunanLos()
-                            : const SizedBox(),
-                        controller.listAgunan
-                                .any((element) => element.kodeAgunan == 7)
-                            ? MenuAgunanLainnya()
-                            : const SizedBox(),
+                        // controller.listAgunan
+                        //         .any((element) => element.kodeAgunan == 3)
+                        //     ? MenuAgunanKendaraan()
+                        //     : const SizedBox(),
+                        // controller.listAgunan
+                        //         .any((element) => element.kodeAgunan == 4)
+                        //     ? MenuAgunanPeralatan()
+                        //     : const SizedBox(),
+                        // controller.listAgunan
+                        //         .any((element) => element.kodeAgunan == 5)
+                        //     ? MenuAgunanCash()
+                        //     : const SizedBox(),
+                        // controller.listAgunan
+                        //         .any((element) => element.kodeAgunan == 6)
+                        //     ? MenuAgunanLos()
+                        //     : const SizedBox(),
+                        // controller.listAgunan
+                        //         .any((element) => element.kodeAgunan == 7)
+                        //     ? MenuAgunanLainnya()
+                        //     : const SizedBox(),
                       ],
                     );
                   }

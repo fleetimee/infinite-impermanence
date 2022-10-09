@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
+import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_binding.dart';
+import '../modules/agunan_form_onboarding/views/agunan_form_onboarding_view.dart';
 import '../modules/agunan_pilih/bindings/agunan_pilih_binding.dart';
 import '../modules/agunan_pilih/views/agunan_pilih_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
@@ -357,6 +359,11 @@ class AppPages {
       name: _Paths.LIST_AGUNAN_LAINNYA,
       page: () => const ListAgunanLainnyaView(),
       binding: ListAgunanLainnyaBinding(),
+    ),
+    GetPage(
+      name: _Paths.AGUNAN_FORM_ONBOARDING,
+      page: () => AgunanFormOnboardingView(),
+      binding: AgunanFormOnboardingBinding(),
     ),
   ];
 }

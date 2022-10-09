@@ -1,5 +1,4 @@
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
@@ -16,7 +15,6 @@ class HeaderKarakter extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final neracaController = Get.put(InputNeracaController());
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
+import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -27,15 +28,21 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                 return Card(
                   child: ListTile(
                     title: Text(
-                      controller.listAgunanTanah[index].namaPemilik.toString(),
+                      controller.listAgunanTanah[index].deskripsiPendek
+                          .toString(),
                     ),
                   ),
                 );
               },
             );
           } else {
-            return const Center(
-              child: Text('Data Kosong'),
+            return Center(
+              child: EmptyWidget(
+                image: 'assets/images/home/satania-crying.png',
+                title: 'Tidak ada data',
+                hideBackgroundAnimation: true,
+                subTitle: 'Tidak ada data agunan tanah yang terdaftar',
+              ),
             );
           }
         }

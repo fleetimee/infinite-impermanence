@@ -1147,16 +1147,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "effe6610-3568-442d-88b5-39899cd617a8",
     "name": "Post",
-    "url": "{{baseUrl}}api/v1/agunan/64/agunan-tanah",
+    "url": "{{baseUrl}}api/v1/agunan/72/agunan-tanah",
     "method": "POST",
     "sortNum": 560000,
     "created": "2022-09-30T11:30:47.585Z",
-    "modified": "2022-10-09T20:39:39.377Z",
+    "modified": "2022-10-09T22:57:07.850Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"deskripsi_pendek\": \"Tes\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
+      "raw": "{\n  \"deskripsi_pendek\": \"Sebidang Tanah Pekarangan\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
       "form": []
     },
     "tests": []
@@ -1444,11 +1444,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/63",
+    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/67",
     "method": "DELETE",
     "sortNum": 680000,
     "created": "2022-10-07T21:30:41.112Z",
-    "modified": "2022-10-09T08:11:11.225Z",
+    "modified": "2022-10-09T22:56:03.712Z",
     "headers": [],
     "params": [],
     "tests": []

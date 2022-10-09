@@ -10,7 +10,7 @@ class AgunanPilihController extends GetxController {
   // ignore: todo
   //TODO: Implement AgunanPilihController
 
-  final int data = Get.arguments;
+  final data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
 
   final isAgunanInputProcessing = false.obs;

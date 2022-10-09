@@ -1,6 +1,8 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/list_tile_agunan_form.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_kendaraan/list_tile_kendaraan_form.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah/list_tile_tanah_form.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah_bangunan/list_tile_tanah_bangunan_form.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -65,6 +67,24 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
                     );
                   } else {
                     return TanahForm();
+                  }
+                }),
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return TanahBangunanForm();
+                  }
+                }),
+                Obx(() {
+                  if (selectedAgunanController.isAgunanInputProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return KendaraanForm();
                   }
                 }),
               ],

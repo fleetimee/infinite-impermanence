@@ -8,6 +8,8 @@ import 'package:http/http.dart' as http;
 class AgunanPilihanProvider {
   final httpClient = http.Client();
 
+  // Get all agunan by debitur id
+
   Future<List<AgunanInput>> deployAgunanPilihan(
       id, Map<String, dynamic> body) async {
     try {

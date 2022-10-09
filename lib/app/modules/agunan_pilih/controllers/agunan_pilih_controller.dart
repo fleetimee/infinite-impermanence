@@ -10,7 +10,7 @@ class AgunanPilihController extends GetxController {
   // ignore: todo
   //TODO: Implement AgunanPilihController
 
-  final int data = Get.arguments ?? 0;
+  final int data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
 
   final isAgunanInputProcessing = false.obs;
@@ -25,6 +25,7 @@ class AgunanPilihController extends GetxController {
       isAgunanInputProcessing.value = true;
       AgunanPilihanProvider().deployAgunanPilihan(data, body).then((resp) {
         isAgunanInputProcessing.value = false;
+
         debiturController.fetchOneDebitur(data);
         Get.snackbar(
           'Sukses',

@@ -380,6 +380,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           child: HeaderAgunan(),
                         ),
                         MenuPilihAgunan(),
+                        // TODO: Tidak mau refresh
                         MenuMasukFormAgunan(),
                         // selectAgunanController.isAgunanInputProcessing.value
                         //     ? const Center(child: CircularProgressIndicator())

@@ -197,7 +197,8 @@ class FormMultipleButton extends StatelessWidget {
               //     ),
               //   ),
               // );
-              Get.toNamed(Routes.AGUNAN_FORM_ONBOARDING);
+              Get.toNamed(Routes.AGUNAN_FORM_ONBOARDING,
+                  arguments: controller.insightDebitur.value.id);
             },
             child: const Text(
               "Ke Form",

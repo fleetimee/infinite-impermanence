@@ -31,4 +31,26 @@ class AgunanTanahProvider {
       return Future.error(e);
     }
   }
+
+  Future<FormTanah> saveFormAgunanTanah(int id, Map body) async {
+    try {
+      final response = await httpClient.post(
+        Uri.parse('${baseUrl}agunan/$id/agunan-tanah/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        return FormTanah.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

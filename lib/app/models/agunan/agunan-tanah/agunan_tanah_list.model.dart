@@ -2,6 +2,8 @@
 //
 //     final agunanTanahList = agunanTanahListFromJson(jsonString);
 
+// ignore_for_file: prefer_null_aware_operators
+
 import 'dart:convert';
 
 List<AgunanTanahList> agunanTanahListFromJson(String str) =>

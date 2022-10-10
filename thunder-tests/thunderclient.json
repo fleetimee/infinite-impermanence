@@ -1151,12 +1151,12 @@
     "method": "POST",
     "sortNum": 560000,
     "created": "2022-09-30T11:30:47.585Z",
-    "modified": "2022-10-09T22:57:07.850Z",
+    "modified": "2022-10-10T01:49:56.049Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"deskripsi_pendek\": \"Sebidang Tanah Pekarangan\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
+      "raw": "{\n  \"deskripsi_pendek\": \"AAAA\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
       "form": []
     },
     "tests": []

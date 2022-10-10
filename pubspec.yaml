@@ -53,6 +53,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6996
   modal_bottom_sheet: ^2.1.2
   nekos: ^0.0.7
+  numerus: ^2.0.0
   open_file: ^3.2.1
   open_street_map_search_and_pick: ^0.0.15
   path_provider: ^2.0.11

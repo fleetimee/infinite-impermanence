@@ -68,15 +68,36 @@ class ListAgunanTanahController extends GetxController {
         Get.snackbar(
           'Error',
           e.toString(),
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );
       });
     } catch (e) {
       isAgunanTanahProcessing(false);
-      Get.snackbar('Error', e.toString());
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
     }
+  }
+
+  void clearForm() {
+    deskripsiPendek.clear();
+    buktiKepemilikan.clear();
+    persentase.clear();
+    luasTanah.clear();
+    tanggal = DateTime.now();
+    lokasi.clear();
+    titikKoordinat.clear();
+    nilaiPasar.clear();
+    nilaiLiquidasi.clear();
+    nilaiPengikatan.clear();
+    pengikatan.clear();
+    deskripsiPanjang.clear();
   }
 
   void saveAgunanTanah(id) {
@@ -88,9 +109,9 @@ class ListAgunanTanahController extends GetxController {
       'bukti_kepemilikan': buktiKepemilikan.text,
       'luas_tanah': luasTanah.text,
       'tanggal': tanggal.toString(),
-      'nilai_pasar': nilaiPasar.text,
-      'nilai_liquidasi': nilaiLiquidasi.text,
-      'nilai_pengikatan': nilaiPengikatan.text,
+      'nilai_pasar': nilaiPasar.text.replaceAll('.', ''),
+      'nilai_liquidasi': nilaiLiquidasi.text.replaceAll('.', ''),
+      'nilai_pengikatan': nilaiPengikatan.text.replaceAll('.', ''),
       'pengikatan': pengikatan.text,
       'lokasi': lokasi.text,
       'titik_koordinat': titikKoordinat.text,
@@ -108,6 +129,7 @@ class ListAgunanTanahController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
+        clearForm();
         listAgunanTanah.clear();
         getAllAgunanTanah(agunanId.id);
       }, onError: (e) {

@@ -31,7 +31,7 @@ class AgunanPilihController extends GetxController {
         Get.snackbar(
           'Sukses',
           'Agunan berhasil ditambahkan',
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
@@ -40,7 +40,7 @@ class AgunanPilihController extends GetxController {
         Get.snackbar(
           'Error',
           e.toString(),
-          snackPosition: SnackPosition.BOTTOM,
+          snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.red,
           colorText: Colors.white,
         );

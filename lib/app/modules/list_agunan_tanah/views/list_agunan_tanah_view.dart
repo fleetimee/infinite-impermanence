@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:numerus/numerus.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
@@ -34,18 +35,35 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
       appBar: AppBar(
         title: const Text('Agunan Tanah Yang Terdaftar'),
         actions: [
-          IconButton(
-            onPressed: () {
-              showBarModalBottomSheet(
-                context: context,
-                settings:
-                    RouteSettings(name: '/list_agunan_tanah', arguments: data),
-                builder: (context) => FormTambahAgunanTanah(),
-                isDismissible: false,
+          Obx(() {
+            if (controller.isAgunanTanahProcessing.value) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
               );
-            },
-            icon: const Icon(FontAwesomeIcons.plus),
-          ),
+            } else {
+              return IconButton(
+                onPressed: () {
+                  showBarModalBottomSheet(
+                    expand: true,
+                    bounce: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    context: context,
+                    settings: RouteSettings(
+                        name: '/list_agunan_tanah', arguments: data),
+                    builder: (context) => FormTambahAgunanTanah(),
+                    isDismissible: false,
+                  );
+                },
+                icon: const Icon(FontAwesomeIcons.plus),
+              );
+            }
+          })
         ],
       ),
       body: Obx(() {
@@ -74,7 +92,7 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Agunan Tanah ${index + 1}',
+                          'Agunan Tanah ${(index + 1).toRomanNumeralString()}',
                           style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w800,
@@ -250,8 +268,19 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
               child: EmptyWidget(
                 image: 'assets/images/home/satania-crying.png',
                 title: 'Tidak ada data',
+                titleTextStyle: const TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w800,
+                  color: secondaryColor,
+                ),
+                subtitleTextStyle: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w200,
+                  color: secondaryColor,
+                ),
                 hideBackgroundAnimation: true,
-                subTitle: 'Tidak ada data agunan tanah yang terdaftar',
+                subTitle:
+                    'Tidak ada data agunan tanah yang terdaftar atau koneksi internet bermasalah',
               ),
             );
           }
@@ -274,8 +303,8 @@ class FormTambahAgunanTanah extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -581,6 +610,7 @@ class FormInputAgunanTanah extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
+          // TODO: Add summary generator
           FormBuilderTextField(
             name: 'deskripsi_panjang',
             controller: controller.deskripsiPanjang,
@@ -604,6 +634,7 @@ class FormInputAgunanTanah extends StatelessWidget {
                 if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
                   controller.saveAgunanTanah(data.id);
+
                   Get.back();
                   debugPrint(controller.formKey.currentState?.value.toString());
                 } else {
@@ -618,7 +649,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 15.0,
+            height: 50.0,
           ),
         ],
       ),

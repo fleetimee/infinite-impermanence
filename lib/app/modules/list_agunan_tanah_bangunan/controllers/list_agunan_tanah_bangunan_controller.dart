@@ -1,23 +1,38 @@
 // ignore_for_file: unnecessary_overrides
 
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class ListAgunanTanahBangunanController extends GetxController {
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  final formKey = GlobalKey<FormBuilderState>();
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  var deskripsiPendek = TextEditingController();
+  var buktiKepemilikan = TextEditingController();
+  var persentase = TextEditingController();
+  var luasTanah = TextEditingController();
+  var tanggal = DateTime.now();
+  var lokasi = TextEditingController();
+  var titikKoordinat = TextEditingController();
+  var nilaiPasar = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var nilaiLiquidasi = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var nilaiPengikatan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var pengikatan = TextEditingController();
+  var deskripsiPanjang = TextEditingController();
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  var listAgunanTanahBangunan = List<FormTanah>.empty(growable: true).obs;
 }

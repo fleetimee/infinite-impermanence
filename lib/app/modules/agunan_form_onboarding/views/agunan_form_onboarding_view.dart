@@ -34,7 +34,7 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
         ],
       ),
       appBar: AppBar(
-        title: const Text('AgunanFormOnboardingView'),
+        title: const Text('Choose your path'),
         centerTitle: true,
       ),
       body: Column(

@@ -337,7 +337,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_AGUNAN_KENDARAAN,
-      page: () => const ListAgunanKendaraanView(),
+      page: () => ListAgunanKendaraanView(),
       binding: ListAgunanKendaraanBinding(),
     ),
     GetPage(

@@ -78,4 +78,51 @@ class ListAgunanTanahController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
+
+  void saveAgunanTanah(id) {
+    // final data = formKey.currentState?.value;
+
+    final body = {
+      'deskripsi_pendek': deskripsiPendek.text,
+      'nama_pemilik': buktiKepemilikan.text,
+      'bukti_kepemilikan': buktiKepemilikan.text,
+      'luas_tanah': luasTanah.text,
+      'tanggal': tanggal.toString(),
+      'nilai_pasar': nilaiPasar.text,
+      'nilai_liquidasi': nilaiLiquidasi.text,
+      'nilai_pengikatan': nilaiPengikatan.text,
+      'pengikatan': pengikatan.text,
+      'lokasi': lokasi.text,
+      'titik_koordinat': titikKoordinat.text,
+      'deskripsi_panjang': deskripsiPanjang.text,
+    };
+
+    try {
+      isAgunanTanahProcessing(true);
+      AgunanTanahProvider().saveFormAgunanTanah(id, body).then((resp) {
+        isAgunanTanahProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listAgunanTanah.clear();
+        getAllAgunanTanah(agunanId.id);
+      }, onError: (e) {
+        isAgunanTanahProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanTanahProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
 }

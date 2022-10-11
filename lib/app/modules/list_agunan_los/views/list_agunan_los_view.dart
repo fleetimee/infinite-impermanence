@@ -1,3 +1,4 @@
+import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_agunan_tanah/views/list_agunan_tanah_view.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
@@ -7,12 +8,15 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
+import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/list_agunan_los_controller.dart';
@@ -47,6 +51,8 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
               return IconButton(
                 onPressed: () {
                   showBarModalBottomSheet(
+                    expand: true,
+                    clipBehavior: Clip.antiAlias,
                     bounce: true,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
@@ -464,6 +470,305 @@ class FormInputAgunanLos extends StatelessWidget {
             height: 12.0,
           ),
           FormBuilderTextField(
+            name: 'komponen',
+            controller: controller.komponen,
+            decoration: const InputDecoration(
+              labelText: 'Komponen',
+              hintText: 'KBP.',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'tempat_dasaran',
+            controller: controller.tempatDasaran,
+            decoration: const InputDecoration(
+              labelText: 'Tempat Dasaran',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'no_registrasi',
+            controller: controller.noRegistrasi,
+            decoration: const InputDecoration(
+              labelText: 'No Registrasi',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'luas',
+            controller: controller.luasLos,
+            decoration: const InputDecoration(
+              labelText: 'Luas',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'jenis_dagangan',
+            controller: controller.jenisDagangan,
+            decoration: const InputDecoration(
+              labelText: 'Jenis Dagangan',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: FormBuilderDateTimePicker(
+                  name: 'waktu_buka',
+                  helpText: 'Waktu Buka',
+                  inputType: InputType.time,
+                  format: DateFormat('HH:mm'),
+                  currentDate: DateTime.now(),
+                  enableInteractiveSelection: true,
+                  initialTime: TimeOfDay.now(),
+                  onSaved: (value) {
+                    controller.waktuBuka.text = value.toString();
+                  },
+                  onChanged: (value) {
+                    controller.waktuBuka.text = value.toString();
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Waktu Buka',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderDateTimePicker(
+                  name: 'waktu_tutup',
+                  helpText: 'Waktu Tutup',
+                  inputType: InputType.time,
+                  format: DateFormat('HH:mm'),
+                  currentDate: DateTime.now(),
+                  enableInteractiveSelection: true,
+                  initialTime: TimeOfDay.now(),
+                  onSaved: (value) {
+                    controller.waktuTutup.text = value.toString();
+                  },
+                  onChanged: (value) {
+                    controller.waktuTutup.text = value.toString();
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Waktu Tutup',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'lokasi_pasar',
+            controller: controller.lokasiPasar,
+            maxLines: 3,
+            decoration: const InputDecoration(
+              labelText: 'Lokasi Pasar',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                showBarModalBottomSheet(
+                  context: context,
+                  bounce: true,
+                  isDismissible: false,
+                  enableDrag: false,
+                  builder: (context) {
+                    return OpenStreetMapSearchAndPick(
+                        center: LatLong(-7.8013753, 110.3647927),
+                        buttonColor: primaryColor,
+                        buttonText: 'Pilih Lokasi',
+                        onPicked: (pickedData) {
+                          controller.lokasiPasar.text = pickedData.address;
+                          Get.back();
+                        });
+                  },
+                );
+              },
+              text: 'Cari di Maps',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Nilai Agunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: FormBuilderTextField(
+                  name: 'nilai_pasar',
+                  controller: controller.nilaiPasar,
+                  decoration: const InputDecoration(
+                    labelText: 'Nilai Pasar',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderTextField(
+                  name: 'persentase',
+                  controller: controller.persentase,
+                  decoration: const InputDecoration(
+                    labelText: 'Persen',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_likuidasi',
+            enabled: false,
+            controller: controller.nilaiLiquidasi,
+            decoration: const InputDecoration(
+              labelText: 'Nilai Likuidasi',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_pengikatan',
+            enabled: false,
+            controller: controller.nilaiPengikatan,
+            decoration: const InputDecoration(
+              labelText: 'Nilai Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'pengikatan',
+            controller: controller.pengikatan,
+            decoration: const InputDecoration(
+              labelText: 'Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.hitungNilaiLiquidasi();
+              },
+              text: 'Hitung Nilai Liquidasi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Detail Pemilik',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderTextField(
             name: 'atas_nama',
             controller: controller.namaPemilik,
             decoration: const InputDecoration(
@@ -478,17 +783,168 @@ class FormInputAgunanLos extends StatelessWidget {
           const SizedBox(
             height: 12.0,
           ),
-          // TODO: Lanjut sini
+          Row(
+            children: [
+              Expanded(
+                child: FormBuilderSearchableDropdown<String>(
+                  name: 'ktp2',
+                  onChanged: (value) {
+                    controller.tempatLahir.text = value!;
+                    debugPrint(value);
+                  },
+                  onSaved: (value) {
+                    controller.tempatLahir.text = value!;
+                    debugPrint(value);
+                  },
+                  validator: FormBuilderValidators.required(),
+                  items: allProvinsi,
+                  popupProps: const PopupProps.menu(showSearchBox: true),
+                  dropdownSearchDecoration: const InputDecoration(
+                    hintText: 'Search',
+                    labelText: 'Search',
+                  ),
+                  filterFn: (provinsi, filter) =>
+                      provinsi.toLowerCase().contains(filter.toLowerCase()),
+                  decoration: const InputDecoration(
+                    labelText: 'Tempat Lahir',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderDateTimePicker(
+                  name: 'tanggal_lahir',
+                  onChanged: (value) {
+                    controller.tanggalLahir = value!;
+                    debugPrint(value.toString());
+                  },
+                  errorFormatText: 'Format tanggal salah',
+                  errorInvalidText: 'Tanggal tidak valid',
+                  inputType: InputType.date,
+                  decoration: const InputDecoration(
+                    labelText: 'Tanggal Lahir',
+                    labelStyle: TextStyle(fontSize: 18),
+                    hintText: 'Masukkan Tanggal Lahir',
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: primaryColor),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                  ),
+                  format: DateFormat('EEE, dd MMMM yyyy'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
           FormBuilderTextField(
             name: 'Alamat',
             controller: controller.alamat,
+            maxLines: 4,
             decoration: const InputDecoration(
               labelText: 'Alamat Pemilik',
+              alignLabelWithHint: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
                 ),
               ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                showBarModalBottomSheet(
+                  context: context,
+                  bounce: true,
+                  isDismissible: false,
+                  enableDrag: false,
+                  builder: (context) {
+                    return OpenStreetMapSearchAndPick(
+                        center: LatLong(-7.8013753, 110.3647927),
+                        buttonColor: primaryColor,
+                        buttonText: 'Pilih Lokasi',
+                        onPicked: (pickedData) {
+                          controller.alamat.text = pickedData.address;
+                          Get.back();
+                        });
+                  },
+                );
+              },
+              text: 'Cari di Maps',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Summary',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderTextField(
+            name: 'summary',
+            readOnly: true,
+            controller: controller.deskripsiPanjang,
+            maxLines: 14,
+            decoration: const InputDecoration(
+              labelText: 'Summary',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.generateDescription();
+              },
+              text: 'Generate Deskripsi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  // controller.saveAgunanTanah(data.id);
+
+                  // Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Simpan',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
             ),
           ),
         ],

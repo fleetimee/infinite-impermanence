@@ -352,7 +352,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_AGUNAN_LOS,
-      page: () => const ListAgunanLosView(),
+      page: () => ListAgunanLosView(),
       binding: ListAgunanLosBinding(),
     ),
     GetPage(

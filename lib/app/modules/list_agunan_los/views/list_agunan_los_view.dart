@@ -1,20 +1,27 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_agunan_tanah/views/list_agunan_tanah_view.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/list_agunan_los_controller.dart';
 
 class ListAgunanLosView extends GetView<ListAgunanLosController> {
-  const ListAgunanLosView({Key? key}) : super(key: key);
+  ListAgunanLosView({Key? key}) : super(key: key);
+
+  final data = Get.arguments;
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldGradientBackground(
@@ -28,6 +35,36 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
       ),
       appBar: AppBar(
         title: const Text('Agunan Kios Yang Terdaftar'),
+        actions: [
+          Obx(() {
+            if (controller.isAgunanLosProcessing.value) {
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              );
+            } else {
+              return IconButton(
+                onPressed: () {
+                  showBarModalBottomSheet(
+                    bounce: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    context: context,
+                    settings: RouteSettings(
+                        name: Routes.LIST_AGUNAN_LOS, arguments: data),
+                    builder: (context) => FormTambahAgunanLos(),
+                    isDismissible: false,
+                  );
+                },
+                icon: const Icon(FontAwesomeIcons.plus),
+              );
+            }
+          })
+        ],
       ),
       body: Obx(
         () {
@@ -341,6 +378,120 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
             }
           }
         },
+      ),
+    );
+  }
+}
+
+class FormTambahAgunanLos extends StatelessWidget {
+  FormTambahAgunanLos({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListAgunanLosController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Tambah Agunan Los',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormInputAgunanLos(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FormInputAgunanLos extends StatelessWidget {
+  FormInputAgunanLos({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ListAgunanLosController controller;
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Detail Agunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderTextField(
+            name: 'deskripsi_pendek',
+            controller: controller.deskripsiPendek,
+            decoration: const InputDecoration(
+              labelText: 'Keterangan',
+              hintText: 'KBP Pasar Lempuyangan...',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'atas_nama',
+            controller: controller.namaPemilik,
+            decoration: const InputDecoration(
+              labelText: 'Nama Pemilik',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          // TODO: Lanjut sini
+          FormBuilderTextField(
+            name: 'Alamat',
+            controller: controller.alamat,
+            decoration: const InputDecoration(
+              labelText: 'Alamat Pemilik',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

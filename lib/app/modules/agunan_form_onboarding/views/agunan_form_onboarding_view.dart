@@ -8,6 +8,7 @@ import 'package:akm/app/modules/insight_debitur/views/components/header_accordio
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah/list_tile_tanah_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah_bangunan/list_tile_tanah_bangunan_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/components/card/gf_card.dart';
@@ -45,7 +46,7 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
             titlePosition: GFPosition.start,
             showOverlayImage: true,
             imageOverlay: AssetImage(
-              'assets/images/home/printing.jpg',
+              'assets/images/home/satania-banner.jpg',
             ),
             colorFilter: ColorFilter.mode(
               Color.fromARGB(221, 8, 8, 8),
@@ -136,7 +137,11 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
                     return LainnyaForm();
                   }
                 }),
-              ],
+              ]
+                  .animate(interval: 300.ms)
+                  .fadeIn(duration: 600.ms, delay: 900.ms)
+                  .shimmer(blendMode: BlendMode.srcOver, color: Colors.white12)
+                  .move(begin: const Offset(-16, 0), curve: Curves.easeOutQuad),
             ),
           ),
         ],

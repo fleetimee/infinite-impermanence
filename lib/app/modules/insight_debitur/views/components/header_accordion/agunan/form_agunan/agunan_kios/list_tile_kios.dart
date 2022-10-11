@@ -38,7 +38,9 @@ class KiosForm extends StatelessWidget {
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.LIST_AGUNAN_LOS,
-                    arguments: controller.insightDebitur.value);
+                    arguments: controller.listAgunan.elementAt(controller
+                        .listAgunan
+                        .indexWhere((element) => element.kodeAgunan == 6)));
               },
               text: "READY",
               buttonBoxShadow: true,

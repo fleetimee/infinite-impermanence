@@ -43,8 +43,8 @@ class ListDebiturView extends GetView<ListDebiturController> {
                       boxFit: BoxFit.cover,
                       titlePosition: GFPosition.start,
                       showOverlayImage: true,
-                      imageOverlay: const NetworkImage(
-                        'https://i.4cdn.org/a/1664910182761153.jpg',
+                      imageOverlay: const AssetImage(
+                        'assets/images/home/pink-box.jpg',
                       ),
                       colorFilter: const ColorFilter.mode(
                         Color.fromARGB(136, 0, 0, 0),

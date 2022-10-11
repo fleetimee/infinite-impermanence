@@ -15,12 +15,12 @@ class ListDebiturView extends GetView<ListDebiturController> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldGradientBackground(
-      gradient: const LinearGradient(
+      gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          blue200,
-          blue300,
+          Colors.blue,
+          Colors.blue.shade900,
         ],
       ),
       appBar: AppBar(

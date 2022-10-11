@@ -5,9 +5,11 @@ import 'package:akm/app/routes/app_pages.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/components/list_tile/gf_list_tile.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -46,7 +48,6 @@ class ListAgunanKendaraanView extends GetView<ListAgunanKendaraanController> {
               return IconButton(
                 onPressed: () {
                   showBarModalBottomSheet(
-                    expand: true,
                     bounce: true,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
@@ -56,7 +57,7 @@ class ListAgunanKendaraanView extends GetView<ListAgunanKendaraanController> {
                     context: context,
                     settings: RouteSettings(
                         name: Routes.LIST_AGUNAN_KENDARAAN, arguments: data),
-                    builder: (context) => Container(),
+                    builder: (context) => FormTambahAgunanKendaraan(),
                     isDismissible: false,
                   );
                 },
@@ -382,6 +383,418 @@ class ListAgunanKendaraanView extends GetView<ListAgunanKendaraanController> {
             }
           }
         },
+      ),
+    );
+  }
+}
+
+class FormTambahAgunanKendaraan extends StatelessWidget {
+  FormTambahAgunanKendaraan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(ListAgunanKendaraanController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Tambah Agunan Kendaraan',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormInputAgunanKendaraan(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FormInputAgunanKendaraan extends StatelessWidget {
+  FormInputAgunanKendaraan({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ListAgunanKendaraanController controller;
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Detail Agunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderDropdown(
+            name: 'jenis',
+            items: controller.jenisKendaraanList.map((String value) {
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            decoration: const InputDecoration(
+              labelText: 'Jenis Kendaraan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+            onChanged: (value) {
+              controller.jenisKendaraan = value.toString();
+              debugPrint(value.toString());
+            },
+            onSaved: (value) {
+              controller.jenisKendaraan = value.toString();
+              debugPrint(value.toString());
+            },
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'merk',
+            controller: controller.merk,
+            decoration: const InputDecoration(
+              labelText: 'Merk',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'type',
+            controller: controller.type,
+            decoration: const InputDecoration(
+              labelText: 'Type',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'warna',
+            controller: controller.warna,
+            decoration: const InputDecoration(
+              labelText: 'Warna',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'tahun',
+            controller: controller.tahun,
+            decoration: const InputDecoration(
+              labelText: 'Tahun',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'no_polisi',
+            controller: controller.noPolisi,
+            decoration: const InputDecoration(
+              labelText: 'No Polisi',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'no_rangka',
+            controller: controller.noRangka,
+            decoration: const InputDecoration(
+              labelText: 'No Rangka',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'no_mesin',
+            controller: controller.noMesin,
+            decoration: const InputDecoration(
+              labelText: 'No Mesin',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'no_bpkb',
+            controller: controller.noBpkb,
+            decoration: const InputDecoration(
+              labelText: 'No BPKB',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nama_pemilik',
+            controller: controller.atasNama,
+            decoration: const InputDecoration(
+              labelText: 'Atas Nama',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'kondisi',
+            controller: controller.keadaan,
+            decoration: const InputDecoration(
+              labelText: 'Kondisi',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          const Text(
+            'Nilai Agunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: FormBuilderTextField(
+                  name: 'nilai_pasar',
+                  controller: controller.nilaiPasar,
+                  decoration: const InputDecoration(
+                    labelText: 'Nilai Pasar',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderTextField(
+                  name: 'persentase',
+                  controller: controller.persentase,
+                  decoration: const InputDecoration(
+                    labelText: 'Persen',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_likuidasi',
+            enabled: false,
+            controller: controller.nilaiLiquidasi,
+            decoration: const InputDecoration(
+              labelText: 'Nilai Likuidasi',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_pengikatan',
+            enabled: false,
+            controller: controller.nilaiPengikatan,
+            decoration: const InputDecoration(
+              labelText: 'Nilai Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'pengikatan',
+            controller: controller.pengikatan,
+            decoration: const InputDecoration(
+              labelText: 'Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.hitungNilaiLiquidasi();
+              },
+              text: 'Hitung Nilai Liquidasi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Summary',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          // TODO: Add summary generator
+          FormBuilderTextField(
+            name: 'deskripsi_panjang',
+            readOnly: true,
+            controller: controller.deskripsiPanjang,
+            maxLines: 5,
+            decoration: const InputDecoration(
+              labelText: 'Summary',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.generateDescription();
+              },
+              text: 'Generate Deskripsi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  controller.saveAgunanKendaraan(data.id);
+                  Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Simpan',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
+            ),
+          ),
+        ],
       ),
     );
   }

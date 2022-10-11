@@ -24,10 +24,10 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldGradientBackground(
-      gradient: const LinearGradient(
+      gradient: LinearGradient(
         colors: [
-          blue200,
-          blue300,
+          Colors.blue,
+          Colors.blue.shade900,
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,

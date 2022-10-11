@@ -1,5 +1,6 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +25,12 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldGradientBackground(
-      gradient: const LinearGradient(
+      gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          blue200,
-          blue300,
+          Colors.blue,
+          Colors.blue.shade900,
         ],
       ),
       appBar: AppBar(
@@ -55,7 +56,7 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                     ),
                     context: context,
                     settings: RouteSettings(
-                        name: '/list_agunan_tanah', arguments: data),
+                        name: Routes.LIST_AGUNAN_TANAH, arguments: data),
                     builder: (context) => FormTambahAgunanTanah(),
                     isDismissible: false,
                   );
@@ -76,14 +77,6 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
             return ListView.builder(
               itemCount: controller.listAgunanTanah.length,
               itemBuilder: (context, index) {
-                // return Card(
-                //   child: ListTile(
-                //     title: Text(
-                //       controller.listAgunanTanah[index].deskripsiPendek
-                //           .toString(),
-                //     ),
-                //   ),
-                // );
                 return Container(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: GFListTile(
@@ -316,7 +309,7 @@ class FormTambahAgunanTanah extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 16.0,
+              height: 12.0,
             ),
             FormBuilder(
               key: controller.formKey,
@@ -370,7 +363,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderTextField(
             name: 'bukti_kepemilikan',
@@ -385,7 +378,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderTextField(
             name: 'luas_tanah',
@@ -400,7 +393,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderDateTimePicker(
             name: 'tanggal',
@@ -423,7 +416,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderTextField(
             name: 'pengikatan',
@@ -438,7 +431,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           const Text(
             'Nilai Agunan',
@@ -487,7 +480,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderTextField(
             name: 'nilai_likuidasi',
@@ -503,7 +496,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderTextField(
             name: 'nilai_pengikatan',
@@ -554,7 +547,7 @@ class FormInputAgunanTanah extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16.0,
+            height: 12.0,
           ),
           FormBuilderTextField(
             name: 'titik_koordinat',

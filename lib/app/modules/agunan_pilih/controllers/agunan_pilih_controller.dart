@@ -61,12 +61,6 @@ class AgunanPilihController extends GetxController {
     }
   }
 
-  void plafonCheck() {
-    final parsePlafon = int.parse(plafonKredit.text.replaceAll('.', ''));
-
-    // if plafon <= 100jt then check key_lainnya
-  }
-
   final count = 0.obs;
   @override
   void onInit() {

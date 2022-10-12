@@ -1,3 +1,12 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:getwidget/components/accordion/gf_accordion.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
@@ -5,11 +14,6 @@ import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_cont
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:get/get.dart';
-import 'package:getwidget/components/accordion/gf_accordion.dart';
 
 class HeaderKeuangan extends StatelessWidget {
   HeaderKeuangan({

@@ -1,7 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/input_keuangan/views/components/input/asumsi_keuangan.dart';
-import 'package:akm/app/modules/input_keuangan/views/components/input/data_keuangan.dart';
-import 'package:akm/app/modules/input_keuangan/views/components/input/interest.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,6 +7,9 @@ import 'package:get/get.dart';
 import 'package:stepper_page_view/stepper_page_view.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/modules/input_keuangan/views/components/input/asumsi_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/input/data_keuangan.dart';
+import 'package:akm/app/modules/input_keuangan/views/components/input/interest.dart';
 import '../controllers/input_keuangan_controller.dart';
 
 // TODO: Remake Input Keuangan without PageStepper (this one is dogshit)

@@ -7,10 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../controllers/usaha_analisis_controller.dart';
-
-// 🌎 Project imports:
 import '../../../common/style.dart';
+import '../controllers/usaha_analisis_controller.dart';
 
 class EditUsahaAnalisisView extends GetView<UsahaAnalisisController> {
   EditUsahaAnalisisView({Key? key}) : super(key: key);

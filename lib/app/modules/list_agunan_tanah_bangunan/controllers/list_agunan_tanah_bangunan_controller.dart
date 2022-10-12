@@ -1,10 +1,15 @@
 // ignore_for_file: unnecessary_overrides
 
-import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 
 class ListAgunanTanahBangunanController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();

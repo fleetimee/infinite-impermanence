@@ -1,8 +1,6 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
-import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
@@ -13,6 +11,8 @@ import 'package:pdf/widgets.dart';
 import 'package:terbilang_id/terbilang_id.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import '../print_widget.dart';
 
 // 📦 Package imports:

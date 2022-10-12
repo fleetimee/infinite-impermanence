@@ -14,10 +14,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
-import '../controllers/bisnis_analisis_controller.dart';
-
-// 🌎 Project imports:
 import '../../../common/style.dart';
+import '../controllers/bisnis_analisis_controller.dart';
 
 class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
   BisnisAnalisisView({Key? key}) : super(key: key);

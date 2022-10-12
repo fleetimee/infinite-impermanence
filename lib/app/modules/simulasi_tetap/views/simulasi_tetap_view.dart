@@ -1,13 +1,16 @@
-import 'package:akm/app/common/style.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/simulasi_tetap_controller.dart';
 
 class SimulasiTetapView extends GetView<SimulasiTetapController> {

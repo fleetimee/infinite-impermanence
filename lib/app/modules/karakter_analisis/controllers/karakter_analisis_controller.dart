@@ -1,12 +1,14 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/data/provider/analisis_karakter/save_analis_karakter.provider.dart';
-import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/analisis_karakter/save_analis_karakter.provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 // 🌎 Project imports:
 

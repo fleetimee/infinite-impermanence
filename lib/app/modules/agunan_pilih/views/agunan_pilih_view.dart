@@ -1,14 +1,17 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/agunan/agunan_input.model.dart';
-import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/models/agunan/agunan_input.model.dart';
+import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import '../controllers/agunan_pilih_controller.dart';
 
 class AgunanPilihView extends GetView<AgunanPilihController> {

@@ -1,5 +1,7 @@
+// 📦 Package imports:
 import 'package:get/get.dart';
 
+// 🌎 Project imports:
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_binding.dart';
@@ -357,7 +359,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_AGUNAN_LAINNYA,
-      page: () => const ListAgunanLainnyaView(),
+      page: () => ListAgunanLainnyaView(),
       binding: ListAgunanLainnyaBinding(),
     ),
     GetPage(

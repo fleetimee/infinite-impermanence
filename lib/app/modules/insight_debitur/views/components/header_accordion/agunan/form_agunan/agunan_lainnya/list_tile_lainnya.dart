@@ -1,17 +1,23 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 
 class LainnyaForm extends StatelessWidget {
   LainnyaForm({
     Key? key,
   }) : super(key: key);
 
+  final plafonKredit = Get.arguments;
   final controller = Get.put(InsightDebiturController());
   final selectedAgunanController = Get.put(AgunanPilihController());
 
@@ -37,8 +43,13 @@ class LainnyaForm extends StatelessWidget {
       icon: controller.listAgunan.any((element) => element.kodeAgunan == 7)
           ? GFButton(
               onPressed: () {
-                Get.toNamed(Routes.LIST_AGUNAN_LAINNYA,
-                    arguments: controller.insightDebitur.value);
+                Get.toNamed(Routes.LIST_AGUNAN_LAINNYA, arguments:
+                    // Send to arguments as a list
+                    [
+                  controller.listAgunan.elementAt(controller.listAgunan
+                      .indexWhere((element) => element.kodeAgunan == 7)),
+                  plafonKredit,
+                ]);
               },
               text: "READY",
               buttonBoxShadow: true,

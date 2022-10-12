@@ -12,11 +12,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
-import '../controllers/debitur_real_controller.dart';
-
-// 🌎 Project imports:
 import '../../../common/provinsi_kabupaten.dart';
 import '../../../common/style.dart';
+import '../controllers/debitur_real_controller.dart';
 
 class DebiturRealView extends StatelessWidget {
   DebiturRealView({Key? key}) : super(key: key);

@@ -1,8 +1,12 @@
-import 'package:akm/app/data/provider/debitur/list_debitur.provider.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:nekos/nekos.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/data/provider/debitur/list_debitur.provider.dart';
 import '../../../models/debitur_model/list_debitur.model.dart';
 
 class ListDebiturController extends GetxController {

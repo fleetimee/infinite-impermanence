@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../../controllers/home_controller.dart';
 import 'menu_item/greeting.dart';
 

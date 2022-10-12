@@ -1,15 +1,18 @@
 // ignore_for_file: prefer_is_empty
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:getwidget/getwidget.dart';
-
-import 'package:get/get.dart';
 
 class MenuMasukFormAgunan extends StatelessWidget {
   MenuMasukFormAgunan({
@@ -198,7 +201,7 @@ class FormMultipleButton extends StatelessWidget {
               //   ),
               // );
               Get.toNamed(Routes.AGUNAN_FORM_ONBOARDING,
-                  arguments: controller.insightDebitur.value.id);
+                  arguments: controller.insightDebitur.value);
             },
             child: const Text(
               "Ke Form",

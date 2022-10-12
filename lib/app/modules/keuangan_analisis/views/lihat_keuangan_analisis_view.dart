@@ -2,7 +2,6 @@
 // ignore_for_file: unused_field
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -15,15 +14,13 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
+import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
+import '../../../common/style.dart';
 import '../controllers/keuangan_analisis_controller.dart';
-
 import 'components/views/view_analisa_ratio.dart';
 import 'components/views/view_angsuran.dart';
 import 'components/views/view_asumsi_keuangan.dart';
 import 'components/views/view_data_keuangan.dart';
-
-// 🌎 Project imports:
-import '../../../common/style.dart';
 
 class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
   LihatKeuanganAnalisisView({Key? key}) : super(key: key);

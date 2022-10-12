@@ -1,12 +1,17 @@
-import 'package:akm/app/common/style.dart';
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:finance/finance.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:terbilang_id/terbilang_id.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 
 class SimulasiTetapController extends GetxController {
   @override

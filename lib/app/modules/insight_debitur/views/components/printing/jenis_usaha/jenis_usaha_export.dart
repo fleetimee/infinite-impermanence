@@ -1,12 +1,14 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
-import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 
 // 🌎 Project imports:
 

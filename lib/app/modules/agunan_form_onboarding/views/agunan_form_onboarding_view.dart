@@ -1,3 +1,15 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:get/get.dart';
+import 'package:getwidget/components/card/gf_card.dart';
+import 'package:getwidget/components/list_tile/gf_list_tile.dart';
+import 'package:getwidget/position/gf_position.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_cash/list_tile_cash_form.dart';
@@ -7,21 +19,13 @@ import 'package:akm/app/modules/insight_debitur/views/components/header_accordio
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_peralatan/list_tile_peralatan_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah/list_tile_tanah_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_tanah_bangunan/list_tile_tanah_bangunan_form.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-
-import 'package:get/get.dart';
-import 'package:getwidget/components/card/gf_card.dart';
-import 'package:getwidget/components/list_tile/gf_list_tile.dart';
-import 'package:getwidget/position/gf_position.dart';
-import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
-
 import '../controllers/agunan_form_onboarding_controller.dart';
 
 class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
   AgunanFormOnboardingView({Key? key}) : super(key: key);
 
   final selectedAgunanController = Get.put(AgunanPilihController());
+  final plafonKredit = Get.arguments;
 
   @override
   Widget build(BuildContext context) {

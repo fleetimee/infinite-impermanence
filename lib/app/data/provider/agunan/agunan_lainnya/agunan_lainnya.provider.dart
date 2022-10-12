@@ -11,13 +11,13 @@ import 'package:http/http.dart' as http;
 import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 
-class AgunanPeralatanProvider {
+class AgunanLainnyaProvider {
   final httpClient = http.Client();
 
-  Future<List<FormCommon>> fetchAgunanPeralatan(int id) async {
+  Future<List<FormCommon>> fetchAgunanLainnya(int id) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}agunan/$id/agunan-peralatan/'),
+        Uri.parse('${baseUrl}agunan/$id/agunan-lainnya/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -36,10 +36,10 @@ class AgunanPeralatanProvider {
     }
   }
 
-  Future<FormCommon> saveFormAgunanPeralatan(int id, Map body) async {
+  Future<FormCommon> saveFormAgunanCash(int id, Map body) async {
     try {
       final response = await httpClient.post(
-        Uri.parse('${baseUrl}agunan/$id/agunan-peralatan/'),
+        Uri.parse('${baseUrl}agunan/$id/agunan-cash/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

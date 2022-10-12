@@ -1,9 +1,15 @@
+// 🎯 Dart imports:
 import 'dart:convert';
 
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:http/http.dart' as http;
+
+// 🌎 Project imports:
 import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class InsightDebiturProvider {
   final httpClient = http.Client();

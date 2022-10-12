@@ -2,12 +2,6 @@
 // ignore_for_file: unused_field
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_analisa_ratio.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_angsuran.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_asumsi_keuangan.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_data_keuangan.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/hasil.dart';
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -21,10 +15,14 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
-import '../controllers/keuangan_analisis_controller.dart';
-
-// 🌎 Project imports:
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_analisa_ratio.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_angsuran.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_asumsi_keuangan.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/edit/edit_data_keuangan.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/input/hasil.dart';
+import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
 import '../../../common/style.dart';
+import '../controllers/keuangan_analisis_controller.dart';
 
 class EditLihatKeuanganAnalisisView
     extends GetView<KeuanganAnalisisController> {

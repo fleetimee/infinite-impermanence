@@ -1,13 +1,16 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
+// 📦 Package imports:
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/list_debitur_controller.dart';
 
 class ListDebiturView extends GetView<ListDebiturController> {

@@ -9,11 +9,9 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
+import '../../../common/style.dart';
 import '../controllers/porsekot_table_controller.dart';
 import 'components/table_porsekot.dart';
-
-// 🌎 Project imports:
-import '../../../common/style.dart';
 
 class PorsekotTableView extends GetView<PorsekotTableController> {
   const PorsekotTableView({Key? key}) : super(key: key);

@@ -1,7 +1,9 @@
 // ignore_for_file: unnecessary_overrides
 
 import 'package:akm/app/data/provider/agunan/agunan_pilihan/agunan_pilih.provider.dart';
+import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
@@ -12,7 +14,10 @@ class AgunanPilihController extends GetxController {
 
   final data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
+  final keuanganController = Get.put(InputKeuanganController());
 
+  var plafonKredit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
   final isAgunanInputProcessing = false.obs;
 
   final formKey = GlobalKey<FormBuilderState>();
@@ -49,6 +54,12 @@ class AgunanPilihController extends GetxController {
       isAgunanInputProcessing.value = false;
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void plafonCheck() {
+    final parsePlafon = int.parse(plafonKredit.text.replaceAll('.', ''));
+
+    // if plafon <= 100jt then check key_lainnya
   }
 
   final count = 0.obs;

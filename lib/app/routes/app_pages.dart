@@ -322,7 +322,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AGUNAN_PILIH,
-      page: () => const AgunanPilihView(),
+      page: () => AgunanPilihView(),
       binding: AgunanPilihBinding(),
     ),
     GetPage(
@@ -342,12 +342,12 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_AGUNAN_PERALATAN,
-      page: () => const ListAgunanPeralatanView(),
+      page: () => ListAgunanPeralatanView(),
       binding: ListAgunanPeralatanBinding(),
     ),
     GetPage(
       name: _Paths.LIST_AGUNAN_CASH,
-      page: () => const ListAgunanCashView(),
+      page: () => ListAgunanCashView(),
       binding: ListAgunanCashBinding(),
     ),
     GetPage(

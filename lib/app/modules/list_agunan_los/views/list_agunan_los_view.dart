@@ -491,6 +491,7 @@ class FormInputAgunanLos extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Tempat Dasaran',
               alignLabelWithHint: true,
+              hintText: '4Los2C',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -506,6 +507,7 @@ class FormInputAgunanLos extends StatelessWidget {
             controller: controller.noRegistrasi,
             decoration: const InputDecoration(
               labelText: 'No Registrasi',
+              hintText: '0017/LMPY/-/2021',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -561,10 +563,10 @@ class FormInputAgunanLos extends StatelessWidget {
                   enableInteractiveSelection: true,
                   initialTime: TimeOfDay.now(),
                   onSaved: (value) {
-                    controller.waktuBuka.text = value.toString();
+                    controller.waktuBuka = value!;
                   },
                   onChanged: (value) {
-                    controller.waktuBuka.text = value.toString();
+                    controller.waktuBuka = value!;
                   },
                   decoration: const InputDecoration(
                     labelText: 'Waktu Buka',
@@ -590,10 +592,10 @@ class FormInputAgunanLos extends StatelessWidget {
                   enableInteractiveSelection: true,
                   initialTime: TimeOfDay.now(),
                   onSaved: (value) {
-                    controller.waktuTutup.text = value.toString();
+                    controller.waktuTutup = value!;
                   },
                   onChanged: (value) {
-                    controller.waktuTutup.text = value.toString();
+                    controller.waktuTutup = value!;
                   },
                   decoration: const InputDecoration(
                     labelText: 'Waktu Tutup',
@@ -607,6 +609,29 @@ class FormInputAgunanLos extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderDateTimePicker(
+            name: 'berlaku_sampai',
+            onChanged: (value) {
+              controller.berlakuSampai = value!;
+              debugPrint(value.toString());
+            },
+            errorFormatText: 'Format tanggal salah',
+            errorInvalidText: 'Tanggal tidak valid',
+            inputType: InputType.date,
+            decoration: const InputDecoration(
+              labelText: 'Berlaku Sampai',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+            format: DateFormat('EEE, dd MMMM yyyy'),
           ),
           const SizedBox(
             height: 12.0,
@@ -787,7 +812,7 @@ class FormInputAgunanLos extends StatelessWidget {
             children: [
               Expanded(
                 child: FormBuilderSearchableDropdown<String>(
-                  name: 'ktp2',
+                  name: 'tempat_lahir',
                   onChanged: (value) {
                     controller.tempatLahir.text = value!;
                     debugPrint(value);
@@ -831,16 +856,14 @@ class FormInputAgunanLos extends StatelessWidget {
                   inputType: InputType.date,
                   decoration: const InputDecoration(
                     labelText: 'Tanggal Lahir',
-                    labelStyle: TextStyle(fontSize: 18),
-                    hintText: 'Masukkan Tanggal Lahir',
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: primaryColor),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.grey),
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
                     ),
                   ),
-                  format: DateFormat('EEE, dd MMMM yyyy'),
+                  format: DateFormat('dd MMMM yyyy'),
                 ),
               ),
             ],
@@ -932,9 +955,8 @@ class FormInputAgunanLos extends StatelessWidget {
               onPressed: () {
                 if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
-                  // controller.saveAgunanTanah(data.id);
-
-                  // Get.back();
+                  controller.saveAgunanLos(data.id);
+                  Get.back();
                   debugPrint(controller.formKey.currentState?.value.toString());
                 } else {
                   debugPrint(controller.formKey.currentState?.value.toString());

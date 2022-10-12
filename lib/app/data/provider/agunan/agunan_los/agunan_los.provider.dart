@@ -29,4 +29,30 @@ class AgunanLosProvider {
       return Future.error(e);
     }
   }
+
+  Future<FormLo> saveFormAgunanLos(int id, Map body) async {
+    try {
+      final response = await httpClient.post(
+        Uri.parse('${baseUrl}agunan/$id/agunan-los/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        return FormLo.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  // TODO: Add update agunan los
+
+  // TODO: Add update agunan los
 }

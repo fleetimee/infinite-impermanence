@@ -5,7 +5,6 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -28,6 +27,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
       ),
       body: FormBuilder(
         key: controller.formKey,
+        skipDisabled: true,
         onChanged: () {
           controller.formKey.currentState!.save();
           debugPrint(controller.formKey.currentState!.value.toString());
@@ -86,6 +86,11 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   const SizedBox(
                     height: 12.0,
                   ),
+                  const Text(
+                      'Rules: Jika Plafon Kredit <= 100 Jt, maka field agunan lainnya akan terbuka'),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
                   FormBuilderTextField(
                     name: 'plafon_kredit',
                     readOnly: true,
@@ -108,23 +113,34 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                       ),
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.bottomRight,
-                    child: GFButton(
-                      onPressed: () {
-                        controller.plafonCheck();
-                      },
-                      text: 'Verifikasi Plafon Kredit',
-                      elevation: 10,
-                      color: primaryColor,
-                    ),
-                  ),
                   const SizedBox(
                     height: 30,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Jenis agunan untuk plafon diatas 100 juta : ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        int.parse(data.inputKeuangan.kreditDiusulkan) >
+                                100000000
+                            ? 'ENABLED'
+                            : 'DISABLED',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
                   FormBuilderCheckboxGroup<Map<String, dynamic>>(
                     // enabled some of the options
-                    enabled: int.parse(data.inputKeuangan.kreditDiusulkan) <=
+                    enabled: int.parse(data.inputKeuangan.kreditDiusulkan) >
                             100000000
                         ? true
                         : false,
@@ -141,10 +157,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                     ),
                     name: 'languages',
                     onChanged: _onChanged,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.minLength(1),
-                      FormBuilderValidators.maxLength(3),
-                    ]),
+
                     options: [
                       FormBuilderFieldOption(
                         key: const Key('key_tanah'),
@@ -212,6 +225,58 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                         ).toJson(),
                         child: const Text('Kios Pasar'),
                       ),
+                    ],
+                    separator: const VerticalDivider(
+                      width: 10,
+                      thickness: 5,
+                      color: Colors.red,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Jenis agunan untuk plafon <= 100 juta : ',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                      ),
+                      Text(
+                        int.parse(data.inputKeuangan.kreditDiusulkan) <=
+                                100000000
+                            ? 'ENABLED'
+                            : 'DISABLED',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  FormBuilderCheckboxGroup<Map<String, dynamic>>(
+                    // enabled some of the options
+                    enabled: int.parse(data.inputKeuangan.kreditDiusulkan) <=
+                            100000000
+                        ? true
+                        : false,
+                    wrapDirection: Axis.vertical,
+                    checkColor: secondaryColor,
+                    activeColor: primaryColor,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                    ),
+                    name: 'languages',
+                    onChanged: _onChanged,
+                    options: [
                       FormBuilderFieldOption(
                         key: const Key('key_lainnya'),
                         value: Bulk(

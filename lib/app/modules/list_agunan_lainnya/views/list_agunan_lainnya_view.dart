@@ -1,13 +1,17 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/components/button/gf_button.dart';
 import 'package:getwidget/components/list_tile/gf_list_tile.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
@@ -19,8 +23,7 @@ import '../controllers/list_agunan_lainnya_controller.dart';
 class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
   ListAgunanLainnyaView({Key? key}) : super(key: key);
 
-  final data = Get.arguments[0];
-  final plafon = Get.arguments[1];
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -44,25 +47,31 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
                 ),
               );
             } else {
-              return IconButton(
-                onPressed: () {
-                  // showBarModalBottomSheet(
-                  //   clipBehavior: Clip.antiAlias,
-                  //   bounce: true,
-                  //   shape: const RoundedRectangleBorder(
-                  //     borderRadius: BorderRadius.vertical(
-                  //       top: Radius.circular(20),
-                  //     ),
-                  //   ),
-                  //   context: context,
-                  //   settings: RouteSettings(
-                  //       name: Routes.LIST_AGUNAN_PERALATAN, arguments: data),
-                  //   builder: (context) => FormTambahAgunanCash(),
-                  //   isDismissible: false,
-                  // );
-                },
-                icon: const Icon(FontAwesomeIcons.plus),
-              );
+              return Obx(() {
+                if (controller.listAgunanLainnya.isEmpty) {
+                  return IconButton(
+                    onPressed: () {
+                      showBarModalBottomSheet(
+                        clipBehavior: Clip.antiAlias,
+                        bounce: true,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(20),
+                          ),
+                        ),
+                        context: context,
+                        settings: RouteSettings(
+                            name: Routes.LIST_AGUNAN_LAINNYA, arguments: data),
+                        builder: (context) => FormTambahAgunanLainnya(),
+                        isDismissible: false,
+                      );
+                    },
+                    icon: const Icon(FontAwesomeIcons.plus),
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              });
             }
           })
         ],
@@ -166,6 +175,17 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
                                 ),
                                 TableRow(
                                   children: [
+                                    paddedTextTanah('Perusahaan'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller.listAgunanLainnya[index]
+                                          .namaAsuransiPenjamin
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
                                     paddedTextTanah(''),
                                     paddedTextTanah(':'),
                                     paddedTextTanah(''),
@@ -189,53 +209,53 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
                                     ),
                                   ],
                                 ),
-                                TableRow(
-                                  children: [
-                                    paddedTextTanah('Nilai Liquidasi'),
-                                    paddedTextTanah(':'),
-                                    paddedTextTanah(
-                                      'Rp. ${MoneyMaskedTextController(
-                                        decimalSeparator: '',
-                                        thousandSeparator: '.',
-                                        precision: 0,
-                                        initialValue: double.parse(
-                                          controller.listAgunanLainnya[index]
-                                              .nilaiLiquidasi
-                                              .toString(),
-                                        ),
-                                      ).text}',
-                                    ),
-                                  ],
-                                ),
-                                TableRow(
-                                  children: [
-                                    paddedTextTanah('Nilai Pengikatan'),
-                                    paddedTextTanah(':'),
-                                    paddedTextTanah(
-                                      'Rp. ${MoneyMaskedTextController(
-                                        decimalSeparator: '',
-                                        thousandSeparator: '.',
-                                        precision: 0,
-                                        initialValue: double.parse(
-                                          controller.listAgunanLainnya[index]
-                                              .nilaiPengikatan
-                                              .toString(),
-                                        ),
-                                      ).text}',
-                                    ),
-                                  ],
-                                ),
-                                TableRow(
-                                  children: [
-                                    paddedTextTanah('Pengikatan'),
-                                    paddedTextTanah(':'),
-                                    paddedTextTanah(
-                                      controller
-                                          .listAgunanLainnya[index].pengikatan
-                                          .toString(),
-                                    ),
-                                  ],
-                                ),
+                                // TableRow(
+                                //   children: [
+                                //     paddedTextTanah('Nilai Liquidasi'),
+                                //     paddedTextTanah(':'),
+                                //     paddedTextTanah(
+                                //       'Rp. ${MoneyMaskedTextController(
+                                //         decimalSeparator: '',
+                                //         thousandSeparator: '.',
+                                //         precision: 0,
+                                //         initialValue: double.parse(
+                                //           controller.listAgunanLainnya[index]
+                                //               .nilaiLiquidasi
+                                //               .toString(),
+                                //         ),
+                                //       ).text}',
+                                //     ),
+                                //   ],
+                                // ),
+                                // TableRow(
+                                //   children: [
+                                //     paddedTextTanah('Nilai Pengikatan'),
+                                //     paddedTextTanah(':'),
+                                //     paddedTextTanah(
+                                //       'Rp. ${MoneyMaskedTextController(
+                                //         decimalSeparator: '',
+                                //         thousandSeparator: '.',
+                                //         precision: 0,
+                                //         initialValue: double.parse(
+                                //           controller.listAgunanLainnya[index]
+                                //               .nilaiPengikatan
+                                //               .toString(),
+                                //         ),
+                                //       ).text}',
+                                //     ),
+                                //   ],
+                                // ),
+                                // TableRow(
+                                //   children: [
+                                //     paddedTextTanah('Pengikatan'),
+                                //     paddedTextTanah(':'),
+                                //     paddedTextTanah(
+                                //       controller
+                                //           .listAgunanLainnya[index].pengikatan
+                                //           .toString(),
+                                //     ),
+                                //   ],
+                                // ),
                               ],
                             ),
                           ],
@@ -268,6 +288,277 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
             }
           }
         },
+      ),
+    );
+  }
+}
+
+class FormTambahAgunanLainnya extends StatelessWidget {
+  FormTambahAgunanLainnya({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListAgunanLainnyaController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 800,
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Tambah Agunan Lainnya',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormInputAgunanLainnya(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FormInputAgunanLainnya extends StatelessWidget {
+  FormInputAgunanLainnya({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ListAgunanLainnyaController controller;
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Detail Agunan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'deskripsi_pendek',
+                controller: controller.deskripsiPanjang =
+                    TextEditingController(text: 'Asuransi Penjaminan Kredit'),
+                decoration: const InputDecoration(
+                  labelText: 'Keterangan',
+                  hintText: 'Mesin Pemisah Gabah...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'nama_perusahaan',
+                controller: controller.namaPerusahaan,
+                decoration: const InputDecoration(
+                  labelText: 'Nama Perusahaan',
+                  hintText: 'JAMKRINDO, ASKRINDO, dll',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Text(
+                'Hasil',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'nilai_liquidasi',
+                enabled: false,
+                controller: controller.plafonKredit = TextEditingController(
+                  text: MoneyMaskedTextController(
+                    decimalSeparator: '',
+                    thousandSeparator: '.',
+                    precision: 0,
+                    initialValue: double.parse(
+                        data[1].inputKeuangan.kreditDiusulkan.toString()),
+                  ).text,
+                ),
+                decoration: const InputDecoration(
+                  labelText: 'Plafon Kredit',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       flex: 4,
+              //       child: FormBuilderTextField(
+              //         name: 'nilai_pasar',
+              //         controller: controller.nilaiPasar,
+              //         decoration: const InputDecoration(
+              //           labelText: 'Nilai Pasar',
+              //           border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.all(
+              //               Radius.circular(8),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //     const SizedBox(
+              //       width: 5.0,
+              //     ),
+              //     Expanded(
+              //       child: FormBuilderTextField(
+              //         name: 'persentase',
+              //         controller: controller.persentase,
+              //         decoration: const InputDecoration(
+              //           labelText: 'Persen',
+              //           border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.all(
+              //               Radius.circular(8),
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // const SizedBox(
+              //   height: 12.0,
+              // ),
+              const Text(
+                'Nilai Pasar di dapatkan dari 70% dari Plafon Kredit yang diusulkan',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'nilai_pasar',
+                enabled: false,
+                controller: controller.nilaiPasar,
+                decoration: const InputDecoration(
+                  labelText: 'Nilai Pasar',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              // const SizedBox(
+              //   height: 12.0,
+              // ),
+              // FormBuilderTextField(
+              //   name: 'nilai_pengikatan',
+              //   enabled: false,
+              //   controller: controller.nilaiPengikatan,
+              //   decoration: const InputDecoration(
+              //     labelText: 'Nilai Pengikatan',
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.all(
+              //         Radius.circular(8),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 12.0,
+              // ),
+              // FormBuilderTextField(
+              //   name: 'pengikatan',
+              //   controller: controller.pengikatan,
+              //   decoration: const InputDecoration(
+              //     labelText: 'Pengikatan',
+              //     hintText: 'SKUM',
+              //     border: OutlineInputBorder(
+              //       borderRadius: BorderRadius.all(
+              //         Radius.circular(8),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: GFButton(
+                  onPressed: () {
+                    controller.hitungSeventyPercent();
+                  },
+                  text: 'Hitung 70% dari Plafon Kredit',
+                  elevation: 10,
+                  color: primaryColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 225,
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  controller.saveAgunanLainnya(data[0].id);
+                  Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Simpan',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
+            ),
+          ),
+        ],
       ),
     );
   }

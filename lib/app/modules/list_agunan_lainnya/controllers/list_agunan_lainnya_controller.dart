@@ -14,10 +14,12 @@ class ListAgunanLainnyaController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllAgunanLainnya(agunanId.id);
+    getAllAgunanLainnya(agunanId[0].id);
   }
 
   var deskripsiPanjang = TextEditingController();
+  var plafonKredit = TextEditingController();
+  var namaPerusahaan = TextEditingController();
   var persentase = TextEditingController();
   var nilaiPasar = MoneyMaskedTextController(
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
@@ -29,12 +31,20 @@ class ListAgunanLainnyaController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  final agunanId = Get.arguments[0];
-  final plafon = Get.arguments[1];
+  final agunanId = Get.arguments;
+  // final plafon = Get.arguments[1];
 
   final isAgunanLainnyaProcessing = false.obs;
 
   var listAgunanLainnya = List<FormCommon>.empty(growable: true).obs;
+
+  void hitungSeventyPercent() {
+    final parsePlafon = int.parse(plafonKredit.text.replaceAll('.', ''));
+
+    final hasil = parsePlafon * 0.7;
+
+    nilaiPasar.text = hasil.toStringAsFixed(0);
+  }
 
   void getAllAgunanLainnya(int id) {
     try {
@@ -50,5 +60,53 @@ class ListAgunanLainnyaController extends GetxController {
       isAgunanLainnyaProcessing(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void saveAgunanLainnya(id) {
+    final body = {
+      "deskripsi_panjang": deskripsiPanjang.text,
+      'nama_asuransi_penjamin': namaPerusahaan.text,
+      "nilai_pasar": nilaiPasar.text.replaceAll('.', ''),
+      "nilai_liquidasi": 0,
+      "nilai_pengikatan": 0,
+      "pengikatan": '.',
+    };
+
+    try {
+      isAgunanLainnyaProcessing(true);
+      AgunanLainnyaProvider().saveFormAgunanCash(id, body).then((resp) {
+        isAgunanLainnyaProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        clearForm();
+        listAgunanLainnya.clear();
+        getAllAgunanLainnya(agunanId[0].id);
+      }, onError: (e) {
+        isAgunanLainnyaProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanLainnyaProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void clearForm() {
+    deskripsiPanjang.clear();
+    nilaiPasar.clear();
+    nilaiLiquidasi.clear();
+    nilaiPengikatan.clear();
+    pengikatan.clear();
   }
 }

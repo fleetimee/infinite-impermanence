@@ -39,7 +39,7 @@ class AgunanLainnyaProvider {
   Future<FormCommon> saveFormAgunanCash(int id, Map body) async {
     try {
       final response = await httpClient.post(
-        Uri.parse('${baseUrl}agunan/$id/agunan-cash/'),
+        Uri.parse('${baseUrl}agunan/$id/agunan-lainnya/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

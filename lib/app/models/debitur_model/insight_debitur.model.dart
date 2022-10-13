@@ -208,6 +208,7 @@ class Agunan {
     this.formPeralatan,
     this.formCash,
     this.formLainnya,
+    this.formTanahBangunan,
   });
 
   int? id;
@@ -218,6 +219,7 @@ class Agunan {
   bool? isKendaraan;
   int? debiturId;
   List<FormTanah>? formTanah;
+  List<FormTanahBangunan>? formTanahBangunan;
   List<FormKendaraan>? formKendaraan;
   List<FormLo>? formLos;
   List<FormCommon>? formPeralatan;
@@ -549,6 +551,78 @@ class FormTanah {
   int? agunanId;
 
   factory FormTanah.fromJson(Map<String, dynamic> json) => FormTanah(
+        id: json["id"],
+        deskripsiPendek: json["deskripsi_pendek"],
+        namaPemilik: json["nama_pemilik"],
+        buktiKepemilikan: json["bukti_kepemilikan"],
+        luasTanah: json["luas_tanah"],
+        tanggal:
+            json["tanggal"] == null ? null : DateTime.parse(json["tanggal"]),
+        nilaiPasar: json["nilai_pasar"],
+        nilaiLiquidasi: json["nilai_liquidasi"],
+        nilaiPengikatan: json["nilai_pengikatan"],
+        pengikatan: json["pengikatan"],
+        lokasi: json["lokasi"],
+        titikKoordinat: json["titik_koordinat"],
+        deskripsiPanjang: json["deskripsi_panjang"],
+        agunanId: json["agunanId"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "deskripsi_pendek": deskripsiPendek,
+        "nama_pemilik": namaPemilik,
+        "bukti_kepemilikan": buktiKepemilikan,
+        "luas_tanah": luasTanah,
+        "tanggal": tanggal == null
+            ? null
+            : "${tanggal?.year.toString().padLeft(4, '0')}-${tanggal?.month.toString().padLeft(2, '0')}-${tanggal?.day.toString().padLeft(2, '0')}",
+        "nilai_pasar": nilaiPasar,
+        "nilai_liquidasi": nilaiLiquidasi,
+        "nilai_pengikatan": nilaiPengikatan,
+        "pengikatan": pengikatan,
+        "lokasi": lokasi,
+        "titik_koordinat": titikKoordinat,
+        "deskripsi_panjang": deskripsiPanjang,
+        "agunanId": agunanId,
+      };
+}
+
+class FormTanahBangunan {
+  FormTanahBangunan({
+    this.id,
+    this.deskripsiPendek,
+    this.namaPemilik,
+    this.buktiKepemilikan,
+    this.luasTanah,
+    this.tanggal,
+    this.nilaiPasar,
+    this.nilaiLiquidasi,
+    this.nilaiPengikatan,
+    this.pengikatan,
+    this.lokasi,
+    this.titikKoordinat,
+    this.deskripsiPanjang,
+    this.agunanId,
+  });
+
+  int? id;
+  String? deskripsiPendek;
+  String? namaPemilik;
+  String? buktiKepemilikan;
+  int? luasTanah;
+  DateTime? tanggal;
+  String? nilaiPasar;
+  String? nilaiLiquidasi;
+  String? nilaiPengikatan;
+  String? pengikatan;
+  String? lokasi;
+  String? titikKoordinat;
+  String? deskripsiPanjang;
+  int? agunanId;
+
+  factory FormTanahBangunan.fromJson(Map<String, dynamic> json) =>
+      FormTanahBangunan(
         id: json["id"],
         deskripsiPendek: json["deskripsi_pendek"],
         namaPemilik: json["nama_pemilik"],

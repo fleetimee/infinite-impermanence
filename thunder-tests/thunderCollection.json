@@ -155,7 +155,7 @@
       },
       {
         "_id": "effe6610-3568-442d-88b5-39899cd617a8",
-        "name": "Agunan Tanah & Agunan Tanah Bangunan",
+        "name": "Agunan Tanah",
         "containerId": "3928d02b-8752-4956-8fe8-ec0e075af1c9",
         "created": "2022-09-30T09:15:22.637Z",
         "sortNum": 10000
@@ -201,6 +201,13 @@
         "containerId": "3928d02b-8752-4956-8fe8-ec0e075af1c9",
         "created": "2022-10-02T09:59:30.925Z",
         "sortNum": 160000
+      },
+      {
+        "_id": "a1ca212b-7310-4719-bd95-73e69bfb8392",
+        "name": "Agunan Tanah dan Bangunan",
+        "containerId": "3928d02b-8752-4956-8fe8-ec0e075af1c9",
+        "created": "2022-10-13T06:19:30.751Z",
+        "sortNum": 65000
       }
     ]
   }

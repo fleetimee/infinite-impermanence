@@ -76,20 +76,6 @@ import '../modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
 
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
-// import '../modules/debitur_real/views/debitur_detail_view.dart';
-
-// ignore_for_file: prefer_const_constructors
-
-// ignore_for_file: constant_identifier_names
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -100,13 +86,13 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.SEARCH_NIK,
-      page: () => SearchNikView(),
+      page: () => const SearchNikView(),
       binding: SearchNikBinding(),
       transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
       transition: Transition.cupertino,
     ),
@@ -193,7 +179,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DEBITUR_REAL,
-      page: () => DebiturOnboardingView(),
+      page: () => const DebiturOnboardingView(),
       binding: DebiturRealBinding(),
       transition: Transition.cupertino,
     ),
@@ -229,7 +215,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PORSEKOT_TABLE,
-      page: () => PorsekotTableView(),
+      page: () => const PorsekotTableView(),
       binding: PorsekotTableBinding(),
       transition: Transition.cupertino,
     ),
@@ -334,7 +320,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_AGUNAN_TANAH_BANGUNAN,
-      page: () => const ListAgunanTanahBangunanView(),
+      page: () => ListAgunanTanahBangunanView(),
       binding: ListAgunanTanahBangunanBinding(),
     ),
     GetPage(

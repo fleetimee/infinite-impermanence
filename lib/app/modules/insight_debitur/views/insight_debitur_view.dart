@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -87,720 +86,676 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
               ),
             ),
           ),
-          SliverToBoxAdapter(child: Obx(() {
-            if (controller.isDataLoading.value &&
-                controller.isAgunanLoading.value) {
-              return const SataniaLoading();
-            } else {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 25,
-                      vertical: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Obx(
-                          () => controller.isDataLoading.value
-                              ? const Text(
-                                  'Loading...',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              : Text(
-                                  'Di-input oleh ${controller.insightDebitur.value.createdBy ?? 'Admin'} pada ${DateFormat('dd MMMM yyyy').format(
-                                    DateTime.parse(controller
-                                        .insightDebitur.value.tglSekarang
-                                        .toString()),
-                                  )}',
-                                  style: Theme.of(context).textTheme.subtitle1,
+          SliverToBoxAdapter(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Obx(
+                        () => controller.isDataLoading.value
+                            ? const Text(
+                                'Loading...',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Obx(
-                                () => controller.isDataLoading.value
-                                    ? const Text('Loading...')
-                                    : Text(
-                                        controller
-                                            .insightDebitur.value.peminjam1
-                                            .toString(),
-                                        style: const TextStyle(
-                                          color: primaryColor,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w700,
-                                        ),
-                                      ),
+                              )
+                            : Text(
+                                'Di-input oleh ${controller.insightDebitur.value.createdBy ?? 'Admin'} pada ${DateFormat('dd MMMM yyyy').format(
+                                  DateTime.parse(controller
+                                      .insightDebitur.value.tglSekarang
+                                      .toString()),
+                                )}',
+                                style: Theme.of(context).textTheme.subtitle1,
                               ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Obx(
+                              () => controller.isDataLoading.value
+                                  ? const Text('Loading...')
+                                  : Text(
+                                      controller.insightDebitur.value.peminjam1
+                                          .toString(),
+                                      style: const TextStyle(
+                                        color: primaryColor,
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
                             ),
-                            IconButton(
-                              color: primaryColor,
-                              enableFeedback: true,
-                              onPressed: () {},
-                              icon: const Icon(FontAwesomeIcons.pencil),
-                            ),
-                            IconButton(
-                              color: primaryColor,
-                              enableFeedback: true,
-                              onPressed: () {
-                                showBarModalBottomSheet(
-                                  bounce: true,
-                                  backgroundColor: secondaryColor,
-                                  context: context,
-                                  builder: (context) => SizedBox(
-                                    height: 650,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const GFCard(
-                                          boxFit: BoxFit.cover,
-                                          titlePosition: GFPosition.start,
-                                          showOverlayImage: true,
-                                          imageOverlay: AssetImage(
-                                            'assets/images/home/printing.jpg',
-                                          ),
-                                          colorFilter: ColorFilter.mode(
-                                            Color.fromARGB(221, 8, 8, 8),
-                                            BlendMode.darken,
-                                          ),
-                                          title: GFListTile(
-                                            title: Text(
-                                              'Printing Centre',
-                                              style: TextStyle(
-                                                color: secondaryColor,
-                                                fontSize: 47,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          content: Text(
-                                            "Print berkas berkas mu disini, tetapi jangan lupa diinput dulu",
+                          ),
+                          IconButton(
+                            color: primaryColor,
+                            enableFeedback: true,
+                            onPressed: () {},
+                            icon: const Icon(FontAwesomeIcons.pencil),
+                          ),
+                          IconButton(
+                            color: primaryColor,
+                            enableFeedback: true,
+                            onPressed: () {
+                              showBarModalBottomSheet(
+                                bounce: true,
+                                backgroundColor: secondaryColor,
+                                context: context,
+                                builder: (context) => SizedBox(
+                                  height: 650,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const GFCard(
+                                        boxFit: BoxFit.cover,
+                                        titlePosition: GFPosition.start,
+                                        showOverlayImage: true,
+                                        imageOverlay: AssetImage(
+                                          'assets/images/home/printing.jpg',
+                                        ),
+                                        colorFilter: ColorFilter.mode(
+                                          Color.fromARGB(221, 8, 8, 8),
+                                          BlendMode.darken,
+                                        ),
+                                        title: GFListTile(
+                                          title: Text(
+                                            'Printing Centre',
                                             style: TextStyle(
                                               color: secondaryColor,
-                                              fontSize: 28,
-                                              fontWeight: FontWeight.w400,
+                                              fontSize: 47,
+                                              fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: ListView(
-                                            children: [
-                                              Obx(
-                                                () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return PrintPutusan();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(
-                                                () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return PrintUsulan();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(
-                                                () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return PrintKeuangan();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(
-                                                () {
-                                                  if (analisaBisnisController
-                                                      .isAnalisaBisnisProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return BisnisPrint();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(() {
-                                                if (analisaKarakterController
-                                                    .isAnalisaKarakterProcessing
+                                        content: Text(
+                                          "Print berkas berkas mu disini, tetapi jangan lupa diinput dulu",
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: ListView(
+                                          children: [
+                                            Obx(
+                                              () {
+                                                if (analisaKeuanganController
+                                                    .isAnalisaKeuanganProcessing
                                                     .value) {
                                                   return const Center(
                                                     child:
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
-                                                  return KarakterPrint();
+                                                  return PrintPutusan();
                                                 }
-                                              }),
-                                              Obx(
-                                                () {
-                                                  if (analisaJenisUsahaController
-                                                      .isAnalisaUsahaProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return JenisUsahaPrint();
-                                                  }
-                                                },
-                                              ),
-                                              ModelPrint(
-                                                  controller: controller),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                              icon: const Icon(FontAwesomeIcons.print),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                          vertical: 20,
-                        ),
-                        child: HeaderKeuangan(),
-                      ),
-                      MenuNeraca(),
-                      MenuRugiLaba(),
-                      MenuInputKeuangan(),
-                      MenuAnalisaKeuangan(),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                          vertical: 20,
-                        ),
-                        child: HeaderKarakter(),
-                      ),
-                      MenuAnalisaKarakter(),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                          vertical: 20,
-                        ),
-                        child: HeaderBisnis(),
-                      ),
-                      MenuAnalisaBisnis(),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25,
-                          vertical: 20,
-                        ),
-                        child: HeaderJenisUsaha(),
-                      ),
-                      MenuAnalisaJenisUsaha(),
-                    ],
-                  ),
-                  // This is for dynamic widget
-                  Obx(() {
-                    if (controller.isAgunanLoading.value) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 25,
-                              vertical: 20,
-                            ),
-                            child: HeaderAgunan(),
-                          ),
-                          MenuPilihAgunan(),
-                          MenuMasukFormAgunan(),
-                          // selectAgunanController.isAgunanInputProcessing.value
-                          //     ? const Center(child: CircularProgressIndicator())
-                          //     : controller.listAgunan
-                          //             .any((element) => element.kodeAgunan == 1)
-                          //         ? MenuAgunanTanah()
-                          //         : const SizedBox(),
-
-                          // // controller.listAgunan
-                          // //         .any((element) => element.kodeAgunan == 1)
-                          // //     ? MenuAgunanTanah()
-                          // //     : const SizedBox(),
-                          // controller.listAgunan
-                          //         .any((element) => element.kodeAgunan == 2)
-                          //     ? MenuAgunanTanahDanBangunan()
-                          //     : const SizedBox(),
-                          // controller.listAgunan
-                          //         .any((element) => element.kodeAgunan == 3)
-                          //     ? MenuAgunanKendaraan()
-                          //     : const SizedBox(),
-                          // controller.listAgunan
-                          //         .any((element) => element.kodeAgunan == 4)
-                          //     ? MenuAgunanPeralatan()
-                          //     : const SizedBox(),
-                          // controller.listAgunan
-                          //         .any((element) => element.kodeAgunan == 5)
-                          //     ? MenuAgunanCash()
-                          //     : const SizedBox(),
-                          // controller.listAgunan
-                          //         .any((element) => element.kodeAgunan == 6)
-                          //     ? MenuAgunanLos()
-                          //     : const SizedBox(),
-                          // controller.listAgunan
-                          //         .any((element) => element.kodeAgunan == 7)
-                          //     ? MenuAgunanLainnya()
-                          //     : const SizedBox(),
-                        ],
-                      );
-                    }
-                  }),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 25,
-                      vertical: 20,
-                    ),
-                    child: HeaderDetailDebitur(controller: controller),
-                  ),
-                  Obx(
-                    () => controller.isDataLoading.value
-                        ? const Center(child: CircularProgressIndicator())
-                        : Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 25,
-                              vertical: 5,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  'Data Pribadi',
-                                  style: detailDebiturHeading,
-                                ),
-                                const SizedBox(
-                                  height: 8.0,
-                                ),
-                                // Table Data Pribadi
-                                Table(
-                                  columnWidths: const {
-                                    0: FlexColumnWidth(0.4),
-                                    1: FlexColumnWidth(1),
-                                  },
-                                  border: TableBorder.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                    style: BorderStyle.solid,
-                                  ),
-                                  children: [
-                                    TableRow(children: [
-                                      paddedText('No. Debitur'),
-                                      paddedText(controller
-                                          .insightDebitur.value.noDebitur
-                                          .toString()),
-                                    ]),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Peminjam 1'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.peminjam1
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Peminjam 2'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.peminjam2
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Asal KTP 1'),
-                                        paddedText(
-                                          controller.insightDebitur.value.ktp1
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Asal KTP 2'),
-                                        paddedText(
-                                          controller.insightDebitur.value.ktp2
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Alamat 1'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.alamat1
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Alamat 2'),
-                                        paddedText(
-                                          controller.insightDebitur.value
-                                                      .alamat2
-                                                      .toString() ==
-                                                  ''
-                                              ? '-'
-                                              : controller
-                                                  .insightDebitur.value.alamat2
-                                                  .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('No. KTP 1'),
-                                        paddedText(
-                                          controller.insightDebitur.value.noKtp1
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('No. KTP 2'),
-                                        paddedText(
-                                          controller.insightDebitur.value.noKtp2
-                                                      .toString() ==
-                                                  ''
-                                              ? '-'
-                                              : controller
-                                                  .insightDebitur.value.noKtp2
-                                                  .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Pekerjaan 1'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.pekerjaan1
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Pekerjaan 2'),
-                                        paddedText(
-                                          controller.insightDebitur.value
-                                                      .pekerjaan2
-                                                      .toString() ==
-                                                  ''
-                                              ? '-'
-                                              : controller.insightDebitur.value
-                                                  .pekerjaan2
-                                                  .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('TTL'),
-                                        paddedText(
-                                          '${controller.insightDebitur.value.tempatLahir.toString()}, ${DateFormat('dd MMMM yyyy').format(
-                                            DateTime.parse(
-                                              controller.insightDebitur.value
-                                                  .tanggalLahir
-                                                  .toString(),
+                                              },
                                             ),
-                                          )}',
+                                            Obx(
+                                              () {
+                                                if (analisaKeuanganController
+                                                    .isAnalisaKeuanganProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return PrintUsulan();
+                                                }
+                                              },
+                                            ),
+                                            Obx(
+                                              () {
+                                                if (analisaKeuanganController
+                                                    .isAnalisaKeuanganProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return PrintKeuangan();
+                                                }
+                                              },
+                                            ),
+                                            Obx(
+                                              () {
+                                                if (analisaBisnisController
+                                                    .isAnalisaBisnisProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return BisnisPrint();
+                                                }
+                                              },
+                                            ),
+                                            Obx(() {
+                                              if (analisaKarakterController
+                                                  .isAnalisaKarakterProcessing
+                                                  .value) {
+                                                return const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              } else {
+                                                return KarakterPrint();
+                                              }
+                                            }),
+                                            Obx(
+                                              () {
+                                                if (analisaJenisUsahaController
+                                                    .isAnalisaUsahaProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return JenisUsahaPrint();
+                                                }
+                                              },
+                                            ),
+                                            ModelPrint(controller: controller),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Umur'),
-                                        paddedText(
-                                          controller.insightDebitur.value.umur
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Deskripsi'),
-                                        paddedText(
-                                          controller.insightDebitur.value
-                                              .deskripsiDebitur
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
-                                const Text(
-                                  'Data Agunan',
-                                  style: detailDebiturHeading,
-                                ),
-                                const SizedBox(
-                                  height: 8.0,
-                                ),
-                                Table(
-                                  columnWidths: const {
-                                    0: FlexColumnWidth(0.4),
-                                    1: FlexColumnWidth(1),
-                                  },
-                                  border: TableBorder.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                    style: BorderStyle.solid,
+                                      ),
+                                    ],
                                   ),
-                                  children: [
-                                    TableRow(
-                                      children: [
-                                        paddedText('Pemilik Agunan 1'),
-                                        paddedText(
-                                          controller.insightDebitur.value
-                                                      .pemilikAgunan1
-                                                      .toString() ==
-                                                  ''
-                                              ? '-'
-                                              : controller.insightDebitur.value
-                                                  .pemilikAgunan1
-                                                  .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Pemilik Agunan 2'),
-                                        paddedText(
-                                          controller.insightDebitur.value
-                                                      .pemilikAgunan2
-                                                      .toString() ==
-                                                  ''
-                                              ? '-'
-                                              : controller.insightDebitur.value
-                                                  .pemilikAgunan2
-                                                  .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
                                 ),
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
-                                const Text(
-                                  'Data Relasi',
-                                  style: detailDebiturHeading,
-                                ),
-                                const SizedBox(
-                                  height: 8.0,
-                                ),
-                                // Table Relasi
-                                Table(
-                                  columnWidths: const {
-                                    0: FlexColumnWidth(0.4),
-                                    1: FlexColumnWidth(1),
-                                  },
-                                  border: TableBorder.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                    style: BorderStyle.solid,
-                                  ),
-                                  children: [
-                                    TableRow(
-                                      children: [
-                                        paddedText('Sts Keluarga'),
-                                        paddedText(
-                                          controller.insightDebitur.value
-                                              .statusKeluarga
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Tanggungan'),
-                                        paddedText(
-                                          '${controller.insightDebitur.value.jumlahTanggungan.toString()} Orang',
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
-                                const Text(
-                                  'Data Pendidikan',
-                                  style: detailDebiturHeading,
-                                ),
-                                const SizedBox(
-                                  height: 8.0,
-                                ),
-                                // Table Pendidikan
-                                Table(
-                                  columnWidths: const {
-                                    0: FlexColumnWidth(0.4),
-                                    1: FlexColumnWidth(1),
-                                  },
-                                  border: TableBorder.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                    style: BorderStyle.solid,
-                                  ),
-                                  children: [
-                                    TableRow(
-                                      children: [
-                                        paddedText('Pendidikan Terakhir'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.pendidikan
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
-                                const Text(
-                                  'Data Usaha',
-                                  style: detailDebiturHeading,
-                                ),
-                                const SizedBox(
-                                  height: 8.0,
-                                ),
-                                // Table Usaha
-                                Table(
-                                  columnWidths: const {
-                                    0: FlexColumnWidth(0.4),
-                                    1: FlexColumnWidth(1),
-                                  },
-                                  border: TableBorder.all(
-                                    color: Colors.black,
-                                    width: 1,
-                                    style: BorderStyle.solid,
-                                  ),
-                                  children: [
-                                    TableRow(
-                                      children: [
-                                        paddedText('Lamanya Berusaha'),
-                                        paddedText(
-                                          '${controller.insightDebitur.value.lamanyaBerusaha.toString()} Tahun',
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Jenis Usaha'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.jenisUsaha
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Bidang Usaha'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.bidangUsaha
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                    TableRow(
-                                      children: [
-                                        paddedText('Lokasi Usaha'),
-                                        paddedText(
-                                          controller
-                                              .insightDebitur.value.lokasiUsaha
-                                              .toString(),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 16.0,
-                                ),
-                              ],
-                            ),
+                              );
+                            },
+                            icon: const Icon(FontAwesomeIcons.print),
                           ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              );
-            }
-          })),
+                ),
+
+                const SizedBox(
+                  height: 5.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: HeaderKeuangan(),
+                    ),
+                    MenuNeraca(),
+                    MenuRugiLaba(),
+                    MenuInputKeuangan(),
+                    MenuAnalisaKeuangan(),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: HeaderKarakter(),
+                    ),
+                    MenuAnalisaKarakter(),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: HeaderBisnis(),
+                    ),
+                    MenuAnalisaBisnis(),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: HeaderJenisUsaha(),
+                    ),
+                    MenuAnalisaJenisUsaha(),
+                  ],
+                ),
+                // This is for dynamic widget
+                Obx(() {
+                  if (controller.isAgunanLoading.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 20,
+                          ),
+                          child: HeaderAgunan(),
+                        ),
+                        MenuPilihAgunan(),
+                        MenuMasukFormAgunan(),
+                      ],
+                    );
+                  }
+                }),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 25,
+                    vertical: 20,
+                  ),
+                  child: HeaderDetailDebitur(controller: controller),
+                ),
+                Obx(
+                  () => controller.isDataLoading.value
+                      ? const Center(child: CircularProgressIndicator())
+                      : Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 5,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Data Pribadi',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Data Pribadi
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(children: [
+                                    paddedText('No. Debitur'),
+                                    paddedText(controller
+                                        .insightDebitur.value.noDebitur
+                                        .toString()),
+                                  ]),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Peminjam 1'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.peminjam1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Peminjam 2'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.peminjam2
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Asal KTP 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value.ktp1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Asal KTP 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value.ktp2
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Alamat 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value.alamat1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Alamat 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value.alamat2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.alamat2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('No. KTP 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value.noKtp1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('No. KTP 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value.noKtp2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.noKtp2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pekerjaan 1'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.pekerjaan1
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pekerjaan 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                                    .pekerjaan2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.pekerjaan2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('TTL'),
+                                      paddedText(
+                                        '${controller.insightDebitur.value.tempatLahir.toString()}, ${DateFormat('dd MMMM yyyy').format(
+                                          DateTime.parse(
+                                            controller.insightDebitur.value
+                                                .tanggalLahir
+                                                .toString(),
+                                          ),
+                                        )}',
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Umur'),
+                                      paddedText(
+                                        controller.insightDebitur.value.umur
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Deskripsi'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                            .deskripsiDebitur
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Agunan',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pemilik Agunan 1'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                                    .pemilikAgunan1
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller.insightDebitur.value
+                                                .pemilikAgunan1
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pemilik Agunan 2'),
+                                      paddedText(
+                                        controller.insightDebitur.value
+                                                    .pemilikAgunan2
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller.insightDebitur.value
+                                                .pemilikAgunan2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Relasi',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Relasi
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Sts Keluarga'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.statusKeluarga
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Tanggungan'),
+                                      paddedText(
+                                        '${controller.insightDebitur.value.jumlahTanggungan.toString()} Orang',
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Pendidikan',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Pendidikan
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Pendidikan Terakhir'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.pendidikan
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              const Text(
+                                'Data Usaha',
+                                style: detailDebiturHeading,
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              // Table Usaha
+                              Table(
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.4),
+                                  1: FlexColumnWidth(1),
+                                },
+                                border: TableBorder.all(
+                                  color: Colors.black,
+                                  width: 1,
+                                  style: BorderStyle.solid,
+                                ),
+                                children: [
+                                  TableRow(
+                                    children: [
+                                      paddedText('Lamanya Berusaha'),
+                                      paddedText(
+                                        '${controller.insightDebitur.value.lamanyaBerusaha.toString()} Tahun',
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Jenis Usaha'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.jenisUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Bidang Usaha'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.bidangUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Lokasi Usaha'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.lokasiUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                            ],
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

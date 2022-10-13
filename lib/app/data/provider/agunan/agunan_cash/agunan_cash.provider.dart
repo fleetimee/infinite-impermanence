@@ -57,4 +57,26 @@ class AgunanCashProvider {
       return Future.error(e);
     }
   }
+
+  // Delete Agunan Cash
+  Future<void> purgeAgunanCash(int idAgunan, int id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-cash/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

@@ -109,4 +109,34 @@ class ListAgunanCashController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
+
+  void deleteAgunanCash(int agunanId, id) {
+    try {
+      isAgunanCashProcessing(true);
+      AgunanCashProvider().purgeAgunanCash(agunanId, id).then((resp) {
+        isAgunanCashProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listAgunanCash.clear();
+        getAllAgunanCash(agunanId);
+      }, onError: (e) {
+        isAgunanCashProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanCashProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
 }

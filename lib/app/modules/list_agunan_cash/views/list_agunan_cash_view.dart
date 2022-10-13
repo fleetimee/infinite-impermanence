@@ -82,25 +82,47 @@ class ListAgunanCashView extends GetView<ListAgunanCashController> {
                 itemCount: controller.listAgunanCash.length,
                 itemBuilder: (context, index) {
                   return Slidable(
-                    // The end action pane is the one at the right or the bottom side.
-                    endActionPane: const ActionPane(
-                      motion: ScrollMotion(),
+                    endActionPane: ActionPane(
+                      motion: const DrawerMotion(),
                       children: [
                         SlidableAction(
-                          // An action can be bigger than the others.
-
-                          onPressed: null,
-                          backgroundColor: Color(0xFF7BC043),
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                showBarModalBottomSheet(
+                                  clipBehavior: Clip.antiAlias,
+                                  bounce: true,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20),
+                                    ),
+                                  ),
+                                  context: context,
+                                  settings: RouteSettings(
+                                      name: Routes.LIST_AGUNAN_PERALATAN,
+                                      arguments: data),
+                                  builder: (context) => FormUbahAgunanCash(),
+                                  isDismissible: false,
+                                )
+                              }),
+                          backgroundColor: GFColors.WARNING,
                           foregroundColor: Colors.white,
-                          icon: Icons.archive,
-                          label: 'Archive',
+                          icon: FontAwesomeIcons.pen,
+                          label: 'Ubah',
                         ),
                         SlidableAction(
-                          onPressed: null,
-                          backgroundColor: Color(0xFF0392CF),
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                controller.deleteAgunanCash(data.id,
+                                    controller.listAgunanCash[index].id),
+                              }),
+                          backgroundColor: GFColors.DANGER,
                           foregroundColor: Colors.white,
-                          icon: Icons.save,
-                          label: 'Save',
+                          icon: FontAwesomeIcons.trash,
+                          label: 'Hapus',
                         ),
                       ],
                     ),
@@ -275,6 +297,45 @@ class ListAgunanCashView extends GetView<ListAgunanCashController> {
   }
 }
 
+class FormUbahAgunanCash extends StatelessWidget {
+  FormUbahAgunanCash({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListAgunanCashController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 800,
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Ubah Agunan Cash',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormUpdateAgunanCash(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class FormTambahAgunanCash extends StatelessWidget {
   FormTambahAgunanCash({Key? key}) : super(key: key);
 
@@ -314,6 +375,187 @@ class FormTambahAgunanCash extends StatelessWidget {
   }
 }
 
+class FormUpdateAgunanCash extends StatelessWidget {
+  FormUpdateAgunanCash({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ListAgunanCashController controller;
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Detail Agunan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'deskripsi_pendek',
+                controller: controller.deskripsiPanjang,
+                decoration: const InputDecoration(
+                  labelText: 'Keterangan',
+                  hintText: 'Mesin Pemisah Gabah...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Text(
+                'Nilai Agunan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: FormBuilderTextField(
+                      name: 'nilai_pasar',
+                      controller: controller.nilaiPasar,
+                      decoration: const InputDecoration(
+                        labelText: 'Nilai Pasar',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5.0,
+                  ),
+                  Expanded(
+                    child: FormBuilderTextField(
+                      name: 'persentase',
+                      controller: controller.persentase,
+                      decoration: const InputDecoration(
+                        labelText: 'Persen',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'nilai_liquidasi',
+                enabled: false,
+                controller: controller.nilaiLiquidasi,
+                decoration: const InputDecoration(
+                  labelText: 'Nilai Liquidasi',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'nilai_pengikatan',
+                enabled: false,
+                controller: controller.nilaiPengikatan,
+                decoration: const InputDecoration(
+                  labelText: 'Nilai Pengikatan',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'pengikatan',
+                controller: controller.pengikatan,
+                decoration: const InputDecoration(
+                  labelText: 'Pengikatan',
+                  hintText: 'SKUM',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: GFButton(
+                  onPressed: () {
+                    controller.hitungNilaiLiquidasi();
+                  },
+                  text: 'Hitung Nilai Liquidasi',
+                  elevation: 10,
+                  color: primaryColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 225,
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  controller.saveAgunanCash(data.id);
+                  Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Simpan',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class FormInputAgunanCash extends StatelessWidget {
   FormInputAgunanCash({
     Key? key,
@@ -323,6 +565,7 @@ class FormInputAgunanCash extends StatelessWidget {
   final ListAgunanCashController controller;
   final data = Get.arguments;
 
+  // TODO: Ini belum diupdate
   @override
   Widget build(BuildContext context) {
     return Container(

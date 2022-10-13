@@ -74,7 +74,7 @@ class ListAgunanLainnyaController extends GetxController {
 
     try {
       isAgunanLainnyaProcessing(true);
-      AgunanLainnyaProvider().saveFormAgunanCash(id, body).then((resp) {
+      AgunanLainnyaProvider().saveFormAgunanLainnya(id, body).then((resp) {
         isAgunanLainnyaProcessing(false);
         Get.snackbar(
           'Success',

@@ -5,11 +5,11 @@
     "default": true,
     "sortNum": 10000,
     "created": "2022-07-05T23:42:20.152Z",
-    "modified": "2022-10-13T03:24:42.328Z",
+    "modified": "2022-10-13T07:58:17.170Z",
     "data": [
       {
         "name": "baseUrl",
-        "value": "localhost:3000/"
+        "value": "https://octavia.fleetime.my.id/"
       }
     ]
   },

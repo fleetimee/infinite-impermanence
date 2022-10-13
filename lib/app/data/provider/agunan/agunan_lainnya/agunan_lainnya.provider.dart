@@ -36,7 +36,7 @@ class AgunanLainnyaProvider {
     }
   }
 
-  Future<FormCommon> saveFormAgunanCash(int id, Map body) async {
+  Future<FormCommon> saveFormAgunanLainnya(int id, Map body) async {
     try {
       final response = await httpClient.post(
         Uri.parse('${baseUrl}agunan/$id/agunan-lainnya/'),
@@ -50,6 +50,48 @@ class AgunanLainnyaProvider {
 
       if (response.statusCode == 201) {
         return FormCommon.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  // Future<void> putAgunanLainnya(int idAgunan, int idAgunanLainnya) async {
+  //   try {
+  //     final response = await httpClient.put(
+  //       Uri.parse('${baseUrl}agunan/$idAgunan/agunan-lainnya/$idAgunanLainnya/'),
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Accept': 'application/json'
+  //       },
+  //     );
+  //     debugPrint(response.body);
+
+  //     if (response.statusCode == 200) {
+  //       return FormCommon.fromJson(jsonDecode(response.body));
+  //     } else {
+  //       throw Exception('Failed to load data');
+  //     }
+  //   } catch (e) {
+  //     return Future.error(e);
+  //   }
+  // }
+
+  Future<void> deleteAgunanLainnya(int idAgunan, int idAgunanLainnya) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-lainnya/$idAgunanLainnya'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        return;
       } else {
         throw Exception('Failed to load data');
       }

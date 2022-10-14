@@ -58,6 +58,29 @@ class AgunanCashProvider {
     }
   }
 
+  // Edit Agunan Cash
+  Future<void> putAgunanCash(int idAgunan, int id, Map body) async {
+    try {
+      final response = await httpClient.put(
+        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-cash/$id/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
   // Delete Agunan Cash
   Future<void> purgeAgunanCash(int idAgunan, int id) async {
     try {

@@ -22,11 +22,18 @@ class ListAgunanCashController extends GetxController {
   void hitungNilaiLiquidasi() {
     final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
     final parsePersentase = double.parse(persentase.text);
-
     final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
-
     nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
     nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void hitungNilaiLiquidasiEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseEdit.text);
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+    nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
   }
 
   void clearForm() {
@@ -35,6 +42,14 @@ class ListAgunanCashController extends GetxController {
     nilaiLiquidasi.clear();
     nilaiPengikatan.clear();
     pengikatan.clear();
+  }
+
+  void clearFormEdit() {
+    deskripsiPanjangEdit.clear();
+    nilaiPasarEdit.clear();
+    nilaiLiquidasiEdit.clear();
+    nilaiPengikatanEdit.clear();
+    pengikatanEdit.clear();
   }
 
   var deskripsiPanjang = TextEditingController();
@@ -46,6 +61,16 @@ class ListAgunanCashController extends GetxController {
   var nilaiPengikatan = MoneyMaskedTextController(
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var pengikatan = TextEditingController();
+
+  var deskripsiPanjangEdit = TextEditingController();
+  var persentaseEdit = TextEditingController();
+  var nilaiPasarEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiLiquidasiEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiPengikatanEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var pengikatanEdit = TextEditingController();
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -92,6 +117,48 @@ class ListAgunanCashController extends GetxController {
           colorText: Colors.white,
         );
         clearForm();
+        listAgunanCash.clear();
+        getAllAgunanCash(agunanId.id);
+      }, onError: (e) {
+        isAgunanCashProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanCashProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void updateAgunanCash(
+    int idAgunan,
+    id,
+  ) {
+    final body = {
+      "deskripsi_panjang": deskripsiPanjangEdit.text,
+      "nilai_pasar": nilaiPasarEdit.text.replaceAll('.', ''),
+      "nilai_liquidasi": nilaiLiquidasiEdit.text.replaceAll('.', ''),
+      "nilai_pengikatan": nilaiPengikatanEdit.text.replaceAll('.', ''),
+      "pengikatan": pengikatanEdit.text,
+    };
+
+    try {
+      isAgunanCashProcessing(true);
+      AgunanCashProvider().putAgunanCash(idAgunan, id, body).then((resp) {
+        isAgunanCashProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil diupdate',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        clearFormEdit();
         listAgunanCash.clear();
         getAllAgunanCash(agunanId.id);
       }, onError: (e) {

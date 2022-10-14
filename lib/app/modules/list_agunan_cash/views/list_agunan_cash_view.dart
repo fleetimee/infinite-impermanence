@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,6 +10,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -100,8 +102,11 @@ class ListAgunanCashView extends GetView<ListAgunanCashController> {
                                   ),
                                   context: context,
                                   settings: RouteSettings(
-                                      name: Routes.LIST_AGUNAN_PERALATAN,
-                                      arguments: data),
+                                      name: Routes.LIST_AGUNAN_CASH,
+                                      arguments: [
+                                        data,
+                                        index,
+                                      ]),
                                   builder: (context) => FormUbahAgunanCash(),
                                   isDismissible: false,
                                 )
@@ -116,8 +121,35 @@ class ListAgunanCashView extends GetView<ListAgunanCashController> {
                           padding: const EdgeInsets.all(10),
                           spacing: 10,
                           onPressed: ((context) => {
-                                controller.deleteAgunanCash(data.id,
-                                    controller.listAgunanCash[index].id),
+                                AwesomeDialog(
+                                        context: Get.context!,
+                                        dialogType: DialogType.question,
+                                        animType: AnimType.bottomSlide,
+                                        dialogBackgroundColor: primaryColor,
+                                        titleTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        descTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        title: 'Konfirmasi',
+                                        bodyHeaderDistance: 25,
+                                        desc:
+                                            'Apakah yakin untuk menghapus item ini ?',
+                                        btnOkOnPress: () {
+                                          controller.deleteAgunanCash(
+                                              data.id,
+                                              controller
+                                                  .listAgunanCash[index].id);
+                                        },
+                                        btnOkText: 'Oke sip',
+                                        btnCancelText: 'Affa iyh',
+                                        btnCancelOnPress: () {})
+                                    .show()
                               }),
                           backgroundColor: GFColors.DANGER,
                           foregroundColor: Colors.white,
@@ -382,7 +414,8 @@ class FormUpdateAgunanCash extends StatelessWidget {
   }) : super(key: key);
 
   final ListAgunanCashController controller;
-  final data = Get.arguments;
+  final data = Get.arguments[0];
+  final index = Get.arguments[1];
 
   @override
   Widget build(BuildContext context) {
@@ -406,8 +439,10 @@ class FormUpdateAgunanCash extends StatelessWidget {
                 height: 10.0,
               ),
               FormBuilderTextField(
-                name: 'deskripsi_pendek',
-                controller: controller.deskripsiPanjang,
+                name: 'deskripsi_pendek_edit',
+                controller: controller.deskripsiPanjangEdit =
+                    TextEditingController(
+                        text: data.formCash[index].deskripsiPanjang),
                 decoration: const InputDecoration(
                   labelText: 'Keterangan',
                   hintText: 'Mesin Pemisah Gabah...',
@@ -436,8 +471,16 @@ class FormUpdateAgunanCash extends StatelessWidget {
                   Expanded(
                     flex: 4,
                     child: FormBuilderTextField(
-                      name: 'nilai_pasar',
-                      controller: controller.nilaiPasar,
+                      name: 'nilai_pasar_edit',
+                      controller: controller.nilaiPasarEdit =
+                          MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        initialValue: double.parse(
+                          data.formCash[index].nilaiPasar.toString(),
+                        ),
+                      ),
                       decoration: const InputDecoration(
                         labelText: 'Nilai Pasar',
                         border: OutlineInputBorder(
@@ -454,7 +497,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                   Expanded(
                     child: FormBuilderTextField(
                       name: 'persentase',
-                      controller: controller.persentase,
+                      controller: controller.persentaseEdit,
                       decoration: const InputDecoration(
                         labelText: 'Persen',
                         border: OutlineInputBorder(
@@ -473,7 +516,14 @@ class FormUpdateAgunanCash extends StatelessWidget {
               FormBuilderTextField(
                 name: 'nilai_liquidasi',
                 enabled: false,
-                controller: controller.nilaiLiquidasi,
+                controller: controller.nilaiLiquidasiEdit =
+                    MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        initialValue: double.parse(
+                          data.formCash[index].nilaiLiquidasi.toString(),
+                        )),
                 decoration: const InputDecoration(
                   labelText: 'Nilai Liquidasi',
                   border: OutlineInputBorder(
@@ -489,7 +539,14 @@ class FormUpdateAgunanCash extends StatelessWidget {
               FormBuilderTextField(
                 name: 'nilai_pengikatan',
                 enabled: false,
-                controller: controller.nilaiPengikatan,
+                controller: controller.nilaiPengikatanEdit =
+                    MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        initialValue: double.parse(
+                          data.formCash[index].nilaiPengikatan.toString(),
+                        )),
                 decoration: const InputDecoration(
                   labelText: 'Nilai Pengikatan',
                   border: OutlineInputBorder(
@@ -504,7 +561,8 @@ class FormUpdateAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'pengikatan',
-                controller: controller.pengikatan,
+                controller: controller.pengikatanEdit = TextEditingController(
+                    text: data.formCash[index].pengikatan),
                 decoration: const InputDecoration(
                   labelText: 'Pengikatan',
                   hintText: 'SKUM',
@@ -519,7 +577,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: GFButton(
                   onPressed: () {
-                    controller.hitungNilaiLiquidasi();
+                    controller.hitungNilaiLiquidasiEdit();
                   },
                   text: 'Hitung Nilai Liquidasi',
                   elevation: 10,
@@ -536,7 +594,8 @@ class FormUpdateAgunanCash extends StatelessWidget {
               onPressed: () {
                 if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
-                  controller.saveAgunanCash(data.id);
+                  controller.updateAgunanCash(
+                      data.id, controller.listAgunanCash[index].id);
                   Get.back();
                   debugPrint(controller.formKey.currentState?.value.toString());
                 } else {
@@ -565,7 +624,6 @@ class FormInputAgunanCash extends StatelessWidget {
   final ListAgunanCashController controller;
   final data = Get.arguments;
 
-  // TODO: Ini belum diupdate
   @override
   Widget build(BuildContext context) {
     return Container(

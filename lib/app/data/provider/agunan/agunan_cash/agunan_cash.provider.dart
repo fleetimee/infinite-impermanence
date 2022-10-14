@@ -61,7 +61,7 @@ class AgunanCashProvider {
   // Edit Agunan Cash
   Future<void> putAgunanCash(int idAgunan, int id, Map body) async {
     try {
-      final response = await httpClient.put(
+      final response = await httpClient.patch(
         Uri.parse('${baseUrl}agunan/$idAgunan/agunan-cash/$id/'),
         headers: {
           'Content-Type': 'application/json',

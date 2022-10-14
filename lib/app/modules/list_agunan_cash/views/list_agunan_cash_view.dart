@@ -104,7 +104,7 @@ class ListAgunanCashView extends GetView<ListAgunanCashController> {
                                   settings: RouteSettings(
                                       name: Routes.LIST_AGUNAN_CASH,
                                       arguments: [
-                                        data,
+                                        controller.listAgunanCash[index],
                                         index,
                                       ]),
                                   builder: (context) => FormUbahAgunanCash(),
@@ -441,8 +441,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
               FormBuilderTextField(
                 name: 'deskripsi_pendek_edit',
                 controller: controller.deskripsiPanjangEdit =
-                    TextEditingController(
-                        text: data.formCash[index].deskripsiPanjang),
+                    TextEditingController(text: data.deskripsiPanjang),
                 decoration: const InputDecoration(
                   labelText: 'Keterangan',
                   hintText: 'Mesin Pemisah Gabah...',
@@ -478,7 +477,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                         initialValue: double.parse(
-                          data.formCash[index].nilaiPasar.toString(),
+                          data.nilaiPasar.toString(),
                         ),
                       ),
                       decoration: const InputDecoration(
@@ -522,7 +521,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                         initialValue: double.parse(
-                          data.formCash[index].nilaiLiquidasi.toString(),
+                          data.nilaiLiquidasi.toString(),
                         )),
                 decoration: const InputDecoration(
                   labelText: 'Nilai Liquidasi',
@@ -545,7 +544,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                         initialValue: double.parse(
-                          data.formCash[index].nilaiPengikatan.toString(),
+                          data.nilaiPengikatan.toString(),
                         )),
                 decoration: const InputDecoration(
                   labelText: 'Nilai Pengikatan',
@@ -561,8 +560,8 @@ class FormUpdateAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'pengikatan',
-                controller: controller.pengikatanEdit = TextEditingController(
-                    text: data.formCash[index].pengikatan),
+                controller: controller.pengikatanEdit =
+                    TextEditingController(text: data.pengikatan),
                 decoration: const InputDecoration(
                   labelText: 'Pengikatan',
                   hintText: 'SKUM',
@@ -595,7 +594,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                 if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
                   controller.updateAgunanCash(
-                      data.id, controller.listAgunanCash[index].id);
+                      data.agunanId, controller.listAgunanCash[index].id);
                   Get.back();
                   debugPrint(controller.formKey.currentState?.value.toString());
                 } else {

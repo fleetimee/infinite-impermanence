@@ -16,42 +16,23 @@ class ListAgunanCashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    // Initiate onInit
     getAllAgunanCash(agunanId.id);
   }
 
-  void hitungNilaiLiquidasi() {
-    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
-    final parsePersentase = double.parse(persentase.text);
-    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
-    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
-    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
-  }
+  // List untuk menampung data agunan cash
+  var listAgunanCash = List<FormCommon>.empty(growable: true).obs;
 
-  void hitungNilaiLiquidasiEdit() {
-    final parseNilaiPasar =
-        double.parse(nilaiPasarEdit.text.replaceAll('.', ''));
-    final parsePersentase = double.parse(persentaseEdit.text);
-    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
-    nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
-    nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
-  }
+  // Variabel biar bisa refresh
+  final isAgunanCashProcessing = false.obs;
 
-  void clearForm() {
-    deskripsiPanjang.clear();
-    nilaiPasar.clear();
-    nilaiLiquidasi.clear();
-    nilaiPengikatan.clear();
-    pengikatan.clear();
-  }
+  // Get agunan id from previous page
+  final agunanId = Get.arguments;
 
-  void clearFormEdit() {
-    deskripsiPanjangEdit.clear();
-    nilaiPasarEdit.clear();
-    nilaiLiquidasiEdit.clear();
-    nilaiPengikatanEdit.clear();
-    pengikatanEdit.clear();
-  }
+  // GlobalFormKey
+  final formKey = GlobalKey<FormBuilderState>();
 
+  // Variabel TextEditingInput
   var deskripsiPanjang = TextEditingController();
   var persentase = TextEditingController();
   var nilaiPasar = MoneyMaskedTextController(
@@ -62,6 +43,7 @@ class ListAgunanCashController extends GetxController {
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var pengikatan = TextEditingController();
 
+  // Variabel TextEditingEdit
   var deskripsiPanjangEdit = TextEditingController();
   var persentaseEdit = TextEditingController();
   var nilaiPasarEdit = MoneyMaskedTextController(
@@ -72,14 +54,7 @@ class ListAgunanCashController extends GetxController {
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var pengikatanEdit = TextEditingController();
 
-  final formKey = GlobalKey<FormBuilderState>();
-
-  final agunanId = Get.arguments;
-
-  final isAgunanCashProcessing = false.obs;
-
-  var listAgunanCash = List<FormCommon>.empty(growable: true).obs;
-
+  // Fetch all agunan cash
   void getAllAgunanCash(int id) {
     try {
       isAgunanCashProcessing(true);
@@ -96,6 +71,7 @@ class ListAgunanCashController extends GetxController {
     }
   }
 
+  // Post a agunan cash
   void saveAgunanCash(id) {
     final body = {
       "deskripsi_panjang": deskripsiPanjang.text,
@@ -135,10 +111,8 @@ class ListAgunanCashController extends GetxController {
     }
   }
 
-  void updateAgunanCash(
-    int idAgunan,
-    id,
-  ) {
+  // Update a agunan cash
+  void updateAgunanCash(int idAgunan, id) {
     final body = {
       "deskripsi_panjang": deskripsiPanjangEdit.text,
       "nilai_pasar": nilaiPasarEdit.text.replaceAll('.', ''),
@@ -177,6 +151,7 @@ class ListAgunanCashController extends GetxController {
     }
   }
 
+  // Delete a agunan cash
   void deleteAgunanCash(int agunanId, id) {
     try {
       isAgunanCashProcessing(true);
@@ -205,5 +180,42 @@ class ListAgunanCashController extends GetxController {
       isAgunanCashProcessing(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  // Hitung nilai liquidasi
+  void hitungNilaiLiquidasi() {
+    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentase.text);
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  // Hitung nilai liquidasi edit
+  void hitungNilaiLiquidasiEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseEdit.text);
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+    nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  // Clear form input
+  void clearForm() {
+    deskripsiPanjang.clear();
+    nilaiPasar.clear();
+    nilaiLiquidasi.clear();
+    nilaiPengikatan.clear();
+    pengikatan.clear();
+  }
+
+  // Clear form edit
+  void clearFormEdit() {
+    deskripsiPanjangEdit.clear();
+    nilaiPasarEdit.clear();
+    nilaiLiquidasiEdit.clear();
+    nilaiPengikatanEdit.clear();
+    pengikatanEdit.clear();
   }
 }

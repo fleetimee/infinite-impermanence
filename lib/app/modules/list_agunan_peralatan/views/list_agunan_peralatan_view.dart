@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,6 +10,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -82,25 +84,79 @@ class ListAgunanPeralatanView extends GetView<ListAgunanPeralatanController> {
                 itemCount: controller.listAgunanPeralatan.length,
                 itemBuilder: (context, index) {
                   return Slidable(
-                    // The end action pane is the one at the right or the bottom side.
-                    endActionPane: const ActionPane(
-                      motion: ScrollMotion(),
+                    endActionPane: ActionPane(
+                      motion: const DrawerMotion(),
                       children: [
                         SlidableAction(
-                          // An action can be bigger than the others.
-
-                          onPressed: null,
-                          backgroundColor: Color(0xFF7BC043),
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                showBarModalBottomSheet(
+                                  clipBehavior: Clip.antiAlias,
+                                  bounce: true,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20),
+                                    ),
+                                  ),
+                                  context: context,
+                                  settings: RouteSettings(
+                                      name: Routes.LIST_AGUNAN_CASH,
+                                      arguments: [
+                                        controller.listAgunanPeralatan[index],
+                                        index,
+                                      ]),
+                                  builder: (context) =>
+                                      FormUbahAgunanPeralatan(),
+                                  isDismissible: false,
+                                )
+                              }),
+                          backgroundColor: GFColors.WARNING,
                           foregroundColor: Colors.white,
-                          icon: Icons.archive,
-                          label: 'Archive',
+                          icon: FontAwesomeIcons.pen,
+                          label: 'Ubah',
                         ),
                         SlidableAction(
-                          onPressed: null,
-                          backgroundColor: Color(0xFF0392CF),
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                AwesomeDialog(
+                                        context: Get.context!,
+                                        dialogType: DialogType.question,
+                                        animType: AnimType.bottomSlide,
+                                        dialogBackgroundColor: primaryColor,
+                                        titleTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        descTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        title: 'Konfirmasi',
+                                        bodyHeaderDistance: 25,
+                                        desc:
+                                            'Apakah yakin untuk menghapus item ini ?',
+                                        btnOkOnPress: () {
+                                          controller.deleteAgunanPeralatan(
+                                              data.id,
+                                              controller
+                                                  .listAgunanPeralatan[index]
+                                                  .id);
+                                        },
+                                        btnOkText: 'Oke sip',
+                                        btnCancelText: 'Affa iyh',
+                                        btnCancelOnPress: () {})
+                                    .show()
+                              }),
+                          backgroundColor: GFColors.DANGER,
                           foregroundColor: Colors.white,
-                          icon: Icons.save,
-                          label: 'Save',
+                          icon: FontAwesomeIcons.trash,
+                          label: 'Hapus',
                         ),
                       ],
                     ),
@@ -265,7 +321,7 @@ class ListAgunanPeralatanView extends GetView<ListAgunanPeralatanController> {
                   ),
                   hideBackgroundAnimation: true,
                   subTitle:
-                      'Tidak ada data agunan tanah yang terdaftar atau koneksi internet bermasalah',
+                      'Tidak ada data agunan peralatan yang terdaftar atau koneksi internet bermasalah',
                 ),
               );
             }
@@ -274,6 +330,252 @@ class ListAgunanPeralatanView extends GetView<ListAgunanPeralatanController> {
       ),
     );
   }
+}
+
+class FormUbahAgunanPeralatan extends StatelessWidget {
+  FormUbahAgunanPeralatan({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListAgunanPeralatanController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 800,
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Ubah Agunan Peralatan',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormUpdateAgunanPeralatan(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FormUpdateAgunanPeralatan extends StatelessWidget {
+  FormUpdateAgunanPeralatan({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Detail Agunan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'deskripsi_pendek_edit',
+                controller: controller.deskripsiPanjangEdit =
+                    TextEditingController(text: data.deskripsiPanjang),
+                decoration: const InputDecoration(
+                  labelText: 'Keterangan',
+                  hintText: 'Mesin Pemisah Gabah...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              const Text(
+                'Nilai Agunan',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: FormBuilderTextField(
+                      name: 'nilai_pasar_edit',
+                      controller: controller.nilaiPasarEdit =
+                          MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        initialValue: double.parse(
+                          data.nilaiPasar.toString(),
+                        ),
+                      ),
+                      decoration: const InputDecoration(
+                        labelText: 'Nilai Pasar',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5.0,
+                  ),
+                  Expanded(
+                    child: FormBuilderTextField(
+                      name: 'persentase',
+                      controller: controller.persentaseEdit,
+                      decoration: const InputDecoration(
+                        labelText: 'Persen',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'nilai_liquidasi',
+                enabled: false,
+                controller: controller.nilaiLiquidasiEdit =
+                    MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        initialValue: double.parse(
+                          data.nilaiLiquidasi.toString(),
+                        )),
+                decoration: const InputDecoration(
+                  labelText: 'Nilai Liquidasi',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'nilai_pengikatan',
+                enabled: false,
+                controller: controller.nilaiPengikatanEdit =
+                    MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        initialValue: double.parse(
+                          data.nilaiPengikatan.toString(),
+                        )),
+                decoration: const InputDecoration(
+                  labelText: 'Nilai Pengikatan',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilderTextField(
+                name: 'pengikatan',
+                controller: controller.pengikatanEdit =
+                    TextEditingController(text: data.pengikatan),
+                decoration: const InputDecoration(
+                  labelText: 'Pengikatan',
+                  hintText: 'SKUM',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: GFButton(
+                  onPressed: () {
+                    controller.hitungNilaiLiquidasiEdit();
+                  },
+                  text: 'Hitung Nilai Liquidasi',
+                  elevation: 10,
+                  color: primaryColor,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 225,
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  controller.updateAgunanPeralatan(
+                      data.agunanId, controller.listAgunanPeralatan[index].id);
+                  Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Update',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  final ListAgunanPeralatanController controller;
+  final data = Get.arguments[0];
+  final index = Get.arguments[1];
 }
 
 class FormTambahAgunanPeralatan extends StatelessWidget {

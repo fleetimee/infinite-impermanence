@@ -602,7 +602,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                   debugPrint('validation failed');
                 }
               },
-              text: 'Simpan',
+              text: 'Update',
               color: primaryColor,
               fullWidthButton: true,
               elevation: 10,

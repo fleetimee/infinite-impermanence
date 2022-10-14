@@ -17,6 +17,14 @@ class ListAgunanLainnyaController extends GetxController {
     getAllAgunanLainnya(agunanId[0].id);
   }
 
+  var listAgunanLainnya = List<FormCommon>.empty(growable: true).obs;
+
+  final isAgunanLainnyaProcessing = false.obs;
+
+  final agunanId = Get.arguments;
+
+  final formKey = GlobalKey<FormBuilderState>();
+
   var deskripsiPanjang = TextEditingController();
   var plafonKredit = TextEditingController();
   var namaPerusahaan = TextEditingController();
@@ -29,22 +37,16 @@ class ListAgunanLainnyaController extends GetxController {
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var pengikatan = TextEditingController();
 
-  final formKey = GlobalKey<FormBuilderState>();
-
-  final agunanId = Get.arguments;
-  // final plafon = Get.arguments[1];
-
-  final isAgunanLainnyaProcessing = false.obs;
-
-  var listAgunanLainnya = List<FormCommon>.empty(growable: true).obs;
-
-  void hitungSeventyPercent() {
-    final parsePlafon = int.parse(plafonKredit.text.replaceAll('.', ''));
-
-    final hasil = parsePlafon * 0.7;
-
-    nilaiPasar.text = hasil.toStringAsFixed(0);
-  }
+  var deskripsiPanjangEdit = TextEditingController();
+  var persentaseEdit = TextEditingController();
+  var namaPerusahaanEdit = TextEditingController();
+  var nilaiPasarEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiLiquidasiEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiPengikatanEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var pengikatanEdit = TextEditingController();
 
   void getAllAgunanLainnya(int id) {
     try {
@@ -100,6 +102,44 @@ class ListAgunanLainnyaController extends GetxController {
       isAgunanLainnyaProcessing(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void deleteAgunanLainnya(int idAgunan, id) {
+    try {
+      isAgunanLainnyaProcessing(true);
+      AgunanLainnyaProvider().deleteAgunanLainnya(idAgunan, id).then((resp) {
+        isAgunanLainnyaProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listAgunanLainnya.clear();
+        getAllAgunanLainnya(agunanId[0].id);
+      }, onError: (e) {
+        isAgunanLainnyaProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanLainnyaProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void hitungSeventyPercent() {
+    final parsePlafon = int.parse(plafonKredit.text.replaceAll('.', ''));
+
+    final hasil = parsePlafon * 0.7;
+
+    nilaiPasar.text = hasil.toStringAsFixed(0);
   }
 
   void clearForm() {

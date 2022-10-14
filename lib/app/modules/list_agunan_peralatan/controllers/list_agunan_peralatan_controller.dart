@@ -17,15 +17,13 @@ class ListAgunanPeralatanController extends GetxController {
     getAllAgunanPeralatan(agunanId.id);
   }
 
-  void hitungNilaiLiquidasi() {
-    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
-    final parsePersentase = double.parse(persentase.text);
+  var listAgunanPeralatan = List<FormCommon>.empty(growable: true).obs;
 
-    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+  final isAgunanPeralatanProcessing = false.obs;
 
-    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
-    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
-  }
+  final agunanId = Get.arguments;
+
+  final formKey = GlobalKey<FormBuilderState>();
 
   var deskripsiPanjang = TextEditingController();
   var persentase = TextEditingController();
@@ -37,13 +35,15 @@ class ListAgunanPeralatanController extends GetxController {
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var pengikatan = TextEditingController();
 
-  final formKey = GlobalKey<FormBuilderState>();
-
-  final agunanId = Get.arguments;
-
-  final isAgunanPeralatanProcessing = false.obs;
-
-  var listAgunanPeralatan = List<FormCommon>.empty(growable: true).obs;
+  var deskripsiPanjangEdit = TextEditingController();
+  var persentaseEdit = TextEditingController();
+  var nilaiPasarEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiLiquidasiEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiPengikatanEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var pengikatanEdit = TextEditingController();
 
   void getAllAgunanPeralatan(int id) {
     try {
@@ -100,11 +100,111 @@ class ListAgunanPeralatanController extends GetxController {
     }
   }
 
+  void updateAgunanPeralatan(int idAgunan, id) {
+    final body = {
+      "deskripsi_panjang": deskripsiPanjangEdit.text,
+      "nilai_pasar": nilaiPasarEdit.text.replaceAll('.', ''),
+      "nilai_liquidasi": nilaiLiquidasiEdit.text.replaceAll('.', ''),
+      "nilai_pengikatan": nilaiPengikatanEdit.text.replaceAll('.', ''),
+      "pengikatan": pengikatanEdit.text,
+    };
+
+    try {
+      isAgunanPeralatanProcessing(true);
+      AgunanPeralatanProvider().putAgunanPeralatan(idAgunan, id, body).then(
+          (resp) {
+        isAgunanPeralatanProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil diupdate',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        clearFormEdit();
+        listAgunanPeralatan.clear();
+        getAllAgunanPeralatan(agunanId.id);
+      }, onError: (e) {
+        isAgunanPeralatanProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanPeralatanProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void deleteAgunanPeralatan(int agunanId, id) {
+    try {
+      isAgunanPeralatanProcessing(true);
+      AgunanPeralatanProvider().deleteAgunanPeralatan(agunanId, id).then(
+          (resp) {
+        isAgunanPeralatanProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listAgunanPeralatan.clear();
+        getAllAgunanPeralatan(agunanId);
+      }, onError: (e) {
+        isAgunanPeralatanProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanPeralatanProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
   void clearForm() {
     deskripsiPanjang.clear();
     nilaiPasar.clear();
     nilaiLiquidasi.clear();
     nilaiPengikatan.clear();
     pengikatan.clear();
+  }
+
+  void clearFormEdit() {
+    deskripsiPanjangEdit.clear();
+    nilaiPasarEdit.clear();
+    nilaiLiquidasiEdit.clear();
+    nilaiPengikatanEdit.clear();
+    pengikatanEdit.clear();
+  }
+
+  void hitungNilaiLiquidasi() {
+    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentase.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void hitungNilaiLiquidasiEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseEdit.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
   }
 }

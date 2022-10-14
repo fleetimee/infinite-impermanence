@@ -29,6 +29,7 @@ class ListAgunanTanahController extends GetxController {
 
   // Input
   var deskripsiPendek = TextEditingController();
+  var namaPemilik = TextEditingController();
   var buktiKepemilikan = TextEditingController();
   var persentase = TextEditingController();
   var luasTanah = TextEditingController();
@@ -55,6 +56,7 @@ class ListAgunanTanahController extends GetxController {
 
   // Edit
   var deskripsiPendekEdit = TextEditingController();
+  var namaPemilikEdit = TextEditingController();
   var buktiKepemilikanEdit = TextEditingController();
   var persentaseEdit = TextEditingController();
   var luasTanahEdit = TextEditingController();
@@ -110,7 +112,7 @@ class ListAgunanTanahController extends GetxController {
   void saveAgunanTanah(id) {
     final body = {
       'deskripsi_pendek': deskripsiPendek.text,
-      'nama_pemilik': buktiKepemilikan.text,
+      'nama_pemilik': namaPemilik.text,
       'bukti_kepemilikan': buktiKepemilikan.text,
       'luas_tanah': luasTanah.text,
       'tanggal': tanggal.toString(),
@@ -135,6 +137,51 @@ class ListAgunanTanahController extends GetxController {
           colorText: Colors.white,
         );
         clearForm();
+        listAgunanTanah.clear();
+        getAllAgunanTanah(agunanId.id);
+      }, onError: (e) {
+        isAgunanTanahProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanTanahProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void updateAgunanTanah(int idAgunan, id) {
+    final body = {
+      'deskripsi_pendek': deskripsiPendekEdit.text,
+      'nama_pemilik': namaPemilikEdit.text,
+      'bukti_kepemilikan': buktiKepemilikanEdit.text,
+      'luas_tanah': luasTanahEdit.text,
+      'tanggal': tanggalEdit.toString(),
+      'nilai_pasar': nilaiPasarEdit.text.replaceAll('.', ''),
+      'nilai_liquidasi': nilaiLiquidasiEdit.text.replaceAll('.', ''),
+      'nilai_pengikatan': nilaiPengikatanEdit.text.replaceAll('.', ''),
+      'pengikatan': pengikatanEdit.text,
+      'lokasi': lokasiEdit.text,
+      'deskripsi_panjang': deskripsiPanjangEdit.text,
+    };
+
+    try {
+      isAgunanTanahProcessing(true);
+      AgunanTanahProvider().putAgunanCash(idAgunan, id, body).then((resp) {
+        isAgunanTanahProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil diupdate',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        clearFOrmEdit();
         listAgunanTanah.clear();
         getAllAgunanTanah(agunanId.id);
       }, onError: (e) {
@@ -193,6 +240,27 @@ class ListAgunanTanahController extends GetxController {
     nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
   }
 
+  void hitungNilaiLiquidasiEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseEdit.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void generateDeskripsi() {
+    deskripsiPanjang.text =
+        '${deskripsiPendek.text} dengan bukti kepemilikan ${buktiKepemilikan.text}, Luas Tanah ${luasTanah.text} M2, Atas Nama ${namaPemilik.text} yang berlokasi di ${lokasi.text}';
+  }
+
+  void generateDeskripsiEdit() {
+    deskripsiPanjangEdit.text =
+        '$deskripsiPendekEdit dengan bukti kepemilikan $buktiKepemilikanEdit, Luas Tanah $luasTanahEdit M2, Atas Nama $namaPemilikEdit yang berlokasi di $lokasiEdit';
+  }
+
   void clearForm() {
     deskripsiPendek.clear();
     buktiKepemilikan.clear();
@@ -208,5 +276,18 @@ class ListAgunanTanahController extends GetxController {
     deskripsiPanjang.clear();
   }
 
-  void clearFOrmEdit() {}
+  void clearFOrmEdit() {
+    deskripsiPendekEdit.clear();
+    buktiKepemilikanEdit.clear();
+    persentaseEdit.clear();
+    luasTanahEdit.clear();
+    tanggalEdit = DateTime.now();
+    lokasiEdit.clear();
+    titikKoordinatEdit.clear();
+    nilaiPasarEdit.clear();
+    nilaiLiquidasiEdit.clear();
+    nilaiPengikatanEdit.clear();
+    pengikatanEdit.clear();
+    deskripsiPanjangEdit.clear();
+  }
 }

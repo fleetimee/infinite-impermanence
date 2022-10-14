@@ -327,7 +327,9 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                                   paddedTextTanah('Summary'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
-                                    '${controller.listAgunanTanah[index].deskripsiPendek} dengan bukti kepemilikan ${controller.listAgunanTanah[index].buktiKepemilikan} di ${controller.listAgunanTanah[index].lokasi} dengan luas ${controller.listAgunanTanah[index].luasTanah} m2',
+                                    controller
+                                        .listAgunanTanah[index].deskripsiPanjang
+                                        .toString(),
                                   ),
                                 ],
                               ),
@@ -448,6 +450,23 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             height: 12.0,
           ),
           FormBuilderTextField(
+            name: 'nama_pemilik',
+            controller: controller.namaPemilikEdit =
+                TextEditingController(text: data.namaPemilik),
+            decoration: const InputDecoration(
+              labelText: 'Nama Pemilik',
+              hintText: 'Novian Andika',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
             name: 'bukti_kepemilikan',
             controller: controller.buktiKepemilikanEdit =
                 TextEditingController(text: data.buktiKepemilikan),
@@ -481,7 +500,6 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           ),
           FormBuilderDateTimePicker(
             name: 'tanggal',
-            // TODO: Lanjut disini
             initialValue: data.tanggal,
             inputType: InputType.date,
             onChanged: (value) {
@@ -506,7 +524,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'pengikatan',
-            controller: controller.pengikatan,
+            controller: controller.pengikatanEdit =
+                TextEditingController(text: data.pengikatan),
             decoration: const InputDecoration(
               labelText: 'Pengikatan',
               border: OutlineInputBorder(
@@ -535,7 +554,12 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                 flex: 4,
                 child: FormBuilderTextField(
                   name: 'nilai_pasar',
-                  controller: controller.nilaiPasar,
+                  controller: controller.nilaiPasarEdit =
+                      MoneyMaskedTextController(
+                          initialValue: double.parse(data.nilaiPasar),
+                          thousandSeparator: '.',
+                          decimalSeparator: '',
+                          precision: 0),
                   decoration: const InputDecoration(
                     labelText: 'Nilai Pasar',
                     border: OutlineInputBorder(
@@ -552,7 +576,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'persentase',
-                  controller: controller.persentase,
+                  controller: controller.persentaseEdit,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
                     border: OutlineInputBorder(
@@ -571,7 +595,12 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           FormBuilderTextField(
             name: 'nilai_likuidasi',
             enabled: false,
-            controller: controller.nilaiLiquidasi,
+            controller: controller.nilaiLiquidasiEdit =
+                MoneyMaskedTextController(
+                    initialValue: double.parse(data.nilaiLiquidasi),
+                    thousandSeparator: '.',
+                    decimalSeparator: '',
+                    precision: 0),
             decoration: const InputDecoration(
               labelText: 'Nilai Likuidasi',
               border: OutlineInputBorder(
@@ -587,7 +616,12 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           FormBuilderTextField(
             name: 'nilai_pengikatan',
             enabled: false,
-            controller: controller.nilaiPengikatan,
+            controller: controller.nilaiPengikatanEdit =
+                MoneyMaskedTextController(
+                    initialValue: double.parse(data.nilaiPengikatan),
+                    thousandSeparator: '.',
+                    decimalSeparator: '',
+                    precision: 0),
             decoration: const InputDecoration(
               labelText: 'Nilai Pengikatan',
               border: OutlineInputBorder(
@@ -601,7 +635,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasi();
+                controller.hitungNilaiLiquidasiEdit();
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,
@@ -621,7 +655,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           FormBuilderTextField(
             name: 'lokasi',
             maxLines: 4,
-            controller: controller.lokasi,
+            controller: controller.lokasiEdit =
+                TextEditingController(text: data.lokasi),
             decoration: const InputDecoration(
               alignLabelWithHint: true,
               labelText: 'Lokasi',
@@ -637,7 +672,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'titik_koordinat',
-            controller: controller.titikKoordinat,
+            controller: controller.titikKoordinatEdit =
+                TextEditingController(text: data.titikKoordinat),
             decoration: const InputDecoration(
               labelText: 'Titik Koordinat',
               border: OutlineInputBorder(
@@ -667,8 +703,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                         onPicked: (pickedData) {
                           var latLongString =
                               '${pickedData.latLong.latitude}, ${pickedData.latLong.longitude}';
-                          controller.lokasi.text = pickedData.address;
-                          controller.titikKoordinat.text = latLongString;
+                          controller.lokasiEdit.text = pickedData.address;
+                          controller.titikKoordinatEdit.text = latLongString;
                           Get.back();
                         });
                   },
@@ -689,10 +725,10 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
-          // TODO: Add summary generator
           FormBuilderTextField(
             name: 'deskripsi_panjang',
-            controller: controller.deskripsiPanjang,
+            controller: controller.deskripsiPanjang =
+                TextEditingController(text: data.deskripsiPanjang),
             maxLines: 4,
             decoration: const InputDecoration(
               labelText: 'Summary',
@@ -704,15 +740,24 @@ class FormUpdateAgunanTanah extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 5.0,
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.generateDeskripsiEdit();
+              },
+              text: 'Generate Deskripsi',
+              elevation: 10,
+              color: primaryColor,
+            ),
           ),
           Center(
             child: GFButton(
               onPressed: () {
                 if (controller.formKey.currentState?.saveAndValidate() ??
                     false) {
-                  controller.saveAgunanTanah(data.id);
+                  controller.updateAgunanTanah(
+                      data.agunanId, controller.listAgunanTanah[index].id);
 
                   Get.back();
                   debugPrint(controller.formKey.currentState?.value.toString());
@@ -808,6 +853,22 @@ class FormInputAgunanTanah extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Keterangan',
               hintText: 'Sebidang tanah di kota X',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nama_pemilik',
+            controller: controller.namaPemilik,
+            decoration: const InputDecoration(
+              labelText: 'Nama Pemilik',
+              hintText: 'Novian Andika',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1056,11 +1117,10 @@ class FormInputAgunanTanah extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
-          // TODO: Add summary generator
           FormBuilderTextField(
             name: 'deskripsi_panjang',
             controller: controller.deskripsiPanjang,
-            maxLines: 4,
+            maxLines: 7,
             decoration: const InputDecoration(
               labelText: 'Summary',
               alignLabelWithHint: true,
@@ -1071,8 +1131,19 @@ class FormInputAgunanTanah extends StatelessWidget {
               ),
             ),
           ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.generateDeskripsi();
+              },
+              text: 'Generate Deskripsi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
           const SizedBox(
-            height: 5.0,
+            height: 20.0,
           ),
           Center(
             child: GFButton(
@@ -1093,9 +1164,6 @@ class FormInputAgunanTanah extends StatelessWidget {
               fullWidthButton: true,
               elevation: 10,
             ),
-          ),
-          const SizedBox(
-            height: 50.0,
           ),
         ],
       ),

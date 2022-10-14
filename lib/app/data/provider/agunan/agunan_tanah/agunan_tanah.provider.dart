@@ -63,7 +63,7 @@ class AgunanTanahProvider {
   Future<void> putAgunanCash(int idAgunan, int id, Map body) async {
     try {
       final response = await httpClient.put(
-        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-cash/$id/'),
+        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-tanah/$id/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

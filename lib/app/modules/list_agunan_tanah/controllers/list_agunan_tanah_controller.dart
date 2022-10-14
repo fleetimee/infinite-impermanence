@@ -13,18 +13,21 @@ import 'package:akm/app/data/provider/agunan/agunan_tanah/agunan_tanah.provider.
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 
 class ListAgunanTanahController extends GetxController {
-  final agunanId = Get.arguments;
-
-  final isAgunanTanahProcessing = false.obs;
-
   @override
   void onInit() {
     super.onInit();
     getAllAgunanTanah(agunanId.id);
   }
 
+  var listAgunanTanah = List<FormTanah>.empty(growable: true).obs;
+
+  final isAgunanTanahProcessing = false.obs;
+
+  final agunanId = Get.arguments;
+
   final formKey = GlobalKey<FormBuilderState>();
 
+  // Input
   var deskripsiPendek = TextEditingController();
   var buktiKepemilikan = TextEditingController();
   var persentase = TextEditingController();
@@ -50,17 +53,31 @@ class ListAgunanTanahController extends GetxController {
   var pengikatan = TextEditingController();
   var deskripsiPanjang = TextEditingController();
 
-  var listAgunanTanah = List<FormTanah>.empty(growable: true).obs;
-
-  void hitungNilaiLiquidasi() {
-    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
-    final parsePersentase = double.parse(persentase.text);
-
-    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
-
-    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
-    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
-  }
+  // Edit
+  var deskripsiPendekEdit = TextEditingController();
+  var buktiKepemilikanEdit = TextEditingController();
+  var persentaseEdit = TextEditingController();
+  var luasTanahEdit = TextEditingController();
+  var tanggalEdit = DateTime.now();
+  var lokasiEdit = TextEditingController();
+  var titikKoordinatEdit = TextEditingController();
+  var nilaiPasarEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var nilaiLiquidasiEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var nilaiPengikatanEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var pengikatanEdit = TextEditingController();
+  var deskripsiPanjangEdit = TextEditingController();
 
   void getAllAgunanTanah(int id) {
     try {
@@ -90,24 +107,7 @@ class ListAgunanTanahController extends GetxController {
     }
   }
 
-  void clearForm() {
-    deskripsiPendek.clear();
-    buktiKepemilikan.clear();
-    persentase.clear();
-    luasTanah.clear();
-    tanggal = DateTime.now();
-    lokasi.clear();
-    titikKoordinat.clear();
-    nilaiPasar.clear();
-    nilaiLiquidasi.clear();
-    nilaiPengikatan.clear();
-    pengikatan.clear();
-    deskripsiPanjang.clear();
-  }
-
   void saveAgunanTanah(id) {
-    // final data = formKey.currentState?.value;
-
     final body = {
       'deskripsi_pendek': deskripsiPendek.text,
       'nama_pemilik': buktiKepemilikan.text,
@@ -152,4 +152,61 @@ class ListAgunanTanahController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
+
+  void deleteAgunanTanah(int agunanId, id) {
+    try {
+      isAgunanTanahProcessing(true);
+      AgunanTanahProvider().purgeAgunanTanah(agunanId, id).then((resp) {
+        isAgunanTanahProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listAgunanTanah.clear();
+        getAllAgunanTanah(agunanId);
+      }, onError: (e) {
+        isAgunanTanahProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanTanahProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void hitungNilaiLiquidasi() {
+    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentase.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void clearForm() {
+    deskripsiPendek.clear();
+    buktiKepemilikan.clear();
+    persentase.clear();
+    luasTanah.clear();
+    tanggal = DateTime.now();
+    lokasi.clear();
+    titikKoordinat.clear();
+    nilaiPasar.clear();
+    nilaiLiquidasi.clear();
+    nilaiPengikatan.clear();
+    pengikatan.clear();
+    deskripsiPanjang.clear();
+  }
+
+  void clearFOrmEdit() {}
 }

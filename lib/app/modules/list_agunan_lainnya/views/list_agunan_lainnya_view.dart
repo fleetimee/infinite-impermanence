@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/routes/app_pages.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,8 +10,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/button/gf_button.dart';
-import 'package:getwidget/components/list_tile/gf_list_tile.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
@@ -88,25 +89,48 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
                 itemCount: controller.listAgunanLainnya.length,
                 itemBuilder: (context, index) {
                   return Slidable(
-                    // The end action pane is the one at the right or the bottom side.
-                    endActionPane: const ActionPane(
-                      motion: ScrollMotion(),
+                    endActionPane: ActionPane(
+                      motion: const DrawerMotion(),
                       children: [
                         SlidableAction(
-                          // An action can be bigger than the others.
-
-                          onPressed: null,
-                          backgroundColor: Color(0xFF7BC043),
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                AwesomeDialog(
+                                        context: Get.context!,
+                                        dialogType: DialogType.question,
+                                        animType: AnimType.bottomSlide,
+                                        dialogBackgroundColor: primaryColor,
+                                        titleTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        descTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        title: 'Konfirmasi',
+                                        bodyHeaderDistance: 25,
+                                        desc:
+                                            'Apakah yakin untuk menghapus item ini ?',
+                                        btnOkOnPress: () {
+                                          controller.deleteAgunanLainnya(
+                                              data[0].id,
+                                              controller
+                                                  .listAgunanLainnya[index].id);
+                                        },
+                                        btnOkText: 'Oke sip',
+                                        btnCancelText: 'Affa iyh',
+                                        btnCancelOnPress: () {})
+                                    .show()
+                              }),
+                          backgroundColor: GFColors.DANGER,
                           foregroundColor: Colors.white,
-                          icon: Icons.archive,
-                          label: 'Archive',
-                        ),
-                        SlidableAction(
-                          onPressed: null,
-                          backgroundColor: Color(0xFF0392CF),
-                          foregroundColor: Colors.white,
-                          icon: Icons.save,
-                          label: 'Save',
+                          icon: FontAwesomeIcons.trash,
+                          label: 'Hapus',
                         ),
                       ],
                     ),

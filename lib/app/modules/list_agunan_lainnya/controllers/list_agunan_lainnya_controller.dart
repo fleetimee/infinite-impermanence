@@ -144,6 +144,7 @@ class ListAgunanLainnyaController extends GetxController {
 
   void clearForm() {
     deskripsiPanjang.clear();
+    namaPerusahaan.clear();
     nilaiPasar.clear();
     nilaiLiquidasi.clear();
     nilaiPengikatan.clear();

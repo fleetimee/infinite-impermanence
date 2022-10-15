@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -26,6 +27,8 @@ class ListAgunanTanahController extends GetxController {
   final agunanId = Get.arguments;
 
   final formKey = GlobalKey<FormBuilderState>();
+
+  final PopupController popupLayerController = PopupController();
 
   // Input
   var deskripsiPendek = TextEditingController();
@@ -167,6 +170,7 @@ class ListAgunanTanahController extends GetxController {
       'nilai_pengikatan': nilaiPengikatanEdit.text.replaceAll('.', ''),
       'pengikatan': pengikatanEdit.text,
       'lokasi': lokasiEdit.text,
+      'titik_koordinat': titikKoordinatEdit.text,
       'deskripsi_panjang': deskripsiPanjangEdit.text,
     };
 

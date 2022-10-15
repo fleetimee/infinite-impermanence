@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/list_agunan_tanah_bangunan/views/list_agunan_tanah_bangunan_view.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
@@ -53,7 +57,6 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
               return IconButton(
                 onPressed: () {
                   showBarModalBottomSheet(
-                    expand: true,
                     bounce: true,
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.vertical(
@@ -165,12 +168,112 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                       title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Agunan Tanah ${(index + 1).toRomanNumeralString()}',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Agunan Tanah ${(index + 1).toRomanNumeralString()}',
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              GFButton(
+                                icon: const Icon(
+                                  FontAwesomeIcons.locationDot,
+                                  size: 15,
+                                  color: GFColors.DANGER,
+                                ),
+                                text: "Denah Lokasi",
+                                color: primaryColor,
+                                size: GFSize.SMALL,
+                                type: GFButtonType.outline,
+                                onPressed: () {
+                                  showBarModalBottomSheet(
+                                    context: context,
+                                    builder: (context) {
+                                      return SizedBox(
+                                        height: 600,
+                                        child: FlutterMap(
+                                          options: MapOptions(
+                                            center: LatLng(
+                                              // Split string to get latitude and longitude
+                                              double.parse(controller
+                                                  .listAgunanTanah[index]
+                                                  .titikKoordinat!
+                                                  .split(',')[0]),
+                                              double.parse(controller
+                                                  .listAgunanTanah[index]
+                                                  .titikKoordinat!
+                                                  .split(',')[1]),
+                                            ),
+                                            zoom: 18.0,
+                                          ),
+                                          nonRotatedChildren: [
+                                            AttributionWidget.defaultWidget(
+                                              source: 'Novian Andika',
+                                              onSourceTapped: null,
+                                            ),
+                                          ],
+                                          children: [
+                                            TileLayer(
+                                              urlTemplate:
+                                                  // Use google tile maps
+                                                  'https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',
+                                              // 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                              userAgentPackageName:
+                                                  'com.example.app',
+                                              maxZoom: 20,
+                                            ),
+                                            PopupMarkerLayerWidget(
+                                              options: PopupMarkerLayerOptions(
+                                                popupController: controller
+                                                    .popupLayerController,
+                                                markers: [
+                                                  Marker(
+                                                    point: LatLng(
+                                                      // Split string to get latitude and longitude
+                                                      double.parse(controller
+                                                          .listAgunanTanah[
+                                                              index]
+                                                          .titikKoordinat!
+                                                          .split(',')[0]),
+                                                      double.parse(controller
+                                                          .listAgunanTanah[
+                                                              index]
+                                                          .titikKoordinat!
+                                                          .split(',')[1]),
+                                                    ),
+                                                    width: 40,
+                                                    height: 40,
+                                                    builder: (_) => const Icon(
+                                                      Icons.location_on,
+                                                      size: 50,
+                                                      color: GFColors.DANGER,
+                                                    ),
+                                                    anchorPos: AnchorPos.align(
+                                                      AnchorAlign.top,
+                                                    ),
+                                                  ),
+                                                ],
+                                                markerRotateAlignment:
+                                                    PopupMarkerLayerOptions
+                                                        .rotationAlignmentFor(
+                                                            AnchorAlign.top),
+                                                popupBuilder:
+                                                    (BuildContext context,
+                                                            Marker marker) =>
+                                                        ExamplePopup(marker),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                           const Divider(
                             color: Colors.black,
@@ -378,7 +481,6 @@ class FormUbahAgunanTanah extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 800,
       padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
         keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,

@@ -1,4 +1,7 @@
+// ignore_for_file: constant_identifier_names
+
 // 📦 Package imports:
+
 import 'package:get/get.dart';
 
 // 🌎 Project imports:

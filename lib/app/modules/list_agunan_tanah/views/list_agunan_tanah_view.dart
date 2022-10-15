@@ -727,7 +727,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'deskripsi_panjang',
-            controller: controller.deskripsiPanjang =
+            controller: controller.deskripsiPanjangEdit =
                 TextEditingController(text: data.deskripsiPanjang),
             maxLines: 4,
             decoration: const InputDecoration(
@@ -766,7 +766,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                   debugPrint('validation failed');
                 }
               },
-              text: 'Simpan',
+              text: 'Update',
               color: primaryColor,
               fullWidthButton: true,
               elevation: 10,

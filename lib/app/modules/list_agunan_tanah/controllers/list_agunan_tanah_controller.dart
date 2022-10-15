@@ -258,7 +258,7 @@ class ListAgunanTanahController extends GetxController {
 
   void generateDeskripsiEdit() {
     deskripsiPanjangEdit.text =
-        '$deskripsiPendekEdit dengan bukti kepemilikan $buktiKepemilikanEdit, Luas Tanah $luasTanahEdit M2, Atas Nama $namaPemilikEdit yang berlokasi di $lokasiEdit';
+        '${deskripsiPendekEdit.text} dengan bukti kepemilikan ${buktiKepemilikanEdit.text}, Luas Tanah ${luasTanahEdit.text} M2, Atas Nama ${namaPemilikEdit.text} yang berlokasi di ${lokasiEdit.text}';
   }
 
   void clearForm() {

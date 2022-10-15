@@ -58,7 +58,46 @@ class AgunanLosProvider {
     }
   }
 
-  // TODO: Add update agunan los
+  Future<void> putAgunanLos(int idAgunan, int id, Map body) async {
+    try {
+      final response = await httpClient.put(
+        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-los/$id/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
 
-  // TODO: Add update agunan los
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> purgeAgunanLos(int idAgunan, int id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}agunan/$idAgunan/agunan-los/$id/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

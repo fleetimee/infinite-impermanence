@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/agunan/agunan_los/agunan_los.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:intl/intl.dart';
 
 class ListAgunanLosController extends GetxController {
   @override
@@ -17,6 +18,16 @@ class ListAgunanLosController extends GetxController {
     super.onInit();
     getAllAgunanLos(agunanId.id);
   }
+
+  var listAgunanLos = List<FormLo>.empty(growable: true).obs;
+
+  final isAgunanLosProcessing = false.obs;
+
+  final agunanId = Get.arguments;
+
+  final formKey = GlobalKey<FormBuilderState>();
+
+  final PopupController popupLayerController = PopupController();
 
   var deskripsiPendek = TextEditingController();
   var komponen = TextEditingController();
@@ -30,6 +41,7 @@ class ListAgunanLosController extends GetxController {
   var jenisDagangan = TextEditingController();
   var persentase = TextEditingController();
   var lokasiPasar = TextEditingController();
+  var titikKoordinat = TextEditingController();
   var waktuBuka = DateTime.now();
   var waktuTutup = DateTime.now();
   var berlakuSampai = DateTime.now();
@@ -42,28 +54,30 @@ class ListAgunanLosController extends GetxController {
   var pengikatan = TextEditingController();
   var deskripsiPanjang = TextEditingController();
 
-  final formKey = GlobalKey<FormBuilderState>();
-
-  final agunanId = Get.arguments;
-
-  final isAgunanLosProcessing = false.obs;
-
-  var listAgunanLos = List<FormLo>.empty(growable: true).obs;
-
-  void generateDescription() {
-    deskripsiPanjang.text =
-        'Agunan Los Pasar ${deskripsiPendek.text} atas nama ${namaPemilik.text} TTL: ${tempatLahir.text}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(tanggalLahir.toString()))}, yang beralamatkan di ${alamat.text} \n\nLos Pasar ini berlokasi di ${lokasiPasar.text}, dengan luas ${luasLos.text}m2, tempat dasaran ${tempatDasaran.text}, no registrasi ${noRegistrasi.text} \n\nJenis dagangan ${jenisDagangan.text}, dengan waktu buka pukul ${DateFormat('jm').format(DateTime.parse(waktuBuka.toString()))} dan tutup pukul ${DateFormat('jm').format(DateTime.parse(waktuTutup.toString()))} \n\n';
-  }
-
-  void hitungNilaiLiquidasi() {
-    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
-    final parsePersentase = double.parse(persentase.text);
-
-    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
-
-    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
-    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
-  }
+  var deskripsiPendekEdit = TextEditingController();
+  var komponenEdit = TextEditingController();
+  var namaPemilikEdit = TextEditingController();
+  var tempatLahirEdit = TextEditingController();
+  var tanggalLahirEdit = DateTime.now();
+  var alamatEdit = TextEditingController();
+  var tempatDasaranEdit = TextEditingController();
+  var noRegistrasiEdit = TextEditingController();
+  var luasLosEdit = TextEditingController();
+  var jenisDaganganEdit = TextEditingController();
+  var persentaseEdit = TextEditingController();
+  var lokasiPasarEdit = TextEditingController();
+  var titikKoordinatEdit = TextEditingController();
+  var waktuBukaEdit = DateTime.now();
+  var waktuTutupEdit = DateTime.now();
+  var berlakuSampaiEdit = DateTime.now();
+  var nilaiPasarEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiLiquidasiEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var nilaiPengikatanEdit = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var pengikatanEdit = TextEditingController();
+  var deskripsiPanjangEdit = TextEditingController();
 
   void getAllAgunanLos(int id) {
     try {
@@ -96,6 +110,7 @@ class ListAgunanLosController extends GetxController {
       'jenis_dagangan': jenisDagangan.text,
       'persentase': persentase.text,
       'lokasi_pasar': lokasiPasar.text,
+      'titik_koordinat': titikKoordinat.text,
       'waktu_buka': waktuBuka.toString(),
       'waktu_tutup': waktuTutup.toString(),
       'berlaku_sampai': berlakuSampai.toString(),
@@ -134,6 +149,51 @@ class ListAgunanLosController extends GetxController {
       isAgunanLosProcessing(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void deleteAgunanLos(int agunanId, id) {
+    try {
+      isAgunanLosProcessing(true);
+      AgunanLosProvider().purgeAgunanLos(agunanId, id).then((resp) {
+        isAgunanLosProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listAgunanLos.clear();
+        getAllAgunanLos(agunanId);
+      }, onError: (e) {
+        isAgunanLosProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanLosProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void generateDescription() {
+    deskripsiPanjang.text =
+        'Agunan Los Pasar ${deskripsiPendek.text} atas nama ${namaPemilik.text} TTL: ${tempatLahir.text}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(tanggalLahir.toString()))}, yang beralamatkan di ${alamat.text} \n\nLos Pasar ini berlokasi di ${lokasiPasar.text}, dengan luas ${luasLos.text}m2, tempat dasaran ${tempatDasaran.text}, no registrasi ${noRegistrasi.text} \n\nJenis dagangan ${jenisDagangan.text}, dengan waktu buka pukul ${DateFormat('jm').format(DateTime.parse(waktuBuka.toString()))} dan tutup pukul ${DateFormat('jm').format(DateTime.parse(waktuTutup.toString()))} \n\n';
+  }
+
+  void hitungNilaiLiquidasi() {
+    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentase.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
   }
 
   void clearForm() {

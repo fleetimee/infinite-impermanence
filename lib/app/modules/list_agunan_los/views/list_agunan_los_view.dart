@@ -1,15 +1,18 @@
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
@@ -86,279 +89,371 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
               return ListView.builder(
                 itemCount: controller.listAgunanLos.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: GFListTile(
-                      color: secondaryColor,
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Agunan Los (Kios Pasar) ${(index + 1).toRomanNumeralString()}',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w800,
+                  return Slidable(
+                    endActionPane: ActionPane(
+                      motion: const DrawerMotion(),
+                      children: [
+                        SlidableAction(
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                // showBarModalBottomSheet(
+                                //   clipBehavior: Clip.antiAlias,
+                                //   bounce: true,
+                                //   shape: const RoundedRectangleBorder(
+                                //     borderRadius: BorderRadius.vertical(
+                                //       top: Radius.circular(20),
+                                //     ),
+                                //   ),
+                                //   context: context,
+                                //   settings: RouteSettings(
+                                //       name: Routes.LIST_AGUNAN_CASH,
+                                //       arguments: [
+                                //         controller.listAgunanTanah[index],
+                                //         index,
+                                //       ]),
+                                //   builder: (context) => FormUbahAgunanTanah(),
+                                //   isDismissible: false,
+                                // )
+                              }),
+                          backgroundColor: GFColors.WARNING,
+                          foregroundColor: Colors.white,
+                          icon: FontAwesomeIcons.pen,
+                          label: 'Ubah',
+                        ),
+                        SlidableAction(
+                          borderRadius: BorderRadius.circular(20),
+                          padding: const EdgeInsets.all(10),
+                          spacing: 10,
+                          onPressed: ((context) => {
+                                AwesomeDialog(
+                                        context: Get.context!,
+                                        dialogType: DialogType.question,
+                                        animType: AnimType.bottomSlide,
+                                        dialogBackgroundColor: primaryColor,
+                                        titleTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                        descTextStyle: GoogleFonts.poppins(
+                                          color: secondaryColor,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                        title: 'Konfirmasi',
+                                        bodyHeaderDistance: 25,
+                                        desc:
+                                            'Apakah yakin untuk menghapus item ini ?',
+                                        btnOkOnPress: () {
+                                          controller.deleteAgunanLos(
+                                              data.id,
+                                              controller
+                                                  .listAgunanLos[index].id);
+                                        },
+                                        btnOkText: 'Oke sip',
+                                        btnCancelText: 'Affa iyh',
+                                        btnCancelOnPress: () {})
+                                    .show()
+                              }),
+                          backgroundColor: GFColors.DANGER,
+                          foregroundColor: Colors.white,
+                          icon: FontAwesomeIcons.trash,
+                          label: 'Hapus',
+                        ),
+                      ],
+                    ),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: GFListTile(
+                        color: secondaryColor,
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Agunan Los (Kios Pasar) ${(index + 1).toRomanNumeralString()}',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
-                          ),
-                          const Divider(
-                            color: Colors.black,
-                            thickness: 1,
-                          )
-                        ],
-                      ),
-                      subTitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'DATA JAMINAN',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
+                            const Divider(
+                              color: Colors.black,
+                              thickness: 1,
+                            )
+                          ],
+                        ),
+                        subTitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'DATA JAMINAN',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            controller.listAgunanLos[index].deskripsiPendek
-                                .toString(),
-                            style: const TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
+                            const SizedBox(
+                              height: 5.0,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                          Table(
-                            columnWidths: const {
-                              0: FlexColumnWidth(0.5),
-                              1: FlexColumnWidth(0.1),
-                              2: FlexColumnWidth(1),
-                            },
-                            children: [
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Atas Nama'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller.listAgunanLos[index].namaPemilik
-                                        .toString(),
-                                  ),
-                                ],
+                            Text(
+                              controller.listAgunanLos[index].deskripsiPendek
+                                  .toString(),
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
                               ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Tempat Tgl Lahir'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    '${controller.listAgunanLos[index].tempatLahir.toString()}, ${DateFormat('dd MMMM yyyy').format(DateTime.parse(controller.listAgunanLos[index].tanggalLahir.toString()))}',
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Alamat'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller
-                                        .listAgunanLos[index].alamatPemilik
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Tempat Dasaran'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller
-                                        .listAgunanLos[index].tempatDasaran
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('No Registrasi'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller.listAgunanLos[index].noRegistrasi
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Luas'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    '${controller.listAgunanLos[index].luasLos.toString()} m2',
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Jenis Dagangan'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller
-                                        .listAgunanLos[index].jenisDagangan
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Jam Buka'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    '${controller.listAgunanLos[index].waktuBuka.toString()} - ${controller.listAgunanLos[index].waktuTutup.toString()} WIB',
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Berlaku s/d'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    DateFormat('dd MMMM yyyy').format(
-                                        DateTime.parse(controller
-                                            .listAgunanLos[index].berlakuSampai
-                                            .toString())),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah(''),
-                                  paddedTextTanah(''),
-                                  paddedTextTanah(''),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Nilai Pasar'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    'Rp. ${MoneyMaskedTextController(
-                                      decimalSeparator: '',
-                                      thousandSeparator: '.',
-                                      precision: 0,
-                                      initialValue: double.parse(
-                                        controller
-                                            .listAgunanLos[index].nilaiPasar
-                                            .toString(),
-                                      ),
-                                    ).text}',
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Nilai Likuidasi'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    'Rp. ${MoneyMaskedTextController(
-                                      decimalSeparator: '',
-                                      thousandSeparator: '.',
-                                      precision: 0,
-                                      initialValue: double.parse(
-                                        controller
-                                            .listAgunanLos[index].nilaiLiquidasi
-                                            .toString(),
-                                      ),
-                                    ).text}',
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Nilai Pengikatan'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    'Rp. ${MoneyMaskedTextController(
-                                      decimalSeparator: '',
-                                      thousandSeparator: '.',
-                                      precision: 0,
-                                      initialValue: double.parse(
-                                        controller.listAgunanLos[index]
-                                            .nilaiPengikatan
-                                            .toString(),
-                                      ),
-                                    ).text}',
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah(''),
-                                  paddedTextTanah(''),
-                                  paddedTextTanah(''),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Lokasi Pasar'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller.listAgunanLos[index].lokasiPasar
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Pengikatan'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller.listAgunanLos[index].pengikatan
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah(''),
-                                  paddedTextTanah(''),
-                                  paddedTextTanah(''),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Pemilik'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller.listAgunanLos[index].namaPemilik
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Alamat'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller
-                                        .listAgunanLos[index].alamatPemilik
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                              TableRow(
-                                children: [
-                                  paddedTextTanah('Summary'),
-                                  paddedTextTanah(':'),
-                                  paddedTextTanah(
-                                    controller
-                                        .listAgunanLos[index].deskripsiPanjang
-                                        .toString(),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            Table(
+                              columnWidths: const {
+                                0: FlexColumnWidth(0.5),
+                                1: FlexColumnWidth(0.1),
+                                2: FlexColumnWidth(1),
+                              },
+                              children: [
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Atas Nama'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].namaPemilik
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Tempat Tgl Lahir'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      '${controller.listAgunanLos[index].tempatLahir.toString()}, ${DateFormat('dd MMMM yyyy').format(DateTime.parse(controller.listAgunanLos[index].tanggalLahir.toString()))}',
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Alamat'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].alamatPemilik
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Tempat Dasaran'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].tempatDasaran
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('No Registrasi'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].noRegistrasi
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Luas'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      '${controller.listAgunanLos[index].luasLos.toString()} m2',
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Jenis Dagangan'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].jenisDagangan
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Jam Buka'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      '${controller.listAgunanLos[index].waktuBuka.toString()} - ${controller.listAgunanLos[index].waktuTutup.toString()} WIB',
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Berlaku s/d'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      DateFormat('dd MMMM yyyy').format(
+                                          DateTime.parse(controller
+                                              .listAgunanLos[index]
+                                              .berlakuSampai
+                                              .toString())),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah(''),
+                                    paddedTextTanah(''),
+                                    paddedTextTanah(''),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Nilai Pasar'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(
+                                        decimalSeparator: '',
+                                        thousandSeparator: '.',
+                                        precision: 0,
+                                        initialValue: double.parse(
+                                          controller
+                                              .listAgunanLos[index].nilaiPasar
+                                              .toString(),
+                                        ),
+                                      ).text}',
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Nilai Likuidasi'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(
+                                        decimalSeparator: '',
+                                        thousandSeparator: '.',
+                                        precision: 0,
+                                        initialValue: double.parse(
+                                          controller.listAgunanLos[index]
+                                              .nilaiLiquidasi
+                                              .toString(),
+                                        ),
+                                      ).text}',
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Nilai Pengikatan'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(
+                                        decimalSeparator: '',
+                                        thousandSeparator: '.',
+                                        precision: 0,
+                                        initialValue: double.parse(
+                                          controller.listAgunanLos[index]
+                                              .nilaiPengikatan
+                                              .toString(),
+                                        ),
+                                      ).text}',
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Pengikatan'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller.listAgunanLos[index].pengikatan
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah(''),
+                                    paddedTextTanah(''),
+                                    paddedTextTanah(''),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Lokasi Pasar'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].lokasiPasar
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Titik Koordinat'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].titikKoordinat
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah(''),
+                                    paddedTextTanah(''),
+                                    paddedTextTanah(''),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Pemilik'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].namaPemilik
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Alamat'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].alamatPemilik
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Summary'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller
+                                          .listAgunanLos[index].deskripsiPanjang
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
@@ -654,6 +749,22 @@ class FormInputAgunanLos extends StatelessWidget {
             ),
           ),
           const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'titik_koordinat',
+            controller: controller.titikKoordinat,
+            decoration: const InputDecoration(
+              labelText: 'Titik Koordinat',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
             height: 5.0,
           ),
           Align(
@@ -671,7 +782,11 @@ class FormInputAgunanLos extends StatelessWidget {
                         buttonColor: primaryColor,
                         buttonText: 'Pilih Lokasi',
                         onPicked: (pickedData) {
+                          var latLongString =
+                              '${pickedData.latLong.latitude}, ${pickedData.latLong.longitude}';
+                          controller.titikKoordinat.text = latLongString;
                           controller.lokasiPasar.text = pickedData.address;
+
                           Get.back();
                         });
                   },

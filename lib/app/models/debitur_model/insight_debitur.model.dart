@@ -436,6 +436,7 @@ class FormLo {
     this.nilaiLiquidasi,
     this.nilaiPengikatan,
     this.lokasiPasar,
+    this.titikKoordinat,
     this.pengikatan,
     this.deskripsiPanjang,
     this.agunanId,
@@ -458,6 +459,7 @@ class FormLo {
   int? nilaiLiquidasi;
   int? nilaiPengikatan;
   String? lokasiPasar;
+  String? titikKoordinat;
   String? pengikatan;
   String? deskripsiPanjang;
   int? agunanId;
@@ -484,6 +486,7 @@ class FormLo {
         nilaiLiquidasi: json["nilai_liquidasi"],
         nilaiPengikatan: json["nilai_pengikatan"],
         lokasiPasar: json["lokasi_pasar"],
+        titikKoordinat: json["titik_koordinat"],
         pengikatan: json["pengikatan"],
         deskripsiPanjang: json["deskripsi_panjang"],
         agunanId: json["agunanId"],
@@ -511,6 +514,7 @@ class FormLo {
         "nilai_liquidasi": nilaiLiquidasi,
         "nilai_pengikatan": nilaiPengikatan,
         "lokasi_pasar": lokasiPasar,
+        "titik_koordinat": titikKoordinat,
         "pengikatan": pengikatan,
         "deskripsi_panjang": deskripsiPanjang,
         "agunanId": agunanId,

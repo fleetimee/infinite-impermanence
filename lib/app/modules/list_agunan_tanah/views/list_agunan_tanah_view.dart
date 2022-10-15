@@ -420,6 +420,17 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                               ),
                               TableRow(
                                 children: [
+                                  paddedTextTanah('Titik Koordinat'),
+                                  paddedTextTanah(':'),
+                                  paddedTextTanah(
+                                    controller
+                                        .listAgunanTanah[index].titikKoordinat
+                                        .toString(),
+                                  ),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
                                   paddedTextTanah(''),
                                   const SizedBox.shrink(),
                                   const SizedBox.shrink(),

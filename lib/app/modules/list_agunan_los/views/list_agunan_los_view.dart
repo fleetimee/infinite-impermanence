@@ -102,24 +102,24 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
                           padding: const EdgeInsets.all(10),
                           spacing: 10,
                           onPressed: ((context) => {
-                                // showBarModalBottomSheet(
-                                //   clipBehavior: Clip.antiAlias,
-                                //   bounce: true,
-                                //   shape: const RoundedRectangleBorder(
-                                //     borderRadius: BorderRadius.vertical(
-                                //       top: Radius.circular(20),
-                                //     ),
-                                //   ),
-                                //   context: context,
-                                //   settings: RouteSettings(
-                                //       name: Routes.LIST_AGUNAN_CASH,
-                                //       arguments: [
-                                //         controller.listAgunanT[index],
-                                //         index,
-                                //       ]),
-                                //   builder: (context) => FormUbahAgunanTanah(),
-                                //   isDismissible: false,
-                                // )
+                                showBarModalBottomSheet(
+                                  clipBehavior: Clip.antiAlias,
+                                  bounce: true,
+                                  shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(20),
+                                    ),
+                                  ),
+                                  context: context,
+                                  settings: RouteSettings(
+                                      name: Routes.LIST_AGUNAN_CASH,
+                                      arguments: [
+                                        controller.listAgunanLos[index],
+                                        index,
+                                      ]),
+                                  builder: (context) => FormUbahAgunanKios(),
+                                  isDismissible: false,
+                                )
                               }),
                           backgroundColor: GFColors.WARNING,
                           foregroundColor: Colors.white,
@@ -349,6 +349,16 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
                                     paddedTextTanah(
                                       controller
                                           .listAgunanLos[index].alamatPemilik
+                                          .toString(),
+                                    ),
+                                  ],
+                                ),
+                                TableRow(
+                                  children: [
+                                    paddedTextTanah('Komponen'),
+                                    paddedTextTanah(':'),
+                                    paddedTextTanah(
+                                      controller.listAgunanLos[index].komponen
                                           .toString(),
                                     ),
                                   ],
@@ -589,6 +599,669 @@ class ListAgunanLosView extends GetView<ListAgunanLosController> {
             }
           }
         },
+      ),
+    );
+  }
+}
+
+class FormUbahAgunanKios extends StatelessWidget {
+  FormUbahAgunanKios({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListAgunanLosController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Ubah Agunan Kios',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormUpdateAgunanKios(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FormUpdateAgunanKios extends StatelessWidget {
+  FormUpdateAgunanKios({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final ListAgunanLosController controller;
+  final data = Get.arguments[0];
+  final index = Get.arguments[1];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Detail Agunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderTextField(
+            name: 'deskripsi_pendek',
+            controller: controller.deskripsiPendekEdit = TextEditingController(
+              text: data.deskripsiPendek,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Keterangan',
+              hintText: 'KBP Pasar Lempuyangan...',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'komponen',
+            controller: controller.komponenEdit = TextEditingController(
+              text: data.komponen,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Komponen',
+              hintText: 'KBP.',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'tempat_dasaran',
+            controller: controller.tempatDasaranEdit = TextEditingController(
+              text: data.tempatDasaran,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Tempat Dasaran',
+              alignLabelWithHint: true,
+              hintText: '4Los2C',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'no_registrasi',
+            controller: controller.noRegistrasiEdit = TextEditingController(
+              text: data.noRegistrasi,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'No Registrasi',
+              hintText: '0017/LMPY/-/2021',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'luas',
+            controller: controller.luasLosEdit = TextEditingController(
+              text: data.luasLos.toString(),
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Luas',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'jenis_dagangan',
+            controller: controller.jenisDaganganEdit = TextEditingController(
+              text: data.jenisDagangan,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Jenis Dagangan',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: FormBuilderDateTimePicker(
+                  initialValue: // convert HH:MM:SS to DateTime
+                      DateTime.parse('2021-01-01 ${data.waktuBuka}.000'),
+                  name: 'waktu_buka',
+                  helpText: 'Waktu Buka',
+                  inputType: InputType.time,
+                  format: DateFormat('HH:mm'),
+                  currentDate: DateTime.now(),
+                  enableInteractiveSelection: true,
+                  initialTime: TimeOfDay.now(),
+                  onSaved: (value) {
+                    controller.waktuBukaEdit = value!;
+                  },
+                  onChanged: (value) {
+                    controller.waktuBukaEdit = value!;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Waktu Buka',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderDateTimePicker(
+                  initialValue: // convert HH:MM:SS to DateTime
+                      DateTime.parse('2021-01-01 ${data.waktuTutup}.000'),
+                  name: 'waktu_tutup',
+                  helpText: 'Waktu Tutup',
+                  inputType: InputType.time,
+                  format: DateFormat('HH:mm'),
+                  currentDate: DateTime.now(),
+                  enableInteractiveSelection: true,
+                  initialTime: TimeOfDay.now(),
+                  onSaved: (value) {
+                    controller.waktuTutupEdit = value!;
+                  },
+                  onChanged: (value) {
+                    controller.waktuTutupEdit = value!;
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Waktu Tutup',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderDateTimePicker(
+            initialValue: data.berlakuSampai,
+            name: 'berlaku_sampai',
+            onChanged: (value) {
+              controller.berlakuSampaiEdit = value!;
+              debugPrint(value.toString());
+            },
+            onSaved: (value) {
+              controller.berlakuSampaiEdit = value!;
+              debugPrint(value.toString());
+            },
+            errorFormatText: 'Format tanggal salah',
+            errorInvalidText: 'Tanggal tidak valid',
+            inputType: InputType.date,
+            decoration: const InputDecoration(
+              labelText: 'Berlaku Sampai',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+            format: DateFormat('EEE, dd MMMM yyyy'),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'lokasi_pasar',
+            controller: controller.lokasiPasarEdit = TextEditingController(
+              text: data.lokasiPasar,
+            ),
+            maxLines: 3,
+            decoration: const InputDecoration(
+              labelText: 'Lokasi Pasar',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'titik_koordinat',
+            controller: controller.titikKoordinatEdit = TextEditingController(
+              text: data.titikKoordinat,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Titik Koordinat',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5.0,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                showBarModalBottomSheet(
+                  context: context,
+                  bounce: true,
+                  isDismissible: false,
+                  enableDrag: false,
+                  builder: (context) {
+                    return OpenStreetMapSearchAndPick(
+                        center: LatLong(-7.8013753, 110.3647927),
+                        buttonColor: primaryColor,
+                        buttonText: 'Pilih Lokasi',
+                        onPicked: (pickedData) {
+                          var latLongString =
+                              '${pickedData.latLong.latitude}, ${pickedData.latLong.longitude}';
+                          controller.titikKoordinatEdit.text = latLongString;
+                          controller.lokasiPasarEdit.text = pickedData.address;
+
+                          Get.back();
+                        });
+                  },
+                );
+              },
+              text: 'Cari di Maps',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Nilai Agunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: FormBuilderTextField(
+                  name: 'nilai_pasar',
+                  controller: controller.nilaiPasarEdit =
+                      MoneyMaskedTextController(
+                          initialValue:
+                              double.parse(data.nilaiPasar.toString()),
+                          thousandSeparator: '.',
+                          decimalSeparator: '',
+                          precision: 0),
+                  decoration: const InputDecoration(
+                    labelText: 'Nilai Pasar',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderTextField(
+                  name: 'persentase',
+                  controller: controller.persentaseEdit,
+                  decoration: const InputDecoration(
+                    labelText: 'Persen',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_likuidasi',
+            enabled: false,
+            controller: controller.nilaiLiquidasiEdit =
+                MoneyMaskedTextController(
+                    initialValue: double.parse(data.nilaiLiquidasi.toString()),
+                    thousandSeparator: '.',
+                    decimalSeparator: '',
+                    precision: 0),
+            decoration: const InputDecoration(
+              labelText: 'Nilai Likuidasi',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_pengikatan',
+            enabled: false,
+            controller: controller.nilaiPengikatanEdit =
+                MoneyMaskedTextController(
+                    initialValue: double.parse(data.nilaiPengikatan.toString()),
+                    thousandSeparator: '.',
+                    decimalSeparator: '',
+                    precision: 0),
+            decoration: const InputDecoration(
+              labelText: 'Nilai Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'pengikatan',
+            controller: controller.pengikatanEdit = TextEditingController(
+              text: data.pengikatan,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.hitungNilaiLiquidasiEdit();
+              },
+              text: 'Hitung Nilai Liquidasi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Detail Pemilik',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderTextField(
+            name: 'atas_nama',
+            controller: controller.namaPemilikEdit = TextEditingController(
+              text: data.namaPemilik,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Nama Pemilik',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: FormBuilderSearchableDropdown<String>(
+                  name: 'tempat_lahir',
+                  initialValue: data.tempatLahir,
+                  onChanged: (value) {
+                    controller.tempatLahirEdit.text = value!;
+                    debugPrint(value);
+                  },
+                  onSaved: (value) {
+                    controller.tempatLahirEdit.text = value!;
+                    debugPrint(value);
+                  },
+                  validator: FormBuilderValidators.required(),
+                  items: allProvinsi,
+                  popupProps: const PopupProps.menu(showSearchBox: true),
+                  dropdownSearchDecoration: const InputDecoration(
+                    hintText: 'Search',
+                    labelText: 'Search',
+                  ),
+                  filterFn: (provinsi, filter) =>
+                      provinsi.toLowerCase().contains(filter.toLowerCase()),
+                  decoration: const InputDecoration(
+                    labelText: 'Tempat Lahir',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderDateTimePicker(
+                  name: 'tanggal_lahir',
+                  initialValue: data.tanggalLahir,
+                  onChanged: (value) {
+                    controller.tanggalLahirEdit = value!;
+                    debugPrint(value.toString());
+                  },
+                  onSaved: (value) {
+                    controller.tanggalLahirEdit = value!;
+                    debugPrint(value.toString());
+                  },
+                  errorFormatText: 'Format tanggal salah',
+                  errorInvalidText: 'Tanggal tidak valid',
+                  inputType: InputType.date,
+                  decoration: const InputDecoration(
+                    labelText: 'Tanggal Lahir',
+                    alignLabelWithHint: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                  format: DateFormat('dd MMMM yyyy'),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'Alamat',
+            controller: controller.alamatEdit = TextEditingController(
+              text: data.alamatPemilik,
+            ),
+            maxLines: 4,
+            decoration: const InputDecoration(
+              labelText: 'Alamat Pemilik',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                showBarModalBottomSheet(
+                  context: context,
+                  bounce: true,
+                  isDismissible: false,
+                  enableDrag: false,
+                  builder: (context) {
+                    return OpenStreetMapSearchAndPick(
+                        center: LatLong(-7.8013753, 110.3647927),
+                        buttonColor: primaryColor,
+                        buttonText: 'Pilih Lokasi',
+                        onPicked: (pickedData) {
+                          controller.alamat.text = pickedData.address;
+                          Get.back();
+                        });
+                  },
+                );
+              },
+              text: 'Cari di Maps',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const Text(
+            'Summary',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 10.0,
+          ),
+          FormBuilderTextField(
+            name: 'summary',
+            readOnly: true,
+            controller: controller.deskripsiPanjangEdit = TextEditingController(
+              text: data.deskripsiPanjang,
+            ),
+            maxLines: 14,
+            decoration: const InputDecoration(
+              labelText: 'Summary',
+              alignLabelWithHint: true,
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: GFButton(
+              onPressed: () {
+                controller.generateDescriptionEdit();
+              },
+              text: 'Generate Deskripsi',
+              elevation: 10,
+              color: primaryColor,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  controller.updateAgunanLos(
+                      data.agunanId, controller.listAgunanLos[index].id);
+                  Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Update',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
+            ),
+          ),
+        ],
       ),
     );
   }

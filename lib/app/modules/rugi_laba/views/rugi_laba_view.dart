@@ -1,5 +1,4 @@
 // 🎯 Dart imports:
-import 'dart:developer';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
@@ -7,8 +6,9 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
@@ -34,11 +34,8 @@ class RugiLabaView extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
-            onChanged: () {
-              controller.formKey.currentState!.save();
-              // debugPrint(controller.formKey.currentState!.value.toString());
-              log(controller.formKey.currentState!.value.toString());
-            },
+            autoFocusOnValidationFailure: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -201,7 +198,7 @@ class RugiLabaView extends StatelessWidget {
                   height: 2.0,
                 ),
                 SizedBox(
-                  height: 200,
+                  height: 300,
                   child: DataTable2(
                     columnSpacing: 12,
                     horizontalMargin: 6,
@@ -220,9 +217,11 @@ class RugiLabaView extends StatelessWidget {
                               name: 'penghasilan',
                               readOnly: true,
                               keyboardType: TextInputType.number,
+                              validator: FormBuilderValidators.required(),
                               controller: controller.labaSetelahPajak,
                               decoration: const InputDecoration(
                                 hintText: 'Hasil',
+                                prefix: Text('Rp. '),
                               ),
                             ),
                           ),
@@ -236,9 +235,11 @@ class RugiLabaView extends StatelessWidget {
                             FormBuilderTextField(
                               name: 'biaya_hidup',
                               keyboardType: TextInputType.number,
+                              validator: FormBuilderValidators.required(),
                               controller: controller.biayaHidupRataRata,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefix: Text('Rp. '),
                               ),
                             ),
                           ),
@@ -256,21 +257,29 @@ class RugiLabaView extends StatelessWidget {
                               name: 'sisa_penghasilan',
                               keyboardType: TextInputType.number,
                               readOnly: true,
+                              validator: FormBuilderValidators.required(),
                               controller: controller.sisaPenghasilanBersih,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 hintText: 'Hasil',
-                                suffixIcon: ElevatedButton.icon(
-                                  icon: const Icon(FontAwesomeIcons.calculator),
-                                  label: const Text("Hit"),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: primaryColor,
-                                    shape: const StadiumBorder(),
-                                  ),
-                                  onPressed: () {
-                                    controller.sumSisaPenghasilan();
-                                  },
-                                ),
+                                prefix: Text('Rp. '),
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                            SizedBox.shrink(),
+                          ),
+                          DataCell(
+                            GFButton(
+                              onPressed: () {
+                                controller.sumSisaPenghasilan();
+                              },
+                              text: 'Hitung',
+                              color: primaryColor,
+                              fullWidthButton: true,
                             ),
                           ),
                         ],
@@ -332,31 +341,30 @@ class RugiLabaView extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 25.0,
-                ),
                 Center(
-                  child: ElevatedButton.icon(
-                    icon: const Icon(FontAwesomeIcons.shopify),
-                    label: const Text("Submit laba / rugi"),
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(600, 12),
-                      backgroundColor: primaryColor,
-                      shape: const StadiumBorder(),
-                    ),
+                  child: GFButton(
                     onPressed: () {
                       if (controller.formKey.currentState?.saveAndValidate() ??
                           false) {
                         controller.saveRugiLaba();
                         Get.back();
-                        debugPrint(
-                            controller.formKey.currentState?.value.toString());
                       } else {
-                        debugPrint(
-                            controller.formKey.currentState?.value.toString());
-                        debugPrint('validation failed');
+                        GFToast.showToast(
+                          'Mohon isi semua form',
+                          context,
+                          backgroundColor: Colors.red,
+                          toastPosition: GFToastPosition.TOP,
+                          trailing: const Icon(
+                            Icons.error,
+                            color: Colors.white,
+                          ),
+                          toastDuration: 3,
+                        );
                       }
                     },
+                    text: 'Simpan',
+                    color: primaryColor,
+                    fullWidthButton: true,
                   ),
                 ),
               ],

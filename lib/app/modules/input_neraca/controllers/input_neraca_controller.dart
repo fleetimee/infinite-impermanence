@@ -70,7 +70,6 @@ class InputNeracaController extends GetxController {
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
       'debitur': debitur.text,
     };
-
     try {
       isNeracaProcessing(true);
       NeracaProvider().deployNeraca(body).then((resp) {
@@ -118,7 +117,6 @@ class InputNeracaController extends GetxController {
       'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
     };
-
     try {
       isNeracaProcessing(true);
       NeracaProvider().putNeraca(id, body).then((resp) {
@@ -132,18 +130,18 @@ class InputNeracaController extends GetxController {
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
-            fontSize: 30,
+            fontSize: 25,
             fontWeight: FontWeight.w500,
           ),
           descTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
+            fontSize: 16,
+            fontWeight: FontWeight.w300,
           ),
-          title: 'Sukses',
+          title: 'Sukses Diperbarui',
           bodyHeaderDistance: 25,
           desc:
-              'Data berhasil diperbarui, \n\n Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
+              'Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
           dismissOnTouchOutside: false,
           btnOkOnPress: () {},
         ).show();

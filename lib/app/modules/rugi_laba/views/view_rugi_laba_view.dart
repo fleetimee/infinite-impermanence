@@ -19,7 +19,7 @@ import '../controllers/rugi_laba_controller.dart';
 
 // 🌎 Project imports:
 
-
+// TODO: Lanjut disini
 class LihatRugiLabaView extends GetView<RugiLabaController> {
   LihatRugiLabaView({Key? key}) : super(key: key);
 

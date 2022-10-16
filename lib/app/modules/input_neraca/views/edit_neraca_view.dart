@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
@@ -22,14 +22,14 @@ class EditNeracaView extends GetView<InputNeracaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Neraca'),
+        title: const Text('Edit Neraca'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
-            autovalidateMode: AutovalidateMode.disabled,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             key: controller.formKey,
             onChanged: () {
               controller.formKey.currentState!.save();
@@ -140,6 +140,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               decimalSeparator: '',
                               precision: 0,
                             ),
+                            validator: FormBuilderValidators.required(),
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
@@ -153,6 +154,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'tabungan',
+                              validator: FormBuilderValidators.required(),
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
                               ),
@@ -174,6 +176,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'jumlah_kas_bank',
+                              validator: FormBuilderValidators.required(),
                               enabled: false,
                               controller: controller.jumlahKasDanBank =
                                   MoneyMaskedTextController(
@@ -192,23 +195,15 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         cells: [
                           const DataCell(Text('')),
                           DataCell(
-                            OutlinedButton.icon(
-                              icon: const Icon(Icons.calculate),
-                              label: const Text(
-                                "Hitung",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 20),
-                              ),
-                              style: OutlinedButton.styleFrom(
-                                  foregroundColor: secondaryColor,
-                                  backgroundColor: primaryColor,
-                                  shape: const StadiumBorder(),
-                                  maximumSize:
-                                      const Size.fromWidth(double.infinity),
-                                  fixedSize: const Size(500, 5)),
+                            GFButton(
                               onPressed: () {
                                 controller.hitungKasDanBank();
                               },
+                              text: 'Hitung',
+                              fullWidthButton: true,
+                              type: GFButtonType.solid,
+                              size: GFSize.LARGE,
+                              color: primaryColor,
                             ),
                           ),
                         ],
@@ -247,6 +242,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         DataCell(
                           FormBuilderTextField(
                             name: 'piutang',
+                            validator: FormBuilderValidators.required(),
                             controller: controller.piutangLainnya =
                                 MoneyMaskedTextController(
                               initialValue: double.parse(data.jumlahPiutang),
@@ -267,6 +263,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'jumlah_piutang',
+                              validator: FormBuilderValidators.required(),
                               controller: controller.piutangLainnya,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
@@ -312,6 +309,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         DataCell(
                           FormBuilderTextField(
                             name: 'jumlah_persediaan',
+                            validator: FormBuilderValidators.required(),
                             controller: controller.persediaan =
                                 MoneyMaskedTextController(
                               initialValue: double.parse(data.jumlahPersediaan),
@@ -363,6 +361,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         DataCell(
                           FormBuilderTextField(
                             name: 'jumlah_hutang_usaha',
+                            validator: FormBuilderValidators.required(),
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
                             ),
@@ -414,6 +413,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         DataCell(
                           FormBuilderTextField(
                             name: 'hutang_bank',
+                            validator: FormBuilderValidators.required(),
                             controller: controller.hutangBank =
                                 MoneyMaskedTextController(
                               initialValue: double.parse(data.hutangBank),
@@ -466,6 +466,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'peralatan_mesin',
+                              validator: FormBuilderValidators.required(),
                               controller: controller.peralatan =
                                   MoneyMaskedTextController(
                                 initialValue: double.parse(data.peralatan),
@@ -487,6 +488,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'kendaraan',
+                              validator: FormBuilderValidators.required(),
                               controller: controller.kendaraan =
                                   MoneyMaskedTextController(
                                 initialValue: double.parse(data.kendaraan),
@@ -508,6 +510,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'tanah_bangunan',
+                              validator: FormBuilderValidators.required(),
                               controller: controller.tanahDanBangunan =
                                   MoneyMaskedTextController(
                                 initialValue:
@@ -530,6 +533,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             FormBuilderTextField(
                               name: 'aktiva_tetap',
+                              validator: FormBuilderValidators.required(),
                               enabled: false,
                               controller: controller.aktivaTetap =
                                   MoneyMaskedTextController(
@@ -550,23 +554,33 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         cells: [
                           const DataCell(SizedBox.shrink()),
                           DataCell(
-                            OutlinedButton.icon(
-                              icon: const Icon(Icons.calculate),
-                              label: const Text(
-                                "Hitung",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w500, fontSize: 20),
-                              ),
-                              style: OutlinedButton.styleFrom(
-                                  foregroundColor: secondaryColor,
-                                  backgroundColor: primaryColor,
-                                  shape: const StadiumBorder(),
-                                  maximumSize:
-                                      const Size.fromWidth(double.infinity),
-                                  fixedSize: const Size(500, 5)),
+                            // OutlinedButton.icon(
+                            //   icon: const Icon(Icons.calculate),
+                            //   label: const Text(
+                            //     "Hitung",
+                            //     style: TextStyle(
+                            //         fontWeight: FontWeight.w500, fontSize: 20),
+                            //   ),
+                            //   style: OutlinedButton.styleFrom(
+                            //       foregroundColor: secondaryColor,
+                            //       backgroundColor: primaryColor,
+                            //       shape: const StadiumBorder(),
+                            //       maximumSize:
+                            //           const Size.fromWidth(double.infinity),
+                            //       fixedSize: const Size(500, 5)),
+                            //   onPressed: () {
+                            //     controller.hitungAktivaTetap();
+                            //   },
+                            // ),
+                            GFButton(
                               onPressed: () {
                                 controller.hitungAktivaTetap();
                               },
+                              text: 'Hitung',
+                              type: GFButtonType.solid,
+                              size: GFSize.LARGE,
+                              color: primaryColor,
+                              fullWidthButton: true,
                             ),
                           ),
                         ],
@@ -575,35 +589,61 @@ class EditNeracaView extends GetView<InputNeracaController> {
                   ),
                 ),
                 const SizedBox(
-                  height: 8.0,
+                  height: 35.0,
                 ),
-                OutlinedButton.icon(
-                  icon: const Icon(FontAwesomeIcons.pencil),
-                  label: const Text(
-                    "Update",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                      foregroundColor: secondaryColor,
-                      backgroundColor: primaryColor,
-                      shape: const StadiumBorder(),
-                      maximumSize: const Size.fromWidth(double.infinity),
-                      fixedSize: const Size(500, 50)),
+                // OutlinedButton.icon(
+                //   icon: const Icon(FontAwesomeIcons.pencil),
+                //   label: const Text(
+                //     "Update",
+                //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+                //   ),
+                //   style: OutlinedButton.styleFrom(
+                //       foregroundColor: secondaryColor,
+                //       backgroundColor: primaryColor,
+                //       shape: const StadiumBorder(),
+                //       maximumSize: const Size.fromWidth(double.infinity),
+                //       fixedSize: const Size(500, 50)),
+                //   onPressed: () {
+                //     if (controller.formKey.currentState?.saveAndValidate() ??
+                //         false) {
+                //       debugPrint(
+                //           controller.formKey.currentState?.value.toString());
+                //       // controller.updateNeraca();
+                //       controller.updateNeraca(data.id.toString());
+                //       Get.back();
+                //     } else {
+                //       debugPrint(
+                //           controller.formKey.currentState?.value.toString());
+                //       debugPrint('validation failed');
+                //     }
+                //   },
+                // ),
+                GFButton(
                   onPressed: () {
                     if (controller.formKey.currentState?.saveAndValidate() ??
                         false) {
-                      debugPrint(
-                          controller.formKey.currentState?.value.toString());
-                      // controller.updateNeraca();
                       controller.updateNeraca(data.id.toString());
                       Get.back();
                     } else {
-                      debugPrint(
-                          controller.formKey.currentState?.value.toString());
-                      debugPrint('validation failed');
+                      GFToast.showToast(
+                        'Mohon isi semua form',
+                        context,
+                        backgroundColor: Colors.red,
+                        toastPosition: GFToastPosition.TOP,
+                        trailing: const Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        toastDuration: 3,
+                      );
                     }
                   },
-                ),
+                  text: 'Update',
+                  type: GFButtonType.solid,
+                  size: GFSize.LARGE,
+                  color: primaryColor,
+                  fullWidthButton: true,
+                )
               ],
             ),
           ),

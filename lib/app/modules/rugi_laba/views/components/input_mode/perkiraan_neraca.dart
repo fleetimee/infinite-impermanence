@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
@@ -91,6 +92,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -114,6 +116,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       readOnly: true,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -137,6 +140,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -156,6 +160,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -181,6 +186,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -192,6 +198,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -217,6 +224,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -234,10 +242,12 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_aktiva_lancar',
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       controller: controller.jumlahAktivaLancar,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -247,11 +257,13 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_hutang',
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.jumlahHutang,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -279,10 +291,12 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'modal',
                       controller: controller.modal,
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -310,6 +324,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -341,6 +356,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -374,6 +390,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -394,6 +411,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_aktiva_tetap',
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.jumlahAktivaTetap =
                           MoneyMaskedTextController(
@@ -406,6 +424,7 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -416,10 +435,12 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'modal_result',
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       controller: controller.modal,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -436,11 +457,13 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'aktiva_tetap',
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       keyboardType: TextInputType.number,
                       controller: controller.jumlahAktiva,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -453,11 +476,13 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'jumlah_pasiva',
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.jumlahPasiva,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),

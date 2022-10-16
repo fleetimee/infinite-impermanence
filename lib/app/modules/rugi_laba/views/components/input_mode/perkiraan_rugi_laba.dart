@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+import 'package:getwidget/components/button/gf_button.dart';
 
 // 🌎 Project imports:
 
@@ -25,7 +26,7 @@ class PerkiraanLabaRugi extends StatelessWidget {
       title: const Text('Perkiraan Laba / Rugi'),
       children: [
         SizedBox(
-          height: 650,
+          height: 690,
           child: DataTable2(
             columnSpacing: 12,
             horizontalMargin: 12,
@@ -58,8 +59,11 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'omzet_penjualan_rata_rata',
                       controller: controller.omzetPerBulan,
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -73,8 +77,18 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'persen_hpp',
+                      textAlign: TextAlign.right,
                       controller: controller.persentaseHpp,
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.compose(
+                        [
+                          FormBuilderValidators.required(),
+                          FormBuilderValidators.max(100,
+                              errorText: 'Maksimal 100%'),
+                        ],
+                      ),
                       decoration: const InputDecoration(
+                        suffix: Text('%'),
                         hintText: 'Input disini',
                       ),
                     ),
@@ -91,8 +105,11 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       enabled: false,
                       name: 'harga_pokok_penjualan',
                       controller: controller.hargaPokokPenjualan,
+                      validator: FormBuilderValidators.required(),
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil disini',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -108,21 +125,29 @@ class PerkiraanLabaRugi extends StatelessWidget {
                       name: 'laba_kotor',
                       readOnly: true,
                       controller: controller.labaKotor,
-                      decoration: InputDecoration(
+                      validator: FormBuilderValidators.required(),
+                      decoration: const InputDecoration(
                         hintText: 'Hasil',
-                        suffixIcon: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            shape: const StadiumBorder(),
-                          ),
-                          onPressed: () {
-                            controller.hitungHpp();
-                            controller.sumLabaKotor();
-                          },
-                          child: const Text("Hit"),
-                        ),
+                        prefixText: 'Rp. ',
                       ),
                     ),
+                  ),
+                ],
+              ),
+              DataRow2(
+                cells: [
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  const DataCell(SizedBox.shrink()),
+                  DataCell(
+                    GFButton(
+                        onPressed: () {
+                          controller.hitungHpp();
+                          controller.sumLabaKotor();
+                        },
+                        color: primaryColor,
+                        fullWidthButton: true,
+                        text: 'Hitung'),
                   ),
                 ],
               ),
@@ -142,8 +167,11 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'biaya_tenaga_kerja',
                       controller: controller.biayaTenagaKerja,
+                      validator: FormBuilderValidators.required(),
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -158,8 +186,11 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'biaya_operasional',
                       controller: controller.biayaOperasional,
+                      validator: FormBuilderValidators.required(),
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -174,26 +205,22 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'biaya_lainnya',
                       controller: controller.biayaLainnya,
+                      validator: FormBuilderValidators.required(),
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Input disini',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
                   DataCell(
-                    ElevatedButton.icon(
-                      icon: const Icon(FontAwesomeIcons.calculator),
-                      label: const Text("Hitung Total"),
-                      style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(500, 40),
-                        backgroundColor: primaryColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), // <-- Radius
-                        ),
-                      ),
-                      onPressed: () {
-                        controller.perkiraanLaba();
-                      },
-                    ),
+                    GFButton(
+                        onPressed: () {
+                          controller.perkiraanLaba();
+                        },
+                        color: primaryColor,
+                        fullWidthButton: true,
+                        text: 'Hitung'),
                   ),
                 ],
               ),
@@ -206,9 +233,12 @@ class PerkiraanLabaRugi extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'total_biaya',
                       readOnly: true,
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
                       controller: controller.totalBiaya,
                       decoration: const InputDecoration(
                         hintText: 'Hasil',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -222,10 +252,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'laba_sebelum_pajak',
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.labaSebelumPajak,
                       decoration: const InputDecoration(
                         hintText: 'Hasil',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -239,10 +272,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'perkiraan_pajak',
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.perkiraanPajak,
                       decoration: const InputDecoration(
                         hintText: 'Hasil',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -256,10 +292,13 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'laba_setelah_pajak',
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.labaSetelahPajak,
                       decoration: const InputDecoration(
                         hintText: 'Hasil',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),

@@ -215,4 +215,37 @@ class ListAgunanLosController extends GetxController {
     pengikatan.clear();
     deskripsiPanjang.clear();
   }
+
+  @override
+  void onClose() {
+    deskripsiPendek.dispose();
+    komponen.dispose();
+    namaPemilik.dispose();
+    tempatLahir.dispose();
+    alamat.dispose();
+    tempatDasaran.dispose();
+    noRegistrasi.dispose();
+    luasLos.dispose();
+    jenisDagangan.dispose();
+    persentase.dispose();
+    lokasiPasar.dispose();
+    titikKoordinat.dispose();
+    pengikatan.dispose();
+    deskripsiPanjang.dispose();
+    deskripsiPendekEdit.dispose();
+    komponenEdit.dispose();
+    namaPemilikEdit.dispose();
+    tempatLahirEdit.dispose();
+    alamatEdit.dispose();
+    tempatDasaranEdit.dispose();
+    noRegistrasiEdit.dispose();
+    luasLosEdit.dispose();
+    jenisDaganganEdit.dispose();
+    persentaseEdit.dispose();
+    lokasiPasarEdit.dispose();
+    titikKoordinatEdit.dispose();
+    pengikatanEdit.dispose();
+    deskripsiPanjangEdit.dispose();
+    super.onClose();
+  }
 }

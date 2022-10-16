@@ -386,4 +386,17 @@ class KarakterAnalisisController extends GetxController {
     'S2',
     'S3',
   ];
+
+  @override
+  void onClose() {
+    nilaiUmur.dispose();
+    lamanyaBerusaha.dispose();
+    keteranganUletDalamBisnis.dispose();
+    keteranganKakuFleksibel.dispose();
+    keteranganInovatifKreatif.dispose();
+    keteranganJujur.dispose();
+    deskripsi.dispose();
+    debiturId.dispose();
+    super.onClose();
+  }
 }

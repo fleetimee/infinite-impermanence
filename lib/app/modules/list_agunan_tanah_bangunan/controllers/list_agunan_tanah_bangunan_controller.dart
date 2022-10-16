@@ -302,4 +302,27 @@ class ListAgunanTanahBangunanController extends GetxController {
     pengikatanEdit.clear();
     deskripsiPanjangEdit.clear();
   }
+
+  @override
+  void onClose() {
+    deskripsiPendek.dispose();
+    namaPemilik.dispose();
+    buktiKepemilikan.dispose();
+    persentase.dispose();
+    luasTanah.dispose();
+    lokasi.dispose();
+    titikKoordinat.dispose();
+    pengikatan.dispose();
+    deskripsiPanjang.dispose();
+    deskripsiPendekEdit.dispose();
+    namaPemilikEdit.dispose();
+    buktiKepemilikanEdit.dispose();
+    persentaseEdit.dispose();
+    luasTanahEdit.dispose();
+    lokasiEdit.dispose();
+    titikKoordinatEdit.dispose();
+    pengikatanEdit.dispose();
+    deskripsiPanjangEdit.dispose();
+    super.onClose();
+  }
 }

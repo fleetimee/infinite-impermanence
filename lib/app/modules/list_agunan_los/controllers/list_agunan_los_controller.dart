@@ -108,7 +108,6 @@ class ListAgunanLosController extends GetxController {
       'no_registrasi': noRegistrasi.text,
       'luas_los': luasLos.text,
       'jenis_dagangan': jenisDagangan.text,
-      'persentase': persentase.text,
       'lokasi_pasar': lokasiPasar.text,
       'titik_koordinat': titikKoordinat.text,
       'waktu_buka': waktuBuka.toString(),
@@ -133,6 +132,61 @@ class ListAgunanLosController extends GetxController {
           colorText: Colors.white,
         );
         clearForm();
+        listAgunanLos.clear();
+        getAllAgunanLos(agunanId.id);
+      }, onError: (e) {
+        isAgunanLosProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanLosProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void updateAgunanLos(int idAgunan, id) {
+    final body = {
+      'deskripsi_pendek': deskripsiPendekEdit.text,
+      'komponen': komponenEdit.text,
+      'nama_pemilik': namaPemilikEdit.text,
+      'alamat_pemilik': alamatEdit.text,
+      'tempat_lahir': tempatLahirEdit.text,
+      'tanggal_lahir': tanggalLahirEdit.toString(),
+      'alamat': alamatEdit.text,
+      'tempat_dasaran': tempatDasaranEdit.text,
+      'no_registrasi': noRegistrasiEdit.text,
+      'luas_los': luasLosEdit.text,
+      'jenis_dagangan': jenisDaganganEdit.text,
+      'lokasi_pasar': lokasiPasarEdit.text,
+      'titik_koordinat': titikKoordinatEdit.text,
+      'waktu_buka': waktuBukaEdit.toString(),
+      'waktu_tutup': waktuTutupEdit.toString(),
+      'berlaku_sampai': berlakuSampaiEdit.toString(),
+      'nilai_pasar': nilaiPasarEdit.text.replaceAll('.', ''),
+      'nilai_liquidasi': nilaiLiquidasiEdit.text.replaceAll('.', ''),
+      'nilai_pengikatan': nilaiPengikatanEdit.text.replaceAll('.', ''),
+      'pengikatan': pengikatanEdit.text,
+      'deskripsi_panjang': deskripsiPanjangEdit.text,
+    };
+
+    try {
+      isAgunanLosProcessing(true);
+      AgunanLosProvider().putAgunanLos(idAgunan, id, body).then((resp) {
+        isAgunanLosProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil diupdate',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        clearFormEdit();
         listAgunanLos.clear();
         getAllAgunanLos(agunanId.id);
       }, onError: (e) {
@@ -181,11 +235,6 @@ class ListAgunanLosController extends GetxController {
     }
   }
 
-  void generateDescription() {
-    deskripsiPanjang.text =
-        'Agunan Los Pasar ${deskripsiPendek.text} atas nama ${namaPemilik.text} TTL: ${tempatLahir.text}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(tanggalLahir.toString()))}, yang beralamatkan di ${alamat.text} \n\nLos Pasar ini berlokasi di ${lokasiPasar.text}, dengan luas ${luasLos.text}m2, tempat dasaran ${tempatDasaran.text}, no registrasi ${noRegistrasi.text} \n\nJenis dagangan ${jenisDagangan.text}, dengan waktu buka pukul ${DateFormat('jm').format(DateTime.parse(waktuBuka.toString()))} dan tutup pukul ${DateFormat('jm').format(DateTime.parse(waktuTutup.toString()))} \n\n';
-  }
-
   void hitungNilaiLiquidasi() {
     final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
     final parsePersentase = double.parse(persentase.text);
@@ -194,6 +243,27 @@ class ListAgunanLosController extends GetxController {
 
     nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
     nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void hitungNilaiLiquidasiEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseEdit.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
+    nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void generateDescription() {
+    deskripsiPanjang.text =
+        'Agunan Los Pasar ${deskripsiPendek.text} atas nama ${namaPemilik.text} TTL: ${tempatLahir.text}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(tanggalLahir.toString()))}, yang beralamatkan di ${alamat.text} \n\nLos Pasar ini berlokasi di ${lokasiPasar.text}, dengan luas ${luasLos.text}m2, tempat dasaran ${tempatDasaran.text}, no registrasi ${noRegistrasi.text} \n\nJenis dagangan ${jenisDagangan.text}, dengan waktu buka pukul ${DateFormat('jm').format(DateTime.parse(waktuBuka.toString()))} dan tutup pukul ${DateFormat('jm').format(DateTime.parse(waktuTutup.toString()))} \n\n';
+  }
+
+  void generateDescriptionEdit() {
+    deskripsiPanjangEdit.text =
+        'Agunan Los Pasar ${deskripsiPendekEdit.text} atas nama ${namaPemilikEdit.text} TTL: ${tempatLahirEdit.text}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(tanggalLahirEdit.toString()))}, yang beralamatkan di ${alamatEdit.text} \n\nLos Pasar ini berlokasi di ${lokasiPasarEdit.text}, dengan luas ${luasLosEdit.text}m2, tempat dasaran ${tempatDasaranEdit.text}, no registrasi ${noRegistrasiEdit.text} \n\nJenis dagangan ${jenisDaganganEdit.text}, dengan waktu buka pukul ${DateFormat('jm').format(DateTime.parse(waktuBukaEdit.toString()))} dan tutup pukul ${DateFormat('jm').format(DateTime.parse(waktuTutupEdit.toString()))} \n\n';
   }
 
   void clearForm() {
@@ -216,6 +286,26 @@ class ListAgunanLosController extends GetxController {
     deskripsiPanjang.clear();
   }
 
+  void clearFormEdit() {
+    deskripsiPendekEdit.clear();
+    komponenEdit.clear();
+    namaPemilikEdit.clear();
+    tempatLahirEdit.clear();
+    tanggalLahirEdit = DateTime.now();
+    alamatEdit.clear();
+    tempatDasaranEdit.clear();
+    noRegistrasiEdit.clear();
+    luasLosEdit.clear();
+    jenisDaganganEdit.clear();
+    persentaseEdit.clear();
+    lokasiPasarEdit.clear();
+    nilaiPasarEdit.clear();
+    nilaiLiquidasiEdit.clear();
+    nilaiPengikatanEdit.clear();
+    pengikatanEdit.clear();
+    deskripsiPanjangEdit.clear();
+    
+    
   @override
   void onClose() {
     deskripsiPendek.dispose();

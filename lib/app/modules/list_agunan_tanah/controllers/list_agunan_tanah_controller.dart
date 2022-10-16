@@ -185,7 +185,7 @@ class ListAgunanTanahController extends GetxController {
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
-        clearFOrmEdit();
+        clearFormEdit();
         listAgunanTanah.clear();
         getAllAgunanTanah(agunanId.id);
       }, onError: (e) {
@@ -280,7 +280,7 @@ class ListAgunanTanahController extends GetxController {
     deskripsiPanjang.clear();
   }
 
-  void clearFOrmEdit() {
+  void clearFormEdit() {
     deskripsiPendekEdit.clear();
     buktiKepemilikanEdit.clear();
     persentaseEdit.clear();

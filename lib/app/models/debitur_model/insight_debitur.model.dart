@@ -422,6 +422,7 @@ class FormLo {
     this.id,
     this.deskripsiPendek,
     this.namaPemilik,
+    this.komponen,
     this.tempatLahir,
     this.tanggalLahir,
     this.alamatPemilik,
@@ -445,6 +446,7 @@ class FormLo {
   int? id;
   String? deskripsiPendek;
   String? namaPemilik;
+  String? komponen;
   String? tempatLahir;
   DateTime? tanggalLahir;
   String? alamatPemilik;
@@ -468,6 +470,7 @@ class FormLo {
         id: json["id"],
         deskripsiPendek: json["deskripsi_pendek"],
         namaPemilik: json["nama_pemilik"],
+        komponen: json["komponen"],
         tempatLahir: json["tempat_lahir"],
         tanggalLahir: json["tanggal_lahir"] == null
             ? null
@@ -496,6 +499,7 @@ class FormLo {
         "id": id,
         "deskripsi_pendek": deskripsiPendek,
         "nama_pemilik": namaPemilik,
+        "komponen": komponen,
         "tempat_lahir": tempatLahir,
         "tanggal_lahir": tanggalLahir == null
             ? null

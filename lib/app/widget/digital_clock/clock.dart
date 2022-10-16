@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:ntp/ntp.dart';
 
@@ -46,10 +47,6 @@ class _DigitalClockState extends State<DigitalClock> {
   late ClockModel _clockModel;
   late StreamSubscription<dynamic> _stream;
 
-  Future<DateTime> getNTPTime() async {
-    return await NTP.now();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -61,11 +58,13 @@ class _DigitalClockState extends State<DigitalClock> {
     _clockModel.minute = _dateTime.minute;
     _clockModel.second = _dateTime.second;
     if (mounted) {
-      getNTPTime().then((value) {
+      NTP.now().then((value) {
         _dateTime = value;
         if (mounted) {
           setState(() {});
         }
+      }).onError((error, _) {
+        log(error.toString());
       });
 
       _stream = Stream.periodic(const Duration(seconds: 1)).listen(

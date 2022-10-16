@@ -542,4 +542,17 @@ class InputKeuanganController extends GetxController {
       );
     }
   }
+
+  @override
+  void onClose() {
+    rugiLaba.dispose();
+    debitur.dispose();
+    angsuranPerBulan.dispose();
+    provisi.dispose();
+    bungaPerTahun.dispose();
+    angsuranPinjamanLainnya.dispose();
+    hpp.dispose();
+    tradeCycle.dispose();
+    super.onClose();
+  }
 }

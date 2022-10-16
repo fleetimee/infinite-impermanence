@@ -216,6 +216,55 @@ class InputNeracaController extends GetxController {
       );
     }
   }
+
+  void deleteNeraca(int id) {
+    try {
+      isNeracaProcessing(true);
+      NeracaProvider().deleteNeraca(id).then((resp) {
+        isNeracaProcessing(false);
+        debiturController.fetchOneDebitur(id);
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc:
+              'Data berhasil dihapus, \n\n Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (err) {
+        isNeracaProcessing(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isNeracaProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+    
+  }
 }
 
 convertStringToInt(String value) {

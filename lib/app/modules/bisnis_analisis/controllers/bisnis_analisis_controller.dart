@@ -172,8 +172,7 @@ class BisnisAnalisisController extends GetxController {
     }
   }
 
-  final omzetList =
-      '''[
+  final omzetList = '''[
     {"value": 50, "label": "s/d 50%"},
     {"value": 60, "label": "s/d 60%"},
     {"value": 70, "label": "s/d 70%"},
@@ -181,8 +180,7 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "s/d 90%"}
   ]''';
 
-  final hargaBersaingList =
-      '''[
+  final hargaBersaingList = '''[
     {"value": 50, "label": "Lebih mahal dari pesaing"},
     {"value": 60, "label": "Sama dengan pesaing"},
     {"value": 70, "label": "Lebih murah sd 5%"},
@@ -190,8 +188,7 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Lebih murah diatas 10%"}
   ]''';
 
-  final persainganPasarList =
-      '''[
+  final persainganPasarList = '''[
     {"value": 50, "label": "Sangat ketat"},
     {"value": 60, "label": "Ketat"},
     {"value": 70, "label": "Cukup ketat"},
@@ -199,8 +196,7 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Tidak ketat"}
   ]''';
 
-  final lokasiPasarList =
-      '''[
+  final lokasiPasarList = '''[
     {"value": 50, "label": "Tidak strategis"},
     {"value": 60, "label": "Kurang strategis"},
     {"value": 70, "label": "Cukup strategis"},
@@ -208,8 +204,7 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Sangat strategis"}
   ]''';
 
-  final kapasitasTerpasanList =
-      '''[
+  final kapasitasTerpasanList = '''[
     {"value": 50, "label": "s/d 50%"},
     {"value": 60, "label": "s/d 60%"},
     {"value": 70, "label": "s/d 70%"},
@@ -217,14 +212,33 @@ class BisnisAnalisisController extends GetxController {
     {"value": 90, "label": "Lebih dari s/d 80%"}
   ]''';
 
-  final ratingList =
-      '''[
+  final ratingList = '''[
     {"value": 50, "label": "Jelek"},
     {"value": 60, "label": "Kurang Baik"},
     {"value": 70, "label": "Cukup"},
     {"value": 80, "label": "Baik"},
     {"value": 90, "label": "Sangat Baik"}
   ]''';
+
+  @override
+  void onClose() {
+    debiturId.dispose();
+    omzetPenjualanKeterangan.dispose();
+    hargaBersaingKeterangan.dispose();
+    persainganPasarKeterangan.dispose();
+    lokasiPasarKeterangan.dispose();
+    kapasitasTerpasanKeterangan.dispose();
+    ratingKeterangan.dispose();
+    deskripsi.dispose();
+    resultOmzet.dispose();
+    resultHarga.dispose();
+    resultPersaingan.dispose();
+    resultLokasi.dispose();
+    resultKapasitas.dispose();
+    resultRating.dispose();
+    sumCrrBisnis.dispose();
+    super.onClose();
+  }
 
   // Decode omzetList
 

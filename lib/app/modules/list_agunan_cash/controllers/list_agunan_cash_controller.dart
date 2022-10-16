@@ -218,4 +218,15 @@ class ListAgunanCashController extends GetxController {
     nilaiPengikatanEdit.clear();
     pengikatanEdit.clear();
   }
+
+  @override
+  void dispose() {
+    deskripsiPanjang.dispose();
+    persentase.dispose();
+    pengikatan.dispose();
+    deskripsiPanjangEdit.dispose();
+    persentaseEdit.dispose();
+    pengikatanEdit.dispose();
+    super.dispose();
+  }
 }

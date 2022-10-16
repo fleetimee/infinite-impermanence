@@ -5,17 +5,49 @@ import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
- import '../../../common/style.dart';
- import '../controllers/input_neraca_controller.dart';
+import '../../../common/style.dart';
+import '../controllers/input_neraca_controller.dart';
 
 class LihatneracaView extends GetView<InputNeracaController> {
   LihatneracaView({Key? key}) : super(key: key);
   final data = Get.arguments;
+
+  void deleteNeraca(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: const Text("Perhatian!"),
+        content: const Text(
+          "Apakah anda yakin ingin menghapus data Neraca ini?",
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.grey,
+            ),
+            child: const Text("Batal"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Get.back();
+              controller.deleteNeraca(data.id);
+              Get.back();
+            },
+            child: const Text("Yakin"),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +55,16 @@ class LihatneracaView extends GetView<InputNeracaController> {
       appBar: AppBar(
         title: Text('Detail Neraca #${data.id}'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              deleteNeraca(context);
+            },
+            icon: const FaIcon(
+              FontAwesomeIcons.solidTrashCan,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(

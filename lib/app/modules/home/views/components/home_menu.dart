@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
-import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import '../../../../widget/digital_clock/clock.dart';
 import '../../controllers/home_controller.dart';
 import 'menu_item/greeting.dart';
 
@@ -27,17 +27,17 @@ class HomeMenu extends StatelessWidget {
             height: 40,
           ),
 
-          DigitalClock(
+          const DigitalClock(
             digitAnimationStyle: Curves.elasticOut,
             is24HourTimeFormat: true,
-            areaDecoration: const BoxDecoration(
+            areaDecoration: BoxDecoration(
               color: Colors.transparent,
             ),
-            hourMinuteDigitTextStyle: const TextStyle(
+            hourMinuteDigitTextStyle: TextStyle(
               color: secondaryColor,
               fontSize: 50,
             ),
-            amPmDigitTextStyle: const TextStyle(
+            amPmDigitTextStyle: TextStyle(
               color: secondaryColor,
               fontWeight: FontWeight.bold,
             ),

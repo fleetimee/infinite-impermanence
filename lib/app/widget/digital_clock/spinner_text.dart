@@ -74,7 +74,7 @@ class _SpinnerTextState extends State<SpinnerText>
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: widget.textStyle ??
-                  TextStyle(color: Colors.white, fontSize: 30),
+                  const TextStyle(color: Colors.white, fontSize: 30),
             ),
           ),
           FractionalTranslation(
@@ -83,7 +83,7 @@ class _SpinnerTextState extends State<SpinnerText>
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: widget.textStyle ??
-                    TextStyle(color: Colors.white, fontSize: 30)),
+                    const TextStyle(color: Colors.white, fontSize: 30)),
           ),
         ],
       ),

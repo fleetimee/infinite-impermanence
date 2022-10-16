@@ -32,7 +32,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^3.0.0
-  flutter_map_location_marker: ^5.0.0+1
   flutter_map_marker_popup: ^4.0.0
   flutter_markdown: ^0.6.12
   flutter_native_splash: ^2.2.11
@@ -51,18 +50,13 @@ dependencies:
   http: ^0.13.5
   image_picker: ^0.8.6
   intl: ^0.17.0
-  jikan_api: ^2.0.0
   latlong2: ^0.8.1
-  liquid_progress_indicator: ^0.4.0
-  loading_animation_widget: ^1.2.0+3
   map_launcher: ^2.4.0
-  material_design_icons_flutter: ^5.0.6996
   modal_bottom_sheet: ^2.1.2
   nekos: ^0.0.7
   numerus: ^2.0.0
   open_file: ^3.2.1
   open_street_map_search_and_pick: ^0.0.15
-  path_provider: ^2.0.11
   pdf: ^3.8.3
   printing: ^5.9.3
   responsive_framework:
@@ -70,7 +64,6 @@ dependencies:
       url: https://github.com/Codelessly/ResponsiveFramework
       ref: master
   scaffold_gradient_background: ^1.0.3+1
-  shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   slide_digital_clock: ^1.0.2
   stepper_page_view: ^0.0.2

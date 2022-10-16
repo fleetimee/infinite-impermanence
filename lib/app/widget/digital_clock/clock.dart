@@ -180,7 +180,7 @@ class _DigitalClockState extends State<DigitalClock> {
                   ? widget.hourMinuteDigitTextStyle!.fontSize! / 2
                   : 15),
           child: Text(
-            " " + hTOhh_24hFalse(_clockModel.hour)[1],
+            "${hTOhh_24hFalse(_clockModel.hour)[1]}",
             style: widget.amPmDigitTextStyle ??
                 TextStyle(
                     fontSize: widget.hourMinuteDigitTextStyle != null

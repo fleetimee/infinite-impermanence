@@ -18,93 +18,41 @@ import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_cont
 // 🌎 Project imports:
 
 class InputNeracaController extends GetxController {
+  @override
+  void onClose() {}
+
   final isNeracaProcessing = false.obs;
 
   final debiturController = Get.put(InsightDebiturController());
 
-  var cashOnHand = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var tabungan = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var jumlahKasDanBank = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var piutangUsaha = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var piutangLainnya = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var persediaan = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var hutangUsaha = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var hutangBank = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var peralatan = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var kendaraan = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var tanahDanBangunan = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var aktivaTetap = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-  var debitur = TextEditingController();
-  final tanggalInput = DateTime.now().obs;
-
   final formKey = GlobalKey<FormBuilderState>();
 
-  void hitungKasDanBank() {
-    final cashOnHandValue = double.parse(cashOnHand.text.replaceAll('.', ''));
-    final tabunganValue = double.parse(tabungan.text.replaceAll('.', ''));
-    final jumlahKasDanBankValue = cashOnHandValue + tabunganValue;
-
-    jumlahKasDanBank.text = jumlahKasDanBankValue.toStringAsFixed(0);
-  }
-
-  void hitungAktivaTetap() {
-    final parsePeralatan = double.parse(peralatan.text.replaceAll('.', ''));
-    final parseKendaraan = double.parse(kendaraan.text.replaceAll('.', ''));
-    final parseTanahDanBangunan =
-        double.parse(tanahDanBangunan.text.replaceAll('.', ''));
-
-    final hasil = parsePeralatan + parseKendaraan + parseTanahDanBangunan;
-
-    aktivaTetap.text = hasil.toStringAsFixed(0);
-  }
+  var cashOnHand = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var tabungan = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var jumlahKasDanBank = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var piutangUsaha = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var piutangLainnya = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var persediaan = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var hutangUsaha = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var hutangBank = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var peralatan = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var kendaraan = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var tanahDanBangunan = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var aktivaTetap = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var debitur = TextEditingController();
+  var tanggalInput = DateTime.now().obs;
 
   void saveNeraca() {
     final body = {
@@ -127,6 +75,7 @@ class InputNeracaController extends GetxController {
       isNeracaProcessing(true);
       NeracaProvider().deployNeraca(body).then((resp) {
         isNeracaProcessing(false);
+        clearForm();
         debiturController.fetchOneDebitur(int.parse(debitur.text));
         Get.snackbar(
           'Sucess',
@@ -174,6 +123,7 @@ class InputNeracaController extends GetxController {
       isNeracaProcessing(true);
       NeracaProvider().putNeraca(id, body).then((resp) {
         isNeracaProcessing(false);
+        clearForm();
         debiturController.fetchOneDebitur(int.parse(id));
         AwesomeDialog(
           context: Get.context!,
@@ -222,6 +172,7 @@ class InputNeracaController extends GetxController {
       isNeracaProcessing(true);
       NeracaProvider().deleteNeraca(id).then((resp) {
         isNeracaProcessing(false);
+        clearForm();
         debiturController.fetchOneDebitur(id);
         AwesomeDialog(
           context: Get.context!,
@@ -263,10 +214,54 @@ class InputNeracaController extends GetxController {
         colorText: secondaryColor,
       );
     }
-    
   }
-}
 
-convertStringToInt(String value) {
-  return int.parse(value.replaceAll('.', ''));
+  void hitungKasDanBank() {
+    final cashOnHandValue = double.parse(cashOnHand.text.replaceAll('.', ''));
+    final tabunganValue = double.parse(tabungan.text.replaceAll('.', ''));
+    final jumlahKasDanBankValue = cashOnHandValue + tabunganValue;
+
+    jumlahKasDanBank.text = jumlahKasDanBankValue.toStringAsFixed(0);
+  }
+
+  void hitungAktivaTetap() {
+    final parsePeralatan = double.parse(peralatan.text.replaceAll('.', ''));
+    final parseKendaraan = double.parse(kendaraan.text.replaceAll('.', ''));
+    final parseTanahDanBangunan =
+        double.parse(tanahDanBangunan.text.replaceAll('.', ''));
+
+    final hasil = parsePeralatan + parseKendaraan + parseTanahDanBangunan;
+
+    aktivaTetap.text = hasil.toStringAsFixed(0);
+  }
+
+  void clearForm() {
+    tanggalInput.value = DateTime.now();
+    cashOnHand.text = '';
+    tabungan.text = '';
+    jumlahKasDanBank.text = '';
+    piutangLainnya.text = '';
+    persediaan.text = '';
+    hutangUsaha.text = '';
+    hutangBank.text = '';
+    peralatan.text = '';
+    kendaraan.text = '';
+    tanahDanBangunan.text = '';
+    aktivaTetap.text = '';
+  }
+
+  void clearFormEdit() {
+    tanggalInput.value = DateTime.now();
+    cashOnHand.text = '';
+    tabungan.text = '';
+    jumlahKasDanBank.text = '';
+    piutangLainnya.text = '';
+    persediaan.text = '';
+    hutangUsaha.text = '';
+    hutangBank.text = '';
+    peralatan.text = '';
+    kendaraan.text = '';
+    tanahDanBangunan.text = '';
+    aktivaTetap.text = '';
+  }
 }

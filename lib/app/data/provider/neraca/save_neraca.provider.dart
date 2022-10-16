@@ -47,7 +47,7 @@ class NeracaProvider {
       );
       debugPrint(response.body);
       if (response.statusCode == 200) {
-        debugPrint('It works');
+        return;
       } else {
         throw Exception('Failed to save data');
       }
@@ -67,7 +67,7 @@ class NeracaProvider {
       );
       debugPrint(response.body);
       if (response.statusCode == 200) {
-        debugPrint('It works');
+        return;
       } else {
         throw Exception('Failed to delete data');
       }

@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:ntp/ntp.dart';
 
 import 'clock_model.dart';
 import 'spinner_text.dart';
@@ -43,12 +44,15 @@ class DigitalClock extends StatefulWidget {
 class _DigitalClockState extends State<DigitalClock> {
   late DateTime _dateTime;
   late ClockModel _clockModel;
-  late Timer _timer;
+  late StreamSubscription<dynamic> _stream;
+
+  Future<DateTime> getNTPTime() async {
+    return await NTP.now();
+  }
 
   @override
   void initState() {
     super.initState();
-    _dateTime = DateTime.now();
     _clockModel = ClockModel();
     _clockModel.is24HourFormat = widget.is24HourTimeFormat ?? true;
 
@@ -56,20 +60,31 @@ class _DigitalClockState extends State<DigitalClock> {
     _clockModel.hour = _dateTime.hour;
     _clockModel.minute = _dateTime.minute;
     _clockModel.second = _dateTime.second;
+    if (mounted) {
+      getNTPTime().then((value) {
+        _dateTime = value;
+        if (mounted) {
+          setState(() {});
+        }
+      });
 
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      _dateTime = DateTime.now();
-      _clockModel.hour = _dateTime.hour;
-      _clockModel.minute = _dateTime.minute;
-      _clockModel.second = _dateTime.second;
-
-      setState(() {});
-    });
+      _stream = Stream.periodic(const Duration(seconds: 1)).listen(
+        (_) {
+          _dateTime = _dateTime.add(const Duration(seconds: 1));
+          _clockModel.hour = _dateTime.hour;
+          _clockModel.minute = _dateTime.minute;
+          _clockModel.second = _dateTime.second;
+          if (mounted) {
+            setState(() {});
+          }
+        },
+      );
+    }
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _stream.cancel();
     super.dispose();
   }
 

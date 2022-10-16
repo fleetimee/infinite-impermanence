@@ -304,8 +304,8 @@ class ListAgunanLosController extends GetxController {
     nilaiPengikatanEdit.clear();
     pengikatanEdit.clear();
     deskripsiPanjangEdit.clear();
-    
-    
+  }
+
   @override
   void onClose() {
     deskripsiPendek.dispose();

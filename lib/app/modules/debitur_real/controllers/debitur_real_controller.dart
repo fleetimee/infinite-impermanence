@@ -273,7 +273,7 @@ class DebiturRealController extends GetxController {
     pekerjaan2.value.dispose();
     noSkpk.value.dispose();
     deskripsiDebitur.value.dispose();
-    super.onReady();
+    super.onClose();
   }
 
   final jenisUsahaList = [

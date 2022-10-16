@@ -306,4 +306,35 @@ class ListAgunanKendaraanController extends GetxController {
     'Mobil Barang',
     'Kendaraan Khusus'
   ];
+
+  @override
+  void onClose() {
+    merk.dispose();
+    type.dispose();
+    warna.dispose();
+    tahun.dispose();
+    noPolisi.dispose();
+    noRangka.dispose();
+    noMesin.dispose();
+    noBpkb.dispose();
+    atasNama.dispose();
+    keadaan.dispose();
+    persentase.dispose();
+    deskripsiPanjang.dispose();
+    pengikatan.dispose();
+    merkEdit.dispose();
+    typeEdit.dispose();
+    warnaEdit.dispose();
+    tahunEdit.dispose();
+    noPolisiEdit.dispose();
+    noRangkaEdit.dispose();
+    noMesinEdit.dispose();
+    noBpkbEdit.dispose();
+    atasNamaEdit.dispose();
+    keadaanEdit.dispose();
+    persentaseEdit.dispose();
+    deskripsiPanjangEdit.dispose();
+    pengikatanEdit.dispose();
+    super.onClose();
+  }
 }

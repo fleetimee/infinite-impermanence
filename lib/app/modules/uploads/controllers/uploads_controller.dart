@@ -57,6 +57,12 @@ class UploadsController extends GetxController {
 
   @override
   void onClose() {
+    longtitude.dispose();
+    latitude.dispose();
+    alamat.dispose();
+    longtitudeUsaha.dispose();
+    latitudeUsaha.dispose();
+    alamatUsaha.dispose();
     super.onClose();
   }
 

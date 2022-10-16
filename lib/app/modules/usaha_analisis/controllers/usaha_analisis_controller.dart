@@ -105,4 +105,12 @@ class UsahaAnalisisController extends GetxController {
       );
     }
   }
+
+  @override
+  void onClose() {
+    jenisUsaha.dispose();
+    crrJenisUsaha.dispose();
+    debiturId.dispose();
+    super.onClose();
+  }
 }

@@ -1338,4 +1338,51 @@ class KeuanganAnalisisController extends GetxController
   //   totalFlat.text = fifthCount.toStringAsFixed(0);
   //   totalEfektif.text = efektifBawah.toStringAsFixed(0);
   // }
+
+  @override
+  void onClose() {
+    debiturId.dispose();
+    keuanganId.dispose();
+    bungaPerTahunLain.dispose();
+    angsuranPerBulanLainAtas.dispose();
+    angsuranPerBulanLainBawah.dispose();
+    bungaPerTahun.dispose();
+    angsuranPerBulan.dispose();
+    flatInitial.dispose();
+    efektifInitial.dispose();
+    totalFlatEfektif.dispose();
+    ratioProfitKini.dispose();
+    ratioProfitYAD.dispose();
+    roeKini.dispose();
+    roeYAD.dispose();
+    keteranganRoe.dispose();
+    roaKini.dispose();
+    roaYAD.dispose();
+    keteranganRoa.dispose();
+    derKini.dispose();
+    derYAD.dispose();
+    keteranganDer.dispose();
+    dscKini.dispose();
+    dscYAD.dispose();
+    keteranganDsc.dispose();
+    roeFixed.dispose();
+    roaFixed.dispose();
+    derFixed.dispose();
+    dscFixed.dispose();
+    omzetKiniPercent.dispose();
+    omzetYADPercent.dispose();
+    biayaBahanKiniPercent.dispose();
+    biayaBahanYADPercent.dispose();
+    upahKiniPercent.dispose();
+    upahYADPercent.dispose();
+    biayaOperasiKiniPercent.dispose();
+    biayaOperasiYADPercent.dispose();
+    biayaHidupKiniPercent.dispose();
+    biayaHidupYADPercent.dispose();
+    labaUsahaKiniPercent.dispose();
+    labaUsahaYADPercent.dispose();
+    crr.dispose();
+    tradeCycle.dispose();
+    super.onClose();
+  }
 }

@@ -42,4 +42,10 @@ class SearchNikController extends GetxController {
 
     update();
   }
+
+  @override
+  void onClose() {
+    nikController.dispose();
+    super.onClose();
+  }
 }

@@ -207,4 +207,15 @@ class ListAgunanPeralatanController extends GetxController {
     nilaiLiquidasiEdit.text = hasilLiquidasi.toStringAsFixed(0);
     nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
   }
+
+  @override
+  void onClose() {
+    deskripsiPanjang.dispose();
+    persentase.dispose();
+    pengikatan.dispose();
+    deskripsiPanjangEdit.dispose();
+    persentaseEdit.dispose();
+    pengikatanEdit.dispose();
+    super.onClose();
+  }
 }

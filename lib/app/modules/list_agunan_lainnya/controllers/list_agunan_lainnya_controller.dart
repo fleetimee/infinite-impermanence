@@ -150,4 +150,18 @@ class ListAgunanLainnyaController extends GetxController {
     nilaiPengikatan.clear();
     pengikatan.clear();
   }
+
+  @override
+  void onClose() {
+    deskripsiPanjang.dispose();
+    plafonKredit.dispose();
+    namaPerusahaan.dispose();
+    persentase.dispose();
+    pengikatan.dispose();
+    deskripsiPanjangEdit.dispose();
+    persentaseEdit.dispose();
+    namaPerusahaanEdit.dispose();
+    pengikatanEdit.dispose();
+    super.onClose();
+  }
 }

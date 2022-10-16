@@ -103,4 +103,12 @@ class SimulasiTetapController extends GetxController {
 
     debugPrint(hasil.text);
   }
+
+  @override
+  void onClose() {
+    tenor.dispose();
+    bunga.dispose();
+    hasil2.dispose();
+    super.onClose();
+  }
 }

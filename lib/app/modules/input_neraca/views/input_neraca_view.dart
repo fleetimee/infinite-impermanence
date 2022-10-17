@@ -160,6 +160,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -173,6 +174,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               validator: FormBuilderValidators.required(),
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                               controller: controller.tabungan,
                               keyboardType: TextInputType.number,
@@ -191,7 +193,9 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               controller: controller.jumlahKasDanBank,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
-                                  hintText: 'Hasil disini'),
+                                hintText: 'Hasil disini',
+                                prefixText: 'Rp. ',
+                              ),
                             ),
                           ),
                         ],
@@ -252,6 +256,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -267,7 +272,9 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               controller: controller.piutangLainnya,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
-                                  hintText: 'Hasil disini'),
+                                hintText: 'Hasil disini',
+                                prefixText: 'Rp. ',
+                              ),
                             ),
                           ),
                         ],
@@ -314,6 +321,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -358,6 +366,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                             validator: FormBuilderValidators.required(),
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                             controller: controller.hutangUsaha,
                             keyboardType: TextInputType.number,
@@ -406,6 +415,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -453,6 +463,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -469,6 +480,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -485,6 +497,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -502,6 +515,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Hasil disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),

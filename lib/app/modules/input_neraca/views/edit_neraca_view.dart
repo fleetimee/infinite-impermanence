@@ -31,10 +31,6 @@ class EditNeracaView extends GetView<InputNeracaController> {
           child: FormBuilder(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             key: controller.formKey,
-            onChanged: () {
-              controller.formKey.currentState!.save();
-              debugPrint(controller.formKey.currentState!.value.toString());
-            },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -144,6 +140,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -157,6 +154,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               validator: FormBuilderValidators.required(),
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                               controller: controller.tabungan =
                                   MoneyMaskedTextController(
@@ -178,6 +176,10 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               name: 'jumlah_kas_bank',
                               validator: FormBuilderValidators.required(),
                               enabled: false,
+                              decoration: const InputDecoration(
+                                hintText: 'Hasil disini',
+                                prefixText: 'Rp. ',
+                              ),
                               controller: controller.jumlahKasDanBank =
                                   MoneyMaskedTextController(
                                 initialValue:
@@ -253,6 +255,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -267,7 +270,9 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               controller: controller.piutangLainnya,
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
-                                  hintText: 'Hasil disini'),
+                                hintText: 'Hasil disini',
+                                prefixText: 'Rp. ',
+                              ),
                             ),
                           ),
                         ],
@@ -320,6 +325,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -364,6 +370,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                             validator: FormBuilderValidators.required(),
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                             controller: controller.hutangUsaha =
                                 MoneyMaskedTextController(
@@ -424,6 +431,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -477,6 +485,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -499,6 +508,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -522,6 +532,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -545,6 +556,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -554,24 +566,6 @@ class EditNeracaView extends GetView<InputNeracaController> {
                         cells: [
                           const DataCell(SizedBox.shrink()),
                           DataCell(
-                            // OutlinedButton.icon(
-                            //   icon: const Icon(Icons.calculate),
-                            //   label: const Text(
-                            //     "Hitung",
-                            //     style: TextStyle(
-                            //         fontWeight: FontWeight.w500, fontSize: 20),
-                            //   ),
-                            //   style: OutlinedButton.styleFrom(
-                            //       foregroundColor: secondaryColor,
-                            //       backgroundColor: primaryColor,
-                            //       shape: const StadiumBorder(),
-                            //       maximumSize:
-                            //           const Size.fromWidth(double.infinity),
-                            //       fixedSize: const Size(500, 5)),
-                            //   onPressed: () {
-                            //     controller.hitungAktivaTetap();
-                            //   },
-                            // ),
                             GFButton(
                               onPressed: () {
                                 controller.hitungAktivaTetap();
@@ -591,33 +585,6 @@ class EditNeracaView extends GetView<InputNeracaController> {
                 const SizedBox(
                   height: 35.0,
                 ),
-                // OutlinedButton.icon(
-                //   icon: const Icon(FontAwesomeIcons.pencil),
-                //   label: const Text(
-                //     "Update",
-                //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                //   ),
-                //   style: OutlinedButton.styleFrom(
-                //       foregroundColor: secondaryColor,
-                //       backgroundColor: primaryColor,
-                //       shape: const StadiumBorder(),
-                //       maximumSize: const Size.fromWidth(double.infinity),
-                //       fixedSize: const Size(500, 50)),
-                //   onPressed: () {
-                //     if (controller.formKey.currentState?.saveAndValidate() ??
-                //         false) {
-                //       debugPrint(
-                //           controller.formKey.currentState?.value.toString());
-                //       // controller.updateNeraca();
-                //       controller.updateNeraca(data.id.toString());
-                //       Get.back();
-                //     } else {
-                //       debugPrint(
-                //           controller.formKey.currentState?.value.toString());
-                //       debugPrint('validation failed');
-                //     }
-                //   },
-                // ),
                 GFButton(
                   onPressed: () {
                     if (controller.formKey.currentState?.saveAndValidate() ??

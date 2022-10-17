@@ -110,6 +110,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                     Expanded(
                       child: FormBuilderDateTimePicker(
                         enabled: false,
+
                         initialValue: data.tanggalInput,
                         // onChanged: (value) {
                         //   controller.tanggalInput.value = value!;
@@ -186,6 +187,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -199,6 +201,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               enabled: false,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                               controller: controller.tabungan =
                                   MoneyMaskedTextController(
@@ -217,18 +220,21 @@ class LihatneracaView extends GetView<InputNeracaController> {
                           const DataCell(Text('Jumlah')),
                           DataCell(
                             FormBuilderTextField(
-                              name: 'jumlah_kas_bank',
-                              enabled: false,
-                              controller: controller.jumlahKasDanBank =
-                                  MoneyMaskedTextController(
-                                initialValue:
-                                    double.parse(data.jumlahKasDanTabungan),
-                                thousandSeparator: '.',
-                                decimalSeparator: '',
-                                precision: 0,
-                              ),
-                              keyboardType: TextInputType.number,
-                            ),
+                                name: 'jumlah_kas_bank',
+                                enabled: false,
+                                controller: controller.jumlahKasDanBank =
+                                    MoneyMaskedTextController(
+                                  initialValue:
+                                      double.parse(data.jumlahKasDanTabungan),
+                                  thousandSeparator: '.',
+                                  decimalSeparator: '',
+                                  precision: 0,
+                                ),
+                                keyboardType: TextInputType.number,
+                                decoration: const InputDecoration(
+                                  hintText: 'Hasil Disini',
+                                  prefixText: 'Rp. ',
+                                )),
                           ),
                         ],
                       ),
@@ -277,6 +283,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -295,8 +302,10 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               precision: 0,
                             ),
                             keyboardType: TextInputType.number,
-                            decoration:
-                                const InputDecoration(hintText: 'Hasil disini'),
+                            decoration: const InputDecoration(
+                              hintText: 'Hasil disini',
+                              prefixText: 'Rp. ',
+                            ),
                           ),
                         ),
                       ]),
@@ -348,6 +357,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -391,6 +401,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             name: 'jumlah_hutang_usaha',
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                             controller: controller.hutangUsaha =
                                 MoneyMaskedTextController(
@@ -452,6 +463,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                               hintText: 'Input disini',
+                              prefixText: 'Rp. ',
                             ),
                           ),
                         ),
@@ -505,6 +517,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -527,6 +540,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -550,6 +564,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),
@@ -572,6 +587,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               keyboardType: TextInputType.number,
                               decoration: const InputDecoration(
                                 hintText: 'Input disini',
+                                prefixText: 'Rp. ',
                               ),
                             ),
                           ),

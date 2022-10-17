@@ -49,7 +49,7 @@ class RugiLabaProvider {
       );
       debugPrint(response.body);
       if (response.statusCode == 200) {
-        debugPrint('It works');
+        return;
       } else {
         throw Exception('Failed to save data');
       }

@@ -194,7 +194,7 @@ class RugiLabaController extends GetxController {
       RugiLabaProvider().putRugiLaba(id, body).then((resp) {
         isRugiLabaProcessing.value = false;
         clearForm();
-        debiturController.fetchOneDebitur(data);
+        debiturController.fetchOneDebitur(int.parse(data.toString()));
         Get.snackbar(
           'Success',
           'Data berhasil diperbarui',
@@ -228,7 +228,7 @@ class RugiLabaController extends GetxController {
       RugiLabaProvider().deleteRugiLaba(id).then((resp) {
         isRugiLabaProcessing(false);
         clearForm();
-        debiturController.fetchOneDebitur(id);
+        debiturController.fetchOneDebitur(data);
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

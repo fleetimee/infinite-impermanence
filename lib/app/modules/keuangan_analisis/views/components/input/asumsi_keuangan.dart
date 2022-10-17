@@ -87,7 +87,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.omzetKiniPercent,
                   name: 'persentase_omzet_kini',
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Omzet Kini',
                     border: OutlineInputBorder(),
@@ -101,7 +101,7 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.omzetYADPercent,
-                  enabled: false,
+                  readOnly: true,
                   name: 'persentase_omzet_yad',
                   decoration: const InputDecoration(
                     labelText: '% Omzet YAD',
@@ -171,7 +171,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'persentase_biaya_bahan_kini',
                   controller: controller.biayaBahanKiniPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya bahan kini',
                     border: OutlineInputBorder(),
@@ -186,7 +186,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'persentase_biaya_bahan_yad',
                   controller: controller.biayaBahanYADPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya bahan YAD',
                     border: OutlineInputBorder(),
@@ -254,7 +254,7 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.upahKiniPercent,
-                  enabled: false,
+                  readOnly: true,
                   name: 'persentase_upah_kini',
                   decoration: const InputDecoration(
                     labelText: '% Upah Kini',
@@ -269,7 +269,7 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.upahYADPercent,
-                  enabled: false,
+                  readOnly: true,
                   name: 'persentase_upah_yad',
                   decoration: const InputDecoration(
                     labelText: '% Upah YAD',
@@ -341,7 +341,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_operasi_kini',
                   controller: controller.biayaOperasiKiniPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya operasi Kini',
                     border: OutlineInputBorder(),
@@ -356,7 +356,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_operasi_yad',
                   controller: controller.biayaOperasiYADPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya operasi YAD',
                     border: OutlineInputBorder(),
@@ -425,7 +425,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_hidup_kini',
                   controller: controller.biayaHidupKiniPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya hidup Kini',
                     border: OutlineInputBorder(),
@@ -440,7 +440,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_hidup_yad',
                   controller: controller.biayaHidupYADPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya hidup YAD',
                     border: OutlineInputBorder(),
@@ -535,7 +535,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: ' persentase_laba_usaha_kini',
                   controller: controller.labaUsahaKiniPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Laba Usaha Kini',
                     border: OutlineInputBorder(),
@@ -550,7 +550,7 @@ class AsumsiKeuangan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: ' persentase_laba_usaha_yad',
                   controller: controller.labaUsahaYADPercent,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Laba Usaha YAD',
                     border: OutlineInputBorder(),

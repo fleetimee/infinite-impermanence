@@ -65,6 +65,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
+                      ),
                     ),
                   ),
                 ],
@@ -85,6 +88,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         decimalSeparator: '',
                         thousandSeparator: '.',
                         precision: 0,
+                      ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -107,7 +113,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
-                      decoration: const InputDecoration(),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
+                      ),
                     ),
                   ),
                 ],
@@ -136,6 +144,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
+                      ),
                     ),
                   ),
                   const DataCell(SizedBox.shrink()),
@@ -157,6 +168,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
+                      ),
                     ),
                   ),
                   const DataCell(SizedBox.shrink()),
@@ -177,6 +191,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         decimalSeparator: '',
                         thousandSeparator: '.',
                         precision: 0,
+                      ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -202,6 +219,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
+                      ),
                     ),
                   ),
                 ],
@@ -222,6 +242,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         decimalSeparator: '',
                         thousandSeparator: '.',
                         precision: 0,
+                      ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -244,6 +267,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         thousandSeparator: '.',
                         precision: 0,
                       ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
+                      ),
                     ),
                   ),
                 ],
@@ -264,6 +290,9 @@ class PerkiraanLabaRugiView extends StatelessWidget {
                         decimalSeparator: '',
                         thousandSeparator: '.',
                         precision: 0,
+                      ),
+                      decoration: const InputDecoration(
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),

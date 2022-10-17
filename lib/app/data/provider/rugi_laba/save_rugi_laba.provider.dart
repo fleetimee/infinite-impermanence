@@ -57,4 +57,24 @@ class RugiLabaProvider {
       return Future.error(e);
     }
   }
+
+  Future<void> deleteRugiLaba(int id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}input-rugi-laba/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to delete data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

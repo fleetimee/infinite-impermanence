@@ -189,8 +189,7 @@ class InputNeracaController extends GetxController {
           ),
           title: 'Sukses',
           bodyHeaderDistance: 25,
-          desc:
-              'Data berhasil dihapus, \n\n Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
+          desc: 'Data berhasil dihapus',
           dismissOnTouchOutside: false,
           btnOkOnPress: () {},
         ).show();

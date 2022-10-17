@@ -2,6 +2,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/rugi_laba/save_rugi_laba.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 
@@ -29,7 +31,6 @@ class RugiLabaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
   var persentaseHpp = TextEditingController();
-
   var aktivaLancarKas = MoneyMaskedTextController(
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var aktivaBank = MoneyMaskedTextController(
@@ -212,6 +213,54 @@ class RugiLabaController extends GetxController {
       });
     } catch (e) {
       isRugiLabaProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void deleteRugiLaba(int id) {
+    try {
+      isRugiLabaProcessing(true);
+      RugiLabaProvider().deleteRugiLaba(id).then((resp) {
+        isRugiLabaProcessing(false);
+        clearForm();
+        debiturController.fetchOneDebitur(id);
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (err) {
+        isRugiLabaProcessing(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isRugiLabaProcessing(false);
       Get.snackbar(
         'Error',
         e.toString(),

@@ -275,6 +275,14 @@ class RugiLabaView extends StatelessWidget {
                           DataCell(
                             GFButton(
                               onPressed: () {
+                                GFToast.showToast(
+                                  'Sisa Penghasilan Berhasil Dihitung',
+                                  context,
+                                  toastPosition: GFToastPosition.TOP,
+                                  textStyle: const TextStyle(
+                                      fontSize: 16, color: GFColors.WHITE),
+                                  backgroundColor: GFColors.DARK,
+                                );
                                 controller.sumSisaPenghasilan();
                               },
                               text: 'Hitung',

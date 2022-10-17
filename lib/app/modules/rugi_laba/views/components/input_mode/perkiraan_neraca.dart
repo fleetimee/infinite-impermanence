@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 
@@ -498,6 +499,14 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                         fixedSize: const Size(500, 40),
                       ),
                       onPressed: () {
+                        GFToast.showToast(
+                          'Perkiraan Neraca Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.TOP,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
                         controller.result();
                       },
                       child: const Text("Hitung"),
@@ -510,6 +519,14 @@ class PerkiraanNeracaTabel extends StatelessWidget {
                         fixedSize: const Size(500, 40),
                       ),
                       onPressed: () {
+                        GFToast.showToast(
+                          'Perkiraan Neraca Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.TOP,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
                         controller.result();
                       },
                       child: const Text("Perkiraan Neraca"),

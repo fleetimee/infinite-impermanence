@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 
@@ -91,6 +92,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -114,6 +116,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       readOnly: true,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -137,6 +140,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -156,6 +160,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -181,6 +186,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -192,6 +198,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -217,6 +224,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -238,6 +246,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -252,6 +261,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -283,6 +293,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -310,6 +321,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -341,6 +353,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -374,6 +387,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -406,6 +420,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -420,6 +435,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -441,6 +457,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       controller: controller.jumlahAktiva,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -458,6 +475,7 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -473,6 +491,14 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                         fixedSize: const Size(500, 40),
                       ),
                       onPressed: () {
+                        GFToast.showToast(
+                          'Perkiraan Neraca Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
                         controller.result();
                       },
                       child: const Text("Hitung"),
@@ -485,6 +511,14 @@ class PerkiraanNeracaTabelView extends StatelessWidget {
                         fixedSize: const Size(500, 40),
                       ),
                       onPressed: () {
+                        GFToast.showToast(
+                          'Perkiraan Neraca Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
                         controller.result();
                       },
                       child: const Text("Perkiraan Neraca"),

@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
-import 'package:getwidget/components/button/gf_button.dart';
+import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 
@@ -141,13 +141,22 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   const DataCell(SizedBox.shrink()),
                   DataCell(
                     GFButton(
-                        onPressed: () {
-                          controller.hitungHpp();
-                          controller.sumLabaKotor();
-                        },
-                        color: primaryColor,
-                        fullWidthButton: true,
-                        text: 'Hitung'),
+                      onPressed: () {
+                        GFToast.showToast(
+                          'Laba Kotor Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.TOP,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
+                        controller.hitungHpp();
+                        controller.sumLabaKotor();
+                      },
+                      color: primaryColor,
+                      fullWidthButton: true,
+                      text: 'Hitung',
+                    ),
                   ),
                 ],
               ),
@@ -216,6 +225,14 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     GFButton(
                         onPressed: () {
+                          GFToast.showToast(
+                            'Perkiraan Laba Berhasil Dihitung',
+                            context,
+                            toastPosition: GFToastPosition.TOP,
+                            textStyle: const TextStyle(
+                                fontSize: 16, color: GFColors.WHITE),
+                            backgroundColor: GFColors.DARK,
+                          );
                           controller.perkiraanLaba();
                         },
                         color: primaryColor,

@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import '../../../../../common/style.dart';
@@ -89,6 +91,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -112,6 +115,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       readOnly: true,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -135,6 +139,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -154,6 +159,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -179,6 +185,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -190,6 +197,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -215,6 +223,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -233,9 +242,11 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       name: 'jumlah_aktiva_lancar',
                       readOnly: true,
                       controller: controller.jumlahAktivaLancar,
+                      validator: FormBuilderValidators.required(),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -246,10 +257,12 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_hutang',
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       controller: controller.jumlahHutang,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -278,9 +291,11 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       name: 'modal',
                       controller: controller.modal,
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -308,6 +323,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -339,6 +355,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -372,6 +389,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -393,6 +411,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_aktiva_tetap',
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       controller: controller.jumlahAktivaTetap =
                           MoneyMaskedTextController(
                               decimalSeparator: '',
@@ -404,6 +423,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -413,11 +433,13 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'modal_result',
+                      validator: FormBuilderValidators.required(),
                       readOnly: true,
                       controller: controller.modal,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -435,10 +457,12 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'aktiva_tetap',
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       keyboardType: TextInputType.number,
                       controller: controller.jumlahAktiva,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -452,10 +476,12 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                     FormBuilderTextField(
                       name: 'jumlah_pasiva',
                       readOnly: true,
+                      validator: FormBuilderValidators.required(),
                       controller: controller.jumlahPasiva,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',
+                        prefixText: 'Rp. ',
                       ),
                     ),
                   ),
@@ -471,6 +497,14 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                         fixedSize: const Size(500, 40),
                       ),
                       onPressed: () {
+                        GFToast.showToast(
+                          'Perkiraan Neraca Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
                         controller.result();
                       },
                       child: const Text("Hitung"),
@@ -483,6 +517,14 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                         fixedSize: const Size(500, 40),
                       ),
                       onPressed: () {
+                        GFToast.showToast(
+                          'Perkiraan Neraca Berhasil Dihitung',
+                          context,
+                          toastPosition: GFToastPosition.BOTTOM,
+                          textStyle: const TextStyle(
+                              fontSize: 16, color: GFColors.WHITE),
+                          backgroundColor: GFColors.DARK,
+                        );
                         controller.result();
                       },
                       child: const Text("Perkiraan Neraca"),

@@ -1,5 +1,4 @@
 // 🎯 Dart imports:
-import 'dart:developer';
 
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +19,6 @@ import '../controllers/rugi_laba_controller.dart';
 
 // 🌎 Project imports:
 
-
 class EditRugiLabaView extends GetView<RugiLabaController> {
   EditRugiLabaView({Key? key}) : super(key: key);
 
@@ -31,18 +28,15 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rugi / Laba'),
+        title: const Text('Edit Rugi / Laba'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
-            onChanged: () {
-              controller.formKey.currentState!.save();
-              // debugPrint(controller.formKey.currentState!.value.toString());
-              log(controller.formKey.currentState!.value.toString());
-            },
+            autoFocusOnValidationFailure: true,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -218,18 +212,6 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                       DataRow2(
                         cells: [
                           const DataCell(
-                              Text('Penghasilan rata rata per bulan :')),
-                          DataCell(
-                            FormBuilderTextField(
-                                name: 'penghasilan',
-                                keyboardType: TextInputType.number,
-                                controller: controller.labaSetelahPajak),
-                          ),
-                        ],
-                      ),
-                      DataRow2(
-                        cells: [
-                          const DataCell(
                               Text('Biaya hidup rata rata perbulan :')),
                           DataCell(
                             FormBuilderTextField(
@@ -242,6 +224,10 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                                 initialValue:
                                     double.parse(data.inputRugiLaba.biayaHidup),
                                 precision: 0,
+                              ),
+                              decoration: const InputDecoration(
+                                hintText: 'Hasil',
+                                prefix: Text('Rp. '),
                               ),
                             ),
                           ),
@@ -267,19 +253,35 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                                     data.inputRugiLaba.sisaPenghasilan),
                                 precision: 0,
                               ),
-                              decoration: InputDecoration(
-                                suffixIcon: ElevatedButton.icon(
-                                  icon: const Icon(FontAwesomeIcons.calculator),
-                                  label: const Text("Hit"),
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: primaryColor,
-                                    shape: const StadiumBorder(),
-                                  ),
-                                  onPressed: () {
-                                    controller.sumSisaPenghasilan();
-                                  },
-                                ),
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefix: Text('Rp. '),
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                            SizedBox.shrink(),
+                          ),
+                          DataCell(
+                            GFButton(
+                              onPressed: () {
+                                GFToast.showToast(
+                                  'Sisa Penghasilan Berhasil Dihitung',
+                                  context,
+                                  toastPosition: GFToastPosition.TOP,
+                                  textStyle: const TextStyle(
+                                      fontSize: 16, color: GFColors.WHITE),
+                                  backgroundColor: GFColors.DARK,
+                                );
+                                controller.sumSisaPenghasilan();
+                              },
+                              text: 'Hitung',
+                              color: primaryColor,
+                              fullWidthButton: true,
                             ),
                           ),
                         ],
@@ -290,50 +292,6 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(
                   height: 25.0,
                 ),
-                // Row(
-                //   children: [
-                //     const Expanded(
-                //         child: Text(
-                //       'Neraca ID',
-                //       style: subtitle2,
-                //     )),
-                //     const SizedBox(
-                //       width: 25.0,
-                //     ),
-                //     Expanded(
-                //       child: FormBuilderTextField(
-                //         name: 'neraca_id',
-                //         readOnly: true,
-                //         controller: controller.neracaId = TextEditingController(
-                //             text: data.inputNeraca.id.toString()),
-                //         // controller: controller.neracaId,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(
-                //   height: 16.0,
-                // ),
-                // Row(
-                //   children: [
-                //     const Expanded(
-                //         child: Text(
-                //       'Debitur ID',
-                //       style: subtitle2,
-                //     )),
-                //     const SizedBox(
-                //       width: 25.0,
-                //     ),
-                //     Expanded(
-                //       child: FormBuilderTextField(
-                //         name: 'debitur_id',
-                //         controller: controller.debiturId =
-                //             TextEditingController(text: data.id.toString()),
-                //         readOnly: true,
-                //       ),
-                //     ),
-                //   ],
-                // ),
                 const SizedBox(
                   height: 25.0,
                 ),
@@ -346,7 +304,7 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                     text: 'Update',
                     size: GFSize.LARGE,
                     fullWidthButton: true,
-                    type: GFButtonType.outline,
+                    color: primaryColor,
                   ),
                 ),
               ],

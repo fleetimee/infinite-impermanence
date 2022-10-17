@@ -2,13 +2,16 @@
 import 'dart:developer';
 
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
@@ -19,18 +22,56 @@ import '../controllers/rugi_laba_controller.dart';
 
 // 🌎 Project imports:
 
-// TODO: Lanjut disini
 class LihatRugiLabaView extends GetView<RugiLabaController> {
   LihatRugiLabaView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
+  void deleteRugiLaba(BuildContext context) {
+    AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.question,
+            animType: AnimType.bottomSlide,
+            dialogBackgroundColor: primaryColor,
+            titleTextStyle: GoogleFonts.poppins(
+              color: secondaryColor,
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
+            ),
+            descTextStyle: GoogleFonts.poppins(
+              color: secondaryColor,
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+            ),
+            title: 'Konfirmasi',
+            bodyHeaderDistance: 25,
+            desc: 'Apakah yakin untuk menghapus item ini ?',
+            btnOkOnPress: () {
+              controller.deleteRugiLaba(data.inputRugiLaba.id);
+            },
+            btnOkText: 'Oke sip',
+            btnCancelText: 'Affa iyh',
+            btnCancelOnPress: () {})
+        .show();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rugi / Laba'),
+        title: const Text('Detail Rugi / Laba'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              deleteRugiLaba(context);
+              Get.back();
+            },
+            icon: const FaIcon(
+              FontAwesomeIcons.solidTrashCan,
+            ),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -219,18 +260,21 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                               Text('Penghasilan rata rata per bulan :')),
                           DataCell(
                             FormBuilderTextField(
-                              name: 'penghasilan',
-                              readOnly: true,
-                              keyboardType: TextInputType.number,
-                              controller: controller.labaSetelahPajak =
-                                  MoneyMaskedTextController(
-                                decimalSeparator: '',
-                                thousandSeparator: '.',
-                                initialValue: double.parse(
-                                    data.inputRugiLaba.labaSetelahPajak),
-                                precision: 0,
-                              ),
-                            ),
+                                name: 'penghasilan',
+                                readOnly: true,
+                                keyboardType: TextInputType.number,
+                                controller: controller.labaSetelahPajak =
+                                    MoneyMaskedTextController(
+                                  decimalSeparator: '',
+                                  thousandSeparator: '.',
+                                  initialValue: double.parse(
+                                      data.inputRugiLaba.labaSetelahPajak),
+                                  precision: 0,
+                                ),
+                                decoration: const InputDecoration(
+                                  hintText: 'Input disini',
+                                  prefix: Text('Rp. '),
+                                )),
                           ),
                         ],
                       ),
@@ -240,18 +284,21 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                               Text('Biaya hidup rata rata perbulan :')),
                           DataCell(
                             FormBuilderTextField(
-                              name: 'biaya_hidup',
-                              readOnly: true,
-                              keyboardType: TextInputType.number,
-                              controller: controller.biayaHidupRataRata =
-                                  MoneyMaskedTextController(
-                                decimalSeparator: '',
-                                thousandSeparator: '.',
-                                initialValue:
-                                    double.parse(data.inputRugiLaba.biayaHidup),
-                                precision: 0,
-                              ),
-                            ),
+                                name: 'biaya_hidup',
+                                readOnly: true,
+                                keyboardType: TextInputType.number,
+                                controller: controller.biayaHidupRataRata =
+                                    MoneyMaskedTextController(
+                                  decimalSeparator: '',
+                                  thousandSeparator: '.',
+                                  initialValue: double.parse(
+                                      data.inputRugiLaba.biayaHidup),
+                                  precision: 0,
+                                ),
+                                decoration: const InputDecoration(
+                                  hintText: 'Input disini',
+                                  prefix: Text('Rp. '),
+                                )),
                           ),
                         ],
                       ),
@@ -264,19 +311,21 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                           ),
                           DataCell(
                             FormBuilderTextField(
-                              name: 'sisa_penghasilan',
-                              keyboardType: TextInputType.number,
-                              readOnly: true,
-                              controller: controller.sisaPenghasilanBersih =
-                                  MoneyMaskedTextController(
-                                decimalSeparator: '',
-                                thousandSeparator: '.',
-                                initialValue: double.parse(
-                                    data.inputRugiLaba.sisaPenghasilan),
-                                precision: 0,
-                              ),
-                              decoration: const InputDecoration(),
-                            ),
+                                name: 'sisa_penghasilan',
+                                keyboardType: TextInputType.number,
+                                readOnly: true,
+                                controller: controller.sisaPenghasilanBersih =
+                                    MoneyMaskedTextController(
+                                  decimalSeparator: '',
+                                  thousandSeparator: '.',
+                                  initialValue: double.parse(
+                                      data.inputRugiLaba.sisaPenghasilan),
+                                  precision: 0,
+                                ),
+                                decoration: const InputDecoration(
+                                  hintText: 'Input disini',
+                                  prefix: Text('Rp. '),
+                                )),
                           ),
                         ],
                       ),
@@ -286,76 +335,6 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(
                   height: 25.0,
                 ),
-                // Row(
-                //   children: [
-                //     const Expanded(
-                //         child: Text(
-                //       'Neraca ID',
-                //       style: subtitle2,
-                //     )),
-                //     const SizedBox(
-                //       width: 25.0,
-                //     ),
-                //     Expanded(
-                //       child: FormBuilderTextField(
-                //         name: 'neraca_id',
-                //         readOnly: true,
-                //         controller: controller.neracaId = TextEditingController(
-                //             text: data.inputNeraca.id.toString()),
-                //         // controller: controller.neracaId,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(
-                //   height: 16.0,
-                // ),
-                // Row(
-                //   children: [
-                //     const Expanded(
-                //         child: Text(
-                //       'Debitur ID',
-                //       style: subtitle2,
-                //     )),
-                //     const SizedBox(
-                //       width: 25.0,
-                //     ),
-                //     Expanded(
-                //       child: FormBuilderTextField(
-                //         name: 'debitur_id',
-                //         controller: controller.debiturId =
-                //             TextEditingController(text: data.id.toString()),
-                //         readOnly: true,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(
-                //   height: 25.0,
-                // ),
-                // Center(
-                //   child: ElevatedButton.icon(
-                //     icon: const Icon(FontAwesomeIcons.shopify),
-                //     label: const Text("Submit laba / rugi"),
-                //     style: ElevatedButton.styleFrom(
-                //       fixedSize: const Size(600, 12),
-                //       backgroundColor: primaryColor,
-                //       shape: const StadiumBorder(),
-                //     ),
-                //     onPressed: () {
-                //       if (controller.formKey.currentState?.saveAndValidate() ??
-                //           false) {
-                //         controller.saveRugiLaba();
-                //         debugPrint(
-                //             controller.formKey.currentState?.value.toString());
-                //       } else {
-                //         debugPrint(
-                //             controller.formKey.currentState?.value.toString());
-                //         debugPrint('validation failed');
-                //       }
-                //     },
-                //   ),
-                // ),
               ],
             ),
           ),

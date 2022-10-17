@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 
@@ -20,6 +20,7 @@ class AsumsiKeuangan extends StatelessWidget {
   final controller = Get.put(KeuanganAnalisisController());
   final data = Get.arguments;
 
+  // TODO: Lanjut disini
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -55,7 +56,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Omzet Kini',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -74,7 +75,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Omzet YAD',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -88,10 +89,11 @@ class AsumsiKeuangan extends StatelessWidget {
                   controller: controller.omzetKiniPercent,
                   name: 'persentase_omzet_kini',
                   readOnly: true,
+                  textAlign: TextAlign.right,
                   decoration: const InputDecoration(
                     labelText: '% Omzet Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -103,10 +105,11 @@ class AsumsiKeuangan extends StatelessWidget {
                   controller: controller.omzetYADPercent,
                   readOnly: true,
                   name: 'persentase_omzet_yad',
+                  textAlign: TextAlign.right,
                   decoration: const InputDecoration(
                     labelText: '% Omzet YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -131,6 +134,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'biaya_bahan_kini',
+            readOnly: true,
             controller: controller.biayaBahanKini = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -140,7 +144,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya bahan kini',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -149,6 +153,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'biaya_bahan_yad',
+            readOnly: true,
             controller: controller.biayaBahanYAD = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -158,7 +163,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya Bahan YAD',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -172,10 +177,11 @@ class AsumsiKeuangan extends StatelessWidget {
                   name: 'persentase_biaya_bahan_kini',
                   controller: controller.biayaBahanKiniPercent,
                   readOnly: true,
+                  textAlign: TextAlign.right,
                   decoration: const InputDecoration(
                     labelText: '% Biaya bahan kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -185,12 +191,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'persentase_biaya_bahan_yad',
+                  textAlign: TextAlign.right,
                   controller: controller.biayaBahanYADPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya bahan YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -215,6 +222,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'upah_kini',
+            readOnly: true,
             controller: controller.upahKini = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -224,7 +232,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Upah Kini',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -239,10 +247,11 @@ class AsumsiKeuangan extends StatelessWidget {
               initialValue: double.parse(data.inputKeuangan.biayaUpahAsumsi),
             ),
             name: 'upah_yad',
+            readOnly: true,
             decoration: const InputDecoration(
               labelText: 'Upah YAD',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -256,10 +265,11 @@ class AsumsiKeuangan extends StatelessWidget {
                   controller: controller.upahKiniPercent,
                   readOnly: true,
                   name: 'persentase_upah_kini',
+                  textAlign: TextAlign.right,
                   decoration: const InputDecoration(
                     labelText: '% Upah Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -271,10 +281,11 @@ class AsumsiKeuangan extends StatelessWidget {
                   controller: controller.upahYADPercent,
                   readOnly: true,
                   name: 'persentase_upah_yad',
+                  textAlign: TextAlign.right,
                   decoration: const InputDecoration(
                     labelText: '% Upah YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -299,6 +310,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_operasi_kini',
+            readOnly: true,
             controller: controller.biayaOperasiKini = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -309,7 +321,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya operasi Kini',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -318,6 +330,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_operasi_yad',
+            readOnly: true,
             controller: controller.biayaOperasiYAD = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -328,7 +341,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya operasi YAD',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -340,12 +353,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_operasi_kini',
+                  textAlign: TextAlign.right,
                   controller: controller.biayaOperasiKiniPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya operasi Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -355,12 +369,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_operasi_yad',
+                  textAlign: TextAlign.right,
                   controller: controller.biayaOperasiYADPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya operasi YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -385,6 +400,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_hidup_kini',
+            readOnly: true,
             controller: controller.biayaHidupKini = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -394,7 +410,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya hidup Kini',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -403,6 +419,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' biaya_hidup_yad',
+            readOnly: true,
             controller: controller.biayaHidupYAD = MoneyMaskedTextController(
               decimalSeparator: '',
               thousandSeparator: '.',
@@ -412,7 +429,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Biaya hidup YAD',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -424,12 +441,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_hidup_kini',
+                  textAlign: TextAlign.right,
                   controller: controller.biayaHidupKiniPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya hidup Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -439,12 +457,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: ' persentase_biaya_hidup_yad',
+                  textAlign: TextAlign.right,
                   controller: controller.biayaHidupYADPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Biaya hidup YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -453,21 +472,7 @@ class AsumsiKeuangan extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // colorButton(context, 'Dapatkan Persentase', () {
-          //   controller.hitungPersentasiOtomatis();
-          // }),
-          OutlinedButton.icon(
-            icon: const Icon(Icons.percent),
-            label: const Text(
-              "Dapatkan Persentase",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            ),
-            style: OutlinedButton.styleFrom(
-                foregroundColor: secondaryColor,
-                backgroundColor: primaryColor,
-                shape: const StadiumBorder(),
-                maximumSize: const Size.fromWidth(double.infinity),
-                fixedSize: const Size(500, 50)),
+          GFButton(
             onPressed: () {
               controller.hitungPersentasiOtomatis();
 
@@ -488,6 +493,10 @@ class AsumsiKeuangan extends StatelessWidget {
                 reverseCurve: Curves.linear,
               );
             },
+            text: 'Get Percent',
+            color: primaryColor,
+            size: GFSize.LARGE,
+            fullWidthButton: true,
           ),
           const SizedBox(
             height: 30,
@@ -509,7 +518,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Laba Usaha Kini',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -522,7 +531,7 @@ class AsumsiKeuangan extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Laba Usaha YAD',
               border: OutlineInputBorder(),
-              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
+              prefixText: 'Rp. ',
             ),
             keyboardType: TextInputType.number,
           ),
@@ -534,12 +543,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: ' persentase_laba_usaha_kini',
+                  textAlign: TextAlign.right,
                   controller: controller.labaUsahaKiniPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Laba Usaha Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -549,12 +559,13 @@ class AsumsiKeuangan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: ' persentase_laba_usaha_yad',
+                  textAlign: TextAlign.right,
                   controller: controller.labaUsahaYADPercent,
                   readOnly: true,
                   decoration: const InputDecoration(
                     labelText: '% Laba Usaha YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -566,28 +577,9 @@ class AsumsiKeuangan extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                // child: colorButton(
-                //   context,
-                //   'Hitung Total Laba',
-                //   () {
-                //     controller.hitungTotalLaba();
-                //   },
-                // ),
-                child: OutlinedButton.icon(
-                  icon: const Icon(Icons.monetization_on),
-                  label: const Text(
-                    "Hitung Total Laba",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                      foregroundColor: secondaryColor,
-                      backgroundColor: primaryColor,
-                      shape: const StadiumBorder(),
-                      maximumSize: const Size.fromWidth(double.infinity),
-                      fixedSize: const Size(500, 50)),
+                child: GFButton(
                   onPressed: () {
                     controller.hitungTotalLaba();
-
                     showToast(
                       '👀 Laba Rupiah Berhasil Dihitung 👀',
                       textStyle: const TextStyle(
@@ -605,33 +597,19 @@ class AsumsiKeuangan extends StatelessWidget {
                       reverseCurve: Curves.linear,
                     );
                   },
+                  text: 'Hitung Total Laba',
+                  color: primaryColor,
+                  size: GFSize.LARGE,
+                  fullWidthButton: true,
                 ),
               ),
               const SizedBox(
                 width: 10,
               ),
               Expanded(
-                // child: colorButton(
-                //   context,
-                //   'Hitung Prosentase Laba',
-                //   () {
-                //     controller.hitungTotalPersentasi();
-                //   },
-                child: OutlinedButton.icon(
-                  icon: const Icon(Icons.percent),
-                  label: const Text(
-                    "Hitung Persentase Laba",
-                    style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13),
-                  ),
-                  style: OutlinedButton.styleFrom(
-                      foregroundColor: secondaryColor,
-                      backgroundColor: primaryColor,
-                      shape: const StadiumBorder(),
-                      maximumSize: const Size.fromWidth(double.infinity),
-                      fixedSize: const Size(500, 50)),
+                child: GFButton(
                   onPressed: () {
                     controller.hitungTotalPersentasi();
-
                     showToast(
                       '👀 Persentase Laba Berhasil Dihitung 👀',
                       textStyle: const TextStyle(
@@ -649,6 +627,10 @@ class AsumsiKeuangan extends StatelessWidget {
                       reverseCurve: Curves.linear,
                     );
                   },
+                  text: 'Hitung Persentase Laba',
+                  color: primaryColor,
+                  size: GFSize.LARGE,
+                  fullWidthButton: true,
                 ),
               ),
             ],

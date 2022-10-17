@@ -290,7 +290,7 @@ class Angsuran extends StatelessWidget {
                     flex: 2,
                     child: FormBuilderTextField(
                       name: 'Total Angsuran Kredit',
-                      enabled: false,
+                      readOnly: true,
                       controller: controller.totalBunga =
                           MoneyMaskedTextController(
                               thousandSeparator: '.',
@@ -300,7 +300,7 @@ class Angsuran extends StatelessWidget {
                                   double.parse(data.inputKeuangan.angsuranRp)),
                       decoration: InputDecoration(
                         labelText: 'Angsuran Dibayarkan',
-                        prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
+                        prefixText: 'Rp. ',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),

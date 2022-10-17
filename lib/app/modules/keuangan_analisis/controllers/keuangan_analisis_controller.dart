@@ -1,7 +1,4 @@
 // 🎯 Dart imports:
-// ignore_for_file: avoid_print
-
-// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:math';
 
@@ -38,24 +35,6 @@ class KeuanganAnalisisController extends GetxController
   final data = Get.arguments;
 
   final isAnalisaKeuanganProcessing = false.obs;
-
-  final Map<String, TextEditingController> listOfTextEditingController = {
-    'Equity': TextEditingController(),
-    'Debt': TextEditingController(),
-    'Total': TextEditingController(),
-    'Kredit yang diminta': TextEditingController(),
-  };
-
-  // @override
-  // void onClose() {
-  //   // // Disposing all the controllers
-  //   // listOfTextEditingController.forEach((name, value) {
-  //   //   value.dispose();
-  //   // });
-
-  //   // equityInput.dispose();
-  //   super.onClose();
-  // }
 
   // ! FormKey
   final formKeyAnalisaKeuangan = GlobalKey<FormBuilderState>();
@@ -318,6 +297,80 @@ class KeuanganAnalisisController extends GetxController
   final isKreditPassed = false.obs;
   final isVerificationButtonPressed = false.obs;
   final isHitungTotalNetworgLoading = false.obs;
+
+  void saveAnalisisKeuangan() {
+    final body = {
+      'debitur': debiturId.text,
+      'keuangan': keuanganId.text,
+      'total_aset': equityInput.text.replaceAll('.', ''),
+      'jumlah_aset_kini': netWorth.text.replaceAll('.', ''),
+      'total_angsuran_keseluruhan': netWorthPlusCredit.text.replaceAll('.', ''),
+      'persen_omzet_kini': omzetKiniPercent.text,
+      'persen_omzet_yad': omzetYADPercent.text,
+      'persen_biaya_bahan_kini': biayaBahanKiniPercent.text,
+      'persen_biaya_bahan_yad': biayaBahanYADPercent.text,
+      'persen_biaya_operasi_kini': biayaOperasiKiniPercent.text,
+      'persen_biaya_operasi_yad': biayaOperasiYADPercent.text,
+      'persen_biaya_upah_kini': upahKiniPercent.text,
+      'persen_biaya_upah_yad': upahYADPercent.text,
+      'persen_biaya_hidup_kini': biayaHidupKiniPercent.text,
+      'persen_biaya_hidup_yad': biayaHidupYADPercent.text,
+      'total_laba_usaha_kini': labaUsahaKini.text.replaceAll('.', ''),
+      'total_laba_usaha_yad': labaUsahaYAD.text.replaceAll('.', ''),
+      'persen_laba_usaha_kini': labaUsahaKiniPercent.text,
+      'persen_laba_usaha_yad': labaUsahaYADPercent.text,
+      'persen_ratio_kini': ratioProfitKini.text,
+      'persen_ratio_yad': ratioProfitYAD.text,
+      'persen_roe_kini': roeKini.text,
+      'persen_roe_yad': roeYAD.text,
+      'keterangan_roe': keteranganRoe.text,
+      'persen_roa_kini': roaKini.text,
+      'persen_roa_yad': roaYAD.text,
+      'keterangan_roa': keteranganRoa.text,
+      'persen_der_kini': derKini.text,
+      'persen_der_yad': derYAD.text,
+      'keterangan_der': keteranganDer.text,
+      'persen_dsc_kini': dscKini.text,
+      'persen_dsc_yad': dscYAD.text,
+      'keterangan_dsc': keteranganDsc.text,
+      'kredit_disetujuin': isKreditPassed.value,
+      'pinjaman_maksimal': pinjamanMaksimal.text.replaceAll('.', ''),
+      'perhitungan_modal_kerja': perhitunganModalKerja.text.replaceAll('.', ''),
+      'kebutuhan_investasi': kebutuhanInvestasi.text.replaceAll('.', ''),
+      'kebutuhan_kredit': kebutuhanKredit.text.replaceAll('.', ''),
+      'total_crr_keuangan': crr.text,
+    };
+
+    try {
+      isKeuanganAnalisisProcessing(true);
+      AnalisisKeuanganProvider().deployAnalisaKeuangan(body).then((resp) {
+        isKeuanganAnalisisProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (err) {
+        isKeuanganAnalisisProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isKeuanganAnalisisProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
 
   void hitungPinjamanBankLain() {
     final parseDebt = int.parse(debtInput.text.replaceAll('.', ''));
@@ -1175,80 +1228,6 @@ class KeuanganAnalisisController extends GetxController
       colorText: secondaryColor,
       duration: const Duration(seconds: 2),
     );
-  }
-
-  void saveAnalisisKeuangan() {
-    final body = {
-      'debitur': debiturId.text,
-      'keuangan': keuanganId.text,
-      'total_aset': equityInput.text.replaceAll('.', ''),
-      'jumlah_aset_kini': netWorth.text.replaceAll('.', ''),
-      'total_angsuran_keseluruhan': netWorthPlusCredit.text.replaceAll('.', ''),
-      'persen_omzet_kini': omzetKiniPercent.text,
-      'persen_omzet_yad': omzetYADPercent.text,
-      'persen_biaya_bahan_kini': biayaBahanKiniPercent.text,
-      'persen_biaya_bahan_yad': biayaBahanYADPercent.text,
-      'persen_biaya_operasi_kini': biayaOperasiKiniPercent.text,
-      'persen_biaya_operasi_yad': biayaOperasiYADPercent.text,
-      'persen_biaya_upah_kini': upahKiniPercent.text,
-      'persen_biaya_upah_yad': upahYADPercent.text,
-      'persen_biaya_hidup_kini': biayaHidupKiniPercent.text,
-      'persen_biaya_hidup_yad': biayaHidupYADPercent.text,
-      'total_laba_usaha_kini': labaUsahaKini.text.replaceAll('.', ''),
-      'total_laba_usaha_yad': labaUsahaYAD.text.replaceAll('.', ''),
-      'persen_laba_usaha_kini': labaUsahaKiniPercent.text,
-      'persen_laba_usaha_yad': labaUsahaYADPercent.text,
-      'persen_ratio_kini': ratioProfitKini.text,
-      'persen_ratio_yad': ratioProfitYAD.text,
-      'persen_roe_kini': roeKini.text,
-      'persen_roe_yad': roeYAD.text,
-      'keterangan_roe': keteranganRoe.text,
-      'persen_roa_kini': roaKini.text,
-      'persen_roa_yad': roaYAD.text,
-      'keterangan_roa': keteranganRoa.text,
-      'persen_der_kini': derKini.text,
-      'persen_der_yad': derYAD.text,
-      'keterangan_der': keteranganDer.text,
-      'persen_dsc_kini': dscKini.text,
-      'persen_dsc_yad': dscYAD.text,
-      'keterangan_dsc': keteranganDsc.text,
-      'kredit_disetujuin': isKreditPassed.value,
-      'pinjaman_maksimal': pinjamanMaksimal.text.replaceAll('.', ''),
-      'perhitungan_modal_kerja': perhitunganModalKerja.text.replaceAll('.', ''),
-      'kebutuhan_investasi': kebutuhanInvestasi.text.replaceAll('.', ''),
-      'kebutuhan_kredit': kebutuhanKredit.text.replaceAll('.', ''),
-      'total_crr_keuangan': crr.text,
-    };
-
-    try {
-      isKeuanganAnalisisProcessing(true);
-      AnalisisKeuanganProvider().deployAnalisaKeuangan(body).then((resp) {
-        isKeuanganAnalisisProcessing(false);
-        debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
-      }, onError: (err) {
-        isKeuanganAnalisisProcessing(false);
-        Get.snackbar(
-          'Error',
-          e.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      isKeuanganAnalisisProcessing(false);
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
   }
 
   // void hitungFlatAndEfektif() {

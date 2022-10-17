@@ -39,7 +39,7 @@ class InputKeuanganProvider {
 
   Future<void> putInputKeuangan(id, Map body) async {
     try {
-      final response = await httpClient.put(
+      final response = await httpClient.patch(
         Uri.parse('${baseUrl}input-keuangan/$id'),
         body: jsonEncode(body),
         headers: {
@@ -50,6 +50,26 @@ class InputKeuanganProvider {
       debugPrint(response.body);
       if (response.statusCode == 200) {
         debugPrint('It works');
+      } else {
+        throw Exception('Failed to save data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> purgeInputKeuangan(int id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}input-keuangan/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        return;
       } else {
         throw Exception('Failed to save data');
       }

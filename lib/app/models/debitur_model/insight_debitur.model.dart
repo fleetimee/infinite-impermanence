@@ -1043,7 +1043,6 @@ class InputKeuangan {
     this.sistemAngsuran,
     this.digunakanUntuk,
     this.angsuranRp,
-    this.hpp,
     this.penjualanKini,
     this.biayaBahanKini,
     this.biayaOperasionalKini,
@@ -1065,7 +1064,6 @@ class InputKeuangan {
   String? sistemAngsuran;
   String? digunakanUntuk;
   String? angsuranRp;
-  int? hpp;
   String? penjualanKini;
   String? biayaBahanKini;
   String? biayaOperasionalKini;
@@ -1087,7 +1085,6 @@ class InputKeuangan {
         sistemAngsuran: json["sistem_angsuran"],
         digunakanUntuk: json["digunakan_untuk"],
         angsuranRp: json["angsuran_rp"],
-        hpp: json["hpp"],
         penjualanKini: json["penjualan_kini"],
         biayaBahanKini: json["biaya_bahan_kini"],
         biayaOperasionalKini: json["biaya_operasional_kini"],
@@ -1110,7 +1107,6 @@ class InputKeuangan {
         "sistem_angsuran": sistemAngsuran,
         "digunakan_untuk": digunakanUntuk,
         "angsuran_rp": angsuranRp,
-        "hpp": hpp,
         "penjualan_kini": penjualanKini,
         "biaya_bahan_kini": biayaBahanKini,
         "biaya_operasional_kini": biayaOperasionalKini,

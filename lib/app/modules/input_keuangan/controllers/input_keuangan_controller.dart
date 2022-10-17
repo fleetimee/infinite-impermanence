@@ -14,128 +14,238 @@ import 'package:akm/app/data/provider/input_keuangan/save_keuangan.provider.dart
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import '../../../common/style.dart';
 
-class InputKeuanganController extends GetxController {
-  final digunakanUntukList = [
-    'Modal Kerja',
-    'Investasi',
-  ];
+class InputKeuanganController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  @override
+  void onInit() {
+    tabController = TabController(length: 3, vsync: this);
+    super.onInit();
+  }
 
   final isInputKeuanganProcessing = false.obs;
-  final debiturController = Get.put(InsightDebiturController());
 
-  var context = Get.context;
+  final debiturController = Get.put(InsightDebiturController());
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  var kreditYangDiusulkan = MoneyMaskedTextController(
-    initialValue: 0,
-    thousandSeparator: '.',
-    decimalSeparator: '',
-    precision: 0,
-  );
+  TabController? tabController;
 
   var rugiLaba = TextEditingController();
   var debitur = TextEditingController();
-
   var angsuranPerBulan = TextEditingController();
   var provisi = TextEditingController();
-  var sistemAngsuran = ''.obs;
-  var digunakanUntuk = ''.obs;
+  var sistemAngsuran = '';
+  var digunakanUntuk = '';
   var bungaPerTahun = TextEditingController();
-
-  var totalAngsuran = MoneyMaskedTextController(
-    initialValue: 0,
-    thousandSeparator: '.',
-    decimalSeparator: '',
-    precision: 0,
-  );
-
-  var pinjamanLainnya = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var angsuranPinjamanLainnya = TextEditingController(text: '0');
-
-  var nilaiAset = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var penjualanKini = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var hpp = TextEditingController(text: '75');
-
-  var biayaBahanKini = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-    initialValue: 0,
-  );
-
-  var biayaUpahKini = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var biayaOperasionalKini = MoneyMaskedTextController(
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var biayaHidupKini = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var penjualanYad = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var biayaBahanYad = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var biayaUpahYad = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var biayaOperasionalYad = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
-  var biayaHidupYad = MoneyMaskedTextController(
-    initialValue: 0,
-    decimalSeparator: '',
-    thousandSeparator: '.',
-    precision: 0,
-  );
-
   var tradeCycle = TextEditingController(text: '0');
+  var hpp = TextEditingController(text: '75');
+  var kreditYangDiusulkan = MoneyMaskedTextController(
+      initialValue: 0,
+      thousandSeparator: '.',
+      decimalSeparator: '',
+      precision: 0);
+  var totalAngsuran = MoneyMaskedTextController(
+      initialValue: 0,
+      thousandSeparator: '.',
+      decimalSeparator: '',
+      precision: 0);
+  var pinjamanLainnya = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var angsuranPinjamanLainnya = TextEditingController(text: '0');
+  var nilaiAset = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var penjualanKini = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var biayaBahanKini = MoneyMaskedTextController(
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0,
+      initialValue: 0);
+  var biayaUpahKini = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var biayaOperasionalKini = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var biayaHidupKini = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var penjualanYad = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var biayaBahanYad = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var biayaUpahYad = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var biayaOperasionalYad = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+  var biayaHidupYad = MoneyMaskedTextController(
+      initialValue: 0,
+      decimalSeparator: '',
+      thousandSeparator: '.',
+      precision: 0);
+
+  void saveKeuangan() {
+    final body = {
+      'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
+      'angsuran': angsuranPerBulan.text,
+      'bunga_per_tahun': bungaPerTahun.text,
+      'provisi': provisi.text,
+      'sistem_angsuran': sistemAngsuran,
+      'digunakan_untuk': digunakanUntuk,
+      'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
+      'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
+      'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),
+      'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
+      'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
+      'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
+      'penjualan_asumsi': penjualanYad.text.replaceAll('.', ''),
+      'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
+      'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
+      'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
+      'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
+      'trade_cycle': tradeCycle.text,
+      'debitur': debitur.text,
+      'rugilaba': rugiLaba.text,
+    };
+
+    try {
+      isInputKeuanganProcessing(true);
+      InputKeuanganProvider().deployInputKeuangan(body).then((resp) {
+        isInputKeuanganProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        clearTextEditing();
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }).catchError((e) {
+        isInputKeuanganProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isInputKeuanganProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void updateKeuangan(id) async {
+    final body = {
+      'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
+      'angsuran': angsuranPerBulan.text,
+      'bunga_per_tahun': bungaPerTahun.text,
+      'provisi': provisi.text,
+      'sistem_angsuran': sistemAngsuran.toString(),
+      'digunakan_untuk': digunakanUntuk.toString(),
+      'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
+      'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
+      'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),
+      'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
+      'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
+      'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
+      'penjualan_asumsi': penjualanYad.text.replaceAll('.', ''),
+      'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
+      'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
+      'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
+      'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
+      'trade_cycle': tradeCycle.text,
+      'debitur': debitur.text,
+      'rugilaba': rugiLaba.text,
+    };
+
+    try {
+      isInputKeuanganProcessing(true);
+      InputKeuanganProvider().putInputKeuangan(id, body).then((resp) {
+        isInputKeuanganProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        clearTextEditing();
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (e) {
+        isInputKeuanganProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isInputKeuanganProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void deleteKeuangan(id) async {
+    try {
+      isInputKeuanganProcessing(true);
+      InputKeuanganProvider().purgeInputKeuangan(id).then((resp) {
+        isInputKeuanganProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debitur.text));
+        clearTextEditing();
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (e) {
+        isInputKeuanganProcessing.value = false;
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isInputKeuanganProcessing.value = false;
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
 
   void mothlyPaymentCalculation() {
     if (kreditYangDiusulkan.text == '0' || kreditYangDiusulkan.text == '') {
@@ -405,62 +515,6 @@ class InputKeuanganController extends GetxController {
     biayaHidupYad.text = parseBiayaHidupKini.toStringAsFixed(0);
   }
 
-  void saveKeuangan() {
-    final body = {
-      'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
-      'angsuran': angsuranPerBulan.text,
-      'bunga_per_tahun': bungaPerTahun.text,
-      'provisi': provisi.text,
-      'sistem_angsuran': sistemAngsuran.toString(),
-      'digunakan_untuk': digunakanUntuk.toString(),
-      'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
-      'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
-      'hpp': hpp.text,
-      'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),
-      'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
-      'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
-      'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
-      'penjualan_asumsi': penjualanYad.text.replaceAll('.', ''),
-      'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
-      'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
-      'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
-      'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
-      'trade_cycle': tradeCycle.text,
-      'debitur': debitur.text,
-      'rugilaba': rugiLaba.text,
-    };
-
-    try {
-      isInputKeuanganProcessing(true);
-      InputKeuanganProvider().deployInputKeuangan(body).then((resp) {
-        isInputKeuanganProcessing(false);
-        debiturController.fetchOneDebitur(int.parse(debitur.text));
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
-      }).catchError((e) {
-        isInputKeuanganProcessing.value = false;
-        Get.snackbar(
-          'Error',
-          e.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      isInputKeuanganProcessing.value = false;
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
-  }
-
   void clearTextEditing() {
     kreditYangDiusulkan.clear();
     angsuranPerBulan.clear();
@@ -483,64 +537,8 @@ class InputKeuanganController extends GetxController {
     biayaHidupYad.clear();
     tradeCycle.clear();
     rugiLaba.clear();
-    digunakanUntuk.value = '';
-    sistemAngsuran.value = '';
-  }
-
-  void updateKeuangan(id) async {
-    final body = {
-      'kredit_diusulkan': kreditYangDiusulkan.text.replaceAll('.', ''),
-      'angsuran': angsuranPerBulan.text,
-      'bunga_per_tahun': bungaPerTahun.text,
-      'provisi': provisi.text,
-      'sistem_angsuran': sistemAngsuran.toString(),
-      'digunakan_untuk': digunakanUntuk.toString(),
-      'angsuran_rp': totalAngsuran.text.replaceAll('.', ''),
-      'penjualan_kini': penjualanKini.text.replaceAll('.', ''),
-      'hpp': hpp.text,
-      'biaya_bahan_kini': biayaBahanKini.text.replaceAll('.', ''),
-      'biaya_operasional_kini': biayaOperasionalKini.text.replaceAll('.', ''),
-      'biaya_upah_kini': biayaUpahKini.text.replaceAll('.', ''),
-      'biaya_hidup_kini': biayaHidupKini.text.replaceAll('.', ''),
-      'penjualan_asumsi': penjualanYad.text.replaceAll('.', ''),
-      'biaya_bahan_asumsi': biayaBahanYad.text.replaceAll('.', ''),
-      'biaya_operasional_asumsi': biayaOperasionalYad.text.replaceAll('.', ''),
-      'biaya_upah_asumsi': biayaUpahYad.text.replaceAll('.', ''),
-      'biaya_hidup_asumsi': biayaHidupYad.text.replaceAll('.', ''),
-      'trade_cycle': tradeCycle.text,
-      'debitur': debitur.text,
-      'rugilaba': rugiLaba.text,
-    };
-
-    try {
-      isInputKeuanganProcessing(true);
-      InputKeuanganProvider().putInputKeuangan(id, body).then((resp) {
-        isInputKeuanganProcessing(false);
-        debiturController.fetchOneDebitur(int.parse(debitur.text));
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
-      }, onError: (e) {
-        isInputKeuanganProcessing.value = false;
-        Get.snackbar(
-          'Error',
-          e.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      isInputKeuanganProcessing.value = false;
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
+    digunakanUntuk = '';
+    sistemAngsuran = '';
   }
 
   @override
@@ -553,6 +551,17 @@ class InputKeuanganController extends GetxController {
     angsuranPinjamanLainnya.dispose();
     hpp.dispose();
     tradeCycle.dispose();
+    tabController?.dispose();
     super.onClose();
   }
+
+  final digunakanUntukList = [
+    'Modal Kerja',
+    'Investasi',
+  ];
+
+  final sistemAngsuranList = [
+    'Flat',
+    'Efektif',
+  ];
 }

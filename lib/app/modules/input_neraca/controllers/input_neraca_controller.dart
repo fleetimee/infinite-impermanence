@@ -122,7 +122,8 @@ class InputNeracaController extends GetxController {
       NeracaProvider().putNeraca(id, body).then((resp) {
         isNeracaProcessing(false);
         clearForm();
-        debiturController.fetchOneDebitur(int.parse(id));
+        debiturController
+            .fetchOneDebitur(int.parse(debiturController.debiturId.toString()));
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

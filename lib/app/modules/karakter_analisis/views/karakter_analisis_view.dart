@@ -8,6 +8,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -38,6 +39,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
               height: 120 + MediaQuery.of(context).padding.top,
@@ -92,7 +94,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+              padding: const EdgeInsets.all(16.0),
               child: Obx(
                 () => FormBuilder(
                   key: controller.formKey,
@@ -409,56 +411,8 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       const SizedBox(
                         height: 20,
                       ),
-                      // colorButton(
-                      //   context,
-                      //   'Hitung CRR',
-                      //   () {
-                      //     // controller.hitungCrr();
-                      //     // showBarModalBottomSheet(
-                      //     //     backgroundColor: secondaryColor,
-                      //     //     bounce: true,
-                      //     //     context: context,
-                      //     //     builder: (context) {
-                      //     //       return HitungCrr();
-                      //     //     });
-                      //     if (controller.formKey.currentState
-                      //             ?.saveAndValidate() ??
-                      //         false) {
-                      //       // controller.hitungCrr();
-                      //       controller.result();
-                      //       showBarModalBottomSheet(
-                      //           backgroundColor: secondaryColor,
-                      //           bounce: true,
-                      //           context: context,
-                      //           builder: (context) {
-                      //             return HitungCrr();
-                      //           });
-                      //       // controller.hitungCrrUmur();
-                      //       // controller.hitungCrrPendidikan();
-                      //       // controller.hitungLamanyaBerusaha();
-                      //       // controller.hitungUletDalamBisnis();
-                      //       // controller.hitungKakuFleksibel();
-                      //       // controller.hitungInovatifKreatif();
-                      //       // controller.hitungJujur();
-
-                      //     }
-                      //   },
-                      // ),
-                      OutlinedButton.icon(
-                        icon: const Icon(Icons.check),
-                        label: const Text(
-                          "Hitung CRR",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                            foregroundColor: secondaryColor,
-                            backgroundColor: primaryColor,
-                            shape: const StadiumBorder(),
-                            maximumSize: const Size.fromWidth(double.infinity),
-                            fixedSize: const Size(500, 50)),
+                      GFButton(
                         onPressed: () {
-                          // controller.hitungCrr();
                           controller.result();
                           showBarModalBottomSheet(
                             backgroundColor: secondaryColor,
@@ -466,204 +420,245 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                             context: context,
                             builder: (context) {
                               return Container(
-                                padding: const EdgeInsets.all(32),
+                                padding: const EdgeInsets.all(16),
                                 child: FormBuilder(
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      FormBuilderTextField(
-                                        enabled: false,
-                                        initialValue:
-                                            controller.crrUmur.value.toString(),
-                                        name: 'umur_crr',
-                                        decoration: InputDecoration(
-                                          border: const OutlineInputBorder(),
-                                          labelText: 'Umur CRR',
-                                          labelStyle: GoogleFonts.poppins(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20.0,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Expanded(
-                                            child: FormBuilderTextField(
-                                              enabled: false,
-                                              initialValue: controller
-                                                  .crrPendidikan.value
-                                                  .toString(),
-                                              name: 'pendidikan_crr',
-                                              decoration: InputDecoration(
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                labelText: 'Pendidikan CRR',
-                                                labelStyle: GoogleFonts.poppins(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: const [
+                                          Center(
+                                            child: Text(
+                                              'Yeay berhasil mendapatkan',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 24,
                                               ),
                                             ),
                                           ),
-                                          const VerticalDivider(
-                                            color: Colors.black,
-                                          ),
-                                          Expanded(
-                                            child: FormBuilderTextField(
-                                              enabled: false,
-                                              initialValue: controller
-                                                  .crrPengalaman.value
-                                                  .toString(),
-                                              name: 'pengalaman_crr',
-                                              decoration: InputDecoration(
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                labelText: 'Pengalaman CRR',
-                                                labelStyle: GoogleFonts.poppins(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                                          Center(
+                                            child: Text(
+                                              'CRR Karakter 🎉🎉🎉',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 24,
                                               ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Center(
+                                            child: GFImageOverlay(
+                                              height: 200,
+                                              width: 350,
+                                              shape: BoxShape.rectangle,
+                                              image: AssetImage(
+                                                  'assets/images/home/tohru-okay.gif'),
+                                              boxFit: BoxFit.cover,
                                             ),
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Expanded(
-                                            child: FormBuilderTextField(
-                                              enabled: false,
-                                              initialValue: controller
-                                                  .crrUlet.value
-                                                  .toString(),
-                                              name: 'Keuletan CRR',
-                                              decoration: InputDecoration(
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                labelText: 'Keuletan CRR',
-                                                labelStyle: GoogleFonts.poppins(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          FormBuilderTextField(
+                                            enabled: false,
+                                            initialValue: controller
+                                                .crrUmur.value
+                                                .toString(),
+                                            name: 'umur_crr',
+                                            decoration: InputDecoration(
+                                              border:
+                                                  const OutlineInputBorder(),
+                                              labelText: 'Umur CRR',
+                                              labelStyle: GoogleFonts.poppins(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
                                               ),
                                             ),
                                           ),
-                                          const VerticalDivider(
-                                            color: Colors.black,
+                                          const SizedBox(
+                                            height: 20.0,
                                           ),
-                                          Expanded(
-                                            child: FormBuilderTextField(
-                                              enabled: false,
-                                              initialValue: controller
-                                                  .crrKaku.value
-                                                  .toString(),
-                                              name: 'Flexible CRR',
-                                              decoration: InputDecoration(
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                labelText: 'Flexible CRR',
-                                                labelStyle: GoogleFonts.poppins(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Expanded(
+                                                child: FormBuilderTextField(
+                                                  enabled: false,
+                                                  initialValue: controller
+                                                      .crrPendidikan.value
+                                                      .toString(),
+                                                  name: 'pendidikan_crr',
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    labelText: 'Pendidikan CRR',
+                                                    labelStyle:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
+                                              const VerticalDivider(
+                                                color: Colors.black,
+                                              ),
+                                              Expanded(
+                                                child: FormBuilderTextField(
+                                                  enabled: false,
+                                                  initialValue: controller
+                                                      .crrPengalaman.value
+                                                      .toString(),
+                                                  name: 'pengalaman_crr',
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    labelText: 'Pengalaman CRR',
+                                                    labelStyle:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Expanded(
+                                                child: FormBuilderTextField(
+                                                  enabled: false,
+                                                  initialValue: controller
+                                                      .crrUlet.value
+                                                      .toString(),
+                                                  name: 'Keuletan CRR',
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    labelText: 'Keuletan CRR',
+                                                    labelStyle:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const VerticalDivider(
+                                                color: Colors.black,
+                                              ),
+                                              Expanded(
+                                                child: FormBuilderTextField(
+                                                  enabled: false,
+                                                  initialValue: controller
+                                                      .crrKaku.value
+                                                      .toString(),
+                                                  name: 'Flexible CRR',
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    labelText: 'Flexible CRR',
+                                                    labelStyle:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Expanded(
+                                                child: FormBuilderTextField(
+                                                  enabled: false,
+                                                  initialValue: controller
+                                                      .crrInovatif.value
+                                                      .toString(),
+                                                  name: 'inovatif_crr',
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    labelText: 'Inovatif CRR',
+                                                    labelStyle:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              const VerticalDivider(
+                                                color: Colors.black,
+                                              ),
+                                              Expanded(
+                                                child: FormBuilderTextField(
+                                                  enabled: false,
+                                                  initialValue: controller
+                                                      .crrJujur.value
+                                                      .toString(),
+                                                  name: 'jujur_crr',
+                                                  decoration: InputDecoration(
+                                                    border:
+                                                        const OutlineInputBorder(),
+                                                    labelText: 'Jujur CRR',
+                                                    labelStyle:
+                                                        GoogleFonts.poppins(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 50,
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Expanded(
-                                            child: FormBuilderTextField(
-                                              enabled: false,
-                                              initialValue: controller
-                                                  .crrInovatif.value
-                                                  .toString(),
-                                              name: 'inovatif_crr',
-                                              decoration: InputDecoration(
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                labelText: 'Inovatif CRR',
-                                                labelStyle: GoogleFonts.poppins(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
+                                      Center(
+                                        child: Text(
+                                          'Total CRR : ${controller.resultCrr}',
+                                          style: GoogleFonts.spaceGrotesk(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.w700,
                                           ),
-                                          const VerticalDivider(
-                                            color: Colors.black,
-                                          ),
-                                          Expanded(
-                                            child: FormBuilderTextField(
-                                              enabled: false,
-                                              initialValue: controller
-                                                  .crrJujur.value
-                                                  .toString(),
-                                              name: 'jujur_crr',
-                                              decoration: InputDecoration(
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                labelText: 'Jujur CRR',
-                                                labelStyle: GoogleFonts.poppins(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 50,
-                                      ),
-                                      Text(
-                                        controller.resultCrr.toString(),
-                                        style: GoogleFonts.poppins(
-                                          fontSize: 35,
-                                          fontWeight: FontWeight.w600,
-                                          color: // Make text green if value exceed 65 and red if below 65
-                                              controller.resultCrr.value >= 65.0
-                                                  ? Colors.green
-                                                  : Colors.red,
                                         ),
                                       ),
                                       const SizedBox(
                                         height: 20,
                                       ),
-                                      OutlinedButton.icon(
-                                        icon: const Icon(Icons.check),
-                                        label: const Text(
-                                          "Submit",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: 20),
-                                        ),
-                                        style: OutlinedButton.styleFrom(
-                                            foregroundColor: secondaryColor,
-                                            backgroundColor: primaryColor,
-                                            shape: const StadiumBorder(),
-                                            maximumSize: const Size.fromWidth(
-                                                double.infinity),
-                                            fixedSize: const Size(500, 50)),
+                                      GFButton(
                                         onPressed: () {
                                           if (controller.formKey.currentState
                                                   ?.saveAndValidate() ??
@@ -681,6 +676,10 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                             debugPrint('validation failed');
                                           }
                                         },
+                                        text: 'Simpan',
+                                        size: GFSize.LARGE,
+                                        color: primaryColor,
+                                        fullWidthButton: true,
                                       ),
                                     ],
                                   ),
@@ -689,9 +688,10 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                             },
                           );
                         },
-                      ),
-                      const SizedBox(
-                        height: 40,
+                        text: 'Lihat Hasil',
+                        color: primaryColor,
+                        fullWidthButton: true,
+                        size: GFSize.LARGE,
                       ),
                     ],
                   ),

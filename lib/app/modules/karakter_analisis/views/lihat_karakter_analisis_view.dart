@@ -611,7 +611,7 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                       children: const [
                                         Center(
                                           child: Text(
-                                            'Yeay berhasil memperbarui',
+                                            'Berikut adalah ringkasan',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 24,

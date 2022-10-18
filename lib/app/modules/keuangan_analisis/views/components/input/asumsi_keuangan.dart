@@ -20,7 +20,6 @@ class AsumsiKeuangan extends StatelessWidget {
   final controller = Get.put(KeuanganAnalisisController());
   final data = Get.arguments;
 
-  // TODO: Lanjut disini
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -514,6 +513,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' laba_usaha_kini',
+            readOnly: true,
             controller: controller.labaUsahaKini,
             decoration: const InputDecoration(
               labelText: 'Laba Usaha Kini',
@@ -527,6 +527,7 @@ class AsumsiKeuangan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: ' laba_usaha_yad',
+            readOnly: true,
             controller: controller.labaUsahaYAD,
             decoration: const InputDecoration(
               labelText: 'Laba Usaha YAD',

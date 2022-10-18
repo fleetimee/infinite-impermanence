@@ -37,5 +37,44 @@ class AnalisisKeuanganProvider {
     }
   }
 
-  //TODO: Add Edit Analisa Keuangan
+  Future<void> putAnalisaKeuangan(id, Map body) async {
+    try {
+      final response = await httpClient.patch(
+        Uri.parse('${baseUrl}analisa-keuangan/$id'),
+        body: jsonEncode(body),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        debugPrint('It works');
+      } else {
+        throw Exception('Failed to save data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> purgeAnalisaKeuangan(id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}analisa-keuangan/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        debugPrint('It works');
+      } else {
+        throw Exception('Failed to save data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

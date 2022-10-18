@@ -75,25 +75,6 @@ class AnalisaRatio extends StatelessWidget {
             height: 20,
           ),
           Obx(
-            // () => OutlinedButton.icon(
-            //   icon: const Icon(Icons.percent),
-            //   label: Text(
-            //     controller.isRatioProfitLoading.value
-            //         ? 'Loading..'
-            //         : 'Hitung Ratio Profit',
-            //     style:
-            //         const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            //   ),
-            //   style: OutlinedButton.styleFrom(
-            //       foregroundColor: secondaryColor,
-            //       backgroundColor: primaryColor,
-            //       shape: const StadiumBorder(),
-            //       maximumSize: const Size.fromWidth(double.infinity),
-            //       fixedSize: const Size(500, 50)),
-            //   onPressed: () {
-            //     controller.hitungRatioProfit();
-            //   },
-            // ),
             () => GFButton(
               onPressed: () {
                 controller.hitungRatioProfit();
@@ -295,36 +276,17 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-
           Obx(
-              // () => OutlinedButton.icon(
-              //   icon: const Icon(Icons.percent),
-              //   label: Text(
-              //     controller.isRoaLoading.value ? 'Loading..' : 'Hitung Roa',
-              //     style:
-              //         const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-              //   ),
-              //   style: OutlinedButton.styleFrom(
-              //       foregroundColor: secondaryColor,
-              //       backgroundColor: primaryColor,
-              //       shape: const StadiumBorder(),
-              //       maximumSize: const Size.fromWidth(double.infinity),
-              //       fixedSize: const Size(500, 50)),
-              //   onPressed: () {
-              //     controller.hitungRoa();
-              //   },
-              // ),
-              () => GFButton(
-                    onPressed: () {
-                      controller.hitungRoa();
-                    },
-                    text: controller.isRoaLoading.value
-                        ? 'Loading..'
-                        : 'Hitung Roa',
-                    size: GFSize.LARGE,
-                    color: primaryColor,
-                    fullWidthButton: true,
-                  )),
+            () => GFButton(
+              onPressed: () {
+                controller.hitungRoa();
+              },
+              text: controller.isRoaLoading.value ? 'Loading..' : 'Hitung Roa',
+              size: GFSize.LARGE,
+              color: primaryColor,
+              fullWidthButton: true,
+            ),
+          ),
           const SizedBox(
             height: 30,
           ),
@@ -415,23 +377,6 @@ class AnalisaRatio extends StatelessWidget {
             height: 30,
           ),
           Obx(
-            // () => OutlinedButton.icon(
-            //   icon: const Icon(Icons.percent),
-            //   label: Text(
-            //     controller.isDerLoading.value ? 'Loading..' : 'Hitung Der',
-            //     style:
-            //         const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            //   ),
-            //   style: OutlinedButton.styleFrom(
-            //       foregroundColor: secondaryColor,
-            //       backgroundColor: primaryColor,
-            //       shape: const StadiumBorder(),
-            //       maximumSize: const Size.fromWidth(double.infinity),
-            //       fixedSize: const Size(500, 50)),
-            //   onPressed: () {
-            //     controller.hitungDer();
-            //   },
-            // ),
             () => GFButton(
               onPressed: () {
                 controller.hitungDer();
@@ -514,18 +459,6 @@ class AnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // Obx(
-          //   () => Text(
-          //     controller.isDscDescLoading.value
-          //         ? 'Sedang memproses hasil..'
-          //         : controller.dscStatus.value,
-          //     style: GoogleFonts.poppins(
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w600,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-          // ),
           Obx(
             () => controller.isDscDescLoading.value
                 ? const Center(child: CircularProgressIndicator())
@@ -544,23 +477,6 @@ class AnalisaRatio extends StatelessWidget {
             height: 20,
           ),
           Obx(
-            // () => OutlinedButton.icon(
-            //   icon: const Icon(Icons.percent),
-            //   label: Text(
-            //     controller.isDscLoading.value ? 'Loading..' : 'Hitung Dsc',
-            //     style:
-            //         const TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-            //   ),
-            //   style: OutlinedButton.styleFrom(
-            //       foregroundColor: secondaryColor,
-            //       backgroundColor: primaryColor,
-            //       shape: const StadiumBorder(),
-            //       maximumSize: const Size.fromWidth(double.infinity),
-            //       fixedSize: const Size(500, 50)),
-            //   onPressed: () {
-            //     controller.hitungDsc();
-            //   },
-            // ),
             () => GFButton(
               onPressed: () {
                 controller.hitungDsc();

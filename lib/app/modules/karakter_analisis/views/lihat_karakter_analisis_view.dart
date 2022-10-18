@@ -1,11 +1,13 @@
 // ignore_for_file: avoid_print
 
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -28,6 +30,42 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              AwesomeDialog(
+                      context: Get.context!,
+                      dialogType: DialogType.question,
+                      animType: AnimType.bottomSlide,
+                      dialogBackgroundColor: primaryColor,
+                      titleTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      descTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      title: 'Konfirmasi',
+                      bodyHeaderDistance: 25,
+                      desc: 'Apakah yakin untuk menghapus item ini ?',
+                      btnOkOnPress: () {
+                        controller
+                            .deleteAnalisaKarakter(data.analisaKarakter.id);
+                        Get.back();
+                      },
+                      btnOkText: 'Oke sip',
+                      btnCancelText: 'Affa iyh',
+                      btnCancelOnPress: () {})
+                  .show();
+            },
+            icon: const FaIcon(
+              FontAwesomeIcons.solidTrashCan,
+            ),
+          )
+        ],
         elevation: 0.0,
         backgroundColor: primaryColor.withOpacity(0.3),
         title: const Text(
@@ -140,7 +178,7 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                     ),
                     FormBuilderTextField(
-                      enabled: false,
+                      readOnly: true,
                       name: 'nilai_umur',
                       controller: controller.nilaiUmur = TextEditingController(
                         text: data.umur.toString(),
@@ -188,7 +226,7 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                     ),
                     FormBuilderTextField(
                       name: 'lamanya_berusaha',
-                      enabled: false,
+                      readOnly: true,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(),
                         FormBuilderValidators.numeric(),

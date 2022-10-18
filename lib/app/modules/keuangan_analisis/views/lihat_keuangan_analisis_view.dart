@@ -2,6 +2,7 @@
 // ignore_for_file: unused_field
 
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,7 +15,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
 import '../../../common/style.dart';
 import '../controllers/keuangan_analisis_controller.dart';
 import 'components/views/view_analisa_ratio.dart';
@@ -34,17 +34,39 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
         title: Text('Analisis Keuangan: ${data.peminjam1}'),
         actions: [
           IconButton(
-              onPressed: () {
-                showBarModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return Tutorial();
-                  },
-                );
-              },
-              icon: const Icon(
-                Icons.help_outline,
-              )),
+            onPressed: () {
+              AwesomeDialog(
+                      context: Get.context!,
+                      dialogType: DialogType.question,
+                      animType: AnimType.bottomSlide,
+                      dialogBackgroundColor: primaryColor,
+                      titleTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      descTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      title: 'Konfirmasi',
+                      bodyHeaderDistance: 25,
+                      desc: 'Apakah yakin untuk menghapus item ini ?',
+                      btnOkOnPress: () {
+                        controller
+                            .deleteAnalisisKeuangan(data.analisaKeuangan.id);
+                        Get.back();
+                      },
+                      btnOkText: 'Oke sip',
+                      btnCancelText: 'Affa iyh',
+                      btnCancelOnPress: () {})
+                  .show();
+            },
+            icon: const FaIcon(
+              FontAwesomeIcons.solidTrashCan,
+            ),
+          )
         ],
       ),
       body: SafeArea(
@@ -225,15 +247,17 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                 ),
                                 Expanded(
                                   flex: 2,
-                                  child: controller.isKreditPassed.isTrue
-                                      ? const Icon(
-                                          FontAwesomeIcons.circleCheck,
-                                          color: Colors.green,
-                                        )
-                                      : const Icon(
-                                          FontAwesomeIcons.circleXmark,
-                                          color: Colors.red,
-                                        ),
+                                  child:
+                                      data.analisaKeuangan.kreditDisetujuin ==
+                                              true
+                                          ? const Icon(
+                                              FontAwesomeIcons.circleCheck,
+                                              color: Colors.green,
+                                            )
+                                          : const Icon(
+                                              FontAwesomeIcons.circleXmark,
+                                              color: Colors.red,
+                                            ),
                                 ),
                               ],
                             ),

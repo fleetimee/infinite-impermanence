@@ -55,4 +55,24 @@ class AnalisaBisnisProvider {
       return Future.error(e);
     }
   }
+
+  Future<void> purgeAnalisaBisnis(id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}analisa-bisnis/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        debugPrint('It works');
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

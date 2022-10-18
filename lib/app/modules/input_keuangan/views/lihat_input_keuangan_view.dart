@@ -22,34 +22,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
 
   final data = Get.arguments;
 
-  void deleteKeuangan(BuildContext context) {
-    AwesomeDialog(
-            context: Get.context!,
-            dialogType: DialogType.question,
-            animType: AnimType.bottomSlide,
-            dialogBackgroundColor: primaryColor,
-            titleTextStyle: GoogleFonts.poppins(
-              color: secondaryColor,
-              fontSize: 30,
-              fontWeight: FontWeight.w500,
-            ),
-            descTextStyle: GoogleFonts.poppins(
-              color: secondaryColor,
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-            ),
-            title: 'Konfirmasi',
-            bodyHeaderDistance: 25,
-            desc: 'Apakah yakin untuk menghapus item ini ?',
-            btnOkOnPress: () {
-              controller.deleteKeuangan(data.inputKeuangan.id);
-            },
-            btnOkText: 'Oke sip',
-            btnCancelText: 'Affa iyh',
-            btnCancelOnPress: () {})
-        .show();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -256,8 +228,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         labelText: 'Kredit Diusulkan',
-                                        prefixIcon: const Icon(
-                                            FontAwesomeIcons.rupiahSign),
+                                        prefixText: 'Rp. ',
                                         border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -300,6 +271,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                               FormBuilderTextField(
                                 name: 'bunga_per_tahun',
+                                textAlign: TextAlign.right,
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: FormBuilderValidators.compose([
@@ -319,8 +291,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   labelText: 'Bunga per tahun',
-                                  suffixIcon:
-                                      const Icon(FontAwesomeIcons.percent),
+                                  suffixText: '%',
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
@@ -334,6 +305,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                   Expanded(
                                     child: FormBuilderTextField(
                                       name: 'provisi',
+                                      textAlign: TextAlign.right,
                                       readOnly: true,
                                       controller: controller.provisi =
                                           TextEditingController(
@@ -354,8 +326,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         labelText: 'Provisi %',
-                                        suffixIcon: const Icon(
-                                            FontAwesomeIcons.percent),
+                                        suffixText: '%',
                                         border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -450,8 +421,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   labelText: 'Angsuran (Rp)',
-                                  prefixIcon:
-                                      const Icon(FontAwesomeIcons.rupiahSign),
+                                  prefixText: 'Rp. ',
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
@@ -582,7 +552,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               name: 'penjualan',
-                              enabled: false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: FormBuilderValidators.compose([
@@ -600,8 +569,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 alignLabelWithHint: true,
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 labelText: 'Penjualan per bulan',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -613,7 +581,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               name: 'biaya_bahan',
-                              enabled: false,
                               controller: controller.biayaBahanKini =
                                   MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -627,8 +594,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya bahan HPP',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -640,7 +606,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             FormBuilderTextField(
                               name: 'biaya_upah',
                               readOnly: true,
-                              enabled: false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: FormBuilderValidators.compose([
@@ -657,8 +622,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya Upah',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -670,7 +634,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             FormBuilderTextField(
                               name: 'biaya_operasional',
                               readOnly: true,
-                              enabled: false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: FormBuilderValidators.compose([
@@ -687,8 +650,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya Operasional',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -700,7 +662,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             FormBuilderTextField(
                               name: 'biaya_hidup',
                               readOnly: true,
-                              enabled: false,
                               autovalidateMode:
                                   AutovalidateMode.onUserInteraction,
                               validator: FormBuilderValidators.compose([
@@ -717,8 +678,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya Hidup',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -743,7 +703,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               readOnly: true,
-                              enabled: false,
                               name: 'penjualan_asumsi',
                               controller: controller.penjualanYad =
                                   MoneyMaskedTextController(
@@ -756,8 +715,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
                                 alignLabelWithHint: true,
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 labelText: 'Penjualan YAD',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
@@ -769,7 +727,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               readOnly: true,
-                              enabled: false,
                               name: 'biaya_bahan_asumsi',
                               controller: controller.biayaBahanYad =
                                   MoneyMaskedTextController(
@@ -782,8 +739,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya bahan HPP YAD',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -794,7 +750,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               readOnly: true,
-                              enabled: false,
                               name: 'biaya_upah_asumsi',
                               controller: controller.biayaUpahYad =
                                   MoneyMaskedTextController(
@@ -807,8 +762,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya Upah YAD',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -819,7 +773,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               readOnly: true,
-                              enabled: false,
                               name: 'biaya_operasional_asumsi',
                               controller: controller.biayaOperasionalYad =
                                   MoneyMaskedTextController(
@@ -832,8 +785,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya Operasional YAD',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -844,7 +796,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             ),
                             FormBuilderTextField(
                               readOnly: true,
-                              enabled: false,
                               name: 'biaya_hidup_asumsi',
                               controller: controller.biayaHidupYad =
                                   MoneyMaskedTextController(
@@ -857,8 +808,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 labelText: 'Biaya Hidup YAD',
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign),
+                                prefixText: 'Rp. ',
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
@@ -867,26 +817,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             const SizedBox(
                               height: 35.0,
                             ),
-                            GFButton(
-                              onPressed: () {
-                                controller.hitungAsumsiPenjualan();
-                                showToast(
-                                  'Asumsi Penjualan Berhasil Dihitung',
-                                  context: context,
-                                  animation: StyledToastAnimation.scale,
-                                  reverseAnimation: StyledToastAnimation.fade,
-                                  position: StyledToastPosition.center,
-                                  animDuration: const Duration(seconds: 1),
-                                  duration: const Duration(seconds: 4),
-                                  curve: Curves.elasticOut,
-                                  reverseCurve: Curves.linear,
-                                );
-                              },
-                              text: 'Hitung Asumsi',
-                              color: primaryColor,
-                              fullWidthButton: true,
-                              size: GFSize.LARGE,
-                            )
                           ],
                         ),
                       ),
@@ -955,13 +885,13 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                   Expanded(
                                     child: FormBuilderTextField(
                                       name: 'bunga_per_tahun_int',
-                                      enabled: false,
+                                      textAlign: TextAlign.right,
+                                      readOnly: true,
                                       keyboardType: TextInputType.number,
                                       controller: controller.bungaPerTahun,
                                       decoration: InputDecoration(
                                         labelText: 'Bunga per tahun',
-                                        suffixIcon: const Icon(
-                                            FontAwesomeIcons.percent),
+                                        suffixText: '%',
                                         border: OutlineInputBorder(
                                           borderRadius:
                                               BorderRadius.circular(10),
@@ -974,7 +904,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                   ),
                                   Expanded(
                                     child: FormBuilderTextField(
-                                      enabled: false,
+                                      readOnly: true,
                                       name: 'jangka_waktu',
                                       controller: controller.angsuranPerBulan,
                                       keyboardType: TextInputType.number,
@@ -1003,6 +933,8 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   labelText: 'Trade Cycle',
+                                  prefixIcon:
+                                      const Icon(FontAwesomeIcons.arrowsRotate),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                   ),

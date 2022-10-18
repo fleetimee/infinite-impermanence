@@ -448,6 +448,39 @@ class KeuanganAnalisisController extends GetxController
     }
   }
 
+  void deleteAnalisisKeuangan(id) {
+    try {
+      isKeuanganAnalisisProcessing(true);
+      AnalisisKeuanganProvider().purgeAnalisaKeuangan(id).then((resp) {
+        isKeuanganAnalisisProcessing(false);
+        clearTextEditing();
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (err) {
+        isKeuanganAnalisisProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isKeuanganAnalisisProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
   void hitungPinjamanBankLain() {
     final parseDebt = int.parse(debtInput.text.replaceAll('.', ''));
     final parseBungaPerTahunLain = double.parse(bungaPerTahunLain.text) / 100;

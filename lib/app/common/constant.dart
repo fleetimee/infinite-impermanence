@@ -2,7 +2,7 @@
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/';
 
 // For mobile based
-const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
 
@@ -13,8 +13,8 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 // const baseUrl = 'http://192.168.100.79:3000/';
 
 // for ngrok
-// const baseUrl =
-//     'https://d726-2001-448a-4046-260a-686a-9be6-4158-c608.ap.ngrok.io/api/v1/';
+const baseUrl =
+    'https://9973-2001-448a-4046-260a-75c6-79b5-77dc-6a2b.ap.ngrok.io/api/v1/';
 
 // const baseUrl = 'https://octavia.fleetime.my.id/api/v1/';
 

@@ -46,29 +46,6 @@ class BisnisAnalisisController extends GetxController {
   final sumCrrBisnis = TextEditingController();
   final resultCrrBisnis = 0.obs;
 
-  void hasilHitungCrrBisnis() {
-    final omzet = omzetPenjualan.value;
-    final harga = hargaBersaing.value;
-    final persaingan = persainganPasar.value;
-    final lokasi = lokasiPasar.value;
-    final kapasitas = kapasitasTerpasan.value;
-    final ratingDebitur = rating.value;
-
-    final sum = omzet + harga + persaingan + lokasi + kapasitas + ratingDebitur;
-    final hasil = sum ~/ 6;
-
-    resultOmzet.text = '$omzet';
-    resultHarga.text = '$harga';
-    resultPersaingan.text = '$persaingan';
-    resultLokasi.text = '$lokasi';
-    resultKapasitas.text = '$kapasitas';
-    resultRating.text = '$ratingDebitur';
-
-    sumCrrBisnis.text = '$sum';
-
-    resultCrrBisnis.value = hasil;
-  }
-
   void saveAnalisisBisnis() {
     final data = {
       "nilai_omzet": omzetPenjualan.value,
@@ -170,6 +147,61 @@ class BisnisAnalisisController extends GetxController {
         colorText: secondaryColor,
       );
     }
+  }
+
+  void deleteAnalisaBisnis(id) async {
+    try {
+      isAnalisaBisnisProcessing(true);
+      AnalisaBisnisProvider().purgeAnalisaBisnis(id).then((resp) {
+        isAnalisaBisnisProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (e) {
+        isAnalisaBisnisProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isAnalisaBisnisProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void hasilHitungCrrBisnis() {
+    final omzet = omzetPenjualan.value;
+    final harga = hargaBersaing.value;
+    final persaingan = persainganPasar.value;
+    final lokasi = lokasiPasar.value;
+    final kapasitas = kapasitasTerpasan.value;
+    final ratingDebitur = rating.value;
+
+    final sum = omzet + harga + persaingan + lokasi + kapasitas + ratingDebitur;
+    final hasil = sum ~/ 6;
+
+    resultOmzet.text = '$omzet';
+    resultHarga.text = '$harga';
+    resultPersaingan.text = '$persaingan';
+    resultLokasi.text = '$lokasi';
+    resultKapasitas.text = '$kapasitas';
+    resultRating.text = '$ratingDebitur';
+
+    sumCrrBisnis.text = '$sum';
+
+    resultCrrBisnis.value = hasil;
   }
 
   final omzetList = '''[

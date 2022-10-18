@@ -16,41 +16,32 @@ class KarakterAnalisisController extends GetxController {
   final isAnalisaKarakterProcessing = false.obs;
   final debiturController = Get.put(InsightDebiturController());
 
+  final formKey = GlobalKey<FormBuilderState>();
+
   var nilaiUmur = TextEditingController();
   var scoreUmur = 0.0.obs;
   var finalScoreUmur = 0.0.obs;
   var crrUmur = 0.0.obs;
-
   var pendidikanInput = ''.obs;
   var scorePendidikan = 0.0.obs;
   var crrPendidikan = 0.0.obs;
-
   var lamanyaBerusaha = TextEditingController();
   var scorePengalaman = 0.0.obs;
   var crrPengalaman = 0.0.obs;
-
   var uletDalamBisnis = 0.0.obs;
   var keteranganUletDalamBisnis = TextEditingController();
   var crrUlet = 0.0.obs;
-
   var kakuFleksibel = 0.0.obs;
   var keteranganKakuFleksibel = TextEditingController();
   var crrKaku = 0.0.obs;
-
   var inovatifKreatif = 0.0.obs;
   var keteranganInovatifKreatif = TextEditingController();
   var crrInovatif = 0.0.obs;
-
   var jujur = 0.0.obs;
   var keteranganJujur = TextEditingController();
   var crrJujur = 0.0.obs;
-
-  final formKey = GlobalKey<FormBuilderState>();
-
   var deskripsi = TextEditingController();
-
   final resultCrr = 0.0.obs;
-
   var debiturId = TextEditingController();
 
   void saveAnalisaKarakter() {
@@ -146,6 +137,38 @@ class KarakterAnalisisController extends GetxController {
         Get.snackbar(
           'Success',
           'Data berhasil diupdate',
+          backgroundColor: Colors.green,
+          colorText: secondaryColor,
+        );
+      }, onError: (error) {
+        isAnalisaKarakterProcessing(false);
+        Get.snackbar(
+          'Error',
+          error.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      isAnalisaKarakterProcessing(false);
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void deleteAnalisaKarakter(id) {
+    try {
+      isAnalisaKarakterProcessing(true);
+      AnalisaKarakterProvider().purgeAnalisaKarakter(id).then((value) {
+        isAnalisaKarakterProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
           backgroundColor: Colors.green,
           colorText: secondaryColor,
         );

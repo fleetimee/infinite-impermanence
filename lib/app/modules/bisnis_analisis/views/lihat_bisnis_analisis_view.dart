@@ -4,11 +4,14 @@
 import 'dart:convert';
 
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -26,11 +29,46 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bisnis: ${data.peminjam1}'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              AwesomeDialog(
+                      context: Get.context!,
+                      dialogType: DialogType.question,
+                      animType: AnimType.bottomSlide,
+                      dialogBackgroundColor: primaryColor,
+                      titleTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      descTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      title: 'Konfirmasi',
+                      bodyHeaderDistance: 25,
+                      desc: 'Apakah yakin untuk menghapus item ini ?',
+                      btnOkOnPress: () {
+                        controller.deleteAnalisaBisnis(data.analisaBisnis.id);
+                        Get.back();
+                      },
+                      btnOkText: 'Oke sip',
+                      btnCancelText: 'Affa iyh',
+                      btnCancelOnPress: () {})
+                  .show();
+            },
+            icon: const FaIcon(
+              FontAwesomeIcons.solidTrashCan,
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+            padding: const EdgeInsets.all(16),
             child: FormBuilder(
               key: controller.formKey,
               onChanged: () {
@@ -87,12 +125,9 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         .toList(),
                     initialValue: data.analisaBisnis.nilaiOmzet,
                     enabled: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Omzet Penjualan',
-                      labelStyle: const TextStyle(fontSize: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      border: OutlineInputBorder(),
                     ),
                   ),
                   const SizedBox(
@@ -112,12 +147,9 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         )
                         .toList(),
                     initialValue: data.analisaBisnis.nilaiHargaBersaing,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Harga Bersaing',
-                      labelStyle: const TextStyle(fontSize: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      border: OutlineInputBorder(),
                     ),
                     // onChanged: (int? value) {
                     //   controller.hargaBersaing.value = value!;
@@ -128,12 +160,9 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     height: 20,
                   ),
                   FormBuilderDropdown(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Persaingan Pasar',
-                      labelStyle: const TextStyle(fontSize: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      border: OutlineInputBorder(),
                     ),
                     enabled: false,
                     initialValue: data.analisaBisnis.nilaiPersaingan,
@@ -155,12 +184,9 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   FormBuilderDropdown(
                     initialValue: data.analisaBisnis.nilaiLokasiUsaha,
                     enabled: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Lokasi Usaha',
-                      labelStyle: const TextStyle(fontSize: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      border: OutlineInputBorder(),
                     ),
                     items: jsonDecode(controller.lokasiPasarList)
                         .map<DropdownMenuItem<int>>(
@@ -180,12 +206,9 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   FormBuilderDropdown(
                     initialValue: data.analisaBisnis.nilaiProduktivitas,
                     enabled: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Produktivitas (%) thd kap terpasang/omzet',
-                      labelStyle: const TextStyle(fontSize: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      border: OutlineInputBorder(),
                     ),
                     items: jsonDecode(controller.kapasitasTerpasanList)
                         .map<DropdownMenuItem<int>>(
@@ -205,12 +228,9 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   FormBuilderDropdown(
                     enabled: false,
                     initialValue: data.analisaBisnis.nilaiKualitas,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Kwalitas produk/jasa',
-                      labelStyle: const TextStyle(fontSize: 20),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+                      border: OutlineInputBorder(),
                     ),
                     items: jsonDecode(controller.ratingList)
                         .map<DropdownMenuItem<int>>(
@@ -244,75 +264,76 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   const SizedBox(
                     height: 20,
                   ),
-                  OutlinedButton.icon(
-                    icon: const Icon(Icons.check),
-                    label: const Text(
-                      "Lihat CRR",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                        foregroundColor: secondaryColor,
-                        backgroundColor: primaryColor,
-                        shape: const StadiumBorder(),
-                        maximumSize: const Size.fromWidth(double.infinity),
-                        fixedSize: const Size(500, 50)),
+                  GFButton(
                     onPressed: () {
                       showBarModalBottomSheet(
                         backgroundColor: secondaryColor,
                         bounce: true,
                         context: context,
                         builder: (context) {
-                          return SingleChildScrollView(
-                            child: Container(
-                              padding: const EdgeInsets.all(32),
-                              child: FormBuilder(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(
-                                      'Total CRR: ${data.analisaBisnis.hasilCrrBisnis.toString()}',
-                                      style: GoogleFonts.poppins(
-                                        fontSize: 35,
+                          controller.hasilHitungCrrBisnis();
+                          return Container(
+                            padding: const EdgeInsets.all(16),
+                            child: FormBuilder(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Center(
+                                    child: Text(
+                                      'Berikut adalah rincian',
+                                      style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        color: // Make text green if value exceed 65 and red if below 65
-                                            data.analisaBisnis.hasilCrrBisnis >=
-                                                    50.0
-                                                ? Colors.green
-                                                : Colors.red,
+                                        fontSize: 24,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 20,
+                                  ),
+                                  const Center(
+                                    child: Text(
+                                      'CRR Bisnis 🎉🎉🎉',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 24,
+                                      ),
                                     ),
-                                    // if (controller.resultCrrBisnis.value >= 65.0)
-                                    //   Text(
-                                    //     'Debitur melewati Passing Grade',
-                                    //     style: GoogleFonts.poppins(
-                                    //       fontSize: 15,
-                                    //       fontWeight: FontWeight.w600,
-                                    //     ),
-                                    //   ),
-                                    // if (controller.resultCrrBisnis.value < 65.0)
-                                    //   Text(
-                                    //     'Debitur belum melewati Passing Grade',
-                                    //     style: GoogleFonts.poppins(
-                                    //       fontSize: 15,
-                                    //       fontWeight: FontWeight.w600,
-                                    //     ),
-                                    //   ),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  const Center(
+                                    child: GFImageOverlay(
+                                      height: 200,
+                                      width: 350,
+                                      shape: BoxShape.rectangle,
+                                      image: AssetImage(
+                                          'assets/images/home/tohru-okay.gif'),
+                                      boxFit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      'Total CRR : ${data.analisaBisnis.hasilCrrBisnis}',
+                                      style: GoogleFonts.spaceGrotesk(
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           );
                         },
                       );
                     },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                    text: 'Lihat Hasil',
+                    color: primaryColor,
+                    size: GFSize.LARGE,
+                    fullWidthButton: true,
+                  )
                 ],
               ),
             ),

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_tex_js/flutter_tex_js.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -32,7 +32,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-              padding: const EdgeInsets.fromLTRB(50, 0, 50, 0),
+              padding: const EdgeInsets.all(16),
               child: Obx(
                 () => FormBuilder(
                   key: controller.formKey,
@@ -91,12 +91,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                               ),
                             )
                             .toList(),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Omzet Penjualan',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         onChanged: (int? value) {
                           controller.omzetPenjualan.value = value!;
@@ -121,12 +118,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                               ),
                             )
                             .toList(),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Harga Bersaing',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         onChanged: (int? value) {
                           controller.hargaBersaing.value = value!;
@@ -147,12 +141,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           controller.persainganPasar.value = value!;
                           print(controller.persainganPasar.value);
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Persaingan Pasar',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         items: jsonDecode(controller.persainganPasarList)
                             .map<DropdownMenuItem<int>>(
@@ -180,12 +171,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           controller.lokasiPasar.value = value!;
                           print(controller.lokasiPasar.value);
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Lokasi Usaha',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         items: jsonDecode(controller.lokasiPasarList)
                             .map<DropdownMenuItem<int>>(
@@ -213,13 +201,10 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           controller.kapasitasTerpasan.value = value!;
                           print(controller.kapasitasTerpasan.value);
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText:
                               'Produktivitas (%) thd kap terpasang/omzet',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         items: jsonDecode(controller.kapasitasTerpasanList)
                             .map<DropdownMenuItem<int>>(
@@ -247,12 +232,9 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                           controller.rating.value = value!;
                           print(controller.rating.value);
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: 'Kwalitas produk/jasa',
-                          labelStyle: const TextStyle(fontSize: 20),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          border: OutlineInputBorder(),
                         ),
                         items: jsonDecode(controller.ratingList)
                             .map<DropdownMenuItem<int>>(
@@ -275,10 +257,6 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       FormBuilderTextField(
                         controller: controller.deskripsi,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.normal,
-                        ),
                         textAlign: TextAlign.start,
                         name: 'deskripsi_bisnis',
                         decoration: const InputDecoration(
@@ -291,19 +269,7 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       const SizedBox(
                         height: 40,
                       ),
-                      OutlinedButton.icon(
-                        icon: const Icon(Icons.check),
-                        label: const Text(
-                          "Hitung CRR",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w500, fontSize: 20),
-                        ),
-                        style: OutlinedButton.styleFrom(
-                            foregroundColor: secondaryColor,
-                            backgroundColor: primaryColor,
-                            shape: const StadiumBorder(),
-                            maximumSize: const Size.fromWidth(double.infinity),
-                            fixedSize: const Size(500, 50)),
+                      GFButton(
                         onPressed: () {
                           showBarModalBottomSheet(
                             backgroundColor: secondaryColor,
@@ -311,270 +277,252 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                             context: context,
                             builder: (context) {
                               controller.hasilHitungCrrBisnis();
-                              return SingleChildScrollView(
-                                child: Container(
-                                  padding: const EdgeInsets.all(32),
-                                  child: FormBuilder(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        // Image.asset(
-                                        //   'assets/images/karakter/calculate.png',
-                                        // ),
-                                        // const TexImage(
-                                        //   r'''a + b + c + d + e + f''',
-                                        //   fontSize: 30,
-                                        //   displayMode: true,
-                                        // ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Expanded(
-                                              child: FormBuilderTextField(
-                                                enabled: false,
-                                                controller:
-                                                    controller.resultOmzet,
-                                                name: 'Omzet CRR',
-                                                decoration: InputDecoration(
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  labelText: 'Omzet CRR',
-                                                  labelStyle:
-                                                      GoogleFonts.poppins(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const VerticalDivider(
-                                              color: Colors.black,
-                                            ),
-                                            Expanded(
-                                              child: FormBuilderTextField(
-                                                enabled: false,
-                                                controller:
-                                                    controller.resultHarga,
-                                                name: 'Harga Bersaing CRR',
-                                                decoration: InputDecoration(
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  labelText:
-                                                      'Harga Bersaing CRR',
-                                                  labelStyle:
-                                                      GoogleFonts.poppins(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Expanded(
-                                              child: FormBuilderTextField(
-                                                enabled: false,
-                                                controller:
-                                                    controller.resultPersaingan,
-                                                name: 'Persaingan Pasar CRR',
-                                                decoration: InputDecoration(
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  labelText:
-                                                      'Persaingan Pasar CRR',
-                                                  labelStyle:
-                                                      GoogleFonts.poppins(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const VerticalDivider(
-                                              color: Colors.black,
-                                            ),
-                                            Expanded(
-                                              child: FormBuilderTextField(
-                                                enabled: false,
-                                                controller:
-                                                    controller.resultLokasi,
-                                                name: 'Lokasi CRR',
-                                                decoration: InputDecoration(
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  labelText: 'Lokasi CRR',
-                                                  labelStyle:
-                                                      GoogleFonts.poppins(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Expanded(
-                                              child: FormBuilderTextField(
-                                                enabled: false,
-                                                controller:
-                                                    controller.resultKapasitas,
-                                                name: 'Inovatif CRR',
-                                                decoration: InputDecoration(
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  labelText: 'Inovatif CRR',
-                                                  labelStyle:
-                                                      GoogleFonts.poppins(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            const VerticalDivider(
-                                              color: Colors.black,
-                                            ),
-                                            Expanded(
-                                              child: FormBuilderTextField(
-                                                enabled: false,
-                                                controller:
-                                                    controller.resultRating,
-                                                name: 'Jujur CRR',
-                                                decoration: InputDecoration(
-                                                  border:
-                                                      const OutlineInputBorder(),
-                                                  labelText: 'Jujur CRR',
-                                                  labelStyle:
-                                                      GoogleFonts.poppins(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        FormBuilderTextField(
-                                          textAlign: TextAlign.center,
-                                          enabled: false,
-                                          controller: controller.sumCrrBisnis,
-                                          name: 'Sum hasil diatas',
-                                          style: const TextStyle(fontSize: 30),
-                                          decoration: InputDecoration(
-                                            border: const OutlineInputBorder(),
-                                            labelText: 'Sum hasil diatas',
-                                            labelStyle: GoogleFonts.poppins(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 50,
-                                        ),
-                                        const TexImage(
-                                          r'''sumBisnis / 6 ''',
-                                          fontSize: 30,
-                                          displayMode: true,
-                                        ),
-                                        Text(
-                                          controller.resultCrrBisnis.toString(),
-                                          style: GoogleFonts.poppins(
-                                            fontSize: 35,
+                              return Container(
+                                padding: const EdgeInsets.all(16),
+                                child: FormBuilder(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      const Center(
+                                        child: Text(
+                                          'Yeay berhasil mendapatkan',
+                                          style: TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            color: // Make text green if value exceed 65 and red if below 65
-                                                controller.resultCrrBisnis
-                                                            .value >=
-                                                        65.0
-                                                    ? Colors.green
-                                                    : Colors.red,
+                                            fontSize: 24,
                                           ),
                                         ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        // if (controller.resultCrrBisnis.value >= 65.0)
-                                        //   Text(
-                                        //     'Debitur melewati Passing Grade',
-                                        //     style: GoogleFonts.poppins(
-                                        //       fontSize: 15,
-                                        //       fontWeight: FontWeight.w600,
-                                        //     ),
-                                        //   ),
-                                        // if (controller.resultCrrBisnis.value < 65.0)
-                                        //   Text(
-                                        //     'Debitur belum melewati Passing Grade',
-                                        //     style: GoogleFonts.poppins(
-                                        //       fontSize: 15,
-                                        //       fontWeight: FontWeight.w600,
-                                        //     ),
-                                        //   ),
-                                        OutlinedButton.icon(
-                                          icon: const Icon(Icons.check),
-                                          label: const Text(
-                                            "Submit",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 20),
+                                      ),
+                                      const Center(
+                                        child: Text(
+                                          'CRR Bisnis 🎉🎉🎉',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 24,
                                           ),
-                                          style: OutlinedButton.styleFrom(
-                                              foregroundColor: secondaryColor,
-                                              backgroundColor: primaryColor,
-                                              shape: const StadiumBorder(),
-                                              maximumSize: const Size.fromWidth(
-                                                  double.infinity),
-                                              fixedSize: const Size(500, 50)),
-                                          onPressed: () {
-                                            if (controller.formKey.currentState
-                                                    ?.saveAndValidate() ??
-                                                false) {
-                                              controller.saveAnalisisBisnis();
-                                              Get.back();
-                                              Get.back();
-                                              debugPrint(controller
-                                                  .formKey.currentState?.value
-                                                  .toString());
-                                            } else {
-                                              debugPrint(controller
-                                                  .formKey.currentState?.value
-                                                  .toString());
-                                              debugPrint('validation failed');
-                                            }
-                                          },
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      const Center(
+                                        child: GFImageOverlay(
+                                          height: 200,
+                                          width: 350,
+                                          shape: BoxShape.rectangle,
+                                          image: AssetImage(
+                                              'assets/images/home/tohru-okay.gif'),
+                                          boxFit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Expanded(
+                                            child: FormBuilderTextField(
+                                              enabled: false,
+                                              controller:
+                                                  controller.resultOmzet,
+                                              name: 'Omzet CRR',
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText: 'Omzet CRR',
+                                                labelStyle: GoogleFonts.poppins(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const VerticalDivider(
+                                            color: Colors.black,
+                                          ),
+                                          Expanded(
+                                            child: FormBuilderTextField(
+                                              enabled: false,
+                                              controller:
+                                                  controller.resultHarga,
+                                              name: 'Harga Bersaing CRR',
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText: 'Harga Bersaing CRR',
+                                                labelStyle: GoogleFonts.poppins(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Expanded(
+                                            child: FormBuilderTextField(
+                                              enabled: false,
+                                              controller:
+                                                  controller.resultPersaingan,
+                                              name: 'Persaingan Pasar CRR',
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText:
+                                                    'Persaingan Pasar CRR',
+                                                labelStyle: GoogleFonts.poppins(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const VerticalDivider(
+                                            color: Colors.black,
+                                          ),
+                                          Expanded(
+                                            child: FormBuilderTextField(
+                                              enabled: false,
+                                              controller:
+                                                  controller.resultLokasi,
+                                              name: 'Lokasi CRR',
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText: 'Lokasi CRR',
+                                                labelStyle: GoogleFonts.poppins(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Expanded(
+                                            child: FormBuilderTextField(
+                                              enabled: false,
+                                              controller:
+                                                  controller.resultKapasitas,
+                                              name: 'Inovatif CRR',
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText: 'Inovatif CRR',
+                                                labelStyle: GoogleFonts.poppins(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          const VerticalDivider(
+                                            color: Colors.black,
+                                          ),
+                                          Expanded(
+                                            child: FormBuilderTextField(
+                                              enabled: false,
+                                              controller:
+                                                  controller.resultRating,
+                                              name: 'Jujur CRR',
+                                              decoration: InputDecoration(
+                                                border:
+                                                    const OutlineInputBorder(),
+                                                labelText: 'Jujur CRR',
+                                                labelStyle: GoogleFonts.poppins(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      FormBuilderTextField(
+                                        textAlign: TextAlign.center,
+                                        enabled: false,
+                                        controller: controller.sumCrrBisnis,
+                                        name: 'Sum hasil diatas',
+                                        style: const TextStyle(fontSize: 30),
+                                        decoration: InputDecoration(
+                                          border: const OutlineInputBorder(),
+                                          labelText: 'Sum hasil diatas',
+                                          labelStyle: GoogleFonts.poppins(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          'Total CRR : ${controller.resultCrrBisnis}',
+                                          style: GoogleFonts.spaceGrotesk(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      GFButton(
+                                        onPressed: () {
+                                          if (controller.formKey.currentState
+                                                  ?.saveAndValidate() ??
+                                              false) {
+                                            controller.saveAnalisisBisnis();
+                                            Get.back();
+                                            Get.back();
+                                            debugPrint(controller
+                                                .formKey.currentState?.value
+                                                .toString());
+                                          } else {
+                                            debugPrint(controller
+                                                .formKey.currentState?.value
+                                                .toString());
+                                            debugPrint('validation failed');
+                                          }
+                                        },
+                                        text: 'Simpan',
+                                        color: primaryColor,
+                                        size: GFSize.LARGE,
+                                        fullWidthButton: true,
+                                      )
+                                    ],
                                   ),
                                 ),
                               );
                             },
                           );
                         },
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
+                        text: 'Lihat Hasil',
+                        color: primaryColor,
+                        size: GFSize.LARGE,
+                        fullWidthButton: true,
+                      )
                     ],
                   ),
                 ),

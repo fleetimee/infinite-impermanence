@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../../../controllers/keuangan_analisis_controller.dart';
+import '../../../controllers/keuangan_analisis_controller.dart';
 
 class ViewAnalisaRatio extends StatelessWidget {
   ViewAnalisaRatio({Key? key}) : super(key: key);
@@ -18,7 +17,7 @@ class ViewAnalisaRatio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      padding: const EdgeInsets.all(8.0),
       child: ListView(
         children: [
           const SizedBox(
@@ -47,12 +46,12 @@ class ViewAnalisaRatio extends StatelessWidget {
                     text: double.parse(data.analisaKeuangan.persenRatioKini)
                         .toStringAsFixed(1),
                   ),
-                  enabled: false,
+                  readOnly: true,
                   name: 'ratio_profit_kini',
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -62,34 +61,22 @@ class ViewAnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.ratioProfitYAD = TextEditingController(
-                      text: double.parse(data.analisaKeuangan.persenRatioYad)
-                          .toStringAsFixed(1)),
+                    text: double.parse(data.analisaKeuangan.persenRatioYad)
+                        .toStringAsFixed(1),
+                  ),
                   name: 'ratio_profit_yad',
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: 'Ratio Profit YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
             ],
           ),
           const SizedBox(
-            height: 20,
-          ),
-          // Obx(
-          //   () => colorButton(
-          //     context,
-          //     controller.isRatioProfitLoading.value
-          //         ? 'Loading..'
-          //         : 'Hitung Ratio Profit',
-          //     () => controller.hitungRatioProfit(),
-          //   ),
-          // ),
-
-          const SizedBox(
-            height: 30,
+            height: 40,
           ),
           Row(
             children: [
@@ -114,10 +101,10 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   controller: controller.roeFixed,
                   name: 'roe_fixed',
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -132,12 +119,14 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'roe_kini',
                   controller: controller.roeKini = TextEditingController(
-                      text: data.analisaKeuangan.persenRoeKini.toString()),
-                  enabled: false,
+                    text: double.parse(data.analisaKeuangan.persenRoeKini)
+                        .toStringAsFixed(1),
+                  ),
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: 'ROE Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -147,13 +136,15 @@ class ViewAnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   controller: controller.roeYAD = TextEditingController(
-                      text: data.analisaKeuangan.persenRoeYad.toString()),
+                    text: double.parse(data.analisaKeuangan.persenRoeYad)
+                        .toStringAsFixed(1),
+                  ),
                   name: 'roe_yad',
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: 'ROE YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -170,27 +161,16 @@ class ViewAnalisaRatio extends StatelessWidget {
                     controller: controller.keteranganRoe =
                         TextEditingController(
                             text: data.analisaKeuangan.keteranganRoe),
-                    enabled: false,
+                    readOnly: true,
                     decoration: const InputDecoration(
                       labelText: 'Keterangan ROE',
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                      suffixText: '%',
                     ),
                   ),
           ),
           const SizedBox(
-            height: 20,
-          ),
-          // Obx(
-          //   () => colorButton(
-          //     context,
-          //     controller.isRoeLoading.value ? 'Loading...' : 'Hitung ROE',
-          //     () => controller.hitungRoe(),
-          //   ),
-          // ),
-
-          const SizedBox(
-            height: 30,
+            height: 40,
           ),
           Row(
             children: [
@@ -215,10 +195,10 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'roa_fixed',
                   controller: controller.roaFixed,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -232,14 +212,15 @@ class ViewAnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'roa_kini',
-                  enabled: false,
+                  readOnly: true,
                   controller: controller.roaKini = TextEditingController(
-                      text: double.parse(data.analisaKeuangan.persenRoaKini)
-                          .toStringAsFixed(1)),
+                    text: double.parse(data.analisaKeuangan.persenRoaKini)
+                        .toStringAsFixed(1),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'ROA Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -250,13 +231,14 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'roa_yad',
                   controller: controller.roaYAD = TextEditingController(
-                      text: double.parse(data.analisaKeuangan.persenRoaYad)
-                          .toStringAsFixed(1)),
-                  enabled: false,
+                    text: double.parse(data.analisaKeuangan.persenRoaYad)
+                        .toStringAsFixed(1),
+                  ),
+                  readOnly: true,
                   decoration: const InputDecoration(
                     labelText: 'ROA YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -273,25 +255,16 @@ class ViewAnalisaRatio extends StatelessWidget {
                     controller: controller.keteranganRoa =
                         TextEditingController(
                             text: data.analisaKeuangan.keteranganRoa),
-                    enabled: false,
+                    readOnly: true,
                     decoration: const InputDecoration(
                       labelText: 'Keterangan ROA',
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                      suffixText: '%',
                     ),
                   ),
           ),
           const SizedBox(
-            height: 30,
-          ),
-          // Obx((() => colorButton(
-          //       context,
-          //       controller.isRoaLoading.value ? 'Loading...' : 'Hitung ROA',
-          //       () => controller.hitungRoa(),
-          //     ))),
-
-          const SizedBox(
-            height: 30,
+            height: 40,
           ),
           Row(
             children: [
@@ -316,10 +289,10 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'der_fixed',
                   controller: controller.derFixed,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -334,16 +307,13 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'der_kini',
                   controller: controller.derKini = TextEditingController(
-                    text:
-                        data.analisaKeuangan.persenDerKini.toString() == '0.00'
-                            ? '-'
-                            : double.parse(data.analisaKeuangan.persenDerKini)
-                                .toStringAsFixed(1),
+                    text: double.parse(data.analisaKeuangan.persenDerKini)
+                        .toStringAsFixed(1),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'DER Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -360,7 +330,7 @@ class ViewAnalisaRatio extends StatelessWidget {
                   decoration: const InputDecoration(
                     labelText: 'DER YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -369,18 +339,6 @@ class ViewAnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // Obx(
-          //   () => Text(
-          //     controller.isDerDescLoading.value
-          //         ? 'Sedang memproses hasil..'
-          //         : controller.derStatus.value,
-          //     style: GoogleFonts.poppins(
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w600,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-          // ),
           Obx(
             () => controller.isDerDescLoading.value
                 ? const Center(child: CircularProgressIndicator())
@@ -389,27 +347,16 @@ class ViewAnalisaRatio extends StatelessWidget {
                     controller: controller.keteranganDer =
                         TextEditingController(
                             text: data.analisaKeuangan.keteranganDer),
-                    enabled: false,
+                    readOnly: true,
                     decoration: const InputDecoration(
                       labelText: 'Keterangan DER',
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                      suffixText: '%',
                     ),
                   ),
           ),
           const SizedBox(
-            height: 30,
-          ),
-          // Obx(
-          //   (() => colorButton(
-          //         context,
-          //         controller.isDerLoading.value ? 'Loading...' : 'Hitung DER',
-          //         () => controller.hitungDer(),
-          //       )),
-          // ),
-
-          const SizedBox(
-            height: 30,
+            height: 40,
           ),
           Row(
             children: [
@@ -434,10 +381,10 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'dsc_fixed',
                   controller: controller.dscFixed,
-                  enabled: false,
+                  readOnly: true,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -451,14 +398,14 @@ class ViewAnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'dsc_kini',
-                  enabled: false,
                   controller: controller.dscKini = TextEditingController(
-                      text: double.parse(data.analisaKeuangan.persenDscKini)
-                          .toString()),
+                    text: double.parse(data.analisaKeuangan.persenDscKini)
+                        .toStringAsFixed(1),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'DSC Kini',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -468,14 +415,14 @@ class ViewAnalisaRatio extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'dsc_yad',
-                  enabled: false,
                   controller: controller.dscYAD = TextEditingController(
-                      text: double.parse(data.analisaKeuangan.persenDscYad)
-                          .toString()),
+                    text: double.parse(data.analisaKeuangan.persenDscYad)
+                        .toStringAsFixed(1),
+                  ),
                   decoration: const InputDecoration(
                     labelText: 'DSC YAD',
                     border: OutlineInputBorder(),
-                    suffixIcon: Icon(FontAwesomeIcons.percent),
+                    suffixText: '%',
                   ),
                 ),
               ),
@@ -484,18 +431,6 @@ class ViewAnalisaRatio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // Obx(
-          //   () => Text(
-          //     controller.isDscDescLoading.value
-          //         ? 'Sedang memproses hasil..'
-          //         : controller.dscStatus.value,
-          //     style: GoogleFonts.poppins(
-          //       fontSize: 18,
-          //       fontWeight: FontWeight.w600,
-          //     ),
-          //     textAlign: TextAlign.center,
-          //   ),
-          // ),
           Obx(
             () => controller.isDscDescLoading.value
                 ? const Center(child: CircularProgressIndicator())
@@ -504,20 +439,16 @@ class ViewAnalisaRatio extends StatelessWidget {
                     controller: controller.keteranganDsc =
                         TextEditingController(
                             text: data.analisaKeuangan.keteranganDsc),
-                    enabled: false,
+                    readOnly: true,
                     decoration: const InputDecoration(
                       labelText: 'Keterangan DSC',
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(FontAwesomeIcons.percent),
+                      suffixText: '%',
                     ),
                   ),
           ),
           const SizedBox(
             height: 20,
-          ),
-
-          const SizedBox(
-            height: 60,
           ),
         ],
       ),

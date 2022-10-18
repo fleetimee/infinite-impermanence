@@ -9,9 +9,9 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:vector_math/vector_math_64.dart' as vector;
 
 // 🌎 Project imports:
 import 'package:akm/app/modules/keuangan_analisis/views/components/input/tutorial.dart';
@@ -101,205 +101,218 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                       ViewAngsuran(),
                       ViewAsumsiKeuangan(),
                       ViewAnalisaRatio(),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          FormBuilderTextField(
-                            name: 'pinjaman_maksimal',
-                            textAlign: TextAlign.center,
-                            controller: controller.pinjamanMaksimal =
-                                MoneyMaskedTextController(
-                                    decimalSeparator: '',
-                                    thousandSeparator: '.',
-                                    precision: 0,
-                                    initialValue: double.parse(
-                                      data.analisaKeuangan.pinjamanMaksimal,
-                                    )),
-                            style: GoogleFonts.roboto(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500,
+                      Container(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            FormBuilderTextField(
+                              name: 'pinjaman_maksimal',
+                              controller: controller.pinjamanMaksimal =
+                                  MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                        data.analisaKeuangan.pinjamanMaksimal,
+                                      )),
+                              readOnly: true,
+                              decoration: const InputDecoration(
+                                labelText: 'Pinjaman Maksimal',
+                                border: OutlineInputBorder(),
+                                prefixText: 'Rp. ',
+                              ),
                             ),
-                            enabled: false,
-                            decoration: const InputDecoration(
-                              labelText: 'Pinjaman Maksimal',
-                              border: OutlineInputBorder(),
-                              prefixIcon: Icon(FontAwesomeIcons.rupiahSign),
-                            ),
-                          ),
-                          FormBuilderTextField(
-                            name: 'perhitungan_investasi',
-                            textAlign: TextAlign.center,
-                            controller: controller.perhitunganModalKerja =
-                                MoneyMaskedTextController(
-                                    decimalSeparator: '',
-                                    thousandSeparator: '.',
-                                    precision: 0,
-                                    initialValue: double.parse(
-                                      data.analisaKeuangan
-                                          .perhitunganModalKerja,
-                                    )),
-                            style: GoogleFonts.roboto(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            enabled: false,
-                            decoration: InputDecoration(
+                            FormBuilderTextField(
+                              name: 'perhitungan_investasi',
+                              controller: controller.perhitunganModalKerja =
+                                  MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                        data.analisaKeuangan
+                                            .perhitunganModalKerja,
+                                      )),
+                              readOnly: true,
+                              decoration: InputDecoration(
                                 labelText: data.inputKeuangan.digunakanUntuk ==
                                         'Modal Kerja'
                                     ? 'Perhitungan Modal Kerja'
-                                    : 'Perhitungan Modal Investasi',
+                                    : 'Perhitungan Investasi',
                                 border: const OutlineInputBorder(),
-                                prefixIcon:
-                                    const Icon(FontAwesomeIcons.rupiahSign)),
-                          ),
-                          FormBuilderTextField(
-                            name: 'trade_cycle',
-                            textAlign: TextAlign.center,
-                            controller: controller.tradeCycle =
-                                TextEditingController(
-                                    text: data.inputKeuangan.tradeCycle
-                                        .toString()),
-                            style: GoogleFonts.roboto(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500,
+                                prefixText: 'Rp. ',
+                              ),
                             ),
-                            enabled: false,
-                            decoration: const InputDecoration(
-                                labelText: 'Trade Cycle',
-                                border: OutlineInputBorder(),
-                                prefixIcon:
-                                    Icon(FontAwesomeIcons.arrowsRotate)),
-                          ),
-                          FormBuilderTextField(
-                            name: 'kebutuhan_investasi',
-                            textAlign: TextAlign.center,
-                            controller: controller.kebutuhanInvestasi =
-                                MoneyMaskedTextController(
-                                    decimalSeparator: '',
-                                    thousandSeparator: '.',
-                                    precision: 0,
-                                    initialValue: double.parse(
-                                      data.analisaKeuangan.kebutuhanInvestasi,
-                                    )),
-                            style: GoogleFonts.roboto(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500,
+                            FormBuilderTextField(
+                              name: 'trade_cycle',
+                              controller: controller.tradeCycle =
+                                  TextEditingController(
+                                      text: data.inputKeuangan.tradeCycle
+                                          .toString()),
+                              readOnly: true,
+                              decoration: const InputDecoration(
+                                  labelText: 'Trade Cycle',
+                                  border: OutlineInputBorder(),
+                                  prefixIcon:
+                                      Icon(FontAwesomeIcons.arrowsRotate)),
                             ),
-                            enabled: false,
-                            decoration: const InputDecoration(
-                                labelText: 'Kebutuhan Investasi',
-                                border: OutlineInputBorder(),
-                                prefixIcon: Icon(FontAwesomeIcons.rupiahSign)),
-                          ),
-                          FormBuilderTextField(
-                            name: 'kebutuhan_kredit',
-                            textAlign: TextAlign.center,
-                            controller: controller.kebutuhanKredit =
-                                MoneyMaskedTextController(
-                                    decimalSeparator: '',
-                                    thousandSeparator: '.',
-                                    precision: 0,
-                                    initialValue: double.parse(
-                                      data.analisaKeuangan.kebutuhanKredit,
-                                    )),
-                            style: GoogleFonts.roboto(
-                              fontSize: 30,
-                              fontWeight: FontWeight.w500,
+                            FormBuilderTextField(
+                              name: 'kebutuhan_investasi',
+                              controller: controller.kebutuhanInvestasi =
+                                  MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                        data.analisaKeuangan.kebutuhanInvestasi,
+                                      )),
+                              readOnly: true,
+                              decoration: InputDecoration(
+                                  labelText:
+                                      data.inputKeuangan.digunakanUntuk ==
+                                              'Modal Kerja'
+                                          ? 'Perhitungan Modal Kerja'
+                                          : 'Perhitungan Investasi',
+                                  border: const OutlineInputBorder(),
+                                  prefixText: 'Rp. '),
                             ),
-                            enabled: false,
-                            decoration: const InputDecoration(
+                            FormBuilderTextField(
+                              name: 'kebutuhan_kredit',
+                              controller: controller.kebutuhanKredit =
+                                  MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                        data.analisaKeuangan.kebutuhanKredit,
+                                      )),
+                              readOnly: true,
+                              decoration: const InputDecoration(
                                 labelText: 'Kebutuhan Kredit',
                                 border: OutlineInputBorder(),
-                                prefixIcon: Icon(FontAwesomeIcons.rupiahSign)),
-                          ),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 10,
-                                child: FormBuilderTextField(
-                                  controller: controller.kreditYangDiminta =
-                                      MoneyMaskedTextController(
-                                    decimalSeparator: '',
-                                    thousandSeparator: '.',
-                                    precision: 0,
-                                    initialValue: double.parse(
-                                        data.inputKeuangan.kreditDiusulkan),
-                                  ),
-                                  enabled: false,
-                                  style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1,
-                                    color: primaryColor,
-                                  ),
-                                  name: 'kredit_yang_diminta',
-                                  decoration: InputDecoration(
-                                    labelText: 'Plafon',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    prefixIcon:
-                                        const Icon(FontAwesomeIcons.rupiahSign),
-                                  ),
-                                  keyboardType: TextInputType.number,
-                                ),
+                                prefixText: 'Rp. ',
                               ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Expanded(
-                                flex: 2,
-                                child: controller.isKreditPassed.isFalse
-                                    ? const Icon(
-                                        FontAwesomeIcons.circleCheck,
-                                        color: Colors.green,
-                                      )
-                                    : const Icon(
-                                        FontAwesomeIcons.circleXmark,
-                                        color: Colors.red,
-                                      ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 5.0,
-                          ),
-                          LoadingAnimatedButton(
-                            child: Text(
-                              'Lihat CRR',
-                              style: GoogleFonts.andika(fontSize: 25),
                             ),
-                            onTap: () {
-                              showBarModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return SingleChildScrollView(
-                                    child: Container(
-                                      padding: const EdgeInsets.all(32),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Text(
-                                            'Total CRR : ${data.analisaKeuangan.totalCrrKeuangan.toString()}',
-                                            style: GoogleFonts.spaceGrotesk(
-                                              fontSize: 35,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 10,
+                                  child: FormBuilderTextField(
+                                    controller: controller.kreditYangDiminta =
+                                        MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          data.inputKeuangan.kreditDiusulkan),
                                     ),
-                                  );
-                                },
-                                backgroundColor: secondaryColor,
-                                bounce: true,
-                              );
-                            },
-                          ),
-                        ],
+                                    readOnly: true,
+                                    name: 'kredit_yang_diminta',
+                                    decoration: const InputDecoration(
+                                      labelText: 'Plafon',
+                                      border: OutlineInputBorder(),
+                                      prefixText: 'Rp. ',
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: controller.isKreditPassed.isTrue
+                                      ? const Icon(
+                                          FontAwesomeIcons.circleCheck,
+                                          color: Colors.green,
+                                        )
+                                      : const Icon(
+                                          FontAwesomeIcons.circleXmark,
+                                          color: Colors.red,
+                                        ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 5.0,
+                            ),
+                            GFButton(
+                              onPressed: () {
+                                showBarModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    controller.hitungCrr();
+                                    return Container(
+                                        height: 450,
+                                        padding: const EdgeInsets.all(16),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            const Center(
+                                              child: Text(
+                                                'Berikut adalah',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 24,
+                                                ),
+                                              ),
+                                            ),
+                                            const Center(
+                                              child: Text(
+                                                'CRR Keuangan 🎉🎉🎉',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 24,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            const Center(
+                                              child: GFImageOverlay(
+                                                height: 200,
+                                                width: 350,
+                                                shape: BoxShape.rectangle,
+                                                image: AssetImage(
+                                                    'assets/images/home/tohru-okay.gif'),
+                                                boxFit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                            Center(
+                                              child: Text(
+                                                'Total CRR : ${data.analisaKeuangan.totalCrrKeuangan.toString()}',
+                                                style: GoogleFonts.spaceGrotesk(
+                                                  fontSize: 35,
+                                                  fontWeight: FontWeight.w700,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 20,
+                                            ),
+                                          ],
+                                        ));
+                                  },
+                                  backgroundColor: secondaryColor,
+                                  bounce: true,
+                                );
+                              },
+                              text: 'Cek CRR',
+                              color: primaryColor,
+                              fullWidthButton: true,
+                              size: GFSize.LARGE,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -307,281 +320,6 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class LoadingAnimatedButton extends StatefulWidget {
-  final Duration duration;
-  final Widget child;
-  final Function() onTap;
-  final double width;
-  final double height;
-
-  final Color color;
-  final double borderRadius;
-  final Color borderColor;
-  final double borderWidth;
-
-  const LoadingAnimatedButton(
-      {Key? key,
-      required this.child,
-      required this.onTap,
-      this.width = 300,
-      this.height = 75,
-      this.color = primaryColor,
-      this.borderColor = secondaryColor,
-      this.borderRadius = 15.0,
-      this.borderWidth = 3.0,
-      this.duration = const Duration(milliseconds: 1500)})
-      : super(key: key);
-
-  @override
-  State<LoadingAnimatedButton> createState() => _LoadingAnimatedButtonState();
-}
-
-class _LoadingAnimatedButtonState extends State<LoadingAnimatedButton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: widget.duration);
-    _animationController.repeat();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: widget.onTap,
-      borderRadius: BorderRadius.circular(
-        widget.borderRadius,
-      ),
-      splashColor: widget.color,
-      child: CustomPaint(
-        painter: LoadingPainter(
-            animation: _animationController,
-            borderColor: widget.borderColor,
-            borderRadius: widget.borderRadius,
-            borderWidth: widget.borderWidth,
-            color: widget.color),
-        child: Container(
-          width: widget.width,
-          height: widget.height,
-          alignment: Alignment.center,
-          child: Padding(
-            padding: const EdgeInsets.all(5.5),
-            child: widget.child,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class LoadingPainter extends CustomPainter {
-  final Animation animation;
-  final Color color;
-  final double borderRadius;
-  final Color borderColor;
-  final double borderWidth;
-
-  LoadingPainter(
-      {required this.animation,
-      this.color = Colors.orange,
-      this.borderColor = Colors.white,
-      this.borderRadius = 15.0,
-      this.borderWidth = 3.0})
-      : super(repaint: animation);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final rect = Offset.zero & size;
-    final paint = Paint()
-      ..shader = SweepGradient(
-              colors: [
-                color.withOpacity(.25),
-                color,
-              ],
-              startAngle: 0.0,
-              endAngle: vector.radians(180),
-              stops: const [.75, 1.0],
-              transform:
-                  GradientRotation(vector.radians(360.0 * animation.value)))
-          .createShader(rect);
-
-    final path = Path.combine(
-        PathOperation.xor,
-        Path()
-          ..addRRect(
-              RRect.fromRectAndRadius(rect, Radius.circular(borderRadius))),
-        Path()
-          ..addRRect(RRect.fromRectAndRadius(
-              rect.deflate(3.5), Radius.circular(borderRadius))));
-    canvas.drawRRect(
-        RRect.fromRectAndRadius(
-            rect.deflate(1.5), Radius.circular(borderRadius)),
-        Paint()
-          ..color = borderColor
-          ..strokeWidth = borderWidth
-          ..style = PaintingStyle.stroke);
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
-}
-
-class CustomCarouselFB2 extends StatefulWidget {
-  const CustomCarouselFB2({Key? key}) : super(key: key);
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _CustomCarouselFB2State createState() => _CustomCarouselFB2State();
-}
-
-class _CustomCarouselFB2State extends State<CustomCarouselFB2> {
-  // - - - - - - - - - - - - Instructions - - - - - - - - - - - - - -
-  // 1.Replace cards list with whatever widgets you'd like.
-  // 2.Change the widgetMargin attribute, to ensure good spacing on all screensize.
-  // 3.If you have a problem with this widget, please contact us at flutterbricks90@gmail.com
-  // Learn to build this widget at https://www.youtube.com/watch?v=dSMw1Nb0QVg!
-  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-  List<Widget> cards = [
-    CardFb1(
-        text: "Explore",
-        imageUrl:
-            "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/illustrations%2Fundraw_Working_late_re_0c3y%201.png?alt=media&token=7b880917-2390-4043-88e5-5d58a9d70555",
-        subtitle: "+30 books",
-        onPressed: () {}),
-    CardFb1(
-        text: "Explore",
-        imageUrl:
-            "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/illustrations%2Fundraw_Designer_re_5v95%201.png?alt=media&token=5d053bd8-d0ea-4635-abb6-52d87539b7ec",
-        subtitle: "+30 books",
-        onPressed: () {}),
-    CardFb1(
-        text: "Explore",
-        imageUrl:
-            "https://firebasestorage.googleapis.com/v0/b/flutterbricks-public.appspot.com/o/illustrations%2Fundraw_Accept_terms_re_lj38%201.png?alt=media&token=476b97fd-ba66-4f62-94a7-bce4be794f36",
-        subtitle: "+30 books",
-        onPressed: () {})
-  ];
-
-  final double carouselItemMargin = 16;
-
-  late PageController _pageController;
-  int _position = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(initialPage: 0, viewportFraction: .7);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return PageView.builder(
-        controller: _pageController,
-        itemCount: cards.length,
-        onPageChanged: (int position) {
-          setState(() {
-            _position = position;
-          });
-        },
-        itemBuilder: (BuildContext context, int position) {
-          return imageSlider(position);
-        });
-  }
-
-  Widget imageSlider(int position) {
-    return AnimatedBuilder(
-      animation: _pageController,
-      builder: (BuildContext context, widget) {
-        return Container(
-          margin: EdgeInsets.all(carouselItemMargin),
-          child: Center(child: widget),
-        );
-      },
-      child: Container(
-        child: cards[position],
-      ),
-    );
-  }
-}
-
-class CardFb1 extends StatelessWidget {
-  final String text;
-  final String imageUrl;
-  final String subtitle;
-  final Function() onPressed;
-
-  const CardFb1(
-      {required this.text,
-      required this.imageUrl,
-      required this.subtitle,
-      required this.onPressed,
-      Key? key})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: 250,
-        height: 230,
-        padding: const EdgeInsets.all(30.0),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.5),
-          boxShadow: [
-            BoxShadow(
-                offset: const Offset(10, 20),
-                blurRadius: 10,
-                spreadRadius: 0,
-                color: Colors.grey.withOpacity(.05)),
-          ],
-        ),
-        child: Column(
-          children: [
-            Image.network(imageUrl, height: 90, fit: BoxFit.cover),
-            const Spacer(),
-            Text(text,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                )),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              subtitle,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 12),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
         ),
       ),
     );

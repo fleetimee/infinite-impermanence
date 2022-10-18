@@ -135,10 +135,10 @@ class EditDataKeuangan extends StatelessWidget {
                       initialValue:
                           double.parse(data.inputRugiLaba.hutangLainnya)),
                   decoration: InputDecoration(
-                    prefixIcon: const Icon(FontAwesomeIcons.rupiahSign),
+                    prefixText: 'Rp. ',
                     labelText: 'Pinjaman lain (bank/non bank)',
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(8),
                     ),
                   ),
                   keyboardType: TextInputType.number,

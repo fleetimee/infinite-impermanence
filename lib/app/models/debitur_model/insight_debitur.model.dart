@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_null_aware_operators
+// ignore_for_file: prefer_null_aware_operators, unnecessary_null_in_if_null_operators
 
 // 🎯 Dart imports:
 import 'dart:convert';
@@ -46,6 +46,7 @@ class DebiturInsight {
     this.analisaBisnis,
     this.analisaJenisUsaha,
     this.agunan,
+    this.syaratLain,
   });
 
   int? id;
@@ -84,6 +85,7 @@ class DebiturInsight {
   AnalisaBisnis? analisaBisnis;
   AnalisaJenisUsaha? analisaJenisUsaha;
   List<Agunan>? agunan;
+  List<SyaratLain>? syaratLain;
 
   factory DebiturInsight.fromJson(Map<String, dynamic> json) => DebiturInsight(
         id: json["id"],
@@ -142,6 +144,10 @@ class DebiturInsight {
         agunan: json["agunan"] == null
             ? null
             : List<Agunan>.from(json["agunan"].map((x) => Agunan.fromJson(x))),
+        syaratLain: json["syaratLain"] == null
+            ? null
+            : List<SyaratLain>.from(
+                json["syaratLain"].map((x) => SyaratLain.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -190,6 +196,33 @@ class DebiturInsight {
         "agunan": agunan == null
             ? null
             : List<dynamic>.from(agunan!.map((x) => x.toJson())),
+        "syaratLain": syaratLain == null
+            ? null
+            : List<dynamic>.from(syaratLain!.map((x) => x.toJson())),
+      };
+}
+
+class SyaratLain {
+  SyaratLain({
+    this.id,
+    this.keterangan,
+    this.debiturId,
+  });
+
+  int? id;
+  String? keterangan;
+  int? debiturId;
+
+  factory SyaratLain.fromJson(Map<String, dynamic> json) => SyaratLain(
+        id: json["id"] ?? null,
+        keterangan: json["keterangan"] ?? null,
+        debiturId: json["debiturId"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "keterangan": keterangan ?? null,
+        "debiturId": debiturId ?? null,
       };
 }
 

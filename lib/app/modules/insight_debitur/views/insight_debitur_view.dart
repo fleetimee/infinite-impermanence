@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -368,6 +369,21 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     );
                   }
                 }),
+
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 20,
+                      ),
+                      child: HeaderSyarat(),
+                    ),
+                    MenuInputanSyarat(),
+                  ],
+                ),
+
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 25,

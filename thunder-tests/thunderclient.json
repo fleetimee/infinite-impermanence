@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/122?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan",
+    "url": "{{baseUrl}}api/v1/debiturs/122?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-10-16T23:19:16.516Z",
+    "modified": "2022-10-19T08:38:56.112Z",
     "headers": [],
     "params": [
       {
@@ -670,6 +670,11 @@
       {
         "name": "join",
         "value": "agunan.form_tanah_bangunan",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "syaratLain",
         "isPath": false
       }
     ],
@@ -1515,6 +1520,39 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"deskripsi_pendek\": \"AAAA\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "91b5d087-040b-4b42-a8be-c5dfa7aa9024",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "bbb79f3b-93c2-4866-b25d-420c66a68e13",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/debiturs/99/syarat-lain/",
+    "method": "GET",
+    "sortNum": 730000,
+    "created": "2022-10-19T08:35:56.661Z",
+    "modified": "2022-10-19T08:36:49.861Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "a0cae1b6-d953-4cd2-9c32-918125e5a147",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "bbb79f3b-93c2-4866-b25d-420c66a68e13",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/debiturs/122/syarat-lain/",
+    "method": "POST",
+    "sortNum": 740000,
+    "created": "2022-10-19T08:36:03.920Z",
+    "modified": "2022-10-19T08:37:43.847Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"keterangan\": \"Syarat deh\"\n}",
       "form": []
     },
     "tests": []

@@ -1,10 +1,5 @@
-// ignore_for_file: constant_identifier_names
-
-// 📦 Package imports:
-
 import 'package:get/get.dart';
 
-// 🌎 Project imports:
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_binding.dart';
@@ -62,6 +57,8 @@ import '../modules/list_agunan_tanah_bangunan/bindings/list_agunan_tanah_banguna
 import '../modules/list_agunan_tanah_bangunan/views/list_agunan_tanah_bangunan_view.dart';
 import '../modules/list_debitur/bindings/list_debitur_binding.dart';
 import '../modules/list_debitur/views/list_debitur_view.dart';
+import '../modules/list_syarat_lainnya/bindings/list_syarat_lainnya_binding.dart';
+import '../modules/list_syarat_lainnya/views/list_syarat_lainnya_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
@@ -78,6 +75,12 @@ import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
 import '../modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
+
+// ignore_for_file: constant_identifier_names
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 part 'app_routes.dart';
 
@@ -355,6 +358,11 @@ class AppPages {
       name: _Paths.AGUNAN_FORM_ONBOARDING,
       page: () => AgunanFormOnboardingView(),
       binding: AgunanFormOnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIST_SYARAT_LAINNYA,
+      page: () => const ListSyaratLainnyaView(),
+      binding: ListSyaratLainnyaBinding(),
     ),
   ];
 }

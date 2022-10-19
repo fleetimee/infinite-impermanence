@@ -1556,5 +1556,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "be88f653-a043-4df5-bfd2-9a2c5665ae02",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "bbb79f3b-93c2-4866-b25d-420c66a68e13",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/debiturs/99/syarat-lain/1",
+    "method": "DELETE",
+    "sortNum": 750000,
+    "created": "2022-10-19T09:11:09.835Z",
+    "modified": "2022-10-19T09:11:31.514Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

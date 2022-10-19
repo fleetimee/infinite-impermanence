@@ -1,7 +1,10 @@
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:get/get.dart';
 
 class ListSyaratLainnyaController extends GetxController {
-  final count = 0.obs;
+  final data = Get.arguments;
 
-  void increment() => count.value++;
+  final debiturController = Get.put(InsightDebiturController());
+
+  final isSyaratLainInputProcessing = false.obs;
 }

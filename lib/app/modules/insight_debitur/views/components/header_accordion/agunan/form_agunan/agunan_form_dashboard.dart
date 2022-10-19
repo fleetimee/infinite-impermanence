@@ -141,65 +141,6 @@ class FormMultipleButton extends StatelessWidget {
               backgroundColor: Colors.blueGrey,
             ),
             onPressed: () {
-              // showBarModalBottomSheet(
-              //   bounce: true,
-              //   backgroundColor: secondaryColor,
-              //   context: context,
-              //   builder: (context) => SizedBox(
-              //     height: 650,
-              //     child: Column(
-              //       crossAxisAlignment: CrossAxisAlignment.start,
-              //       children: [
-              //         const GFCard(
-              //           boxFit: BoxFit.cover,
-              //           titlePosition: GFPosition.start,
-              //           showOverlayImage: true,
-              //           imageOverlay: AssetImage(
-              //             'assets/images/home/printing.jpg',
-              //           ),
-              //           colorFilter: ColorFilter.mode(
-              //             Color.fromARGB(221, 8, 8, 8),
-              //             BlendMode.darken,
-              //           ),
-              //           title: GFListTile(
-              //             title: Text(
-              //               'Tambah Agunan',
-              //               style: TextStyle(
-              //                 color: secondaryColor,
-              //                 fontSize: 47,
-              //                 fontWeight: FontWeight.bold,
-              //               ),
-              //             ),
-              //           ),
-              //           content: Text(
-              //             "Kumpulan form agunan yang ditujukan untuk penginputan sesuai dengan jenis agunan yang dipilih.",
-              //             style: TextStyle(
-              //               color: secondaryColor,
-              //               fontSize: 28,
-              //               fontWeight: FontWeight.w400,
-              //             ),
-              //           ),
-              //         ),
-              //         Expanded(
-              //           child: ListView(
-              //             children: [
-              //               Obx(() {
-              //                 if (selectedAgunanController
-              //                     .isAgunanInputProcessing.value) {
-              //                   return const Center(
-              //                     child: CircularProgressIndicator(),
-              //                   );
-              //                 } else {
-              //                   return TanahForm(controller: controller);
-              //                 }
-              //               }),
-              //             ],
-              //           ),
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // );
               Get.toNamed(Routes.AGUNAN_FORM_ONBOARDING,
                   arguments: controller.insightDebitur.value);
             },

@@ -1,4 +1,7 @@
 // 🐦 Flutter imports:
+// ignore_for_file: prefer_is_empty
+
+import 'package:akm/app/modules/list_syarat_lainnya/controllers/list_syarat_lainnya_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,7 +12,6 @@ import 'package:getwidget/getwidget.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
-import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 
 class HeaderSyarat extends StatelessWidget {
@@ -81,7 +83,7 @@ class MenuInputanSyarat extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final analisaKarakterController = Get.put(KarakterAnalisisController());
+  final syaratLainController = Get.put(ListSyaratLainnyaController());
 
   @override
   Widget build(BuildContext context) {
@@ -105,16 +107,15 @@ class MenuInputanSyarat extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (analisaKarakterController
-                      .isAnalisaKarakterProcessing.value) {
+                  if (syaratLainController.isSyaratLainInputProcessing.value) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(),
                       ),
                     );
                   } else {
-                    if (controller.insightDebitur.value.analisaKarakter ==
-                        null) {
+                    if (controller.insightDebitur.value.syaratLain?.length ==
+                        0) {
                       return Row(
                         children: const [
                           Text(
@@ -161,97 +162,63 @@ class MenuInputanSyarat extends StatelessWidget {
               const SizedBox(
                 height: 5.0,
               ),
-              Obx(
-                () {
-                  if (analisaKarakterController
-                      .isAnalisaKarakterProcessing.value) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    return Row(
-                      children: [
-                        controller.insightDebitur.value.analisaKarakter == null
-                            ? Expanded(
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blueGrey,
-                                  ),
-                                  onPressed: () {
-                                    Get.toNamed(Routes.KARAKTER_ANALISIS,
-                                        arguments:
-                                            controller.insightDebitur.value);
-                                  },
-                                  child: const Text(
-                                    "Input",
-                                    style: TextStyle(
-                                      color: secondaryColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Expanded(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blueGrey,
-                                        ),
-                                        onPressed: () {
-                                          Get.toNamed(
-                                              Routes.LIHAT_KARAKTER_ANALISIS,
-                                              arguments: controller
-                                                  .insightDebitur.value);
-                                        },
-                                        child: const Text(
-                                          "Lihat",
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blueGrey,
-                                        ),
-                                        onPressed: () {
-                                          Get.toNamed(
-                                              Routes.EDIT_KARAKTER_ANALISIS,
-                                              arguments: controller
-                                                  .insightDebitur.value);
-                                        },
-                                        child: const Text(
-                                          "Edit",
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                      ],
-                    );
-                  }
-                },
-              )
+              Obx(() {
+                if (syaratLainController.isSyaratLainInputProcessing.value) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else {
+                  return Row(
+                    children: [
+                      Expanded(
+                        // ! HERE
+                        child: ViewButton(controller: controller),
+                      ),
+                    ],
+                  );
+                }
+              })
             ],
           ),
           collapsedIcon: const Icon(Icons.add),
           expandedIcon: const Icon(Icons.minimize)),
+    );
+  }
+}
+
+class ViewButton extends StatelessWidget {
+  ViewButton({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
+
+  final InsightDebiturController controller;
+  final syaratLainController = Get.put(ListSyaratLainnyaController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blueGrey,
+            ),
+            onPressed: () {
+              Get.toNamed(Routes.LIST_SYARAT_LAINNYA,
+                  arguments: controller.insightDebitur.value);
+            },
+            child: const Text(
+              "Isi Syarat Lainnya",
+              style: TextStyle(
+                color: secondaryColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

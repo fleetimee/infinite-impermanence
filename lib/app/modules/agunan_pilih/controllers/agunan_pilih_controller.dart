@@ -14,9 +14,6 @@ import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_contro
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 class AgunanPilihController extends GetxController {
-  // ignore: todo
-  //TODO: Implement AgunanPilihController
-
   final data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
   final keuanganController = Get.put(InputKeuanganController());
@@ -59,22 +56,4 @@ class AgunanPilihController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

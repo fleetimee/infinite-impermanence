@@ -82,8 +82,8 @@ class LihatUsahaAnalisisView extends GetView<UsahaAnalisisController> {
                     boxFit: BoxFit.cover,
                     titlePosition: GFPosition.start,
                     showOverlayImage: true,
-                    imageOverlay: AssetImage(
-                      'assets/images/home/pink-box.jpg',
+                    imageOverlay: NetworkImage(
+                      'https://i0.wp.com/www.animegeek.com/wp-content/uploads/2022/08/Lycoris-Recoil-Season-2-release-date-Anime.jpg?resize=1024%2C576&ssl=1',
                     ),
                     colorFilter: ColorFilter.mode(
                       Color.fromARGB(136, 0, 0, 0),
@@ -201,8 +201,8 @@ class LihatUsahaAnalisisView extends GetView<UsahaAnalisisController> {
                                   height: 200,
                                   width: 350,
                                   shape: BoxShape.rectangle,
-                                  image: AssetImage(
-                                      'assets/images/home/tohru-okay.gif'),
+                                  image: NetworkImage(
+                                      'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
                                   boxFit: BoxFit.cover,
                                 ),
                               ),

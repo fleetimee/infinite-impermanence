@@ -7,13 +7,6 @@ const Color blue100 = Color(0xFF27A8FD);
 const Color blue200 = Color(0xFF4E69FF);
 const Color blue300 = Color(0xFF2882E2);
 const Color blue400 = Color(0xFF0B63B0);
-const Color purple100 = Color(0xFFE62FFF);
-const Color purple200 = Color(0xFF9A38FF);
-
-const Color calmBlue = Color.fromARGB(255, 57, 77, 124);
-const Color forButton1 = Color.fromARGB(255, 101, 117, 168);
-const Color forButton2 = Color.fromARGB(255, 145, 160, 214);
-const Color subtleBlue = Color.fromARGB(255, 191, 206, 255);
 
 // Style for font
 

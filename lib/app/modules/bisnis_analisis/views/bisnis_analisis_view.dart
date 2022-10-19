@@ -311,8 +311,8 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                                           height: 200,
                                           width: 350,
                                           shape: BoxShape.rectangle,
-                                          image: AssetImage(
-                                              'assets/images/home/tohru-okay.gif'),
+                                          image: NetworkImage(
+                                              'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
                                           boxFit: BoxFit.cover,
                                         ),
                                       ),

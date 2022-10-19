@@ -50,8 +50,8 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                     boxFit: BoxFit.cover,
                     titlePosition: GFPosition.start,
                     showOverlayImage: true,
-                    imageOverlay: AssetImage(
-                      'assets/images/home/pink-box.jpg',
+                    imageOverlay: NetworkImage(
+                      'https://i0.wp.com/www.animegeek.com/wp-content/uploads/2022/08/Lycoris-Recoil-Season-2-release-date-Anime.jpg?resize=1024%2C576&ssl=1',
                     ),
                     colorFilter: ColorFilter.mode(
                       Color.fromARGB(136, 0, 0, 0),

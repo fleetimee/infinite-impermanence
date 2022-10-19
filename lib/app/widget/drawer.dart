@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
- import '../common/style.dart';
- import '../routes/app_pages.dart';
+import '../common/style.dart';
+import '../routes/app_pages.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({
@@ -212,8 +212,4 @@ class SideMenu extends StatelessWidget {
       ),
     );
   }
-}
-
-class DrawerControllerGetX extends GetxController {
-  final isCollapsed = false.obs;
 }

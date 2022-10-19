@@ -90,9 +90,7 @@ flutter:
     - assets/images/upload/
     - assets/images/agunan/
     - assets/images/pdf/
-    - assets/images/karakter/
     - assets/images/debitur_real/
-    - assets/images/input_keuangan/
     - assets/fonts/times-new-roman.ttf
     - assets/fonts/times-new-roman-bold.ttf
     - assets/fonts/times-new-roman-italic.ttf

@@ -973,62 +973,6 @@ Widget numberText(
       ),
     );
 
-Widget contentText(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 13,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget paddedTextDescription(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        text,
-        textAlign: align,
-      ),
-    );
-
-Widget paddedTextDescriptionBold(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(fontWeight: FontWeight.bold),
-      ),
-    );
-
-Widget paddedTextBold(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
 // convert int? to num
 num toNum(int? value) {
   if (value == null) {

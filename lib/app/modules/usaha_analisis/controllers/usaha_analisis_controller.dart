@@ -34,40 +34,6 @@ class UsahaAnalisisController extends GetxController {
     super.onReady();
   }
 
-  void hitungCrrUsaha() async {
-    if (jenisUsaha.text == 'Pertanian') {
-      crrJenisUsaha.text = '65';
-    } else if (jenisUsaha.text == 'Perikanan') {
-      crrJenisUsaha.text = '65';
-    } else if (jenisUsaha.text == 'Pertambangan') {
-      crrJenisUsaha.text = '65';
-    } else if (jenisUsaha.text == 'Perindustrian') {
-      crrJenisUsaha.text = '70';
-    } else if (jenisUsaha.text == 'Listrik') {
-      crrJenisUsaha.text = '70';
-    } else if (jenisUsaha.text == 'Gas') {
-      crrJenisUsaha.text = '70';
-    } else if (jenisUsaha.text == 'Air') {
-      crrJenisUsaha.text = '70';
-    } else if (jenisUsaha.text == 'Kontruksi') {
-      crrJenisUsaha.text = '75';
-    } else if (jenisUsaha.text == 'Perdagangan') {
-      crrJenisUsaha.text = '85';
-    } else if (jenisUsaha.text == 'Pengangkutan') {
-      crrJenisUsaha.text = '75';
-    } else if (jenisUsaha.text == 'Komunikasi') {
-      crrJenisUsaha.text = '80';
-    } else if (jenisUsaha.text == 'Jasa Dunia Usaha') {
-      crrJenisUsaha.text = '75';
-    } else if (jenisUsaha.text == 'Jasa Sosial') {
-      crrJenisUsaha.text = '75';
-    } else if (jenisUsaha.text == 'Lain - Lain') {
-      crrJenisUsaha.text = '75';
-    } else {
-      crrJenisUsaha.text = '0';
-    }
-  }
-
   void saveAnalisaUsaha() {
     final data = {
       'jenis_usaha': jenisUsaha.text,
@@ -103,6 +69,110 @@ class UsahaAnalisisController extends GetxController {
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
+    }
+  }
+
+  void updateAnalisaUsaha(id) {
+    final data = {
+      'jenis_usaha': jenisUsaha.text,
+      'total_crr_usaha': crrJenisUsaha.text,
+      'debitur': debiturId.text,
+    };
+
+    try {
+      isAnalisaUsahaProcessing(true);
+      AnalisaJenisUsahaProvider().putAnalisaJenisUsaha(id, data).then((resp) {
+        isAnalisaUsahaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Sukses',
+          'Berhasil Memperbarui Analisa Usaha',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }, onError: (err) {
+        isAnalisaUsahaProcessing(false);
+        Get.snackbar(
+          'Gagal',
+          'Gagal Memperbarui Analisa Usaha',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAnalisaUsahaProcessing(false);
+      Get.snackbar(
+        'Gagal',
+        'Gagal Memperbarui Analisa Usaha',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  void deleteAnalisaUsaha(id) {
+    try {
+      isAnalisaUsahaProcessing(true);
+      AnalisaJenisUsahaProvider().purgeAnalisaUsaha(id).then((resp) {
+        isAnalisaUsahaProcessing(false);
+        debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Get.snackbar(
+          'Sukses',
+          'Berhasil Menghapus Analisa Usaha',
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }, onError: (err) {
+        isAnalisaUsahaProcessing(false);
+        Get.snackbar(
+          'Gagal',
+          'Gagal Menghapus Analisa Usaha',
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAnalisaUsahaProcessing(false);
+      Get.snackbar(
+        'Gagal',
+        'Gagal Menghapus Analisa Usaha',
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  void hitungCrrUsaha() async {
+    if (jenisUsaha.text == 'Pertanian') {
+      crrJenisUsaha.text = '65';
+    } else if (jenisUsaha.text == 'Perikanan') {
+      crrJenisUsaha.text = '65';
+    } else if (jenisUsaha.text == 'Pertambangan') {
+      crrJenisUsaha.text = '65';
+    } else if (jenisUsaha.text == 'Perindustrian') {
+      crrJenisUsaha.text = '70';
+    } else if (jenisUsaha.text == 'Listrik') {
+      crrJenisUsaha.text = '70';
+    } else if (jenisUsaha.text == 'Gas') {
+      crrJenisUsaha.text = '70';
+    } else if (jenisUsaha.text == 'Air') {
+      crrJenisUsaha.text = '70';
+    } else if (jenisUsaha.text == 'Kontruksi') {
+      crrJenisUsaha.text = '75';
+    } else if (jenisUsaha.text == 'Perdagangan') {
+      crrJenisUsaha.text = '85';
+    } else if (jenisUsaha.text == 'Pengangkutan') {
+      crrJenisUsaha.text = '75';
+    } else if (jenisUsaha.text == 'Komunikasi') {
+      crrJenisUsaha.text = '80';
+    } else if (jenisUsaha.text == 'Jasa Dunia Usaha') {
+      crrJenisUsaha.text = '75';
+    } else if (jenisUsaha.text == 'Jasa Sosial') {
+      crrJenisUsaha.text = '75';
+    } else if (jenisUsaha.text == 'Lain - Lain') {
+      crrJenisUsaha.text = '75';
+    } else {
+      crrJenisUsaha.text = '0';
     }
   }
 

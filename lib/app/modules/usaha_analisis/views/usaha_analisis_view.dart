@@ -1,10 +1,13 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
@@ -36,10 +39,45 @@ class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
             children: [
               Column(
                 children: [
-                  SvgPicture.asset(
-                    'assets/images/home/usaha.svg',
-                    fit: BoxFit.cover,
-                  ),
+                  Animate(
+                      child: const GFCard(
+                    boxFit: BoxFit.cover,
+                    titlePosition: GFPosition.start,
+                    showOverlayImage: true,
+                    imageOverlay: AssetImage(
+                      'assets/images/home/pink-box.jpg',
+                    ),
+                    colorFilter: ColorFilter.mode(
+                      Color.fromARGB(136, 0, 0, 0),
+                      BlendMode.darken,
+                    ),
+                    title: GFListTile(
+                      title: Text(
+                        'Jenis',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 47,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    content: Text(
+                      'Usaha',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
+                          .animate()
+                          .fadeIn() // uses `Animate.defaultDuration`
+                          .scale() // inherits duration from fadeIn
+                          .move(
+                              delay: 300.ms,
+                              duration:
+                                  600.ms) // runs after the above w/new duration
+                      // inherits the delay & duration from move,
+                      ),
                   FormBuilderTextField(
                     name: 'jenis_usaha',
                     enabled: false,
@@ -50,17 +88,6 @@ class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
                     controller: controller.jenisUsaha = TextEditingController(
                       text: data.jenisUsaha,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  FormBuilderTextField(
-                    name: 'crr_jenis_usaha',
-                    enabled: false,
-                    controller: controller.crrJenisUsaha,
-                    decoration: const InputDecoration(
-                        labelText: 'CRR Jenis Usaha',
-                        border: OutlineInputBorder()),
                   ),
                   const SizedBox(
                     height: 20.0,
@@ -79,60 +106,156 @@ class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.add),
-                      label: const Text("Hitung CRR"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: const StadiumBorder(),
-                      ),
-                      onPressed: () {
-                        if (controller.formKey.currentState
-                                ?.saveAndValidate() ??
-                            false) {
-                          debugPrint(controller.formKey.currentState?.value
-                              .toString());
-                          controller.hitungCrrUsaha();
-                        } else {
-                          debugPrint(controller.formKey.currentState?.value
-                              .toString());
-                          debugPrint('validation failed');
-                        }
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 5.0,
-                  ),
-                  Expanded(
-                    child: ElevatedButton.icon(
-                      icon: const Icon(Icons.add),
-                      label: const Text("Submit"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
-                        shape: const StadiumBorder(),
-                      ),
-                      onPressed: () {
-                        if (controller.formKey.currentState
-                                ?.saveAndValidate() ??
-                            false) {
-                          debugPrint(controller.formKey.currentState?.value
-                              .toString());
-                          controller.saveAnalisaUsaha();
-                          Get.back();
-                        } else {
-                          debugPrint(controller.formKey.currentState?.value
-                              .toString());
-                          debugPrint('validation failed');
-                        }
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: ElevatedButton.icon(
+              //         icon: const Icon(Icons.add),
+              //         label: const Text("Hitung CRR"),
+              //         style: ElevatedButton.styleFrom(
+              //           backgroundColor: primaryColor,
+              //           shape: const StadiumBorder(),
+              //         ),
+              //         onPressed: () {
+              //           if (controller.formKey.currentState
+              //                   ?.saveAndValidate() ??
+              //               false) {
+              //             debugPrint(controller.formKey.currentState?.value
+              //                 .toString());
+              //             controller.hitungCrrUsaha();
+              //           } else {
+              //             debugPrint(controller.formKey.currentState?.value
+              //                 .toString());
+              //             debugPrint('validation failed');
+              //           }
+              //         },
+              //       ),
+              //     ),
+              //     const SizedBox(
+              //       width: 5.0,
+              //     ),
+              //     Expanded(
+              //       child: ElevatedButton.icon(
+              //         icon: const Icon(Icons.add),
+              //         label: const Text("Submit"),
+              //         style: ElevatedButton.styleFrom(
+              //           backgroundColor: primaryColor,
+              //           shape: const StadiumBorder(),
+              //         ),
+              //         onPressed: () {
+              //           if (controller.formKey.currentState
+              //                   ?.saveAndValidate() ??
+              //               false) {
+              //             debugPrint(controller.formKey.currentState?.value
+              //                 .toString());
+              //             controller.saveAnalisaUsaha();
+              //             Get.back();
+              //           } else {
+              //             debugPrint(controller.formKey.currentState?.value
+              //                 .toString());
+              //             debugPrint('validation failed');
+              //           }
+              //         },
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              GFButton(
+                onPressed: () {
+                  showBarModalBottomSheet(
+                    backgroundColor: secondaryColor,
+                    bounce: true,
+                    context: context,
+                    builder: (context) {
+                      controller.hitungCrrUsaha();
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        child: FormBuilder(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Center(
+                                child: Text(
+                                  'Yeay berhasil mendapatkan',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                              const Center(
+                                child: Text(
+                                  'CRR Jenis Usaha 🎉🎉🎉',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 24,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Center(
+                                child: GFImageOverlay(
+                                  height: 200,
+                                  width: 350,
+                                  shape: BoxShape.rectangle,
+                                  image: AssetImage(
+                                      'assets/images/home/tohru-okay.gif'),
+                                  boxFit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Center(
+                                child: Text(
+                                  'Total CRR : ${controller.crrJenisUsaha.text}',
+                                  style: GoogleFonts.spaceGrotesk(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              GFButton(
+                                onPressed: () {
+                                  if (controller.formKey.currentState
+                                          ?.saveAndValidate() ??
+                                      false) {
+                                    controller.saveAnalisaUsaha();
+                                    Get.back();
+                                    Get.back();
+                                    debugPrint(controller
+                                        .formKey.currentState?.value
+                                        .toString());
+                                  } else {
+                                    debugPrint(controller
+                                        .formKey.currentState?.value
+                                        .toString());
+                                    debugPrint('validation failed');
+                                  }
+                                },
+                                text: 'Simpan',
+                                color: primaryColor,
+                                size: GFSize.LARGE,
+                                fullWidthButton: true,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                text: 'Lihat Hasil',
+                color: primaryColor,
+                size: GFSize.LARGE,
+                fullWidthButton: true,
+              )
             ],
           ),
         ),

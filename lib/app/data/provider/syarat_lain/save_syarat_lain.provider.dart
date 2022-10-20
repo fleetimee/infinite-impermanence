@@ -33,4 +33,26 @@ class SyaratLainProvider {
       return Future.error(e);
     }
   }
+
+  Future<SyaratLain> saveSyaratLain(int id, Map body) async {
+    try {
+      final response = await httpClient.post(
+        Uri.parse('${baseUrl}debiturs/$id/syarat-lain/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        return SyaratLain.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

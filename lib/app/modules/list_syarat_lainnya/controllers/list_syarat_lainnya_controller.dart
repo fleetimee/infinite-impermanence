@@ -39,4 +39,33 @@ class ListSyaratLainnyaController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
+
+  void saveSyaratlainnya(id) {
+    final body = {
+      'keterangan': keterangan.text,
+    };
+
+    try {
+      isSyaratLainInputProcessing(true);
+      SyaratLainProvider().saveSyaratLain(id, body).then((resp) {
+        isSyaratLainInputProcessing(false);
+        Get.snackbar('Success', 'Data berhasil disimpan');
+        clearForm();
+        listSyaratLainnya.clear();
+        getAllSyaratLainnya(debiturId);
+        debiturController.fetchOneDebitur(debiturId);
+        Get.back();
+      }, onError: (e) {
+        isSyaratLainInputProcessing(false);
+        Get.snackbar('Error', e.toString());
+      });
+    } catch (e) {
+      isSyaratLainInputProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void clearForm() {
+    keterangan.clear();
+  }
 }

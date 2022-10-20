@@ -20,6 +20,15 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release"
+        },
+        {
+            "name": "akm (web rendering)",
+            "request": "launch",
+            "type": "dart",
+            "args": [
+                "--web-renderer html"
+            ],
+            "flutterMode": "release"
         }
     ]
 }

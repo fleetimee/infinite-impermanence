@@ -1,12 +1,15 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
@@ -30,7 +33,44 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
         ),
         appBar: AppBar(
           title: const Text('Syarat - Syarat'),
-          centerTitle: true,
+          actions: [
+            Obx(() {
+              if (controller.isSyaratLainInputProcessing.value) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                  ),
+                );
+              } else {
+                return Obx(() {
+                  if (controller.listSyaratLainnya.isEmpty) {
+                    return IconButton(
+                      onPressed: () {
+                        showBarModalBottomSheet(
+                          clipBehavior: Clip.antiAlias,
+                          bounce: true,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                          ),
+                          context: context,
+                          settings: RouteSettings(
+                              name: Routes.LIST_SYARAT_LAINNYA,
+                              arguments: data),
+                          builder: (context) => FormTambahSyaratLainnya(),
+                          isDismissible: false,
+                        );
+                      },
+                      icon: const Icon(FontAwesomeIcons.plus),
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                });
+              }
+            })
+          ],
         ),
         body: Obx(
           () {
@@ -194,5 +234,112 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
             }
           },
         ));
+  }
+}
+
+class FormTambahSyaratLainnya extends StatelessWidget {
+  FormTambahSyaratLainnya({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListSyaratLainnyaController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 250,
+      padding: const EdgeInsets.all(16),
+      child: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text(
+              'Form Tambah Syarat Lainnya',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 20,
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            FormBuilder(
+              key: controller.formKey,
+              autovalidateMode: AutovalidateMode.disabled,
+              child: FormInputSyaratLainnya(controller: controller),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FormInputSyaratLainnya extends StatelessWidget {
+  FormInputSyaratLainnya({Key? key, required this.controller})
+      : super(key: key);
+
+  final ListSyaratLainnyaController controller;
+  final data = Get.arguments;
+  // TODO: Need redesign list viewnya
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Syarat Lainnya',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'deskripsi_pendek',
+                controller: controller.keterangan,
+                decoration: const InputDecoration(
+                  labelText: 'Syarat',
+                  hintText: 'Mesin Pemisah Gabah...',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: GFButton(
+              onPressed: () {
+                if (controller.formKey.currentState?.saveAndValidate() ??
+                    false) {
+                  controller.saveSyaratlainnya(data);
+                  Get.back();
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                } else {
+                  debugPrint(controller.formKey.currentState?.value.toString());
+                  debugPrint('validation failed');
+                }
+              },
+              text: 'Simpan',
+              color: primaryColor,
+              fullWidthButton: true,
+              elevation: 10,
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

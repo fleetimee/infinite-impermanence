@@ -18,6 +18,7 @@ class InsightDebiturController extends GetxController
     super.onInit();
     fetchAgunan(debiturId);
     fetchOneDebitur(debiturId);
+    // fetchSyaratLainnya(debiturId);
     // Define how many tabs you want to show
     tabController = TabController(length: 1, vsync: this);
   }
@@ -59,6 +60,7 @@ class InsightDebiturController extends GetxController
   // Variable for loading
   var isDataLoading = false.obs;
   var isAgunanLoading = false.obs;
+  var isSyaratLainLoading = false.obs;
 
   // Fetch Debitur by id
   void fetchOneDebitur(int id) async {
@@ -93,4 +95,19 @@ class InsightDebiturController extends GetxController
       Get.snackbar('Error', e.toString());
     }
   }
+
+  // void fetchSyaratLainnya(int id) async {
+  //   try {
+  //     isSyaratLainLoading(true);
+  //     InsightDebiturProvider().fetchSyaratLain(debiturId).then((resp) {
+  //       isSyaratLainLoading(false);
+  //     }, onError: (err) {
+  //       isSyaratLainLoading(false);
+  //       Get.snackbar('Error', err.toString());
+  //     });
+  //   } catch (e) {
+  //     isSyaratLainLoading(false);
+  //     Get.snackbar('Error', e.toString());
+  //   }
+  // }
 }

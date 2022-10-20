@@ -76,12 +76,6 @@ import '../modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
 
-// ignore_for_file: constant_identifier_names
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
 part 'app_routes.dart';
 
 class AppPages {
@@ -361,7 +355,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_SYARAT_LAINNYA,
-      page: () => const ListSyaratLainnyaView(),
+      page: () => ListSyaratLainnyaView(),
       binding: ListSyaratLainnyaBinding(),
     ),
   ];

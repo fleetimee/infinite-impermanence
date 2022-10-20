@@ -206,7 +206,7 @@ class ViewButton extends StatelessWidget {
             ),
             onPressed: () {
               Get.toNamed(Routes.LIST_SYARAT_LAINNYA,
-                  arguments: controller.insightDebitur.value);
+                  arguments: controller.insightDebitur.value.id);
             },
             child: const Text(
               "Isi Syarat Lainnya",

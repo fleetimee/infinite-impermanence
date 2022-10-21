@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/analisa_agunan/menu_analisa_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
 import 'package:flutter/material.dart';
 
@@ -365,6 +366,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                         ),
                         MenuPilihAgunan(),
                         MenuMasukFormAgunan(),
+                        MenuAnalisaAgunan()
                       ],
                     );
                   }

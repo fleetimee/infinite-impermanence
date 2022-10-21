@@ -62,6 +62,7 @@ abstract class Routes {
   static const LIST_AGUNAN_LAINNYA = _Paths.LIST_AGUNAN_LAINNYA;
   static const AGUNAN_FORM_ONBOARDING = _Paths.AGUNAN_FORM_ONBOARDING;
   static const LIST_SYARAT_LAINNYA = _Paths.LIST_SYARAT_LAINNYA;
+  static const AGUNAN_ANALISIS = _Paths.AGUNAN_ANALISIS;
 }
 
 abstract class _Paths {
@@ -122,4 +123,5 @@ abstract class _Paths {
   static const LIST_AGUNAN_LAINNYA = '/list-agunan-lainnya';
   static const AGUNAN_FORM_ONBOARDING = '/agunan-form-onboarding';
   static const LIST_SYARAT_LAINNYA = '/list-syarat-lainnya';
+  static const AGUNAN_ANALISIS = '/agunan-analisis';
 }

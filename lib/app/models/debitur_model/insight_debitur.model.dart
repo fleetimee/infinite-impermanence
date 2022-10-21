@@ -47,6 +47,7 @@ class DebiturInsight {
     this.analisaJenisUsaha,
     this.agunan,
     this.syaratLain,
+    this.analisaAgunan,
   });
 
   int? id;
@@ -86,6 +87,7 @@ class DebiturInsight {
   AnalisaJenisUsaha? analisaJenisUsaha;
   List<Agunan>? agunan;
   List<SyaratLain>? syaratLain;
+  AnalisaAgunan? analisaAgunan;
 
   factory DebiturInsight.fromJson(Map<String, dynamic> json) => DebiturInsight(
         id: json["id"],
@@ -148,6 +150,9 @@ class DebiturInsight {
             ? null
             : List<SyaratLain>.from(
                 json["syaratLain"].map((x) => SyaratLain.fromJson(x))),
+        analisaAgunan: json["analisaAgunan"] == null
+            ? null
+            : AnalisaAgunan.fromJson(json["analisaAgunan"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -199,6 +204,39 @@ class DebiturInsight {
         "syaratLain": syaratLain == null
             ? null
             : List<dynamic>.from(syaratLain!.map((x) => x.toJson())),
+        "analisaAgunan": analisaAgunan == null ? null : analisaAgunan?.toJson(),
+      };
+}
+
+class AnalisaAgunan {
+  AnalisaAgunan({
+    this.id,
+    this.totalAgunan,
+    this.totalCrrAgunan,
+    this.ratioAgunan,
+    this.debiturId,
+  });
+
+  int? id;
+  String? totalAgunan;
+  String? totalCrrAgunan;
+  String? ratioAgunan;
+  int? debiturId;
+
+  factory AnalisaAgunan.fromJson(Map<String, dynamic> json) => AnalisaAgunan(
+        id: json["id"] ?? null,
+        totalAgunan: json["total_agunan"] ?? null,
+        totalCrrAgunan: json["total_crr_agunan"] ?? null,
+        ratioAgunan: json["ratio_agunan"] ?? null,
+        debiturId: json["debiturId"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "total_agunan": totalAgunan ?? null,
+        "total_crr_agunan": totalCrrAgunan ?? null,
+        "ratio_agunan": ratioAgunan ?? null,
+        "debiturId": debiturId ?? null,
       };
 }
 

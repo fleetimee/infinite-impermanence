@@ -62,7 +62,6 @@ class ListSyaratLainnyaController extends GetxController {
         listSyaratLainnya.clear();
         getAllSyaratLainnya(debiturId);
         debiturController.fetchOneDebitur(debiturId);
-        Get.back();
       }, onError: (e) {
         isSyaratLainInputProcessing(false);
         Get.snackbar('Error', e.toString());
@@ -75,19 +74,24 @@ class ListSyaratLainnyaController extends GetxController {
 
   void updateSyaratLainnya(int idDebitur, int id) {
     final body = {
-      'keterangan': keteranganEdit.text,
+      'keterangan': formKey.currentState?.fields['deskripsi_pendek']?.value,
     };
 
     try {
       isSyaratLainInputProcessing(true);
       SyaratLainProvider().putSyaratLain(idDebitur, id, body).then((resp) {
         isSyaratLainInputProcessing(false);
-        Get.snackbar('Success', 'Data berhasil diupdate');
+        Get.snackbar(
+          'Success',
+          'Data berhasil dirubah',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
         clearFormEdit();
         listSyaratLainnya.clear();
         getAllSyaratLainnya(debiturId);
         debiturController.fetchOneDebitur(debiturId);
-        Get.back();
       }, onError: (e) {
         isSyaratLainInputProcessing(false);
         Get.snackbar('Error', e.toString());

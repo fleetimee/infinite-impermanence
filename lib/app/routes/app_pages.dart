@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
+import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
+import '../modules/agunan_analisis/views/agunan_analisis_view.dart';
 import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_binding.dart';
 import '../modules/agunan_form_onboarding/views/agunan_form_onboarding_view.dart';
 import '../modules/agunan_pilih/bindings/agunan_pilih_binding.dart';
@@ -75,6 +77,8 @@ import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
 import '../modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
+
+// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
@@ -357,6 +361,11 @@ class AppPages {
       name: _Paths.LIST_SYARAT_LAINNYA,
       page: () => ListSyaratLainnyaView(),
       binding: ListSyaratLainnyaBinding(),
+    ),
+    GetPage(
+      name: _Paths.AGUNAN_ANALISIS,
+      page: () => const AgunanAnalisisView(),
+      binding: AgunanAnalisisBinding(),
     ),
   ];
 }

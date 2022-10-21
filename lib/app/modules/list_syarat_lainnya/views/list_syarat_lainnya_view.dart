@@ -309,8 +309,8 @@ class FormUpdateSyaratLainnya extends StatelessWidget {
               FormBuilderTextField(
                 name: 'deskripsi_pendek',
                 maxLines: 3,
-                controller: controller.keteranganEdit =
-                    TextEditingController(text: data[0].keterangan),
+                autofocus: true,
+                initialValue: data[0].keterangan.toString(),
                 decoration: const InputDecoration(
                   labelText: 'Syarat',
                   alignLabelWithHint: true,

@@ -55,4 +55,47 @@ class SyaratLainProvider {
       return Future.error(e);
     }
   }
+
+  Future<void> putSyaratLain(int idDebitur, int id, Map body) async {
+    try {
+      final response = await httpClient.put(
+        Uri.parse('${baseUrl}debiturs/$idDebitur/syarat-lain/$id/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<void> purgeSyaratLain(int idDebitur, int id) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}debiturs/$idDebitur/syarat-lain/$id/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

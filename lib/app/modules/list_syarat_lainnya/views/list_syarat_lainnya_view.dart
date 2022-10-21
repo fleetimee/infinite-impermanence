@@ -1,6 +1,7 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:akm/app/routes/app_pages.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -9,8 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
-import 'package:numerus/numerus.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 import '../controllers/list_syarat_lainnya_controller.dart';
@@ -42,32 +43,24 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
                   ),
                 );
               } else {
-                return Obx(() {
-                  if (controller.listSyaratLainnya.isEmpty) {
-                    return IconButton(
-                      onPressed: () {
-                        showBarModalBottomSheet(
-                          clipBehavior: Clip.antiAlias,
-                          bounce: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20),
-                            ),
-                          ),
-                          context: context,
-                          settings: RouteSettings(
-                              name: Routes.LIST_SYARAT_LAINNYA,
-                              arguments: data),
-                          builder: (context) => FormTambahSyaratLainnya(),
-                          isDismissible: false,
-                        );
-                      },
-                      icon: const Icon(FontAwesomeIcons.plus),
+                return IconButton(
+                  onPressed: () {
+                    showBarModalBottomSheet(
+                      clipBehavior: Clip.antiAlias,
+                      bounce: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      context: context,
+                      settings: RouteSettings(
+                          name: Routes.LIST_SYARAT_LAINNYA, arguments: data),
+                      builder: (context) => FormTambahSyaratLainnya(),
                     );
-                  } else {
-                    return const SizedBox();
-                  }
-                });
+                  },
+                  icon: const Icon(FontAwesomeIcons.plus),
+                );
               }
             })
           ],
@@ -92,25 +85,24 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
                             padding: const EdgeInsets.all(10),
                             spacing: 10,
                             onPressed: ((context) => {
-                                  // showBarModalBottomSheet(
-                                  //   clipBehavior: Clip.antiAlias,
-                                  //   bounce: true,
-                                  //   shape: const RoundedRectangleBorder(
-                                  //     borderRadius: BorderRadius.vertical(
-                                  //       top: Radius.circular(20),
-                                  //     ),
-                                  //   ),
-                                  //   context: context,
-                                  //   settings: RouteSettings(
-                                  //       name: Routes.LIST_AGUNAN_CASH,
-                                  //       arguments: [
-                                  //         controller.listAgunanPeralatan[index],
-                                  //         index,
-                                  //       ]),
-                                  //   builder: (context) =>
-                                  //       FormUbahAgunanPeralatan(),
-                                  //   isDismissible: false,
-                                  // )
+                                  showBarModalBottomSheet(
+                                    clipBehavior: Clip.antiAlias,
+                                    bounce: true,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(20),
+                                      ),
+                                    ),
+                                    context: context,
+                                    settings: RouteSettings(
+                                        name: Routes.LIST_SYARAT_LAINNYA,
+                                        arguments: [
+                                          controller.listSyaratLainnya[index],
+                                          index,
+                                        ]),
+                                    builder: (context) =>
+                                        FormUbahSyaratLainnya(),
+                                  )
                                 }),
                             backgroundColor: GFColors.WARNING,
                             foregroundColor: Colors.white,
@@ -122,35 +114,35 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
                             padding: const EdgeInsets.all(10),
                             spacing: 10,
                             onPressed: ((context) => {
-                                  // AwesomeDialog(
-                                  //   context: Get.context!,
-                                  //   dialogType: DialogType.question,
-                                  //   animType: AnimType.bottomSlide,
-                                  //   dialogBackgroundColor: primaryColor,
-                                  //   titleTextStyle: GoogleFonts.poppins(
-                                  //     color: secondaryColor,
-                                  //     fontSize: 30,
-                                  //     fontWeight: FontWeight.w500,
-                                  //   ),
-                                  //   descTextStyle: GoogleFonts.poppins(
-                                  //     color: secondaryColor,
-                                  //     fontSize: 18,
-                                  //     fontWeight: FontWeight.w400,
-                                  //   ),
-                                  //   title: 'Konfirmasi',
-                                  //   bodyHeaderDistance: 25,
-                                  //   desc:
-                                  //       'Apakah yakin untuk menghapus item ini ?',
-                                  //   btnOkOnPress: () {
-                                  //     controller.deleteAgunanPeralatan(
-                                  //         data.id,
-                                  //         controller
-                                  //             .listAgunanPeralatan[index].id);
-                                  //   },
-                                  //   btnOkText: 'Oke sip',
-                                  //   btnCancelText: 'Affa iyh',
-                                  //   btnCancelOnPress: () {},
-                                  // ).show()
+                                  AwesomeDialog(
+                                    context: Get.context!,
+                                    dialogType: DialogType.question,
+                                    animType: AnimType.bottomSlide,
+                                    dialogBackgroundColor: primaryColor,
+                                    titleTextStyle: GoogleFonts.poppins(
+                                      color: secondaryColor,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    descTextStyle: GoogleFonts.poppins(
+                                      color: secondaryColor,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    title: 'Konfirmasi',
+                                    bodyHeaderDistance: 25,
+                                    desc:
+                                        'Apakah yakin untuk menghapus item ini ?',
+                                    btnOkOnPress: () {
+                                      controller.deleteSyaratLainnya(
+                                          data,
+                                          controller
+                                              .listSyaratLainnya[index].id);
+                                    },
+                                    btnOkText: 'Oke sip',
+                                    btnCancelText: 'Affa iyh',
+                                    btnCancelOnPress: () {},
+                                  ).show()
                                 }),
                             backgroundColor: GFColors.DANGER,
                             foregroundColor: Colors.white,
@@ -163,45 +155,25 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: GFListTile(
                           color: secondaryColor,
+                          avatar: GFAvatar(
+                            backgroundColor: primaryColor,
+                            child: Text(
+                              '# ${index + 1}',
+                              style: const TextStyle(
+                                color: secondaryColor,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Agunan Peralatan ${(index + 1).toRomanNumeralString()}',
+                                '${controller.listSyaratLainnya[index].keterangan}',
                                 style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.w800,
                                 ),
-                              ),
-                              const Divider(
-                                color: Colors.black,
-                                thickness: 1,
-                              )
-                            ],
-                          ),
-                          subTitle: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text(
-                                'DATA JAMINAN',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5.0,
-                              ),
-                              Text(
-                                controller.listSyaratLainnya[index].keterangan
-                                    .toString(),
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 5.0,
                               ),
                             ],
                           ),
@@ -237,52 +209,82 @@ class ListSyaratLainnyaView extends GetView<ListSyaratLainnyaController> {
   }
 }
 
-class FormTambahSyaratLainnya extends StatelessWidget {
-  FormTambahSyaratLainnya({Key? key}) : super(key: key);
+class FormUbahSyaratLainnya extends StatelessWidget {
+  FormUbahSyaratLainnya({Key? key}) : super(key: key);
 
   final controller = Get.put(ListSyaratLainnyaController());
-  final data = Get.arguments;
+  final data = Get.arguments[0];
+  final index = Get.arguments[1];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
+      height: 600,
       padding: const EdgeInsets.all(16),
-      child: SingleChildScrollView(
-        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text(
-              'Form Tambah Syarat Lainnya',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Form Ubah Syarat Lainnya',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilder(
+                key: controller.formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: FormUpdateSyaratLainnya(controller: controller),
+              ),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: Center(
+              child: GFButton(
+                onPressed: () {
+                  if (controller.formKey.currentState?.saveAndValidate() ??
+                      false) {
+                    controller.updateSyaratLainnya(
+                        data.debiturId,
+                        int.parse(
+                            controller.listSyaratLainnya[index].id.toString()));
+                    Get.back();
+                    debugPrint(
+                        controller.formKey.currentState?.value.toString());
+                  } else {
+                    debugPrint(
+                        controller.formKey.currentState?.value.toString());
+                    debugPrint('validation failed');
+                  }
+                },
+                text: 'Simpan',
+                color: primaryColor,
+                fullWidthButton: true,
+                elevation: 10,
               ),
             ),
-            const SizedBox(
-              height: 12.0,
-            ),
-            FormBuilder(
-              key: controller.formKey,
-              autovalidateMode: AutovalidateMode.disabled,
-              child: FormInputSyaratLainnya(controller: controller),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
 
-class FormInputSyaratLainnya extends StatelessWidget {
-  FormInputSyaratLainnya({Key? key, required this.controller})
+class FormUpdateSyaratLainnya extends StatelessWidget {
+  FormUpdateSyaratLainnya({Key? key, required this.controller})
       : super(key: key);
 
   final ListSyaratLainnyaController controller;
   final data = Get.arguments;
-  // TODO: Need redesign list viewnya
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -306,10 +308,13 @@ class FormInputSyaratLainnya extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'deskripsi_pendek',
-                controller: controller.keterangan,
+                maxLines: 3,
+                controller: controller.keteranganEdit =
+                    TextEditingController(text: data[0].keterangan),
                 decoration: const InputDecoration(
                   labelText: 'Syarat',
-                  hintText: 'Mesin Pemisah Gabah...',
+                  alignLabelWithHint: true,
+                  hintText: 'Memiliki rekening tabungan di PT BANK BPD DIY',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
@@ -319,24 +324,120 @@ class FormInputSyaratLainnya extends StatelessWidget {
               ),
             ],
           ),
-          Center(
-            child: GFButton(
-              onPressed: () {
-                if (controller.formKey.currentState?.saveAndValidate() ??
-                    false) {
-                  controller.saveSyaratlainnya(data);
-                  Get.back();
-                  debugPrint(controller.formKey.currentState?.value.toString());
-                } else {
-                  debugPrint(controller.formKey.currentState?.value.toString());
-                  debugPrint('validation failed');
-                }
-              },
-              text: 'Simpan',
-              color: primaryColor,
-              fullWidthButton: true,
-              elevation: 10,
+        ],
+      ),
+    );
+  }
+}
+
+class FormTambahSyaratLainnya extends StatelessWidget {
+  FormTambahSyaratLainnya({Key? key}) : super(key: key);
+
+  final controller = Get.put(ListSyaratLainnyaController());
+  final data = Get.arguments;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 600,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Form Tambah Syarat Lainnya',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20,
+                ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              FormBuilder(
+                key: controller.formKey,
+                autovalidateMode: AutovalidateMode.disabled,
+                child: FormInputSyaratLainnya(controller: controller),
+              ),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: Center(
+              child: GFButton(
+                onPressed: () {
+                  if (controller.formKey.currentState?.saveAndValidate() ??
+                      false) {
+                    controller.saveSyaratlainnya(data);
+                    Get.back();
+                    debugPrint(
+                        controller.formKey.currentState?.value.toString());
+                  } else {
+                    debugPrint(
+                        controller.formKey.currentState?.value.toString());
+                    debugPrint('validation failed');
+                  }
+                },
+                text: 'Simpan',
+                color: primaryColor,
+                fullWidthButton: true,
+                elevation: 10,
+              ),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class FormInputSyaratLainnya extends StatelessWidget {
+  FormInputSyaratLainnya({Key? key, required this.controller})
+      : super(key: key);
+
+  final ListSyaratLainnyaController controller;
+  final data = Get.arguments;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Syarat Lainnya',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              FormBuilderTextField(
+                name: 'deskripsi_pendek',
+                maxLines: 3,
+                controller: controller.keterangan,
+                decoration: const InputDecoration(
+                  labelText: 'Syarat',
+                  alignLabelWithHint: true,
+                  hintText: 'Memiliki rekening tabungan di PT BANK BPD DIY',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),

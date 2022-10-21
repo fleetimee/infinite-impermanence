@@ -377,6 +377,10 @@ class FormUpdateAgunanPeralatan extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
+  final ListAgunanPeralatanController controller;
+  final data = Get.arguments[0];
+  final index = Get.arguments[1];
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -572,10 +576,6 @@ class FormUpdateAgunanPeralatan extends StatelessWidget {
       ),
     );
   }
-
-  final ListAgunanPeralatanController controller;
-  final data = Get.arguments[0];
-  final index = Get.arguments[1];
 }
 
 class FormTambahAgunanPeralatan extends StatelessWidget {

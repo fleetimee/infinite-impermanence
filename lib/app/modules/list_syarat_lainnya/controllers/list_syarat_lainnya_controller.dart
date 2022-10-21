@@ -23,6 +23,7 @@ class ListSyaratLainnyaController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
   var keterangan = TextEditingController();
+  var keteranganEdit = TextEditingController();
 
   void getAllSyaratLainnya(int id) {
     try {
@@ -48,8 +49,15 @@ class ListSyaratLainnyaController extends GetxController {
     try {
       isSyaratLainInputProcessing(true);
       SyaratLainProvider().saveSyaratLain(id, body).then((resp) {
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
         isSyaratLainInputProcessing(false);
-        Get.snackbar('Success', 'Data berhasil disimpan');
+
         clearForm();
         listSyaratLainnya.clear();
         getAllSyaratLainnya(debiturId);
@@ -65,7 +73,61 @@ class ListSyaratLainnyaController extends GetxController {
     }
   }
 
+  void updateSyaratLainnya(int idDebitur, int id) {
+    final body = {
+      'keterangan': keteranganEdit.text,
+    };
+
+    try {
+      isSyaratLainInputProcessing(true);
+      SyaratLainProvider().putSyaratLain(idDebitur, id, body).then((resp) {
+        isSyaratLainInputProcessing(false);
+        Get.snackbar('Success', 'Data berhasil diupdate');
+        clearFormEdit();
+        listSyaratLainnya.clear();
+        getAllSyaratLainnya(debiturId);
+        debiturController.fetchOneDebitur(debiturId);
+        Get.back();
+      }, onError: (e) {
+        isSyaratLainInputProcessing(false);
+        Get.snackbar('Error', e.toString());
+      });
+    } catch (e) {
+      isSyaratLainInputProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void deleteSyaratLainnya(int idDebitur, id) {
+    try {
+      isSyaratLainInputProcessing(true);
+      SyaratLainProvider().purgeSyaratLain(idDebitur, id).then((resp) {
+        isSyaratLainInputProcessing(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        listSyaratLainnya.clear();
+        getAllSyaratLainnya(debiturId);
+        debiturController.fetchOneDebitur(debiturId);
+      }, onError: (e) {
+        isSyaratLainInputProcessing(false);
+        Get.snackbar('Error', e.toString());
+      });
+    } catch (e) {
+      isSyaratLainInputProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
   void clearForm() {
     keterangan.clear();
+  }
+
+  void clearFormEdit() {
+    keteranganEdit.clear();
   }
 }

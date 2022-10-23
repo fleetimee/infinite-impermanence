@@ -4,6 +4,8 @@ import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
 import '../modules/agunan_analisis/views/agunan_analisis_view.dart';
+import '../modules/agunan_analisis_calc/bindings/agunan_analisis_calc_binding.dart';
+import '../modules/agunan_analisis_calc/views/agunan_analisis_calc_view.dart';
 import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_binding.dart';
 import '../modules/agunan_form_onboarding/views/agunan_form_onboarding_view.dart';
 import '../modules/agunan_pilih/bindings/agunan_pilih_binding.dart';
@@ -366,6 +368,11 @@ class AppPages {
       name: _Paths.AGUNAN_ANALISIS,
       page: () => AgunanAnalisisView(),
       binding: AgunanAnalisisBinding(),
+    ),
+    GetPage(
+      name: _Paths.AGUNAN_ANALISIS_CALC,
+      page: () => AgunanAnalisisCalcView(),
+      binding: AgunanAnalisisCalcBinding(),
     ),
   ];
 }

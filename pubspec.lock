@@ -280,7 +280,7 @@ packages:
       name: faker_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.8"
+    version: "0.1.9"
   fancy_shimmer_image:
     dependency: "direct main"
     description:

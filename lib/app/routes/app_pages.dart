@@ -364,7 +364,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AGUNAN_ANALISIS,
-      page: () => const AgunanAnalisisView(),
+      page: () => AgunanAnalisisView(),
       binding: AgunanAnalisisBinding(),
     ),
   ];

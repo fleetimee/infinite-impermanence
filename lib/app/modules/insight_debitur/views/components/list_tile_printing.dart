@@ -56,7 +56,7 @@ class PrintPutusan extends StatelessWidget {
                   colorText: Colors.white,
                 );
               },
-              text: "NOT READY",
+              text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
             ),
@@ -109,7 +109,7 @@ class PrintUsulan extends StatelessWidget {
                   colorText: Colors.white,
                 );
               },
-              text: "NOT READY",
+              text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
             ),
@@ -162,7 +162,7 @@ class PrintKeuangan extends StatelessWidget {
                   colorText: Colors.white,
                 );
               },
-              text: "NOT READY",
+              text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
             ),
@@ -255,7 +255,7 @@ class BisnisPrint extends StatelessWidget {
                   colorText: Colors.white,
                 );
               },
-              text: "NOT READY",
+              text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
             ),
@@ -308,7 +308,7 @@ class KarakterPrint extends StatelessWidget {
                   colorText: Colors.white,
                 );
               },
-              text: "NOT READY",
+              text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
             ),
@@ -361,7 +361,7 @@ class JenisUsahaPrint extends StatelessWidget {
                   colorText: Colors.white,
                 );
               },
-              text: "NOT READY",
+              text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
             ),

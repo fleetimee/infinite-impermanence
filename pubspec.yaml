@@ -15,7 +15,7 @@ dependencies:
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
   extended_masked_text: ^2.3.1
-  faker_dart: ^0.1.8
+  faker_dart: ^0.1.9
   fancy_shimmer_image: ^2.0.2
   file_picker: ^4.6.1
   filter_list: ^1.0.2

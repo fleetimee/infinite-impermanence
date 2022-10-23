@@ -35,7 +35,7 @@ class RugiLabaView extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
             autoFocusOnValidationFailure: true,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.disabled,
             key: controller.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

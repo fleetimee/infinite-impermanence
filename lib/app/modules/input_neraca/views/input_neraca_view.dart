@@ -33,7 +33,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
             autoFocusOnValidationFailure: true,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
+            autovalidateMode: AutovalidateMode.disabled,
             key: controller.formKey,
             onChanged: () {
               controller.formKey.currentState!.save();

@@ -8,6 +8,7 @@ import 'package:akm/app/data/provider/agunan/agunan_tanah/agunan_tanah.provider.
 import 'package:akm/app/data/provider/agunan/agunan_tanah_bangunan/agunan_tanah_bangunan_provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -27,8 +28,8 @@ class AgunanAnalisisCalcController extends GetxController {
   }
 
   final data = Get.arguments;
-
   final agunanAnalisis = Get.put(AgunanAnalisisController());
+  final debiturController = Get.put(InsightDebiturController());
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -67,6 +68,7 @@ class AgunanAnalisisCalcController extends GetxController {
       agunanAnalisis.isAnalisaAgunanProcessing(true);
       AnalisaAgunanProvider().deployAnalisaAgunan(id, body).then((resp) {
         agunanAnalisis.isAnalisaAgunanProcessing(false);
+        debiturController.fetchOneDebitur(data[7].id);
         clearForm();
         Get.snackbar(
           'Success',

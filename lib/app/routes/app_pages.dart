@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -367,6 +368,11 @@ class AppPages {
     GetPage(
       name: _Paths.AGUNAN_ANALISIS,
       page: () => AgunanAnalisisView(),
+      binding: AgunanAnalisisBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIHAT_AGUNAN_ANALISIS,
+      page: () => const LihatAgunanAnalisisViewView(),
       binding: AgunanAnalisisBinding(),
     ),
     GetPage(

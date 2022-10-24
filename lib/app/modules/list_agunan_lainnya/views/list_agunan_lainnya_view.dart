@@ -438,6 +438,7 @@ class FormInputAgunanLainnya extends StatelessWidget {
                     thousandSeparator: '.',
                     precision: 0,
                     initialValue: double.parse(
+                        // TODO: Masih bermasalah
                         data[1].inputKeuangan.kreditDiusulkan.toString()),
                   ).text,
                 ),

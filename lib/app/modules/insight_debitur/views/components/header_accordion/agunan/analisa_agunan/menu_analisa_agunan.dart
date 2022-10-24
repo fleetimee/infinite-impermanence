@@ -107,78 +107,75 @@ class MenuAnalisaAgunan extends StatelessWidget {
                   } else {
                     return Row(
                       children: [
-                        controller.insightDebitur.value.analisaAgunan == null
+                        controller.insightDebitur.value.inputKeuangan == null
                             ? Expanded(
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blueGrey,
+                                    backgroundColor: Colors.redAccent,
                                   ),
                                   onPressed: () {
-                                    Get.toNamed(Routes.AGUNAN_ANALISIS,
-                                        arguments:
-                                            controller.insightDebitur.value);
+                                    Get.snackbar('Error', 'Dibilangin batu',
+                                        backgroundColor: Colors.redAccent,
+                                        colorText: Colors.white);
                                   },
                                   child: const Text(
-                                    "Input",
+                                    "Input Keuangan terlebih dahulu",
                                     style: TextStyle(
-                                      color: secondaryColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
                               )
-                            : Expanded(
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blueGrey,
-                                        ),
-                                        onPressed: () {
-                                          // Get.toNamed(
-                                          //     Routes.LIHAT_USAHA_ANALISIS,
-                                          //     arguments: controller
-                                          //         .insightDebitur.value);
-                                        },
-                                        child: const Text(
-                                          "Lihat",
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                            : controller.insightDebitur.value.analisaAgunan ==
+                                    null
+                                ? Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blueGrey,
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(Routes.AGUNAN_ANALISIS,
+                                            arguments: controller
+                                                .insightDebitur.value);
+                                      },
+                                      child: const Text(
+                                        "Input",
+                                        style: TextStyle(
+                                          color: secondaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 10.0,
-                                    ),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.blueGrey,
-                                        ),
-                                        onPressed: () {
-                                          // Get.toNamed(
-                                          //     Routes.EDIT_USAHA_ANALISIS,
-                                          //     arguments: controller
-                                          //         .insightDebitur.value);
-                                        },
-                                        child: const Text(
-                                          "Edit",
-                                          style: TextStyle(
-                                            color: secondaryColor,
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
+                                  )
+                                : Expanded(
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.blueGrey,
+                                            ),
+                                            onPressed: () {
+                                              Get.toNamed(
+                                                  Routes.LIHAT_AGUNAN_ANALISIS,
+                                                  arguments: controller
+                                                      .insightDebitur.value);
+                                            },
+                                            child: const Text(
+                                              "Lihat",
+                                              style: TextStyle(
+                                                color: secondaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
+                                  ),
                       ],
                     );
                   }

@@ -108,30 +108,51 @@ class MenuPilihAgunan extends StatelessWidget {
                   } else {
                     return Row(
                       children: [
-                        controller.insightDebitur.value.agunan!.isEmpty == true
+                        controller.insightDebitur.value.inputKeuangan == null
                             ? Expanded(
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blueGrey,
+                                    backgroundColor: Colors.redAccent,
                                   ),
                                   onPressed: () {
-                                    Get.toNamed(Routes.AGUNAN_PILIH,
-                                        arguments:
-                                            controller.insightDebitur.value);
+                                    Get.snackbar('Error', 'Dibilangin batu',
+                                        backgroundColor: Colors.redAccent,
+                                        colorText: Colors.white);
                                   },
                                   child: const Text(
-                                    "Input",
+                                    "Input Keuangan terlebih dahulu",
                                     style: TextStyle(
-                                      color: secondaryColor,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
                               )
-                            : Expanded(
-                                child: ViewButton(controller: controller),
-                              ),
+                            : controller.insightDebitur.value.agunan!.isEmpty ==
+                                    true
+                                ? Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.blueGrey,
+                                      ),
+                                      onPressed: () {
+                                        Get.toNamed(Routes.AGUNAN_PILIH,
+                                            arguments: controller
+                                                .insightDebitur.value);
+                                      },
+                                      child: const Text(
+                                        "Input",
+                                        style: TextStyle(
+                                          color: secondaryColor,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Expanded(
+                                    child: ViewButton(controller: controller),
+                                  ),
                       ],
                     );
                   }

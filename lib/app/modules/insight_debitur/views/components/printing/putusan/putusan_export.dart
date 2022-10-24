@@ -1,6 +1,4 @@
 // 🐦 Flutter imports:
-
-// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
@@ -64,9 +62,8 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 ),
               ),
               columnWidths: {
-                0: const FlexColumnWidth(1),
-                1: const FlexColumnWidth(0.2),
-                2: const FlexColumnWidth(1),
+                0: const FlexColumnWidth(0.2),
+                1: const FlexColumnWidth(0.8),
               },
               tableWidth: TableWidth.max,
               children: [

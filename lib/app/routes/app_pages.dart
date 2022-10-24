@@ -1,4 +1,5 @@
 import 'package:akm/app/modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/printing/inputan/inputan_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -131,6 +132,11 @@ class AppPages {
       name: _Paths.EDIT_BISNIS_ANALISIS,
       page: () => EditBisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.INPUT_PRINT,
+      page: () => InputPreview(),
       transition: Transition.cupertino,
     ),
     GetPage(

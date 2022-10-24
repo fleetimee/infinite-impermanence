@@ -11,6 +11,59 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 
+class PrintInput extends StatelessWidget {
+  PrintInput({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GFListTile(
+      title: const Text(
+        'Input',
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      avatar: const GFAvatar(
+        backgroundColor: primaryColor,
+        child: Icon(
+          FontAwesomeIcons.vaadin,
+          color: secondaryColor,
+        ),
+      ),
+      subTitleText: 'Print inputan',
+      icon: controller.insightDebitur.value.analisaKeuangan != null
+          ? GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.INPUT_PRINT,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+            )
+          : GFButton(
+              onPressed: () {
+                Get.snackbar(
+                  'Error',
+                  'Data Keuangan belum lengkap',
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                );
+              },
+              text: "N/A",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+            ),
+    );
+  }
+}
+
 class PrintPutusan extends StatelessWidget {
   PrintPutusan({
     Key? key,

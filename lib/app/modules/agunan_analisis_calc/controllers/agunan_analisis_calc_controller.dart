@@ -1,3 +1,4 @@
+import 'package:akm/app/data/provider/agunan/agunan_analisa/agunan_analisa.provider.dart';
 import 'package:akm/app/data/provider/agunan/agunan_cash/agunan_cash.provider.dart';
 import 'package:akm/app/data/provider/agunan/agunan_kendaraan/agunan_kendaraaan.provider.dart';
 import 'package:akm/app/data/provider/agunan/agunan_lainnya/agunan_lainnya.provider.dart';
@@ -6,6 +7,7 @@ import 'package:akm/app/data/provider/agunan/agunan_peralatan/agunan_peralatan.p
 import 'package:akm/app/data/provider/agunan/agunan_tanah/agunan_tanah.provider.dart';
 import 'package:akm/app/data/provider/agunan/agunan_tanah_bangunan/agunan_tanah_bangunan_provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -25,6 +27,8 @@ class AgunanAnalisisCalcController extends GetxController {
   }
 
   final data = Get.arguments;
+
+  final agunanAnalisis = Get.put(AgunanAnalisisController());
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -51,6 +55,41 @@ class AgunanAnalisisCalcController extends GetxController {
       initialValue: 0);
   var ratioAgunan = TextEditingController(text: '0');
   var crrAgunan = TextEditingController(text: '0');
+
+  void saveAnalisaAgunan(id) {
+    final body = {
+      "total_agunan": grandTotal.text.replaceAll('.', ''),
+      "total_crr_agunan": crrAgunan.text,
+      "ratio_agunan": ratioAgunan.text,
+    };
+
+    try {
+      agunanAnalisis.isAnalisaAgunanProcessing(true);
+      AnalisaAgunanProvider().deployAnalisaAgunan(id, body).then((resp) {
+        agunanAnalisis.isAnalisaAgunanProcessing(false);
+        clearForm();
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }, onError: (e) {
+        agunanAnalisis.isAnalisaAgunanProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      agunanAnalisis.isAnalisaAgunanProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
 
   var listAgunanTanahAnalisis = List<FormTanah>.empty(growable: true).obs;
   final isAgunanTanahAnalisisProcessing = false.obs;
@@ -322,5 +361,12 @@ class AgunanAnalisisCalcController extends GetxController {
 
       crrAgunan.text = result.toStringAsFixed(1);
     }
+  }
+
+  void clearForm() {
+    crrAgunan.clear();
+    grandTotal.clear();
+    ratioAgunan.clear();
+    kreditYangDiajukan.clear();
   }
 }

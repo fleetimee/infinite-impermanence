@@ -13,28 +13,6 @@ import 'package:akm/app/common/constant.dart';
 class AnalisaAgunanProvider {
   final httpClient = http.Client();
 
-  // Future<AnalisaAgunan> fetchAnalisaAgunan(int id) async {
-  //   try {
-  //     final response = await httpClient.get(
-  //       Uri.parse('${baseUrl}debiturs/$id/analisa-agunan/'),
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Accept': 'application/json'
-  //       },
-  //     );
-  //     debugPrint(response.body);
-  //     if (response.statusCode == 200) {
-  //       var data = jsonDecode(response.body);
-  //       debugPrint(data.toString());
-  //       return AnalisaAgunan.fromJson(data);
-  //     } else {
-  //       throw Exception('Failed to load data');
-  //     }
-  //   } catch (e) {
-  //     return Future.error(e);
-  //   }
-  // }
-
   Future<List<AnalisaAgunan>> fetchAnalisaAgunan(int id) async {
     try {
       final response = await httpClient.get(
@@ -49,6 +27,29 @@ class AnalisaAgunanProvider {
         var data = jsonDecode(response.body);
         debugPrint(data.toString());
         return (data as List).map((e) => AnalisaAgunan.fromJson(e)).toList();
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<AnalisaAgunan> deployAnalisaAgunan(int id, Map body) async {
+    try {
+      final response = await httpClient.post(
+        Uri.parse('${baseUrl}debiturs/$id/analisa-agunan/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 201) {
+        var data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return AnalisaAgunan.fromJson(data);
       } else {
         throw Exception('Failed to load data');
       }

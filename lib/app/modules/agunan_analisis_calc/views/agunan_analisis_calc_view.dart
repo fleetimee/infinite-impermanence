@@ -1198,7 +1198,11 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                             ),
                                             GFButton(
                                               onPressed: () {
-                                                controller.hitungRatioDanCrr();
+                                                controller.saveAnalisaAgunan(
+                                                    data[7].id);
+                                                Get.back();
+                                                Get.back();
+                                                Get.back();
                                               },
                                               text: 'Simpan',
                                               color: primaryColor,

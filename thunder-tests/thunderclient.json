@@ -1613,11 +1613,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "f107470a-e85e-423c-b48d-f048e4cf0e49",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/99/analisa-agunan/2",
+    "url": "{{baseUrl}}api/v1/debiturs/99/analisa-agunan/8",
     "method": "DELETE",
     "sortNum": 780000,
     "created": "2022-10-21T08:42:19.245Z",
-    "modified": "2022-10-22T03:36:57.153Z",
+    "modified": "2022-10-24T07:44:55.594Z",
     "headers": [],
     "params": [],
     "tests": []

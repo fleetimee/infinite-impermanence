@@ -788,7 +788,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                   padding: const EdgeInsets.all(16),
                   color: primaryColor.withOpacity(0.95),
                   height: 75,
-                  width: 480,
+                  width: MediaQuery.of(context).size.width,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

@@ -60,8 +60,6 @@ class SimulasiTetapController extends GetxController {
         fontWeight: FontWeight.w400,
       ),
       btnOkOnPress: () {},
-      dismissOnTouchOutside: false,
-      dismissOnBackKeyPress: false,
       btnOkText: 'Baik, saya mengerti',
     ).show();
   }

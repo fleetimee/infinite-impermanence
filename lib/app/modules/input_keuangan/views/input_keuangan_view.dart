@@ -62,7 +62,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
               child: FormBuilder(
                 key: controller.formKey,
                 autoFocusOnValidationFailure: true,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+                autovalidateMode: AutovalidateMode.disabled,
                 child: TabBarView(
                   controller: controller.tabController,
                   children: [

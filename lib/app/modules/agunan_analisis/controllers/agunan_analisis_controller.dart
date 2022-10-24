@@ -9,8 +9,6 @@ class AgunanAnalisisController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
-  var totalCrrAgunan = TextEditingController();
-
   // void getAnalisaAgunan(int id) {
   //   try {
   //     isAnalisaAgunanProcessing(true);

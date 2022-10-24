@@ -593,7 +593,7 @@
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-10-22T03:44:28.052Z",
+    "modified": "2022-10-23T09:41:27.826Z",
     "headers": [],
     "params": [
       {
@@ -1090,11 +1090,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/122/agunan/",
+    "url": "{{baseUrl}}api/v1/debiturs/99/agunan/",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-29T01:19:31.962Z",
-    "modified": "2022-10-20T06:13:05.579Z",
+    "modified": "2022-10-24T02:06:16.951Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1613,11 +1613,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "f107470a-e85e-423c-b48d-f048e4cf0e49",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/99/analisa-agunan/2",
+    "url": "{{baseUrl}}api/v1/debiturs/99/analisa-agunan/8",
     "method": "DELETE",
     "sortNum": 780000,
     "created": "2022-10-21T08:42:19.245Z",
-    "modified": "2022-10-22T03:36:57.153Z",
+    "modified": "2022-10-24T07:44:55.594Z",
     "headers": [],
     "params": [],
     "tests": []

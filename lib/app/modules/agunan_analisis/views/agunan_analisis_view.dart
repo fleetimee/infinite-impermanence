@@ -12,6 +12,7 @@ class AgunanAnalisisView extends GetView<AgunanAnalisisController> {
   AgunanAnalisisView({Key? key}) : super(key: key);
 
   final insightDebiturController = Get.put(InsightDebiturController());
+  final data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +78,7 @@ class AgunanAnalisisView extends GetView<AgunanAnalisisController> {
                                     (element) => element.kodeAgunan == 7))
                           else
                             Agunan(),
+                          data
                         ]);
                       },
                       text: "READY",

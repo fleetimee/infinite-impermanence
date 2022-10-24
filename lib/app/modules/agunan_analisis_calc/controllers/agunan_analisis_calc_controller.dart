@@ -21,12 +21,15 @@ class AgunanAnalisisCalcController extends GetxController {
     getAllAgunanPeralatanAnalisis(data[3].id ?? 0);
     getAllAgunanCashAnalisis(data[4].id ?? 0);
     getAllAgunanLosAnalisis(data[5].id ?? 0);
+    getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
   }
 
   final data = Get.arguments;
 
   final formKey = GlobalKey<FormBuilderState>();
 
+  var kreditYangDiajukan = MoneyMaskedTextController(
+      thousandSeparator: '.', decimalSeparator: ',', precision: 0);
   var totalAgunanTanah = MoneyMaskedTextController(
       thousandSeparator: '.', decimalSeparator: '', precision: 0);
   var totalAgunanTanahBangunan = MoneyMaskedTextController(
@@ -39,8 +42,15 @@ class AgunanAnalisisCalcController extends GetxController {
       thousandSeparator: '.', decimalSeparator: '', precision: 0);
   var totalAgunanLos = MoneyMaskedTextController(
       thousandSeparator: '.', decimalSeparator: '', precision: 0);
-  var listAgunanLainnya = MoneyMaskedTextController(
+  var totalAgunanLainnya = MoneyMaskedTextController(
       thousandSeparator: '.', decimalSeparator: '', precision: 0);
+  var grandTotal = MoneyMaskedTextController(
+      thousandSeparator: '.',
+      decimalSeparator: '',
+      precision: 0,
+      initialValue: 0);
+  var ratioAgunan = TextEditingController(text: '0');
+  var crrAgunan = TextEditingController(text: '0');
 
   var listAgunanTanahAnalisis = List<FormTanah>.empty(growable: true).obs;
   final isAgunanTanahAnalisisProcessing = false.obs;
@@ -138,12 +148,12 @@ class AgunanAnalisisCalcController extends GetxController {
   final isAgunanPeralatanAnalisisProcessing = false.obs;
   void getAllAgunanPeralatanAnalisis(int id) {
     try {
-      isAgunanTanahAnalisisProcessing(true);
+      isAgunanPeralatanAnalisisProcessing(true);
       AgunanPeralatanProvider().fetchAgunanPeralatan(id).then((resp) {
-        isAgunanTanahAnalisisProcessing(false);
+        isAgunanPeralatanAnalisisProcessing(false);
         listAgunanPeralatanAnalisis.addAll(resp);
       }, onError: (e) {
-        isAgunanTanahAnalisisProcessing(false);
+        isAgunanPeralatanAnalisisProcessing(false);
         Get.snackbar(
           'Error',
           e.toString(),
@@ -251,6 +261,66 @@ class AgunanAnalisisCalcController extends GetxController {
         backgroundColor: Colors.red,
         colorText: Colors.white,
       );
+    }
+  }
+
+  void hitungGrandTotal() {
+    final parseAgunanTanah =
+        double.parse(totalAgunanTanah.text.replaceAll('.', ''));
+    final parseAgunanTanahBangunan =
+        double.parse(totalAgunanTanahBangunan.text.replaceAll('.', ''));
+    final parseAgunanKendaraan =
+        double.parse(totalAgunanKendaraan.text.replaceAll('.', ''));
+    final parseAgunanPeralatan =
+        double.parse(totalAgunanPeralatan.text.replaceAll('.', ''));
+    final parseAgunanCash =
+        double.parse(totalAgunanCash.text.replaceAll('.', ''));
+    final parseAgunanLos =
+        double.parse(totalAgunanLos.text.replaceAll('.', ''));
+    final parseAgunanLainnya =
+        double.parse(totalAgunanLainnya.text.replaceAll('.', ''));
+
+    final result = parseAgunanTanah +
+        parseAgunanTanahBangunan +
+        parseAgunanKendaraan +
+        parseAgunanPeralatan +
+        parseAgunanCash +
+        parseAgunanLos +
+        parseAgunanLainnya;
+
+    grandTotal.text = result.toStringAsFixed(0);
+  }
+
+  void hitungRatioDanCrr() {
+    // Parse kredit yang diusulkan
+    final parseKredit =
+        double.parse(kreditYangDiajukan.text.replaceAll('.', ''));
+
+    // Parse grand total
+    final parseGrandTotal = double.parse(grandTotal.text.replaceAll('.', ''));
+
+    // Ratio
+    final ratio = parseGrandTotal / (parseKredit / 100);
+
+    // Result ratio
+    ratioAgunan.text = ratio.toStringAsFixed(1);
+
+    // Get CRR From ratio
+    if (ratio < 0) {
+      crrAgunan.text = '0';
+    } else if (ratio > 150) {
+      crrAgunan.text = '95.0';
+    } else {
+      final a = ratio - 30;
+      const b = 150 - 30;
+      const c = 95 - 65;
+
+      final d = a / b;
+      final e = d * c;
+
+      final result = e + 65;
+
+      crrAgunan.text = result.toStringAsFixed(1);
     }
   }
 }

@@ -927,7 +927,7 @@ class FormTambahAgunanTanahBangunan extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Text(
-              'Form Tambah Agunan Tanah',
+              'Form Tambah Agunan Tanah Bangunan',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,

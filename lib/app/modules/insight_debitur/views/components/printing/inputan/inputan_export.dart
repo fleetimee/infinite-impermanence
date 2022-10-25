@@ -568,7 +568,6 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       TableRow(
                         children: [
                           textUmur(''),
-                          // TODO: Generate deskripsi keuangan
                           textUmur('${debtor.deskripsiDebitur}'),
                         ],
                       ),
@@ -594,19 +593,105 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                         children: [
                           textUmur('20'),
                           textUmur('Barang agunan'),
-                          formKendaraan != null
-                              ? ListView.builder(
-                                  itemCount: formKendaraan.length,
-                                  itemBuilder: (context, index) => textUmur(
-                                      '${formKendaraan[index].deskripsiPanjang}'),
-                                )
-                              : textUmur(''),
-                          textUmur('Angsuran (bulan)'),
-                          textUmur(debtor.inputKeuangan!.angsuran.toString()),
+                          textUmur(''),
+                          textUmur(''),
+                          textUmur(''),
                         ],
                       ),
                     ],
                   ),
+                  formAgunanTanah != null
+                      ? Table(
+                          columnWidths: {
+                            0: const FlexColumnWidth(0.04),
+                            1: const FlexColumnWidth(0.24),
+                            2: const FlexColumnWidth(0.72),
+                          },
+                          tableWidth: TableWidth.min,
+                          children: [
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [textUmurBold('Agunan Tanah')],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                ListView.builder(
+                                    itemCount: formAgunanTanah.length,
+                                    itemBuilder: (context, index) => Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              textUmur(
+                                                  '${index + 1} ${formAgunanTanah[index].deskripsiPendek}')
+                                            ],
+                                          ),
+                                        )),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  formAgunanTanahBangunan != null
+                      ? Table(
+                          columnWidths: {
+                            0: const FlexColumnWidth(0.04),
+                            1: const FlexColumnWidth(0.24),
+                            2: const FlexColumnWidth(0.72),
+                          },
+                          tableWidth: TableWidth.min,
+                          children: [
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      textUmurBold('Agunan Tanah Bangunan')
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                ListView.builder(
+                                    itemCount: formAgunanTanahBangunan.length,
+                                    itemBuilder: (context, index) => Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              textUmur(
+                                                  '${index + 1} ${formAgunanTanahBangunan[index].deskripsiPendek}')
+                                            ],
+                                          ),
+                                        )),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
                 ],
               )
             ]),
@@ -637,6 +722,21 @@ Widget textUmur(
 }) =>
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 10,
+        ),
+      ),
+    );
+
+Widget textUmurModified(
+  final String text, {
+  final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 2),
       child: Text(
         text,
         textAlign: align,

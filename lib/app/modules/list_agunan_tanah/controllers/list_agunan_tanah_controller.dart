@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -25,6 +26,7 @@ class ListAgunanTanahController extends GetxController {
   final isAgunanTanahProcessing = false.obs;
 
   final agunanId = Get.arguments;
+  final insightDebiturController = Get.put(InsightDebiturController());
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -142,6 +144,7 @@ class ListAgunanTanahController extends GetxController {
         clearForm();
         listAgunanTanah.clear();
         getAllAgunanTanah(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanTanahProcessing(false);
         Get.snackbar(

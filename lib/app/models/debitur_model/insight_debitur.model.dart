@@ -329,6 +329,10 @@ class Agunan {
             ? null
             : List<FormCommon>.from(
                 json["form_lainnya"].map((x) => FormCommon.fromJson(x))),
+        formTanahBangunan: json["form_tanah_bangunan"] == null
+            ? null
+            : List<FormTanahBangunan>.from(json["form_tanah_bangunan"]
+                .map((x) => FormTanahBangunan.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -357,6 +361,9 @@ class Agunan {
         "form_lainnya": formLainnya == null
             ? null
             : List<dynamic>.from(formLainnya!.map((x) => x.toJson())),
+        "form_tanah_bangunan": formTanahBangunan == null
+            ? null
+            : List<dynamic>.from(formTanahBangunan!.map((x) => x.toJson())),
       };
 }
 

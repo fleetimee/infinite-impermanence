@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/1?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain",
+    "url": "{{baseUrl}}api/v1/debiturs/99?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-10-24T12:14:23.861Z",
+    "modified": "2022-10-25T06:10:55.047Z",
     "headers": [],
     "params": [
       {
@@ -675,6 +675,11 @@
       {
         "name": "join",
         "value": "syaratLain",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "analisaAgunan",
         "isPath": false
       }
     ],
@@ -1086,11 +1091,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/122/agunan/",
+    "url": "{{baseUrl}}api/v1/debiturs/99/agunan/",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-09-29T01:19:31.962Z",
-    "modified": "2022-10-20T06:13:05.579Z",
+    "modified": "2022-10-25T06:39:20.289Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1371,11 +1376,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "3916d8a4-29e5-44af-a556-62613e984955",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/agunan/15/agunan-cash",
+    "url": "{{baseUrl}}api/v1/agunan/109/agunan-cash",
     "method": "GET",
     "sortNum": 640000,
     "created": "2022-10-02T22:43:26.157Z",
-    "modified": "2022-10-02T22:45:39.641Z",
+    "modified": "2022-10-25T06:39:46.187Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1456,11 +1461,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "36e08947-bb41-49e9-97e9-e4dede4d522e",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/122/agunan/33",
+    "url": "{{baseUrl}}api/v1/debiturs/103/agunan/15",
     "method": "DELETE",
     "sortNum": 680000,
     "created": "2022-10-07T21:30:41.112Z",
-    "modified": "2022-10-20T06:13:35.159Z",
+    "modified": "2022-10-25T03:28:22.201Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1567,6 +1572,20 @@
     "sortNum": 750000,
     "created": "2022-10-19T09:11:09.835Z",
     "modified": "2022-10-20T07:39:08.157Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "0d300854-e569-402c-bede-06dc29ca35a5",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "3916d8a4-29e5-44af-a556-62613e984955",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/agunan/109/agunan-cash/",
+    "method": "DELETE",
+    "sortNum": 760000,
+    "created": "2022-10-25T06:39:55.917Z",
+    "modified": "2022-10-25T06:40:17.386Z",
     "headers": [],
     "params": [],
     "tests": []

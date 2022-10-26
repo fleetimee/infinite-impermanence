@@ -313,7 +313,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       TableRow(
                         children: [
                           textUmur('9'),
-                          textUmur('Kredit yand diajukan'),
+                          textUmur('Kredit yang diajukan'),
                           textUmur(MoneyMaskedTextController(
                             decimalSeparator: '',
                             thousandSeparator: '.',
@@ -628,18 +628,19 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                 textUmur(''),
                                 textUmur(''),
                                 ListView.builder(
-                                    itemCount: formAgunanTanah.length,
-                                    itemBuilder: (context, index) => Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              textUmur(
-                                                  '${index + 1} ${formAgunanTanah[index].deskripsiPendek}')
-                                            ],
-                                          ),
-                                        )),
+                                  itemCount: formAgunanTanah.length,
+                                  itemBuilder: (context, index) => Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        textUmur(
+                                            '${index + 1}. ${formAgunanTanah[index].deskripsiPendek}')
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ],
@@ -675,18 +676,211 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                 textUmur(''),
                                 textUmur(''),
                                 ListView.builder(
-                                    itemCount: formAgunanTanahBangunan.length,
-                                    itemBuilder: (context, index) => Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              textUmur(
-                                                  '${index + 1} ${formAgunanTanahBangunan[index].deskripsiPendek}')
-                                            ],
-                                          ),
-                                        )),
+                                  itemCount: formAgunanTanahBangunan.length,
+                                  itemBuilder: (context, index) => Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        textUmur(
+                                            '${index + 1}. ${formAgunanTanahBangunan[index].deskripsiPendek}')
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  formKendaraan != null
+                      ? Table(
+                          columnWidths: {
+                            0: const FlexColumnWidth(0.04),
+                            1: const FlexColumnWidth(0.24),
+                            2: const FlexColumnWidth(0.72),
+                          },
+                          tableWidth: TableWidth.min,
+                          children: [
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      textUmurBold('Agunan Kendaraan')
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                ListView.builder(
+                                  itemCount: formKendaraan.length,
+                                  itemBuilder: (context, index) => Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        textUmur(
+                                            '${index + 1}. ${formKendaraan[index].jenis} Merk ${formKendaraan[index].merk}')
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  formPeralatan != null
+                      ? Table(
+                          columnWidths: {
+                            0: const FlexColumnWidth(0.04),
+                            1: const FlexColumnWidth(0.24),
+                            2: const FlexColumnWidth(0.72),
+                          },
+                          tableWidth: TableWidth.min,
+                          children: [
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      textUmurBold('Agunan Peralatan')
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                ListView.builder(
+                                  itemCount: formPeralatan.length,
+                                  itemBuilder: (context, index) => Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        textUmur(
+                                            '${index + 1}. ${formPeralatan[index].deskripsiPanjang}')
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  formCash != null
+                      ? Table(
+                          columnWidths: {
+                            0: const FlexColumnWidth(0.04),
+                            1: const FlexColumnWidth(0.24),
+                            2: const FlexColumnWidth(0.72),
+                          },
+                          tableWidth: TableWidth.min,
+                          children: [
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      textUmurBold('Agunan CasformCash')
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                ListView.builder(
+                                  itemCount: formCash.length,
+                                  itemBuilder: (context, index) => Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        textUmur(
+                                            '${index + 1}. ${formCash[index].deskripsiPanjang}')
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  formLos != null
+                      ? Table(
+                          columnWidths: {
+                            0: const FlexColumnWidth(0.04),
+                            1: const FlexColumnWidth(0.24),
+                            2: const FlexColumnWidth(0.72),
+                          },
+                          tableWidth: TableWidth.min,
+                          children: [
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      textUmurBold('Agunan Los (Kios Pasar)')
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            TableRow(
+                              children: [
+                                textUmur(''),
+                                textUmur(''),
+                                ListView.builder(
+                                  itemCount: formLos.length,
+                                  itemBuilder: (context, index) => Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        textUmur(
+                                            '${index + 1}. ${formLos[index].deskripsiPendek}')
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ],

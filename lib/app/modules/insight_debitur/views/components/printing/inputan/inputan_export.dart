@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/views/components/printing/print_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
@@ -352,7 +353,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('9'),
                               textUmur('Kredit yang diajukan'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -362,7 +363,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                     .toString()),
                               ).text),
                               textUmur('Angsuran (bulan)'),
-                              textUmur(
+                              textUmurR(
                                   debtor.inputKeuangan!.angsuran.toString()),
                             ],
                           ),
@@ -384,7 +385,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(debtor.inputKeuangan!.digunakanUntuk
                                   .toString()),
                               textUmur('Jumlah Angsuran'),
-                              textUmur((MoneyMaskedTextController(
+                              textUmurR((MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -401,7 +402,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur(''),
                               textUmur(''),
-                              textUmur((MoneyMaskedTextController(
+                              textUmurR((MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -416,7 +417,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('12'),
                               textUmur('Pinjaman Lainnya (Rp)'),
-                              textUmur((MoneyMaskedTextController(
+                              textUmurR((MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -424,7 +425,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                 initialValue: 0,
                               ).text)),
                               textUmur('Ang/bln pinj lain'),
-                              textUmur((MoneyMaskedTextController(
+                              textUmurR((MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -437,7 +438,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('13'),
                               textUmur('Nilai aset (diluar rumah)'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -458,7 +459,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('14'),
                               textUmur('Penjualan/bln yll'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -468,7 +469,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                     .toString()),
                               ).text),
                               textUmur('Penjualan yad'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -483,7 +484,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('15'),
                               textUmur('Biaya HPP/bln yll'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -493,7 +494,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                     .toString()),
                               ).text),
                               textUmur('Biaya HPP/bln yad'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -508,7 +509,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('16'),
                               textUmur('Biaya upah'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -518,7 +519,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                     .toString()),
                               ).text),
                               textUmur('Biaya upah/bln yad'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -533,7 +534,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('17'),
                               textUmur('Biaya operasional'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -543,7 +544,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                     .toString()),
                               ).text),
                               textUmur('Biaya operasional/bln yad'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -558,7 +559,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('18'),
                               textUmur('Biaya hidup'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -568,7 +569,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                                     .toString()),
                               ).text),
                               textUmur('Biaya hidup/bln yad'),
-                              textUmur(MoneyMaskedTextController(
+                              textUmurR(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
                                 leftSymbol: 'Rp. ',
@@ -583,10 +584,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             children: [
                               textUmur('19'),
                               textUmur('Bunga /thn (%)'),
-                              textUmur(
+                              textUmurR(
                                   '${debtor.inputKeuangan!.bungaPerTahun}'),
                               textUmur('Trade cycle MK'),
-                              textUmur(double.parse(debtor
+                              textUmurR(double.parse(debtor
                                       .inputKeuangan!.tradeCycle
                                       .toString())
                                   .toStringAsFixed(1)),
@@ -595,8 +596,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                           TableRow(
                             children: [
                               textUmur('20'),
-                              textUmur('Jangka waktu (bulan'),
-                              textUmur('${debtor.inputKeuangan!.angsuran} %'),
+                              textUmur('Jangka waktu (bulan)'),
+                              textUmurR('${debtor.inputKeuangan!.angsuran}'),
                               textUmur(''),
                               textUmur(''),
                             ],
@@ -1382,30 +1383,111 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   ),
                   // Data Karakter
                   Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Table(
-                          columnWidths: {
-                            0: const FlexColumnWidth(0.04),
-                            1: const FlexColumnWidth(0.24),
-                            2: const FlexColumnWidth(0.24),
-                            3: const FlexColumnWidth(0.24),
-                            4: const FlexColumnWidth(0.24),
-                          },
-                          tableWidth: TableWidth.min,
-                          children: [
-                            TableRow(
-                              children: [
-                                textUmur(''),
-                                textUmur('Data & Analisa Karakter'),
-                                textUmur(''),
-                                textUmur('Keterangan'),
-                                textUmur(''),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ])
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.24),
+                          4: const FlexColumnWidth(0.24),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Data & Analisa Karakter'),
+                              textUmur(''),
+                              textUmur('Keterangan'),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.48),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur('26'),
+                              textUmur('Ulet dalam bisnis (1 - 95)'),
+                              textUmurR(
+                                  debtor.analisaKarakter!.scoreUlet.toString()),
+                              textUmur(debtor.analisaKarakter!.keteranganUlet
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur('27'),
+                              textUmur('Flexible / Kaku (1 - 95)'),
+                              textUmurR(
+                                  debtor.analisaKarakter!.scoreKaku.toString()),
+                              textUmur(debtor.analisaKarakter!.keteranganKaku
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur('28'),
+                              textUmur('Kreatif / Inovatif (1 - 95)'),
+                              textUmurR(debtor.analisaKarakter!.scoreKreatif
+                                  .toString()),
+                              textUmur(debtor.analisaKarakter!.keteranganKreatif
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur('29'),
+                              textUmur(
+                                  'Memiliki kejujuran dlm bisnis (1 - 95)'),
+                              textUmurR(debtor.analisaKarakter!.scoreKejujuran
+                                  .toString()),
+                              textUmur(debtor
+                                  .analisaKarakter!.keteranganKejujuran
+                                  .toString()),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.96),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Deskripsi karakter pemohon'),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur(
+                                  '${debtor.analisaKarakter!.deskripsiKarakter}'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // Data Bisnis
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [],
+                  )
                 ],
               )
             ]),

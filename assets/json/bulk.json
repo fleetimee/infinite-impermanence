@@ -1,0 +1,47 @@
+{
+  "bulk": [
+    {
+      "kode_agunan": 2,
+      "jenis_agunan": "Tanah dan Bangunan",
+      "is_tanah": true,
+      "is_los": false,
+      "is_kendaraan": false
+    },
+    {
+      "kode_agunan": 3,
+      "jenis_agunan": "Kendaraan",
+      "is_tanah": false,
+      "is_los": false,
+      "is_kendaraan": true
+    },
+    {
+        "kode_agunan": 4,
+        "jenis_agunan": "Mesin dan Peralatan",
+        "is_tanah": false,
+        "is_los": false,
+        "is_kendaraan": false
+    },
+    {
+        "kode_agunan": 5,
+        "jenis_agunan": "Cash Collateral",
+        "is_tanah": false,
+        "is_los": false,
+        "is_kendaraan": false
+    },
+    {
+        "kode_agunan": 6,
+        "jenis_agunan": "Kios Pasar",
+        "is_tanah": false,
+        "is_los": false,
+        "is_kendaraan": false
+    },
+    {
+        "kode_agunan": 7,
+        "jenis_agunan": "Lainnya",
+        "is_tanah": false,
+        "is_los": false,
+        "is_kendaraan": false
+    }
+
+  ]
+}

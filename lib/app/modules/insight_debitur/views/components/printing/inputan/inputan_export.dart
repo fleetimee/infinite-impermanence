@@ -32,6 +32,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
+  // Get list of syarat lain
+  var syaratList = debtor.syaratLain;
+
   // Get list of agunan
   var agunanList = debtor.agunan;
 
@@ -110,7 +113,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                 ),
               ),
             ),
-        margin: const EdgeInsets.all(35),
+        margin: const EdgeInsets.all(40),
         orientation: PageOrientation.portrait,
         pageFormat: PdfPageFormat.a4,
         build: (context) => [
@@ -135,7 +138,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       TableRow(
                         children: [
                           textUmur(''),
-                          textUmur('Data & Analisa Debitur'),
+                          textUmurBoldLeft('Data & Analisa Debitur'),
                         ],
                       ),
                     ],
@@ -328,7 +331,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                           TableRow(
                             children: [
                               textUmur(''),
-                              textUmur('Data & Analisa Kredit Mikro'),
+                              textUmurBoldLeft('Data & Analisa Kredit Mikro'),
                             ],
                           ),
                         ],
@@ -630,7 +633,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                           TableRow(
                             children: [
                               textUmur(''),
-                              textUmur('Data & Analisa Agunan'),
+                              textUmurBoldLeft('Data & Analisa Agunan'),
                             ],
                           ),
                         ],
@@ -1053,9 +1056,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur('a. Tanah'),
                               formAgunanTanah != null
-                                  ? textUmur(MoneyMaskedTextController(
+                                  ? textUmurR(MoneyMaskedTextController(
                                           precision: 0,
-                                          leftSymbol: 'Rp. ',
                                           decimalSeparator: '',
                                           thousandSeparator: '.',
                                           initialValue: double.parse(
@@ -1095,9 +1097,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur('b. Tanah dan Bangunan'),
                               formAgunanTanahBangunan != null
-                                  ? textUmur(MoneyMaskedTextController(
+                                  ? textUmurR(MoneyMaskedTextController(
                                           precision: 0,
-                                          leftSymbol: 'Rp. ',
                                           decimalSeparator: '',
                                           thousandSeparator: '.',
                                           initialValue: double.parse(
@@ -1137,9 +1138,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur('c. Kendaraan'),
                               formKendaraan != null
-                                  ? textUmur(MoneyMaskedTextController(
+                                  ? textUmurR(MoneyMaskedTextController(
                                           precision: 0,
-                                          leftSymbol: 'Rp. ',
                                           decimalSeparator: '',
                                           thousandSeparator: '.',
                                           initialValue: double.parse(
@@ -1179,9 +1179,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur('d. Mesin & Peralatan'),
                               formPeralatan != null
-                                  ? textUmur(MoneyMaskedTextController(
+                                  ? textUmurR(MoneyMaskedTextController(
                                           precision: 0,
-                                          leftSymbol: 'Rp. ',
                                           decimalSeparator: '',
                                           thousandSeparator: '.',
                                           initialValue: double.parse(
@@ -1221,9 +1220,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur('e. Cash Collateral'),
                               formCash != null
-                                  ? textUmur(MoneyMaskedTextController(
+                                  ? textUmurR(MoneyMaskedTextController(
                                           precision: 0,
-                                          leftSymbol: 'Rp. ',
                                           decimalSeparator: '',
                                           thousandSeparator: '.',
                                           initialValue: double.parse(formCash
@@ -1247,7 +1245,6 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                           ),
                         ],
                       ),
-                      //TODO: Table bit redundant
                       Table(
                         columnWidths: {
                           0: const FlexColumnWidth(0.04),
@@ -1262,9 +1259,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               textUmur(''),
                               textUmur('f. Kios / Los Pasar'),
                               formLos != null
-                                  ? textUmur(MoneyMaskedTextController(
+                                  ? textUmurR(MoneyMaskedTextController(
                                           precision: 0,
-                                          leftSymbol: 'Rp. ',
                                           decimalSeparator: '',
                                           thousandSeparator: '.',
                                           initialValue: double.parse(formLos
@@ -1398,9 +1394,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                           TableRow(
                             children: [
                               textUmur(''),
-                              textUmur('Data & Analisa Karakter'),
+                              textUmurBoldLeft('Data & Analisa Karakter'),
                               textUmur(''),
-                              textUmur('Keterangan'),
+                              textUmurBoldLeft('Keterangan'),
                               textUmur(''),
                             ],
                           ),
@@ -1417,9 +1413,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                         children: [
                           TableRow(
                             children: [
-                              textUmur('26'),
-                              textUmur('Ulet dalam bisnis (1 - 95)'),
-                              textUmurR(
+                              textUmurWide('26'),
+                              textUmurWide('Ulet dalam bisnis (1 - 95)'),
+                              textUmurRWide(
                                   debtor.analisaKarakter!.scoreUlet.toString()),
                               textUmur(debtor.analisaKarakter!.keteranganUlet
                                   .toString()),
@@ -1427,32 +1423,35 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                           ),
                           TableRow(
                             children: [
-                              textUmur('27'),
-                              textUmur('Flexible / Kaku (1 - 95)'),
-                              textUmurR(
+                              textUmurWide('27'),
+                              textUmurWide('Flexible / Kaku (1 - 95)'),
+                              textUmurRWide(
                                   debtor.analisaKarakter!.scoreKaku.toString()),
-                              textUmur(debtor.analisaKarakter!.keteranganKaku
+                              textUmurWide(debtor
+                                  .analisaKarakter!.keteranganKaku
                                   .toString()),
                             ],
                           ),
                           TableRow(
                             children: [
-                              textUmur('28'),
-                              textUmur('Kreatif / Inovatif (1 - 95)'),
-                              textUmurR(debtor.analisaKarakter!.scoreKreatif
+                              textUmurWide('28'),
+                              textUmurWide('Kreatif / Inovatif (1 - 95)'),
+                              textUmurRWide(debtor.analisaKarakter!.scoreKreatif
                                   .toString()),
-                              textUmur(debtor.analisaKarakter!.keteranganKreatif
+                              textUmurWide(debtor
+                                  .analisaKarakter!.keteranganKreatif
                                   .toString()),
                             ],
                           ),
                           TableRow(
                             children: [
-                              textUmur('29'),
-                              textUmur(
+                              textUmurWide('29'),
+                              textUmurWide(
                                   'Memiliki kejujuran dlm bisnis (1 - 95)'),
-                              textUmurR(debtor.analisaKarakter!.scoreKejujuran
+                              textUmurRWide(debtor
+                                  .analisaKarakter!.scoreKejujuran
                                   .toString()),
-                              textUmur(debtor
+                              textUmurWide(debtor
                                   .analisaKarakter!.keteranganKejujuran
                                   .toString()),
                             ],
@@ -1486,7 +1485,783 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   // Data Bisnis
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [],
+                    children: [
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.48),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmurBoldLeft('Data Analisa Bisnis'),
+                              textUmur(''),
+                              textUmurBoldLeft('Keterangan'),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur('30'),
+                              textUmur('Omzet Penjualan'),
+                              textUmur(debtor.analisaBisnis!.keteranganOmzet
+                                  .toString()),
+                              textUmur(debtor.analisaBisnis!.keteranganOmzet
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmurWide('31'),
+                              textUmurWide('Harga Bersaing'),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganHargaBersaing
+                                  .toString()),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganHargaBersaing
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmurWide('32'),
+                              textUmurWide('Persaingan'),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganPersaingan
+                                  .toString()),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganPersaingan
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmurWide('33'),
+                              textUmurWide('Lokasi'),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganLokasiUsaha
+                                  .toString()),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganLokasiUsaha
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmurWide('34'),
+                              textUmurWide(
+                                  'Produktivitas thd kapasitas terpasan'),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganProduktivitas
+                                  .toString()),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganProduktivitas
+                                  .toString()),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmurWide('35'),
+                              textUmurWide('Kwalitas'),
+                              textUmurWide(debtor
+                                  .analisaBisnis!.keteranganKualitas
+                                  .toString()),
+                              textUmurWide(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.96),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Deskripsi bisnis pemohon'),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur(
+                                  '${debtor.analisaBisnis!.deskripsiBisnis}'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // Syarat Lain
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.48),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur('36'),
+                              textUmur('SYARAT LAIN'),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                      // Iterate Syarat
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.72),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur(''),
+                              ListView.builder(
+                                itemCount: syaratList!.length,
+                                itemBuilder: (context, index) => Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      textUmur(
+                                          '${index + 1}. ${syaratList[index].keterangan}')
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 30),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.24),
+                          4: const FlexColumnWidth(0.24),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmurBoldLeft('Hasil Kesimpulan'),
+                              textUmur(''),
+                              textUmurBoldLeft(''),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('ROE (min 10%)'),
+                              textUmurR(debtor.analisaKeuangan!.persenRoeYad
+                                  .toString()),
+                              textUmur(debtor.analisaKeuangan!.keteranganRoe
+                                  .toString()),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('ROA (min 8%)'),
+                              textUmurR(debtor.analisaKeuangan!.persenRoaYad
+                                  .toString()),
+                              textUmur(debtor.analisaKeuangan!.keteranganRoa
+                                  .toString()),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('DER (max 200%)'),
+                              textUmurR(debtor.analisaKeuangan!.persenDerYad
+                                  .toString()),
+                              textUmur(debtor.analisaKeuangan!.keteranganDer
+                                  .toString()
+                                  .toUpperCase()),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('DSC (min 1,3 kali)'),
+                              textUmurR(debtor.analisaKeuangan!.persenDscYad
+                                  .toString()),
+                              textUmur(debtor.analisaKeuangan!.keteranganDsc
+                                  .toString()
+                                  .toUpperCase()),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              debtor.inputKeuangan!.digunakanUntuk ==
+                                      'Investasi'
+                                  ? textUmur('Maximum kebutuhan investasi')
+                                  : textUmur('Maximum kebutuhan modal kerja'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .analisaKeuangan!.kebutuhanInvestasi
+                                    .toString()),
+                              ).text),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Maximum kredit yang diberikan'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .analisaKeuangan!.pinjamanMaksimal
+                                    .toString()),
+                              ).text),
+                              debtor.analisaKeuangan!.kreditDisetujuin == true
+                                  ? textUmur('OK')
+                                  : textUmur('NAY'),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.24),
+                          4: const FlexColumnWidth(0.24),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Penghasilan Bersih'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .inputRugiLaba!.sisaPenghasilan
+                                    .toString()),
+                              ).text),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Angsuran / Bulan'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .inputKeuangan!.angsuranRp
+                                    .toString()),
+                              ).text),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Ttl Angsuran / Bulan'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .inputKeuangan!.angsuranRp
+                                    .toString()),
+                              ).text),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.24),
+                          4: const FlexColumnWidth(0.24),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              debtor.inputKeuangan!.digunakanUntuk ==
+                                      'Investasi'
+                                  ? textUmur('Keb Investasi')
+                                  : textUmur('Keb Modal Kerja'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .analisaKeuangan!.kebutuhanInvestasi
+                                    .toString()),
+                              ).text),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Keb Kredit'),
+                              textUmurR(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(debtor
+                                    .analisaKeuangan!.kebutuhanKredit
+                                    .toString()),
+                              ).text),
+                              textUmur(''),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // Data Bank
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 15),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.24),
+                          4: const FlexColumnWidth(0.24),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmurBoldLeft('Data Bank'),
+                              textUmur(''),
+                              textUmurBoldLeft(''),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.04),
+                          1: const FlexColumnWidth(0.24),
+                          2: const FlexColumnWidth(0.24),
+                          3: const FlexColumnWidth(0.48),
+                          4: const FlexColumnWidth(0.24),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Pemutus'),
+                              textUmur('Adi Nugraha'),
+                              textUmur('Pemimpin Cabang Pembantu'),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Analis'),
+                              textUmur('Sumaryanto'),
+                              textUmur('Analis Kredit Mikro'),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Komite'),
+                              textUmur('Waskitho'),
+                              textUmur('Leader Kredit Mikro'),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Cabang'),
+                              textUmur('Pembantu Prawirotaman'),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Kota'),
+                              textUmur('Yogyakarta'),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Tgl Pembahasan'),
+                              textUmur(DateFormat('dd MMMM yyyy').format(
+                                  DateTime.parse(
+                                      DateTime.now().toIso8601String()))),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Tgl Komite'),
+                              textUmur(DateFormat('dd MMMM yyyy').format(
+                                  DateTime.parse(
+                                      DateTime.now().toIso8601String()))),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('Kode Pos Lokasi Usaha'),
+                              textUmur('14045'),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('No. Telp Peminjam'),
+                              textUmur('083840663610'),
+                              textUmur(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textUmur(''),
+                              textUmur('NPWP'),
+                              textUmur('6969696969'),
+                              textUmur(''),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 50),
+                  // Iterate Detail Agunan
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      formAgunanTanah != null
+                          ? ListView.separated(
+                              separatorBuilder: (context, index) =>
+                                  SizedBox(height: 30),
+                              itemCount: formAgunanTanah.length,
+                              itemBuilder: (context, index) {
+                                return Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Table(
+                                      columnWidths: {
+                                        0: const FlexColumnWidth(0.22),
+                                        1: const FlexColumnWidth(0.02),
+                                        2: const FlexColumnWidth(0.26),
+                                      },
+                                      tableWidth: TableWidth.min,
+                                      children: [
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                            border: Border(
+                                              bottom: BorderSide(
+                                                color: PdfColors.black,
+                                                width: 1,
+                                              ),
+                                            ),
+                                          ),
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  textUmurBold('DATA JAMINAN'),
+                                                  textUmurBold(
+                                                      '${formAgunanTanah[index].deskripsiPendek}'),
+                                                ],
+                                              ),
+                                            ),
+                                            textUmur(''),
+                                            textUmur(''),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Atas Nama'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].namaPemilik}'),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft(
+                                                'Bukti Kepemilikan'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].buktiKepemilikan}'),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Luas'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].luasTanah} m2'),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Tanggal'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(DateFormat(
+                                                    'dd/MM/yyyy')
+                                                .format(DateTime.parse(
+                                                    formAgunanTanah[index]
+                                                        .tanggal!
+                                                        .toIso8601String()))),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Nilai Pasar'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                MoneyMaskedTextController(
+                                              decimalSeparator: '',
+                                              thousandSeparator: '.',
+                                              leftSymbol: 'Rp. ',
+                                              precision: 0,
+                                              initialValue: double.parse(
+                                                  formAgunanTanah[index]
+                                                      .nilaiPasar!
+                                                      .toString()),
+                                            ).text),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Nilai Liquidasi'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                MoneyMaskedTextController(
+                                              decimalSeparator: '',
+                                              thousandSeparator: '.',
+                                              leftSymbol: 'Rp. ',
+                                              precision: 0,
+                                              initialValue: double.parse(
+                                                  formAgunanTanah[index]
+                                                      .nilaiLiquidasi!
+                                                      .toString()),
+                                            ).text),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Bukti Lokasi'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].lokasi}'),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Pengikatan'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].pengikatan}'),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                      height: 20,
+                                      color: PdfColors.grey,
+                                    ),
+                                    Table(
+                                      columnWidths: {
+                                        0: const FlexColumnWidth(0.22),
+                                        1: const FlexColumnWidth(0.02),
+                                        2: const FlexColumnWidth(0.26),
+                                      },
+                                      tableWidth: TableWidth.min,
+                                      children: [
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Nilai Liquidasi'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                MoneyMaskedTextController(
+                                              decimalSeparator: '',
+                                              thousandSeparator: '.',
+                                              leftSymbol: 'Rp. ',
+                                              precision: 0,
+                                              initialValue: double.parse(
+                                                  formAgunanTanah[index]
+                                                      .nilaiLiquidasi!
+                                                      .toString()),
+                                            ).text),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft(
+                                                'Nilai Pengikatan'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                MoneyMaskedTextController(
+                                              decimalSeparator: '',
+                                              thousandSeparator: '.',
+                                              leftSymbol: 'Rp. ',
+                                              precision: 0,
+                                              initialValue: double.parse(
+                                                  formAgunanTanah[index]
+                                                      .nilaiPengikatan!
+                                                      .toString()),
+                                            ).text),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Pemilik'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].namaPemilik}'),
+                                          ],
+                                        ),
+                                        TableRow(
+                                          decoration: const BoxDecoration(
+                                            color: PdfColors.grey,
+                                          ),
+                                          children: [
+                                            textUmurBoldLeft('Alamat'),
+                                            textUmur(':'),
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].lokasi}'),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                      height: 10,
+                                    ),
+                                    Table(
+                                      columnWidths: {
+                                        0: const FlexColumnWidth(1)
+                                      },
+                                      tableWidth: TableWidth.min,
+                                      children: [
+                                        TableRow(
+                                          children: [
+                                            textUmurBoldLeft(
+                                                '${formAgunanTanah[index].deskripsiPanjang}'),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                );
+                              },
+                            )
+                          : Container(),
+                    ],
                   )
                 ],
               )
@@ -1527,6 +2302,21 @@ Widget textUmur(
       ),
     );
 
+Widget textUmurWide(
+  final String text, {
+  final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 10,
+        ),
+      ),
+    );
+
 Widget textUmurModified(
   final String text, {
   final TextAlign align = TextAlign.left,
@@ -1538,6 +2328,22 @@ Widget textUmurModified(
         textAlign: align,
         style: const TextStyle(
           fontSize: 10,
+        ),
+      ),
+    );
+
+Widget textUmurBoldLeft(
+  final String text, {
+  final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      child: Text(
+        text,
+        textAlign: align,
+        style: TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

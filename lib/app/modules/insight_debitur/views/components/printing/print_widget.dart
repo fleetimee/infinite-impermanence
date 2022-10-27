@@ -77,6 +77,21 @@ Widget textUmurR(
       ),
     );
 
+Widget textUmurRWide(
+  final String text, {
+  final TextAlign align = TextAlign.right,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 11,
+        ),
+      ),
+    );
+
 Widget textUmurRB(
   final String text, {
   final TextAlign align = TextAlign.right,

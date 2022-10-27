@@ -2002,269 +2002,502 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   ),
                   SizedBox(height: 50),
                   // Iterate Detail Agunan
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      formAgunanTanah != null
-                          ? ListView.separated(
-                              separatorBuilder: (context, index) =>
-                                  SizedBox(height: 30),
-                              itemCount: formAgunanTanah.length,
-                              itemBuilder: (context, index) {
-                                return Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Table(
-                                      columnWidths: {
-                                        0: const FlexColumnWidth(0.22),
-                                        1: const FlexColumnWidth(0.02),
-                                        2: const FlexColumnWidth(0.26),
-                                      },
-                                      tableWidth: TableWidth.min,
-                                      children: [
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                            border: Border(
-                                              bottom: BorderSide(
-                                                color: PdfColors.black,
-                                                width: 1,
-                                              ),
-                                            ),
-                                          ),
-                                          children: [
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  textUmurBold('DATA JAMINAN'),
-                                                  textUmurBold(
-                                                      '${formAgunanTanah[index].deskripsiPendek}'),
-                                                ],
-                                              ),
-                                            ),
-                                            textUmur(''),
-                                            textUmur(''),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Atas Nama'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].namaPemilik}'),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft(
-                                                'Bukti Kepemilikan'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].buktiKepemilikan}'),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Luas'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].luasTanah} m2'),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Tanggal'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(DateFormat(
-                                                    'dd/MM/yyyy')
-                                                .format(DateTime.parse(
-                                                    formAgunanTanah[index]
-                                                        .tanggal!
-                                                        .toIso8601String()))),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Nilai Pasar'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                MoneyMaskedTextController(
-                                              decimalSeparator: '',
-                                              thousandSeparator: '.',
-                                              leftSymbol: 'Rp. ',
-                                              precision: 0,
-                                              initialValue: double.parse(
-                                                  formAgunanTanah[index]
-                                                      .nilaiPasar!
-                                                      .toString()),
-                                            ).text),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Nilai Liquidasi'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                MoneyMaskedTextController(
-                                              decimalSeparator: '',
-                                              thousandSeparator: '.',
-                                              leftSymbol: 'Rp. ',
-                                              precision: 0,
-                                              initialValue: double.parse(
-                                                  formAgunanTanah[index]
-                                                      .nilaiLiquidasi!
-                                                      .toString()),
-                                            ).text),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Bukti Lokasi'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].lokasi}'),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Pengikatan'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].pengikatan}'),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      height: 20,
-                                      color: PdfColors.grey,
-                                    ),
-                                    Table(
-                                      columnWidths: {
-                                        0: const FlexColumnWidth(0.22),
-                                        1: const FlexColumnWidth(0.02),
-                                        2: const FlexColumnWidth(0.26),
-                                      },
-                                      tableWidth: TableWidth.min,
-                                      children: [
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Nilai Liquidasi'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                MoneyMaskedTextController(
-                                              decimalSeparator: '',
-                                              thousandSeparator: '.',
-                                              leftSymbol: 'Rp. ',
-                                              precision: 0,
-                                              initialValue: double.parse(
-                                                  formAgunanTanah[index]
-                                                      .nilaiLiquidasi!
-                                                      .toString()),
-                                            ).text),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft(
-                                                'Nilai Pengikatan'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                MoneyMaskedTextController(
-                                              decimalSeparator: '',
-                                              thousandSeparator: '.',
-                                              leftSymbol: 'Rp. ',
-                                              precision: 0,
-                                              initialValue: double.parse(
-                                                  formAgunanTanah[index]
-                                                      .nilaiPengikatan!
-                                                      .toString()),
-                                            ).text),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Pemilik'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].namaPemilik}'),
-                                          ],
-                                        ),
-                                        TableRow(
-                                          decoration: const BoxDecoration(
-                                            color: PdfColors.grey,
-                                          ),
-                                          children: [
-                                            textUmurBoldLeft('Alamat'),
-                                            textUmur(':'),
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].lokasi}'),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      height: 10,
-                                    ),
-                                    Table(
-                                      columnWidths: {
-                                        0: const FlexColumnWidth(1)
-                                      },
-                                      tableWidth: TableWidth.min,
-                                      children: [
-                                        TableRow(
-                                          children: [
-                                            textUmurBoldLeft(
-                                                '${formAgunanTanah[index].deskripsiPanjang}'),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              },
-                            )
-                          : Container(),
-                    ],
-                  )
                 ],
-              )
+              ),
+              formAgunanTanah != null
+                  ? ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 30),
+                      itemCount: formAgunanTanah.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Table(
+                              columnWidths: {
+                                0: const FlexColumnWidth(0.22),
+                                1: const FlexColumnWidth(0.02),
+                                2: const FlexColumnWidth(0.26),
+                              },
+                              tableWidth: TableWidth.min,
+                              children: [
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: PdfColors.black,
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          textUmurBold('DATA JAMINAN'),
+                                          textUmurBold(
+                                              '${formAgunanTanah[index].deskripsiPendek}'),
+                                        ],
+                                      ),
+                                    ),
+                                    textUmur(''),
+                                    textUmur(''),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Atas Nama'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].namaPemilik}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Bukti Kepemilikan'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].buktiKepemilikan}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Luas'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].luasTanah} m2'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Tanggal'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(DateFormat('dd/MM/yyyy')
+                                        .format(DateTime.parse(
+                                            formAgunanTanah[index]
+                                                .tanggal!
+                                                .toIso8601String()))),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Pasar'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanah[index]
+                                              .nilaiPasar!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Liquidasi'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanah[index]
+                                              .nilaiLiquidasi!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Bukti Lokasi'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].lokasi}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Pengikatan'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].pengikatan}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: 20,
+                              color: PdfColors.grey,
+                            ),
+                            Table(
+                              columnWidths: {
+                                0: const FlexColumnWidth(0.22),
+                                1: const FlexColumnWidth(0.02),
+                                2: const FlexColumnWidth(0.26),
+                              },
+                              tableWidth: TableWidth.min,
+                              children: [
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Liquidasi'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanah[index]
+                                              .nilaiLiquidasi!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Pengikatan'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanah[index]
+                                              .nilaiPengikatan!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Pemilik'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].namaPemilik}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Alamat'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].lokasi}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: 10,
+                            ),
+                            Table(
+                              columnWidths: {0: const FlexColumnWidth(1)},
+                              tableWidth: TableWidth.min,
+                              children: [
+                                TableRow(
+                                  children: [
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanah[index].deskripsiPanjang}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                    )
+                  : Container(),
+              formAgunanTanahBangunan != null
+                  ? ListView.separated(
+                      separatorBuilder: (context, index) =>
+                          SizedBox(height: 30),
+                      itemCount: formAgunanTanahBangunan.length,
+                      itemBuilder: (context, index) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Table(
+                              columnWidths: {
+                                0: const FlexColumnWidth(0.22),
+                                1: const FlexColumnWidth(0.02),
+                                2: const FlexColumnWidth(0.26),
+                              },
+                              tableWidth: TableWidth.min,
+                              children: [
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                    border: Border(
+                                      bottom: BorderSide(
+                                        color: PdfColors.black,
+                                        width: 1,
+                                      ),
+                                    ),
+                                  ),
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          textUmurBold('DATA JAMINAN'),
+                                          textUmurBold(
+                                              '${formAgunanTanahBangunan[index].deskripsiPendek}'),
+                                        ],
+                                      ),
+                                    ),
+                                    textUmur(''),
+                                    textUmur(''),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Atas Nama'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].namaPemilik}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Bukti Kepemilikan'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].buktiKepemilikan}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Luas'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].luasTanah} m2'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Tanggal'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(DateFormat('dd/MM/yyyy')
+                                        .format(DateTime.parse(
+                                            formAgunanTanahBangunan[index]
+                                                .tanggal!
+                                                .toIso8601String()))),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Pasar'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanahBangunan[index]
+                                              .nilaiPasar!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Liquidasi'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanahBangunan[index]
+                                              .nilaiLiquidasi!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Bukti Lokasi'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].lokasi}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Pengikatan'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].pengikatan}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: 20,
+                              color: PdfColors.grey,
+                            ),
+                            Table(
+                              columnWidths: {
+                                0: const FlexColumnWidth(0.22),
+                                1: const FlexColumnWidth(0.02),
+                                2: const FlexColumnWidth(0.26),
+                              },
+                              tableWidth: TableWidth.min,
+                              children: [
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Liquidasi'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanahBangunan[index]
+                                              .nilaiLiquidasi!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Nilai Pengikatan'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(MoneyMaskedTextController(
+                                      decimalSeparator: '',
+                                      thousandSeparator: '.',
+                                      leftSymbol: 'Rp. ',
+                                      precision: 0,
+                                      initialValue: double.parse(
+                                          formAgunanTanahBangunan[index]
+                                              .nilaiPengikatan!
+                                              .toString()),
+                                    ).text),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Pemilik'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].namaPemilik}'),
+                                  ],
+                                ),
+                                TableRow(
+                                  decoration: const BoxDecoration(
+                                    color: PdfColors.grey,
+                                  ),
+                                  children: [
+                                    textUmurBoldLeft('Alamat'),
+                                    textUmur(':'),
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].lokasi}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Container(
+                              height: 10,
+                            ),
+                            Table(
+                              columnWidths: {0: const FlexColumnWidth(1)},
+                              tableWidth: TableWidth.min,
+                              children: [
+                                TableRow(
+                                  children: [
+                                    textUmurBoldLeft(
+                                        '${formAgunanTanahBangunan[index].deskripsiPanjang}'),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ],
+                        );
+                      },
+                    )
+                  : Container()
             ]),
   );
 

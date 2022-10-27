@@ -62,9 +62,8 @@ void main() {
       ],
       supportedLocales: const [
         Locale('en'),
-        Locale('id'),
       ],
-      locale: const Locale('id'),
+      locale: const Locale('en'),
     ),
   );
 

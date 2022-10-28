@@ -51,7 +51,7 @@ void main() {
       theme: lightTheme,
       // darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
       themeMode: ThemeMode.light,
-      title: "Application",
+      title: "Analisis Kredit Mikro",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       localizationsDelegates: const [

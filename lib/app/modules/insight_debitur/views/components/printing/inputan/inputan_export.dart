@@ -2130,7 +2130,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   );
                 },
               )
-            : SizedBox.shrink(),
+            : Container(),
         SizedBox(
           height: 10,
         ),
@@ -2377,7 +2377,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   );
                 },
               )
-            : SizedBox.shrink(),
+            : Container(),
         SizedBox(
           height: 10,
         ),
@@ -2641,7 +2641,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   );
                 },
               )
-            : SizedBox.shrink(),
+            : Container(),
         SizedBox(
           height: 10,
         ),
@@ -2761,7 +2761,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   );
                 },
               )
-            : SizedBox.shrink(),
+            : Container(),
         SizedBox(
           height: 10,
         ),
@@ -2879,7 +2879,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   );
                 },
               )
-            : SizedBox.shrink(),
+            : Container(),
         SizedBox(
           height: 10,
         ),
@@ -3161,7 +3161,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   );
                 },
               )
-            : SizedBox.shrink(),
+            : Container(),
         SizedBox(
           height: 10,
         ),

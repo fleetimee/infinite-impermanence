@@ -36,6 +36,66 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
+  // Get list of syarat lain
+  var syaratList = debtor.syaratLain;
+
+  // Get list of agunan
+  var agunanList = debtor.agunan;
+
+  // Specify agunan for each type
+  Agunan agunanTanah = agunanList!.any((element) => element.kodeAgunan == 1)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 1))
+      : Agunan();
+
+  Agunan agunanTanahBangunan =
+      agunanList.any((element) => element.kodeAgunan == 2)
+          ? agunanList.elementAt(
+              agunanList.indexWhere((element) => element.kodeAgunan == 2))
+          : Agunan();
+
+  Agunan agunanKendaraan = agunanList.any((element) => element.kodeAgunan == 3)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 3))
+      : Agunan();
+
+  Agunan agunanPeralatan = agunanList.any((element) => element.kodeAgunan == 4)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 4))
+      : Agunan();
+
+  Agunan agunanCash = agunanList.any((element) => element.kodeAgunan == 5)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 5))
+      : Agunan();
+
+  Agunan agunanLos = agunanList.any((element) => element.kodeAgunan == 6)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 6))
+      : Agunan();
+
+  Agunan agunanLainnya = agunanList.any((element) => element.kodeAgunan == 7)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 7))
+      : Agunan();
+
+  var formAgunanTanah = agunanTanah.formTanah;
+  var formAgunanTanahBangunan = agunanTanahBangunan.formTanahBangunan;
+  var formKendaraan = agunanKendaraan.formKendaraan;
+  var formPeralatan = agunanPeralatan.formPeralatan;
+  var formCash = agunanCash.formCash;
+  var formLos = agunanLos.formLos;
+  var formLainnya = agunanLainnya.formLainnya;
+
+  // Get total leghth of all agunan
+  var totalLength = (formAgunanTanah?.length ?? 0) +
+      (formAgunanTanahBangunan?.length ?? 0) +
+      (formKendaraan?.length ?? 0) +
+      (formPeralatan?.length ?? 0) +
+      (formCash?.length ?? 0) +
+      (formLos?.length ?? 0) +
+      (formLainnya?.length ?? 0);
+
   final controller = Get.put(InsightDebiturController());
 
   // logo
@@ -45,12 +105,24 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
           .asUint8List());
 
   pdf.addPage(
-    Page(
-      margin: const EdgeInsets.all(35),
+    MultiPage(
+      footer: (context) => Container(
+        alignment: Alignment.centerRight,
+        margin: const EdgeInsets.only(top: 1.0 * PdfPageFormat.cm),
+        padding: const EdgeInsets.only(right: 1.0 * PdfPageFormat.cm),
+        child: Text(
+          'Page ${context.pageNumber} of ${context.pagesCount}',
+          style: const TextStyle(
+            color: PdfColors.black,
+            fontSize: 10,
+          ),
+        ),
+      ),
+      margin: const EdgeInsets.all(40),
       orientation: PageOrientation.portrait,
       pageFormat: PdfPageFormat.a4,
-      build: (context) {
-        return Column(
+      build: (context) => [
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header
@@ -62,8 +134,9 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 ),
               ),
               columnWidths: {
-                0: const FlexColumnWidth(0.2),
-                1: const FlexColumnWidth(0.8),
+                0: const FlexColumnWidth(1),
+                1: const FlexColumnWidth(0.2),
+                2: const FlexColumnWidth(1),
               },
               tableWidth: TableWidth.max,
               children: [
@@ -369,21 +442,20 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                         TableRow(
                           children: [
                             textDeskripsiNoBold('14.'),
+                            ListView.builder(
+                              itemCount: totalLength,
+                              itemBuilder: (context, index) =>
+                                  textDeskripsiNoBold(totalLength == 1
+                                      ? "Agunan"
+                                      : "Agunan ${index + 1}"),
+                            ),
                             textDeskripsiNoBold("Agunan I"),
                             textDeskripsiNoBold(
                               "-",
                             ),
                           ],
                         ),
-                        TableRow(
-                          children: [
-                            textDeskripsiNoBold(''),
-                            textDeskripsiNoBold("Agunan II"),
-                            textDeskripsiNoBold(
-                              "-",
-                            ),
-                          ],
-                        ),
+
                         TableRow(
                           children: [
                             textDeskripsiNoBold('15.'),
@@ -595,8 +667,8 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
               ],
             ),
           ],
-        );
-      },
+        )
+      ],
     ),
   );
 

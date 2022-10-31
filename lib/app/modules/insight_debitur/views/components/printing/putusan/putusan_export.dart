@@ -1,8 +1,10 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:terbilang_id/terbilang_id.dart';
@@ -34,8 +36,12 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
+  final controller = Get.put(InsightDebiturController());
+
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
+
+  const premi = 3.34;
 
   // Get list of agunan
   var agunanList = debtor.agunan;
@@ -560,9 +566,13 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 },
               )
             : Container(),
-        SizedBox(
-          height: 10,
-        ),
+
+        formAgunanTanah != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
         formAgunanTanahBangunan != null
             ? ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(height: 10),
@@ -682,9 +692,13 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 },
               )
             : Container(),
-        SizedBox(
-          height: 10,
-        ),
+
+        formAgunanTanahBangunan != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
         formKendaraan != null
             ? ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(height: 10),
@@ -802,9 +816,13 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 },
               )
             : Container(),
-        SizedBox(
-          height: 10,
-        ),
+
+        formKendaraan != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
         formPeralatan != null
             ? ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(height: 10),
@@ -900,9 +918,13 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 },
               )
             : Container(),
-        SizedBox(
-          height: 10,
-        ),
+
+        formPeralatan != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
         formCash != null
             ? ListView.separated(
                 separatorBuilder: (context, index) => SizedBox(height: 10),
@@ -995,199 +1017,417 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 },
               )
             : Container(),
-        // formAgunanTanah != null
-        //     ? Table(
-        //         columnWidths: {
-        //           0: const FlexColumnWidth(0.07),
-        //           1: const FlexColumnWidth(0.38),
-        //           2: const FlexColumnWidth(1),
-        //         },
-        //         children: [
-        //           TableRow(
-        //             children: [
-        //               textDeskripsiNoBold('14.'),
-        //               ListView.builder(
-        //                 itemCount: formAgunanTanah.length,
-        //                 itemBuilder: (context, index) {
-        //                   return Column(
-        //                     crossAxisAlignment: CrossAxisAlignment.start,
-        //                     children: [
-        //                       textDeskripsiNoBold(
-        //                           'Agunan ${(index + 1).toRomanNumeralString()}'),
-        //                     ],
-        //                   );
-        //                 },
-        //               ),
-        //               textDeskripsiNoBold(''),
-        //             ],
-        //           ),
-        //         ],
-        //       )
-        //     : SizedBox.shrink(),
-        // // Footer
-        // Table(
-        //   border: TableBorder.symmetric(
-        //     outside: const BorderSide(
-        //       color: PdfColors.black,
-        //       width: 1,
-        //     ),
-        //   ),
-        //   // border: TableBorder.all(),
-        //   columnWidths: {},
-        //   tableWidth: TableWidth.max,
-        //   children: [
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         center(controller.faker.name.fullName()),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         center('Pemimpin Cabang Pembantu'),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //     TableRow(
-        //       children: [
-        //         Text(
-        //           '.',
-        //           style: const TextStyle(color: PdfColors.white),
-        //         ),
-        //       ],
-        //     ),
-        //   ],
-        // ),
 
-        // // This is for testing
-        // Table(
-        //   tableWidth: TableWidth.max,
-        //   columnWidths: {
-        //     0: const FlexColumnWidth(0.07),
-        //     1: const FlexColumnWidth(0.38),
-        //     2: const FlexColumnWidth(1),
-        //   },
-        //   children: [
-        //     TableRow(
-        //       children: [
-        //         ListView.builder(
-        //           itemCount: totalLength,
-        //           itemBuilder: (context, index) => Align(
-        //             alignment: Alignment.centerLeft,
-        //             child: Column(
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 textDeskripsiNoBold(
-        //                     "Agunan ${(index + 1).toRomanNumeralString()}"),
-        //                 formAgunanTanah != null
-        //                     ? ListView.builder(
-        //                         itemCount: formAgunanTanah.length,
-        //                         itemBuilder: (context, index) => Column())
-        //                     : textDeskripsiNoBold(''),
-        //               ],
-        //             ),
-        //           ),
-        //         ),
-        //       ],
-        //     ),
-        //   ],
-        // ),
-        // ListView.builder(
-        //   itemCount: totalLength,
-        //   itemBuilder: (context, index) => Align(
-        //     alignment: Alignment.centerLeft,
-        //     child: Column(
-        //       crossAxisAlignment: CrossAxisAlignment.start,
-        //       children: [
-        //         textDeskripsiNoBold(
-        //             "Agunan ${(index + 1).toRomanNumeralString()}"),
-        //         formAgunanTanah != null
-        //             ? ListView.builder(
-        //                 itemCount: formAgunanTanah.length,
-        //                 itemBuilder: (context, index) => Column())
-        //             : textDeskripsiNoBold(''),
-        //       ],
-        //     ),
-        //   ),
-        // ),
+        formCash != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
+        formLos != null
+            ? ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(height: 10),
+                itemCount: formLos.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.07),
+                          1: const FlexColumnWidth(0.38),
+                          2: const FlexColumnWidth(1),
+                        },
+                        tableWidth: TableWidth.min,
+                        children: [
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                              border: Border(
+                                bottom: BorderSide(
+                                  color: PdfColors.black,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold(
+                                '${formLos[index].deskripsiPendek}',
+                              ),
+                              textDeskripsiNoBold(''),
+                            ],
+                          ),
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold(
+                                'No Register',
+                              ),
+                              textDeskripsiNoBold(
+                                  '${formLos[index].noRegistrasi}'),
+                            ],
+                          ),
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold(
+                                'Atas Nama',
+                              ),
+                              textDeskripsiNoBold(
+                                  '${formLos[index].namaPemilik}'),
+                            ],
+                          ),
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold('Luas'),
+                              textDeskripsiNoBold(
+                                  '${formLos[index].luasLos} m2'),
+                            ],
+                          ),
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold('Nilai Pasar'),
+                              textDeskripsiNoBold(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(
+                                    formLos[index].nilaiPasar!.toString()),
+                              ).text),
+                            ],
+                          ),
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(
+                                    formLos[index].nilaiLiquidasi!.toString()),
+                              ).text),
+                            ],
+                          ),
+                          TableRow(
+                            decoration: const BoxDecoration(
+                              color: PdfColors.grey,
+                            ),
+                            children: [
+                              textDeskripsiNoBold(''),
+                              textDeskripsiNoBold('Nilai Pengikatan'),
+                              textDeskripsiNoBold(MoneyMaskedTextController(
+                                decimalSeparator: '',
+                                thousandSeparator: '.',
+                                leftSymbol: 'Rp. ',
+                                precision: 0,
+                                initialValue: double.parse(
+                                    formLos[index].nilaiPengikatan.toString()),
+                              ).text),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              )
+            : Container(),
+
+        formLainnya != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
+        formLainnya != null
+            ? Table(
+                columnWidths: {
+                  0: const FlexColumnWidth(0.07),
+                  1: const FlexColumnWidth(0.85),
+                  2: const FlexColumnWidth(1),
+                },
+                tableWidth: TableWidth.min,
+                children: [
+                  TableRow(
+                    decoration: const BoxDecoration(
+                      color: PdfColors.grey,
+                      border: Border(
+                        bottom: BorderSide(
+                          color: PdfColors.black,
+                          width: 1,
+                        ),
+                      ),
+                    ),
+                    children: [
+                      textDeskripsiNoBold(''),
+                      textDeskripsiNoBold(
+                        'Usaha Yang Dibiayai',
+                      ),
+                      textDeskripsiNoBold(''),
+                    ],
+                  ),
+                ],
+              )
+            : Container(),
+
+        formLainnya != null
+            ? SizedBox(
+                height: 10,
+              )
+            : Container(),
+
+        SizedBox(
+          height: 10,
+        ),
+
+        Table(
+          columnWidths: {
+            0: const FlexColumnWidth(0.04),
+            1: const FlexColumnWidth(0.92),
+            2: const FlexColumnWidth(0.1),
+          },
+          tableWidth: TableWidth.min,
+          children: [
+            TableRow(
+              decoration: const BoxDecoration(
+                color: PdfColors.grey,
+                border: Border(
+                  bottom: BorderSide(
+                    color: PdfColors.black,
+                    width: 1,
+                  ),
+                ),
+              ),
+              children: [
+                textDeskripsiNoBold(''),
+                textDeskripsiNoBold(
+                  'Asuransi Penjaminan',
+                ),
+                textDeskripsiNoBold(''),
+              ],
+            ),
+            TableRow(
+              decoration: const BoxDecoration(
+                color: PdfColors.grey,
+              ),
+              children: [
+                textDeskripsiNoBold(''),
+                textDeskripsiNoBold(
+                  'Premi $premi% X ${MoneyMaskedTextController(
+                    decimalSeparator: '',
+                    thousandSeparator: '.',
+                    leftSymbol: 'Rp. ',
+                    precision: 0,
+                    initialValue: double.parse(
+                        debtor.inputKeuangan!.kreditDiusulkan.toString()),
+                  ).text} = ${MoneyMaskedTextController(
+                    decimalSeparator: '',
+                    thousandSeparator: '.',
+                    leftSymbol: 'Rp. ',
+                    precision: 0,
+                    initialValue: double.parse(
+                            debtor.inputKeuangan!.kreditDiusulkan.toString()) *
+                        premi /
+                        100,
+                  ).text}',
+                ),
+                textDeskripsiNoBold(''),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Table(
+          columnWidths: {
+            0: const FlexColumnWidth(0.07),
+            1: const FlexColumnWidth(0.38),
+            2: const FlexColumnWidth(1),
+          },
+          children: [
+            TableRow(
+              children: [
+                textDeskripsiNoBold('15.'),
+                textDeskripsiNoBold('Syarat Lain'),
+                textDeskripsiNoBold(''),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Table(
+          columnWidths: {
+            0: const FlexColumnWidth(0.04),
+            1: const FlexColumnWidth(0.92),
+            2: const FlexColumnWidth(0.1),
+          },
+          children: [
+            TableRow(
+              children: [
+                textDeskripsiNoBold(''),
+                ListView.builder(
+                  itemCount: syaratList!.length,
+                  itemBuilder: (context, index) => Align(
+                    alignment: Alignment.centerLeft,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        textUmur(
+                            '${(index + 1)}. ${syaratList[index].keterangan}')
+                      ],
+                    ),
+                  ),
+                ),
+                textDeskripsiNoBold(''),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 150,
+        ),
+        // // Footer
+        Table(
+          tableWidth: TableWidth.max,
+          children: [
+            TableRow(
+              children: [
+                // textDeskripsiNoBold(''),
+                center("Yogyakarta, March 2022"),
+                // SizedBox.shrink(),
+              ],
+            ),
+          ],
+        ),
+        Table(
+          // border: TableBorder.all(),
+          columnWidths: {},
+          tableWidth: TableWidth.max,
+          children: [
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                center(controller.faker.name.fullName()),
+              ],
+            ),
+            TableRow(
+              children: [
+                center('Pemimpin Cabang Pembantu'),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  '.',
+                  style: const TextStyle(color: PdfColors.white),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     ),
   );

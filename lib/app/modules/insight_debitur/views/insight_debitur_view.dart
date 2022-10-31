@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/analisa_agunan/menu_analisa_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -35,6 +36,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
   InsightDebiturView({Key? key}) : super(key: key);
 
   final neracaController = Get.put(InputNeracaController());
+  final rugiLabaController = Get.put(RugiLabaController());
   final analisaKeuanganController = Get.put(KeuanganAnalisisController());
   final analisaBisnisController = Get.put(BisnisAnalisisController());
   final analisaKarakterController = Get.put(KarakterAnalisisController());
@@ -192,15 +194,28 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                           children: [
                                             Obx(
                                               () {
-                                                if (analisaKeuanganController
-                                                    .isAnalisaKeuanganProcessing
-                                                    .value) {
+                                                if (neracaController
+                                                    .isNeracaProcessing.value) {
                                                   return const Center(
                                                     child:
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
                                                   return PrintNeraca();
+                                                }
+                                              },
+                                            ),
+                                            Obx(
+                                              () {
+                                                if (rugiLabaController
+                                                    .isRugiLabaProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
+                                                  return PrintRugiLaba();
                                                 }
                                               },
                                             ),

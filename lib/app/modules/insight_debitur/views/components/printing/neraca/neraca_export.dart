@@ -33,12 +33,6 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
-  // logo
-  final imageLogo = MemoryImage(
-      (await rootBundle.load('assets/images/pdf/logo.png'))
-          .buffer
-          .asUint8List());
-
   pdf.addPage(
     MultiPage(
       footer: (context) => Container(
@@ -217,7 +211,7 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                   children: [
                     TableRow(
                       children: [
-                        textUmur(''),
+                        Center(child: textUmur('Keterangan')),
                         textUmurR(DateFormat('dd/MM/yyyy').format(
                             DateTime.parse(
                                 debtor.inputNeraca!.tanggalInput.toString()))),
@@ -291,7 +285,7 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                   children: [
                     TableRow(
                       children: [
-                        textUmur(''),
+                        Center(child: textUmur('Keterangan')),
                         textUmurR(DateFormat('dd/MM/yyyy').format(
                             DateTime.parse(
                                 debtor.inputNeraca!.tanggalInput.toString()))),
@@ -335,7 +329,7 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur(
-                            'Perkiraan ini menunjukkan jumlah persediaan bahan baku yang berhubungan usaha, sebagai berikut :'),
+                            'Perkiraan ini menunjukkan jumlah hutang usaha, sebagai berikut :'),
                       ],
                     ),
                   ],
@@ -352,7 +346,7 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                   children: [
                     TableRow(
                       children: [
-                        textUmur(''),
+                        Center(child: textUmur('Keterangan')),
                         textUmurR(DateFormat('dd/MM/yyyy').format(
                             DateTime.parse(
                                 debtor.inputNeraca!.tanggalInput.toString()))),
@@ -367,7 +361,168 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                           leftSymbol: 'Rp. ',
                           precision: 0,
                           initialValue: double.parse(
-                              debtor.inputNeraca!.jumlahPersediaan.toString()),
+                              debtor.inputNeraca!.hutangUsaha.toString()),
+                        ).text),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Table(
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.04),
+                    1: const FlexColumnWidth(0.96),
+                  },
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        textUmur('5.'),
+                        textUmurBoldLeft('Hutang Bank'),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur(''),
+                        textUmur(
+                            'Perkiraan ini menunjukkan jumlah hutang bank, sebagai berikut :'),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Table(
+                  border: // border all
+                      TableBorder.all(color: PdfColors.black, width: 0.5),
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.75),
+                    1: const FlexColumnWidth(0.25),
+                  },
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        Center(child: textUmur('Keterangan')),
+                        textUmurR(DateFormat('dd/MM/yyyy').format(
+                            DateTime.parse(
+                                debtor.inputNeraca!.tanggalInput.toString()))),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur('Jumlah'),
+                        textUmur(MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.hutangBank.toString()),
+                        ).text),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Table(
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.04),
+                    1: const FlexColumnWidth(0.96),
+                  },
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        textUmur('6.'),
+                        textUmurBoldLeft('Aktiva Tetap'),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur(''),
+                        textUmur(
+                            'Perkiraan ini menunjukkan jumlah nilai buku aktiva yang dimiliki, sebagai berikut :'),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Table(
+                  border: // border all
+                      TableBorder.all(color: PdfColors.black, width: 0.5),
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.75),
+                    1: const FlexColumnWidth(0.25),
+                  },
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        Center(child: textUmur('Keterangan')),
+                        textUmurR(DateFormat('dd/MM/yyyy').format(
+                            DateTime.parse(
+                                debtor.inputNeraca!.tanggalInput.toString()))),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur('Peralatan/Mesin'),
+                        textUmur(MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.peralatan.toString()),
+                        ).text),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur('Kendaraan'),
+                        textUmur(MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.kendaraan.toString()),
+                        ).text),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur('Tanah dan Bangunan'),
+                        textUmur(MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.tanahDanBangunan.toString()),
+                        ).text),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur('Jumlah'),
+                        textUmur(MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.aktivaTetap.toString()),
                         ).text),
                       ],
                     ),

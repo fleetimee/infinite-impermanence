@@ -1,6 +1,7 @@
 import 'package:akm/app/modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/inputan/inputan_preview.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/neraca/neraca_preview.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -295,6 +296,11 @@ class AppPages {
     GetPage(
       name: _Paths.PRINT_NERACA,
       page: () => NeracaPreview(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.PRINT_RUGILABA,
+      page: () => RugiLabaPreview(),
       transition: Transition.cupertino,
     ),
     GetPage(

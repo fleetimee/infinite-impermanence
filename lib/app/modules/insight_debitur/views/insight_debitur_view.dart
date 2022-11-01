@@ -273,6 +273,20 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                         CircularProgressIndicator(),
                                                   );
                                                 } else {
+                                                  return PrintUsulanBaru();
+                                                }
+                                              },
+                                            ),
+                                            Obx(
+                                              () {
+                                                if (analisaKeuanganController
+                                                    .isAnalisaKeuanganProcessing
+                                                    .value) {
+                                                  return const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  );
+                                                } else {
                                                   return PrintKeuangan();
                                                 }
                                               },

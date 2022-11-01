@@ -3,6 +3,7 @@ import 'package:akm/app/modules/insight_debitur/views/components/printing/agunan
 import 'package:akm/app/modules/insight_debitur/views/components/printing/inputan/inputan_preview.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/neraca/neraca_preview.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba_preview.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -312,6 +313,11 @@ class AppPages {
     GetPage(
       name: _Paths.PRINT_MODEL,
       page: () => ModelPreview(),
+      transition: Transition.cupertino,
+    ),
+    GetPage(
+      name: _Paths.PRINT_USULAN,
+      page: () => UsulanPreview(),
       transition: Transition.cupertino,
     ),
     GetPage(

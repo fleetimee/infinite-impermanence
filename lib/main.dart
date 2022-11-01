@@ -14,10 +14,6 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'app/routes/app_pages.dart';
 import 'app/themes/light.dart';
 
-// TODO: Edit Form Agunan and Syarat Lainnya valuenya balik lagi ke semula
-// Solusi sementara pake formKey.value untuk editnya
-// Waiting for confirmation
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 

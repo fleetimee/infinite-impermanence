@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -71,6 +72,8 @@ class DebiturRealController extends GetxController {
 
   final loadingFetch = false.obs;
 
+  final debiturController = Get.put(InsightDebiturController());
+
   // void searchDebtor(String query) {
   //   final suggestion = listDebtor.where((debtor) {
   //     final nama = debtor.peminjam1.toString().toLowerCase();
@@ -89,9 +92,7 @@ class DebiturRealController extends GetxController {
   // }
 
   void saveDebtor() {
-    final api = DebtorService();
-
-    final data = {
+    final body = {
       'peminjam1': peminjam1.value.text,
       'ktp1': ktp1.value.text,
       'peminjam2': peminjam2.value.text,
@@ -119,9 +120,37 @@ class DebiturRealController extends GetxController {
       'deskripsi_debitur': deskripsiDebitur.value.text,
     };
 
-    api.addDebtor(data);
-
-    update();
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().addDebtor(body).then((resp) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }, onError: (e) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          'Data gagal disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      debiturController.isDataLoading(false);
+      Get.snackbar(
+        'Error',
+        'Data gagal disimpan',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 
   void deleteDebtor(String id) {
@@ -135,10 +164,9 @@ class DebiturRealController extends GetxController {
   }
 
   void editDebitur(String id) async {
-    isEditLoading.value = true;
+    // isEditLoading.value = true;
 
-    final api = DebtorService();
-    final data = {
+    final body = {
       'peminjam1': peminjam1.value.text,
       'ktp1': ktp1.value.text,
       'peminjam2': peminjam2.value.text,
@@ -166,11 +194,73 @@ class DebiturRealController extends GetxController {
       'deskripsi_debitur': deskripsiDebitur.value.text,
     };
 
-    await api.updateDebtor(id, data);
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().updateDebtor(id, body).then((resp) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Success',
+          'Data berhasil disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+        debiturController.fetchOneDebitur(int.parse(id));
+      }, onError: (e) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          'Data gagal disimpan',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      debiturController.isDataLoading(false);
+      Get.snackbar(
+        'Error',
+        'Data gagal disimpan',
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
 
-    update();
+    // final api = DebtorService();
+    // final data = {
+    //   'peminjam1': peminjam1.value.text,
+    //   'ktp1': ktp1.value.text,
+    //   'peminjam2': peminjam2.value.text,
+    //   'ktp2': ktp2.value.text,
+    //   'pemilik_agunan_1': pemilikAgunan1.value.text,
+    //   'no_ktp1': noKtp1.value.text,
+    //   'pemilik_agunan_2': pemilikAgunan2.value.text,
+    //   'no_ktp2': noKtp2.value.text,
+    //   'alamat_1': alamat1.value.text,
+    //   'alamat_2': alamat2.value.text,
+    //   'tempat_lahir': tempatLahir.value.text,
+    //   'tanggal_lahir': tanggalLahir.value.toString(),
+    //   'umur': umur.value.text,
+    //   'status_keluarga': statusKeluargaInput.value.toString(),
+    //   'jumlah_tanggungan': jumlahTanggungan.value.text,
+    //   'lamanya_berusaha': lamanyaBerusaha.value.text,
+    //   'lokasi_usaha': lokasiUsaha.value.text,
+    //   'jenis_usaha': jenisUsahaInput.value.toString(),
+    //   'bidang_usaha': bidangUsaha.value.text,
+    //   'pendidikan': pendidikanInput.value.toString(),
+    //   'pekerjaan1': pekerjaan1.value.text,
+    //   'pekerjaan2': pekerjaan2.value.text,
+    //   'no_skpk': noSkpk.value.text,
+    //   'tgl_sekarang': tanggalSekarangInput.value.toString(),
+    //   'deskripsi_debitur': deskripsiDebitur.value.text,
+    // };
 
-    isEditLoading.value = false;
+    // await api.updateDebtor(id, data);
+
+    // update();
+
+    // isEditLoading.value = false;
   }
 
   void fetchDebitur() async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:faker_dart/faker_dart.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:nekos/nekos.dart';
 
@@ -28,6 +29,8 @@ class InsightDebiturController extends GetxController
     super.onClose();
     tabController?.dispose();
   }
+
+  final formKey = GlobalKey<FormBuilderState>();
 
   // For carousel
   final List<String> imageList = [

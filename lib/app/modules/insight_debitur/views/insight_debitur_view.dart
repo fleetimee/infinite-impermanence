@@ -3,6 +3,7 @@ import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_cont
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/analisa_agunan/menu_analisa_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -144,7 +145,10 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           IconButton(
                             color: primaryColor,
                             enableFeedback: true,
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed(Routes.DEBITUR_EDIT,
+                                  arguments: controller.insightDebitur.value);
+                            },
                             icon: const Icon(FontAwesomeIcons.pencil),
                           ),
                           IconButton(

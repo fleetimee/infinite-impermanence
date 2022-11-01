@@ -832,11 +832,8 @@ class DebiturEditView extends GetView<DebiturRealController> {
                                     ?.saveAndValidate() ??
                                 false) {
                               controller.editDebitur(data.id.toString());
-                              controller.fetchDebitur();
 
                               Get.back();
-
-                              controller.fetchDebitur();
                             } else {
                               debugPrint(controller.formKey.currentState?.value
                                   .toString());

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/analisa_agunan/menu_analisa_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
@@ -42,6 +43,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
   final analisaKarakterController = Get.put(KarakterAnalisisController());
   final analisaJenisUsahaController = Get.put(UsahaAnalisisController());
   final selectAgunanController = Get.put(AgunanPilihController());
+  final analisaAgunanController = Get.put(AgunanAnalisisController());
 
   @override
   Widget build(BuildContext context) {
@@ -299,6 +301,18 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                 );
                                               } else {
                                                 return KarakterPrint();
+                                              }
+                                            }),
+                                            Obx(() {
+                                              if (analisaAgunanController
+                                                  .isAnalisaAgunanProcessing
+                                                  .value) {
+                                                return const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                );
+                                              } else {
+                                                return PrintAgunan();
                                               }
                                             }),
                                             Obx(

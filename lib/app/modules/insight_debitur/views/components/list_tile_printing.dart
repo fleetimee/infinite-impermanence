@@ -117,6 +117,59 @@ class PrintNeraca extends StatelessWidget {
   }
 }
 
+class PrintUsulanBaru extends StatelessWidget {
+  PrintUsulanBaru({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GFListTile(
+      title: const Text(
+        'Usulan Baru',
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      avatar: const GFAvatar(
+        backgroundColor: primaryColor,
+        child: Icon(
+          FontAwesomeIcons.lyft,
+          color: secondaryColor,
+        ),
+      ),
+      subTitleText: 'Print Usulan Baru',
+      icon: controller.insightDebitur.value.inputNeraca != null
+          ? GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.USULAN_PRINT,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+            )
+          : GFButton(
+              onPressed: () {
+                Get.snackbar(
+                  'Error',
+                  'Data Neraca belum lengkap',
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                );
+              },
+              text: "N/A",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+            ),
+    );
+  }
+}
+
 class PrintRugiLaba extends StatelessWidget {
   PrintRugiLaba({
     Key? key,

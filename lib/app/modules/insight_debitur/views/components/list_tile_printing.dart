@@ -170,6 +170,59 @@ class PrintRugiLaba extends StatelessWidget {
   }
 }
 
+class PrintAgunan extends StatelessWidget {
+  PrintAgunan({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GFListTile(
+      title: const Text(
+        'Agunan',
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      avatar: const GFAvatar(
+        backgroundColor: primaryColor,
+        child: Icon(
+          FontAwesomeIcons.uber,
+          color: secondaryColor,
+        ),
+      ),
+      subTitleText: 'Print Agunan',
+      icon: controller.insightDebitur.value.analisaAgunan != null
+          ? GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.AGUNAN_PRINT,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+            )
+          : GFButton(
+              onPressed: () {
+                Get.snackbar(
+                  'Error',
+                  'Data Analisa Agunan belum lengkap',
+                  backgroundColor: Colors.red,
+                  colorText: Colors.white,
+                );
+              },
+              text: "N/A",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+            ),
+    );
+  }
+}
+
 class PrintPutusan extends StatelessWidget {
   PrintPutusan({
     Key? key,

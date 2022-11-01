@@ -402,7 +402,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIHAT_AGUNAN_ANALISIS,
-      page: () => const LihatAgunanAnalisisViewView(),
+      page: () => LihatAgunanAnalisisViewView(),
       binding: AgunanAnalisisBinding(),
     ),
     GetPage(

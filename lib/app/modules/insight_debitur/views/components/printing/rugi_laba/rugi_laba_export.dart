@@ -857,6 +857,330 @@ Future<Uint8List> makeRugilabaPdf(DebiturInsight debtor) async {
                 ),
               ],
             ),
+            Table(
+              columnWidths: {
+                0: const FlexColumnWidth(0.50),
+                1: const FlexColumnWidth(0.25),
+                2: const FlexColumnWidth(0.25),
+              },
+              children: [
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('Biaya :'),
+                    textUmurR(''),
+                    textUmur(''),
+                  ],
+                )
+              ],
+            ),
+            Table(
+              columnWidths: {
+                0: const FlexColumnWidth(0.50),
+                1: const FlexColumnWidth(0.25),
+                2: const FlexColumnWidth(0.25),
+              },
+              children: [
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('1. Biaya Tenaga Kerja'),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.biayaTenagaKerja.toString()),
+                    ).text),
+                    textUmur(''),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('2. Biaya Operasional'),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.biayaOperasional.toString()),
+                    ).text),
+                    textUmur(''),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('3. Biaya Lainnya'),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.biayaLainnya.toString()),
+                    ).text),
+                    textUmur(''),
+                  ],
+                ),
+              ],
+            ),
+            Table(
+              border: TableBorder.all(),
+              columnWidths: {
+                0: const FlexColumnWidth(0.75),
+                1: const FlexColumnWidth(0.25),
+              },
+              children: [
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    Center(child: textUmur('Total Biaya')),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.totalBiaya.toString()),
+                    ).text),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    Center(child: textUmur('Laba Sebelum Pajak (EBIT)')),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.labaSebelumPajak.toString()),
+                    ).text),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    Center(child: textUmur('Perkiraan Pajak')),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.perkiraanPajak.toString()),
+                    ).text),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    Center(child: textUmur('Laba Setelah Pajak')),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.labaSetelahPajak.toString()),
+                    ).text),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 50),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Table(
+              children: [
+                TableRow(
+                  children: [
+                    header('PERKIRAAN PENGHASILAN PER BULAN'),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Table(
+              border: TableBorder.all(),
+              columnWidths: {
+                0: const FlexColumnWidth(0.75),
+                1: const FlexColumnWidth(0.25),
+              },
+              children: [
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('Penghasilan rata-rata per bulan'),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.labaSetelahPajak.toString()),
+                    ).text),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('Biaya hidup rata - rata per bulan'),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.biayaHidup.toString()),
+                    ).text),
+                  ],
+                ),
+                TableRow(
+                  decoration: const BoxDecoration(
+                    border: Border(
+                      left: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                      right: BorderSide(
+                        width: 0.5,
+                        color: PdfColors.black,
+                      ),
+                    ),
+                  ),
+                  children: [
+                    textUmur('Sisa penghasilan bersih per bulan'),
+                    textUmurR(MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.inputRugiLaba!.sisaPenghasilan.toString()),
+                    ).text),
+                  ],
+                ),
+              ],
+            ),
           ],
         )
       ],

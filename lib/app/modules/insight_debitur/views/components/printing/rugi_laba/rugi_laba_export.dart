@@ -562,7 +562,7 @@ Future<Uint8List> makeRugilabaPdf(DebiturInsight debtor) async {
                     ),
                   ),
                   children: [
-                    textUmur('1. Kendaraan'),
+                    textUmur('2. Kendaraan'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1182,7 +1182,41 @@ Future<Uint8List> makeRugilabaPdf(DebiturInsight debtor) async {
               ],
             ),
           ],
-        )
+        ),
+        SizedBox(height: 30),
+        Table(
+          columnWidths: {
+            0: const FlexColumnWidth(0.21),
+            1: const FlexColumnWidth(0.04),
+            2: const FlexColumnWidth(0.75),
+          },
+          children: [
+            TableRow(
+              children: [
+                textUmur('Tanggal'),
+                textUmur(': '),
+                textUmur(''),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: 75),
+        Table(
+          columnWidths: {
+            0: const FlexColumnWidth(0.21),
+            1: const FlexColumnWidth(0.04),
+            2: const FlexColumnWidth(0.75),
+          },
+          children: [
+            TableRow(
+              children: [
+                textUmur('Ttd Tangan'),
+                textUmur(': '),
+                textUmur(''),
+              ],
+            )
+          ],
+        ),
       ],
     ),
   );

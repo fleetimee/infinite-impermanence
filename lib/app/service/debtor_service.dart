@@ -11,9 +11,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 // 🌎 Project imports:
- import '../common/constant.dart';
- import '../common/style.dart';
- import '../models/debtor.dart';
+import '../common/constant.dart';
+import '../common/style.dart';
+import '../models/debtor.dart';
 
 class DebtorService {
   final httpClient = http.Client();
@@ -21,65 +21,33 @@ class DebtorService {
   // Create a debtor
   Future<Debtor> addDebtor(body) async {
     try {
-      const apiUrl = '${baseUrl}debiturs';
+      // const apiUrl = '${baseUrl}debiturs';
+      // final response = await httpClient.post(
+      //   Uri.parse(apiUrl),
+      //   body: jsonEncode(body),
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Accept': 'application/json',
+      //   },
+      // );
+
       final response = await httpClient.post(
-        Uri.parse(apiUrl),
-        body: jsonEncode(body),
+        Uri.parse('${baseUrl}debiturs'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
+        body: jsonEncode(body),
       );
-
       debugPrint('response: ${response.body}');
 
       if (response.statusCode == 201) {
-        AwesomeDialog(
-          context: Get.context!,
-          dialogType: DialogType.success,
-          animType: AnimType.bottomSlide,
-          dialogBackgroundColor: primaryColor,
-          titleTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-          ),
-          descTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-          title: 'Sukses',
-          desc: 'Data berhasil ditambahkan',
-          btnOkOnPress: () {
-            Get.back();
-          },
-        ).show();
+        return Debtor.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
       }
-      return Debtor.fromJson(json.decode(response.body));
     } catch (e) {
-      debugPrint('error: $e');
-
-      AwesomeDialog(
-        context: Get.context!,
-        dialogBackgroundColor: primaryColor,
-        titleTextStyle: GoogleFonts.poppins(
-          color: secondaryColor,
-          fontSize: 30,
-          fontWeight: FontWeight.w500,
-        ),
-        descTextStyle: GoogleFonts.poppins(
-          color: secondaryColor,
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
-        ),
-        dialogType: DialogType.error,
-        animType: AnimType.bottomSlide,
-        title: 'Error',
-        desc: 'Terjadi kesalahan',
-        btnOkOnPress: () {},
-      ).show();
-      throw Exception('Failed to create post');
+      return Future.error(e);
     }
   }
 
@@ -196,43 +164,26 @@ class DebtorService {
   }
 
   // Update a debtor
-  Future<void> updateDebtor(id, body) async {
+  Future<void> updateDebtor(id, Map body) async {
     try {
-      final apiUrl = '${baseUrl}debiturs/$id';
       final response = await httpClient.put(
-        Uri.parse(apiUrl),
-        body: jsonEncode(body),
+        Uri.parse('${baseUrl}debiturs/$id'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
+        body: jsonEncode(body),
       );
+
+      debugPrint('response: ${response.body}');
+
       if (response.statusCode == 200) {
-        AwesomeDialog(
-          context: Get.context!,
-          dialogBackgroundColor: primaryColor,
-          titleTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 30,
-            fontWeight: FontWeight.w500,
-          ),
-          descTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-          ),
-          dialogType: DialogType.success,
-          animType: AnimType.bottomSlide,
-          title: 'Sukses',
-          desc: 'Data berhasil diubah',
-          btnOkOnPress: () {},
-        ).show();
+        return;
       } else {
-        throw Exception('Failed to load post');
+        throw Exception('Failed to load data');
       }
     } catch (e) {
-      debugPrint('error: $e');
-      throw Exception('Failed to load post');
+      return Future.error(e);
     }
   }
 }

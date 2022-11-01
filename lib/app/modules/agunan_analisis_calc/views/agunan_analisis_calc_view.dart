@@ -19,8 +19,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('AgunanAnalisisCalcView'),
-          centerTitle: true,
+          title: const Text('Analisa Agunan'),
         ),
         body: FormBuilder(
           key: controller.formKey,
@@ -980,239 +979,234 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                             child: GFButton(
                               onPressed: () {
                                 showBarModalBottomSheet(
-                                    context: context,
-                                    builder: (context) {
-                                      return Container(
-                                        padding: const EdgeInsets.all(16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: const [
-                                                Center(
-                                                  child: Text(
-                                                    'Yeay berhasil mendapatkan',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 24,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Center(
-                                                  child: Text(
-                                                    'CRR Agunan 🎉🎉🎉',
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 24,
-                                                    ),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: 20,
-                                                ),
-                                                Center(
-                                                  child: GFImageOverlay(
-                                                    height: 200,
-                                                    width: 350,
-                                                    shape: BoxShape.rectangle,
-                                                    image: NetworkImage(
-                                                        'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
-                                                    boxFit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text(
-                                                  'Kredit yang diajukan',
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: const [
+                                              Center(
+                                                child: Text(
+                                                  'Yeay berhasil mendapatkan',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
-                                                    fontSize: 18,
+                                                    fontSize: 24,
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                FormBuilderTextField(
-                                                  name: 'kreditYangDiajukan',
-                                                  readOnly: true,
-                                                  controller: controller
-                                                          .kreditYangDiajukan =
-                                                      MoneyMaskedTextController(
-                                                    initialValue: double.parse(
-                                                        data[7]
-                                                            .inputKeuangan
-                                                            .kreditDiusulkan),
-                                                    thousandSeparator: '.',
-                                                    decimalSeparator: '',
-                                                    precision: 0,
-                                                  ),
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    prefixText: 'Rp .',
-                                                    border:
-                                                        OutlineInputBorder(),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text(
-                                                  'Total Agunan',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 18,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                FormBuilderTextField(
-                                                  name: 'grandTotalAnalisis',
-                                                  readOnly: true,
-                                                  controller:
-                                                      controller.grandTotal,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    prefixText: 'Rp .',
-                                                    border:
-                                                        OutlineInputBorder(),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                const Text(
-                                                  'Rasio Agunan / Kredit',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 18,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                FormBuilderTextField(
-                                                  name: 'ratio',
-                                                  textAlign: TextAlign.right,
-                                                  readOnly: true,
-                                                  controller:
-                                                      controller.ratioAgunan,
-                                                  decoration:
-                                                      const InputDecoration(
-                                                    suffixText: '%',
-                                                    border:
-                                                        OutlineInputBorder(),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            GFButton(
-                                              onPressed: () {
-                                                controller.hitungRatioDanCrr();
-                                              },
-                                              text: 'Hitung',
-                                              color: primaryColor,
-                                              size: GFSize.LARGE,
-                                              fullWidthButton: true,
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Center(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 2,
-                                                      child: Text(
-                                                        'Total CRR:',
-                                                        style: GoogleFonts
-                                                            .spaceGrotesk(
-                                                          fontSize: 35,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                        ),
-                                                        textAlign:
-                                                            TextAlign.right,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(
-                                                      width: 10,
-                                                    ),
-                                                    Expanded(
-                                                      child:
-                                                          FormBuilderTextField(
-                                                        name: 'crrAgunan',
-                                                        readOnly: true,
-                                                        decoration:
-                                                            const InputDecoration(
-                                                          // Disable underline
-                                                          border:
-                                                              InputBorder.none,
-                                                        ),
-                                                        controller: controller
-                                                            .crrAgunan,
-                                                        style: GoogleFonts
-                                                            .spaceGrotesk(
-                                                          fontSize: 35,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
                                                 ),
                                               ),
+                                              Center(
+                                                child: Text(
+                                                  'CRR Agunan 🎉🎉🎉',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 24,
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Center(
+                                                child: GFImageOverlay(
+                                                  height: 200,
+                                                  width: 350,
+                                                  shape: BoxShape.rectangle,
+                                                  image: NetworkImage(
+                                                      'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
+                                                  boxFit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Kredit yang diajukan',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              FormBuilderTextField(
+                                                name: 'kreditYangDiajukan',
+                                                readOnly: true,
+                                                controller: controller
+                                                        .kreditYangDiajukan =
+                                                    MoneyMaskedTextController(
+                                                  initialValue: double.parse(
+                                                      data[7]
+                                                          .inputKeuangan
+                                                          .kreditDiusulkan),
+                                                  thousandSeparator: '.',
+                                                  decimalSeparator: '',
+                                                  precision: 0,
+                                                ),
+                                                decoration:
+                                                    const InputDecoration(
+                                                  prefixText: 'Rp .',
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Total Agunan',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              FormBuilderTextField(
+                                                name: 'grandTotalAnalisis',
+                                                readOnly: true,
+                                                controller:
+                                                    controller.grandTotal,
+                                                decoration:
+                                                    const InputDecoration(
+                                                  prefixText: 'Rp .',
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Text(
+                                                'Rasio Agunan / Kredit',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 18,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              FormBuilderTextField(
+                                                name: 'ratio',
+                                                textAlign: TextAlign.right,
+                                                readOnly: true,
+                                                controller:
+                                                    controller.ratioAgunan,
+                                                decoration:
+                                                    const InputDecoration(
+                                                  suffixText: '%',
+                                                  border: OutlineInputBorder(),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          GFButton(
+                                            onPressed: () {
+                                              controller.hitungRatioDanCrr();
+                                            },
+                                            text: 'Hitung',
+                                            color: primaryColor,
+                                            size: GFSize.LARGE,
+                                            fullWidthButton: true,
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: Center(
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                children: [
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Text(
+                                                      'Total CRR:',
+                                                      style: GoogleFonts
+                                                          .spaceGrotesk(
+                                                        fontSize: 35,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                      textAlign:
+                                                          TextAlign.right,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  Expanded(
+                                                    child: FormBuilderTextField(
+                                                      name: 'crrAgunan',
+                                                      readOnly: true,
+                                                      decoration:
+                                                          const InputDecoration(
+                                                        // Disable underline
+                                                        border:
+                                                            InputBorder.none,
+                                                      ),
+                                                      controller:
+                                                          controller.crrAgunan,
+                                                      style: GoogleFonts
+                                                          .spaceGrotesk(
+                                                        fontSize: 35,
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                            GFButton(
-                                              onPressed: () {
-                                                controller.saveAnalisaAgunan(
-                                                    data[7].id);
-                                                Get.back();
-                                                Get.back();
-                                                Get.back();
-                                              },
-                                              text: 'Simpan',
-                                              color: primaryColor,
-                                              size: GFSize.LARGE,
-                                              fullWidthButton: true,
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    });
+                                          ),
+                                          GFButton(
+                                            onPressed: () {
+                                              controller.saveAnalisaAgunan(
+                                                  data[7].id);
+                                              Get.back();
+                                              Get.back();
+                                              Get.back();
+                                            },
+                                            text: 'Simpan',
+                                            color: primaryColor,
+                                            size: GFSize.LARGE,
+                                            fullWidthButton: true,
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
                               },
                               text: 'Analisa',
                               fullWidthButton: true,

@@ -1193,6 +1193,8 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                             onPressed: () {
                                               controller.saveAnalisaAgunan(
                                                   data[7].id);
+                                              controller
+                                                  .patchProgressBar(data[7].id);
                                               Get.back();
                                               Get.back();
                                               Get.back();

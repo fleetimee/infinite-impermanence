@@ -309,6 +309,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                                 ?.saveAndValidate() ??
                             false) {
                           controller.saveMultipleAgunan();
+                          controller.patchProgressBar(data.id);
                           Get.back();
                           debugPrint(controller.formKey.currentState?.value
                               .toString());

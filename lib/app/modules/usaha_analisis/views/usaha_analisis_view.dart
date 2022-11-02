@@ -227,6 +227,7 @@ class UsahaAnalisisView extends GetView<UsahaAnalisisController> {
                                           ?.saveAndValidate() ??
                                       false) {
                                     controller.saveAnalisaUsaha();
+                                    controller.patchProgressBar(data.id);
                                     Get.back();
                                     Get.back();
                                     debugPrint(controller

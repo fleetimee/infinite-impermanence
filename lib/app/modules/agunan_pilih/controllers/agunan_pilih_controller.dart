@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,6 +16,68 @@ import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_contro
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 class AgunanPilihController extends GetxController {
+  void patchProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) +
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void purgeProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) -
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
   final data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
   final keuanganController = Get.put(InputKeuanganController());

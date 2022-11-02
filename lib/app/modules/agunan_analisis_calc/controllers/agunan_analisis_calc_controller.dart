@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/agunan/agunan_analisa/agunan_analisa.provider.dart';
 import 'package:akm/app/data/provider/agunan/agunan_cash/agunan_cash.provider.dart';
 import 'package:akm/app/data/provider/agunan/agunan_kendaraan/agunan_kendaraaan.provider.dart';
@@ -9,6 +10,7 @@ import 'package:akm/app/data/provider/agunan/agunan_tanah_bangunan/agunan_tanah_
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/service/debtor_service.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -25,6 +27,68 @@ class AgunanAnalisisCalcController extends GetxController {
     getAllAgunanCashAnalisis(data[4].id ?? 0);
     getAllAgunanLosAnalisis(data[5].id ?? 0);
     getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
+  }
+
+  void patchProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) +
+          0.2,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void purgeProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) -
+          0.2,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 
   final data = Get.arguments;

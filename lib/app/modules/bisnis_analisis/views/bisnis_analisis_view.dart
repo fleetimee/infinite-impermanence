@@ -494,6 +494,8 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                                                   ?.saveAndValidate() ??
                                               false) {
                                             controller.saveAnalisisBisnis();
+                                            controller
+                                                .patchProgressBar(data.id);
                                             Get.back();
                                             Get.back();
                                             debugPrint(controller

@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -53,6 +54,8 @@ class InputNeracaController extends GetxController {
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var debitur = TextEditingController();
   var tanggalInput = DateTime.now().obs;
+
+  final data = Get.arguments;
 
   void saveNeraca() {
     final body = {
@@ -214,7 +217,67 @@ class InputNeracaController extends GetxController {
     }
   }
 
-  void patchProgressBar(int id) {}
+  void patchProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) +
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void purgeProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) -
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
 
   void hitungKasDanBank() {
     final cashOnHandValue = double.parse(cashOnHand.text.replaceAll('.', ''));

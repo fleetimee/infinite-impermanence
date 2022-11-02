@@ -179,7 +179,7 @@ class MenuNeraca extends StatelessWidget {
                                   onPressed: () {
                                     Get.toNamed(Routes.INPUT_NERACA,
                                         arguments:
-                                            controller.insightDebitur.value.id);
+                                            controller.insightDebitur.value);
                                   },
                                   child: const Text(
                                     "Input",
@@ -200,8 +200,8 @@ class MenuNeraca extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     Get.toNamed(Routes.LIHAT_NERACA,
-                                        arguments: controller
-                                            .insightDebitur.value.inputNeraca);
+                                        arguments:
+                                            controller.insightDebitur.value);
                                   },
                                   child: const Text(
                                     "Lihat",

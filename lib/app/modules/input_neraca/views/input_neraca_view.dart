@@ -72,7 +72,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           readOnly: true,
                           controller: controller.debitur =
                               TextEditingController(
-                            text: data.toString(),
+                            text: data.id.toString(),
                           ),
                           decoration: const InputDecoration(
                             prefixIcon: Icon(FontAwesomeIcons.person),
@@ -567,6 +567,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     if (controller.formKey.currentState?.saveAndValidate() ??
                         false) {
                       controller.saveNeraca();
+                      controller.patchProgressBar(data.id);
                       Get.back();
                     } else {
                       GFToast.showToast(

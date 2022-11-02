@@ -369,7 +369,12 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     ),
                     child: Obx(
                       () => controller.isDataLoading.value
-                          ? const Text('Loading')
+                          ? const GFLoader(
+                              type: GFLoaderType.custom,
+                              loaderIconOne: Text('Please'),
+                              loaderIconTwo: Text('Wait'),
+                              loaderIconThree: Text('a moment'),
+                            )
                           : GFProgressBar(
                               percentage: double.parse(
                                 controller.insightDebitur.value.progress

@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/99?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan",
+    "url": "{{baseUrl}}api/v1/debiturs/1?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-10-25T06:10:55.047Z",
+    "modified": "2022-11-02T06:40:14.206Z",
     "headers": [],
     "params": [
       {
@@ -1616,6 +1616,44 @@
     "modified": "2022-10-26T06:47:31.162Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "50539ec4-d829-4306-ad26-b123e455e246",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Patch",
+    "url": "{{baseUrl}}api/v1/debiturs/1",
+    "method": "PATCH",
+    "sortNum": 790000,
+    "created": "2022-11-02T06:45:12.572Z",
+    "modified": "2022-11-02T06:53:07.626Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"npwp\": 4541212,\n  \"no_hp\": \"083840663610\",\n  \"jumlah_karyawan\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a60a0ad5-f748-486a-a21b-8553531ee6cb",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Patch Progress",
+    "url": "{{baseUrl}}api/v1/debiturs/2",
+    "method": "PATCH",
+    "sortNum": 800000,
+    "created": "2022-11-02T08:21:38.538Z",
+    "modified": "2022-11-02T08:22:02.688Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"progress\": 0.1\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

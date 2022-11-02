@@ -299,6 +299,24 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'noTelp',
+                    controller: controller.noHp.value,
+                    validator: FormBuilderValidators.numeric(),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No Telp',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No Handphone',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.only(right: 280),
@@ -554,6 +572,26 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     ),
                     keyboardType: TextInputType.number,
                   ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  FormBuilderTextField(
+                    name: 'npwp',
+                    controller: controller.npwp.value,
+                    validator: FormBuilderValidators.numeric(),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No NPWP',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No NPWP (Opsional)',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.only(right: 280),
@@ -654,6 +692,24 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'jumlahKaryawan',
+                    controller: controller.jumlahKaryawan.value,
+                    validator: FormBuilderValidators.numeric(),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'Jumlah Karyawan',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan Jumlah Karyawan',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 25),
                   Padding(

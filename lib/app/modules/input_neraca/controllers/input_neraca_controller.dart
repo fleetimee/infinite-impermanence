@@ -214,6 +214,8 @@ class InputNeracaController extends GetxController {
     }
   }
 
+  void patchProgressBar(int id) {}
+
   void hitungKasDanBank() {
     final cashOnHandValue = double.parse(cashOnHand.text.replaceAll('.', ''));
     final tabunganValue = double.parse(tabungan.text.replaceAll('.', ''));

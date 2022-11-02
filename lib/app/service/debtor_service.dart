@@ -41,6 +41,29 @@ class DebtorService {
     }
   }
 
+  // Patch progress bar
+  Future<Debtor> patchProgressBar(body, id) async {
+    try {
+      final response = await httpClient.patch(
+        Uri.parse('${baseUrl}debiturs/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint('response: ${response.body}');
+
+      if (response.statusCode == 200) {
+        return Debtor.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
   // Fetch debtor by id from API
   Future<Debtor> getDebtorById(id) async {
     try {

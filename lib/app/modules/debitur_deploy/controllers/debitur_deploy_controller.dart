@@ -22,6 +22,7 @@ class DebiturDeployController extends GetxController {
   final pemilikAgunan2 = TextEditingController().obs;
   final noKtp1 = TextEditingController().obs;
   final noKtp2 = TextEditingController().obs;
+  final noHp = TextEditingController().obs;
 
   final alamat1 = TextEditingController().obs;
   final alamat2 = TextEditingController().obs;
@@ -31,11 +32,13 @@ class DebiturDeployController extends GetxController {
   final umur = TextEditingController().obs;
   final statusKeluargaInput = ''.obs;
   final jumlahTanggungan = TextEditingController().obs;
+  final npwp = TextEditingController().obs;
 
   final lamanyaBerusaha = TextEditingController().obs;
   final lokasiUsaha = TextEditingController().obs;
   final bidangUsaha = TextEditingController().obs;
   final jenisUsahaInput = ''.obs;
+  final jumlahKaryawan = TextEditingController().obs;
 
   final pendidikanInput = ''.obs;
 
@@ -56,6 +59,7 @@ class DebiturDeployController extends GetxController {
       'no_ktp1': noKtp1.value.text,
       'pemilik_agunan_2': pemilikAgunan2.value.text,
       'no_ktp2': noKtp2.value.text,
+      'no_hp': noHp.value.text,
       'alamat_1': alamat1.value.text,
       'alamat_2': alamat2.value.text,
       'tempat_lahir': tempatLahir.value.text,
@@ -63,10 +67,12 @@ class DebiturDeployController extends GetxController {
       'umur': umur.value.text,
       'status_keluarga': statusKeluargaInput.value.toString(),
       'jumlah_tanggungan': jumlahTanggungan.value.text,
+      'npwp': npwp.value.text,
       'lamanya_berusaha': lamanyaBerusaha.value.text,
       'lokasi_usaha': lokasiUsaha.value.text,
       'jenis_usaha': jenisUsahaInput.value.toString(),
       'bidang_usaha': bidangUsaha.value.text,
+      'jumlah_karyawan': jumlahKaryawan.value.text,
       'pendidikan': pendidikanInput.value.toString(),
       'pekerjaan1': pekerjaan1.value.text,
       'pekerjaan2': pekerjaan2.value.text,

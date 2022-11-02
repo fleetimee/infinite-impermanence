@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/debitur_deploy/controllers/debitur_deploy_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,13 +15,10 @@ import 'package:intl/intl.dart';
 // 🌎 Project imports:
 import '../../../common/provinsi_kabupaten.dart';
 import '../../../common/style.dart';
-import '../controllers/debitur_real_controller.dart';
 
-class DebiturRealView extends StatelessWidget {
-  DebiturRealView({Key? key}) : super(key: key);
-
-  final controller = Get.put(DebiturRealController());
-
+class DebiturDeployView extends GetView<DebiturDeployController> {
+  const DebiturDeployView({Key? key}) : super(key: key);
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,10 +33,6 @@ class DebiturRealView extends StatelessWidget {
             child: FormBuilder(
               autovalidateMode: AutovalidateMode.disabled,
               key: controller.formKey,
-              // onChanged: () {
-              //   controller.formKey.currentState!.save();
-              //   debugPrint(controller.formKey.currentState!.value.toString());
-              // },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,

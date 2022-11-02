@@ -70,6 +70,7 @@ abstract class Routes {
   static const AGUNAN_ANALISIS = _Paths.AGUNAN_ANALISIS;
   static const LIHAT_AGUNAN_ANALISIS = _Paths.LIHAT_AGUNAN_ANALISIS;
   static const AGUNAN_ANALISIS_CALC = _Paths.AGUNAN_ANALISIS_CALC;
+  static const DEBITUR_DEPLOY = _Paths.DEBITUR_DEPLOY;
 }
 
 abstract class _Paths {
@@ -138,4 +139,5 @@ abstract class _Paths {
   static const AGUNAN_ANALISIS = '/agunan-analisis';
   static const LIHAT_AGUNAN_ANALISIS = '/lihat-agunan-analisis';
   static const AGUNAN_ANALISIS_CALC = '/agunan-analisis-calc';
+  static const DEBITUR_DEPLOY = '/debitur-deploy';
 }

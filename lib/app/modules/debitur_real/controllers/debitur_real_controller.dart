@@ -6,32 +6,14 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:faker_dart/faker_dart.dart';
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../../../common/style.dart';
 import '../../../models/debtor.dart';
 import '../../../service/debtor_service.dart';
 
 class DebiturRealController extends GetxController {
-  // List<Debtor> listDebtor = [].obs;
-  var listDebtor = Future.value(<Debtor>[]).obs;
-  var finalDebtpr = <Debtor>[].obs;
-  var selectedDebtor = <Debtor>[].obs;
-
-  final isEditLoading = false.obs;
-
-  void convertFutureToList() async {
-    var list = await listDebtor.value;
-    finalDebtpr.value = list;
-  }
-
-  // assign listDebtor to finalDebtor
-
-  // List<Debtor>? selectedDebtor = [];
-
   Debtor debtor = Debtor();
 
   final formKey = GlobalKey<FormBuilderState>();
@@ -153,53 +135,16 @@ class DebiturRealController extends GetxController {
   //   }
   // }
 
-  void saveDebtor() {
-    final api = DebtorService();
+  // void deleteDebtor(String id) {
+  //   final api = DebtorService();
 
-    final data = {
-      'peminjam1': peminjam1.value.text,
-      'ktp1': ktp1.value.text,
-      'peminjam2': peminjam2.value.text,
-      'ktp2': ktp2.value.text,
-      'pemilik_agunan_1': pemilikAgunan1.value.text,
-      'no_ktp1': noKtp1.value.text,
-      'pemilik_agunan_2': pemilikAgunan2.value.text,
-      'no_ktp2': noKtp2.value.text,
-      'alamat_1': alamat1.value.text,
-      'alamat_2': alamat2.value.text,
-      'tempat_lahir': tempatLahir.value.text,
-      'tanggal_lahir': tanggalLahir.value.toString(),
-      'umur': umur.value.text,
-      'status_keluarga': statusKeluargaInput.value.toString(),
-      'jumlah_tanggungan': jumlahTanggungan.value.text,
-      'lamanya_berusaha': lamanyaBerusaha.value.text,
-      'lokasi_usaha': lokasiUsaha.value.text,
-      'jenis_usaha': jenisUsahaInput.value.toString(),
-      'bidang_usaha': bidangUsaha.value.text,
-      'pendidikan': pendidikanInput.value.toString(),
-      'pekerjaan1': pekerjaan1.value.text,
-      'pekerjaan2': pekerjaan2.value.text,
-      'no_skpk': noSkpk.value.text,
-      'tgl_sekarang': tanggalSekarangInput.value.toString(),
-      'deskripsi_debitur': deskripsiDebitur.value.text,
-    };
+  //   api.deleteDebtor(id);
 
-    api.addDebtor(data);
+  //   update();
 
-    update();
-  }
+  //   // fetchDebitur();
+  // }
 
-  void deleteDebtor(String id) {
-    final api = DebtorService();
-
-    api.deleteDebtor(id);
-
-    update();
-
-    fetchDebitur();
-  }
-
-  // TODO: Ini bentrok dengan tambah debitur harus dipisah
   void editDebitur(String id) async {
     // isEditLoading.value = true;
 
@@ -263,145 +208,9 @@ class DebiturRealController extends GetxController {
         colorText: Colors.white,
       );
     }
-
-    // final api = DebtorService();
-    // final data = {
-    //   'peminjam1': peminjam1.value.text,
-    //   'ktp1': ktp1.value.text,
-    //   'peminjam2': peminjam2.value.text,
-    //   'ktp2': ktp2.value.text,
-    //   'pemilik_agunan_1': pemilikAgunan1.value.text,
-    //   'no_ktp1': noKtp1.value.text,
-    //   'pemilik_agunan_2': pemilikAgunan2.value.text,
-    //   'no_ktp2': noKtp2.value.text,
-    //   'alamat_1': alamat1.value.text,
-    //   'alamat_2': alamat2.value.text,
-    //   'tempat_lahir': tempatLahir.value.text,
-    //   'tanggal_lahir': tanggalLahir.value.toString(),
-    //   'umur': umur.value.text,
-    //   'status_keluarga': statusKeluargaInput.value.toString(),
-    //   'jumlah_tanggungan': jumlahTanggungan.value.text,
-    //   'lamanya_berusaha': lamanyaBerusaha.value.text,
-    //   'lokasi_usaha': lokasiUsaha.value.text,
-    //   'jenis_usaha': jenisUsahaInput.value.toString(),
-    //   'bidang_usaha': bidangUsaha.value.text,
-    //   'pendidikan': pendidikanInput.value.toString(),
-    //   'pekerjaan1': pekerjaan1.value.text,
-    //   'pekerjaan2': pekerjaan2.value.text,
-    //   'no_skpk': noSkpk.value.text,
-    //   'tgl_sekarang': tanggalSekarangInput.value.toString(),
-    //   'deskripsi_debitur': deskripsiDebitur.value.text,
-    // };
-
-    // await api.updateDebtor(id, data);
-
-    // update();
-
-    // isEditLoading.value = false;
-  }
-
-  void fetchDebitur() async {
-    loadingFetch.value = true;
-
-    final api = DebtorService().getDebtors();
-    listDebtor.value = api;
-    loadingFetch.value = false;
-    listDebtor.refresh();
-
-    update();
-  }
-
-  void filterDebtor() async {
-    await FilterListDialog.display<Debtor>(
-      useSafeArea: true,
-      themeData: FilterListThemeData(
-        Get.context!,
-        choiceChipTheme: const ChoiceChipThemeData(
-          selectedBackgroundColor: primaryColor, elevation: 5,
-
-          // textStyle: TextStyle(color: Colors.black, fontSize: 12),
-        ),
-        headerTheme: const HeaderThemeData(
-          backgroundColor: primaryColor,
-          headerTextStyle: TextStyle(color: Colors.white, fontSize: 16),
-          searchFieldHintText: 'Cari Debitur',
-          closeIconColor: Colors.white,
-        ),
-        controlButtonBarTheme: ControlButtonBarThemeData(
-          Get.context!,
-          backgroundColor: secondaryColor,
-          controlButtonTheme: const ControlButtonThemeData(
-            primaryButtonBackgroundColor: primaryColor,
-          ),
-        ),
-        // Disable chip selection
-        // Change reset button
-        // Change apply button
-        // Change search bar
-        // Change search bar hint text
-        // Change search bar text style
-        // Change search bar text input type
-        // Change search bar text input action
-        // Disable chip selection
-        borderRadius: 20,
-      ),
-      backgroundColor: Colors.white,
-      applyButtonText: 'Pilih',
-      enableOnlySingleSelection: true,
-      barrierDismissible: false,
-      selectedItemsText: 'Debitur Terpilih',
-      Get.context!,
-      hideSelectedTextCount: true,
-      listData: finalDebtpr,
-      selectedListData: selectedDebtor,
-      choiceChipLabel: (user) => user!.peminjam1,
-      validateSelectedItem: (list, val) => list!.contains(val),
-      onItemSearch: (user, query) {
-        return user.peminjam1!.toLowerCase().contains(query.toLowerCase());
-      },
-      onApplyButtonClick: (list) {
-        selectedDebtor.value = list!;
-        debugPrint('selected: $list');
-        update();
-
-        Get.snackbar(
-          '${list[0].peminjam1}',
-          'Dipilih',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: primaryColor,
-          colorText: Colors.white,
-        );
-
-        Navigator.pop(Get.context!);
-      },
-    );
   }
 
   final faker = Faker.instance;
-
-  // @override
-  // void onClose() {
-  //   peminjam1.value.dispose();
-  //   ktp1.value.dispose();
-  //   peminjam2.value.dispose();
-  //   ktp2.value.dispose();
-  //   pemilikAgunan1.value.dispose();
-  //   noKtp1.value.dispose();
-  //   pemilikAgunan2.value.dispose();
-  //   noKtp2.value.dispose();
-  //   alamat1.value.dispose();
-  //   alamat2.value.dispose();
-  //   tempatLahir.value.dispose();
-  //   umur.value.dispose();
-  //   lamanyaBerusaha.value.dispose();
-  //   lokasiUsaha.value.dispose();
-  //   bidangUsaha.value.dispose();
-  //   pekerjaan1.value.dispose();
-  //   pekerjaan2.value.dispose();
-  //   noSkpk.value.dispose();
-  //   deskripsiDebitur.value.dispose();
-  //   super.onClose();
-  // }
 
   final jenisUsahaList = [
     'Pertanian',

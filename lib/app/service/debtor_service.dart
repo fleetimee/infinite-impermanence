@@ -21,16 +21,6 @@ class DebtorService {
   // Create a debtor
   Future<Debtor> addDebtor(body) async {
     try {
-      // const apiUrl = '${baseUrl}debiturs';
-      // final response = await httpClient.post(
-      //   Uri.parse(apiUrl),
-      //   body: jsonEncode(body),
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Accept': 'application/json',
-      //   },
-      // );
-
       final response = await httpClient.post(
         Uri.parse('${baseUrl}debiturs'),
         headers: {
@@ -48,54 +38,6 @@ class DebtorService {
       }
     } catch (e) {
       return Future.error(e);
-    }
-  }
-
-  // Fetch debitur data from API
-  Future<List<Debtor>> getDebtors() async {
-    try {
-      const apiUrl = '${baseUrl}debiturs';
-      final response = await httpClient.get(
-        Uri.parse(apiUrl),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Access-Control_Allow_Origin': '*'
-        },
-      );
-      if (response.statusCode == 200) {
-        debugPrint('response: ${response.body}');
-
-        Iterable it = json.decode(response.body);
-        List<Debtor> list = it.map((model) => Debtor.fromJson(model)).toList();
-        return list;
-      } else {
-        Get.snackbar(
-          'Error',
-          'Terjadi kesalahan',
-          icon: const Icon(
-            Icons.error,
-            color: Colors.white,
-          ),
-          backgroundColor: Colors.red,
-          duration: const Duration(seconds: 2),
-        );
-        throw Exception('Failed to load post');
-      }
-    } catch (e) {
-      debugPrint('error: $e');
-      Get.snackbar(
-        'Error',
-        'Terjadi kesalahan',
-        icon: const Icon(
-          Icons.error,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.red,
-        duration: const Duration(seconds: 2),
-      );
-
-      throw Exception('Failed to load post');
     }
   }
 

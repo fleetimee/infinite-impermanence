@@ -1,15 +1,10 @@
-import 'package:akm/app/modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/agunan/agunan_preview.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/inputan/inputan_preview.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/neraca/neraca_preview.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba_preview.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
 import '../modules/agunan/views/agunan_view.dart';
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
 import '../modules/agunan_analisis/views/agunan_analisis_view.dart';
+import '../modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
 import '../modules/agunan_analisis_calc/bindings/agunan_analisis_calc_binding.dart';
 import '../modules/agunan_analisis_calc/views/agunan_analisis_calc_view.dart';
 import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_binding.dart';
@@ -20,10 +15,11 @@ import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/edit_bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view.dart';
+import '../modules/debitur_deploy/bindings/debitur_deploy_binding.dart';
+import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
-import '../modules/debitur_real/views/debitur_real_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/input_keuangan/bindings/input_keuangan_binding.dart';
@@ -35,12 +31,17 @@ import '../modules/input_neraca/views/edit_neraca_view.dart';
 import '../modules/input_neraca/views/input_neraca_view.dart';
 import '../modules/input_neraca/views/lihat_neraca_view.dart';
 import '../modules/insight_debitur/bindings/insight_debitur_binding.dart';
+import '../modules/insight_debitur/views/components/printing/agunan/agunan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/bisnis/bisnis_preview.dart';
+import '../modules/insight_debitur/views/components/printing/inputan/inputan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/jenis_usaha/jenis_usaha_preview.dart';
 import '../modules/insight_debitur/views/components/printing/karakter/karakter_preview.dart';
 import '../modules/insight_debitur/views/components/printing/keuangan/keuangan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/model/model_preview.dart';
+import '../modules/insight_debitur/views/components/printing/neraca/neraca_preview.dart';
 import '../modules/insight_debitur/views/components/printing/putusan/putusan_preview.dart';
+import '../modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba_preview.dart';
+import '../modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/insight_debitur/views/insight_debitur_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
@@ -197,12 +198,6 @@ class AppPages {
     GetPage(
       name: _Paths.DEBITUR_REAL,
       page: () => const DebiturOnboardingView(),
-      binding: DebiturRealBinding(),
-      transition: Transition.cupertino,
-    ),
-    GetPage(
-      name: _Paths.ADD_DEBITUR,
-      page: () => DebiturRealView(),
       binding: DebiturRealBinding(),
       transition: Transition.cupertino,
     ),
@@ -409,6 +404,11 @@ class AppPages {
       name: _Paths.AGUNAN_ANALISIS_CALC,
       page: () => AgunanAnalisisCalcView(),
       binding: AgunanAnalisisCalcBinding(),
+    ),
+    GetPage(
+      name: _Paths.DEBITUR_DEPLOY,
+      page: () => const DebiturDeployView(),
+      binding: DebiturDeployBinding(),
     ),
   ];
 }

@@ -1628,11 +1628,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Patch",
-    "url": "{{baseUrl}}api/v1/debiturs/1",
+    "url": "{{baseUrl}}api/v1/debiturs/2",
     "method": "PATCH",
     "sortNum": 790000,
     "created": "2022-11-02T06:45:12.572Z",
-    "modified": "2022-11-02T06:53:07.626Z",
+    "modified": "2022-11-02T19:50:24.847Z",
     "headers": [],
     "params": [],
     "body": {

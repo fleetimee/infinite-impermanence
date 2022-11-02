@@ -1869,7 +1869,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('No. Telp Peminjam'),
-                    textUmur('083840663610'),
+                    textUmur(debtor.noHp.toString()),
                     textUmur(''),
                   ],
                 ),
@@ -1877,7 +1877,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('NPWP'),
-                    textUmur('6969696969'),
+                    textUmur(debtor.npwp.toString()),
                     textUmur(''),
                   ],
                 ),

@@ -678,6 +678,24 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                       ),
                                     ],
                                   ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('No HP'),
+                                      paddedText(
+                                        controller.insightDebitur.value.noHp
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('NPWP'),
+                                      paddedText(
+                                        controller.insightDebitur.value.npwp
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                               const SizedBox(
@@ -865,6 +883,16 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                       paddedText(
                                         controller
                                             .insightDebitur.value.lokasiUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Jumlah Karyawan'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.jumlahKaryawan
                                             .toString(),
                                       ),
                                     ],

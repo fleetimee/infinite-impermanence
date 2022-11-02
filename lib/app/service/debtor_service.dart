@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -33,6 +34,29 @@ class DebtorService {
 
       if (response.statusCode == 201) {
         return Debtor.fromJson(jsonDecode(response.body));
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  // Patch progress bar
+  Future<DebiturInsight> patchProgressBar(body, id) async {
+    try {
+      final response = await httpClient.patch(
+        Uri.parse('${baseUrl}debiturs/$id'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: jsonEncode(body),
+      );
+      debugPrint('response: ${response.body}');
+
+      if (response.statusCode == 200) {
+        return DebiturInsight.fromJson(jsonDecode(response.body));
       } else {
         throw Exception('Failed to load data');
       }

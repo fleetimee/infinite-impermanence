@@ -39,7 +39,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
           ElevatedButton(
             onPressed: () {
               Get.back();
-              controller.deleteNeraca(data.id);
+              controller.deleteNeraca(data.inputNeraca.id);
+              controller.purgeProgressBar(data.id);
               Get.back();
             },
             child: const Text("Yakin"),
@@ -111,7 +112,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                       child: FormBuilderDateTimePicker(
                         enabled: false,
 
-                        initialValue: data.tanggalInput,
+                        initialValue: data.inputNeraca.tanggalInput,
                         // onChanged: (value) {
                         //   controller.tanggalInput.value = value!;
                         //   debugPrint(value.toString());
@@ -179,7 +180,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             enabled: false,
                             controller: controller.cashOnHand =
                                 MoneyMaskedTextController(
-                              initialValue: double.parse(data.kasOnHand),
+                              initialValue:
+                                  double.parse(data.inputNeraca.kasOnHand),
                               thousandSeparator: '.',
                               decimalSeparator: '',
                               precision: 0,
@@ -205,7 +207,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               ),
                               controller: controller.tabungan =
                                   MoneyMaskedTextController(
-                                initialValue: double.parse(data.tabungan),
+                                initialValue:
+                                    double.parse(data.inputNeraca.tabungan),
                                 thousandSeparator: '.',
                                 decimalSeparator: '',
                                 precision: 0,
@@ -224,8 +227,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                                 enabled: false,
                                 controller: controller.jumlahKasDanBank =
                                     MoneyMaskedTextController(
-                                  initialValue:
-                                      double.parse(data.jumlahKasDanTabungan),
+                                  initialValue: double.parse(
+                                      data.inputNeraca.jumlahKasDanTabungan),
                                   thousandSeparator: '.',
                                   decimalSeparator: '',
                                   precision: 0,
@@ -274,7 +277,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             name: 'piutang',
                             controller: controller.piutangLainnya =
                                 MoneyMaskedTextController(
-                              initialValue: double.parse(data.jumlahPiutang),
+                              initialValue:
+                                  double.parse(data.inputNeraca.jumlahPiutang),
                               thousandSeparator: '.',
                               decimalSeparator: '',
                               precision: 0,
@@ -296,7 +300,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             enabled: false,
                             controller: controller.piutangLainnya =
                                 MoneyMaskedTextController(
-                              initialValue: double.parse(data.jumlahPiutang),
+                              initialValue:
+                                  double.parse(data.inputNeraca.jumlahPiutang),
                               thousandSeparator: '.',
                               decimalSeparator: '',
                               precision: 0,
@@ -348,7 +353,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             name: 'jumlah_persediaan',
                             controller: controller.persediaan =
                                 MoneyMaskedTextController(
-                              initialValue: double.parse(data.jumlahPersediaan),
+                              initialValue: double.parse(
+                                  data.inputNeraca.jumlahPersediaan),
                               thousandSeparator: '.',
                               decimalSeparator: '',
                               precision: 0,
@@ -405,7 +411,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             ),
                             controller: controller.hutangUsaha =
                                 MoneyMaskedTextController(
-                              initialValue: double.parse(data.hutangUsaha),
+                              initialValue:
+                                  double.parse(data.inputNeraca.hutangUsaha),
                               thousandSeparator: '.',
                               decimalSeparator: '',
                               precision: 0,
@@ -454,7 +461,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                             name: 'hutang_bank',
                             controller: controller.hutangBank =
                                 MoneyMaskedTextController(
-                              initialValue: double.parse(data.hutangBank),
+                              initialValue:
+                                  double.parse(data.inputNeraca.hutangBank),
                               thousandSeparator: '.',
                               decimalSeparator: '',
                               precision: 0,
@@ -509,7 +517,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               enabled: false,
                               controller: controller.peralatan =
                                   MoneyMaskedTextController(
-                                initialValue: double.parse(data.peralatan),
+                                initialValue:
+                                    double.parse(data.inputNeraca.peralatan),
                                 thousandSeparator: '.',
                                 decimalSeparator: '',
                                 precision: 0,
@@ -532,7 +541,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               enabled: false,
                               controller: controller.kendaraan =
                                   MoneyMaskedTextController(
-                                initialValue: double.parse(data.kendaraan),
+                                initialValue:
+                                    double.parse(data.inputNeraca.kendaraan),
                                 thousandSeparator: '.',
                                 decimalSeparator: '',
                                 precision: 0,
@@ -555,8 +565,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               enabled: false,
                               controller: controller.tanahDanBangunan =
                                   MoneyMaskedTextController(
-                                initialValue:
-                                    double.parse(data.tanahDanBangunan),
+                                initialValue: double.parse(
+                                    data.inputNeraca.tanahDanBangunan),
                                 thousandSeparator: '.',
                                 decimalSeparator: '',
                                 precision: 0,
@@ -579,7 +589,8 @@ class LihatneracaView extends GetView<InputNeracaController> {
                               enabled: false,
                               controller: controller.aktivaTetap =
                                   MoneyMaskedTextController(
-                                initialValue: double.parse(data.aktivaTetap),
+                                initialValue:
+                                    double.parse(data.inputNeraca.aktivaTetap),
                                 thousandSeparator: '.',
                                 decimalSeparator: '',
                                 precision: 0,

@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/99?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan",
+    "url": "{{baseUrl}}api/v1/debiturs/2?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan&join=inputNeraca.debitur",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-10-25T06:10:55.047Z",
+    "modified": "2022-11-02T13:22:59.713Z",
     "headers": [],
     "params": [
       {
@@ -681,6 +681,11 @@
         "name": "join",
         "value": "analisaAgunan",
         "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "inputNeraca.debitur",
+        "isPath": false
       }
     ],
     "tests": []
@@ -694,12 +699,12 @@
     "method": "POST",
     "sortNum": 300000,
     "created": "2022-08-20T00:12:44.264Z",
-    "modified": "2022-09-20T05:17:45.002Z",
+    "modified": "2022-11-02T21:00:32.093Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"peminjam1\": \"Octavia\",\n  \"ktp1\": \"Kota Yogyakarta\",\n  \"peminjam2\": \"October\",\n  \"ktp2\": \"Kabupaten Sleman\",\n  \"pemilik_agunan_1\": \"Octavia\",\n  \"no_ktp1\": \"3454545452454\",\n  \"pemilik_agunan_2\": \"Aulia\",\n  \"no_ktp2\": \"5454545454542\",\n  \"alamat_1\": \"Jalan Rajawali\",\n  \"alamat_2\": \"Jalan Manukan\",\n  \"tempat_lahir\": \"Jakarta\",\n  \"tanggal_lahir\": \"2022-08-12\",\n  \"umur\": 49,\n  \"status_keluarga\": \"Kawin\",\n  \"jumlah_tanggungan\": 1,\n  \"lamanya_berusaha\": 4,\n  \"lokasi_usaha\": \"Malioboro\",\n  \"jenis_usaha\": \"Perdagangan\",\n  \"bidang_usaha\": \"Jualan tas\",\n  \"pendidikan\": \"SLTA\",\n  \"pekerjaan1\": \"Berjualan\",\n  \"pekerjaan2\": \"Ngelonte\",\n  \"no_skpk\": \"87878787\",\n  \"tgl_sekarang\": \"2022-07-12\",\n  \"deskripsi_debitur\": \"Lorem ipsum\"\n}",
+      "raw": "{\n  \"peminjam1\": \"Octavia\",\n  \"ktp1\": \"Kota Yogyakarta\",\n  \"peminjam2\": \"October\",\n  \"ktp2\": \"Kabupaten Sleman\",\n  \"pemilik_agunan_1\": \"Octavia\",\n  \"no_ktp1\": \"3454545452454\",\n  \"pemilik_agunan_2\": \"Aulia\",\n  \"no_ktp2\": \"5454545454542\",\n  \"alamat_1\": \"Jalan Rajawali\",\n  \"alamat_2\": \"Jalan Manukan\",\n  \"tempat_lahir\": \"Jakarta\",\n  \"tanggal_lahir\": \"2022-08-12\",\n  \"umur\": 49,\n  \"status_keluarga\": \"Kawin\",\n  \"jumlah_tanggungan\": 1,\n  \"lamanya_berusaha\": 4,\n  \"lokasi_usaha\": \"Malioboro\",\n  \"jenis_usaha\": \"Perdagangan\",\n  \"bidang_usaha\": \"Jualan tas\",\n  \"pendidikan\": \"SLTA\",\n  \"pekerjaan1\": \"Berjualan\",\n  \"pekerjaan2\": \"Melamun\",\n  \"no_skpk\": \"87878787\",\n  \"tgl_sekarang\": \"2022-07-12\",\n  \"deskripsi_debitur\": \"Lorem ipsum\"\n}",
       "form": []
     },
     "tests": []
@@ -1614,6 +1619,58 @@
     "sortNum": 780000,
     "created": "2022-10-26T05:32:01.811Z",
     "modified": "2022-10-26T06:47:31.162Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "50539ec4-d829-4306-ad26-b123e455e246",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Patch",
+    "url": "{{baseUrl}}api/v1/debiturs/2",
+    "method": "PATCH",
+    "sortNum": 790000,
+    "created": "2022-11-02T06:45:12.572Z",
+    "modified": "2022-11-02T19:50:24.847Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"npwp\": 4541212,\n  \"no_hp\": \"083840663610\",\n  \"jumlah_karyawan\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "a60a0ad5-f748-486a-a21b-8553531ee6cb",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Patch Progress",
+    "url": "{{baseUrl}}api/v1/debiturs/2",
+    "method": "PATCH",
+    "sortNum": 800000,
+    "created": "2022-11-02T08:21:38.538Z",
+    "modified": "2022-11-02T20:12:28.415Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"progress\": 0.3\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f7787cc8-39e2-4aec-8c8f-ded88d5aff14",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/debiturs/1",
+    "method": "DELETE",
+    "sortNum": 810000,
+    "created": "2022-11-02T21:05:44.549Z",
+    "modified": "2022-11-02T21:05:58.473Z",
     "headers": [],
     "params": [],
     "tests": []

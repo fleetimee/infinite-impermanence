@@ -24,11 +24,14 @@ class DebiturInsight {
     this.alamat2,
     this.tempatLahir,
     this.tanggalLahir,
+    this.noHp,
     this.umur,
+    this.npwp,
     this.statusKeluarga,
     this.jumlahTanggungan,
     this.lamanyaBerusaha,
     this.lokasiUsaha,
+    this.jumlahKaryawan,
     this.jenisUsaha,
     this.bidangUsaha,
     this.pendidikan,
@@ -37,6 +40,7 @@ class DebiturInsight {
     this.noSkpk,
     this.tglSekarang,
     this.deskripsiDebitur,
+    this.progress,
     this.createdBy,
     this.inputNeraca,
     this.inputRugiLaba,
@@ -64,11 +68,14 @@ class DebiturInsight {
   String? alamat2;
   String? tempatLahir;
   DateTime? tanggalLahir;
+  String? noHp;
   int? umur;
+  String? npwp;
   String? statusKeluarga;
   int? jumlahTanggungan;
   int? lamanyaBerusaha;
   String? lokasiUsaha;
+  int? jumlahKaryawan;
   String? jenisUsaha;
   String? bidangUsaha;
   String? pendidikan;
@@ -77,6 +84,7 @@ class DebiturInsight {
   String? noSkpk;
   DateTime? tglSekarang;
   String? deskripsiDebitur;
+  String? progress;
   dynamic createdBy;
   InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
@@ -106,11 +114,14 @@ class DebiturInsight {
         tanggalLahir: json["tanggal_lahir"] == null
             ? null
             : DateTime.parse(json["tanggal_lahir"]),
+        noHp: json["no_hp"] ?? null,
         umur: json["umur"],
+        npwp: json["npwp"] ?? null,
         statusKeluarga: json["status_keluarga"],
         jumlahTanggungan: json["jumlah_tanggungan"],
         lamanyaBerusaha: json["lamanya_berusaha"],
         lokasiUsaha: json["lokasi_usaha"],
+        jumlahKaryawan: json["jumlah_karyawan"] ?? null,
         jenisUsaha: json["jenis_usaha"],
         bidangUsaha: json["bidang_usaha"],
         pendidikan: json["pendidikan"],
@@ -121,6 +132,7 @@ class DebiturInsight {
             ? null
             : DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
+        progress: json["progress"] ?? null,
         createdBy: json["createdBy"],
         inputNeraca: json["inputNeraca"] == null
             ? null
@@ -169,14 +181,17 @@ class DebiturInsight {
         "alamat_1": alamat1,
         "alamat_2": alamat2,
         "tempat_lahir": tempatLahir,
+        "no_hp": noHp ?? null,
         "tanggal_lahir": tanggalLahir == null
             ? null
             : "${tanggalLahir?.year.toString().padLeft(4, '0')}-${tanggalLahir?.month.toString().padLeft(2, '0')}-${tanggalLahir?.day.toString().padLeft(2, '0')}",
+        "npwp": npwp ?? null,
         "umur": umur,
         "status_keluarga": statusKeluarga,
         "jumlah_tanggungan": jumlahTanggungan,
         "lamanya_berusaha": lamanyaBerusaha,
         "lokasi_usaha": lokasiUsaha,
+        "jumlah_karyawan": jumlahKaryawan ?? null,
         "jenis_usaha": jenisUsaha,
         "bidang_usaha": bidangUsaha,
         "pendidikan": pendidikan,
@@ -187,6 +202,7 @@ class DebiturInsight {
             ? null
             : "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
+        "progress": progress ?? null,
         "createdBy": createdBy,
         "inputNeraca": inputNeraca == null ? null : inputNeraca?.toJson(),
         "inputRugiLaba": inputRugiLaba == null ? null : inputRugiLaba?.toJson(),

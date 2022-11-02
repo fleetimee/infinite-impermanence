@@ -54,6 +54,7 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       btnOkOnPress: () {
                         controller
                             .deleteAnalisaKarakter(data.analisaKarakter.id);
+                        controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

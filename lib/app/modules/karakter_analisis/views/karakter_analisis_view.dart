@@ -664,6 +664,8 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                                   ?.saveAndValidate() ??
                                               false) {
                                             controller.saveAnalisaKarakter();
+                                            controller
+                                                .patchProgressBar(data.id);
                                             Get.back();
                                             Get.back();
                                             debugPrint(controller

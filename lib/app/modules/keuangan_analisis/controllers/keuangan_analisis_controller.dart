@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:math';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -27,6 +28,68 @@ class KeuanganAnalisisController extends GetxController
   void onInit() {
     tabController = TabController(length: 5, vsync: this);
     super.onInit();
+  }
+
+  void patchProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) +
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void purgeProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) -
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 
   final isKeuanganAnalisisProcessing = false.obs;

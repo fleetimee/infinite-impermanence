@@ -340,6 +340,8 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                                     false) {
                                                   controller
                                                       .saveAnalisisKeuangan();
+                                                  controller.patchProgressBar(
+                                                      data.id);
                                                   Get.back();
                                                   Get.back();
                                                 } else {

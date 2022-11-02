@@ -363,7 +363,39 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     ],
                   ),
                 ),
-
+                Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 25,
+                    ),
+                    child: Obx(
+                      () => controller.isDataLoading.value
+                          ? const GFLoader(
+                              type: GFLoaderType.custom,
+                              loaderIconOne: Text('Please'),
+                              loaderIconTwo: Text('Wait'),
+                              loaderIconThree: Text('a moment'),
+                            )
+                          : GFProgressBar(
+                              percentage: double.parse(
+                                controller.insightDebitur.value.progress
+                                    .toString(),
+                              ),
+                              animation: true,
+                              animateFromLastPercentage: true,
+                              lineHeight: 20,
+                              backgroundColor: Colors.black26,
+                              progressBarColor: primaryColor,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 5),
+                                child: Text(
+                                  '${(double.parse(controller.insightDebitur.value.progress.toString()) * 100)} %',
+                                  textAlign: TextAlign.end,
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                              ),
+                            ),
+                    )),
                 const SizedBox(
                   height: 5.0,
                 ),
@@ -646,6 +678,24 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                       ),
                                     ],
                                   ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('No HP'),
+                                      paddedText(
+                                        controller.insightDebitur.value.noHp
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('NPWP'),
+                                      paddedText(
+                                        controller.insightDebitur.value.npwp
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                               const SizedBox(
@@ -833,6 +883,16 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                       paddedText(
                                         controller
                                             .insightDebitur.value.lokasiUsaha
+                                            .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Jumlah Karyawan'),
+                                      paddedText(
+                                        controller
+                                            .insightDebitur.value.jumlahKaryawan
                                             .toString(),
                                       ),
                                     ],

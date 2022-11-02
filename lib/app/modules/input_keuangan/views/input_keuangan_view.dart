@@ -814,6 +814,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                       ?.saveAndValidate() ??
                                   false) {
                                 controller.saveKeuangan();
+                                controller.patchProgressBar(data.id);
                                 Get.back();
                               } else {
                                 debugPrint('validation failed');

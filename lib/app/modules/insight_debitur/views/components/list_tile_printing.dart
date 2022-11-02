@@ -41,7 +41,8 @@ class PrintInput extends StatelessWidget {
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&
               controller.insightDebitur.value.analisaJenisUsaha != null &&
-              controller.insightDebitur.value.analisaKarakter != null
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.INPUT_PRINT,
@@ -151,7 +152,8 @@ class PrintUsulanBaru extends StatelessWidget {
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&
               controller.insightDebitur.value.analisaJenisUsaha != null &&
-              controller.insightDebitur.value.analisaKarakter != null
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.USULAN_PRINT,
@@ -314,7 +316,8 @@ class PrintPutusan extends StatelessWidget {
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&
               controller.insightDebitur.value.analisaJenisUsaha != null &&
-              controller.insightDebitur.value.analisaKarakter != null
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.PUTUSAN_PRINT,
@@ -371,7 +374,8 @@ class PrintUsulan extends StatelessWidget {
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&
               controller.insightDebitur.value.analisaJenisUsaha != null &&
-              controller.insightDebitur.value.analisaKarakter != null
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.USULAN_BARU_PRINT,

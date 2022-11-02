@@ -355,6 +355,7 @@ class RugiLabaView extends StatelessWidget {
                       if (controller.formKey.currentState?.saveAndValidate() ??
                           false) {
                         controller.saveRugiLaba();
+                        controller.patchProgressBar(data.id);
                         Get.back();
                       } else {
                         GFToast.showToast(

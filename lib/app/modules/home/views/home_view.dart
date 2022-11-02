@@ -22,7 +22,8 @@ import 'components/home_menu.dart';
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
 
-  final Uri _url = Uri.parse('https://flutter.dev');
+  final Uri _url =
+      Uri.parse('https://fleetimee.github.io/infinite-impermanence/#/guide');
 
   Future<void> _launchUrl() async {
     if (!await launchUrl(_url)) {

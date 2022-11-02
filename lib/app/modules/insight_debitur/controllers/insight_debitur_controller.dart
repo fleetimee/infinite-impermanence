@@ -17,8 +17,8 @@ class InsightDebiturController extends GetxController
   @override
   void onInit() {
     super.onInit();
-    fetchAgunan(debiturId);
-    fetchOneDebitur(debiturId);
+    fetchAgunan(debiturId ?? 0);
+    fetchOneDebitur(debiturId ?? 0);
     // fetchSyaratLainnya(debiturId);
     // Define how many tabs you want to show
     tabController = TabController(length: 1, vsync: this);
@@ -49,7 +49,7 @@ class InsightDebiturController extends GetxController
   TabController? tabController;
 
   // For nekos api
-  Future<String> img = Nekos().ngif();
+  Future<String> img = Nekos().wallpaper();
 
   // Get debitur id from previous page
   final debiturId = Get.arguments;

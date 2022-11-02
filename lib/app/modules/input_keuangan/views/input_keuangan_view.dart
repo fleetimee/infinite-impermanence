@@ -88,7 +88,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                               titlePosition: GFPosition.start,
                               showOverlayImage: true,
                               imageOverlay: AssetImage(
-                                'assets/images/home/-box.jpg',
+                                'assets/images/home/pink-box.jpg',
                               ),
                               colorFilter: ColorFilter.mode(
                                 Color.fromARGB(136, 0, 0, 0),

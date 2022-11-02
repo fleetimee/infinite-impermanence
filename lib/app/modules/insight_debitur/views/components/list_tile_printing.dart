@@ -37,7 +37,11 @@ class PrintInput extends StatelessWidget {
         ),
       ),
       subTitleText: 'Print inputan',
-      icon: controller.insightDebitur.value.analisaKeuangan != null
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.INPUT_PRINT,
@@ -51,7 +55,7 @@ class PrintInput extends StatelessWidget {
               onPressed: () {
                 Get.snackbar(
                   'Error',
-                  'Data Keuangan belum lengkap',
+                  'Harap Lengkapi Semua Untuk Melanjutkan',
                   backgroundColor: Colors.red,
                   colorText: Colors.white,
                 );
@@ -143,7 +147,11 @@ class PrintUsulanBaru extends StatelessWidget {
         ),
       ),
       subTitleText: 'Print Usulan Baru',
-      icon: controller.insightDebitur.value.inputNeraca != null
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.USULAN_PRINT,
@@ -157,7 +165,7 @@ class PrintUsulanBaru extends StatelessWidget {
               onPressed: () {
                 Get.snackbar(
                   'Error',
-                  'Data Neraca belum lengkap',
+                  'Hara Lengkapi Semua Untuk Melanjutkan',
                   backgroundColor: Colors.red,
                   colorText: Colors.white,
                 );
@@ -302,7 +310,11 @@ class PrintPutusan extends StatelessWidget {
         ),
       ),
       subTitleText: 'Print surat putusan',
-      icon: controller.insightDebitur.value.analisaKeuangan != null
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.PUTUSAN_PRINT,
@@ -316,7 +328,7 @@ class PrintPutusan extends StatelessWidget {
               onPressed: () {
                 Get.snackbar(
                   'Error',
-                  'Data Keuangan belum lengkap',
+                  'Harap Lengkapi Semua Sebelum Melanjutkan',
                   backgroundColor: Colors.red,
                   colorText: Colors.white,
                 );
@@ -355,7 +367,11 @@ class PrintUsulan extends StatelessWidget {
         ),
       ),
       subTitleText: 'Print surat usulan',
-      icon: controller.insightDebitur.value.analisaKeuangan != null
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.USULAN_BARU_PRINT,
@@ -369,7 +385,7 @@ class PrintUsulan extends StatelessWidget {
               onPressed: () {
                 Get.snackbar(
                   'Error',
-                  'Data Keuangan belum lengkap',
+                  'Harap Lengkapi Semua Untuk Melanjutkan',
                   backgroundColor: Colors.red,
                   colorText: Colors.white,
                 );

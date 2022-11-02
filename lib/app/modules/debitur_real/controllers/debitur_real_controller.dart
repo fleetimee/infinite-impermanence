@@ -91,8 +91,72 @@ class DebiturRealController extends GetxController {
   //   update();
   // }
 
+  // void saveDebtor() {
+  //   final body = {
+  //     'peminjam1': peminjam1.value.text,
+  //     'ktp1': ktp1.value.text,
+  //     'peminjam2': peminjam2.value.text,
+  //     'ktp2': ktp2.value.text,
+  //     'pemilik_agunan_1': pemilikAgunan1.value.text,
+  //     'no_ktp1': noKtp1.value.text,
+  //     'pemilik_agunan_2': pemilikAgunan2.value.text,
+  //     'no_ktp2': noKtp2.value.text,
+  //     'alamat_1': alamat1.value.text,
+  //     'alamat_2': alamat2.value.text,
+  //     'tempat_lahir': tempatLahir.value.text,
+  //     'tanggal_lahir': tanggalLahir.value.toString(),
+  //     'umur': umur.value.text,
+  //     'status_keluarga': statusKeluargaInput.value.toString(),
+  //     'jumlah_tanggungan': jumlahTanggungan.value.text,
+  //     'lamanya_berusaha': lamanyaBerusaha.value.text,
+  //     'lokasi_usaha': lokasiUsaha.value.text,
+  //     'jenis_usaha': jenisUsahaInput.value.toString(),
+  //     'bidang_usaha': bidangUsaha.value.text,
+  //     'pendidikan': pendidikanInput.value.toString(),
+  //     'pekerjaan1': pekerjaan1.value.text,
+  //     'pekerjaan2': pekerjaan2.value.text,
+  //     'no_skpk': noSkpk.value.text,
+  //     'tgl_sekarang': tanggalSekarangInput.value.toString(),
+  //     'deskripsi_debitur': deskripsiDebitur.value.text,
+  //   };
+
+  //   try {
+  //     debiturController.isDataLoading(true);
+  //     DebtorService().addDebtor(body).then((resp) {
+  //       debiturController.isDataLoading(false);
+  //       Get.snackbar(
+  //         'Success',
+  //         'Data berhasil disimpan',
+  //         snackPosition: SnackPosition.TOP,
+  //         backgroundColor: Colors.green,
+  //         colorText: Colors.white,
+  //       );
+  //     }, onError: (e) {
+  //       debiturController.isDataLoading(false);
+  //       Get.snackbar(
+  //         'Error',
+  //         'Data gagal disimpan',
+  //         snackPosition: SnackPosition.TOP,
+  //         backgroundColor: Colors.red,
+  //         colorText: Colors.white,
+  //       );
+  //     });
+  //   } catch (e) {
+  //     debiturController.isDataLoading(false);
+  //     Get.snackbar(
+  //       'Error',
+  //       'Data gagal disimpan',
+  //       snackPosition: SnackPosition.TOP,
+  //       backgroundColor: Colors.red,
+  //       colorText: Colors.white,
+  //     );
+  //   }
+  // }
+
   void saveDebtor() {
-    final body = {
+    final api = DebtorService();
+
+    final data = {
       'peminjam1': peminjam1.value.text,
       'ktp1': ktp1.value.text,
       'peminjam2': peminjam2.value.text,
@@ -120,37 +184,9 @@ class DebiturRealController extends GetxController {
       'deskripsi_debitur': deskripsiDebitur.value.text,
     };
 
-    try {
-      debiturController.isDataLoading(true);
-      DebtorService().addDebtor(body).then((resp) {
-        debiturController.isDataLoading(false);
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
-      }, onError: (e) {
-        debiturController.isDataLoading(false);
-        Get.snackbar(
-          'Error',
-          'Data gagal disimpan',
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.red,
-          colorText: Colors.white,
-        );
-      });
-    } catch (e) {
-      debiturController.isDataLoading(false);
-      Get.snackbar(
-        'Error',
-        'Data gagal disimpan',
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.red,
-        colorText: Colors.white,
-      );
-    }
+    api.addDebtor(data);
+
+    update();
   }
 
   void deleteDebtor(String id) {
@@ -163,6 +199,7 @@ class DebiturRealController extends GetxController {
     fetchDebitur();
   }
 
+  // TODO: Ini bentrok dengan tambah debitur harus dipisah
   void editDebitur(String id) async {
     // isEditLoading.value = true;
 
@@ -342,29 +379,29 @@ class DebiturRealController extends GetxController {
 
   final faker = Faker.instance;
 
-  @override
-  void onClose() {
-    peminjam1.value.dispose();
-    ktp1.value.dispose();
-    peminjam2.value.dispose();
-    ktp2.value.dispose();
-    pemilikAgunan1.value.dispose();
-    noKtp1.value.dispose();
-    pemilikAgunan2.value.dispose();
-    noKtp2.value.dispose();
-    alamat1.value.dispose();
-    alamat2.value.dispose();
-    tempatLahir.value.dispose();
-    umur.value.dispose();
-    lamanyaBerusaha.value.dispose();
-    lokasiUsaha.value.dispose();
-    bidangUsaha.value.dispose();
-    pekerjaan1.value.dispose();
-    pekerjaan2.value.dispose();
-    noSkpk.value.dispose();
-    deskripsiDebitur.value.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   peminjam1.value.dispose();
+  //   ktp1.value.dispose();
+  //   peminjam2.value.dispose();
+  //   ktp2.value.dispose();
+  //   pemilikAgunan1.value.dispose();
+  //   noKtp1.value.dispose();
+  //   pemilikAgunan2.value.dispose();
+  //   noKtp2.value.dispose();
+  //   alamat1.value.dispose();
+  //   alamat2.value.dispose();
+  //   tempatLahir.value.dispose();
+  //   umur.value.dispose();
+  //   lamanyaBerusaha.value.dispose();
+  //   lokasiUsaha.value.dispose();
+  //   bidangUsaha.value.dispose();
+  //   pekerjaan1.value.dispose();
+  //   pekerjaan2.value.dispose();
+  //   noSkpk.value.dispose();
+  //   deskripsiDebitur.value.dispose();
+  //   super.onClose();
+  // }
 
   final jenisUsahaList = [
     'Pertanian',

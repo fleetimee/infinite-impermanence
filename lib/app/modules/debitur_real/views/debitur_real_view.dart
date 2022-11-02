@@ -819,6 +819,7 @@ class DebiturRealView extends StatelessWidget {
                                     ?.saveAndValidate() ??
                                 false) {
                               controller.saveDebtor();
+                              Get.back();
                             } else {
                               debugPrint(controller.formKey.currentState?.value
                                   .toString());

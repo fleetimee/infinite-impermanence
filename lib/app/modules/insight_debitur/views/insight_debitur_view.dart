@@ -7,7 +7,6 @@ import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -76,20 +75,24 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
             expandedHeight: 300,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
-              background: FutureBuilder(
-                future: controller.img,
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.hasData) {
-                    return FancyShimmerImage(
-                      imageUrl: snapshot.data,
-                      boxFit: BoxFit.cover,
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                },
+              // background: FutureBuilder(
+              //   future: controller.img,
+              //   builder: (context, AsyncSnapshot snapshot) {
+              //     if (snapshot.hasData) {
+              //       return FancyShimmerImage(
+              //         imageUrl: snapshot.data,
+              //         boxFit: BoxFit.cover,
+              //       );
+              //     } else {
+              //       return const Center(
+              //         child: CircularProgressIndicator(),
+              //       );
+              //     }
+              //   },
+              // ),
+              background: Image.asset(
+                'assets/images/home/copyright.jpg',
+                fit: BoxFit.cover,
               ),
             ),
           ),

@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
@@ -19,7 +20,15 @@ import '../controllers/home_controller.dart';
 import 'components/home_menu.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  final Uri _url = Uri.parse('https://flutter.dev');
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +172,7 @@ class HomeView extends GetView<HomeController> {
                         width: 5.0,
                       ),
                       InkWell(
-                        onTap: () => Get.toNamed(
-                          Routes.SIMULASI_TETAP,
-                        ),
+                        onTap: () => _launchUrl(),
                         child: SizedBox(
                           width: 200,
                           child: Card(

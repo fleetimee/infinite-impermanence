@@ -197,6 +197,86 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                   const Positioned(
                                     top: 15,
+                                    right: 95,
+                                    child: Text(
+                                      'User',
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  const Positioned(
+                                    top: 55,
+                                    right: 20,
+                                    child: Text(
+                                      'Guide   ',
+                                      style: TextStyle(
+                                        fontSize: 28,
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: -10,
+                                    right: 5,
+                                    // child: Image.asset(
+                                    //   'assets/images/home/money.png',
+                                    //   fit: BoxFit.cover,
+                                    //   height: 250,
+                                    // ),
+                                    child: SvgPicture.asset(
+                                      'assets/images/home/help.svg',
+                                      fit: BoxFit.cover,
+                                      height: 200,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      InkWell(
+                        onTap: () => Get.toNamed(
+                          Routes.SIMULASI_TETAP,
+                        ),
+                        child: SizedBox(
+                          width: 200,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 10,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      // Gradient color
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Colors.blue,
+                                          primaryColor,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: Container(
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                  ),
+                                  const Positioned(
+                                    top: 15,
                                     right: 35,
                                     child: Text(
                                       'Simulasi',

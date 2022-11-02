@@ -10,6 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
 import '../../../common/style.dart';
@@ -19,7 +20,15 @@ import '../controllers/home_controller.dart';
 import 'components/home_menu.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  HomeView({Key? key}) : super(key: key);
+
+  final Uri _url = Uri.parse('https://flutter.dev');
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -151,6 +160,84 @@ class HomeView extends GetView<HomeController> {
                                       'assets/images/home/robot.svg',
                                       fit: BoxFit.cover,
                                       height: 380,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5.0,
+                      ),
+                      InkWell(
+                        onTap: () => _launchUrl(),
+                        child: SizedBox(
+                          width: 200,
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 10,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Stack(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      // Gradient color
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Colors.blue,
+                                          primaryColor,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned.fill(
+                                    child: Container(
+                                      color: Colors.black.withOpacity(0.5),
+                                    ),
+                                  ),
+                                  const Positioned(
+                                    top: 15,
+                                    right: 95,
+                                    child: Text(
+                                      'User',
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  const Positioned(
+                                    top: 55,
+                                    right: 20,
+                                    child: Text(
+                                      'Guide   ',
+                                      style: TextStyle(
+                                        fontSize: 28,
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    bottom: -10,
+                                    right: 5,
+                                    // child: Image.asset(
+                                    //   'assets/images/home/money.png',
+                                    //   fit: BoxFit.cover,
+                                    //   height: 250,
+                                    // ),
+                                    child: SvgPicture.asset(
+                                      'assets/images/home/help.svg',
+                                      fit: BoxFit.cover,
+                                      height: 200,
                                     ),
                                   ),
                                 ],

@@ -203,14 +203,14 @@ packages:
       name: currency_text_input_formatter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.7"
+    version: "2.1.8"
   dart_code_metrics:
     dependency: "direct dev"
     description:
       name: dart_code_metrics
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.21.2"
+    version: "5.0.1"
   dart_style:
     dependency: transitive
     description:
@@ -224,7 +224,7 @@ packages:
       name: data_table_2
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.7"
+    version: "2.3.8"
   dependency_validator:
     dependency: "direct dev"
     description:
@@ -280,7 +280,7 @@ packages:
       name: faker_dart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.9"
+    version: "0.1.11"
   fancy_shimmer_image:
     dependency: "direct main"
     description:
@@ -336,7 +336,7 @@ packages:
       name: flutter_animate
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   flutter_blurhash:
     dependency: transitive
     description:
@@ -460,7 +460,7 @@ packages:
       name: flutter_native_splash
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.12"
+    version: "2.2.13"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -495,7 +495,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.5"
+    version: "1.1.6"
   flutter_tex_js:
     dependency: "direct main"
     description:

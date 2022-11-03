@@ -56,3 +56,28 @@ dan progress akan terisi sebanyak 10% serta tombol input berubah menjadi `lihat`
 Data Neraca sudah sukses diinput 🎉
 
 !> Developer note: Pastikan field sudah terisi semua, sebelum klik `simpan`
+
+## Lihat Neraca
+
+Untuk melihat neraca yang sudah diinputkan tadi bisa melalui 2 cara yaitu :
+- Klik tombol `lihat` di section `neraca`
+- Langsung lewat `printing centre` dengan cara klik tombol `READY` di section `neraca`
+
+?> Pastikan sudah di-input jika ingin mencetak Neraca, karena jika belum ya gak akan bisa juga sih 🤣
+
+![image](https://user-images.githubusercontent.com/45744788/199674160-9de59f02-18d7-4e77-8db4-10a211431389.png)
+
+## Edit Neraca
+
+!> Developer note: Jika isian Rugi laba dst sudah terisi, maka ulangi edit Rugi Laba Dst setelah diedit Neraca.
+
+!> Contoh : Field Neraca untuk Kas on Hand berubah di Neraca, karena Nilai Neraca yang terbaru dibutuhkan 
+untuk perhitungan Rugi Laba maka anda harus mengedit Rugi Laba Dst setelah Neraca di edit.
+
+!> Setelah menginputkan value yang baru jangan lupa di klik tombol `Hitung` untuk menghitung totalnya yang terupdate.
+
+Jika ada yang keliru penginputan nya (why ?? 😭) bisa di edit dengan cara klik tombol `edit` di section `neraca`.
+
+Karena field sudah terisi semua (karena sudah diinput sebelumnya) maka tinggal di edit saja yang salah.
+
+Kalo sudah klik tombol `update` untuk melakukan perubahan.

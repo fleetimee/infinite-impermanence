@@ -5,3 +5,4 @@
   - [Neraca](neraca.md "Neraca")
   - [Rugi Laba](rugi_laba.md "Rugi Laba")
   - [Laporan Keuangan](keuangan.md "Keuangan")
+  - [Analisa Keuangan](analisa_keuangan.md "Analisa Keuangan")

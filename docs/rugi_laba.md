@@ -81,6 +81,9 @@ Untuk perhitungan perkiraan neraca sudah selesai sampai disini 🎉
 - `Harga Pokok Penjualan` : Terisi otomatis dari perhitungan data Omzet Penjualan dan Persentase Harga Pokok Penjualan
 - `Laba Kotor` : Terisi otomatis dari perhitungan data Omzet Penjualan dan Harga Pokok Penjualan
 
+![image](https://user-images.githubusercontent.com/45744788/199877412-61889184-c48a-46a3-a6a8-8fe676db3e12.png)
+
+
 Jika kedua field (`omzet` & `persentase`) diatas sudah diisi gunakan tombol `hitung` untuk mendapatkan hasil.
 
 #### Perkiraan Biaya
@@ -96,3 +99,28 @@ Jika kedua field (`omzet` & `persentase`) diatas sudah diisi gunakan tombol `hit
 - `Laba setelah Pajak` : Terisi otomatis dari perhitungan data Laba Sebelum Pajak dan Perkiraan Pajak
 
 Jika semua field diatas sudah diisi gunakan tombol `hitung` untuk mendapatkan hasil.
+
+![image](https://user-images.githubusercontent.com/45744788/199877684-0cb61f5c-c666-49e8-bc69-faec32ca886d.png)
+
+Untuk perhitungan perkiraan Laba Rugi sudah selesai sampai disini 🎉
+
+
+#### Perkiraan Penghasilan Bersih Per Bulan
+
+> Ini cuma satu inputan duh 👀
+- `Penghasilan Rata Rata Per Bulan` : Nilai ini didapatkan dari Laba setelah Pajak di Perkiraan Biaya
+- `Biaya Hidup` : Bisa diisi secara manual, berisi biaya hidup debitur selama periode yang diinputkan.
+- `Sisa Penghasilan` : Terisi otomatis dari perhitungan data Penghasilan Rata Rata Per Bulan dan Biaya Hidup
+
+![image](https://user-images.githubusercontent.com/45744788/199878218-4cdaea05-e1b9-4cb3-8130-5f0167a00696.png)
+
+Jika semua field diatas sudah diisi gunakan tombol `hitung` untuk mendapatkan hasil.
+
+
+Dari ketiga subsection Rugi Laba diatas jika semuanya sudah terisi, dan pastikan semua field terisi dengan benar, Selanjutnya klik tombol `Simpan` untuk menyimpan data Perkiraan Rugi Laba.
+
+![image](https://user-images.githubusercontent.com/45744788/199878537-b486c436-1408-4584-af38-ea3f7c50df52.png)
+
+Jika sukses akan ada Snackbar hijau dan aplikasi akan kembali ke detail debitur dengan progress bar yang bertambah ke 20% serta Tombol `input` hilang digantikan tombol `lihat` dan `edit`
+
+Selamat 🎉🎉🎉

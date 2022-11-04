@@ -11,7 +11,8 @@ Untuk memulai penginputan Keuangan Debitur, Pilih Menu `Keuangan`, kemudian buka
 Disitu juga akan tertera keterangan sudah input nya atau belom, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
-![image](https://user-images.githubusercontent.com/45744788/199679832-23a70373-c5d0-4564-8081-7a66134af793.png)
+![image](https://user-images.githubusercontent.com/45744788/199902957-e9ad48d7-da89-4d55-8a67-1837d46b1d0b.png)
+
 
 ## Input Keuangan
 
@@ -21,7 +22,7 @@ Setelah menu `Keuangan` di klik, maka akan muncul halaman input Keuangan seperti
 
 ![image](https://user-images.githubusercontent.com/45744788/199882520-db7e400a-fdf6-481c-824e-e939b02bebe8.png)
 
-Berikut field yang harus diinputkan untuk melengkapi Data Rugi Laba debitur :
+Berikut field yang harus diinputkan untuk melengkapi Data Keuangan debitur :
 
 ### Data Keuangan
 

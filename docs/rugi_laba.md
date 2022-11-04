@@ -25,7 +25,7 @@ Setelah menu `Rugi Laba` di klik, maka akan muncul halaman input Rugi Laba seper
 
 ![image](https://user-images.githubusercontent.com/45744788/199829933-2bd0be1c-9746-49ba-ba7f-c0a5eaa49569.png)
 
-Berikut field yang harus diinputkan untuk melengkapi Data Neraca debitur :
+Berikut field yang harus diinputkan untuk melengkapi Data Rugi Laba debitur :
 
 ### Perkiraan Neraca
 
@@ -63,7 +63,7 @@ Untuk `Jumlah Aktiva` akan terisi otomatis dari perhitungan data Aktiva Lancar d
 
 Untuk `Jumlah Pasiva` akan terisi otomatis dari perhitungan data Hutang dan Modal
 
-Jika semuanya sudah di cek lalu klik tombol `Hitung` / `Perkiraan Neraca` maka hasil otomatis akan terhitung
+Jika semuanya sudah terisi dan di cek lalu klik tombol `Hitung` / `Perkiraan Neraca` maka hasil otomatis akan terhitung
 
 ![image](https://user-images.githubusercontent.com/45744788/199869334-ca77103c-916d-4c84-8fd2-640877170129.png)
 

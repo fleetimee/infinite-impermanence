@@ -13,7 +13,7 @@ Untuk memulai penginputan Analisa Keuangan Debitur, Pilih Menu `Analisa Keuangan
 Disitu juga akan tertera keterangan sudah input nya atau belom, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
-![image](https://user-images.githubusercontent.com/45744788/199679832-23a70373-c5d0-4564-8081-7a66134af793.png)
+![image](https://user-images.githubusercontent.com/45744788/199923965-9afab3fb-996c-4323-9a27-48ab1c2f6562.png)
 
 ## Input Analisa Keuangan
 
@@ -53,6 +53,8 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 ?> Untuk section ini data Asumsi diambil dari `Input Keuangan`, jadi cuma untuk menghitung persentasinya saja
 
+!> Lihat cara perhitungannya `disini`
+
 - `Persen Omzet Kini`: Default nya 100%.
 - `Persen Omzet YAD`: Default nya 100%.
 - `Persen Biaya Kini`: Terisi otomatis, jika tombol `Get Percent` di klik.
@@ -67,3 +69,77 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 Tekan tombol `Get Percent` untuk menghitung semua persentase dari Asumsi Keuangan
 
 ![image](https://user-images.githubusercontent.com/45744788/199910276-c4d0c791-4525-4d90-9e34-9d11b6a40aa4.png)
+
+- `Laba Usaha Kini`: Terisi otomatis, jika tombol `Hitung Total Laba` di klik.
+- `Laba Usaha YAD`: Terisi otomatis, jika tombol `Hitung Total Laba` di klik.
+- `Persen Laba Usaha Kini`: Terisi otomatis, jika tombol `Hitung Persentase Laba` di klik. 
+- `Persen Laba Usaha YAD`: Terisi otomatis, jika tombol `Hitung Persentase Laba` di klik.
+
+
+Tekan tombol `Hitung Total Laba` untuk menghitung total laba usaha kini dan yad.
+
+Tekan tombol `Hitung Persentase Laba` untuk menghitung persentase laba usaha kini dan yad.
+
+Maka otomatis kedua hasilnya akan terisi.
+
+![image](https://user-images.githubusercontent.com/45744788/199915194-282f217c-c57c-4934-a959-85fb297b2a86.png)
+
+Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik tab diatas
+
+### Analisa Ratio
+
+!> Untuk perhitungan Analisa Ratio lebih detail lihat `disini`
+
+Di section ini tugas anda hanya menekan banyak tombol saja, mudah bukan 😎
+
+Beberapa tombol yang harus anda tekan secara berurutan adalah :
+
+- `Hitung Ratio Profit`
+- `Hitung Roe`
+- `Hitung Roa`
+- `Hitung Der`
+- `Hitung Dsc`
+
+![image](https://user-images.githubusercontent.com/45744788/199917592-b37fc896-45ce-42e8-9a31-3bb37bdb6590.png)
+
+Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik tab diatas
+
+### Summary
+
+> Uoohhh akhirnya section terakhir 😭😭😭
+
+?> Disini banyak hitungannya kalau penasaran gimana cara kerjanya klik `disini`
+
+- `Pinjaman Maksimal`: Terisi otomatis, jika tombol `Hitung Semua` di klik. Ini adalah batas maksimal pinjaman yang bisa diajukan oleh debitur. 
+- `Perhitungan Modal/Kerja`: Terisi otomatis, jika tombol `Hitung Semua` di klik. Ini adalah perhitungan modal kerja/investasi yang dibutuhkan oleh debitur.
+- `Trade Cycle`: Terisi otomatis, Nilai ini diambil dari `Input Keuangan` pada `Trade Cycle`.
+- `Kebutuhan Modal Kerja/Investasi`: Terisi otomatis, jika tombol `Hitung Semua` di klik.
+- `Kebutuhan Kredit`: Terisi otomatis, jika tombol `Hitung Semua` di klik. 
+
+Tekan tombol `Hitung Semua` untuk menghitung semua hasil diatas.
+
+![image](https://user-images.githubusercontent.com/45744788/199920720-4895dff8-0d9e-47d6-8742-ecbc83ee5151.png)
+
+!> Pastikan section yang sebelumnnya sudah terisi semua, lalu tekan tombol `Hitung Semua` untuk menghitung semua hasilnya.
+
+Jika hitungan yang atas sukses dan berhasil ditampilkan, sekarang saatnya untuk verifikasi Jumlah Plafon dan Pinjaman Maksimalnya
+
+Jika Plafon Kurang dari Pinjaman maka akan ada Check Hijau, jika tidak akan di Cross Merah
+
+![image](https://user-images.githubusercontent.com/45744788/199921149-48bc0b0b-0f56-4104-8532-f0ca9208bb10.png)
+
+### Result
+
+> AAAAAAAAAAAAAAAAAA Selesai juga 🤣🤣🤣
+
+?> Untuk mengetahui bagaimana proses hitung CRR nya klik `disini`
+
+Sekarang langkah anda tinggal Klik `lihat hasil` dan `simpan` 
+
+![image](https://user-images.githubusercontent.com/45744788/199922642-064f1d55-1241-42b4-8570-0dcdb67c6f9f.png)
+
+Jika sukses akan ada Snackbar hijau dan aplikasi akan kembali ke detail debitur dengan progress bar yang bertambah ke 10% serta Tombol `input` hilang digantikan tombol `lihat` dan `edit`
+
+![image](https://user-images.githubusercontent.com/45744788/199922781-fc213eaa-50fa-486b-8a81-6f475e0d6b91.png)
+
+Selamat sudah menyelesaikan seluruh modul Keuangan 🎉🎉🎉

@@ -121,6 +121,6 @@ Dari ketiga subsection Rugi Laba diatas jika semuanya sudah terisi, dan pastikan
 
 ![image](https://user-images.githubusercontent.com/45744788/199878537-b486c436-1408-4584-af38-ea3f7c50df52.png)
 
-Jika sukses akan ada Snackbar hijau dan aplikasi akan kembali ke detail debitur dengan progress bar yang bertambah ke 20% serta Tombol `input` hilang digantikan tombol `lihat` dan `edit`
+Jika sukses akan ada Snackbar hijau dan aplikasi akan kembali ke detail debitur dengan progress bar yang bertambah 10% serta Tombol `input` hilang digantikan tombol `lihat` dan `edit`
 
 Selamat 🎉🎉🎉

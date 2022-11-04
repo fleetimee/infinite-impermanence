@@ -51,7 +51,7 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 - `Biaya Bahan`: Terisi otomatis, diambil dari `Harga Pokok Penjualan` di `Rugi Laba`.
 - `Biaya Upah`: Terisi otomatis, diambil dari `Biaya Tenaga Kerja` di `Rugi Laba`.
 - `Biaya Operasional`: Terisi otomatis, diambil dari `Biaya Operasional` di `Rugi Laba`.
-- `Biaya Hidup`: Terisi ototmatis, diambil dari `Biaya Hidup` di `Rugi Laba`.
+- `Biaya Hidup`: Terisi otomatis, diambil dari `Biaya Hidup` di `Rugi Laba`.
 
 #### Asumsi (Keuangan Yang Akan Datang)
 
@@ -59,3 +59,29 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 - `Penjualan YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
 - `Biaya Bahan YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
+- `Biaya Upah YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
+- `Biaya Operasional YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
+- `Biaya Hidup YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
+
+Jika semuanya sudah di cek lalu klik tombol `Hitung Asumsi` maka hasil otomatis akan terhitung
+
+![image](https://user-images.githubusercontent.com/45744788/199891398-4766add0-af74-45a5-97e4-f653521534ea.png)
+
+
+Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik tab diatas
+
+### Interest
+
+?> Yay kita sudah sampai di bagian terakhir
+
+- `Bunga Kredit`: Terisi otomatis, diambil dari `Bunga Kredit` di `Data Keuangan`.
+- `Jangka Waktu`: Terisi otomatis, diambil dari `Jangka Waktu` di `Data Keuangan`.
+- `Trade Cycle`: Diisi manual, Trade Cycle adalah lamanya perputaran uang perusahaan dihitung dari kas menjadi bahan baku, proses produksi, barang jadi, penjualan, piutang sampai kembali menjadi kas.
+
+Dari ketiga subsection Keuangan diatas jika semuanya sudah terisi, dan pastikan semua field terisi dengan benar, Selanjutnya klik tombol `Simpan` untuk menyimpan data Input Keuangan.
+
+![image](https://user-images.githubusercontent.com/45744788/199892461-d7b90551-f924-4bf3-ae30-40a740816027.png)
+
+Jika sukses akan ada Snackbar hijau dan aplikasi akan kembali ke detail debitur dengan progress bar yang bertambah ke 10% serta Tombol `input` hilang digantikan tombol `lihat` dan `edit`
+
+Selamat Sudah Menginput Keuangan 🎉🎉🎉

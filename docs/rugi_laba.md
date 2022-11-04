@@ -55,3 +55,44 @@ Untuk `Jumlah Aktiva` akan terisi otomatis dari perhitungan data Aktiva Lancar d
 - `Hutang Usaha` : Terisi otomatis dari data Neraca
 - `Hutang Bank` : Terisi otomatis dari data Neraca
 - `Hutang Lainnya` : Bisa diisi secara manual, hutang lainnya meliputi Hutang dari Bank Lain.
+- `Jumlah Hutang` : Terisi otomatis dari perhitungan data Hutang
+
+##### Modal
+- `Modal` : Terisi otomatis dari Jumlah Aktiva 
+- `Jumlah Modal` : Terisi otomatis dari perhitungan data Modal
+
+Untuk `Jumlah Pasiva` akan terisi otomatis dari perhitungan data Hutang dan Modal
+
+Jika semuanya sudah di cek lalu klik tombol `Hitung` / `Perkiraan Neraca` maka hasil otomatis akan terhitung
+
+![image](https://user-images.githubusercontent.com/45744788/199869334-ca77103c-916d-4c84-8fd2-640877170129.png)
+
+
+Untuk perhitungan perkiraan neraca sudah selesai sampai disini 🎉
+
+### Perkiraan Laba Rugi
+
+?> Disini banyak yang diisi jadi perhatikan ya adick adick 😁
+
+#### Perkiraan Penjualan
+
+- `Omzet Penjualan` : Bisa diisi secara manual, berisi omzet penjualan dari usaha debitur selama periode yang diinputkan
+- `Persetase Harga Pokok Penjualan` : Bisa diisi secara manual, berisi persentase harga pokok penjualan dari omzet penjualan, diisi dalam persen (0-100)
+- `Harga Pokok Penjualan` : Terisi otomatis dari perhitungan data Omzet Penjualan dan Persentase Harga Pokok Penjualan
+- `Laba Kotor` : Terisi otomatis dari perhitungan data Omzet Penjualan dan Harga Pokok Penjualan
+
+Jika kedua field (`omzet` & `persentase`) diatas sudah diisi gunakan tombol `hitung` untuk mendapatkan hasil.
+
+#### Perkiraan Biaya
+
+!> Untuk melihat rumus rumus hitungannya bisa lihat `disini`
+
+- `Biaya Tenaga Kerja` : Bisa diisi secara manual, berisi biaya tenaga kerja (gaji karyawan) dari usaha debitur selama periode yang diinputkan.
+- `Biaya Operasionals` : Bisa diisi secara manual, berisi biaya operasional dari usaha debitur selama periode yang diinputkan.
+- `Biaya Lainnya` : Bisa diisi secara manual, berisi biaya lainnya dari usaha debitur selama periode yang diinputkan.
+- `Total Biaya` : Terisi otomatis dari perhitungan data Biaya Tenaga Kerja, Biaya Operasionals, dan Biaya Lainnya
+- `Laba sebelum pajak` : Terisi otomatis dari perhitungan data Laba Kotor dan Total Biaya
+- `Perkiraan Pajak` : Terisi otomatis dari perhitungan data Laba Sebelum Pajak
+- `Laba setelah Pajak` : Terisi otomatis dari perhitungan data Laba Sebelum Pajak dan Perkiraan Pajak
+
+Jika semua field diatas sudah diisi gunakan tombol `hitung` untuk mendapatkan hasil.

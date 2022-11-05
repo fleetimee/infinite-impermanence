@@ -10,7 +10,7 @@ Untuk memulai penginputan Analisa Karakter Debitur, Pilih Menu `Analisa Karakter
 
 ![image](https://user-images.githubusercontent.com/45744788/199926932-40d91c62-e242-4c00-8bea-2f7439658256.png)
 
-Disitu juga akan tertera keterangan sudah input nya atau belom, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
+Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/199930363-d039db53-931c-4723-8350-799fe1d536ae.png)

@@ -14,7 +14,7 @@ Untuk memulai penginputan Rugi Laba Debitur, Pilih Menu `Rugi Laba`, kemudian bu
 
 ![image](https://user-images.githubusercontent.com/45744788/199829692-1083dc7c-33c5-41fd-8429-dc2baa65afc8.png)
 
-Disitu juga akan tertera keterangan sudah input nya atau belom, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
+Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/199679832-23a70373-c5d0-4564-8081-7a66134af793.png)

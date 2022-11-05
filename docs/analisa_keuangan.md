@@ -10,7 +10,7 @@ Untuk memulai penginputan Analisa Keuangan Debitur, Pilih Menu `Analisa Keuangan
 
 ![image](https://user-images.githubusercontent.com/45744788/199902911-780ca932-7621-47d9-86a8-1c24126e7378.png)
 
-Disitu juga akan tertera keterangan sudah input nya atau belom, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
+Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/199923965-9afab3fb-996c-4323-9a27-48ab1c2f6562.png)

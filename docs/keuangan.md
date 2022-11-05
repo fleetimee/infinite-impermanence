@@ -8,7 +8,7 @@ Untuk memulai penginputan Keuangan Debitur, Pilih Menu `Keuangan`, kemudian buka
 
 ![image](https://user-images.githubusercontent.com/45744788/199882239-f823fd59-a007-42cf-8a01-25fba8887dc6.png)
 
-Disitu juga akan tertera keterangan sudah input nya atau belom, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
+Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/199902957-e9ad48d7-da89-4d55-8a67-1837d46b1d0b.png)

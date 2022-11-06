@@ -23,10 +23,10 @@ Untuk memulai penginputan Jenis Agunan Debitur, Pilih Menu `Pilih Jenis Agunan`,
 
 ![image](https://user-images.githubusercontent.com/45744788/200155712-19cbc487-3f57-4e9b-9a5d-31d3e571c107.png)
 
-Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka menu akan berubah menjadi `lihat` dan `edit`.
-Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
+Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka menu akan berubah menjadi `lihat`.
 
-![image](https://user-images.githubusercontent.com/45744788/199930363-d039db53-931c-4723-8350-799fe1d536ae.png)
+![image](https://user-images.githubusercontent.com/45744788/200198359-50f4ae53-52a5-4c38-a12e-23580b91016a.png)
+
 
 ## Input Jenis Agunan
 

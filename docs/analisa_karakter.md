@@ -4,7 +4,7 @@
 
 Modul ini digunakan untuk menganalisa karakter debitur, dengan cara mengisi beberapa pertanyaan yang ada di dalamnya. Ada beberapa parameter yang digunakan untuk menghitung karakter debitur, Sehingga hasil analisa karakter yang dihasilkan akan lebih akurat dan unik.
 
-## Input Analisa Karakter
+## Cara Penggunaan
 
 Untuk memulai penginputan Analisa Karakter Debitur, Pilih Menu `Analisa Karakter`, kemudian buka dropdown nya sampai muncul tombol input 
 
@@ -14,6 +14,8 @@ Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka 
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/199930363-d039db53-931c-4723-8350-799fe1d536ae.png)
+
+## Input Analisa Karakter
 
 Setelah menu `Analisa Karakter` di klik, maka akan muncul halaman Analisa Karakter seperti dibawah ini : 
 

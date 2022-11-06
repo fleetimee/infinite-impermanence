@@ -4,7 +4,7 @@
 
 Modul ini digunakan untuk menganalisa bisnis debitur, pada modul ini akan dihitung CRR (Credit Risk Rating) dari bisnis atau usaha yang dijalankan debitur, dengan cara mengisi beberapa pertanyaan yang ada di dalamnya. Ada beberapa parameter yang digunakan untuk menghitung Bisnis debitur, Sehingga hasil analisa karakter yang dihasilkan akan lebih akurat dan unik.
 
-## Input Analisa Bisnis
+## Cara Penggunaan
 
 Untuk memulai penginputan Analisa Bisnis Debitur, Pilih Menu `Analisa Bisnis`, kemudian buka dropdown nya sampai muncul tombol input
 
@@ -14,6 +14,8 @@ Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka 
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/200152208-3d52de66-38b6-4ffa-90b8-d903a7be8e54.png)
+
+## Input Analisa Bisnis
 
 Setelah menu `Analisa Bisnis` di klik, maka akan muncul halaman Analisa Bisnis seperti dibawah ini : 
 

@@ -5,7 +5,7 @@
 
 Modul ini digunakan untuk menganalisa jenis usaha debitur, pada modul ini akan dihitung CRR (Credit Risk Rating) Jenis Usaha dari debitur.
 
-## Input Analisa Jenis Usaha
+## Cara Penggunaan
 
 Untuk memulai penginputan Analisa Karakter Debitur, Pilih Menu `Analisa Karakter`, kemudian buka dropdown nya sampai muncul tombol input 
 
@@ -15,6 +15,8 @@ Disitu juga akan tertera keterangan sudah input nya atau belum, Jika sudah maka 
 Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertambah sebanyak 10%.
 
 ![image](https://user-images.githubusercontent.com/45744788/200152726-d0c3c286-338b-45b3-a4ff-17fe92fb1df1.png)
+
+## Input Analisa Jenis Usaha
 
 Setelah menu `Analisa Jenis Usaha` di klik, maka akan muncul halaman Jenis Usaha seperti dibawah ini : 
 

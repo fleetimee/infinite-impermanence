@@ -27,7 +27,7 @@
 
   </a>
 
-  <h3 align="center">Analisis Kredit Mikro (Front-end)</h3>
+  <h3 align="center">Analisis Kredit Mikro (Docs)</h3>
 
   <p align="center">
     Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS   

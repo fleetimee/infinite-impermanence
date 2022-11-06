@@ -1,7 +1,9 @@
-## Introduction
+> [!ATTENTION]
 > Aplikasi Analisis Kredit Mikro belum siap untuk di release, kalo ada keluhan Whatsapp saya
 
-!> MOHON UNTUK DIBACA SESUAI DENGAN URUTAN AGAR TIDAK TERJADI KESALAHAN PENGINPUTAN YGY.
+> [!WARNING]
+> Mohon untuk dibaca sesuai dengan urutan agar tidak terjadi kesalahan penginputan data
+
 
 Untuk memulai penginputan data debitur pilih menu `debitur` di Homepage
 

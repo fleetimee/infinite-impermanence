@@ -26,6 +26,7 @@ class DebiturRealController extends GetxController {
   final pemilikAgunan2 = TextEditingController().obs;
   final noKtp1 = TextEditingController().obs;
   final noKtp2 = TextEditingController().obs;
+  final noHp = TextEditingController().obs;
 
   final alamat1 = TextEditingController().obs;
   final alamat2 = TextEditingController().obs;
@@ -35,11 +36,13 @@ class DebiturRealController extends GetxController {
   final umur = TextEditingController().obs;
   final statusKeluargaInput = ''.obs;
   final jumlahTanggungan = TextEditingController().obs;
+  final npwp = TextEditingController().obs;
 
   final lamanyaBerusaha = TextEditingController().obs;
   final lokasiUsaha = TextEditingController().obs;
   final bidangUsaha = TextEditingController().obs;
   final jenisUsahaInput = ''.obs;
+  final jumlahKaryawan = TextEditingController().obs;
 
   final pendidikanInput = ''.obs;
 
@@ -56,98 +59,7 @@ class DebiturRealController extends GetxController {
 
   final debiturController = Get.put(InsightDebiturController());
 
-  // void searchDebtor(String query) {
-  //   final suggestion = listDebtor.where((debtor) {
-  //     final nama = debtor.peminjam1.toString().toLowerCase();
-  //     final input = query.toLowerCase();
-
-  //     return nama.contains(input);
-  //   }).toList();
-
-  //   if (suggestion.isNotEmpty) {
-  //     listDebtor.value = suggestion;
-  //   } else {
-  //     listDebtor.value = listDebtor;
-  //   }
-
-  //   update();
-  // }
-
-  // void saveDebtor() {
-  //   final body = {
-  //     'peminjam1': peminjam1.value.text,
-  //     'ktp1': ktp1.value.text,
-  //     'peminjam2': peminjam2.value.text,
-  //     'ktp2': ktp2.value.text,
-  //     'pemilik_agunan_1': pemilikAgunan1.value.text,
-  //     'no_ktp1': noKtp1.value.text,
-  //     'pemilik_agunan_2': pemilikAgunan2.value.text,
-  //     'no_ktp2': noKtp2.value.text,
-  //     'alamat_1': alamat1.value.text,
-  //     'alamat_2': alamat2.value.text,
-  //     'tempat_lahir': tempatLahir.value.text,
-  //     'tanggal_lahir': tanggalLahir.value.toString(),
-  //     'umur': umur.value.text,
-  //     'status_keluarga': statusKeluargaInput.value.toString(),
-  //     'jumlah_tanggungan': jumlahTanggungan.value.text,
-  //     'lamanya_berusaha': lamanyaBerusaha.value.text,
-  //     'lokasi_usaha': lokasiUsaha.value.text,
-  //     'jenis_usaha': jenisUsahaInput.value.toString(),
-  //     'bidang_usaha': bidangUsaha.value.text,
-  //     'pendidikan': pendidikanInput.value.toString(),
-  //     'pekerjaan1': pekerjaan1.value.text,
-  //     'pekerjaan2': pekerjaan2.value.text,
-  //     'no_skpk': noSkpk.value.text,
-  //     'tgl_sekarang': tanggalSekarangInput.value.toString(),
-  //     'deskripsi_debitur': deskripsiDebitur.value.text,
-  //   };
-
-  //   try {
-  //     debiturController.isDataLoading(true);
-  //     DebtorService().addDebtor(body).then((resp) {
-  //       debiturController.isDataLoading(false);
-  //       Get.snackbar(
-  //         'Success',
-  //         'Data berhasil disimpan',
-  //         snackPosition: SnackPosition.TOP,
-  //         backgroundColor: Colors.green,
-  //         colorText: Colors.white,
-  //       );
-  //     }, onError: (e) {
-  //       debiturController.isDataLoading(false);
-  //       Get.snackbar(
-  //         'Error',
-  //         'Data gagal disimpan',
-  //         snackPosition: SnackPosition.TOP,
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white,
-  //       );
-  //     });
-  //   } catch (e) {
-  //     debiturController.isDataLoading(false);
-  //     Get.snackbar(
-  //       'Error',
-  //       'Data gagal disimpan',
-  //       snackPosition: SnackPosition.TOP,
-  //       backgroundColor: Colors.red,
-  //       colorText: Colors.white,
-  //     );
-  //   }
-  // }
-
-  // void deleteDebtor(String id) {
-  //   final api = DebtorService();
-
-  //   api.deleteDebtor(id);
-
-  //   update();
-
-  //   // fetchDebitur();
-  // }
-
   void editDebitur(String id) async {
-    // isEditLoading.value = true;
-
     final body = {
       'peminjam1': peminjam1.value.text,
       'ktp1': ktp1.value.text,
@@ -157,6 +69,7 @@ class DebiturRealController extends GetxController {
       'no_ktp1': noKtp1.value.text,
       'pemilik_agunan_2': pemilikAgunan2.value.text,
       'no_ktp2': noKtp2.value.text,
+      'no_hp': noHp.value.text,
       'alamat_1': alamat1.value.text,
       'alamat_2': alamat2.value.text,
       'tempat_lahir': tempatLahir.value.text,
@@ -164,10 +77,12 @@ class DebiturRealController extends GetxController {
       'umur': umur.value.text,
       'status_keluarga': statusKeluargaInput.value.toString(),
       'jumlah_tanggungan': jumlahTanggungan.value.text,
+      'npwp': npwp.value.text,
       'lamanya_berusaha': lamanyaBerusaha.value.text,
       'lokasi_usaha': lokasiUsaha.value.text,
       'jenis_usaha': jenisUsahaInput.value.toString(),
       'bidang_usaha': bidangUsaha.value.text,
+      'jumlah_karyawan': jumlahKaryawan.value.text,
       'pendidikan': pendidikanInput.value.toString(),
       'pekerjaan1': pekerjaan1.value.text,
       'pekerjaan2': pekerjaan2.value.text,
@@ -208,6 +123,11 @@ class DebiturRealController extends GetxController {
         colorText: Colors.white,
       );
     }
+  }
+
+  void generateDescription() {
+    deskripsiDebitur.value.text =
+        'Pemohon memiliki usaha ${bidangUsaha.value.text} yang beralamat ${lokasiUsaha.value.text}. Usaha tersebut sudah dikelola selama ${lamanyaBerusaha.value.text} tahun yang lalu dan saat ini debitur memiliki ${jumlahKaryawan.value.text} karyawan untuk membantu dalam menjalankan usahanya. Status Keluarga Pemohon saat ini ${statusKeluargaInput.value.toString()} dengan jumlah tanggungan ${jumlahTanggungan.value.text} orang. Pemohon memiliki pendidikan ${pendidikanInput.value} dan pekerjaan ${pekerjaan1.value.text}';
   }
 
   final faker = Faker.instance;

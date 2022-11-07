@@ -470,5 +470,6 @@ const allProvinsi = [
   "Wonosobo",
   "Yahukimo",
   "Yalimo",
-  "Yogyakarta"
+  "Yogyakarta",
+  "-"
 ];

@@ -191,7 +191,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
                               TextEditingController(
                             text: data.pemilikAgunan1,
                           ),
-                          validator: FormBuilderValidators.required(),
                           decoration: const InputDecoration(
                             labelText: 'Pemilik Agunan 1',
                             labelStyle: TextStyle(fontSize: 18),
@@ -241,7 +240,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'pemilik_agunan_2',
-                          validator: FormBuilderValidators.required(),
                           controller: controller.pemilikAgunan2.value =
                               TextEditingController(
                             text: data.pemilikAgunan2,

@@ -78,24 +78,6 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        // child: FormBuilderTextField(
-                        //   name: 'ktp1',
-                        //   validator: FormBuilderValidators.compose([
-                        //     FormBuilderValidators.required(),
-                        //   ]),
-                        //   controller: controller.ktp1.value,
-                        //   decoration: const InputDecoration(
-                        //     labelText: 'Asal KTP 1',
-                        //     labelStyle: TextStyle(fontSize: 18),
-                        //     hintText: 'Kota Yogyakarta',
-                        //     focusedBorder: OutlineInputBorder(
-                        //       borderSide: BorderSide(color: primaryColor),
-                        //     ),
-                        //     enabledBorder: OutlineInputBorder(
-                        //       borderSide: BorderSide(color: Colors.grey),
-                        //     ),
-                        //   ),
-                        // ),
                         child: FormBuilderSearchableDropdown<String>(
                           name: 'ktp1',
                           onChanged: (value) {
@@ -152,32 +134,22 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        // child: FormBuilderTextField(
-                        //   name: 'ktp2',
-                        //   controller: controller.ktp2.value,
-                        //   decoration: const InputDecoration(
-                        //     labelText: 'Asal KTP 2',
-                        //     labelStyle: TextStyle(fontSize: 18),
-                        //     hintText: 'Kabupaten Sleman',
-                        //     focusedBorder: OutlineInputBorder(
-                        //       borderSide: BorderSide(color: primaryColor),
-                        //     ),
-                        //     enabledBorder: OutlineInputBorder(
-                        //       borderSide: BorderSide(color: Colors.grey),
-                        //     ),
-                        //   ),
-                        // ),
                         child: FormBuilderSearchableDropdown<String>(
                           name: 'ktp2',
                           onChanged: (value) {
-                            controller.ktp2.value.text = value!;
-                            debugPrint(value);
+                            if (value != null) {
+                              controller.ktp2.value.text = value;
+                            } else {
+                              controller.ktp2.value.text = '-';
+                            }
                           },
                           onSaved: (value) {
-                            controller.ktp2.value.text = value!;
-                            debugPrint(value);
+                            if (value != null) {
+                              controller.ktp2.value.text = value;
+                            } else {
+                              controller.ktp2.value.text = '-';
+                            }
                           },
-                          validator: FormBuilderValidators.required(),
                           items: allProvinsi,
                           popupProps:
                               const PopupProps.menu(showSearchBox: true),
@@ -189,9 +161,9 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                               .toLowerCase()
                               .contains(filter.toLowerCase()),
                           decoration: const InputDecoration(
-                            labelText: 'Asal KTP 1',
+                            labelText: 'Asal KTP 2',
                             labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Asal KTP 1',
+                            hintText: 'Asal KTP 2',
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: primaryColor),
                             ),
@@ -226,19 +198,12 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'no_ktp1',
+                          validator: FormBuilderValidators.compose(
+                              [FormBuilderValidators.required()]),
                           controller: controller.noKtp1.value,
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                            FormBuilderValidators.numeric(),
-                            FormBuilderValidators.minLength(16,
-                                errorText: 'Min 16 Karakter'),
-                            FormBuilderValidators.maxLength(16,
-                                errorText: 'Max 16 Karakter')
-                          ]),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
-                            labelText: 'No Ktp',
+                            labelText: 'No Ktp 1',
                             labelStyle: TextStyle(fontSize: 18),
                             hintText: 'Masukkan No KTP',
                             focusedBorder: OutlineInputBorder(
@@ -275,18 +240,10 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'no_ktp2',
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.numeric(),
-                            FormBuilderValidators.minLength(16,
-                                errorText: 'Min 16 Karakter'),
-                            FormBuilderValidators.maxLength(16,
-                                errorText: 'Max 16 Karakter')
-                          ]),
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
                           controller: controller.noKtp2.value,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
-                            labelText: 'No Ktp',
+                            labelText: 'No Ktp 2',
                             labelStyle: TextStyle(fontSize: 18),
                             hintText: 'Masukkan No KTP',
                             focusedBorder: OutlineInputBorder(

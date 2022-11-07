@@ -21,7 +21,7 @@ class DebiturDeployController extends GetxController {
   final pemilikAgunan1 = TextEditingController().obs;
   final pemilikAgunan2 = TextEditingController().obs;
   final noKtp1 = TextEditingController().obs;
-  final noKtp2 = TextEditingController().obs;
+  final noKtp2 = TextEditingController(text: '0').obs;
   final noHp = TextEditingController().obs;
 
   final alamat1 = TextEditingController().obs;

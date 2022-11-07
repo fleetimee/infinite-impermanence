@@ -104,6 +104,11 @@ class DebiturDeployController extends GetxController {
     }
   }
 
+  void generateDescription() {
+    deskripsiDebitur.value.text =
+        'Pemohon memiliki usaha ${bidangUsaha.value.text} yang beralamat ${lokasiUsaha.value.text}. Usaha tersebut sudah dikelola selama ${lamanyaBerusaha.value.text} tahun yang lalu dan saat ini debitur memiliki ${jumlahKaryawan.value.text} karyawan untuk membantu dalam menjalankan usahanya. Status Keluarga Pemohon saat ini ${statusKeluargaInput.value.toString()} dengan jumlah tanggungan ${jumlahTanggungan.value.text} orang. Pemohon memiliki pendidikan ${pendidikanInput.value} dan pekerjaan ${pekerjaan1.value.text}';
+  }
+
   final jenisUsahaList = [
     'Pertanian',
     'Perikanan',

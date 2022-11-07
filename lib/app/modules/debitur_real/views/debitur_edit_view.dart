@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -288,6 +289,27 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  FormBuilderTextField(
+                    name: 'noTelp',
+                    controller: controller.noHp.value =
+                        TextEditingController(text: data.noHp),
+                    validator: FormBuilderValidators.numeric(),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No Telp',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No Handphone',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.only(right: 280),
@@ -541,7 +563,26 @@ class DebiturEditView extends GetView<DebiturRealController> {
                     ),
                     keyboardType: TextInputType.number,
                   ),
-
+                  const SizedBox(height: 16.0),
+                  FormBuilderTextField(
+                    name: 'npwp',
+                    controller: controller.npwp.value = TextEditingController(
+                      text: data.npwp,
+                    ),
+                    validator: FormBuilderValidators.numeric(),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No NPWP',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No NPWP (Opsional)',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 25),
                   Padding(
                     padding: const EdgeInsets.only(right: 280),
@@ -657,6 +698,27 @@ class DebiturEditView extends GetView<DebiturRealController> {
                         ),
                       ),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'jumlahKaryawan',
+                    controller: controller.jumlahKaryawan.value =
+                        TextEditingController(
+                      text: data.jumlahKaryawan.toString(),
+                    ),
+                    validator: FormBuilderValidators.numeric(),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'Jumlah Karyawan',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan Jumlah Karyawan',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 25),
                   Padding(
@@ -821,88 +883,61 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: GFButton(
+                      onPressed: () {
+                        controller.generateDescription();
+                      },
+                      text: 'Generate Deskripsi',
+                      elevation: 10,
+                      color: primaryColor,
+                    ),
+                  ),
                   const SizedBox(height: 30),
 
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (controller.formKey.currentState
-                                    ?.saveAndValidate() ??
-                                false) {
-                              controller.editDebitur(data.id.toString());
+                  Center(
+                    child: GFButton(
+                      onPressed: () {
+                        if (controller.formKey.currentState
+                                ?.saveAndValidate() ??
+                            false) {
+                          controller.editDebitur(data.id.toString());
 
-                              Get.back();
-                            } else {
-                              debugPrint(controller.formKey.currentState?.value
-                                  .toString());
-                              debugPrint('validation failed');
-                              AwesomeDialog(
-                                context: context,
-                                animType: AnimType.bottomSlide,
-                                dialogType: DialogType.warning,
-                                dialogBackgroundColor: primaryColor,
-                                titleTextStyle: GoogleFonts.poppins(
-                                  color: secondaryColor,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                descTextStyle: GoogleFonts.poppins(
-                                  color: secondaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                title: 'Warning',
-                                desc: 'Form masih ada yang kosong',
-                                btnOkText: 'Sunting Kembali',
-                                btnOkIcon: Icons.edit,
-                                btnOkOnPress: () {},
-                                btnOkColor: blue300,
-                              ).show();
-                            }
-                          },
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () {
-                            controller.formKey.currentState?.reset();
-                            AwesomeDialog(
-                              context: context,
-                              dialogBackgroundColor: primaryColor,
-                              titleTextStyle: GoogleFonts.poppins(
-                                color: secondaryColor,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              descTextStyle: GoogleFonts.poppins(
-                                color: secondaryColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              dialogType: DialogType.success,
-                              animType: AnimType.scale,
-                              title: 'Success',
-                              desc: 'Form has been reset',
-                              btnOkOnPress: () {
-                                debugPrint('OnClcik');
-                              },
-                            ).show();
-                          },
-                          child: Text(
-                            'Reset',
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary),
-                          ),
-                        ),
-                      ),
-                    ],
+                          Get.back();
+                        } else {
+                          debugPrint(controller.formKey.currentState?.value
+                              .toString());
+                          debugPrint('validation failed');
+                          AwesomeDialog(
+                            context: context,
+                            animType: AnimType.bottomSlide,
+                            dialogType: DialogType.warning,
+                            dialogBackgroundColor: primaryColor,
+                            titleTextStyle: GoogleFonts.poppins(
+                              color: secondaryColor,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            descTextStyle: GoogleFonts.poppins(
+                              color: secondaryColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            title: 'Warning',
+                            desc: 'Form masih ada yang kosong',
+                            btnOkText: 'Sunting Kembali',
+                            btnOkIcon: Icons.edit,
+                            btnOkOnPress: () {},
+                            btnOkColor: blue300,
+                          ).show();
+                        }
+                      },
+                      text: 'Update',
+                      color: primaryColor,
+                      fullWidthButton: true,
+                      elevation: 10,
+                    ),
                   ),
                 ],
               ),

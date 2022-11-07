@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -859,87 +860,60 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       ),
                     ),
                   ),
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: GFButton(
+                      onPressed: () {
+                        controller.generateDescription();
+                      },
+                      text: 'Generate Deskripsi',
+                      elevation: 10,
+                      color: primaryColor,
+                    ),
+                  ),
                   const SizedBox(height: 30),
-                  Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            if (controller.formKey.currentState
-                                    ?.saveAndValidate() ??
-                                false) {
-                              controller.saveDebtor();
-                              Get.back();
-                            } else {
-                              debugPrint(controller.formKey.currentState?.value
-                                  .toString());
-                              debugPrint('validation failed');
-                              AwesomeDialog(
-                                context: context,
-                                animType: AnimType.bottomSlide,
-                                dialogType: DialogType.warning,
-                                dialogBackgroundColor: primaryColor,
-                                titleTextStyle: GoogleFonts.poppins(
-                                  color: secondaryColor,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                descTextStyle: GoogleFonts.poppins(
-                                  color: secondaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                title: 'Warning',
-                                desc: 'Form masih ada yang kosong',
-                                btnOkText: 'Sunting Kembali',
-                                btnOkIcon: Icons.edit,
-                                btnOkOnPress: () {},
-                                btnOkColor: blue300,
-                              ).show();
-                            }
-                          },
-                          child: const Text(
-                            'Submit',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 20),
-                      Expanded(
-                        child: OutlinedButton(
-                          onPressed: () {
-                            controller.formKey.currentState?.reset();
-                            AwesomeDialog(
-                              context: context,
-                              dialogBackgroundColor: primaryColor,
-                              titleTextStyle: GoogleFonts.poppins(
-                                color: secondaryColor,
-                                fontSize: 30,
-                                fontWeight: FontWeight.w500,
-                              ),
-                              descTextStyle: GoogleFonts.poppins(
-                                color: secondaryColor,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              dialogType: DialogType.success,
-                              animType: AnimType.scale,
-                              title: 'Success',
-                              desc: 'Form has been reset',
-                              btnOkOnPress: () {
-                                debugPrint('OnClcik');
-                              },
-                            ).show();
-                          },
-                          // color: Theme.of(context).colorScheme.secondary,
-                          child: Text(
-                            'Reset',
-                            style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary),
-                          ),
-                        ),
-                      ),
-                    ],
+
+                  Center(
+                    child: GFButton(
+                      onPressed: () {
+                        if (controller.formKey.currentState
+                                ?.saveAndValidate() ??
+                            false) {
+                          controller.saveDebtor();
+                          Get.back();
+                        } else {
+                          debugPrint(controller.formKey.currentState?.value
+                              .toString());
+                          debugPrint('validation failed');
+                          AwesomeDialog(
+                            context: context,
+                            animType: AnimType.bottomSlide,
+                            dialogType: DialogType.warning,
+                            dialogBackgroundColor: primaryColor,
+                            titleTextStyle: GoogleFonts.poppins(
+                              color: secondaryColor,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            descTextStyle: GoogleFonts.poppins(
+                              color: secondaryColor,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            title: 'Warning',
+                            desc: 'Form masih ada yang kosong',
+                            btnOkText: 'Sunting Kembali',
+                            btnOkIcon: Icons.edit,
+                            btnOkOnPress: () {},
+                            btnOkColor: blue300,
+                          ).show();
+                        }
+                      },
+                      text: 'Simpan',
+                      color: primaryColor,
+                      fullWidthButton: true,
+                      elevation: 10,
+                    ),
                   ),
                 ],
               ),

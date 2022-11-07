@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -20,6 +21,8 @@ class ListAgunanPeralatanController extends GetxController {
   var listAgunanPeralatan = List<FormCommon>.empty(growable: true).obs;
 
   final isAgunanPeralatanProcessing = false.obs;
+
+  final insightDebiturController = Get.put(InsightDebiturController());
 
   final agunanId = Get.arguments;
 
@@ -84,6 +87,7 @@ class ListAgunanPeralatanController extends GetxController {
         clearForm();
         listAgunanPeralatan.clear();
         getAllAgunanPeralatan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanPeralatanProcessing(false);
         Get.snackbar(
@@ -124,6 +128,7 @@ class ListAgunanPeralatanController extends GetxController {
         clearFormEdit();
         listAgunanPeralatan.clear();
         getAllAgunanPeralatan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanPeralatanProcessing(false);
         Get.snackbar(
@@ -140,10 +145,10 @@ class ListAgunanPeralatanController extends GetxController {
     }
   }
 
-  void deleteAgunanPeralatan(int agunanId, id) {
+  void deleteAgunanPeralatan(int idAgunan, id) {
     try {
       isAgunanPeralatanProcessing(true);
-      AgunanPeralatanProvider().deleteAgunanPeralatan(agunanId, id).then(
+      AgunanPeralatanProvider().deleteAgunanPeralatan(idAgunan, id).then(
           (resp) {
         isAgunanPeralatanProcessing(false);
         Get.snackbar(
@@ -154,7 +159,8 @@ class ListAgunanPeralatanController extends GetxController {
           colorText: Colors.white,
         );
         listAgunanPeralatan.clear();
-        getAllAgunanPeralatan(agunanId);
+        getAllAgunanPeralatan(idAgunan);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanPeralatanProcessing(false);
         Get.snackbar(

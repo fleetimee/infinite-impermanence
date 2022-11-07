@@ -1,7 +1,6 @@
-// ignore_for_file: unnecessary_overrides
-
 // 🐦 Flutter imports:
 import 'package:akm/app/data/provider/agunan/agunan_tanah_bangunan/agunan_tanah_bangunan_provider.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -22,6 +21,8 @@ class ListAgunanTanahBangunanController extends GetxController {
 
   var listAgunanTanahBangunan =
       List<FormTanahBangunan>.empty(growable: true).obs;
+
+  final insightDebiturController = Get.put(InsightDebiturController());
 
   final isAgunanTanahBangunanProcessing = false.obs;
 
@@ -145,6 +146,7 @@ class ListAgunanTanahBangunanController extends GetxController {
         clearForm();
         listAgunanTanahBangunan.clear();
         getAllAgunanTanahBangunan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanTanahBangunanProcessing(false);
         Get.snackbar(
@@ -193,6 +195,7 @@ class ListAgunanTanahBangunanController extends GetxController {
         clearForm();
         listAgunanTanahBangunan.clear();
         getAllAgunanTanahBangunan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanTanahBangunanProcessing(false);
         Get.snackbar(
@@ -224,6 +227,7 @@ class ListAgunanTanahBangunanController extends GetxController {
         );
         listAgunanTanahBangunan.clear();
         getAllAgunanTanahBangunan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanTanahBangunanProcessing(false);
         Get.snackbar(

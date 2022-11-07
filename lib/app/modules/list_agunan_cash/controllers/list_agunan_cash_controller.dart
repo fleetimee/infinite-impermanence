@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -22,6 +23,8 @@ class ListAgunanCashController extends GetxController {
 
   // List untuk menampung data agunan cash
   var listAgunanCash = List<FormCommon>.empty(growable: true).obs;
+
+  final insightDebiturController = Get.put(InsightDebiturController());
 
   // Variabel biar bisa refresh
   final isAgunanCashProcessing = false.obs;
@@ -95,6 +98,7 @@ class ListAgunanCashController extends GetxController {
         clearForm();
         listAgunanCash.clear();
         getAllAgunanCash(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanCashProcessing(false);
         Get.snackbar(
@@ -135,6 +139,7 @@ class ListAgunanCashController extends GetxController {
         clearFormEdit();
         listAgunanCash.clear();
         getAllAgunanCash(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanCashProcessing(false);
         Get.snackbar(
@@ -152,10 +157,10 @@ class ListAgunanCashController extends GetxController {
   }
 
   // Delete a agunan cash
-  void deleteAgunanCash(int agunanId, id) {
+  void deleteAgunanCash(int idAgunan, id) {
     try {
       isAgunanCashProcessing(true);
-      AgunanCashProvider().purgeAgunanCash(agunanId, id).then((resp) {
+      AgunanCashProvider().purgeAgunanCash(idAgunan, id).then((resp) {
         isAgunanCashProcessing(false);
         Get.snackbar(
           'Success',
@@ -165,7 +170,8 @@ class ListAgunanCashController extends GetxController {
           colorText: Colors.white,
         );
         listAgunanCash.clear();
-        getAllAgunanCash(agunanId);
+        getAllAgunanCash(idAgunan);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanCashProcessing(false);
         Get.snackbar(

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -18,6 +19,8 @@ class ListAgunanKendaraanController extends GetxController {
   }
 
   var listAgunanKendaraan = List<FormKendaraan>.empty(growable: true).obs;
+
+  final insightDebiturController = Get.put(InsightDebiturController());
 
   final isAgunanKendaraanProcessing = false.obs;
 
@@ -135,6 +138,7 @@ class ListAgunanKendaraanController extends GetxController {
         clearForm();
         listAgunanKendaraan.clear();
         getAllAgunanKendaraan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanKendaraanProcessing(false);
         Get.snackbar(
@@ -186,6 +190,7 @@ class ListAgunanKendaraanController extends GetxController {
         clearFormEdit();
         listAgunanKendaraan.clear();
         getAllAgunanKendaraan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanKendaraanProcessing(false);
         Get.snackbar(
@@ -216,6 +221,7 @@ class ListAgunanKendaraanController extends GetxController {
         );
         listAgunanKendaraan.clear();
         getAllAgunanKendaraan(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanKendaraanProcessing(false);
         Get.snackbar(

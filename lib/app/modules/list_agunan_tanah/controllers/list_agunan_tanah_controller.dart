@@ -191,6 +191,7 @@ class ListAgunanTanahController extends GetxController {
         clearFormEdit();
         listAgunanTanah.clear();
         getAllAgunanTanah(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanTanahProcessing(false);
         Get.snackbar(
@@ -207,10 +208,10 @@ class ListAgunanTanahController extends GetxController {
     }
   }
 
-  void deleteAgunanTanah(int agunanId, id) {
+  void deleteAgunanTanah(int idAgunan, id) {
     try {
       isAgunanTanahProcessing(true);
-      AgunanTanahProvider().purgeAgunanTanah(agunanId, id).then((resp) {
+      AgunanTanahProvider().purgeAgunanTanah(idAgunan, id).then((resp) {
         isAgunanTanahProcessing(false);
         Get.snackbar(
           'Success',
@@ -220,7 +221,8 @@ class ListAgunanTanahController extends GetxController {
           colorText: Colors.white,
         );
         listAgunanTanah.clear();
-        getAllAgunanTanah(agunanId);
+        getAllAgunanTanah(idAgunan);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanTanahProcessing(false);
         Get.snackbar(

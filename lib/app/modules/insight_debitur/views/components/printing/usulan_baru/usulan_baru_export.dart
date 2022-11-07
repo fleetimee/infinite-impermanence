@@ -370,16 +370,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
                 textDeskripsiNoBold('7.'),
                 textDeskripsiNoBold("Angsuran per bulan"),
                 textDeskripsiNoBold(
-                  "Bulan 1 - ${int.parse(debtor.inputKeuangan!.angsuran!.toString()) - 1} :                Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
-                ),
-              ],
-            ),
-            TableRow(
-              children: [
-                SizedBox.shrink(),
-                SizedBox.shrink(),
-                textDeskripsiNoBold(
-                  "Bulan ${int.parse(debtor.inputKeuangan!.angsuran!.toString())}      :                Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
+                  "Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
                 ),
               ],
             ),

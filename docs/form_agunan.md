@@ -289,9 +289,10 @@ Setelah itu jika berhasil anda akan diarahkan ke halaman utama `Agunan Kios Pasa
 
 ### Lainnya
 
-<!-- !TODO: Ini belom -->
-Hello!
+> [!NOTE]
+> Menu ini akan terbuka jika pada menu `Jenis Agunan` telah dipilih `Lainnya`
 
+Yang ini gak usah lah ya, soalnya sama kayak Mesin dan peralatan
 <!-- tabs:end -->
 
 

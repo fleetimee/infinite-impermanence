@@ -26,6 +26,48 @@ Isikan sesuai dengan data debitur yang akan di inputkan, kemudian tekan tombol `
 
 ![image](https://user-images.githubusercontent.com/45744788/199646138-44ecffbd-10c7-49a9-a0fc-a62ca8828eef.png)
 
+Beberapa field yang diinput :
+
+### Data Peminjam 
+- `Peminjam 1`: Nama Peminjam 1 (Wajib diisi).
+- `Peminjam 2`: Nama Peminjam 2 (Opsional, isi jika ada).
+- `Pemilik Agunan 1`: Nama Pemilik Agunan 1 (Opsional, isi jika ada).
+- `Pemilik Agunan 2`: Nama Pemilik Agunan 2 (Opsional, isi jika ada).
+- `Asal KTP 1`: Asal KTP Peminjam 1 (Wajib Diisi).
+- `Asal KTP 2`: Asal KTP Peminjam 2 (Opsional, isi jika ada).
+- `No Telp`: Nomor Telepon Peminjam 1 (Wajib Diisi).
+
+### Alamat Peminjam 
+- `Alamat Peminjam 1`: Alamat Peminjam 1 (Wajib diisi).
+- `Alamat Peminjam 2`: Alamat Peminjam 2 (Opsional, isi jika ada).
+
+### Data Pribadi Peminjam
+- `Tempat Lahir`: Tempat Lahir Peminjam 1 (Wajib diisi).
+- `Tanggal Lahir`: Tanggal Lahir Peminjam 1 (Wajib diisi).
+- `Umur`: Umur Peminjam 1 (Wajib diisi).
+- `Status Keluarga`: Status Keluarga Peminjam 1 (Wajib diisi).
+- `Jumlah Tanggungan`: Jumlah Tanggungan Peminjam 1 (Wajib diisi, kalau tidak ada ketikkan 0).
+- `NPWP`: Nomor NPWP Peminjam 1 (Opsional, isi jika ada).
+
+### Usaha Peminjam 
+- `Lamanya Berusaha`: Lamanya Berusaha Peminjam 1 (Wajib diisi).
+- `Jenis Usaha`: Jenis Usaha Peminjam 1 (Wajib diisi).
+- `Bidang Usaha`: Bidang Usaha Peminjam 1 (Wajib diisi).
+- `Lokasi Usaha`: Lokasi Usaha Peminjam 1 (Wajib diisi).
+- `Jumlah Karyawan`: Jumlah Karyawan Peminjam 1 (Wajib diisi).
+
+### Pendidikan Peminjam
+- `Pendidikan Terakhir`: Pendidikan Terakhir Peminjam 1 (Wajib diisi).
+
+### Pekerjaan Peminjam
+- `Pekerjaan 1`: Pekerjaan Peminjam 1 (Wajib diisi).
+- `Pekerjaan 2`: Pekerjaan Peminjam 2 (Opsional, isi jika ada).
+
+### Lainnya
+- `No SKPK` : Nomor SKPK (Sementara isi 0).
+- `Tanggal Sekarang`: Tanggal Sekarang (Wajib diisi).
+- `Deskripsi Debitur`: Deskripsi Debitur (Opsional, isi jika ada).
+
 Isikan data dengan benar dan tepat, ada beberapa field yang opsional dan tidak diharuskan diisi. Jika sukses maka akan muncul notifikasi seperti berikut dan page otomatis akan kembali ke halaman awal.
 
 ![image](https://user-images.githubusercontent.com/45744788/199647048-91f88a87-60a4-4d44-a7d3-8d89aa659133.png)

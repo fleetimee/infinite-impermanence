@@ -16,3 +16,4 @@
   - **Agunan**
   - [Jenis Agunan](jenis_agunan.md "Analisa Agunan")
   - [Form Agunan](form_agunan.md "Form Agunan")
+  - [Analisa Agunan](analisa_agunan.md "Analisa Agunan")

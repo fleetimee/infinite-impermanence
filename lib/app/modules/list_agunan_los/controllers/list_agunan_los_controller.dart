@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -20,6 +21,8 @@ class ListAgunanLosController extends GetxController {
   }
 
   var listAgunanLos = List<FormLo>.empty(growable: true).obs;
+
+  final insightDebiturController = Get.put(InsightDebiturController());
 
   final isAgunanLosProcessing = false.obs;
 
@@ -134,6 +137,7 @@ class ListAgunanLosController extends GetxController {
         clearForm();
         listAgunanLos.clear();
         getAllAgunanLos(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanLosProcessing(false);
         Get.snackbar(
@@ -189,6 +193,7 @@ class ListAgunanLosController extends GetxController {
         clearFormEdit();
         listAgunanLos.clear();
         getAllAgunanLos(agunanId.id);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanLosProcessing(false);
         Get.snackbar(
@@ -205,10 +210,10 @@ class ListAgunanLosController extends GetxController {
     }
   }
 
-  void deleteAgunanLos(int agunanId, id) {
+  void deleteAgunanLos(int idAgunan, id) {
     try {
       isAgunanLosProcessing(true);
-      AgunanLosProvider().purgeAgunanLos(agunanId, id).then((resp) {
+      AgunanLosProvider().purgeAgunanLos(idAgunan, id).then((resp) {
         isAgunanLosProcessing(false);
         Get.snackbar(
           'Success',
@@ -218,7 +223,8 @@ class ListAgunanLosController extends GetxController {
           colorText: Colors.white,
         );
         listAgunanLos.clear();
-        getAllAgunanLos(agunanId);
+        getAllAgunanLos(idAgunan);
+        insightDebiturController.fetchOneDebitur(agunanId.debiturId);
       }, onError: (e) {
         isAgunanLosProcessing(false);
         Get.snackbar(

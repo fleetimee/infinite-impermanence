@@ -33,8 +33,8 @@ dependencies:
     sdk: flutter
   flutter_map: ^3.0.0
   flutter_map_marker_popup: ^4.0.0
-  flutter_markdown: ^0.6.12
-  flutter_native_splash: ^2.2.13
+  flutter_markdown: ^0.6.13
+  flutter_native_splash: ^2.2.14
   flutter_slidable: ^2.0.0
   flutter_styled_toast: ^2.1.3
   flutter_svg: ^1.1.6
@@ -43,7 +43,7 @@ dependencies:
   form_builder_extra_fields: ^8.3.0
   form_builder_file_picker: ^2.3.0
   form_builder_image_picker: ^3.1.0
-  form_builder_validators: ^8.3.0
+  form_builder_validators: ^8.4.0
   get: 4.6.5
   getwidget: ^3.0.1
   google_fonts: ^3.0.1

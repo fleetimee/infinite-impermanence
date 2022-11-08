@@ -590,13 +590,23 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/4?join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan&join=inputNeraca.debitur",
+    "url": "{{baseUrl}}api/v1/debiturs/3?join=ijinLegitimasi&join=syaratLain&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-11-08T01:41:41.591Z",
+    "modified": "2022-11-08T03:05:20.007Z",
     "headers": [],
     "params": [
+      {
+        "name": "join",
+        "value": "ijinLegitimasi",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "syaratLain",
+        "isPath": false
+      },
       {
         "name": "join",
         "value": "inputNeraca",
@@ -674,17 +684,7 @@
       },
       {
         "name": "join",
-        "value": "syaratLain",
-        "isPath": false
-      },
-      {
-        "name": "join",
         "value": "analisaAgunan",
-        "isPath": false
-      },
-      {
-        "name": "join",
-        "value": "inputNeraca.debitur",
         "isPath": false
       }
     ],
@@ -1677,18 +1677,51 @@
   {
     "_id": "ae5d1ed0-4364-4f23-b4d5-eb74ae486f67",
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
-    "containerId": "a1ca212b-7310-4719-bd95-73e69bfb8392",
+    "containerId": "effe6610-3568-442d-88b5-39899cd617a8",
     "name": "Patch",
-    "url": "{{baseUrl}}api/v1/agunan/16/agunan-tanah-bangunan/1",
+    "url": "{{baseUrl}}api/v1/agunan/15/agunan-tanah/3",
     "method": "PATCH",
-    "sortNum": 730000,
+    "sortNum": 580000,
     "created": "2022-11-08T01:46:08.745Z",
-    "modified": "2022-11-08T01:50:24.488Z",
+    "modified": "2022-11-08T02:04:21.580Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
       "raw": "{\n  \"jenis_ijin_yang_dimiliki\": \"Surat Keterangan Usaha\",\n  \"detail_ijin_yang_dimiliki\": \"XXnX\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "0173695d-95e8-4a6e-a732-448cfea26609",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "c92cdcfb-7e34-4a81-9159-aabb66e88a66",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/debiturs/3/ijin-legitimasi",
+    "method": "GET",
+    "sortNum": 830000,
+    "created": "2022-11-08T02:59:04.890Z",
+    "modified": "2022-11-08T02:59:27.862Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7064e6e3-d583-460c-ab84-bb25c402f1c7",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "c92cdcfb-7e34-4a81-9159-aabb66e88a66",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/debiturs/3/ijin-legitimasi",
+    "method": "POST",
+    "sortNum": 840000,
+    "created": "2022-11-08T02:59:33.448Z",
+    "modified": "2022-11-08T03:03:33.078Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"jenis_ijin\": \"Surat Keterangan Usaha\",\n  \"keterangan_ijin\": \"107/UU/NGT/III/2022\"\n}",
       "form": []
     },
     "tests": []

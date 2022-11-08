@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 // ignore_for_file: prefer_is_empty
 
+import 'package:akm/app/modules/ijin_legitimasi/controllers/ijin_legitimasi_controller.dart';
 import 'package:akm/app/modules/list_syarat_lainnya/controllers/list_syarat_lainnya_controller.dart';
 import 'package:flutter/material.dart';
 
@@ -61,7 +62,7 @@ class HeaderSyarat extends StatelessWidget {
                 Expanded(
                   flex: 3,
                   child: Text(
-                    'Syarat Lainnya',
+                    'Lain Lain',
                     style: TextStyle(fontSize: 22),
                   ),
                 ),
@@ -219,6 +220,187 @@ class ViewButton extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MenuInputIjin extends StatelessWidget {
+  MenuInputIjin({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+  final ijinLegitmasiController = Get.put(IjinLegitimasiController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 15,
+      ),
+      child: GFAccordion(
+          titleChild: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Ijin Yang Dimiliki',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(
+                width: 16.0,
+              ),
+              Obx(
+                () {
+                  if (ijinLegitmasiController
+                      .isIjinLegitimasiProcessing.value) {
+                    return const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else {
+                    if (controller.insightDebitur.value.ijinLegitimasi ==
+                        null) {
+                      return Row(
+                        children: const [
+                          Text(
+                            'Belum di-input',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.xmark,
+                            color: Colors.red,
+                          ),
+                        ],
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Text(
+                            'Sudah di-input',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 5.0,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.check,
+                            color: Colors.green,
+                          ),
+                        ],
+                      );
+                    }
+                  }
+                },
+              ),
+            ],
+          ),
+          contentChild: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 5.0,
+              ),
+              Obx(
+                () {
+                  if (ijinLegitmasiController
+                      .isIjinLegitimasiProcessing.value) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return Row(
+                      children: [
+                        controller.insightDebitur.value.ijinLegitimasi == null
+                            ? Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blueGrey,
+                                  ),
+                                  onPressed: () {
+                                    Get.toNamed(Routes.IJIN_LEGITIMASI,
+                                        arguments:
+                                            controller.insightDebitur.value);
+                                  },
+                                  child: const Text(
+                                    "Input",
+                                    style: TextStyle(
+                                      color: secondaryColor,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : Expanded(
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.blueGrey,
+                                        ),
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              Routes.LIHAT_IJIN_LEGITIMASI,
+                                              arguments: controller
+                                                  .insightDebitur.value);
+                                        },
+                                        child: const Text(
+                                          "Lihat",
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.blueGrey,
+                                        ),
+                                        onPressed: () {
+                                          Get.toNamed(
+                                              Routes.EDIT_IJIN_LEGITIMASI,
+                                              arguments: controller
+                                                  .insightDebitur.value);
+                                        },
+                                        child: const Text(
+                                          "Edit",
+                                          style: TextStyle(
+                                            color: secondaryColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                      ],
+                    );
+                  }
+                },
+              )
+            ],
+          ),
+          collapsedIcon: const Icon(Icons.add),
+          expandedIcon: const Icon(Icons.minimize)),
     );
   }
 }

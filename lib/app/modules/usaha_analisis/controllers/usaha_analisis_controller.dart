@@ -86,12 +86,6 @@ class UsahaAnalisisController extends GetxController {
   var crrJenisUsaha = TextEditingController();
   var debiturId = TextEditingController();
 
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  //   hitungCrrUsaha();
-  // }
-
   @override
   void onReady() {
     hitungCrrUsaha();

@@ -42,6 +42,7 @@ class DebiturInsight {
     this.deskripsiDebitur,
     this.progress,
     this.createdBy,
+    this.ijinLegitimasi,
     this.inputNeraca,
     this.inputRugiLaba,
     this.inputKeuangan,
@@ -86,6 +87,7 @@ class DebiturInsight {
   String? deskripsiDebitur;
   String? progress;
   dynamic createdBy;
+  IjinLegitimasi? ijinLegitimasi;
   InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
@@ -134,6 +136,9 @@ class DebiturInsight {
         deskripsiDebitur: json["deskripsi_debitur"],
         progress: json["progress"] ?? null,
         createdBy: json["createdBy"],
+        ijinLegitimasi: json["ijinLegitimasi"] == null
+            ? null
+            : IjinLegitimasi.fromJson(json["ijinLegitimasi"]),
         inputNeraca: json["inputNeraca"] == null
             ? null
             : InputNeraca.fromJson(json["inputNeraca"]),
@@ -204,6 +209,8 @@ class DebiturInsight {
         "deskripsi_debitur": deskripsiDebitur,
         "progress": progress ?? null,
         "createdBy": createdBy,
+        "ijinLegitimasi":
+            ijinLegitimasi == null ? null : ijinLegitimasi?.toJson(),
         "inputNeraca": inputNeraca == null ? null : inputNeraca?.toJson(),
         "inputRugiLaba": inputRugiLaba == null ? null : inputRugiLaba?.toJson(),
         "inputKeuangan": inputKeuangan == null ? null : inputKeuangan?.toJson(),
@@ -221,6 +228,34 @@ class DebiturInsight {
             ? null
             : List<dynamic>.from(syaratLain!.map((x) => x.toJson())),
         "analisaAgunan": analisaAgunan == null ? null : analisaAgunan?.toJson(),
+      };
+}
+
+class IjinLegitimasi {
+  IjinLegitimasi({
+    this.id,
+    this.jenisIjin,
+    this.keteranganIjin,
+    this.debiturId,
+  });
+
+  int? id;
+  String? jenisIjin;
+  String? keteranganIjin;
+  int? debiturId;
+
+  factory IjinLegitimasi.fromJson(Map<String, dynamic> json) => IjinLegitimasi(
+        id: json["id"] ?? null,
+        jenisIjin: json["jenis_ijin"] ?? null,
+        keteranganIjin: json["keterangan_ijin"] ?? null,
+        debiturId: json["debiturId"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "jenis_ijin": jenisIjin ?? null,
+        "keterangan_ijin": keteranganIjin ?? null,
+        "debiturId": debiturId ?? null,
       };
 }
 

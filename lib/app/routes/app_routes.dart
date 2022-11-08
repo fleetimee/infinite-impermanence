@@ -71,6 +71,9 @@ abstract class Routes {
   static const LIHAT_AGUNAN_ANALISIS = _Paths.LIHAT_AGUNAN_ANALISIS;
   static const AGUNAN_ANALISIS_CALC = _Paths.AGUNAN_ANALISIS_CALC;
   static const DEBITUR_DEPLOY = _Paths.DEBITUR_DEPLOY;
+  static const IJIN_LEGITIMASI = _Paths.IJIN_LEGITIMASI;
+  static const LIHAT_IJIN_LEGITIMASI = _Paths.LIHAT_IJIN_LEGITIMASI;
+  static const EDIT_IJIN_LEGITIMASI = _Paths.EDIT_IJIN_LEGITIMASI;
 }
 
 abstract class _Paths {
@@ -140,4 +143,7 @@ abstract class _Paths {
   static const LIHAT_AGUNAN_ANALISIS = '/lihat-agunan-analisis';
   static const AGUNAN_ANALISIS_CALC = '/agunan-analisis-calc';
   static const DEBITUR_DEPLOY = '/debitur-deploy';
+  static const IJIN_LEGITIMASI = '/ijin-legitimasi';
+  static const LIHAT_IJIN_LEGITIMASI = '/lihat-ijin-legitimasi';
+  static const EDIT_IJIN_LEGITIMASI = '/edit-ijin-legitimasi';
 }

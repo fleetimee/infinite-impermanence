@@ -1287,8 +1287,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('25'),
                     textUmur('Ijin yang dimiliki (legitimasi)'),
-                    textUmur(''),
-                    textUmur(''),
+                    textUmur('${debtor.ijinLegitimasi?.jenisIjin}'),
+                    textUmur('${debtor.ijinLegitimasi?.keteranganIjin}'),
                     textUmur(''),
                   ],
                 ),
@@ -1313,7 +1313,15 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                 TableRow(
                   children: [
                     textUmur(''),
-                    textUmur('${debtor.deskripsiDebitur}'),
+                    textUmur(
+                        'Agunan yang dijadikan jaminan sebesar ${MoneyMaskedTextController(
+                      decimalSeparator: '',
+                      thousandSeparator: '.',
+                      leftSymbol: 'Rp. ',
+                      precision: 0,
+                      initialValue: double.parse(
+                          debtor.analisaAgunan!.totalAgunan.toString()),
+                    ).text}'),
                   ],
                 ),
               ],

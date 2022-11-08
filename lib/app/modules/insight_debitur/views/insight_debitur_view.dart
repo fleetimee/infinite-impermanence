@@ -493,6 +493,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                       child: HeaderSyarat(),
                     ),
                     MenuInputanSyarat(),
+                    MenuInputIjin(),
                   ],
                 ),
 

@@ -446,6 +446,10 @@ class ListAgunanTanahBangunanController extends GetxController {
     tanggal = DateTime.now();
     lokasi.clear();
     titikKoordinat.clear();
+    nilaiPasarTanah.clear();
+    nilaiLiquidasiTanah.clear();
+    nilaiPasarBangunan.clear();
+    nilaiLiquidasiBangunan.clear();
     nilaiPasar.clear();
     nilaiLiquidasi.clear();
     nilaiPengikatan.clear();
@@ -462,6 +466,10 @@ class ListAgunanTanahBangunanController extends GetxController {
     tanggalEdit = DateTime.now();
     lokasiEdit.clear();
     titikKoordinatEdit.clear();
+    nilaiPasarTanahEdit.clear();
+    nilaiLiquidasiTanahEdit.clear();
+    nilaiPasarBangunanEdit.clear();
+    nilaiLiquidasiBangunanEdit.clear();
     nilaiPasarEdit.clear();
     nilaiLiquidasiEdit.clear();
     nilaiPengikatanEdit.clear();

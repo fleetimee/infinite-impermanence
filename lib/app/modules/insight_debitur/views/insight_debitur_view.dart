@@ -109,6 +109,56 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          const Chip(label: Text('UMKM')),
+                          const SizedBox(width: 5),
+                          Obx(
+                            () => controller.isDataLoading.value
+                                ? const Chip(label: Text('Loading...'))
+                                : Chip(
+                                    label: Text(controller
+                                        .insightDebitur.value.jenisUsaha
+                                        .toString())),
+                          ),
+                          const SizedBox(width: 5),
+                          Obx(
+                            () => controller.isDataLoading.value
+                                ? const Chip(label: Text('Loading...'))
+                                : controller.insightDebitur.value
+                                            .inputRugiLaba ==
+                                        null
+                                    ? const SizedBox.shrink()
+                                    : double.parse(controller.insightDebitur
+                                                .value.inputRugiLaba!.omzet
+                                                .toString()) <=
+                                            100000000
+                                        ? const Chip(label: Text('Mikro'))
+                                        : const Chip(label: Text('Kecil')),
+                          ),
+                          const SizedBox(width: 5),
+                          const Chip(label: Text('Tetap')),
+                          const SizedBox(width: 5),
+                          Obx(
+                            () => controller.isDataLoading.value
+                                ? const Chip(label: Text('Loading...'))
+                                : controller.insightDebitur.value
+                                            .inputKeuangan ==
+                                        null
+                                    ? const SizedBox.shrink()
+                                    : double.parse(controller
+                                                .insightDebitur
+                                                .value
+                                                .inputKeuangan!
+                                                .kreditDiusulkan
+                                                .toString()) >
+                                            25000000
+                                        ? const Chip(label: Text('Kur Kecil'))
+                                        : const Chip(label: Text('Kur Mikro')),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 5),
                       Obx(
                         () => controller.isDataLoading.value
                             ? const Text(

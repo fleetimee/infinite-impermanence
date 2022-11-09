@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,6 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
@@ -18,53 +20,57 @@ class LihatneracaView extends GetView<InputNeracaController> {
   LihatneracaView({Key? key}) : super(key: key);
   final data = Get.arguments;
 
-  void deleteNeraca(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: const Text("Perhatian!"),
-        content: const Text(
-          "Apakah anda yakin ingin menghapus data Neraca ini?",
-        ),
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              Get.back();
-            },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey,
-            ),
-            child: const Text("Batal"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Get.back();
-              controller.deleteNeraca(data.inputNeraca.id);
-              controller.purgeProgressBar(data.id);
-              Get.back();
-            },
-            child: const Text("Yakin"),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Detail Neraca #${data.id}'),
         centerTitle: true,
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       deleteNeraca(context);
+        //     },
+        //     icon: const FaIcon(
+        //       FontAwesomeIcons.solidTrashCan,
+        //     ),
+        //   ),
+        // ],
         actions: [
           IconButton(
             onPressed: () {
-              deleteNeraca(context);
+              AwesomeDialog(
+                      context: Get.context!,
+                      dialogType: DialogType.question,
+                      animType: AnimType.bottomSlide,
+                      dialogBackgroundColor: primaryColor,
+                      titleTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      descTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      title: 'Konfirmasi',
+                      bodyHeaderDistance: 25,
+                      desc: 'Apakah yakin untuk menghapus item ini ?',
+                      btnOkOnPress: () {
+                        controller.deleteNeraca(data.inputNeraca.id);
+                        controller.purgeProgressBar(data.id);
+                        Get.back();
+                      },
+                      btnOkText: 'Oke sip',
+                      btnCancelText: 'Affa iyh',
+                      btnCancelOnPress: () {})
+                  .show();
             },
             icon: const FaIcon(
               FontAwesomeIcons.solidTrashCan,
             ),
-          ),
+          )
         ],
       ),
       body: SingleChildScrollView(

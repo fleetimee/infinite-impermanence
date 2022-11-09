@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -46,8 +47,11 @@ class ListDebiturView extends GetView<ListDebiturController> {
                       boxFit: BoxFit.cover,
                       titlePosition: GFPosition.start,
                       showOverlayImage: true,
-                      imageOverlay: const NetworkImage(
-                        'https://i0.wp.com/www.animegeek.com/wp-content/uploads/2022/08/Lycoris-Recoil-Season-2-release-date-Anime.jpg?resize=1024%2C576&ssl=1',
+                      // imageOverlay: const NetworkImage(
+                      //   'https://i0.wp.com/www.animegeek.com/wp-content/uploads/2022/08/Lycoris-Recoil-Season-2-release-date-Anime.jpg?resize=1024%2C576&ssl=1',
+                      // ),
+                      imageOverlay: const AssetImage(
+                        'assets/images/home/kantor-cabang.png',
                       ),
                       colorFilter: const ColorFilter.mode(
                         Color.fromARGB(136, 0, 0, 0),
@@ -164,8 +168,24 @@ class ListDebiturView extends GetView<ListDebiturController> {
                 ],
               );
             } else {
-              return const Center(
-                child: Text('No Data'),
+              return Center(
+                child: EmptyWidget(
+                  image: 'assets/images/home/satania-crying.png',
+                  title: 'Tidak ada data',
+                  titleTextStyle: const TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.w800,
+                    color: secondaryColor,
+                  ),
+                  subtitleTextStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w200,
+                    color: secondaryColor,
+                  ),
+                  hideBackgroundAnimation: true,
+                  subTitle:
+                      'Tidak ada data debitur yang terdaftar atau koneksi internet bermasalah',
+                ),
               );
             }
           }
@@ -190,7 +210,7 @@ class SataniaLoading extends StatelessWidget {
           child: ClipOval(
               child: const Image(
             image: AssetImage(
-              'assets/images/home/satania-gabriel.gif',
+              'assets/images/home/logo.png',
             ),
             height: 250,
           )
@@ -200,20 +220,6 @@ class SataniaLoading extends StatelessWidget {
                   .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                   .slide()),
         ),
-        const Text(
-          'Loading...',
-          style: TextStyle(
-            fontSize: 25,
-            color: secondaryColor,
-            fontWeight: FontWeight.w800,
-            letterSpacing: 1.5,
-          ),
-        )
-            .animate(onPlay: (controller) => controller.repeat())
-            .shimmer(duration: 1200.ms, color: const Color(0xFF80DDFF))
-            .animate() // this wraps the previous Animate in another Animate
-            .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
-            .slide()
       ],
     );
   }

@@ -86,7 +86,7 @@ class HomeView extends GetView<HomeController> {
                   () => Image.asset(
                     controller.isDarkModeEnabled.value
                         ? 'assets/images/home/appbar_light.jpg'
-                        : 'assets/images/home/appbar_dark.jpg',
+                        : 'assets/images/home/pede.png',
                     fit: BoxFit.cover,
                   ),
                 ),

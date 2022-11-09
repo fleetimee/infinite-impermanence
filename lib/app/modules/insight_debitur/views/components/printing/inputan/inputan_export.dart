@@ -613,7 +613,22 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     TableRow(
                       children: [
                         textUmur(''),
-                        textUmur('${debtor.deskripsiDebitur}'),
+                        textUmur(
+                            'Usaha ${debtor.bidangUsaha} yang dikelola oleh pemohon, saat ini omset penjualan sebesar ${MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputKeuangan!.penjualanKini.toString()),
+                        ).text} / bulan dengan asumsi peningkatan omset dan biaya sebesar 10%, maka dengan adanya pinjaman baru sebesar ${MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputKeuangan!.kreditDiusulkan.toString()),
+                        ).text} dari bank BPD DIY, pemohon masih dapat menabung setiap bulan setelah dikurangi semua kewajiban pinjaman di Bank.'),
                       ],
                     ),
                     TableRow(
@@ -1278,7 +1293,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('24'),
                     textUmur('Bukti Kepemilikan agunan'),
-                    textUmur(''),
+                    textUmur('Yang terlampir diatas'),
                     textUmur(''),
                     textUmur(''),
                   ],

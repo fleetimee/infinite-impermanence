@@ -27,34 +27,6 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
 
   final data = Get.arguments;
 
-  void deleteRugiLaba(BuildContext context) {
-    AwesomeDialog(
-            context: Get.context!,
-            dialogType: DialogType.question,
-            animType: AnimType.bottomSlide,
-            dialogBackgroundColor: primaryColor,
-            titleTextStyle: GoogleFonts.poppins(
-              color: secondaryColor,
-              fontSize: 30,
-              fontWeight: FontWeight.w500,
-            ),
-            descTextStyle: GoogleFonts.poppins(
-              color: secondaryColor,
-              fontSize: 18,
-              fontWeight: FontWeight.w400,
-            ),
-            title: 'Konfirmasi',
-            bodyHeaderDistance: 25,
-            desc: 'Apakah yakin untuk menghapus item ini ?',
-            btnOkOnPress: () {
-              controller.deleteRugiLaba(data.inputRugiLaba.id);
-            },
-            btnOkText: 'Oke sip',
-            btnCancelText: 'Affa iyh',
-            btnCancelOnPress: () {})
-        .show();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,8 +36,33 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
         actions: [
           IconButton(
             onPressed: () {
-              deleteRugiLaba(context);
-              Get.back();
+              AwesomeDialog(
+                      context: Get.context!,
+                      dialogType: DialogType.question,
+                      animType: AnimType.bottomSlide,
+                      dialogBackgroundColor: primaryColor,
+                      titleTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      descTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      title: 'Konfirmasi',
+                      bodyHeaderDistance: 25,
+                      desc: 'Apakah yakin untuk menghapus item ini ?',
+                      btnOkOnPress: () {
+                        controller.deleteRugiLaba(data.inputRugiLaba.id);
+                        controller.purgeProgressBar(data.id);
+                        Get.back();
+                      },
+                      btnOkText: 'Oke sip',
+                      btnCancelText: 'Affa iyh',
+                      btnCancelOnPress: () {})
+                  .show();
             },
             icon: const FaIcon(
               FontAwesomeIcons.solidTrashCan,

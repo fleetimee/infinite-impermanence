@@ -50,15 +50,11 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
             titlePosition: GFPosition.start,
             showOverlayImage: true,
             imageOverlay: AssetImage(
-              'assets/images/home/satania-banner.jpg',
-            ),
-            colorFilter: ColorFilter.mode(
-              Color.fromARGB(221, 8, 8, 8),
-              BlendMode.darken,
+              'assets/images/home/bi_fast.png',
             ),
             title: GFListTile(
               title: Text(
-                'Tambah Agunan',
+                '',
                 style: TextStyle(
                   color: secondaryColor,
                   fontSize: 47,
@@ -67,7 +63,7 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
               ),
             ),
             content: Text(
-              "Kumpulan form agunan yang ditujukan untuk penginputan sesuai dengan jenis agunan yang dipilih.",
+              "",
               style: TextStyle(
                 color: secondaryColor,
                 fontSize: 28,

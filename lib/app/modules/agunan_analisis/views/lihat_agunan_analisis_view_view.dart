@@ -1,15 +1,18 @@
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
-class LihatAgunanAnalisisViewView extends GetView {
+class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
   LihatAgunanAnalisisViewView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
@@ -19,6 +22,42 @@ class LihatAgunanAnalisisViewView extends GetView {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Analisa Agunan'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              AwesomeDialog(
+                      context: Get.context!,
+                      dialogType: DialogType.question,
+                      animType: AnimType.bottomSlide,
+                      dialogBackgroundColor: primaryColor,
+                      titleTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      descTextStyle: GoogleFonts.poppins(
+                        color: secondaryColor,
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      title: 'Konfirmasi',
+                      bodyHeaderDistance: 25,
+                      desc: 'Apakah yakin untuk menghapus item ini ?',
+                      btnOkOnPress: () {
+                        controller.deleteAgunanAnalisis(
+                            data.id, data.analisaAgunan.id);
+                        Get.back();
+                      },
+                      btnOkText: 'Oke sip',
+                      btnCancelText: 'Affa iyh',
+                      btnCancelOnPress: () {})
+                  .show();
+            },
+            icon: const FaIcon(
+              FontAwesomeIcons.solidTrashCan,
+            ),
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

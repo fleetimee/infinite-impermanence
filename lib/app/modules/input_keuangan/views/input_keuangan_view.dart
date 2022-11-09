@@ -88,15 +88,11 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                               titlePosition: GFPosition.start,
                               showOverlayImage: true,
                               imageOverlay: AssetImage(
-                                'assets/images/home/pink-box.jpg',
-                              ),
-                              colorFilter: ColorFilter.mode(
-                                Color.fromARGB(136, 0, 0, 0),
-                                BlendMode.darken,
+                                'assets/images/home/bannerr.jpg',
                               ),
                               title: GFListTile(
                                 title: Text(
-                                  'Data',
+                                  '',
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 47,
@@ -105,7 +101,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                 ),
                               ),
                               content: Text(
-                                'Keuangan',
+                                '',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -384,47 +380,50 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                             const SizedBox(
                               height: 10.0,
                             ),
-                            Text(
-                              'Asumsi Keuangan',
-                              style: GoogleFonts.poppins(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.w600,
+                            Center(
+                              child: Text(
+                                'Asumsi Keuangan',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                             Animate(
-                              child: const GFCard(
-                                boxFit: BoxFit.cover,
-                                titlePosition: GFPosition.start,
-                                showOverlayImage: true,
-                                imageOverlay: NetworkImage(
-                                  'https://i0.wp.com/www.animegeek.com/wp-content/uploads/2022/08/Lycoris-Recoil-Season-2-release-date-Anime.jpg?resize=1024%2C576&ssl=1',
-                                ),
-                                colorFilter: ColorFilter.mode(
-                                  Color.fromARGB(136, 0, 0, 0),
-                                  BlendMode.darken,
-                                ),
-                                title: GFListTile(
-                                  title: Text(
-                                    'Data',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 47,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                content: Text(
-                                  'Keuangan',
+                                child: const GFCard(
+                              boxFit: BoxFit.cover,
+                              titlePosition: GFPosition.start,
+                              showOverlayImage: true,
+                              imageOverlay: AssetImage(
+                                'assets/images/home/bannerr.jpg',
+                              ),
+                              title: GFListTile(
+                                title: Text(
+                                  '',
                                   style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ).animate().fadeIn().scale().move(
-                                    delay: 300.ms,
-                                    duration: 600.ms,
+                                    color: Colors.white,
+                                    fontSize: 47,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                            ),
+                                ),
+                              ),
+                              content: Text(
+                                '',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                                    .animate()
+                                    .fadeIn() // uses `Animate.defaultDuration`
+                                    .scale() // inherits duration from fadeIn
+                                    .move(
+                                        delay: 300.ms,
+                                        duration: 600
+                                            .ms) // runs after the above w/new duration
+                                // inherits the delay & duration from move,
+                                ),
                             const SizedBox(
                               height: 16.0,
                             ),
@@ -715,39 +714,40 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                 ),
                               ),
                               Animate(
-                                child: const GFCard(
-                                  boxFit: BoxFit.cover,
-                                  titlePosition: GFPosition.start,
-                                  showOverlayImage: true,
-                                  imageOverlay: NetworkImage(
-                                    'https://i0.wp.com/www.animegeek.com/wp-content/uploads/2022/08/Lycoris-Recoil-Season-2-release-date-Anime.jpg?resize=1024%2C576&ssl=1',
-                                  ),
-                                  colorFilter: ColorFilter.mode(
-                                    Color.fromARGB(136, 0, 0, 0),
-                                    BlendMode.darken,
-                                  ),
-                                  title: GFListTile(
-                                    title: Text(
-                                      'Data',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 47,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  content: Text(
-                                    'Keuangan',
+                                  child: const GFCard(
+                                boxFit: BoxFit.cover,
+                                titlePosition: GFPosition.start,
+                                showOverlayImage: true,
+                                imageOverlay: AssetImage(
+                                  'assets/images/home/bannerr.jpg',
+                                ),
+                                title: GFListTile(
+                                  title: Text(
+                                    '',
                                     style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ).animate().fadeIn().scale().move(
-                                      delay: 300.ms,
-                                      duration: 600.ms,
+                                      color: Colors.white,
+                                      fontSize: 47,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                              ),
+                                  ),
+                                ),
+                                content: Text(
+                                  '',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              )
+                                      .animate()
+                                      .fadeIn() // uses `Animate.defaultDuration`
+                                      .scale() // inherits duration from fadeIn
+                                      .move(
+                                          delay: 300.ms,
+                                          duration: 600
+                                              .ms) // runs after the above w/new duration
+                                  // inherits the delay & duration from move,
+                                  ),
                               Row(
                                 children: [
                                   Expanded(

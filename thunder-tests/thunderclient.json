@@ -1530,16 +1530,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "a1ca212b-7310-4719-bd95-73e69bfb8392",
     "name": "Post",
-    "url": "{{baseUrl}}api/v1/agunan/90/agunan-tanah-bangunan/",
+    "url": "{{baseUrl}}api/v1/agunan/16/agunan-tanah-bangunan/",
     "method": "POST",
     "sortNum": 720000,
     "created": "2022-10-13T06:20:02.534Z",
-    "modified": "2022-10-13T08:00:39.546Z",
+    "modified": "2022-11-09T07:25:54.211Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"deskripsi_pendek\": \"AAAA\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
+      "raw": "{\n  \"deskripsi_pendek\": \"AAAA\",\n  \"nama_pemilik\": \"Ponireah\",\n  \"bukti_kepemilikan\": \"BPKB\",\n  \"luas_tanah\": 20,\n  \"tanggal\": \"1997-09-09\",\n  \"nilai_pasar_tanah\": \"10000000\",\n  \"nilai_liquidasi_tanah\": \"8000000\",\n  \"nilai_pasar_bangunan\": \"25000000\",\n  \"nilai_liquidasi_bangunan\": \"18500000\",\n  \"nilai_pasar\": \"25000000\",\n  \"nilai_liquidasi\": \"12000000\",\n  \"nilai_pengikatan\": \"200000000\",\n  \"pengikatan\": \"SURAT KUASA\",\n  \"lokasi\": \"Jl. Kebon Jeruk\",\n  \"titik_koordinat\": \"123.123\",\n  \"deskripsi_panjang\": \"Lorem\"\n}\n",
       "form": []
     },
     "tests": []

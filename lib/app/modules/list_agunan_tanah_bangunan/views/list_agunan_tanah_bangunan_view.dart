@@ -365,7 +365,53 @@ class ListAgunanTanahBangunanView
                               ),
                               TableRow(
                                 children: [
-                                  paddedTextTanah('Nilai Pasar'),
+                                  paddedTextTanah(''),
+                                  const SizedBox.shrink(),
+                                  const SizedBox.shrink(),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah('Nilai Pasar Tanah'),
+                                  paddedTextTanah(':'),
+                                  paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiPasarTanah.toString())).text}'),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah('Nilai Liquidasi Tanah'),
+                                  paddedTextTanah(':'),
+                                  paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiLiquidasiTanah.toString())).text}'),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah('Nilai Pasar Bangunan'),
+                                  paddedTextTanah(':'),
+                                  paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiPasarBangunan.toString())).text}'),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah('Nilai Liquidasi Bangunan'),
+                                  paddedTextTanah(':'),
+                                  paddedTextTanah(
+                                      'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiLiquidasiBangunan.toString())).text}'),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah(''),
+                                  const SizedBox.shrink(),
+                                  const SizedBox.shrink(),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah('Total Nilai Pasar'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
                                       'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiPasar.toString())).text}'),
@@ -373,11 +419,18 @@ class ListAgunanTanahBangunanView
                               ),
                               TableRow(
                                 children: [
-                                  paddedTextTanah('Nilai Liquidasi'),
+                                  paddedTextTanah('Total Nilai Liquidasi'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
                                     'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiLiquidasi.toString())).text}',
                                   ),
+                                ],
+                              ),
+                              TableRow(
+                                children: [
+                                  paddedTextTanah(''),
+                                  const SizedBox.shrink(),
+                                  const SizedBox.shrink(),
                                 ],
                               ),
                               TableRow(
@@ -675,20 +728,30 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
+          const Text(
+            'Tanah',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
           Row(
             children: [
               Expanded(
                 flex: 4,
                 child: FormBuilderTextField(
-                  name: 'nilai_pasar',
-                  controller: controller.nilaiPasarEdit =
+                  name: 'nilai_pasar_tanah',
+                  controller: controller.nilaiPasarTanahEdit =
                       MoneyMaskedTextController(
-                          initialValue: double.parse(data.nilaiPasar),
+                          initialValue: double.parse(data.nilaiPasarTanah),
                           thousandSeparator: '.',
                           decimalSeparator: '',
                           precision: 0),
                   decoration: const InputDecoration(
-                    labelText: 'Nilai Pasar',
+                    labelText: 'Nilai Pasar Tanah',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -702,8 +765,8 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'persentase',
-                  controller: controller.persentaseEdit,
+                  name: 'persentase_tanah',
+                  controller: controller.persentaseTanahEdit,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
                     border: OutlineInputBorder(
@@ -715,6 +778,132 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilaiLiquidasiTanah',
+            enabled: false,
+            controller: controller.nilaiLiquidasiTanahEdit =
+                MoneyMaskedTextController(
+                    initialValue: double.parse(data.nilaiLiquidasiTanah),
+                    thousandSeparator: '.',
+                    decimalSeparator: '',
+                    precision: 0),
+            decoration: const InputDecoration(
+              labelText: 'Nilai Liquidasi Tanah',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          const Text(
+            'Bangunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: FormBuilderTextField(
+                  name: 'nilai_pasar_bangunan',
+                  controller: controller.nilaiPasarBangunanEdit =
+                      MoneyMaskedTextController(
+                          initialValue: double.parse(data.nilaiPasarBangunan),
+                          thousandSeparator: '.',
+                          decimalSeparator: '',
+                          precision: 0),
+                  decoration: const InputDecoration(
+                    labelText: 'Nilai Pasar Bangunan',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderTextField(
+                  name: 'persentase_bangunan',
+                  controller: controller.persentaseBangunanEdit,
+                  decoration: const InputDecoration(
+                    labelText: 'Persen Bangunan',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'totalNilaiBangunan',
+            enabled: false,
+            controller: controller.nilaiLiquidasiBangunanEdit =
+                MoneyMaskedTextController(
+                    initialValue: double.parse(data.nilaiLiquidasiBangunan),
+                    thousandSeparator: '.',
+                    decimalSeparator: '',
+                    precision: 0),
+            decoration: const InputDecoration(
+              labelText: 'Nilai Liquidasi Bangunan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          const Text(
+            'Total',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_pasar',
+            enabled: false,
+            controller: controller.nilaiPasarEdit = MoneyMaskedTextController(
+                initialValue: double.parse(data.nilaiPasar),
+                thousandSeparator: '.',
+                decimalSeparator: '',
+                precision: 0),
+            decoration: const InputDecoration(
+              labelText: 'Total Nilai Pasar',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
           ),
           const SizedBox(
             height: 12.0,
@@ -762,7 +951,7 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasiEdit();
+                controller.yep();
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,
@@ -1084,15 +1273,25 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           const SizedBox(
             height: 10.0,
           ),
+          const Text(
+            'Tanah',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
           Row(
             children: [
               Expanded(
                 flex: 4,
                 child: FormBuilderTextField(
-                  name: 'nilai_pasar',
-                  controller: controller.nilaiPasar,
+                  name: 'nilai_pasar_tanah',
+                  controller: controller.nilaiPasarTanah,
                   decoration: const InputDecoration(
-                    labelText: 'Nilai Pasar',
+                    labelText: 'Nilai Pasar Tanah',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1106,8 +1305,8 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'persentase',
-                  controller: controller.persentase,
+                  name: 'persentase_tanah',
+                  controller: controller.persentaseTanah,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
                     border: OutlineInputBorder(
@@ -1124,11 +1323,118 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
             height: 12.0,
           ),
           FormBuilderTextField(
+            name: 'nilaiLiquidasiTanah',
+            enabled: false,
+            controller: controller.nilaiLiquidasiTanah,
+            decoration: const InputDecoration(
+              labelText: 'Nilai Liquidasi Tanah',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          const Text(
+            'Bangunan',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 4,
+                child: FormBuilderTextField(
+                  name: 'nilai_pasar_bangunan',
+                  controller: controller.nilaiPasarBangunan,
+                  decoration: const InputDecoration(
+                    labelText: 'Nilai Pasar Bangunan',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Expanded(
+                child: FormBuilderTextField(
+                  name: 'persentase_bangunan',
+                  controller: controller.persentaseBangunan,
+                  decoration: const InputDecoration(
+                    labelText: 'Persen Bangunan',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'totalNilaiBangunan',
+            enabled: false,
+            controller: controller.nilaiLiquidasiBangunan,
+            decoration: const InputDecoration(
+              labelText: 'Nilai Liquidasi Bangunan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          const Text(
+            'Total',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'nilai_pasar',
+            enabled: false,
+            controller: controller.nilaiPasar,
+            decoration: const InputDecoration(
+              labelText: 'Total Nilai Pasar',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
             name: 'nilai_likuidasi',
             enabled: false,
             controller: controller.nilaiLiquidasi,
             decoration: const InputDecoration(
-              labelText: 'Nilai Likuidasi',
+              labelText: 'Total Nilai Likuidasi',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1144,7 +1450,7 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
             enabled: false,
             controller: controller.nilaiPengikatan,
             decoration: const InputDecoration(
-              labelText: 'Nilai Pengikatan',
+              labelText: 'Total Nilai Pengikatan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1156,7 +1462,7 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasi();
+                controller.boom();
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,

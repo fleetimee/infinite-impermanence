@@ -713,6 +713,7 @@ class FormTanah {
   String? buktiKepemilikan;
   int? luasTanah;
   DateTime? tanggal;
+
   String? nilaiPasar;
   String? nilaiLiquidasi;
   String? nilaiPengikatan;
@@ -768,6 +769,10 @@ class FormTanahBangunan {
     this.buktiKepemilikan,
     this.luasTanah,
     this.tanggal,
+    this.nilaiPasarTanah,
+    this.nilaiLiquidasiTanah,
+    this.nilaiPasarBangunan,
+    this.nilaiLiquidasiBangunan,
     this.nilaiPasar,
     this.nilaiLiquidasi,
     this.nilaiPengikatan,
@@ -784,6 +789,10 @@ class FormTanahBangunan {
   String? buktiKepemilikan;
   int? luasTanah;
   DateTime? tanggal;
+  String? nilaiPasarTanah;
+  String? nilaiLiquidasiTanah;
+  String? nilaiPasarBangunan;
+  String? nilaiLiquidasiBangunan;
   String? nilaiPasar;
   String? nilaiLiquidasi;
   String? nilaiPengikatan;
@@ -802,6 +811,10 @@ class FormTanahBangunan {
         luasTanah: json["luas_tanah"],
         tanggal:
             json["tanggal"] == null ? null : DateTime.parse(json["tanggal"]),
+        nilaiPasarTanah: json["nilai_pasar_tanah"] ?? null,
+        nilaiLiquidasiTanah: json["nilai_liquidasi_tanah"] ?? null,
+        nilaiPasarBangunan: json["nilai_pasar_bangunan"] ?? null,
+        nilaiLiquidasiBangunan: json["nilai_liquidasi_bangunan"] ?? null,
         nilaiPasar: json["nilai_pasar"],
         nilaiLiquidasi: json["nilai_liquidasi"],
         nilaiPengikatan: json["nilai_pengikatan"],
@@ -821,6 +834,10 @@ class FormTanahBangunan {
         "tanggal": tanggal == null
             ? null
             : "${tanggal?.year.toString().padLeft(4, '0')}-${tanggal?.month.toString().padLeft(2, '0')}-${tanggal?.day.toString().padLeft(2, '0')}",
+        "nilai_pasar_tanah": nilaiPasarTanah ?? null,
+        "nilai_liquidasi_tanah": nilaiLiquidasiTanah ?? null,
+        "nilai_pasar_bangunan": nilaiPasarBangunan ?? null,
+        "nilai_liquidasi_bangunan": nilaiLiquidasiBangunan ?? null,
         "nilai_pasar": nilaiPasar,
         "nilai_liquidasi": nilaiLiquidasi,
         "nilai_pengikatan": nilaiPengikatan,

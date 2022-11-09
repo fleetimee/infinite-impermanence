@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/4?join=ijinLegitimasi&join=syaratLain&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan",
+    "url": "{{baseUrl}}api/v1/debiturs/4?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-11-08T06:04:03.236Z",
+    "modified": "2022-11-09T01:34:20.634Z",
     "headers": [],
     "params": [
       {
@@ -605,6 +605,11 @@
       {
         "name": "join",
         "value": "syaratLain",
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "asuransi",
         "isPath": false
       },
       {
@@ -1728,6 +1733,39 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"jenis_ijin\": \"Surat Keterangan Usaha\",\n  \"keterangan_ijin\": \"107/UU/NGT/III/2022\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5b205f18-1c8f-4533-acb1-e189fafd289d",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "607eda93-5a62-4db5-82c8-06a3e90918b1",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/debiturs/4/asuransi/",
+    "method": "GET",
+    "sortNum": 850000,
+    "created": "2022-11-09T01:34:50.241Z",
+    "modified": "2022-11-09T01:35:13.685Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e62c82fc-220f-4518-b336-fbc2c6b5ff29",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "607eda93-5a62-4db5-82c8-06a3e90918b1",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/debiturs/4/asuransi/",
+    "method": "POST",
+    "sortNum": 860000,
+    "created": "2022-11-09T01:35:22.240Z",
+    "modified": "2022-11-09T01:36:27.571Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"premi\": 4.13,\n  \"total_asuransi\": 100000\n}",
       "form": []
     },
     "tests": []

@@ -494,6 +494,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                     ),
                     MenuInputanSyarat(),
                     MenuInputIjin(),
+                    MenuAsuransi(),
                   ],
                 ),
 

@@ -41,8 +41,6 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
 
-  const premi = 3.34;
-
   // Get list of agunan
   var agunanList = debtor.agunan;
 
@@ -1225,23 +1223,14 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
               children: [
                 textDeskripsiNoBold(''),
                 textDeskripsiNoBold(
-                  'Premi $premi% X ${MoneyMaskedTextController(
+                  'Premi ${debtor.asuransi?.premi} % X ${MoneyMaskedTextController(
                     decimalSeparator: '',
                     thousandSeparator: '.',
                     leftSymbol: 'Rp. ',
                     precision: 0,
                     initialValue: double.parse(
                         debtor.inputKeuangan!.kreditDiusulkan.toString()),
-                  ).text} = ${MoneyMaskedTextController(
-                    decimalSeparator: '',
-                    thousandSeparator: '.',
-                    leftSymbol: 'Rp. ',
-                    precision: 0,
-                    initialValue: double.parse(
-                            debtor.inputKeuangan!.kreditDiusulkan.toString()) *
-                        premi /
-                        100,
-                  ).text}',
+                  ).text} = ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', leftSymbol: 'Rp. ', precision: 0, initialValue: double.parse(debtor.asuransi!.totalAsuransi.toString())).text}',
                 ),
                 textDeskripsiNoBold(''),
               ],

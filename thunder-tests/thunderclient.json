@@ -1769,5 +1769,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "e9ca81c7-eb2c-44fc-abb7-ee8a36842c93",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "607eda93-5a62-4db5-82c8-06a3e90918b1",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/debiturs/4/asuransi/1",
+    "method": "DELETE",
+    "sortNum": 870000,
+    "created": "2022-11-09T02:22:07.110Z",
+    "modified": "2022-11-09T02:22:24.362Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

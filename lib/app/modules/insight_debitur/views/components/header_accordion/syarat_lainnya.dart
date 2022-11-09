@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 // ignore_for_file: prefer_is_empty
 
+import 'package:akm/app/modules/asuransi/controllers/asuransi_controller.dart';
 import 'package:akm/app/modules/ijin_legitimasi/controllers/ijin_legitimasi_controller.dart';
 import 'package:akm/app/modules/list_syarat_lainnya/controllers/list_syarat_lainnya_controller.dart';
 import 'package:flutter/material.dart';
@@ -411,7 +412,7 @@ class MenuAsuransi extends StatelessWidget {
   }) : super(key: key);
 
   final controller = Get.put(InsightDebiturController());
-  final ijinLegitmasiController = Get.put(IjinLegitimasiController());
+  final asuransiController = Get.put(AsuransiController());
 
   @override
   Widget build(BuildContext context) {
@@ -435,16 +436,14 @@ class MenuAsuransi extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (ijinLegitmasiController
-                      .isIjinLegitimasiProcessing.value) {
+                  if (asuransiController.isAsuransiProcessing.value) {
                     return const Expanded(
                       child: Center(
                         child: CircularProgressIndicator(),
                       ),
                     );
                   } else {
-                    if (controller.insightDebitur.value.ijinLegitimasi ==
-                        null) {
+                    if (controller.insightDebitur.value.asuransi == null) {
                       return Row(
                         children: const [
                           Text(
@@ -493,22 +492,21 @@ class MenuAsuransi extends StatelessWidget {
               ),
               Obx(
                 () {
-                  if (ijinLegitmasiController
-                      .isIjinLegitimasiProcessing.value) {
+                  if (asuransiController.isAsuransiProcessing.value) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
                   } else {
                     return Row(
                       children: [
-                        controller.insightDebitur.value.ijinLegitimasi == null
+                        controller.insightDebitur.value.asuransi == null
                             ? Expanded(
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.blueGrey,
                                   ),
                                   onPressed: () {
-                                    Get.toNamed(Routes.IJIN_LEGITIMASI,
+                                    Get.toNamed(Routes.ASURANSI,
                                         arguments:
                                             controller.insightDebitur.value);
                                   },
@@ -531,8 +529,7 @@ class MenuAsuransi extends StatelessWidget {
                                           backgroundColor: Colors.blueGrey,
                                         ),
                                         onPressed: () {
-                                          Get.toNamed(
-                                              Routes.LIHAT_IJIN_LEGITIMASI,
+                                          Get.toNamed(Routes.LIHAT_ASURANSI,
                                               arguments: controller
                                                   .insightDebitur.value);
                                         },
@@ -555,8 +552,7 @@ class MenuAsuransi extends StatelessWidget {
                                           backgroundColor: Colors.blueGrey,
                                         ),
                                         onPressed: () {
-                                          Get.toNamed(
-                                              Routes.EDIT_IJIN_LEGITIMASI,
+                                          Get.toNamed(Routes.EDIT_ASURANSI,
                                               arguments: controller
                                                   .insightDebitur.value);
                                         },

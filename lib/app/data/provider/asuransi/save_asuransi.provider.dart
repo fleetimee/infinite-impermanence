@@ -11,13 +11,13 @@ import 'package:http/http.dart' as http;
 // 🌎 Project imports:
 import 'package:akm/app/common/constant.dart';
 
-class IjinLegitimasiProvider {
+class AsuransiProvider {
   final httpClient = http.Client();
 
-  Future<List<IjinLegitimasi>> fetchIjinLegitimasi(int id) async {
+  Future<List<Asuransi>> fetchAsuransi(int id) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}debiturs/$id/ijin-legitimasi/'),
+        Uri.parse('${baseUrl}debiturs/$id/asuransi/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -27,7 +27,7 @@ class IjinLegitimasiProvider {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         debugPrint(data.toString());
-        return (data as List).map((e) => IjinLegitimasi.fromJson(e)).toList();
+        return (data as List).map((e) => Asuransi.fromJson(e)).toList();
       } else {
         throw Exception('Failed to load data');
       }
@@ -36,10 +36,10 @@ class IjinLegitimasiProvider {
     }
   }
 
-  Future<IjinLegitimasi> deployIjinLegitimasi(int id, Map body) async {
+  Future<Asuransi> deployAsuransi(int id, Map body) async {
     try {
       final response = await httpClient.post(
-        Uri.parse('${baseUrl}debiturs/$id/ijin-legitimasi/'),
+        Uri.parse('${baseUrl}debiturs/$id/asuransi/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -50,7 +50,7 @@ class IjinLegitimasiProvider {
       if (response.statusCode == 201) {
         var data = jsonDecode(response.body);
         debugPrint(data.toString());
-        return IjinLegitimasi.fromJson(data);
+        return Asuransi.fromJson(data);
       } else {
         throw Exception('Failed to load data');
       }
@@ -59,10 +59,10 @@ class IjinLegitimasiProvider {
     }
   }
 
-  Future<void> putIjinLegitimasi(int id, int idIjin, Map body) async {
+  Future<void> putAsuransi(int id, int idAsuransi, Map body) async {
     try {
       final response = await httpClient.put(
-        Uri.parse('${baseUrl}debiturs/$id/ijin-legitimasi/$idIjin/'),
+        Uri.parse('${baseUrl}debiturs/$id/asuransi/$idAsuransi/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
@@ -81,10 +81,10 @@ class IjinLegitimasiProvider {
     }
   }
 
-  Future<void> purgeIjinLegitimasi(int id, int idIjin) async {
+  Future<void> purgeAsuransi(int id, int idAsuransi) async {
     try {
       final response = await httpClient.delete(
-        Uri.parse('${baseUrl}debiturs/$id/ijin-legitimasi/$idIjin/'),
+        Uri.parse('${baseUrl}debiturs/$id/asuransi/$idAsuransi/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

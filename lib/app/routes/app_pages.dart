@@ -1,5 +1,5 @@
-import 'package:akm/app/modules/ijin_legitimasi/views/edit_ijin_legitimasi_view.dart';
-import 'package:akm/app/modules/ijin_legitimasi/views/lihat_ijin_legitimasi_view.dart';
+import 'package:akm/app/modules/asuransi/views/edit_asuransi_view.dart';
+import 'package:akm/app/modules/asuransi/views/lihat_asuransi_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan/bindings/agunan_binding.dart';
@@ -13,6 +13,8 @@ import '../modules/agunan_form_onboarding/bindings/agunan_form_onboarding_bindin
 import '../modules/agunan_form_onboarding/views/agunan_form_onboarding_view.dart';
 import '../modules/agunan_pilih/bindings/agunan_pilih_binding.dart';
 import '../modules/agunan_pilih/views/agunan_pilih_view.dart';
+import '../modules/asuransi/bindings/asuransi_binding.dart';
+import '../modules/asuransi/views/asuransi_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/edit_bisnis_analisis_view.dart';
@@ -25,7 +27,9 @@ import '../modules/debitur_real/views/debitur_onboarding_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/ijin_legitimasi/bindings/ijin_legitimasi_binding.dart';
+import '../modules/ijin_legitimasi/views/edit_ijin_legitimasi_view.dart';
 import '../modules/ijin_legitimasi/views/ijin_legitimasi_view.dart';
+import '../modules/ijin_legitimasi/views/lihat_ijin_legitimasi_view.dart';
 import '../modules/input_keuangan/bindings/input_keuangan_binding.dart';
 import '../modules/input_keuangan/views/edit_input_keuangan_view.dart';
 import '../modules/input_keuangan/views/input_keuangan_view.dart';
@@ -428,6 +432,21 @@ class AppPages {
       name: _Paths.EDIT_IJIN_LEGITIMASI,
       page: () => EditIjinLegitimasiView(),
       binding: IjinLegitimasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.ASURANSI,
+      page: () => AsuransiView(),
+      binding: AsuransiBinding(),
+    ),
+    GetPage(
+      name: _Paths.LIHAT_ASURANSI,
+      page: () => LihatAsuransiView(),
+      binding: AsuransiBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_ASURANSI,
+      page: () => EditAsuransiView(),
+      binding: AsuransiBinding(),
     ),
   ];
 }

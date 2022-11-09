@@ -1237,23 +1237,14 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
               children: [
                 textDeskripsiNoBold(''),
                 textDeskripsiNoBold(
-                  'Premi $premi% X ${MoneyMaskedTextController(
+                  'Premi ${debtor.asuransi?.premi} % X ${MoneyMaskedTextController(
                     decimalSeparator: '',
                     thousandSeparator: '.',
                     leftSymbol: 'Rp. ',
                     precision: 0,
                     initialValue: double.parse(
                         debtor.inputKeuangan!.kreditDiusulkan.toString()),
-                  ).text} = ${MoneyMaskedTextController(
-                    decimalSeparator: '',
-                    thousandSeparator: '.',
-                    leftSymbol: 'Rp. ',
-                    precision: 0,
-                    initialValue: double.parse(
-                            debtor.inputKeuangan!.kreditDiusulkan.toString()) *
-                        premi /
-                        100,
-                  ).text}',
+                  ).text} = ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', leftSymbol: 'Rp. ', precision: 0, initialValue: double.parse(debtor.asuransi!.totalAsuransi.toString())).text}',
                 ),
                 textDeskripsiNoBold(''),
               ],

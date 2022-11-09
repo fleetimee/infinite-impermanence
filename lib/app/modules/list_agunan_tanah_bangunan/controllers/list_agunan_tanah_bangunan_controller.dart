@@ -41,6 +41,31 @@ class ListAgunanTanahBangunanController extends GetxController {
   var tanggal = DateTime.now();
   var lokasi = TextEditingController();
   var titikKoordinat = TextEditingController();
+
+  var nilaiPasarTanah = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var persentaseTanah = TextEditingController();
+  var nilaiLiquidasiTanah = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  var nilaiPasarBangunan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var persentaseBangunan = TextEditingController();
+  var nilaiLiquidasiBangunan = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
   var nilaiPasar = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -263,6 +288,57 @@ class ListAgunanTanahBangunanController extends GetxController {
 
     nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
     nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  }
+
+  void hitungNilaiLiquidasiTanah() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarTanah.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseTanah.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasiTanah.text = hasilLiquidasi.toStringAsFixed(0);
+  }
+
+  void hitungNilaiLiquidasiBangunan() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarBangunan.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseBangunan.text);
+
+    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasiBangunan.text = hasilLiquidasi.toStringAsFixed(0);
+  }
+
+  void hitungTotalNilaiPasar() {
+    final parseNilaiPasarTanah =
+        double.parse(nilaiPasarTanah.text.replaceAll('.', ''));
+    final parseNilaiPasarBangunan =
+        double.parse(nilaiPasarBangunan.text.replaceAll('.', ''));
+
+    final totalNilaiPasar = parseNilaiPasarTanah + parseNilaiPasarBangunan;
+
+    nilaiPasar.text = totalNilaiPasar.toStringAsFixed(0);
+    nilaiPengikatan.text = totalNilaiPasar.toStringAsFixed(0);
+  }
+
+  void hitungTotalNilaiLiquidasi() {
+    final parseNilaiLiquidasiTanah =
+        double.parse(nilaiLiquidasiTanah.text.replaceAll('.', ''));
+    final parseNilaiLiquidasiBangunan =
+        double.parse(nilaiLiquidasiBangunan.text.replaceAll('.', ''));
+
+    final totalNilaiLiquidasi =
+        parseNilaiLiquidasiTanah + parseNilaiLiquidasiBangunan;
+
+    nilaiLiquidasi.text = totalNilaiLiquidasi.toStringAsFixed(0);
+  }
+
+  void boom() {
+    hitungNilaiLiquidasiTanah();
+    hitungNilaiLiquidasiBangunan();
+    hitungTotalNilaiPasar();
+    hitungTotalNilaiLiquidasi();
   }
 
   void generateDeskripsi() {

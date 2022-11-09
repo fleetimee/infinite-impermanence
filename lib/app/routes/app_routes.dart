@@ -74,6 +74,9 @@ abstract class Routes {
   static const IJIN_LEGITIMASI = _Paths.IJIN_LEGITIMASI;
   static const LIHAT_IJIN_LEGITIMASI = _Paths.LIHAT_IJIN_LEGITIMASI;
   static const EDIT_IJIN_LEGITIMASI = _Paths.EDIT_IJIN_LEGITIMASI;
+  static const ASURANSI = _Paths.ASURANSI;
+  static const LIHAT_ASURANSI = _Paths.LIHAT_ASURANSI;
+  static const EDIT_ASURANSI = _Paths.EDIT_ASURANSI;
 }
 
 abstract class _Paths {
@@ -146,4 +149,7 @@ abstract class _Paths {
   static const IJIN_LEGITIMASI = '/ijin-legitimasi';
   static const LIHAT_IJIN_LEGITIMASI = '/lihat-ijin-legitimasi';
   static const EDIT_IJIN_LEGITIMASI = '/edit-ijin-legitimasi';
+  static const ASURANSI = '/asuransi';
+  static const LIHAT_ASURANSI = '/lihat-asurans';
+  static const EDIT_ASURANSI = '/edit-asuransi';
 }

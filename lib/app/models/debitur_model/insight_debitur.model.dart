@@ -52,6 +52,7 @@ class DebiturInsight {
     this.analisaJenisUsaha,
     this.agunan,
     this.syaratLain,
+    this.asuransi,
     this.analisaAgunan,
   });
 
@@ -88,6 +89,8 @@ class DebiturInsight {
   String? progress;
   dynamic createdBy;
   IjinLegitimasi? ijinLegitimasi;
+  Asuransi? asuransi;
+
   InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
@@ -167,6 +170,9 @@ class DebiturInsight {
             ? null
             : List<SyaratLain>.from(
                 json["syaratLain"].map((x) => SyaratLain.fromJson(x))),
+        asuransi: json["asuransi"] == null
+            ? null
+            : Asuransi.fromJson(json["asuransi"]),
         analisaAgunan: json["analisaAgunan"] == null
             ? null
             : AnalisaAgunan.fromJson(json["analisaAgunan"]),
@@ -221,6 +227,7 @@ class DebiturInsight {
         "analisaBisnis": analisaBisnis == null ? null : analisaBisnis?.toJson(),
         "analisaJenisUsaha":
             analisaJenisUsaha == null ? null : analisaJenisUsaha?.toJson(),
+        "asuransi": asuransi == null ? null : asuransi?.toJson(),
         "agunan": agunan == null
             ? null
             : List<dynamic>.from(agunan!.map((x) => x.toJson())),
@@ -228,6 +235,34 @@ class DebiturInsight {
             ? null
             : List<dynamic>.from(syaratLain!.map((x) => x.toJson())),
         "analisaAgunan": analisaAgunan == null ? null : analisaAgunan?.toJson(),
+      };
+}
+
+class Asuransi {
+  Asuransi({
+    this.id,
+    this.premi,
+    this.totalAsuransi,
+    this.debiturId,
+  });
+
+  int? id;
+  String? premi;
+  String? totalAsuransi;
+  int? debiturId;
+
+  factory Asuransi.fromJson(Map<String, dynamic> json) => Asuransi(
+        id: json["id"] ?? null,
+        premi: json["premi"] ?? null,
+        totalAsuransi: json["total_asuransi"] ?? null,
+        debiturId: json["debiturId"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "premi": premi ?? null,
+        "total_asuransi": totalAsuransi ?? null,
+        "debiturId": debiturId ?? null,
       };
 }
 

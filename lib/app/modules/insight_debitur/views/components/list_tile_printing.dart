@@ -318,7 +318,8 @@ class PrintPutusan extends StatelessWidget {
               controller.insightDebitur.value.analisaBisnis != null &&
               controller.insightDebitur.value.analisaJenisUsaha != null &&
               controller.insightDebitur.value.analisaKarakter != null &&
-              controller.insightDebitur.value.syaratLain!.isNotEmpty
+              controller.insightDebitur.value.syaratLain!.isNotEmpty &&
+              controller.insightDebitur.value.asuransi != null
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.PUTUSAN_PRINT,
@@ -376,7 +377,8 @@ class PrintUsulan extends StatelessWidget {
               controller.insightDebitur.value.analisaBisnis != null &&
               controller.insightDebitur.value.analisaJenisUsaha != null &&
               controller.insightDebitur.value.analisaKarakter != null &&
-              controller.insightDebitur.value.syaratLain!.isNotEmpty
+              controller.insightDebitur.value.syaratLain!.isNotEmpty &&
+              controller.insightDebitur.value.asuransi != null
           ? GFButton(
               onPressed: () {
                 Get.toNamed(Routes.USULAN_BARU_PRINT,

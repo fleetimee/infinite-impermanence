@@ -93,6 +93,31 @@ class ListAgunanTanahBangunanController extends GetxController {
   var tanggalEdit = DateTime.now();
   var lokasiEdit = TextEditingController();
   var titikKoordinatEdit = TextEditingController();
+
+  var nilaiPasarTanahEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var persentaseTanahEdit = TextEditingController();
+  var nilaiLiquidasiTanahEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
+  var nilaiPasarBangunanEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+  var persentaseBangunanEdit = TextEditingController();
+  var nilaiLiquidasiBangunanEdit = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
   var nilaiPasarEdit = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -146,6 +171,11 @@ class ListAgunanTanahBangunanController extends GetxController {
       'bukti_kepemilikan': buktiKepemilikan.text,
       'luas_tanah': luasTanah.text,
       'tanggal': tanggal.toString(),
+      "nilai_pasar_tanah": nilaiPasarTanah.text.replaceAll('.', ''),
+      "nilai_liquidasi_tanah": nilaiLiquidasiTanah.text.replaceAll('.', ''),
+      "nilai_pasar_bangunan": nilaiPasarBangunan.text.replaceAll('.', ''),
+      "nilai_liquidasi_bangunan":
+          nilaiLiquidasiBangunan.text.replaceAll('.', ''),
       'nilai_pasar': nilaiPasar.text.replaceAll('.', ''),
       'nilai_liquidasi': nilaiLiquidasi.text.replaceAll('.', ''),
       'nilai_pengikatan': nilaiPengikatan.text.replaceAll('.', ''),
@@ -195,6 +225,11 @@ class ListAgunanTanahBangunanController extends GetxController {
       'bukti_kepemilikan': buktiKepemilikanEdit.text,
       'luas_tanah': luasTanahEdit.text,
       'tanggal': tanggalEdit.toString(),
+      "nilai_pasar_tanah": nilaiPasarTanahEdit.text.replaceAll('.', ''),
+      "nilai_liquidasi_tanah": nilaiLiquidasiTanahEdit.text.replaceAll('.', ''),
+      "nilai_pasar_bangunan": nilaiPasarBangunanEdit.text.replaceAll('.', ''),
+      "nilai_liquidasi_bangunan":
+          nilaiLiquidasiBangunanEdit.text.replaceAll('.', ''),
       'nilai_pasar': nilaiPasarEdit.text.replaceAll('.', ''),
       'nilai_liquidasi': nilaiLiquidasiEdit.text.replaceAll('.', ''),
       'nilai_pengikatan': nilaiPengikatanEdit.text.replaceAll('.', ''),
@@ -280,15 +315,66 @@ class ListAgunanTanahBangunanController extends GetxController {
     nilaiPengikatanEdit.text = parseNilaiPasar.toStringAsFixed(0);
   }
 
-  void hitungNilaiLiquidasi() {
-    final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
-    final parsePersentase = double.parse(persentase.text);
+  void hitungNilaiLiquidasiTanahEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarTanahEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseTanahEdit.text);
 
-    final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+    final nilaiLiquidasi = parseNilaiPasar * (parsePersentase / 100);
 
-    nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
-    nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+    nilaiLiquidasiTanahEdit.text = nilaiLiquidasi.toStringAsFixed(0);
   }
+
+  void hitungNilaiLiquidasiBangunanEdit() {
+    final parseNilaiPasar =
+        double.parse(nilaiPasarBangunanEdit.text.replaceAll('.', ''));
+    final parsePersentase = double.parse(persentaseBangunanEdit.text);
+
+    final nilaiLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+    nilaiLiquidasiBangunanEdit.text = nilaiLiquidasi.toStringAsFixed(0);
+  }
+
+  void hitungTotalNilaiPasarEdit() {
+    final parseNilaiPasarTanah =
+        double.parse(nilaiPasarTanahEdit.text.replaceAll('.', ''));
+    final parseNilaiPasarBangunan =
+        double.parse(nilaiPasarBangunanEdit.text.replaceAll('.', ''));
+
+    final totalNilaiPasar = parseNilaiPasarTanah + parseNilaiPasarBangunan;
+
+    nilaiPasarEdit.text = totalNilaiPasar.toStringAsFixed(0);
+    nilaiPengikatanEdit.text = totalNilaiPasar.toStringAsFixed(0);
+  }
+
+  void hitungTotalNilaiLiquidasiEdit() {
+    final parseNilaiLiquidasiTanah =
+        double.parse(nilaiLiquidasiTanahEdit.text.replaceAll('.', ''));
+    final parseNilaiLiquidasiBangunan =
+        double.parse(nilaiLiquidasiBangunanEdit.text.replaceAll('.', ''));
+
+    final totalNilaiLiquidasi =
+        parseNilaiLiquidasiTanah + parseNilaiLiquidasiBangunan;
+
+    nilaiLiquidasiEdit.text = totalNilaiLiquidasi.toStringAsFixed(0);
+  }
+
+  void yep() {
+    hitungNilaiLiquidasiTanahEdit();
+    hitungNilaiLiquidasiBangunanEdit();
+    hitungTotalNilaiPasarEdit();
+    hitungTotalNilaiLiquidasiEdit();
+  }
+
+  // void hitungNilaiLiquidasi() {
+  //   final parseNilaiPasar = double.parse(nilaiPasar.text.replaceAll('.', ''));
+  //   final parsePersentase = double.parse(persentase.text);
+
+  //   final hasilLiquidasi = parseNilaiPasar * (parsePersentase / 100);
+
+  //   nilaiLiquidasi.text = hasilLiquidasi.toStringAsFixed(0);
+  //   nilaiPengikatan.text = parseNilaiPasar.toStringAsFixed(0);
+  // }
 
   void hitungNilaiLiquidasiTanah() {
     final parseNilaiPasar =

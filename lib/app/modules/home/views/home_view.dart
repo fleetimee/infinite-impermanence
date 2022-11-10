@@ -15,7 +15,6 @@ import 'package:url_launcher/url_launcher.dart';
 // 🌎 Project imports:
 import '../../../common/style.dart';
 import '../../../routes/app_pages.dart';
-import '../../../widget/drawer.dart';
 import '../controllers/home_controller.dart';
 import 'components/home_menu.dart';
 
@@ -42,7 +41,7 @@ class HomeView extends GetView<HomeController> {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
       ),
-      drawer: SideMenu(),
+      // drawer: SideMenu(),
       body: DoubleBackToCloseApp(
         snackBar: SnackBar(
           shape: RoundedRectangleBorder(
@@ -67,21 +66,6 @@ class HomeView extends GetView<HomeController> {
               floating: false,
               expandedHeight: 250,
               flexibleSpace: FlexibleSpaceBar(
-                title: const Text(
-                  'Home',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    // color: secondaryColor,
-                    fontSize: 40,
-                    shadows: [
-                      Shadow(
-                        blurRadius: 10,
-                        color: Colors.black,
-                        offset: Offset(5, 5),
-                      ),
-                    ],
-                  ),
-                ),
                 background: Obx(
                   () => Image.asset(
                     controller.isDarkModeEnabled.value

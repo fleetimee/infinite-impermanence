@@ -2,6 +2,7 @@
 
 // 🐦 Flutter imports:
 import 'package:akm/app/service/debtor_service.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -12,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/analisis_bisnis/save_analis_bisnis.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 
@@ -134,12 +136,28 @@ class BisnisAnalisisController extends GetxController {
         (resp) {
           isAnalisaBisnisProcessing(false);
           debiturController.fetchOneDebitur(int.parse(debiturId.text));
-          Get.snackbar(
-            'Success',
-            'Data berhasil disimpan',
-            backgroundColor: Colors.green,
-            colorText: secondaryColor,
-          );
+          patchProgressBar(int.parse(debiturId.text));
+          clearForm();
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.success,
+            animType: AnimType.bottomSlide,
+            dialogBackgroundColor: primaryColor,
+            titleTextStyle: GoogleFonts.poppins(
+              color: secondaryColor,
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
+            ),
+            descTextStyle: GoogleFonts.poppins(
+              color: secondaryColor,
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+            ),
+            title: 'Selamat 🎉',
+            bodyHeaderDistance: 25,
+            desc: 'Sudah menyelesaikan modul Bisnis',
+            btnOkOnPress: () {},
+          ).show();
         },
         onError: (e) {
           isAnalisaBisnisProcessing(false);
@@ -186,6 +204,7 @@ class BisnisAnalisisController extends GetxController {
       AnalisaBisnisProvider().putAnalisaBisnis(id, data).then((resp) {
         isAnalisaBisnisProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        clearForm();
         Get.snackbar(
           'Success',
           'Data berhasil diperbarui',
@@ -218,12 +237,29 @@ class BisnisAnalisisController extends GetxController {
       AnalisaBisnisProvider().purgeAnalisaBisnis(id).then((resp) {
         isAnalisaBisnisProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar(
-          'Success',
-          'Data berhasil dihapus',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        purgeProgressBar(int.parse(debiturId.text));
+        clearForm();
+           AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (e) {
         isAnalisaBisnisProcessing(false);
         Get.snackbar(
@@ -242,6 +278,28 @@ class BisnisAnalisisController extends GetxController {
         colorText: secondaryColor,
       );
     }
+  }
+
+  void generateDeskripsi() {
+    deskripsi.text =
+        'Omset yang tercapai setiap bulan ${omzetPenjualanKeterangan.text}, harga yang ditawarkan kepada pelanggan ${hargaBersaingKeterangan.text}, persaingan usaha ${persainganPasarKeterangan.text}, lokasi usaha ${lokasiPasarKeterangan.text}, kapasitas terpasan ${kapasitasTerpasanKeterangan.text}, dan kualitas usaha yang ${ratingKeterangan.text}';
+  }
+
+  void clearForm() {
+    omzetPenjualan.value = 0;
+    omzetPenjualanKeterangan.text = '';
+    hargaBersaing.value = 0;
+    hargaBersaingKeterangan.text = '';
+    persainganPasar.value = 0;
+    persainganPasarKeterangan.text = '';
+    lokasiPasar.value = 0;
+    lokasiPasarKeterangan.text = '';
+    kapasitasTerpasan.value = 0;
+    kapasitasTerpasanKeterangan.text = '';
+    rating.value = 0;
+    ratingKeterangan.text = '';
+    deskripsi.clear();
+    resultCrrBisnis.value = 0;
   }
 
   void hasilHitungCrrBisnis() {

@@ -299,6 +299,17 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ),
                         maxLines: 10,
                       ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: GFButton(
+                          onPressed: () {
+                            controller.generateDeskripsi();
+                          },
+                          text: 'Generate Deskripsi',
+                          elevation: 10,
+                          color: primaryColor,
+                        ),
+                      ),
                       const SizedBox(
                         height: 40,
                       ),

@@ -1661,12 +1661,12 @@
     "method": "PATCH",
     "sortNum": 800000,
     "created": "2022-11-02T08:21:38.538Z",
-    "modified": "2022-11-10T11:19:40.392Z",
+    "modified": "2022-11-10T23:20:03.429Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"progress\": 0.2\n}",
+      "raw": "{\n  \"progress\": 0.9\n}",
       "form": []
     },
     "tests": []

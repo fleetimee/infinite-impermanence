@@ -11,10 +11,12 @@ import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/service/debtor_service.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AgunanAnalisisCalcController extends GetxController {
   @override
@@ -33,7 +35,7 @@ class AgunanAnalisisCalcController extends GetxController {
     final body = {
       'progress': double.parse(
               debiturController.insightDebitur.value.progress.toString()) +
-          0.2,
+          0.1,
     };
 
     try {
@@ -64,7 +66,7 @@ class AgunanAnalisisCalcController extends GetxController {
     final body = {
       'progress': double.parse(
               debiturController.insightDebitur.value.progress.toString()) -
-          0.2,
+          0.1,
     };
 
     try {
@@ -133,14 +135,28 @@ class AgunanAnalisisCalcController extends GetxController {
       AnalisaAgunanProvider().deployAnalisaAgunan(id, body).then((resp) {
         agunanAnalisis.isAnalisaAgunanProcessing(false);
         debiturController.fetchOneDebitur(data[7].id);
+        patchProgressBar(data[7].id);
         clearForm();
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          snackPosition: SnackPosition.TOP,
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Selamat 🎉',
+          bodyHeaderDistance: 25,
+          desc: 'Sudah menyelesaikan modul Agunan',
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (e) {
         agunanAnalisis.isAnalisaAgunanProcessing(false);
         Get.snackbar(

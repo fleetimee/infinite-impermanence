@@ -55,15 +55,15 @@ class MenuMasukFormAgunan extends StatelessWidget {
                       return Row(
                         children: const [
                           Text(
-                            'Belum di-input',
-                            style: TextStyle(color: Colors.red),
+                            '(～￣▽￣)～',
+                            style: TextStyle(color: Colors.blue),
                           ),
                           SizedBox(
                             width: 5.0,
                           ),
                           Icon(
-                            FontAwesomeIcons.xmark,
-                            color: Colors.red,
+                            FontAwesomeIcons.question,
+                            color: Colors.blue,
                           ),
                         ],
                       );
@@ -72,17 +72,17 @@ class MenuMasukFormAgunan extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Text(
-                            'Sudah di-input',
+                            '(*/ω＼*)',
                             style: TextStyle(
-                              color: Colors.green,
+                              color: Colors.blue,
                             ),
                           ),
                           SizedBox(
                             width: 5.0,
                           ),
                           Icon(
-                            FontAwesomeIcons.check,
-                            color: Colors.green,
+                            FontAwesomeIcons.personCircleQuestion,
+                            color: Colors.blue,
                           ),
                         ],
                       );

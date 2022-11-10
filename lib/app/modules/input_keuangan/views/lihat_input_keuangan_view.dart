@@ -53,7 +53,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                       desc: 'Apakah yakin untuk menghapus item ini ?',
                       btnOkOnPress: () {
                         controller.deleteKeuangan(data.inputKeuangan.id);
-                        controller.purgeProgressBar(data.id);
+                        // controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

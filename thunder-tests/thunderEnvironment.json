@@ -5,11 +5,11 @@
     "default": true,
     "sortNum": 10000,
     "created": "2022-07-05T23:42:20.152Z",
-    "modified": "2022-11-09T22:58:56.916Z",
+    "modified": "2022-11-10T07:51:39.121Z",
     "data": [
       {
         "name": "baseUrl",
-        "value": "https://number-41-bagooska-the-terribly-tired-tapir-1.fleetimee.repl.co/"
+        "value": "localhost:3000/"
       }
     ]
   },

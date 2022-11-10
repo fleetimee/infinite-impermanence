@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
@@ -79,6 +80,7 @@ class InputNeracaController extends GetxController {
         isNeracaProcessing(false);
         clearForm();
         debiturController.fetchOneDebitur(int.parse(debitur.text));
+        patchProgressBar(data);
         Get.snackbar(
           'Sucess',
           'Data berhasil disimpan',
@@ -127,28 +129,56 @@ class InputNeracaController extends GetxController {
         clearForm();
         debiturController
             .fetchOneDebitur(int.parse(debiturController.debiturId.toString()));
-        AwesomeDialog(
-          context: Get.context!,
-          dialogType: DialogType.success,
-          animType: AnimType.bottomSlide,
-          dialogBackgroundColor: primaryColor,
-          titleTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-          ),
-          descTextStyle: GoogleFonts.poppins(
-            color: secondaryColor,
-            fontSize: 16,
-            fontWeight: FontWeight.w300,
-          ),
-          title: 'Sukses Diperbarui',
-          bodyHeaderDistance: 25,
-          desc:
-              'Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
-          dismissOnTouchOutside: false,
-          btnOkOnPress: () {},
-        ).show();
+        debiturController.insightDebitur.value.inputRugiLaba == null
+            ? AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc: 'Data Sukses Diperbarui',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () {},
+              ).show()
+            : AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc:
+                    'Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () {
+                  Get.toNamed(
+                    Routes.EDIT_RUGI_LABA,
+                    arguments: debiturController.insightDebitur.value,
+                  );
+                },
+                btnOkText: 'Edit Rugi Laba',
+              ).show();
       }, onError: (err) {
         isNeracaProcessing(false);
         Get.snackbar(
@@ -176,6 +206,7 @@ class InputNeracaController extends GetxController {
         isNeracaProcessing(false);
         clearForm();
         debiturController.fetchOneDebitur(id);
+        purgeProgressBar(data);
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

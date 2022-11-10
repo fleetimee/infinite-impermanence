@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
@@ -194,6 +195,7 @@ class InputKeuanganController extends GetxController
       InputKeuanganProvider().deployInputKeuangan(body).then((resp) {
         isInputKeuanganProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debitur.text));
+        patchProgressBar(int.parse(debitur.text));
         clearTextEditing();
         Get.snackbar(
           'Success',
@@ -250,13 +252,58 @@ class InputKeuanganController extends GetxController
       InputKeuanganProvider().putInputKeuangan(id, body).then((resp) {
         isInputKeuanganProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debitur.text));
+        debiturController.insightDebitur.value.analisaKeuangan == null
+            ? AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc: 'Data Sukses Diperbarui',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () {},
+              ).show()
+            : AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc:
+                    'Untuk mengsinkronkan data, silahkan edit Analisa Keuangan pada tombol di bawah ini',
+                dismissOnTouchOutside: false,
+                dismissOnBackKeyPress: false,
+                btnOkOnPress: () {
+                  Get.toNamed(
+                    Routes.EDIT_KEUANGAN_ANALISIS,
+                    arguments: debiturController.insightDebitur.value,
+                  );
+                },
+                btnOkText: 'Edit Analisa Keuangan',
+              ).show();
         clearTextEditing();
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
       }, onError: (e) {
         isInputKeuanganProcessing.value = false;
         Get.snackbar(

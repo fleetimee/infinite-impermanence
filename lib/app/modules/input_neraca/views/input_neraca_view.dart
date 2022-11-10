@@ -567,7 +567,6 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     if (controller.formKey.currentState?.saveAndValidate() ??
                         false) {
                       controller.saveNeraca();
-                      controller.patchProgressBar(data.id);
                       Get.back();
                     } else {
                       GFToast.showToast(

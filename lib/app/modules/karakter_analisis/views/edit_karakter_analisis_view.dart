@@ -425,6 +425,17 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         maxLines: 10,
                         textInputAction: TextInputAction.newline,
                       ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: GFButton(
+                          onPressed: () {
+                            controller.generateDescription();
+                          },
+                          text: 'Generate Deskripsi',
+                          elevation: 10,
+                          color: primaryColor,
+                        ),
+                      ),
                       const SizedBox(
                         height: 20,
                       ),

@@ -54,7 +54,7 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       btnOkOnPress: () {
                         controller
                             .deleteAnalisaKarakter(data.analisaKarakter.id);
-                        controller.purgeProgressBar(data.id);
+                        // controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',
@@ -394,7 +394,7 @@ class LihatKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                     ),
                     FormBuilderTextField(
-                      enabled: false,
+                      readOnly: true,
                       keyboardType: TextInputType.multiline,
                       controller: controller.deskripsi = TextEditingController(
                         text: data.analisaKarakter.deskripsiKarakter,

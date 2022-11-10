@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/service/debtor_service.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/analisis_karakter/save_analis_karakter.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 
@@ -139,12 +141,28 @@ class KarakterAnalisisController extends GetxController {
       AnalisaKarakterProvider().deployAnalisaKarakter(data).then((value) {
         isAnalisaKarakterProcessing.value = false;
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        patchProgressBar(int.parse(debiturId.text));
+        clearForm();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Selamat 🎉',
+          bodyHeaderDistance: 25,
+          desc: 'Sudah menyelesaikan modul Karakter',
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (error) {
         isAnalisaKarakterProcessing.value = false;
         Get.snackbar(
@@ -197,6 +215,7 @@ class KarakterAnalisisController extends GetxController {
       AnalisaKarakterProvider().putAnalisaKarakter(id, data).then((value) {
         isAnalisaKarakterProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        clearForm();
         Get.snackbar(
           'Success',
           'Data berhasil diupdate',
@@ -229,12 +248,29 @@ class KarakterAnalisisController extends GetxController {
       AnalisaKarakterProvider().purgeAnalisaKarakter(id).then((value) {
         isAnalisaKarakterProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar(
-          'Success',
-          'Data berhasil dihapus',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        purgeProgressBar(int.parse(debiturId.text));
+        clearForm();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (error) {
         isAnalisaKarakterProcessing(false);
         Get.snackbar(
@@ -376,6 +412,23 @@ class KarakterAnalisisController extends GetxController {
     }
 
     debugPrint('CRR UMUR: ${crrUmur.toString()}');
+  }
+
+  void clearForm() {
+    uletDalamBisnis.value = 0;
+    kakuFleksibel.value = 0;
+    inovatifKreatif.value = 0;
+    jujur.value = 0;
+    deskripsi.clear();
+  }
+
+  void generateDescription() {
+    deskripsi.text =
+        'Pada umurnya yang berusia ${nilaiUmur.text} tahun, dan berpendidikan $pendidikanInput, dengan pengalaman usaha selama ${lamanyaBerusaha.text} tahun. \n\n'
+        'Pemohon ${keteranganUletDalamBisnis.text} terkait menentukan harga dagangan '
+        'bisnisnya, Debitur ${keteranganKakuFleksibel.text} Untuk  '
+        'menghadapi perubahan, Debitur ${keteranganInovatifKreatif.text}'
+        ' dan Untuk kejujuran dalam berbisnis Debitur ${keteranganJujur.text}.';
   }
 
   void hitungCrrPendidikan() {

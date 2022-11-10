@@ -56,7 +56,7 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                       btnOkOnPress: () {
                         controller
                             .deleteAnalisisKeuangan(data.analisaKeuangan.id);
-                        controller.purgeProgressBar(data.id);
+                        // controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

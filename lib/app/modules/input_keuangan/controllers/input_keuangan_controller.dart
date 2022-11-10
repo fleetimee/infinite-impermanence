@@ -24,6 +24,10 @@ class InputKeuanganController extends GetxController
     super.onInit();
   }
 
+  void resetTab() {
+    tabController?.animateTo(0);
+  }
+
   void patchProgressBar(int id) {
     final body = {
       'progress': double.parse(
@@ -197,6 +201,7 @@ class InputKeuanganController extends GetxController
         debiturController.fetchOneDebitur(int.parse(debitur.text));
         patchProgressBar(int.parse(debitur.text));
         clearTextEditing();
+        resetTab();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
@@ -304,6 +309,7 @@ class InputKeuanganController extends GetxController
                 btnOkText: 'Edit Analisa Keuangan',
               ).show();
         clearTextEditing();
+        resetTab();
       }, onError: (e) {
         isInputKeuanganProcessing.value = false;
         Get.snackbar(
@@ -329,14 +335,31 @@ class InputKeuanganController extends GetxController
       isInputKeuanganProcessing(true);
       InputKeuanganProvider().purgeInputKeuangan(id).then((resp) {
         isInputKeuanganProcessing(false);
+        purgeProgressBar(int.parse(debitur.text));
         debiturController.fetchOneDebitur(int.parse(debitur.text));
         clearTextEditing();
-        Get.snackbar(
-          'Success',
-          'Data berhasil dihapus',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        resetTab();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (e) {
         isInputKeuanganProcessing.value = false;
         Get.snackbar(

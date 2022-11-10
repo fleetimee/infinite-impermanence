@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/service/debtor_service.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/analisis_jenis_usaha/save_analis_jenis_usaha.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 
@@ -104,12 +106,27 @@ class UsahaAnalisisController extends GetxController {
       AnalisaJenisUsahaProvider().deployAnalisaJenisUsaha(data).then((resp) {
         isAnalisaUsahaProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar(
-          'Sukses',
-          'Berhasil Menyimpan Analisa Usaha',
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        patchProgressBar(int.parse(debiturId.text));
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Selamat 🎉',
+          bodyHeaderDistance: 25,
+          desc: 'Sudah menyelesaikan modul Jenis Usaha',
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (err) {
         isAnalisaUsahaProcessing(false);
         Get.snackbar(
@@ -174,12 +191,28 @@ class UsahaAnalisisController extends GetxController {
       AnalisaJenisUsahaProvider().purgeAnalisaUsaha(id).then((resp) {
         isAnalisaUsahaProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        Get.snackbar(
-          'Sukses',
-          'Berhasil Menghapus Analisa Usaha',
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        purgeProgressBar(int.parse(debiturId.text));
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (err) {
         isAnalisaUsahaProcessing(false);
         Get.snackbar(

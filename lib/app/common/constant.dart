@@ -2,7 +2,7 @@
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/';
 
 // For mobile based
-const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
 
@@ -16,8 +16,8 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 // const baseUrl =
 //     'https://9bf0-2001-448a-4049-68c4-c80c-e641-b21d-cb5c.ap.ngrok.io/api/v1/';
 
-// const baseUrl =
-//     'https://number-41-bagooska-the-terribly-tired-tapir-1.fleetimee.repl.co/api/v1/';
+const baseUrl =
+    'https://number-41-bagooska-the-terribly-tired-tapir-2.fleetimee.repl.co/api/v1/';
 
 // Insight debitur query string
 const joinTable =

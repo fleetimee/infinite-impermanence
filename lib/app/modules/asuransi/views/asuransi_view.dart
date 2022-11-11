@@ -62,8 +62,20 @@ class AsuransiView extends GetView<AsuransiController> {
                       // inherits the delay & duration from move,
                       ),
                   FormBuilderTextField(
+                      name: 'nama_perusahaan',
+                      decoration: const InputDecoration(
+                        labelText: 'Nama Perusahaan Asuransi',
+                        border: OutlineInputBorder(),
+                        hintText: 'JAMKRINDO, ASKRINDO, dll',
+                      ),
+                      controller: controller.namaPerusahaan),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  FormBuilderTextField(
                       name: 'premi',
                       textAlign: TextAlign.right,
+                      keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         labelText: 'Premi',
                         suffixText: '%',
@@ -77,6 +89,7 @@ class AsuransiView extends GetView<AsuransiController> {
                   FormBuilderTextField(
                     readOnly: true,
                     name: 'plafonKredit',
+                    keyboardType: TextInputType.number,
                     controller: controller.plafonKredit =
                         MoneyMaskedTextController(
                             decimalSeparator: '',

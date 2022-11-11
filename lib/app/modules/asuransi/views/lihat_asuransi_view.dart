@@ -100,6 +100,21 @@ class LihatAsuransiView extends GetView<AsuransiController> {
                       // inherits the delay & duration from move,
                       ),
                   FormBuilderTextField(
+                    name: 'nama_perusahaan',
+                    readOnly: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Nama Perusahaan Asuransi',
+                      border: OutlineInputBorder(),
+                      hintText: 'JAMKRINDO, ASKRINDO, dll',
+                    ),
+                    controller: controller.namaPerusahaan =
+                        TextEditingController(
+                            text: data.asuransi.namaPerusahaan),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  FormBuilderTextField(
                     name: 'premi',
                     textAlign: TextAlign.right,
                     readOnly: true,

@@ -205,7 +205,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DEBITUR_REAL,
-      page: () => const DebiturOnboardingView(),
+      page: () => DebiturOnboardingView(),
       binding: DebiturRealBinding(),
       transition: Transition.cupertino,
     ),

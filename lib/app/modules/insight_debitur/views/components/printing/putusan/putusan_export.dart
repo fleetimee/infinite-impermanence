@@ -1211,7 +1211,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
               children: [
                 textDeskripsiNoBold(''),
                 textDeskripsiNoBold(
-                  'Asuransi Penjaminan',
+                  'Asuransi Penjaminan oleh ${debtor.asuransi?.namaPerusahaan}',
                 ),
                 textDeskripsiNoBold(''),
               ],

@@ -590,11 +590,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/6?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan",
+    "url": "{{baseUrl}}api/v1/debiturs/9?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-11-10T23:52:43.586Z",
+    "modified": "2022-11-11T04:53:54.735Z",
     "headers": [],
     "params": [
       {
@@ -1638,16 +1638,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Patch",
-    "url": "{{baseUrl}}api/v1/debiturs/2",
+    "url": "{{baseUrl}}api/v1/debiturs/4",
     "method": "PATCH",
     "sortNum": 790000,
     "created": "2022-11-02T06:45:12.572Z",
-    "modified": "2022-11-02T19:50:24.847Z",
+    "modified": "2022-11-11T03:43:36.286Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"npwp\": 4541212,\n  \"no_hp\": \"083840663610\",\n  \"jumlah_karyawan\": 1\n}",
+      "raw": "{\n \"peminjam3\": \"Heh\",\n \"peminjam4\": \"Anya\",\n \"alamat_3\": \"Yor\",\n \"alamat_4\": \"Loid\"\n}",
       "form": []
     },
     "tests": []
@@ -1657,16 +1657,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Patch Progress",
-    "url": "{{baseUrl}}api/v1/debiturs/6",
+    "url": "{{baseUrl}}api/v1/debiturs/4",
     "method": "PATCH",
     "sortNum": 800000,
     "created": "2022-11-02T08:21:38.538Z",
-    "modified": "2022-11-10T23:20:03.429Z",
+    "modified": "2022-11-11T03:27:19.438Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"progress\": 0.9\n}",
+      "raw": "{\n  \"progress\": 1.0\n}",
       "form": []
     },
     "tests": []
@@ -1676,11 +1676,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/1",
+    "url": "{{baseUrl}}api/v1/debiturs/7",
     "method": "DELETE",
     "sortNum": 810000,
     "created": "2022-11-02T21:05:44.549Z",
-    "modified": "2022-11-02T21:05:58.473Z",
+    "modified": "2022-11-11T04:51:12.422Z",
     "headers": [],
     "params": [],
     "tests": []

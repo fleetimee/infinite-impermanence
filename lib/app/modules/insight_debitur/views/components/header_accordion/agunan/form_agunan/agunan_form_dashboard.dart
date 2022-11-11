@@ -4,7 +4,6 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -53,39 +52,12 @@ class MenuMasukFormAgunan extends StatelessWidget {
                   } else {
                     if (controller.insightDebitur.value.agunan?.length == 0) {
                       return Row(
-                        children: const [
-                          Text(
-                            '(～￣▽￣)～',
-                            style: TextStyle(color: Colors.blue),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Icon(
-                            FontAwesomeIcons.question,
-                            color: Colors.blue,
-                          ),
-                        ],
+                        children: const [],
                       );
                     } else {
                       return Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
-                          Text(
-                            '(*/ω＼*)',
-                            style: TextStyle(
-                              color: Colors.blue,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Icon(
-                            FontAwesomeIcons.personCircleQuestion,
-                            color: Colors.blue,
-                          ),
-                        ],
-                      );
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const []);
                     }
                   }
                 },

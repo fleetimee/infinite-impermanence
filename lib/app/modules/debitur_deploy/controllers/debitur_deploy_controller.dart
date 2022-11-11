@@ -18,6 +18,8 @@ class DebiturDeployController extends GetxController {
 
   final peminjam1 = TextEditingController().obs;
   final peminjam2 = TextEditingController().obs;
+  final peminjam3 = TextEditingController().obs;
+  final peminjam4 = TextEditingController().obs;
   final ktp1 = TextEditingController().obs;
   final ktp2 = TextEditingController().obs;
   final pemilikAgunan1 = TextEditingController().obs;
@@ -28,6 +30,8 @@ class DebiturDeployController extends GetxController {
 
   final alamat1 = TextEditingController().obs;
   final alamat2 = TextEditingController().obs;
+  final alamat3 = TextEditingController().obs;
+  final alamat4 = TextEditingController().obs;
 
   final tempatLahir = TextEditingController().obs;
   final tanggalLahir = DateTime.now().obs;
@@ -56,6 +60,8 @@ class DebiturDeployController extends GetxController {
       'peminjam1': peminjam1.value.text,
       'ktp1': ktp1.value.text,
       'peminjam2': peminjam2.value.text,
+      'peminjam3': peminjam3.value.text,
+      'peminjam4': peminjam4.value.text,
       'ktp2': ktp2.value.text,
       'pemilik_agunan_1': pemilikAgunan1.value.text,
       'no_ktp1': noKtp1.value.text,
@@ -64,6 +70,8 @@ class DebiturDeployController extends GetxController {
       'no_hp': noHp.value.text,
       'alamat_1': alamat1.value.text,
       'alamat_2': alamat2.value.text,
+      'alamat_3': alamat3.value.text,
+      'alamat_4': alamat4.value.text,
       'tempat_lahir': tempatLahir.value.text,
       'tanggal_lahir': tanggalLahir.value.toString(),
       'umur': umur.value.text,
@@ -87,6 +95,7 @@ class DebiturDeployController extends GetxController {
       isInputDebiturProcessing(true);
       DebtorService().addDebtor(body).then((resp) {
         isInputDebiturProcessing(false);
+        clearForm();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
@@ -107,6 +116,41 @@ class DebiturDeployController extends GetxController {
     } catch (e) {
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void clearForm() {
+    peminjam1.value.clear();
+    peminjam2.value.clear();
+    peminjam3.value.clear();
+    peminjam4.value.clear();
+    ktp1.value.clear();
+    ktp2.value.clear();
+    pemilikAgunan1.value.clear();
+    pemilikAgunan2.value.clear();
+    noKtp1.value.clear();
+    noKtp2.value.clear();
+    noHp.value.clear();
+    alamat1.value.clear();
+    alamat2.value.clear();
+    alamat3.value.clear();
+    alamat4.value.clear();
+    tempatLahir.value.clear();
+    tanggalLahir.value = DateTime.now();
+    umur.value.clear();
+    statusKeluargaInput.value = '';
+    jumlahTanggungan.value.clear();
+    npwp.value.clear();
+    lamanyaBerusaha.value.clear();
+    lokasiUsaha.value.clear();
+    bidangUsaha.value.clear();
+    jenisUsahaInput.value = '';
+    jumlahKaryawan.value.clear();
+    pendidikanInput.value = '';
+    pekerjaan1.value.clear();
+    pekerjaan2.value.clear();
+    noSkpk.value.clear();
+    tanggalSekarangInput.value = DateTime.now();
+    deskripsiDebitur.value.clear();
   }
 
   void generateDescription() {

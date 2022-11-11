@@ -256,7 +256,32 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmurR(''),
                         textUmur(''),
-                        textUmurBoldLeft('  2. ${debtor.peminjam2.toString()}'),
+                        debtor.peminjam2 == ''
+                            ? textUmur('-')
+                            : textUmurBoldLeft(
+                                ': 2. ${debtor.peminjam2.toString()}'),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur(''),
+                        textUmurR(''),
+                        textUmur(''),
+                        debtor.peminjam3 == ''
+                            ? textUmur('-')
+                            : textUmurBoldLeft(
+                                ': 3. ${debtor.peminjam3.toString()}'),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur(''),
+                        textUmurR(''),
+                        textUmur(''),
+                        debtor.peminjam4 == ''
+                            ? textUmur('-')
+                            : textUmurBoldLeft(
+                                ': 4. ${debtor.peminjam4.toString()}'),
                       ],
                     ),
                     TableRow(

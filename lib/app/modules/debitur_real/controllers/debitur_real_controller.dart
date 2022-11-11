@@ -22,6 +22,8 @@ class DebiturRealController extends GetxController {
 
   final peminjam1 = TextEditingController().obs;
   final peminjam2 = TextEditingController().obs;
+  final peminjam3 = TextEditingController().obs;
+  final peminjam4 = TextEditingController().obs;
   final ktp1 = TextEditingController().obs;
   final ktp2 = TextEditingController().obs;
   final pemilikAgunan1 = TextEditingController().obs;
@@ -32,6 +34,8 @@ class DebiturRealController extends GetxController {
 
   final alamat1 = TextEditingController().obs;
   final alamat2 = TextEditingController().obs;
+  final alamat3 = TextEditingController().obs;
+  final alamat4 = TextEditingController().obs;
 
   final tempatLahir = TextEditingController().obs;
   final tanggalLahir = DateTime.now().obs;
@@ -67,6 +71,8 @@ class DebiturRealController extends GetxController {
       'ktp1': ktp1.value.text,
       'peminjam2': peminjam2.value.text,
       'ktp2': ktp2.value.text,
+      'peminjam3': peminjam3.value.text,
+      'peminjam4': peminjam4.value.text,
       'pemilik_agunan_1': pemilikAgunan1.value.text,
       'no_ktp1': noKtp1.value.text,
       'pemilik_agunan_2': pemilikAgunan2.value.text,
@@ -74,6 +80,8 @@ class DebiturRealController extends GetxController {
       'no_hp': noHp.value.text,
       'alamat_1': alamat1.value.text,
       'alamat_2': alamat2.value.text,
+      'alamat_3': alamat3.value.text,
+      'alamat_4': alamat4.value.text,
       'tempat_lahir': tempatLahir.value.text,
       'tanggal_lahir': tanggalLahir.value.toString(),
       'umur': umur.value.text,
@@ -130,6 +138,39 @@ class DebiturRealController extends GetxController {
   void generateDescription() {
     deskripsiDebitur.value.text =
         'Pemohon memiliki usaha ${bidangUsaha.value.text} yang beralamat ${lokasiUsaha.value.text}. Usaha tersebut sudah dikelola selama ${lamanyaBerusaha.value.text} tahun yang lalu dan saat ini debitur memiliki ${jumlahKaryawan.value.text} karyawan untuk membantu dalam menjalankan usahanya. Status Keluarga Pemohon saat ini ${statusKeluargaInput.value.toString()} dengan jumlah tanggungan ${jumlahTanggungan.value.text} orang. Pemohon memiliki pendidikan ${pendidikanInput.value} dan pekerjaan ${pekerjaan1.value.text}';
+  }
+
+  void clearForm() {
+    peminjam1.value.text = '';
+    ktp1.value.text = '';
+    peminjam2.value.text = '';
+    ktp2.value.text = '';
+    pemilikAgunan1.value.text = '';
+    noKtp1.value.text = '';
+    pemilikAgunan2.value.text = '';
+    noKtp2.value.text = '';
+    noHp.value.text = '';
+    alamat1.value.text = '';
+    alamat2.value.text = '';
+    alamat3.value.text = '';
+    alamat4.value.text = '';
+    tempatLahir.value.text = '';
+    tanggalLahir.value = DateTime.now();
+    umur.value.text = '';
+    statusKeluargaInput.value = '';
+    jumlahTanggungan.value.text = '';
+    npwp.value.text = '';
+    lamanyaBerusaha.value.text = '';
+    lokasiUsaha.value.text = '';
+    bidangUsaha.value.text = '';
+    jenisUsahaInput.value = '';
+    jumlahKaryawan.value.text = '';
+    pendidikanInput.value = '';
+    pekerjaan1.value.text = '';
+    pekerjaan2.value.text = '';
+    noSkpk.value.text = '0';
+    tanggalSekarangInput.value = DateTime.now();
+    deskripsiDebitur.value.text = '';
   }
 
   final faker = Faker.instance;

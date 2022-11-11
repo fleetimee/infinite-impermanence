@@ -169,16 +169,22 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 2'),
-                        textUmur(debtor.peminjam2.toString()),
+                        debtor.peminjam2 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.peminjam2.toString()),
                         textUmur('KTP 2'),
-                        textUmur(debtor.ktp2.toString()),
+                        debtor.ktp2 == 0.toString()
+                            ? textUmur('-')
+                            : textUmur(debtor.ktp2.toString()),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 3'),
-                        textUmur('-'),
+                        debtor.peminjam3 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.peminjam3.toString()),
                         textUmur('No. KTP'),
                         textUmur(debtor.noKtp1.toString()),
                       ],
@@ -187,9 +193,13 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 4'),
-                        textUmur('-'),
+                        debtor.peminjam4 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.peminjam4.toString()),
                         textUmur('No. KTP'),
-                        textUmur(debtor.noKtp2.toString()),
+                        debtor.noKtp2 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.noKtp2.toString()),
                       ],
                     ),
                   ],
@@ -214,21 +224,27 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Alamat 2'),
-                        textUmur(debtor.alamat2.toString()),
+                        debtor.alamat2 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.alamat2.toString()),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Alamat 3'),
-                        textUmur('-'),
+                        debtor.alamat3 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.alamat3.toString()),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Alamat 4'),
-                        textUmur('-'),
+                        debtor.alamat4 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.alamat4.toString()),
                       ],
                     ),
                   ],
@@ -260,7 +276,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             // DateTime Format to dd-mm-yyyy
                             DateFormat('dd/MM/yyyy').format(DateTime.parse(debtor.tanggalLahir.toString()))}'),
                         textUmur('Pekerjaan 2'),
-                        textUmur(debtor.pekerjaan2.toString()),
+                        debtor.pekerjaan2 == ''
+                            ? textUmur('')
+                            : textUmur(debtor.pekerjaan2.toString()),
                       ],
                     ),
                     TableRow(

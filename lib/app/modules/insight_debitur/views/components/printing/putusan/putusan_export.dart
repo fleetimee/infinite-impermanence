@@ -312,6 +312,24 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
             ),
             TableRow(
               children: [
+                SizedBox.shrink(),
+                SizedBox.shrink(),
+                debtor.peminjam3 == ''
+                    ? textDeskripsiNoBold("3. -")
+                    : textDeskripsiNoBold("3. ${debtor.peminjam3}"),
+              ],
+            ),
+            TableRow(
+              children: [
+                SizedBox.shrink(),
+                SizedBox.shrink(),
+                debtor.peminjam4 == ''
+                    ? textDeskripsiNoBold("4. -")
+                    : textDeskripsiNoBold("4. ${debtor.peminjam4}"),
+              ],
+            ),
+            TableRow(
+              children: [
                 textDeskripsiNoBold('2.'),
                 textDeskripsiNoBold("Pemilik Agunan"),
                 textDeskripsiNoBold("1. ${debtor.pemilikAgunan1}"),

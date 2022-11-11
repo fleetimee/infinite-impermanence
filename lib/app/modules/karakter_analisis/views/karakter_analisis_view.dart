@@ -408,6 +408,17 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         maxLines: 10,
                         textInputAction: TextInputAction.newline,
                       ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: GFButton(
+                          onPressed: () {
+                            controller.generateDescription();
+                          },
+                          text: 'Generate Deskripsi',
+                          elevation: 10,
+                          color: primaryColor,
+                        ),
+                      ),
                       const SizedBox(
                         height: 20,
                       ),
@@ -664,8 +675,8 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                                   ?.saveAndValidate() ??
                                               false) {
                                             controller.saveAnalisaKarakter();
-                                            controller
-                                                .patchProgressBar(data.id);
+                                            // controller
+                                            //     .patchProgressBar(data.id);
                                             Get.back();
                                             Get.back();
                                             debugPrint(controller

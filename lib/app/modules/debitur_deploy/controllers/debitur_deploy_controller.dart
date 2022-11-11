@@ -14,6 +14,8 @@ class DebiturDeployController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
+  final isInputDebiturProcessing = false.obs;
+
   final peminjam1 = TextEditingController().obs;
   final peminjam2 = TextEditingController().obs;
   final ktp1 = TextEditingController().obs;
@@ -82,7 +84,9 @@ class DebiturDeployController extends GetxController {
     };
 
     try {
+      isInputDebiturProcessing(true);
       DebtorService().addDebtor(body).then((resp) {
+        isInputDebiturProcessing(false);
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
@@ -91,6 +95,7 @@ class DebiturDeployController extends GetxController {
           colorText: Colors.white,
         );
       }, onError: (err) {
+        isInputDebiturProcessing(false);
         Get.snackbar(
           'Error',
           'Data gagal disimpan',

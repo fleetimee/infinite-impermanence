@@ -2,9 +2,11 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/agunan/agunan_analisa/agunan_analisa.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/service/debtor_service.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AgunanAnalisisController extends GetxController {
   var isAnalisaAgunanProcessing = false.obs;
@@ -19,7 +21,7 @@ class AgunanAnalisisController extends GetxController {
     final body = {
       'progress': double.parse(
               debiturController.insightDebitur.value.progress.toString()) -
-          0.2,
+          0.1,
     };
 
     try {
@@ -69,12 +71,27 @@ class AgunanAnalisisController extends GetxController {
         isAnalisaAgunanProcessing(false);
         debiturController.fetchOneDebitur(id);
         purgeProgressBar(id);
-        Get.snackbar(
-          'Success',
-          'Data berhasil dihapus',
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (e) {
         isAnalisaAgunanProcessing(false);
         Get.snackbar(

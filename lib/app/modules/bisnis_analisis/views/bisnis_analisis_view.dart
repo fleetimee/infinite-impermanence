@@ -266,6 +266,17 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ),
                         maxLines: 10,
                       ),
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: GFButton(
+                          onPressed: () {
+                            controller.generateDeskripsi();
+                          },
+                          text: 'Generate Deskripsi',
+                          elevation: 10,
+                          color: primaryColor,
+                        ),
+                      ),
                       const SizedBox(
                         height: 40,
                       ),
@@ -494,8 +505,8 @@ class BisnisAnalisisView extends GetView<BisnisAnalisisController> {
                                                   ?.saveAndValidate() ??
                                               false) {
                                             controller.saveAnalisisBisnis();
-                                            controller
-                                                .patchProgressBar(data.id);
+                                            // controller
+                                            //     .patchProgressBar(data.id);
                                             Get.back();
                                             Get.back();
                                             debugPrint(controller

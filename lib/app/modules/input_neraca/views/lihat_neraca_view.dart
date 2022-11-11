@@ -59,7 +59,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                       desc: 'Apakah yakin untuk menghapus item ini ?',
                       btnOkOnPress: () {
                         controller.deleteNeraca(data.inputNeraca.id);
-                        controller.purgeProgressBar(data.id);
+                        // controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

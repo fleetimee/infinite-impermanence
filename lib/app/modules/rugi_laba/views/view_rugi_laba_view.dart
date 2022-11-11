@@ -56,7 +56,7 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                       desc: 'Apakah yakin untuk menghapus item ini ?',
                       btnOkOnPress: () {
                         controller.deleteRugiLaba(data.inputRugiLaba.id);
-                        controller.purgeProgressBar(data.id);
+                        // controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

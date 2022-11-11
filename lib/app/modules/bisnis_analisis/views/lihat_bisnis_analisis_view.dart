@@ -52,7 +52,6 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       desc: 'Apakah yakin untuk menghapus item ini ?',
                       btnOkOnPress: () {
                         controller.deleteAnalisaBisnis(data.analisaBisnis.id);
-                        controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

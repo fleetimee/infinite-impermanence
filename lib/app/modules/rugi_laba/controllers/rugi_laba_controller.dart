@@ -2,6 +2,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/service/debtor_service.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
@@ -20,68 +21,6 @@ import 'package:google_fonts/google_fonts.dart';
 // 🌎 Project imports:
 
 class RugiLabaController extends GetxController {
-  void patchProgressBar(int id) {
-    final body = {
-      'progress': double.parse(
-              debiturController.insightDebitur.value.progress.toString()) +
-          0.1,
-    };
-
-    try {
-      debiturController.isDataLoading(true);
-      DebtorService().patchProgressBar(body, id).then((resp) {
-        debiturController.isDataLoading(false);
-        debiturController.fetchOneDebitur(id);
-      }, onError: (err) {
-        debiturController.isDataLoading(false);
-        Get.snackbar(
-          'Error',
-          err.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
-  }
-
-  void purgeProgressBar(int id) {
-    final body = {
-      'progress': double.parse(
-              debiturController.insightDebitur.value.progress.toString()) -
-          0.1,
-    };
-
-    try {
-      debiturController.isDataLoading(true);
-      DebtorService().patchProgressBar(body, id).then((resp) {
-        debiturController.isDataLoading(false);
-        debiturController.fetchOneDebitur(id);
-      }, onError: (err) {
-        debiturController.isDataLoading(false);
-        Get.snackbar(
-          'Error',
-          err.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
-  }
-
   final isRugiLabaProcessing = false.obs;
 
   final data = Get.arguments;
@@ -194,6 +133,7 @@ class RugiLabaController extends GetxController {
         isRugiLabaProcessing.value = false;
         clearForm();
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        patchProgressBar(int.parse(debiturId.text));
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
@@ -258,12 +198,57 @@ class RugiLabaController extends GetxController {
         isRugiLabaProcessing.value = false;
         clearForm();
         debiturController.fetchOneDebitur(int.parse(data.toString()));
-        Get.snackbar(
-          'Success',
-          'Data berhasil diperbarui',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        debiturController.insightDebitur.value.inputKeuangan == null
+            ? AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc: 'Data Sukses Diperbarui',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () {},
+              ).show()
+            : AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc:
+                    'Untuk mengsinkronkan data, silahkan edit Keuangan pada tombol di bawah ini',
+                dismissOnTouchOutside: false,
+                dismissOnBackKeyPress: false,
+                btnOkOnPress: () {
+                  Get.toNamed(
+                    Routes.EDIT_KEUANGAN,
+                    arguments: debiturController.insightDebitur.value,
+                  );
+                },
+                btnOkText: 'Edit Input Keuangan',
+              ).show();
       }).catchError((e) {
         isRugiLabaProcessing.value = false;
         Get.snackbar(
@@ -292,6 +277,7 @@ class RugiLabaController extends GetxController {
         isRugiLabaProcessing(false);
         clearForm();
         debiturController.fetchOneDebitur(data);
+        purgeProgressBar(data);
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,
@@ -479,6 +465,68 @@ class RugiLabaController extends GetxController {
     final hitungHargaPokokPenjualan = parseOmzetPerBulan * parseHpp;
 
     hargaPokokPenjualan.text = hitungHargaPokokPenjualan.toStringAsFixed(0);
+  }
+
+  void patchProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) +
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void purgeProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) -
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
   }
 
   void result() {

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,10 @@ class InputKeuanganController extends GetxController
   void onInit() {
     tabController = TabController(length: 3, vsync: this);
     super.onInit();
+  }
+
+  void resetTab() {
+    tabController?.animateTo(0);
   }
 
   void patchProgressBar(int id) {
@@ -194,7 +199,9 @@ class InputKeuanganController extends GetxController
       InputKeuanganProvider().deployInputKeuangan(body).then((resp) {
         isInputKeuanganProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debitur.text));
+        patchProgressBar(int.parse(debitur.text));
         clearTextEditing();
+        resetTab();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
@@ -250,13 +257,59 @@ class InputKeuanganController extends GetxController
       InputKeuanganProvider().putInputKeuangan(id, body).then((resp) {
         isInputKeuanganProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debitur.text));
+        debiturController.insightDebitur.value.analisaKeuangan == null
+            ? AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc: 'Data Sukses Diperbarui',
+                dismissOnTouchOutside: false,
+                btnOkOnPress: () {},
+              ).show()
+            : AwesomeDialog(
+                context: Get.context!,
+                dialogType: DialogType.success,
+                animType: AnimType.bottomSlide,
+                dialogBackgroundColor: primaryColor,
+                titleTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
+                descTextStyle: GoogleFonts.poppins(
+                  color: secondaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w300,
+                ),
+                title: 'Sukses Diperbarui',
+                bodyHeaderDistance: 25,
+                desc:
+                    'Untuk mengsinkronkan data, silahkan edit Analisa Keuangan pada tombol di bawah ini',
+                dismissOnTouchOutside: false,
+                dismissOnBackKeyPress: false,
+                btnOkOnPress: () {
+                  Get.toNamed(
+                    Routes.EDIT_KEUANGAN_ANALISIS,
+                    arguments: debiturController.insightDebitur.value,
+                  );
+                },
+                btnOkText: 'Edit Analisa Keuangan',
+              ).show();
         clearTextEditing();
-        Get.snackbar(
-          'Success',
-          'Data berhasil disimpan',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        resetTab();
       }, onError: (e) {
         isInputKeuanganProcessing.value = false;
         Get.snackbar(
@@ -282,14 +335,31 @@ class InputKeuanganController extends GetxController
       isInputKeuanganProcessing(true);
       InputKeuanganProvider().purgeInputKeuangan(id).then((resp) {
         isInputKeuanganProcessing(false);
+        purgeProgressBar(int.parse(debitur.text));
         debiturController.fetchOneDebitur(int.parse(debitur.text));
         clearTextEditing();
-        Get.snackbar(
-          'Success',
-          'Data berhasil dihapus',
-          backgroundColor: Colors.green,
-          colorText: secondaryColor,
-        );
+        resetTab();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (e) {
         isInputKeuanganProcessing.value = false;
         Get.snackbar(

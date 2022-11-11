@@ -241,18 +241,21 @@ class DebiturInsight {
 class Asuransi {
   Asuransi({
     this.id,
+    this.namaPerusahaan,
     this.premi,
     this.totalAsuransi,
     this.debiturId,
   });
 
   int? id;
+  String? namaPerusahaan;
   String? premi;
   String? totalAsuransi;
   int? debiturId;
 
   factory Asuransi.fromJson(Map<String, dynamic> json) => Asuransi(
         id: json["id"] ?? null,
+        namaPerusahaan: json["nama_perusahaan"] ?? null,
         premi: json["premi"] ?? null,
         totalAsuransi: json["total_asuransi"] ?? null,
         debiturId: json["debiturId"] ?? null,
@@ -260,6 +263,7 @@ class Asuransi {
 
   Map<String, dynamic> toJson() => {
         "id": id ?? null,
+        "nama_perusahaan": namaPerusahaan ?? null,
         "premi": premi ?? null,
         "total_asuransi": totalAsuransi ?? null,
         "debiturId": debiturId ?? null,

@@ -50,7 +50,6 @@ class LihatUsahaAnalisisView extends GetView<UsahaAnalisisController> {
                       btnOkOnPress: () {
                         controller
                             .deleteAnalisaUsaha(data.analisaJenisUsaha.id);
-                        controller.purgeProgressBar(data.id);
                         Get.back();
                       },
                       btnOkText: 'Oke sip',

@@ -18,6 +18,8 @@ class DebiturRealController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
+  var isInputDebiturProcessing = false;
+
   final peminjam1 = TextEditingController().obs;
   final peminjam2 = TextEditingController().obs;
   final ktp1 = TextEditingController().obs;

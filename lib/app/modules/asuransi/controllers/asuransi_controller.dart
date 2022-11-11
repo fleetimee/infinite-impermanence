@@ -1,9 +1,12 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/asuransi/save_asuransi.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AsuransiController extends GetxController {
   final debiturController = Get.put(InsightDebiturController());
@@ -13,6 +16,7 @@ class AsuransiController extends GetxController {
   final isAsuransiProcessing = false.obs;
 
   var premi = TextEditingController();
+  var namaPerusahaan = TextEditingController();
   var plafonKredit = MoneyMaskedTextController(
     thousandSeparator: '.',
     decimalSeparator: '',
@@ -26,6 +30,7 @@ class AsuransiController extends GetxController {
 
   void saveAsuransi(id) {
     final body = {
+      'nama_perusahaan': namaPerusahaan.text,
       'premi': premi.text,
       'total_asuransi': jumlahAsuransi.text.replaceAll('.', '')
     };
@@ -64,6 +69,7 @@ class AsuransiController extends GetxController {
 
   void editAsuransi(id, idAsuransi) {
     final body = {
+      'nama_perusahaan': namaPerusahaan.text,
       'premi': premi.text,
       'total_asuransi': jumlahAsuransi.text.replaceAll('.', '')
     };
@@ -106,12 +112,27 @@ class AsuransiController extends GetxController {
         isAsuransiProcessing(false);
         debiturController.fetchOneDebitur(id);
         clearForm();
-        Get.snackbar(
-          'Success',
-          'Data berhasil dihapus',
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.bottomSlide,
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          title: 'Sukses',
+          bodyHeaderDistance: 25,
+          desc: 'Data berhasil dihapus',
+          dismissOnTouchOutside: false,
+          btnOkOnPress: () {},
+        ).show();
       }, onError: (err) {
         isAsuransiProcessing(false);
         Get.snackbar(

@@ -26,7 +26,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Agunan Check'),
+        title: const Text('Pilih Jenis Agunan'),
       ),
       body: FormBuilder(
         key: controller.formKey,
@@ -123,13 +123,35 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                           fontSize: 16,
                         ),
                       ),
-                      Text(
-                        int.parse(data.inputKeuangan.kreditDiusulkan) >
-                                100000000
-                            ? 'ENABLED'
-                            : 'DISABLED',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                      // Text(
+                      //   int.parse(data.inputKeuangan.kreditDiusulkan) >
+                      //           100000000
+                      //       ? 'ENABLED'
+                      //       : 'DISABLED',
+                      //   style: const TextStyle(fontWeight: FontWeight.bold),
+                      // ),
+                      //  int.parse(data.inputKeuangan.kreditDiusulkan) > 100000000 ? GFBadge(
+                      //   color: Colors.green,
+                      //   child: const Text(
+                      //     'ENABLED',
+                      //     style: TextStyle(
+                      //       color: Colors.white,
+                      //       fontWeight: FontWeight.bold,
+                      //     ),
+                      //   )
+                      int.parse(data.inputKeuangan.kreditDiusulkan) > 100000000
+                          ? const GFButton(
+                              onPressed: null,
+                              text: 'ENABLED',
+                              color: Colors.green,
+                              type: GFButtonType.outline,
+                            )
+                          : const GFButton(
+                              onPressed: null,
+                              text: 'DISABLED',
+                              color: Colors.red,
+                              type: GFButtonType.outline,
+                            ),
                     ],
                   ),
                   const SizedBox(
@@ -242,13 +264,19 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                           fontSize: 16,
                         ),
                       ),
-                      Text(
-                        int.parse(data.inputKeuangan.kreditDiusulkan) <=
-                                100000000
-                            ? 'ENABLED'
-                            : 'DISABLED',
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                      int.parse(data.inputKeuangan.kreditDiusulkan) <= 100000000
+                          ? const GFButton(
+                              onPressed: null,
+                              text: 'ENABLED',
+                              color: Colors.green,
+                              type: GFButtonType.outline,
+                            )
+                          : const GFButton(
+                              onPressed: null,
+                              text: 'DISABLED',
+                              color: Colors.red,
+                              type: GFButtonType.outline,
+                            ),
                     ],
                   ),
                   const SizedBox(
@@ -303,7 +331,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                                 ?.saveAndValidate() ??
                             false) {
                           controller.saveMultipleAgunan();
-                          controller.patchProgressBar(data.id);
+                          // controller.patchProgressBar(data.id);
                           Get.back();
                           debugPrint(controller.formKey.currentState?.value
                               .toString());

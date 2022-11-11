@@ -15,6 +15,8 @@ class DebiturInsight {
     this.peminjam1,
     this.ktp1,
     this.peminjam2,
+    this.peminjam3,
+    this.peminjam4,
     this.ktp2,
     this.pemilikAgunan1,
     this.noKtp1,
@@ -22,6 +24,8 @@ class DebiturInsight {
     this.noKtp2,
     this.alamat1,
     this.alamat2,
+    this.alamat3,
+    this.alamat4,
     this.tempatLahir,
     this.tanggalLahir,
     this.noHp,
@@ -61,6 +65,8 @@ class DebiturInsight {
   String? peminjam1;
   String? ktp1;
   String? peminjam2;
+  String? peminjam3;
+  String? peminjam4;
   String? ktp2;
   String? pemilikAgunan1;
   String? noKtp1;
@@ -68,6 +74,8 @@ class DebiturInsight {
   String? noKtp2;
   String? alamat1;
   String? alamat2;
+  String? alamat3;
+  String? alamat4;
   String? tempatLahir;
   DateTime? tanggalLahir;
   String? noHp;
@@ -108,6 +116,8 @@ class DebiturInsight {
         peminjam1: json["peminjam1"],
         ktp1: json["ktp1"],
         peminjam2: json["peminjam2"],
+        peminjam3: json["peminjam3"],
+        peminjam4: json["peminjam4"],
         ktp2: json["ktp2"],
         pemilikAgunan1: json["pemilik_agunan_1"],
         noKtp1: json["no_ktp1"],
@@ -115,6 +125,8 @@ class DebiturInsight {
         noKtp2: json["no_ktp2"],
         alamat1: json["alamat_1"],
         alamat2: json["alamat_2"],
+        alamat3: json["alamat_3"],
+        alamat4: json["alamat_4"],
         tempatLahir: json["tempat_lahir"],
         tanggalLahir: json["tanggal_lahir"] == null
             ? null
@@ -191,6 +203,8 @@ class DebiturInsight {
         "no_ktp2": noKtp2,
         "alamat_1": alamat1,
         "alamat_2": alamat2,
+        "alamat_3": alamat3,
+        "alamat_4": alamat4,
         "tempat_lahir": tempatLahir,
         "no_hp": noHp ?? null,
         "tanggal_lahir": tanggalLahir == null

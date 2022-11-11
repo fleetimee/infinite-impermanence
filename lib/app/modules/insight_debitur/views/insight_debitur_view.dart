@@ -604,11 +604,43 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                   TableRow(
                                     children: [
                                       paddedText('Peminjam 2'),
-                                      paddedText(
-                                        controller
-                                            .insightDebitur.value.peminjam2
-                                            .toString(),
-                                      ),
+                                      controller.insightDebitur.value.peminjam2
+                                                  .toString() ==
+                                              ''
+                                          ? paddedText('-')
+                                          : paddedText(
+                                              controller.insightDebitur.value
+                                                  .peminjam2
+                                                  .toString(),
+                                            ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Peminjam 3'),
+                                      controller.insightDebitur.value.peminjam3
+                                                  .toString() ==
+                                              ''
+                                          ? paddedText('-')
+                                          : paddedText(
+                                              controller.insightDebitur.value
+                                                  .peminjam3
+                                                  .toString(),
+                                            ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Peminjam 4'),
+                                      controller.insightDebitur.value.peminjam4
+                                                  .toString() ==
+                                              ''
+                                          ? paddedText('-')
+                                          : paddedText(
+                                              controller.insightDebitur.value
+                                                  .peminjam4
+                                                  .toString(),
+                                            ),
                                     ],
                                   ),
                                   TableRow(
@@ -648,6 +680,34 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                             ? '-'
                                             : controller
                                                 .insightDebitur.value.alamat2
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Alamat 3'),
+                                      paddedText(
+                                        controller.insightDebitur.value.alamat3
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.alamat3
+                                                .toString(),
+                                      ),
+                                    ],
+                                  ),
+                                  TableRow(
+                                    children: [
+                                      paddedText('Alamat 4'),
+                                      paddedText(
+                                        controller.insightDebitur.value.alamat4
+                                                    .toString() ==
+                                                ''
+                                            ? '-'
+                                            : controller
+                                                .insightDebitur.value.alamat4
                                                 .toString(),
                                       ),
                                     ],
@@ -745,10 +805,15 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                   TableRow(
                                     children: [
                                       paddedText('NPWP'),
-                                      paddedText(
-                                        controller.insightDebitur.value.npwp
-                                            .toString(),
-                                      ),
+                                      controller.insightDebitur.value.npwp
+                                                  .toString() ==
+                                              ''
+                                          ? paddedText('-')
+                                          : paddedText(
+                                              controller
+                                                  .insightDebitur.value.npwp
+                                                  .toString(),
+                                            ),
                                     ],
                                   ),
                                 ],

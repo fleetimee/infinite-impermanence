@@ -175,6 +175,58 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       ),
                     ],
                   ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderTextField(
+                          name: 'peminjam3',
+                          controller: controller.peminjam3.value,
+                          decoration: const InputDecoration(
+                            labelText: 'Peminjam 3',
+                            labelStyle: TextStyle(fontSize: 18),
+                            hintText: 'Masukkan Peminjam 3',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Container(),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderTextField(
+                          name: 'peminjam4',
+                          controller: controller.peminjam4.value,
+                          decoration: const InputDecoration(
+                            labelText: 'Peminjam 4',
+                            labelStyle: TextStyle(fontSize: 18),
+                            hintText: 'Masukkan Peminjam 4',
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: primaryColor),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Container(),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 25),
                   Row(
                     children: [
@@ -261,7 +313,11 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   FormBuilderTextField(
                     name: 'noTelp',
                     controller: controller.noHp.value,
-                    validator: FormBuilderValidators.numeric(),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                    ]),
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       labelText: 'No Telp',
@@ -316,6 +372,44 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                           labelText: 'Alamat 2',
                           labelStyle: TextStyle(fontSize: 18),
                           hintText: 'Masukkan Alamat 2',
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                        maxLines: 2,
+                      ),
+                      const SizedBox(height: 16),
+                      FormBuilderTextField(
+                        name: 'alamat_3',
+                        controller: controller.alamat3.value,
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          alignLabelWithHint: true,
+                          labelText: 'Alamat 3',
+                          labelStyle: TextStyle(fontSize: 18),
+                          hintText: 'Masukkan Alamat 3',
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: primaryColor),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                          ),
+                        ),
+                        maxLines: 2,
+                      ),
+                      const SizedBox(height: 16),
+                      FormBuilderTextField(
+                        name: 'alamat_4',
+                        controller: controller.alamat4.value,
+                        keyboardType: TextInputType.multiline,
+                        decoration: const InputDecoration(
+                          alignLabelWithHint: true,
+                          labelText: 'Alamat 4',
+                          labelStyle: TextStyle(fontSize: 18),
+                          hintText: 'Masukkan Alamat 4',
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: primaryColor),
                           ),

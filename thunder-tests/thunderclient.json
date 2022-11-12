@@ -1263,11 +1263,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?page=1&fields=peminjam1,bidang_usaha,tgl_sekarang",
+    "url": "{{baseUrl}}api/v1/debiturs/?s={ \"peminjam1\": { \"$contL\": \"oc\" } }",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-07T02:36:43.231Z",
+    "modified": "2022-11-12T08:29:55.284Z",
     "headers": [],
     "params": [
       {
@@ -1279,6 +1279,7 @@
       {
         "name": "page",
         "value": "1",
+        "isDisabled": true,
         "isPath": false
       },
       {
@@ -1289,12 +1290,18 @@
       },
       {
         "name": "fields",
-        "value": "peminjam1,bidang_usaha,tgl_sekarang",
+        "value": "peminjam1,bidang_usaha,tgl_sekarang,umur",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "s",
-        "value": "{\"peminjam1\": \"Paul\"}",
+        "value": "{ \"peminjam1\": { \"$contL\": \"oc\" } }",
+        "isPath": false
+      },
+      {
+        "name": "sort",
+        "value": "tgl_sekarang,ASC",
         "isDisabled": true,
         "isPath": false
       }

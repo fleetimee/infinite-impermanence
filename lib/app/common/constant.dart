@@ -19,6 +19,9 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 // const baseUrl =
 //     'https://number-41-bagooska-the-terribly-tired-tapir-2.fleetimee.repl.co/api/v1/';
 
+// List debitur field string
+const field = 'peminjam1,bidang_usaha,tgl_sekarang,umur';
+
 // Insight debitur query string
 const joinTable =
     'join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=syaratLain&join=analisaAgunan&join=ijinLegitimasi&join=asuransi';

@@ -2,6 +2,7 @@
 
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/modules/list_debitur/controllers/list_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -17,6 +18,9 @@ class DebiturRealController extends GetxController {
   Debtor debtor = Debtor();
 
   final formKey = GlobalKey<FormBuilderState>();
+
+  var page = 1;
+  var sort = 'id,ASC';
 
   var isInputDebiturProcessing = false;
 
@@ -63,6 +67,8 @@ class DebiturRealController extends GetxController {
 
   final loadingFetch = false.obs;
 
+  final listDebiturController = Get.put(ListDebiturController());
+
   final debiturController = Get.put(InsightDebiturController());
 
   void editDebitur(String id) async {
@@ -105,6 +111,7 @@ class DebiturRealController extends GetxController {
       debiturController.isDataLoading(true);
       DebtorService().updateDebtor(id, body).then((resp) {
         debiturController.isDataLoading(false);
+        listDebiturController.getAllDebitur(page.toString(), sort);
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

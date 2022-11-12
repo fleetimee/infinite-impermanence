@@ -14,10 +14,10 @@ import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
 class ListDebiturProvider {
   final httpClient = http.Client();
 
-  Future<List<Datum>> fetchDebiturs(String page) async {
+  Future<List<Datum>> fetchDebiturs(String page, String sort) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}debiturs?limit=9&page=$page'),
+        Uri.parse('${baseUrl}debiturs?page=$page&sort=$sort&fields=$field'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

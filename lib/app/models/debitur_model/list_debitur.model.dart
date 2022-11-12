@@ -53,6 +53,7 @@ class Datum {
     this.id,
     this.peminjam1,
     this.bidangUsaha,
+    this.umur,
     this.tglSekarang,
     this.createdBy,
   });
@@ -60,6 +61,7 @@ class Datum {
   int? id;
   String? peminjam1;
   String? bidangUsaha;
+  int? umur;
   DateTime? tglSekarang;
   dynamic createdBy;
 
@@ -67,6 +69,7 @@ class Datum {
         id: json["id"] ?? null,
         peminjam1: json["peminjam1"] ?? null,
         bidangUsaha: json["bidang_usaha"] ?? null,
+        umur: json["umur"] ?? null,
         tglSekarang: json["tgl_sekarang"] == null
             ? null
             : DateTime.parse(json["tgl_sekarang"]),
@@ -77,6 +80,7 @@ class Datum {
         "id": id ?? null,
         "peminjam1": peminjam1 ?? null,
         "bidang_usaha": bidangUsaha ?? null,
+        "umur": umur ?? null,
         "tgl_sekarang": tglSekarang == null
             ? null
             : "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",

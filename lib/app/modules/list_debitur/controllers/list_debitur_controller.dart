@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
@@ -17,11 +18,14 @@ class ListDebiturController extends GetxController {
     paginateDebitur();
   }
 
+  final formKey = GlobalKey<FormBuilderState>();
+
   // Some helper variable
   final isSortIdDesc = false.obs;
   final isSortNameDesc = false.obs;
   final isSortTanggalDesc = false.obs;
   final isSortUmurDesc = false.obs;
+  final isSearchPressed = false.obs;
 
   // For nekos api
   Future<String> img = Nekos().avatar();
@@ -30,6 +34,7 @@ class ListDebiturController extends GetxController {
   var listDebitur = List<Datum>.empty(growable: true).obs;
   var page = 1;
   var sort = 'id,ASC';
+  var query = '';
 
   // Trigger reload with data change with Observable
   var isDataProcessing = false.obs;
@@ -98,6 +103,25 @@ class ListDebiturController extends GetxController {
       isSortIdDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        isDataProcessing(false);
+        // clear list
+        listDebitur.clear();
+        listDebitur.addAll(resp);
+      }, onError: (err) {
+        isDataProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isDataProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void searchDebitur(String page, String sort, String query) {
+    try {
+      isMoreDataAvailable(false);
+      isDataProcessing(true);
+      ListDebiturProvider().searchDebiturs(page, sort, query).then((resp) {
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -250,5 +274,9 @@ class ListDebiturController extends GetxController {
       isDataProcessing(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void transformSearchIntoForm() {
+    isSearchPressed(true);
   }
 }

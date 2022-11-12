@@ -34,4 +34,27 @@ class ListDebiturProvider {
       return Future.error(e);
     }
   }
+
+  Future<List<Datum>> searchDebiturs(
+      String page, String sort, String query) async {
+    try {
+      final response = await httpClient.get(
+        Uri.parse(
+            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&s={"peminjam1":{"${'contL'}": "$query"}}'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return ListDebitur.fromJson(data).data!;
+      } else {
+        throw Exception('Failed to load debitur');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

@@ -431,7 +431,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                 'assets/images/home/keuangan_slider.jpg',
                                 fit: BoxFit.cover,
                                 height: 200.0,
-                                color: Colors.black.withOpacity(0.8),
+                                color: Colors.black.withOpacity(0.6),
                                 colorBlendMode: BlendMode.darken,
                               ),
                               Align(

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -30,8 +31,112 @@ class ListDebiturView extends GetView<ListDebiturController> {
         ],
       ),
       appBar: AppBar(
-        title: const Text('Search'),
+        // convert automaticallyimplyleading to widget
+
+        title: Obx(() => controller.isSearchPressed.value == true
+            ? const Text('')
+            : const Text('Search')),
         actions: [
+          Obx(() => controller.isSearchPressed.value == true
+              ? Row(
+                  children: [
+                    SizedBox(
+                      width: 325,
+                      child: FormBuilder(
+                        key: controller.formKey,
+                        child: FormBuilderTextField(
+                          name: 'search',
+                          autofocus: true,
+                          cursorColor: Colors.white,
+                          decoration: InputDecoration(
+                            hintText: 'Cari Nama Debitur',
+                            suffixIcon: IconButton(
+                                onPressed: (() => {
+                                      if (controller.formKey.currentState
+                                              ?.saveAndValidate() ??
+                                          false)
+                                        {
+                                          debugPrint(controller
+                                              .formKey.currentState?.value
+                                              .toString())
+                                        }
+                                      else
+                                        {
+                                          debugPrint(controller
+                                              .formKey.currentState?.value
+                                              .toString())
+                                        }
+                                    }),
+                                icon: const Icon(
+                                  FontAwesomeIcons.magnifyingGlass,
+                                  color: Colors.white,
+                                )),
+                            hintStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                            alignLabelWithHint: true,
+                            focusedBorder: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15.0),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                            border: const OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                          onSubmitted: (value) {
+                            controller.searchDebitur(
+                                1.toString(), 'id,ASC', value.toString());
+                          },
+                          onSaved: (value) {
+                            controller.searchDebitur(
+                                1.toString(), 'id,ASC', value.toString());
+                          },
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        controller.isSearchPressed(false);
+                        controller.getAllDebitur(1.toString(), 'id,ASC');
+                      },
+                      icon: const Icon(Icons.close),
+                    ),
+                  ]
+                      .animate(interval: 50.ms)
+                      .fadeIn(duration: 300.ms, delay: 200.ms)
+                      .shimmer(
+                          blendMode: BlendMode.srcOver, color: Colors.white12)
+                      .move(
+                          begin: const Offset(-16, 0),
+                          curve: Curves.easeOutQuad),
+                )
+              : IconButton(
+                  onPressed: () {
+                    controller.isSearchPressed(true);
+                  },
+                  icon: const Icon(Icons.search),
+                )),
           IconButton(
             onPressed: () {
               showBarModalBottomSheet(

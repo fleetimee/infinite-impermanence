@@ -744,11 +744,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
     "name": "Get Input Keuangan",
-    "url": "{{baseUrl}}api/v1/input-keuangan",
+    "url": "{{baseUrl}}api/v1/input-keuangan/2",
     "method": "GET",
     "sortNum": 5000,
     "created": "2022-08-26T03:40:06.531Z",
-    "modified": "2022-09-20T05:26:12.144Z",
+    "modified": "2022-11-13T21:58:27.119Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1088,16 +1088,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "cd398d01-85b5-4dc0-8c45-1e06e1ba0af6",
     "name": "Patch",
-    "url": "{{baseUrl}}api/v1/input-keuangan/32",
+    "url": "{{baseUrl}}api/v1/input-keuangan/2",
     "method": "PATCH",
     "sortNum": 510000,
     "created": "2022-09-28T02:48:36.760Z",
-    "modified": "2022-09-28T06:04:55.512Z",
+    "modified": "2022-11-13T21:53:14.704Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"trade_cycle\": 4\n}",
+      "raw": "{\n  \"digunakan_untuk\": \"Investasi\",\n  \"sistem_angsuran\": \"Efektif\"\n}",
       "form": []
     },
     "tests": []

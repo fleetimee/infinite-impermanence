@@ -1263,17 +1263,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=ktp1||$eq||Aceh Barat Daya",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=10&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=inputKeuangan.kredit_diusulkan||$between||0,120000000",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-13T10:46:57.405Z",
+    "modified": "2022-11-13T15:17:10.207Z",
     "headers": [],
     "params": [
       {
         "name": "limit",
-        "value": "7",
-        "isDisabled": true,
+        "value": "10",
         "isPath": false
       },
       {
@@ -1306,12 +1305,18 @@
       {
         "name": "filter",
         "value": "ktp1||$eq||Aceh Barat Daya",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "filter",
         "value": "tgl_sekarang||$between||2022-11-03,2022-12-03",
         "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "inputKeuangan.kredit_diusulkan||$between||0,120000000",
         "isPath": false
       }
     ],

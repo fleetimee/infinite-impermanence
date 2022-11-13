@@ -25,6 +25,7 @@ class ListDebiturController extends GetxController {
   var filterDomisiliInput = TextEditingController();
   var filterRangeTanggalInput = TextEditingController();
   var filterPlafondInput = TextEditingController();
+  var filterJenisUsaha = TextEditingController();
 
   // Some helper variable
   final isSortIdDesc = false.obs;
@@ -39,6 +40,7 @@ class ListDebiturController extends GetxController {
   RxBool isFilterAsalPressed = false.obs;
   RxBool isFilterTanggalPressed = false.obs;
   RxBool isFilterPlafondPressed = false.obs;
+  RxBool isFilterJenisUsahaPressed = false.obs;
 
   // For nekos api
   Future<String> img = Nekos().avatar();
@@ -372,12 +374,12 @@ class ListDebiturController extends GetxController {
   }
 
   void filter(String page, String sort, String umur, String asal,
-      String tanggal, String plafond) {
+      String tanggal, String plafond, String jenisUsaha) {
     try {
       isMoreDataAvailable(false);
       isDataProcessing(true);
       ListDebiturProvider()
-          .filterDebiturs(page, sort, umur, asal, tanggal, plafond)
+          .filterDebiturs(page, sort, umur, asal, tanggal, plafond, jenisUsaha)
           .then((resp) {
         isDataProcessing(false);
         // clear list
@@ -397,3 +399,20 @@ class ListDebiturController extends GetxController {
     isSearchPressed(true);
   }
 }
+
+final jenisUsahaList = [
+  'Pertanian',
+  'Perikanan',
+  'Pertambangan',
+  'Perindustrian',
+  'Listrik',
+  'Gas',
+  'Air',
+  'Kontruksi',
+  'Perdagangan',
+  'Pengangkutan',
+  'Komunikasi',
+  'Jasa Dunia Usaha',
+  'Jasa Sosial',
+  'Lain - Lain',
+];

@@ -42,11 +42,12 @@ class ListDebiturProvider {
       String filterUmur,
       String filterAsal,
       String filterTanggal,
-      String filterPlafond) async {
+      String filterPlafond,
+      String jenisUsaha) async {
     try {
       final response = await httpClient.get(
         Uri.parse(
-            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk$filterAsal$filterUmur$filterTanggal$filterPlafond'),
+            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk$filterAsal$filterUmur$filterTanggal$filterPlafond$jenisUsaha'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

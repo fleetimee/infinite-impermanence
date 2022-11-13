@@ -19,6 +19,9 @@ class ListDebiturController extends GetxController {
   }
 
   final formKey = GlobalKey<FormBuilderState>();
+  final filterKey = GlobalKey<FormBuilderState>();
+
+  var filterUmurInput = TextEditingController();
 
   // Some helper variable
   final isSortIdDesc = false.obs;
@@ -29,6 +32,9 @@ class ListDebiturController extends GetxController {
   final isSortPlafondDesc = false.obs;
   final isSortProgressDesc = false.obs;
 
+  RxBool isFilterUmurPressed = false.obs;
+  RxBool isFilterAsalPressed = false.obs;
+
   // For nekos api
   Future<String> img = Nekos().avatar();
 
@@ -37,6 +43,8 @@ class ListDebiturController extends GetxController {
   var page = 1;
   var sort = 'id,ASC';
   var query = '';
+  var umur = '';
+  var asal = '';
 
   // Trigger reload with data change with Observable
   var isDataProcessing = false.obs;
@@ -344,6 +352,25 @@ class ListDebiturController extends GetxController {
       isSortProgressDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        isDataProcessing(false);
+        // clear list
+        listDebitur.clear();
+        listDebitur.addAll(resp);
+      }, onError: (err) {
+        isDataProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isDataProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void filter(String page, String sort, String umur, String asal) {
+    try {
+      isMoreDataAvailable(false);
+      isDataProcessing(true);
+      ListDebiturProvider().filterDebiturs(page, sort, umur, asal).then((resp) {
         isDataProcessing(false);
         // clear list
         listDebitur.clear();

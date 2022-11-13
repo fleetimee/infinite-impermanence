@@ -1263,11 +1263,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
+    "url": "{{baseUrl}}api/v1/debiturs/?fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=ktp1||$isnull&filter=tgl_sekarang||$between||2022-11-03,2022-12-03",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-13T05:33:20.249Z",
+    "modified": "2022-11-13T06:51:51.657Z",
     "headers": [],
     "params": [
       {
@@ -1305,8 +1305,12 @@
       },
       {
         "name": "filter",
-        "value": "ktp1||$eq||Aceh Barat",
-        "isDisabled": true,
+        "value": "ktp1||$isnull",
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "tgl_sekarang||$between||2022-11-03,2022-12-03",
         "isPath": false
       }
     ],

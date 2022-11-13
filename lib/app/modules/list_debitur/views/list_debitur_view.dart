@@ -19,7 +19,11 @@ import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/list_debitur_controller.dart';
 
 class ListDebiturView extends GetView<ListDebiturController> {
-  const ListDebiturView({Key? key}) : super(key: key);
+  ListDebiturView({Key? key}) : super(key: key);
+
+  var umur = '';
+  var asal = '';
+
   @override
   Widget build(BuildContext context) {
     return ScaffoldGradientBackground(
@@ -779,7 +783,75 @@ class ListDebiturView extends GetView<ListDebiturController> {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          showBarModalBottomSheet(
+            context: context,
+            builder: (context) {
+              return Container(
+                padding: const EdgeInsets.all(16),
+                height: 400,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    FormBuilder(
+                      key: controller.filterKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Obx(
+                            () => Row(
+                              children: [
+                                Checkbox(
+                                  value: controller.isFilterUmurPressed.value,
+                                  onChanged: (value) {
+                                    controller.isFilterUmurPressed.value =
+                                        value!;
+                                    // umur = '${'&filter'}=umur||${'eq'}||$value';
+                                    debugPrint(value.toString());
+                                  },
+                                ),
+                                Expanded(
+                                  child: FormBuilderTextField(
+                                    name: 'umur',
+                                    controller: controller.filterUmurInput,
+                                    enabled:
+                                        controller.isFilterUmurPressed.value,
+                                    onSaved: (value) {
+                                      umur =
+                                          '${'&filter'}=umur||${'eq'}||$value';
+                                    },
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    GFButton(
+                      onPressed: () {
+                        if (controller.filterKey.currentState
+                                ?.saveAndValidate() ??
+                            false) {
+                          controller.filter(1.toString(), 'id,ASC', umur, asal);
+                          debugPrint(controller.filterKey.currentState?.value
+                              .toString());
+                        } else {
+                          debugPrint(controller.filterKey.currentState?.value
+                              .toString());
+                        }
+                      },
+                      fullWidthButton: true,
+                      color: primaryColor,
+                      text: 'Filter',
+                    )
+                  ],
+                ),
+              );
+            },
+          );
+        },
         label: const Text('Filter'),
         icon: const Icon(FontAwesomeIcons.filter),
         backgroundColor: primaryColor,

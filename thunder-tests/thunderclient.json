@@ -1263,11 +1263,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?fields=peminjam1,bidang_usaha,tgl_sekarang,umur&s={\"peminjam1\": {\"$contL\": \"son\"}}",
+    "url": "{{baseUrl}}api/v1/debiturs/?fields=peminjam1,bidang_usaha,tgl_sekarang,umur,ktp1,progress&s={\"peminjam1\": {\"$contL\": \"\"}}&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-12T21:53:21.396Z",
+    "modified": "2022-11-13T00:49:32.108Z",
     "headers": [],
     "params": [
       {
@@ -1290,18 +1290,23 @@
       },
       {
         "name": "fields",
-        "value": "peminjam1,bidang_usaha,tgl_sekarang,umur",
+        "value": "peminjam1,bidang_usaha,tgl_sekarang,umur,ktp1,progress",
         "isPath": false
       },
       {
         "name": "s",
-        "value": "{\"peminjam1\": {\"$contL\": \"son\"}}",
+        "value": "{\"peminjam1\": {\"$contL\": \"\"}}",
         "isPath": false
       },
       {
         "name": "sort",
         "value": "tgl_sekarang,ASC",
         "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "inputKeuangan||kredit_diusulkan,digunakan_untuk",
         "isPath": false
       }
     ],

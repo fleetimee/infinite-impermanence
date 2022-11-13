@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:empty_widget/empty_widget.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -393,52 +394,231 @@ class ListDebiturView extends GetView<ListDebiturController> {
                               child: Column(
                                 children: [
                                   GFListTile(
-                                    avatar: const GFAvatar(
-                                      backgroundImage: NetworkImage(
-                                        'https://avatars.githubusercontent.com/u/68892527?v=4',
+                                    avatar: GFAvatar(
+                                      shape: GFAvatarShape.standard,
+                                      backgroundColor: primaryColor,
+                                      radius: 40,
+                                      child: Text(
+                                        controller.listDebitur[index].peminjam1
+                                                ?.substring(0, 1)
+                                                .toUpperCase() ??
+                                            '',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 35,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                      shape: GFAvatarShape.circle,
                                     ),
                                     color: secondaryColor,
-                                    description: Text(
-                                      'Tanggal Input : ${DateFormat('dd MMMM yyyy').format(
-                                        DateTime.parse(
-                                          controller
-                                              .listDebitur[index].tglSekarang!
-                                              .toString(),
+                                    description: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(
+                                          height: 5,
                                         ),
-                                      )}',
-                                      style: const TextStyle(
-                                        color: Colors.black87,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w200,
-                                      ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              FontAwesomeIcons.calendarCheck,
+                                              size: 18,
+                                            ),
+                                            const SizedBox(
+                                              width: 5,
+                                            ),
+                                            Text(
+                                              DateFormat('dd MMMM yyyy').format(
+                                                DateTime.parse(
+                                                  controller.listDebitur[index]
+                                                      .tglSekarang!
+                                                      .toString(),
+                                                ),
+                                              ),
+                                              style: const TextStyle(
+                                                color: Colors.black87,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w200,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
-                                    title: Text(
-                                      controller.listDebitur[index].peminjam1!,
-                                      style: const TextStyle(
-                                          color: primaryColor,
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w500),
+                                    title: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          controller
+                                              .listDebitur[index].peminjam1!,
+                                          style: const TextStyle(
+                                              color: primaryColor,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        SizedBox(
+                                          width: Get.width,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment
+                                                .start, // aligns the text to the left
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  GFButtonBadge(
+                                                    size: 1,
+                                                    onPressed: null,
+                                                    text:
+                                                        '${(double.parse(controller.listDebitur[index].progress.toString())) * 100} % (Input)',
+                                                    color: GFColors.SUCCESS,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  GFButtonBadge(
+                                                    size: 1,
+                                                    onPressed: null,
+                                                    text: controller
+                                                                .listDebitur[
+                                                                    index]
+                                                                .inputKeuangan ==
+                                                            null
+                                                        ? 'Belum Input'
+                                                        : '${controller.listDebitur[index].inputKeuangan!.digunakanUntuk}',
+                                                    color: GFColors.WARNING,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                ],
+                                              ),
+                                              const SizedBox(
+                                                height: 5,
+                                              ),
+                                              Row(
+                                                children: const [
+                                                  GFButtonBadge(
+                                                    size: 1,
+                                                    onPressed: null,
+                                                    text: 'UMKM',
+                                                    color: GFColors.INFO,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  GFButtonBadge(
+                                                    size: 1,
+                                                    onPressed: null,
+                                                    text: 'Tetap',
+                                                    color: GFColors.DANGER,
+                                                  ),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                     focusColor: primaryColor,
                                     subTitle: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          'Usaha : ${controller.listDebitur[index].bidangUsaha!}',
-                                          style: const TextStyle(
-                                              color: Colors.blueGrey,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w300),
+                                        const SizedBox(
+                                          height: 5,
                                         ),
-                                        Text(
-                                          'Umur : ${controller.listDebitur[index].umur!}',
-                                          style: const TextStyle(
-                                              color: Colors.blueGrey,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w300),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Usaha',
+                                              style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Text(
+                                              ': ${controller.listDebitur[index].bidangUsaha!}',
+                                              style: const TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Umur',
+                                              style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                            const SizedBox(width: 15),
+                                            Text(
+                                              ': ${controller.listDebitur[index].umur!}',
+                                              style: const TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Asal',
+                                              style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                            const SizedBox(width: 25),
+                                            Text(
+                                              ': ${controller.listDebitur[index].ktp1!}',
+                                              style: const TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text(
+                                              'Plafon',
+                                              style: TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                            const SizedBox(width: 5),
+                                            Text(
+                                              ': ${controller.listDebitur[index].inputKeuangan == null ? 'Belum Input' : MoneyMaskedTextController(
+                                                  decimalSeparator: '',
+                                                  thousandSeparator: '.',
+                                                  leftSymbol: 'Rp ',
+                                                  precision: 0,
+                                                  initialValue: double.parse(
+                                                      controller
+                                                          .listDebitur[index]
+                                                          .inputKeuangan!
+                                                          .kreditDiusulkan
+                                                          .toString()),
+                                                ).text}',
+                                              style: const TextStyle(
+                                                  color: Colors.blueGrey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w300),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

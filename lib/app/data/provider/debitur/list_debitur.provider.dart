@@ -17,7 +17,8 @@ class ListDebiturProvider {
   Future<List<Datum>> fetchDebiturs(String page, String sort) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}debiturs?page=$page&sort=$sort&fields=$field'),
+        Uri.parse(
+            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

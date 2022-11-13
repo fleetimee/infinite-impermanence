@@ -256,10 +256,10 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmurR(''),
                         textUmur(''),
-                        debtor.peminjam2 == ''
-                            ? textUmur('-')
+                        debtor.peminjam2 == '' || debtor.peminjam2 == null
+                            ? textUmur('  2. -')
                             : textUmurBoldLeft(
-                                ': 2. ${debtor.peminjam2.toString()}'),
+                                '  2. ${debtor.peminjam2.toString()}'),
                       ],
                     ),
                     TableRow(
@@ -267,10 +267,10 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmurR(''),
                         textUmur(''),
-                        debtor.peminjam3 == ''
-                            ? textUmur('-')
+                        debtor.peminjam3 == '' || debtor.peminjam3 == null
+                            ? textUmurBoldLeft('  3. -')
                             : textUmurBoldLeft(
-                                ': 3. ${debtor.peminjam3.toString()}'),
+                                '  3. ${debtor.peminjam3.toString()}'),
                       ],
                     ),
                     TableRow(
@@ -278,10 +278,10 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmurR(''),
                         textUmur(''),
-                        debtor.peminjam4 == ''
-                            ? textUmur('-')
+                        debtor.peminjam4 == '' || debtor.peminjam4 == null
+                            ? textUmurBoldLeft('  4. -')
                             : textUmurBoldLeft(
-                                ': 4. ${debtor.peminjam4.toString()}'),
+                                ' 4. ${debtor.peminjam4.toString()}'),
                       ],
                     ),
                     TableRow(

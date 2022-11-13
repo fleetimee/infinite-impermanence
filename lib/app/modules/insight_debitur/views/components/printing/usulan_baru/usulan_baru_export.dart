@@ -317,7 +317,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
               children: [
                 SizedBox.shrink(),
                 SizedBox.shrink(),
-                debtor.peminjam2 == ''
+                debtor.peminjam2 == '' || debtor.peminjam2 == null
                     ? textDeskripsiNoBold("2. -")
                     : textDeskripsiNoBold("2. ${debtor.peminjam2}"),
               ],
@@ -326,7 +326,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
               children: [
                 SizedBox.shrink(),
                 SizedBox.shrink(),
-                debtor.peminjam3 == ''
+                debtor.peminjam3 == '' || debtor.peminjam3 == null
                     ? textDeskripsiNoBold("3. -")
                     : textDeskripsiNoBold("3. ${debtor.peminjam3}"),
               ],
@@ -335,7 +335,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
               children: [
                 SizedBox.shrink(),
                 SizedBox.shrink(),
-                debtor.peminjam4 == ''
+                debtor.peminjam4 == '' || debtor.peminjam4 == null
                     ? textDeskripsiNoBold("4. -")
                     : textDeskripsiNoBold("4. ${debtor.peminjam4}"),
               ],

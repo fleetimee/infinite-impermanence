@@ -169,8 +169,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 2'),
-                        debtor.peminjam2 == ''
-                            ? textUmur('')
+                        debtor.peminjam2 == '' || debtor.peminjam2 == null
+                            ? textUmur('-')
                             : textUmur(debtor.peminjam2.toString()),
                         textUmur('KTP 2'),
                         debtor.ktp2 == 0.toString()
@@ -182,8 +182,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 3'),
-                        debtor.peminjam3 == ''
-                            ? textUmur('')
+                        debtor.peminjam3 == '' || debtor.peminjam3 == null
+                            ? textUmur('-')
                             : textUmur(debtor.peminjam3.toString()),
                         textUmur('No. KTP'),
                         textUmur(debtor.noKtp1.toString()),
@@ -193,12 +193,12 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 4'),
-                        debtor.peminjam4 == ''
-                            ? textUmur('')
+                        debtor.peminjam4 == '' || debtor.peminjam4 == null
+                            ? textUmur('-')
                             : textUmur(debtor.peminjam4.toString()),
                         textUmur('No. KTP'),
-                        debtor.noKtp2 == ''
-                            ? textUmur('')
+                        debtor.noKtp2 == '' || debtor.noKtp2 == null
+                            ? textUmur('-')
                             : textUmur(debtor.noKtp2.toString()),
                       ],
                     ),
@@ -224,8 +224,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Alamat 2'),
-                        debtor.alamat2 == ''
-                            ? textUmur('')
+                        debtor.alamat2 == '' || debtor.alamat2 == null
+                            ? textUmur('-')
                             : textUmur(debtor.alamat2.toString()),
                       ],
                     ),
@@ -233,8 +233,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Alamat 3'),
-                        debtor.alamat3 == ''
-                            ? textUmur('')
+                        debtor.alamat3 == '' || debtor.alamat3 == null
+                            ? textUmur('-')
                             : textUmur(debtor.alamat3.toString()),
                       ],
                     ),
@@ -242,8 +242,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Alamat 4'),
-                        debtor.alamat4 == ''
-                            ? textUmur('')
+                        debtor.alamat4 == '' || debtor.alamat4 == null
+                            ? textUmur('-')
                             : textUmur(debtor.alamat4.toString()),
                       ],
                     ),
@@ -276,8 +276,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             // DateTime Format to dd-mm-yyyy
                             DateFormat('dd/MM/yyyy').format(DateTime.parse(debtor.tanggalLahir.toString()))}'),
                         textUmur('Pekerjaan 2'),
-                        debtor.pekerjaan2 == ''
-                            ? textUmur('')
+                        debtor.pekerjaan2 == '' || debtor.pekerjaan2 == null
+                            ? textUmur('-')
                             : textUmur(debtor.pekerjaan2.toString()),
                       ],
                     ),

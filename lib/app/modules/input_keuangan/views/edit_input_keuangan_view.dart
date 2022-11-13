@@ -333,31 +333,31 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                                 height: 16.0,
                               ),
                               FormBuilderDropdown<String>(
-                                  name: 'digunakan_untuk',
-                                  initialValue: data
-                                      .inputKeuangan.digunakanUntuk
-                                      .toString(),
-                                  onChanged: (value) {
-                                    controller.digunakanUntuk = value!;
-                                  },
-                                  onSaved: (value) {
-                                    controller.digunakanUntuk = value!;
-                                  },
-                                  decoration: InputDecoration(
-                                    labelText: 'Digunakan Untuk',
-                                    hintText: 'Pilih..',
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
+                                name: 'digunakan_untuk',
+                                initialValue: data.inputKeuangan.digunakanUntuk
+                                    .toString(),
+                                onChanged: (value) {
+                                  controller.digunakanUntuk = value!;
+                                },
+                                onSaved: (value) {
+                                  controller.digunakanUntuk = value!;
+                                },
+                                decoration: InputDecoration(
+                                  labelText: 'Digunakan Untuk',
+                                  hintText: 'Pilih..',
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
-                                  items: controller.digunakanUntukList
-                                      .map(
-                                        (element) => DropdownMenuItem(
-                                          value: element,
-                                          child: Text(element),
-                                        ),
-                                      )
-                                      .toList()),
+                                ),
+                                items: controller.digunakanUntukList
+                                    .map(
+                                      (element) => DropdownMenuItem(
+                                        value: element,
+                                        child: Text(element),
+                                      ),
+                                    )
+                                    .toList(),
+                              ),
                               const SizedBox(
                                 height: 16.0,
                               ),
@@ -807,6 +807,71 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                                     fontSize: 25.0,
                                     fontWeight: FontWeight.w600,
                                   ),
+                                ),
+                              ),
+                              Visibility(
+                                maintainState: true,
+                                visible: false,
+                                child: FormBuilderDropdown(
+                                  name: 'sistem_angsuran',
+                                  initialValue: data
+                                      .inputKeuangan.sistemAngsuran
+                                      .toString(),
+                                  validator: FormBuilderValidators.required(),
+                                  onChanged: (value) {
+                                    controller.sistemAngsuran =
+                                        value.toString();
+                                  },
+                                  onSaved: (value) {
+                                    controller.sistemAngsuran =
+                                        value.toString();
+                                  },
+                                  items: controller.sistemAngsuranList
+                                      .map(
+                                        (element) => DropdownMenuItem(
+                                          value: element,
+                                          child: Text(element),
+                                        ),
+                                      )
+                                      .toList(),
+                                  decoration: InputDecoration(
+                                    labelText: 'Sistem Angsuran',
+                                    hintText: 'Pilih..',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Visibility(
+                                maintainState: true,
+                                visible: false,
+                                child: FormBuilderDropdown<String>(
+                                  name: 'digunakan_untuk',
+                                  initialValue: data
+                                      .inputKeuangan.digunakanUntuk
+                                      .toString(),
+                                  onChanged: (value) {
+                                    controller.digunakanUntuk = value!;
+                                  },
+                                  onSaved: (value) {
+                                    controller.digunakanUntuk = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: 'Digunakan Untuk',
+                                    hintText: 'Pilih..',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ),
+                                  items: controller.digunakanUntukList
+                                      .map(
+                                        (element) => DropdownMenuItem(
+                                          value: element,
+                                          child: Text(element),
+                                        ),
+                                      )
+                                      .toList(),
                                 ),
                               ),
                               Animate(

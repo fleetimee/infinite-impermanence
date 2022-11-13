@@ -53,6 +53,7 @@ class Datum {
     this.id,
     this.peminjam1,
     this.bidangUsaha,
+    this.jenisUsaha,
     this.ktp1,
     this.umur,
     this.tglSekarang,
@@ -64,6 +65,7 @@ class Datum {
   int? id;
   String? peminjam1;
   String? bidangUsaha;
+  String? jenisUsaha;
   String? ktp1;
   int? umur;
   DateTime? tglSekarang;
@@ -75,6 +77,7 @@ class Datum {
         id: json["id"] ?? null,
         peminjam1: json["peminjam1"] ?? null,
         bidangUsaha: json["bidang_usaha"] ?? null,
+        jenisUsaha: json["jenis_usaha"] ?? null,
         ktp1: json["ktp1"] ?? null,
         umur: json["umur"] ?? null,
         tglSekarang: json["tgl_sekarang"] == null
@@ -91,6 +94,7 @@ class Datum {
         "id": id ?? null,
         "peminjam1": peminjam1 ?? null,
         "bidang_usaha": bidangUsaha ?? null,
+        "jenis_usaha": jenisUsaha ?? null,
         "ktp1": ktp1 ?? null,
         "umur": umur ?? null,
         "tgl_sekarang": tglSekarang == null

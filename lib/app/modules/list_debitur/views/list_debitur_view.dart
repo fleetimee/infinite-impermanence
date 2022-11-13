@@ -105,6 +105,8 @@ class ListDebiturView extends GetView<ListDebiturController> {
                           style: const TextStyle(
                             color: Colors.white,
                           ),
+                          // onChanged: (value) => controller.searchDebitur(
+                          //     1.toString(), 'id,ASC', value.toString()),
                           onSubmitted: (value) {
                             controller.searchDebitur(
                                 1.toString(), 'id,ASC', value.toString());
@@ -140,184 +142,282 @@ class ListDebiturView extends GetView<ListDebiturController> {
                 )),
           IconButton(
             onPressed: () {
-              showBarModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      height: 285,
-                      color: Colors.blue.shade200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Obx(
-                            () => controller.isSortIdDesc.value == false
-                                ? GFButton(
-                                    onPressed: () {
-                                      controller.sortByIdDesc(
-                                          1.toString(), 'id,DESC');
-                                      // Get.back();
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.INFO,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowDown91,
-                                      color: Colors.white,
-                                    ),
-                                    // text: 'Sort by ID (Descending)',
-                                    child: const Text(
-                                      'Sort by ID (Descending)',
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  )
-                                : GFButton(
-                                    onPressed: () {
-                                      controller.sortByIdAsc(
-                                          1.toString(), 'id,ASC');
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    text: 'Sort by ID (Ascending)',
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.INFO,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowUp19,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                          ),
-                          const SizedBox(height: 16),
-                          Obx(
-                            () => controller.isSortNameDesc.value == false
-                                ? GFButton(
-                                    onPressed: () {
-                                      controller.sortByNamaDesc(
-                                          1.toString(), 'peminjam1,DESC');
-                                      // Get.back();
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.SECONDARY,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowDownZA,
-                                      color: Colors.white,
-                                    ),
-                                    // text: 'Sort by ID (Descending)',
-                                    child: const Text(
-                                      'Sort by Nama (Descending)',
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  )
-                                : GFButton(
-                                    onPressed: () {
-                                      controller.sortByNamaAsc(
-                                          1.toString(), 'peminjam1,ASC');
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    text: 'Sort by Nama (Ascending)',
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.SECONDARY,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowUpAZ,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                          ),
-                          const SizedBox(height: 16),
-                          Obx(
-                            () => controller.isSortTanggalDesc.value == false
-                                ? GFButton(
-                                    onPressed: () {
-                                      controller.sortByTanggalInputDesc(
-                                          1.toString(), 'tgl_sekarang,DESC');
-                                      // Get.back();
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.SUCCESS,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowDownShortWide,
-                                      color: Colors.white,
-                                    ),
-                                    // text: 'Sort by ID (Descending)',
-                                    child: const Text(
-                                      'Sort by Tanggal (Descending)',
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  )
-                                : GFButton(
-                                    onPressed: () {
-                                      controller.sortByTanggalInputAsc(
-                                          1.toString(), 'tgl_sekarang,ASC');
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    text: 'Sort by Tanggal (Ascending)',
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.SUCCESS,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowUpWideShort,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                          ),
-                          const SizedBox(height: 16),
-                          Obx(
-                            () => controller.isSortUmurDesc.value == false
-                                ? GFButton(
-                                    onPressed: () {
-                                      controller.sortByUmurDesc(
-                                          1.toString(), 'umur,DESC');
-                                      // Get.back();
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.DANGER,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowDown91,
-                                      color: Colors.white,
-                                    ),
-                                    // text: 'Sort by ID (Descending)',
-                                    child: const Text(
-                                      'Sort by Umur (Descending)',
-                                      textAlign: TextAlign.left,
-                                    ),
-                                  )
-                                : GFButton(
-                                    onPressed: () {
-                                      controller.sortByUmurAsc(
-                                          1.toString(), 'umur,ASC');
-                                    },
-                                    elevation: 10,
-                                    size: GFSize.LARGE,
-                                    text: 'Sort by Umur (Ascending)',
-                                    shape: GFButtonShape.pills,
-                                    fullWidthButton: true,
-                                    color: GFColors.DANGER,
-                                    icon: const Icon(
-                                      FontAwesomeIcons.arrowUp19,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                          ),
-                        ],
+              controller.isSearchPressed.value == true
+                  ? Get.snackbar(
+                      'Info',
+                      'Sort tidak bisa digunakan saat pencarian sedang aktif',
+                      snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.blue,
+                      colorText: Colors.white,
+                      icon: const Icon(
+                        Icons.info,
+                        color: Colors.white,
                       ),
+                    )
+                  : showBarModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          height: 395,
+                          color: Colors.blue.shade200,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Obx(
+                                () => controller.isSortIdDesc.value == false
+                                    ? GFButton(
+                                        onPressed: () {
+                                          controller.sortByIdDesc(
+                                              1.toString(), 'id,DESC');
+                                          // Get.back();
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowDown91,
+                                          color: Colors.white,
+                                        ),
+                                        // text: 'Sort by ID (Descending)',
+                                        child: const Text(
+                                          'Sort by ID (Descending)',
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      )
+                                    : GFButton(
+                                        onPressed: () {
+                                          controller.sortByIdAsc(
+                                              1.toString(), 'id,ASC');
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        text: 'Sort by ID (Ascending)',
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowUp19,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                              ),
+                              const SizedBox(height: 16),
+                              Obx(
+                                () => controller.isSortNameDesc.value == false
+                                    ? GFButton(
+                                        onPressed: () {
+                                          controller.sortByNamaDesc(
+                                              1.toString(), 'peminjam1,DESC');
+                                          // Get.back();
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowDownZA,
+                                          color: Colors.white,
+                                        ),
+                                        // text: 'Sort by ID (Descending)',
+                                        child: const Text(
+                                          'Sort by Nama (Descending)',
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      )
+                                    : GFButton(
+                                        onPressed: () {
+                                          controller.sortByNamaAsc(
+                                              1.toString(), 'peminjam1,ASC');
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        text: 'Sort by Nama (Ascending)',
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowUpAZ,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                              ),
+                              const SizedBox(height: 16),
+                              Obx(() => controller.isSortTanggalDesc.value ==
+                                      false
+                                  ? GFButton(
+                                      onPressed: () {
+                                        controller.sortByTanggalInputDesc(
+                                            1.toString(), 'tgl_sekarang,DESC');
+                                        // Get.back();
+                                      },
+                                      elevation: 10,
+                                      size: GFSize.LARGE,
+                                      shape: GFButtonShape.pills,
+                                      fullWidthButton: true,
+                                      color: GFColors.FOCUS,
+                                      icon: const Icon(
+                                        FontAwesomeIcons.arrowDownShortWide,
+                                        color: Colors.white,
+                                      ),
+                                      // text: 'Sort by ID (Descending)',
+                                      child: const Text(
+                                        'Sort by Tanggal (Descending)',
+                                        textAlign: TextAlign.left,
+                                      ),
+                                    )
+                                  : GFButton(
+                                      onPressed: () {
+                                        controller.sortByTanggalInputAsc(
+                                            1.toString(), 'tgl_sekarang,ASC');
+                                      },
+                                      elevation: 10,
+                                      size: GFSize.LARGE,
+                                      text: 'Sort by Tanggal (Ascending)',
+                                      shape: GFButtonShape.pills,
+                                      fullWidthButton: true,
+                                      color: GFColors.FOCUS,
+                                      icon: const Icon(
+                                        FontAwesomeIcons.arrowUpWideShort,
+                                        color: Colors.white,
+                                      ),
+                                    )),
+                              const SizedBox(height: 16),
+                              Obx(
+                                () => controller.isSortUmurDesc.value == false
+                                    ? GFButton(
+                                        onPressed: () {
+                                          controller.sortByUmurDesc(
+                                              1.toString(), 'umur,DESC');
+                                          // Get.back();
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowDown91,
+                                          color: Colors.white,
+                                        ),
+                                        // text: 'Sort by ID (Descending)',
+                                        child: const Text(
+                                          'Sort by Umur (Descending)',
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      )
+                                    : GFButton(
+                                        onPressed: () {
+                                          controller.sortByUmurAsc(
+                                              1.toString(), 'umur,ASC');
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        text: 'Sort by Umur (Ascending)',
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowUp19,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                              ),
+                              const SizedBox(height: 16),
+                              Obx(
+                                () =>
+                                    controller.isSortPlafondDesc.value == false
+                                        ? GFButton(
+                                            onPressed: () {
+                                              controller.sortByPlafonDesc(
+                                                  1.toString(),
+                                                  'inputKeuangan.kredit_diusulkan,DESC');
+                                              // Get.back();
+                                            },
+                                            elevation: 10,
+                                            size: GFSize.LARGE,
+                                            shape: GFButtonShape.pills,
+                                            fullWidthButton: true,
+                                            color: GFColors.FOCUS,
+                                            icon: const Icon(
+                                              FontAwesomeIcons.arrowDown91,
+                                              color: Colors.white,
+                                            ),
+                                            // text: 'Sort by ID (Descending)',
+                                            child: const Text(
+                                              'Sort by Plafond (Descending)',
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          )
+                                        : GFButton(
+                                            onPressed: () {
+                                              controller.sortByPlafonAsc(
+                                                  1.toString(),
+                                                  'inputKeuangan.kredit_diusulkan,ASC');
+                                            },
+                                            elevation: 10,
+                                            size: GFSize.LARGE,
+                                            text: 'Sort by Plafond (Ascending)',
+                                            shape: GFButtonShape.pills,
+                                            fullWidthButton: true,
+                                            color: GFColors.FOCUS,
+                                            icon: const Icon(
+                                              FontAwesomeIcons.arrowUp19,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                              ),
+                              const SizedBox(height: 16),
+                              Obx(
+                                () => controller.isSortProgressDesc.value ==
+                                        false
+                                    ? GFButton(
+                                        onPressed: () {
+                                          controller.sortByProgressDesc(
+                                              1.toString(), 'progress,DESC');
+                                          // Get.back();
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowDown91,
+                                          color: Colors.white,
+                                        ),
+                                        // text: 'Sort by ID (Descending)',
+                                        child: const Text(
+                                          'Sort by Progress (Descending)',
+                                          textAlign: TextAlign.left,
+                                        ),
+                                      )
+                                    : GFButton(
+                                        onPressed: () {
+                                          controller.sortByProgressAsc(
+                                              1.toString(), 'progress,ASC');
+                                        },
+                                        elevation: 10,
+                                        size: GFSize.LARGE,
+                                        text: 'Sort by Progress (Ascending)',
+                                        shape: GFButtonShape.pills,
+                                        fullWidthButton: true,
+                                        color: GFColors.FOCUS,
+                                        icon: const Icon(
+                                          FontAwesomeIcons.arrowUp19,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
                     );
-                  });
             },
             icon: const Icon(Icons.sort),
           ),
@@ -472,7 +572,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                                     size: 1,
                                                     onPressed: null,
                                                     text:
-                                                        '${(double.parse(controller.listDebitur[index].progress.toString())) * 100} % (Input)',
+                                                        '${(double.parse(controller.listDebitur[index].progress.toString())) * 100}%',
                                                     color: GFColors.SUCCESS,
                                                   ),
                                                   const SizedBox(
@@ -499,23 +599,24 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                                 height: 5,
                                               ),
                                               Row(
-                                                children: const [
-                                                  GFButtonBadge(
+                                                children: [
+                                                  const GFButtonBadge(
                                                     size: 1,
                                                     onPressed: null,
                                                     text: 'UMKM',
                                                     color: GFColors.INFO,
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 5,
                                                   ),
                                                   GFButtonBadge(
                                                     size: 1,
                                                     onPressed: null,
-                                                    text: 'Tetap',
+                                                    text:
+                                                        '${controller.listDebitur[index].jenisUsaha}',
                                                     color: GFColors.DANGER,
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     width: 5,
                                                   ),
                                                 ],
@@ -543,12 +644,16 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                                   fontWeight: FontWeight.w300),
                                             ),
                                             const SizedBox(width: 8),
-                                            Text(
-                                              ': ${controller.listDebitur[index].bidangUsaha!}',
-                                              style: const TextStyle(
-                                                  color: Colors.blueGrey,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w300),
+                                            SizedBox(
+                                              width: 160,
+                                              child: Text(
+                                                ': ${controller.listDebitur[index].bidangUsaha!}',
+                                                style: const TextStyle(
+                                                    color: Colors.blueGrey,
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.w300),
+                                              ),
                                             ),
                                           ],
                                         ),

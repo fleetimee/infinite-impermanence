@@ -41,7 +41,7 @@ class ListDebiturProvider {
     try {
       final response = await httpClient.get(
         Uri.parse(
-            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&s={"peminjam1":{"${'contL'}": "$query"}}'),
+            '${baseUrl}debiturs?page=$page&limit=100&sort=$sort&fields=$field&s={"peminjam1":{"${'contL'}": "$query"}}'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

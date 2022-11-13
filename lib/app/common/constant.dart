@@ -20,7 +20,8 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 //     'https://number-41-bagooska-the-terribly-tired-tapir-2.fleetimee.repl.co/api/v1/';
 
 // List debitur field string
-const field = 'peminjam1,bidang_usaha,tgl_sekarang,umur,ktp1,progress';
+const field =
+    'peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress';
 
 // Insight debitur query string
 const joinTable =

@@ -26,6 +26,8 @@ class ListDebiturController extends GetxController {
   final isSortTanggalDesc = false.obs;
   final isSortUmurDesc = false.obs;
   final isSearchPressed = false.obs;
+  final isSortPlafondDesc = false.obs;
+  final isSortProgressDesc = false.obs;
 
   // For nekos api
   Future<String> img = Nekos().avatar();
@@ -260,6 +262,86 @@ class ListDebiturController extends GetxController {
     try {
       isMoreDataAvailable(false);
       isSortUmurDesc(false);
+      isDataProcessing(true);
+      ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        isDataProcessing(false);
+        // clear list
+        listDebitur.clear();
+        listDebitur.addAll(resp);
+      }, onError: (err) {
+        isDataProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isDataProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void sortByPlafonDesc(String page, String sort) {
+    try {
+      isMoreDataAvailable(false);
+      isSortPlafondDesc(true);
+      isDataProcessing(true);
+      ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        isDataProcessing(false);
+        // clear list
+        listDebitur.clear();
+        listDebitur.addAll(resp);
+      }, onError: (err) {
+        isDataProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isDataProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void sortByPlafonAsc(String page, String sort) {
+    try {
+      isMoreDataAvailable(false);
+      isSortPlafondDesc(false);
+      isDataProcessing(true);
+      ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        isDataProcessing(false);
+        // clear list
+        listDebitur.clear();
+        listDebitur.addAll(resp);
+      }, onError: (err) {
+        isDataProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isDataProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void sortByProgressDesc(String page, String sort) {
+    try {
+      isMoreDataAvailable(false);
+      isSortProgressDesc(true);
+      isDataProcessing(true);
+      ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        isDataProcessing(false);
+        // clear list
+        listDebitur.clear();
+        listDebitur.addAll(resp);
+      }, onError: (err) {
+        isDataProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isDataProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void sortByProgressAsc(String page, String sort) {
+    try {
+      isMoreDataAvailable(false);
+      isSortProgressDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
         isDataProcessing(false);

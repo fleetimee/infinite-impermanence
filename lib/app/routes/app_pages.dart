@@ -340,7 +340,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_DEBITUR,
-      page: () => const ListDebiturView(),
+      page: () => ListDebiturView(),
       binding: ListDebiturBinding(),
     ),
     GetPage(

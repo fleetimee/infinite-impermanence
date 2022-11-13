@@ -431,7 +431,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                 'assets/images/home/keuangan_slider.jpg',
                                 fit: BoxFit.cover,
                                 height: 200.0,
-                                color: Colors.black.withOpacity(0.8),
+                                color: Colors.black.withOpacity(0.6),
                                 colorBlendMode: BlendMode.darken,
                               ),
                               Align(
@@ -842,7 +842,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 5),
                                 child: Text(
-                                  '${(double.parse(controller.insightDebitur.value.progress.toString()) * 100)} %',
+                                  '${(double.parse(controller.insightDebitur.value.progress.toString()) * 100).toStringAsFixed(0)} %',
                                   textAlign: TextAlign.end,
                                   style: const TextStyle(
                                       fontSize: 16, color: Colors.white),

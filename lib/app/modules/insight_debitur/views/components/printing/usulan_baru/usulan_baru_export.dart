@@ -43,8 +43,6 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
 
-  const premi = 3.34;
-
   // Get list of agunan
   var agunanList = debtor.agunan;
 

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
@@ -23,6 +25,10 @@ class ListDebiturView extends GetView<ListDebiturController> {
 
   var umur = '';
   var asal = '';
+  var tanggal = '';
+  var plafond = '';
+
+  void _onChanged(dynamic val) => debugPrint(val.toString());
 
   @override
   Widget build(BuildContext context) {
@@ -576,7 +582,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                                     size: 1,
                                                     onPressed: null,
                                                     text:
-                                                        '${(double.parse(controller.listDebitur[index].progress.toString())) * 100}%',
+                                                        '${((double.parse(controller.listDebitur[index].progress.toString())) * 100).toStringAsFixed(0)}%',
                                                     color: GFColors.SUCCESS,
                                                   ),
                                                   const SizedBox(
@@ -789,16 +795,28 @@ class ListDebiturView extends GetView<ListDebiturController> {
             builder: (context) {
               return Container(
                 padding: const EdgeInsets.all(16),
-                height: 400,
+                height: 900,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     FormBuilder(
                       key: controller.filterKey,
+                      skipDisabled: true,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Umur',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
                           Obx(
                             () => Row(
                               children: [
@@ -807,6 +825,14 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                   onChanged: (value) {
                                     controller.isFilterUmurPressed.value =
                                         value!;
+                                    if (controller.isFilterUmurPressed.value ==
+                                        false) {
+                                      controller.filterKey.currentState!
+                                          .fields['umur']
+                                          ?.reset();
+                                      controller.filterUmurInput.clear();
+                                      umur = '';
+                                    }
                                     // umur = '${'&filter'}=umur||${'eq'}||$value';
                                     debugPrint(value.toString());
                                   },
@@ -815,17 +841,328 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                   child: FormBuilderTextField(
                                     name: 'umur',
                                     controller: controller.filterUmurInput,
+                                    decoration: const InputDecoration(
+                                      prefixIcon:
+                                          Icon(FontAwesomeIcons.odnoklassniki),
+                                      hintText: 'Filter berdasarkan Umur',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                    ),
                                     enabled:
                                         controller.isFilterUmurPressed.value,
+
                                     onSaved: (value) {
-                                      umur =
-                                          '${'&filter'}=umur||${'eq'}||$value';
+                                      if (value != '') {
+                                        umur =
+                                            '${'&filter'}=umur||${'eq'}||$value';
+                                      }
                                     },
+
+                                    // onSubmitted: (value) {
+                                    //   umur =
+                                    //       '${'&filter'}=umur||${'eq'}||$value';
+                                    // },
                                   ),
                                 )
                               ],
                             ),
                           ),
+                          const SizedBox(height: 10),
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Domisili',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Obx(
+                            () => Row(
+                              children: [
+                                Checkbox(
+                                  value: controller.isFilterAsalPressed.value,
+                                  onChanged: (value) {
+                                    controller.isFilterAsalPressed.value =
+                                        value!;
+
+                                    if (controller.isFilterAsalPressed.value ==
+                                        false) {
+                                      controller.filterKey.currentState!
+                                          .fields['domisili']
+                                          ?.reset();
+                                      controller.filterDomisiliInput.clear();
+                                      asal = '';
+                                    }
+                                    // umur = '${'&filter'}=umur||${'eq'}||$value';
+                                    debugPrint(value.toString());
+                                  },
+                                ),
+                                Expanded(
+                                  child: FormBuilderSearchableDropdown<String>(
+                                    name: 'domisili',
+                                    enabled:
+                                        controller.isFilterAsalPressed.value,
+
+                                    onSaved: (value) {
+                                      if (value != null) {
+                                        asal =
+                                            '${'&filter'}=ktp1||${'eq'}||$value';
+                                      }
+                                    },
+                                    // onChanged: (value) {
+                                    //   asal =
+                                    //       '${'&filter'}=ktp1||${'eq'}||$value';
+                                    // },
+
+                                    items: allProvinsi,
+                                    popupProps: const PopupProps.menu(
+                                        showSearchBox: true),
+                                    dropdownSearchDecoration:
+                                        const InputDecoration(
+                                      hintText: 'Search',
+                                      labelText: 'Search',
+                                    ),
+                                    filterFn: (provinsi, filter) => provinsi
+                                        .toLowerCase()
+                                        .contains(filter.toLowerCase()),
+                                    decoration: const InputDecoration(
+                                      labelStyle: TextStyle(fontSize: 18),
+                                      prefixIcon:
+                                          Icon(FontAwesomeIcons.addressBook),
+                                      hintText: 'Filter berdasarkan Domisili',
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Tanggal',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Obx(
+                            () => Row(
+                              children: [
+                                Checkbox(
+                                  value:
+                                      controller.isFilterTanggalPressed.value,
+                                  onChanged: (value) {
+                                    controller.isFilterTanggalPressed.value =
+                                        value!;
+
+                                    if (controller
+                                            .isFilterTanggalPressed.value ==
+                                        false) {
+                                      controller.filterKey.currentState!
+                                          .fields['date']
+                                          ?.reset();
+                                      controller.filterRangeTanggalInput
+                                          .clear();
+                                      tanggal = '';
+                                    }
+                                    // umur = '${'&filter'}=umur||${'eq'}||$value';
+                                    debugPrint(value.toString());
+                                  },
+                                ),
+                                Expanded(
+                                  child: FormBuilderDateRangePicker(
+                                    name: 'date',
+                                    // valueTransformer: (value) {
+                                    //   if (value != null) {
+                                    //     tanggal =
+                                    //         '${'&filter'}=tanggal||${'eq'}||${value.start.toIso8601String()}||${'and'}||${'tanggal'}||${'eq'}||${value.end.toIso8601String()}';
+                                    //   }
+                                    // },
+                                    currentDate: DateTime.now(),
+                                    format: DateFormat('dd MMMM yyyy'),
+                                    firstDate: DateTime(1970),
+                                    lastDate: DateTime(2050),
+                                    onChanged: (value) {
+                                      debugPrint(value.toString());
+                                    },
+                                    onSaved: (value) {
+                                      if (value != null) {
+                                        tanggal =
+                                            '${'&filter'}=tgl_sekarang||${'between'}||${value.start.toIso8601String()},${value.end.toIso8601String()}';
+                                      }
+                                    },
+                                    enableInteractiveSelection: true,
+                                    enabled:
+                                        controller.isFilterTanggalPressed.value,
+                                    decoration: const InputDecoration(
+                                      hintText: 'Filter berdasarkan Tanggal',
+                                      prefixIcon:
+                                          Icon(FontAwesomeIcons.calendar),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              'Plafond',
+                              style: TextStyle(
+                                fontSize: 21,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          // Obx(
+                          //   () => Column(
+                          //     children: [
+                          //       Row(
+                          //         children: [
+                          //           Checkbox(
+                          //             value: controller
+                          //                 .isFilterPlafondPressed.value,
+                          //             onChanged: (value) {
+                          //               controller.isFilterPlafondPressed
+                          //                   .value = value!;
+
+                          //               if (controller
+                          //                       .isFilterPlafondPressed.value ==
+                          //                   false) {
+                          //                 controller.filterKey.currentState!
+                          //                     .fields['date']
+                          //                     ?.reset();
+                          //                 controller.filterPlafondInput.clear();
+                          //                 plafond = '';
+                          //               }
+                          //               // umur = '${'&filter'}=umur||${'eq'}||$value';
+                          //               debugPrint(value.toString());
+                          //             },
+                          //           ),
+                          //           Expanded(
+                          //             // child: FormBuilderDateRangePicker(
+                          //             //   name: 'date',
+                          //             //   // valueTransformer: (value) {
+                          //             //   //   if (value != null) {
+                          //             //   //     tanggal =
+                          //             //   //         '${'&filter'}=tanggal||${'eq'}||${value.start.toIso8601String()}||${'and'}||${'tanggal'}||${'eq'}||${value.end.toIso8601String()}';
+                          //             //   //   }
+                          //             //   // },
+                          //             //   currentDate: DateTime.now(),
+                          //             //   format: DateFormat('dd MMMM yyyy'),
+                          //             //   firstDate: DateTime(1970),
+                          //             //   lastDate: DateTime(2050),
+                          //             //   onChanged: (value) {
+                          //             //     debugPrint(value.toString());
+                          //             //   },
+                          //             //   onSaved: (value) {
+                          //             //     if (value != null) {
+                          //             //       tanggal =
+                          //             //           '${'&filter'}=tgl_sekarang||${'between'}||${value.start.toIso8601String()},${value.end.toIso8601String()}';
+                          //             //     }
+                          //             //   },
+                          //             //   enableInteractiveSelection: true,
+                          //             //   enabled: controller
+                          //             //       .isFilterTanggalPressed.value,
+                          //             //   decoration: const InputDecoration(
+                          //             //     hintText:
+                          //             //         'Filter berdasarkan Tanggal',
+                          //             //     prefixIcon:
+                          //             //         Icon(FontAwesomeIcons.calendar),
+                          //             //     border: OutlineInputBorder(
+                          //             //       borderRadius: BorderRadius.all(
+                          //             //         Radius.circular(10),
+                          //             //       ),
+                          //             //     ),
+                          //             //   ),
+                          //             // ),
+                          //             // child: FormBuilderRangeSlider(
+                          //             //   name: 'plafond',
+                          //             //   min: 0.0,
+                          //             //   max: 100.0,
+                          //             //   enabled:
+                          //             //       controller.isFilterPlafondPressed.value,
+                          //             //   divisions: 100,
+                          //             //   onChanged: (value) {
+                          //             //     debugPrint(value.toString());
+                          //             //   },
+                          //             //   onSaved: (value) {
+                          //             //     // if (value != null) {
+                          //             //     //   plafond =
+                          //             //     //       '${'&filter'}=plafond||${'between'}||${value.start},${value.end}';
+                          //             //     // }
+                          //             //   },
+                          //             //   decoration: const InputDecoration(
+                          //             //     hintText: 'Filter berdasarkan Plafond',
+                          //             //     prefixIcon:
+                          //             //         Icon(FontAwesomeIcons.moneyBill),
+                          //             //     border: OutlineInputBorder(
+                          //             //       borderRadius: BorderRadius.all(
+                          //             //         Radius.circular(10),
+                          //             //       ),
+                          //             //     ),
+                          //             //   ),
+                          //             // ),
+                          //             child: FormBuilderRangeSlider(
+                          //               name: 'range_slider',
+                          //               enabled: controller
+                          //                   .isFilterPlafondPressed.value,
+                          //               // validator: FormBuilderValidators.compose([FormBuilderValidators.min(context, 6)]),
+                          //               // onChanged: _onChanged,
+
+                          //               min: 0.0,
+                          //               max: 1000000000.0,
+                          //               displayValues: DisplayValues.current,
+                          //               initialValue: const RangeValues(4, 7),
+                          //               divisions: 200,
+                          //               onChanged: (value) {
+                          //                 debugPrint(value.toString());
+                          //               },
+                          //               numberFormat:
+                          //                   NumberFormat.simpleCurrency(
+                          //                 locale: 'id',
+                          //                 decimalDigits: 0,
+                          //                 name: 'Rp. ',
+                          //               ),
+                          //               activeColor: primaryColor,
+                          //               inactiveColor: Colors.pink[100],
+                          //               onSaved: (value) {
+                          //                 if (value != null) {
+                          //                   plafond =
+                          //                       '${'&filter'}=plafond||${'between'}||${value.start},${value.end}';
+                          //                 }
+                          //               },
+                          //               decoration: const InputDecoration(
+                          //                 labelText: 'Range Plafond',
+                          //               ),
+                          //             ),
+                          //           )
+                          //         ],
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -834,7 +1171,9 @@ class ListDebiturView extends GetView<ListDebiturController> {
                         if (controller.filterKey.currentState
                                 ?.saveAndValidate() ??
                             false) {
-                          controller.filter(1.toString(), 'id,ASC', umur, asal);
+                          controller.filter(1.toString(), 'id,ASC', umur, asal,
+                              tanggal, plafond);
+                          Get.back();
                           debugPrint(controller.filterKey.currentState?.value
                               .toString());
                         } else {
@@ -845,6 +1184,9 @@ class ListDebiturView extends GetView<ListDebiturController> {
                       fullWidthButton: true,
                       color: primaryColor,
                       text: 'Filter',
+                      size: GFSize.LARGE,
+                      elevation: 10,
+                      shape: GFButtonShape.pills,
                     )
                   ],
                 ),

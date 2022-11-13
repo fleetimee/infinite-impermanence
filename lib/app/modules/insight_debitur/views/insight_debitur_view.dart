@@ -842,7 +842,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 5),
                                 child: Text(
-                                  '${(double.parse(controller.insightDebitur.value.progress.toString()) * 100)} %',
+                                  '${(double.parse(controller.insightDebitur.value.progress.toString()) * 100).toStringAsFixed(0)} %',
                                   textAlign: TextAlign.end,
                                   style: const TextStyle(
                                       fontSize: 16, color: Colors.white),

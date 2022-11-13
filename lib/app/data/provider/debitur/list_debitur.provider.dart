@@ -37,11 +37,16 @@ class ListDebiturProvider {
   }
 
   Future<List<Datum>> filterDebiturs(
-      String page, String sort, String filterAsal, String filterUmur) async {
+      String page,
+      String sort,
+      String filterUmur,
+      String filterAsal,
+      String filterTanggal,
+      String filterPlafond) async {
     try {
       final response = await httpClient.get(
         Uri.parse(
-            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk$filterAsal$filterUmur'),
+            '${baseUrl}debiturs?page=$page&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk$filterAsal$filterUmur$filterTanggal$filterPlafond'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

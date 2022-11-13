@@ -22,6 +22,9 @@ class ListDebiturController extends GetxController {
   final filterKey = GlobalKey<FormBuilderState>();
 
   var filterUmurInput = TextEditingController();
+  var filterDomisiliInput = TextEditingController();
+  var filterRangeTanggalInput = TextEditingController();
+  var filterPlafondInput = TextEditingController();
 
   // Some helper variable
   final isSortIdDesc = false.obs;
@@ -34,6 +37,8 @@ class ListDebiturController extends GetxController {
 
   RxBool isFilterUmurPressed = false.obs;
   RxBool isFilterAsalPressed = false.obs;
+  RxBool isFilterTanggalPressed = false.obs;
+  RxBool isFilterPlafondPressed = false.obs;
 
   // For nekos api
   Future<String> img = Nekos().avatar();
@@ -366,11 +371,14 @@ class ListDebiturController extends GetxController {
     }
   }
 
-  void filter(String page, String sort, String umur, String asal) {
+  void filter(String page, String sort, String umur, String asal,
+      String tanggal, String plafond) {
     try {
       isMoreDataAvailable(false);
       isDataProcessing(true);
-      ListDebiturProvider().filterDebiturs(page, sort, umur, asal).then((resp) {
+      ListDebiturProvider()
+          .filterDebiturs(page, sort, umur, asal, tanggal, plafond)
+          .then((resp) {
         isDataProcessing(false);
         // clear list
         listDebitur.clear();

@@ -23,12 +23,24 @@ class AgunanAnalisisCalcController extends GetxController {
   void onInit() {
     super.onInit();
     getAllAgunanTanahAnalisis(data[0].id ?? 0);
-    getAllAgunanTanahBangunanAnalisis(data[1].id ?? 0);
-    getAllAgunanKendaraanAnalisis(data[2].id ?? 0);
-    getAllAgunanPeralatanAnalisis(data[3].id ?? 0);
-    getAllAgunanCashAnalisis(data[4].id ?? 0);
-    getAllAgunanLosAnalisis(data[5].id ?? 0);
-    getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
+    Future.delayed(const Duration(seconds: 1), () {
+      getAllAgunanTanahBangunanAnalisis(data[1].id ?? 0);
+    });
+    Future.delayed(const Duration(seconds: 2), () {
+      getAllAgunanKendaraanAnalisis(data[2].id ?? 0);
+    });
+    Future.delayed(const Duration(seconds: 3), () {
+      getAllAgunanLosAnalisis(data[3].id ?? 0);
+    });
+    Future.delayed(const Duration(seconds: 4), () {
+      getAllAgunanPeralatanAnalisis(data[4].id ?? 0);
+    });
+    Future.delayed(const Duration(seconds: 5), () {
+      getAllAgunanCashAnalisis(data[5].id ?? 0);
+    });
+    Future.delayed(const Duration(seconds: 6), () {
+      getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
+    });
   }
 
   void patchProgressBar(int id) {

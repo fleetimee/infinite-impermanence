@@ -820,7 +820,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Umur',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -885,7 +885,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Domisili',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -962,7 +962,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Tanggal',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -1038,7 +1038,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Jenis Usaha',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -1110,12 +1110,13 @@ class ListDebiturView extends GetView<ListDebiturController> {
                               ],
                             ),
                           ),
+                          const SizedBox(height: 10),
                           const Align(
                             alignment: Alignment.topLeft,
                             child: Text(
                               'Plafond',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

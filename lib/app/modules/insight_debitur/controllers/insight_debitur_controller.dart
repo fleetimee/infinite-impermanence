@@ -17,6 +17,7 @@ class InsightDebiturController extends GetxController
   @override
   void onInit() {
     super.onInit();
+
     fetchOneDebitur(debiturId ?? 0);
     Future.delayed(const Duration(seconds: 1), () {
       fetchAgunan(debiturId ?? 0);
@@ -71,6 +72,7 @@ class InsightDebiturController extends GetxController
   void fetchOneDebitur(int id) async {
     try {
       isDataLoading(true);
+
       InsightDebiturProvider().fetchDebiturById(debiturId).then((resp) {
         isDataLoading(false);
         insightDebitur(resp);

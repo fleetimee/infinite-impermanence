@@ -327,7 +327,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
                 SizedBox.shrink(),
                 SizedBox.shrink(),
                 debtor.peminjam3 == '' || debtor.peminjam3 == null
-                    ? textDeskripsiNoBold("3. -")
+                    ? SizedBox.shrink()
                     : textDeskripsiNoBold("3. ${debtor.peminjam3}"),
               ],
             ),
@@ -336,7 +336,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
                 SizedBox.shrink(),
                 SizedBox.shrink(),
                 debtor.peminjam4 == '' || debtor.peminjam4 == null
-                    ? textDeskripsiNoBold("4. -")
+                    ? SizedBox.shrink()
                     : textDeskripsiNoBold("4. ${debtor.peminjam4}"),
               ],
             ),
@@ -344,7 +344,18 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
               children: [
                 textDeskripsiNoBold('2.'),
                 textDeskripsiNoBold("Pemilik Agunan"),
-                textDeskripsiNoBold("${debtor.pemilikAgunan1}"),
+                debtor.pemilikAgunan1 == '' || debtor.pemilikAgunan1 == null
+                    ? textDeskripsiNoBold("1. -")
+                    : textDeskripsiNoBold("1. ${debtor.pemilikAgunan1}"),
+              ],
+            ),
+            TableRow(
+              children: [
+                SizedBox.shrink(),
+                SizedBox.shrink(),
+                debtor.pemilikAgunan2 == '' || debtor.pemilikAgunan2 == null
+                    ? textDeskripsiNoBold("2. -")
+                    : textDeskripsiNoBold("2. ${debtor.pemilikAgunan2}"),
               ],
             ),
             TableRow(

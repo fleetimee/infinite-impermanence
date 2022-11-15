@@ -269,12 +269,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
                             text: data.noKtp1,
                           ),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
-                          validator: FormBuilderValidators.compose([
-                            FormBuilderValidators.required(),
-                            FormBuilderValidators.numeric(),
-                            FormBuilderValidators.maxLength(16,
-                                errorText: 'Max 16 Karakter'),
-                          ]),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             labelText: 'No Ktp',

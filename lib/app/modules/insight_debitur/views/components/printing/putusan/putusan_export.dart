@@ -315,8 +315,8 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 SizedBox.shrink(),
                 SizedBox.shrink(),
                 debtor.peminjam3 == '' || debtor.peminjam3 == null
-                    ? textDeskripsiNoBold("3. -")
-                    : textDeskripsiNoBold("3. ${debtor.peminjam3}"),
+                    ? SizedBox.shrink()
+                    : textDeskripsiNoBold("3. ${debtor.peminjam3}")
               ],
             ),
             TableRow(
@@ -324,7 +324,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 SizedBox.shrink(),
                 SizedBox.shrink(),
                 debtor.peminjam4 == '' || debtor.peminjam4 == null
-                    ? textDeskripsiNoBold("4. -")
+                    ? SizedBox.shrink()
                     : textDeskripsiNoBold("4. ${debtor.peminjam4}"),
               ],
             ),

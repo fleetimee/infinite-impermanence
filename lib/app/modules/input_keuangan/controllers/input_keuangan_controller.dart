@@ -199,7 +199,9 @@ class InputKeuanganController extends GetxController
       InputKeuanganProvider().deployInputKeuangan(body).then((resp) {
         isInputKeuanganProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debitur.text));
-        patchProgressBar(int.parse(debitur.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(int.parse(debitur.text));
+        });
         clearTextEditing();
         resetTab();
         Get.snackbar(
@@ -335,8 +337,10 @@ class InputKeuanganController extends GetxController
       isInputKeuanganProcessing(true);
       InputKeuanganProvider().purgeInputKeuangan(id).then((resp) {
         isInputKeuanganProcessing(false);
-        purgeProgressBar(int.parse(debitur.text));
         debiturController.fetchOneDebitur(int.parse(debitur.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(int.parse(debitur.text));
+        });
         clearTextEditing();
         resetTab();
         AwesomeDialog(

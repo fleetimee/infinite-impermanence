@@ -80,7 +80,9 @@ class InputNeracaController extends GetxController {
         isNeracaProcessing(false);
         clearForm();
         debiturController.fetchOneDebitur(int.parse(debitur.text));
-        patchProgressBar(data);
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(data);
+        });
         Get.snackbar(
           'Sucess',
           'Data berhasil disimpan',
@@ -206,7 +208,9 @@ class InputNeracaController extends GetxController {
         isNeracaProcessing(false);
         clearForm();
         debiturController.fetchOneDebitur(id);
-        purgeProgressBar(data);
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(data);
+        });
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

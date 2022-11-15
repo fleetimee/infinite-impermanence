@@ -257,7 +257,7 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmurR(''),
                         textUmur(''),
                         debtor.peminjam2 == '' || debtor.peminjam2 == null
-                            ? textUmur('  2. -')
+                            ? textUmurBoldLeft('  2. -')
                             : textUmurBoldLeft(
                                 '  2. ${debtor.peminjam2.toString()}'),
                       ],
@@ -268,7 +268,7 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmurR(''),
                         textUmur(''),
                         debtor.peminjam3 == '' || debtor.peminjam3 == null
-                            ? textUmurBoldLeft('  3. -')
+                            ? SizedBox.shrink()
                             : textUmurBoldLeft(
                                 '  3. ${debtor.peminjam3.toString()}'),
                       ],
@@ -279,9 +279,9 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmurR(''),
                         textUmur(''),
                         debtor.peminjam4 == '' || debtor.peminjam4 == null
-                            ? textUmurBoldLeft('  4. -')
+                            ? SizedBox.shrink()
                             : textUmurBoldLeft(
-                                ' 4. ${debtor.peminjam4.toString()}'),
+                                '  4. ${debtor.peminjam4.toString()}'),
                       ],
                     ),
                     TableRow(

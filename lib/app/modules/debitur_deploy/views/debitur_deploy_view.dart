@@ -20,7 +20,6 @@ import '../../../common/style.dart';
 class DebiturDeployView extends GetView<DebiturDeployController> {
   const DebiturDeployView({Key? key}) : super(key: key);
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -175,57 +174,63 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: 'peminjam3',
-                          controller: controller.peminjam3.value,
-                          decoration: const InputDecoration(
-                            labelText: 'Peminjam 3',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan Peminjam 3',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
+                  Visibility(
+                    visible: false,
+                    maintainState: true,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: FormBuilderTextField(
+                            name: 'peminjam3',
+                            controller: controller.peminjam3.value,
+                            decoration: const InputDecoration(
+                              labelText: 'Peminjam 3',
+                              labelStyle: TextStyle(fontSize: 18),
+                              hintText: 'Masukkan Peminjam 3',
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: primaryColor),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Container(),
-                      ),
-                    ],
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Container(),
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: 'peminjam4',
-                          controller: controller.peminjam4.value,
-                          decoration: const InputDecoration(
-                            labelText: 'Peminjam 4',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan Peminjam 4',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
+                  Visibility(
+                    visible: false,
+                    maintainState: true,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: FormBuilderTextField(
+                            name: 'peminjam4',
+                            controller: controller.peminjam4.value,
+                            decoration: const InputDecoration(
+                              labelText: 'Peminjam 4',
+                              labelStyle: TextStyle(fontSize: 18),
+                              hintText: 'Masukkan Peminjam 4',
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: primaryColor),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Container(),
-                      ),
-                    ],
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Container(),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 25),
                   Row(

@@ -9,6 +9,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
@@ -820,7 +821,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Umur',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -849,6 +850,19 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                 Expanded(
                                   child: FormBuilderTextField(
                                     name: 'umur',
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+
+                                    validator: FormBuilderValidators.compose([
+                                      FormBuilderValidators.numeric(),
+                                      FormBuilderValidators.min(18),
+                                      FormBuilderValidators.max(80),
+                                      if (controller
+                                              .isFilterUmurPressed.value ==
+                                          true)
+                                        FormBuilderValidators.required()
+                                    ]),
+                                    keyboardType: TextInputType.number,
                                     controller: controller.filterUmurInput,
                                     decoration: const InputDecoration(
                                       prefixIcon:
@@ -885,7 +899,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Domisili',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -962,7 +976,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Tanggal',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -1038,7 +1052,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
                             child: Text(
                               'Jenis Usaha',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -1110,12 +1124,13 @@ class ListDebiturView extends GetView<ListDebiturController> {
                               ],
                             ),
                           ),
+                          const SizedBox(height: 10),
                           const Align(
                             alignment: Alignment.topLeft,
                             child: Text(
                               'Plafond',
                               style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

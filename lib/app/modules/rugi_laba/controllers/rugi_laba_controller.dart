@@ -133,7 +133,9 @@ class RugiLabaController extends GetxController {
         isRugiLabaProcessing.value = false;
         clearForm();
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        patchProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(int.parse(debiturId.text));
+        });
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
@@ -277,7 +279,9 @@ class RugiLabaController extends GetxController {
         isRugiLabaProcessing(false);
         clearForm();
         debiturController.fetchOneDebitur(data);
-        purgeProgressBar(data);
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(data);
+        });
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

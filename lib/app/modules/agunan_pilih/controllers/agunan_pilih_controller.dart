@@ -98,7 +98,9 @@ class AgunanPilihController extends GetxController {
         isAgunanInputProcessing.value = false;
         debiturController.fetchAgunan(data);
         debiturController.fetchOneDebitur(data);
-        patchProgressBar(data);
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(data);
+        });
         Get.snackbar(
           'Sukses',
           'Agunan berhasil ditambahkan',

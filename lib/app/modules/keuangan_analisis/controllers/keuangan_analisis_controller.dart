@@ -414,7 +414,9 @@ class KeuanganAnalisisController extends GetxController
         isKeuanganAnalisisProcessing(false);
         clearTextEditing();
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        patchProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(int.parse(debiturId.text));
+        });
         resetTab();
         AwesomeDialog(
           context: Get.context!,
@@ -538,8 +540,10 @@ class KeuanganAnalisisController extends GetxController
       AnalisisKeuanganProvider().purgeAnalisaKeuangan(id).then((resp) {
         isKeuanganAnalisisProcessing(false);
         clearTextEditing();
-        purgeProgressBar(int.parse(debiturId.text));
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(int.parse(debiturId.text));
+        });
         resetTab();
         AwesomeDialog(
           context: Get.context!,

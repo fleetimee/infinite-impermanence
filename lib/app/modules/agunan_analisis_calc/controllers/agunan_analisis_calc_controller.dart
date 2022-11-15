@@ -23,12 +23,74 @@ class AgunanAnalisisCalcController extends GetxController {
   void onInit() {
     super.onInit();
     getAllAgunanTanahAnalisis(data[0].id ?? 0);
-    getAllAgunanTanahBangunanAnalisis(data[1].id ?? 0);
-    getAllAgunanKendaraanAnalisis(data[2].id ?? 0);
-    getAllAgunanPeralatanAnalisis(data[3].id ?? 0);
-    getAllAgunanCashAnalisis(data[4].id ?? 0);
-    getAllAgunanLosAnalisis(data[5].id ?? 0);
-    getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
+
+    if (data[0].id != null || data[0].id != 0) {
+      getAllAgunanTanahBangunanAnalisis(data[1].id ?? 0);
+    }
+
+    if (data[1].id != null || data[1].id != 0) {
+      getAllAgunanKendaraanAnalisis(data[2].id ?? 0);
+    }
+
+    Future.delayed(const Duration(seconds: 3), () {
+      if (data[2].id != null || data[2].id != 0) {
+        getAllAgunanPeralatanAnalisis(data[3].id ?? 0);
+      }
+    });
+
+    Future.delayed(const Duration(seconds: 3), () {
+      if (data[3].id != null || data[3].id != 0) {
+        getAllAgunanCashAnalisis(data[4].id ?? 0);
+      }
+    });
+    // if (data[2].id != null || data[2].id != 0) {
+    //   getAllAgunanPeralatanAnalisis(data[3].id ?? 0);
+    // }
+
+    // if (data[3].id != null || data[3].id != 0) {
+    //   getAllAgunanCashAnalisis(data[4].id ?? 0);
+    // }
+
+    Future.delayed(const Duration(seconds: 6), () {
+      if (data[4].id != null || data[4].id != 0) {
+        getAllAgunanLainnyaAnalisis(data[5].id ?? 0);
+      }
+    });
+
+    // if (data[4].id != null || data[4].id != 0) {
+    //   getAllAgunanLosAnalisis(data[5].id ?? 0);
+    // }
+
+    Future.delayed(const Duration(seconds: 6), () {
+      if (data[5].id != null || data[5].id != 0) {
+        getAllAgunanLosAnalisis(data[6].id ?? 0);
+      }
+    });
+
+    // if (data[5].id != null || data[5].id != 0) {
+    //   getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
+    // }
+
+    // Check if future done
+
+    // Future.delayed(const Duration(seconds: 1), () {
+    //   getAllAgunanTanahBangunanAnalisis(data[1].id ?? 0);
+    // });
+    // Future.delayed(const Duration(seconds: 2), () {
+    //   getAllAgunanKendaraanAnalisis(data[2].id ?? 0);
+    // });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   getAllAgunanLosAnalisis(data[3].id ?? 0);
+    // });
+    // Future.delayed(const Duration(seconds: 4), () {
+    //   getAllAgunanPeralatanAnalisis(data[4].id ?? 0);
+    // });
+    // Future.delayed(const Duration(seconds: 5), () {
+    //   getAllAgunanCashAnalisis(data[5].id ?? 0);
+    // });
+    // Future.delayed(const Duration(seconds: 6), () {
+    //   getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
+    // });
   }
 
   void patchProgressBar(int id) {
@@ -135,7 +197,9 @@ class AgunanAnalisisCalcController extends GetxController {
       AnalisaAgunanProvider().deployAnalisaAgunan(id, body).then((resp) {
         agunanAnalisis.isAnalisaAgunanProcessing(false);
         debiturController.fetchOneDebitur(data[7].id);
-        patchProgressBar(data[7].id);
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(data[7].id);
+        });
         clearForm();
         AwesomeDialog(
           context: Get.context!,

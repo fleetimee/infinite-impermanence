@@ -17,8 +17,11 @@ class InsightDebiturController extends GetxController
   @override
   void onInit() {
     super.onInit();
-    fetchAgunan(debiturId ?? 0);
+
     fetchOneDebitur(debiturId ?? 0);
+    Future.delayed(const Duration(seconds: 1), () {
+      fetchAgunan(debiturId ?? 0);
+    });
     // fetchSyaratLainnya(debiturId);
     // Define how many tabs you want to show
     tabController = TabController(length: 1, vsync: this);
@@ -69,6 +72,7 @@ class InsightDebiturController extends GetxController
   void fetchOneDebitur(int id) async {
     try {
       isDataLoading(true);
+
       InsightDebiturProvider().fetchDebiturById(debiturId).then((resp) {
         isDataLoading(false);
         insightDebitur(resp);

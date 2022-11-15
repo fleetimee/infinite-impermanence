@@ -106,7 +106,9 @@ class UsahaAnalisisController extends GetxController {
       AnalisaJenisUsahaProvider().deployAnalisaJenisUsaha(data).then((resp) {
         isAnalisaUsahaProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        patchProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(int.parse(debiturId.text));
+        });
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,
@@ -191,7 +193,9 @@ class UsahaAnalisisController extends GetxController {
       AnalisaJenisUsahaProvider().purgeAnalisaUsaha(id).then((resp) {
         isAnalisaUsahaProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        purgeProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(int.parse(debiturId.text));
+        });
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

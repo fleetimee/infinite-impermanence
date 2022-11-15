@@ -70,7 +70,9 @@ class AgunanAnalisisController extends GetxController {
       AnalisaAgunanProvider().purgeAnalisaAgunan(id, idAgunan).then((resp) {
         isAnalisaAgunanProcessing(false);
         debiturController.fetchOneDebitur(id);
-        purgeProgressBar(id);
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(id);
+        });
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

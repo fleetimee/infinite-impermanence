@@ -136,7 +136,9 @@ class BisnisAnalisisController extends GetxController {
         (resp) {
           isAnalisaBisnisProcessing(false);
           debiturController.fetchOneDebitur(int.parse(debiturId.text));
-          patchProgressBar(int.parse(debiturId.text));
+          Future.delayed(const Duration(seconds: 1), () {
+            patchProgressBar(int.parse(debiturId.text));
+          });
           clearForm();
           AwesomeDialog(
             context: Get.context!,
@@ -237,9 +239,11 @@ class BisnisAnalisisController extends GetxController {
       AnalisaBisnisProvider().purgeAnalisaBisnis(id).then((resp) {
         isAnalisaBisnisProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        purgeProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(int.parse(debiturId.text));
+        });
         clearForm();
-           AwesomeDialog(
+        AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,
           animType: AnimType.bottomSlide,

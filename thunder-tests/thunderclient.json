@@ -1263,11 +1263,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=10&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=inputKeuangan.kredit_diusulkan||$between||0,120000000",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=10&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-13T15:17:10.207Z",
+    "modified": "2022-11-14T07:18:17.141Z",
     "headers": [],
     "params": [
       {
@@ -1317,6 +1317,7 @@
       {
         "name": "filter",
         "value": "inputKeuangan.kredit_diusulkan||$between||0,120000000",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -1678,11 +1679,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Patch Progress",
-    "url": "{{baseUrl}}api/v1/debiturs/4",
+    "url": "{{baseUrl}}api/v1/debiturs/7",
     "method": "PATCH",
     "sortNum": 800000,
     "created": "2022-11-02T08:21:38.538Z",
-    "modified": "2022-11-11T03:27:19.438Z",
+    "modified": "2022-11-14T07:18:26.745Z",
     "headers": [],
     "params": [],
     "body": {

@@ -10,7 +10,7 @@ dependencies:
   awesome_dialog: ^3.0.2
   cupertino_icons: ^1.0.5
   currency_text_input_formatter: ^2.1.8
-  data_table_2: ^2.3.8 
+  data_table_2: ^2.3.8
   dio: ^4.0.6
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
@@ -51,6 +51,7 @@ dependencies:
   image_picker: ^0.8.6
   intl: ^0.17.0
   latlong2: ^0.8.1
+  loader_overlay: ^2.1.0
   map_launcher: ^2.4.0
   modal_bottom_sheet: ^2.1.2
   nekos: ^0.0.7
@@ -58,6 +59,7 @@ dependencies:
   numerus: ^2.0.0
   open_file: ^3.2.1
   open_street_map_search_and_pick: ^0.0.15
+  overlay_loading_progress: ^1.0.0
   pdf: ^3.8.4
   printing: ^5.9.3
   responsive_framework:

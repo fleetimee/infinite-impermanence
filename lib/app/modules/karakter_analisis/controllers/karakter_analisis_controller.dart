@@ -141,7 +141,9 @@ class KarakterAnalisisController extends GetxController {
       AnalisaKarakterProvider().deployAnalisaKarakter(data).then((value) {
         isAnalisaKarakterProcessing.value = false;
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        patchProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          patchProgressBar(int.parse(debiturId.text));
+        });
         clearForm();
         AwesomeDialog(
           context: Get.context!,
@@ -248,7 +250,9 @@ class KarakterAnalisisController extends GetxController {
       AnalisaKarakterProvider().purgeAnalisaKarakter(id).then((value) {
         isAnalisaKarakterProcessing(false);
         debiturController.fetchOneDebitur(int.parse(debiturId.text));
-        purgeProgressBar(int.parse(debiturId.text));
+        Future.delayed(const Duration(seconds: 1), () {
+          purgeProgressBar(int.parse(debiturId.text));
+        });
         clearForm();
         AwesomeDialog(
           context: Get.context!,

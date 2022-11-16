@@ -27,7 +27,7 @@ class RugiLabaView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rugi / Laba'),
+        title: const Text('Laporan Keuangan'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

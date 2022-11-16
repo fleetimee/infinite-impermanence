@@ -2,12 +2,14 @@
 import 'dart:convert';
 
 // 🐦 Flutter imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:flutter/cupertino.dart';
 
 // 📦 Package imports:
 import 'package:http/http.dart' as http;
+
+// 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 
 class SyaratLainProvider {
   final httpClient = http.Client();

@@ -1,11 +1,14 @@
-import 'package:akm/app/common/style.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/ijin_legitimasi_controller.dart';
 
 class IjinLegitimasiView extends GetView<IjinLegitimasiController> {

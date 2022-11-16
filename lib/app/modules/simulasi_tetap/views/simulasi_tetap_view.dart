@@ -6,10 +6,10 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
-import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import '../controllers/simulasi_tetap_controller.dart';
 
 class SimulasiTetapView extends GetView<SimulasiTetapController> {

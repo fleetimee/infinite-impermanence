@@ -1,8 +1,6 @@
 // ignore_for_file: prefer_is_empty
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -12,7 +10,9 @@ import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 
 class MenuAnalisaAgunan extends StatelessWidget {
   MenuAnalisaAgunan({

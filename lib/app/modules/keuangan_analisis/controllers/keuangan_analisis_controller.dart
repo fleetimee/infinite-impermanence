@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:math';
 
 // 🐦 Flutter imports:
-import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -18,6 +17,7 @@ import 'package:google_fonts/google_fonts.dart';
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/analisis_keuangan/save_analis_keuangan.provider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/service/debtor_service.dart';
 import '../../../common/style.dart';
 
 // 🌎 Project imports:

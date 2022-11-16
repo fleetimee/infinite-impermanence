@@ -1,16 +1,16 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/insight_debitur/views/components/printing/inputan/inputan_export.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/print_widget.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 
 // 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/printing/inputan/inputan_export.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/printing/print_widget.dart';
 
 Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
   var myTheme = ThemeData.withFont(
@@ -539,74 +539,12 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
   return pdf.save();
 }
 
-Widget titleTextNo(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
 Widget textUmur(
   final String text, {
   final TextAlign align = TextAlign.left,
 }) =>
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget textUmurBold(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget contentIsi(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget alphabetText(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
       child: Text(
         text,
         textAlign: align,

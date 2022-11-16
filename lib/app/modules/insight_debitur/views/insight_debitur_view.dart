@@ -1,9 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/analisa_agunan/menu_analisa_agunan.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
-import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -16,9 +11,11 @@ import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/bisnis_analisis/controllers/bisnis_analisis_controller.dart';
 import 'package:akm/app/modules/input_neraca/controllers/input_neraca_controller.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/analisa_agunan/menu_analisa_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_form_dashboard.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/header_agunan.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/select_agunan/menu_pilih_agunan.dart';
@@ -27,10 +24,13 @@ import 'package:akm/app/modules/insight_debitur/views/components/header_accordio
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/jenis_usaha.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/karakter.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/keuangan.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/syarat_lainnya.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/list_tile_printing.dart';
 import 'package:akm/app/modules/karakter_analisis/controllers/karakter_analisis_controller.dart';
 import 'package:akm/app/modules/keuangan_analisis/controllers/keuangan_analisis_controller.dart';
+import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
 import 'package:akm/app/modules/usaha_analisis/controllers/usaha_analisis_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/insight_debitur_controller.dart';
 
 class InsightDebiturView extends GetView<InsightDebiturController> {

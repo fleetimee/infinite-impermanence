@@ -6,11 +6,11 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/rugi_laba/controllers/rugi_laba_controller.dart';
-import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 

@@ -36,7 +36,10 @@ jobs:
 
       - uses: olegtarasov/get-tag@v2 # that generate $GIT_TAG_NAME env
         id: tagName
-  
+        with: # optional
+         tagRegex: '([0-9]+.[0-9]+.[0-9]+\+[0-9]+)' # Optional. Returns specified group text as tag name. Full tag string is returned if regex is not defined.
+         tagRegexGroup: 1 # Optional. Default is 1.
+
       # Step ini digunakan untuk mengubah versi pada pubspec.yaml sesuai dengan tag yang di push
       - name: Replace YAML version with tag version
         run: |

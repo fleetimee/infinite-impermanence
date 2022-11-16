@@ -1,43 +1,91 @@
-# This is a basic workflow to help you get started with Actions
-name: CD
+name: Fleetime Flutter CI/CD Configuration
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# Command ini digunakan untuk mentrigger workflow ini menggunakan
+# event push tag pada branch master
 on:
   push:
     tags:
-      - "v*.*.*" # on every version tag will build a new android artifact.
+      - "*.*.*+*" # on every version tag will build a new android artifact example: v3.1.2+6
 jobs:
   build:
-    name: Build APK
+    #1. Build APK dan APPBUNDLE
+    name: Build Artifacts and Release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
+      # Menyiapkan Java
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: "12.x"
+
+      # Menyiapkan Flutter dengan menggunakan channel stable
       - name: Setup Flutter
         uses: subosito/flutter-action@v1
         with:
-          channel: 'stable'
+          channel: "stable"
 
+      # Decode file KEYSTORE_JKS_PROD yang berbentuk base64 dan mengubahnya menjadi keystore.jks
       - name: Decode android/neumodore_key.jks
         run: echo "${{ secrets.KEYSTORE_JKS_PROD }}" | base64 --decode > android/app/keystore.jks
 
+      # Decode file KEY_PROPERTIES_PROD yang berbentuk base64 dan mengubahnya menjadi keystore.jks
       - name: Decode android/key.properties
         run: echo "${{ secrets.KEY_PROPERTIES_PROD }}" | base64 --decode > android/key.properties
 
+      - uses: olegtarasov/get-tag@v2 # that generate $GIT_TAG_NAME env
+        id: tagName
+  
+      # Step ini digunakan untuk mengubah versi pada pubspec.yaml sesuai dengan tag yang di push
+      - name: Replace YAML version with tag version
+        run: |
+          sed -i 's/99.99.99+99/'$GIT_TAG_NAME'/g' pubspec.yaml|
+          echo "Tag used version:"$GIT_TAG_NAME
+
+      # Step ini digunakan untuk menginstall dependency yang dibutuhkan
       - name: Pub Get Packages
         run: flutter pub get
 
+      # Step ini digunakan untuk build apk dan split per abi
       - name: Build APK
         run: flutter build apk --split-per-abi --release
 
+      # Step ini digunakan untuk build aab
       - name: Build APPBUNDLE
         run: flutter build appbundle --release
 
+      # Step ini digunakan untuk merelease apk dan aab ke github release
       - name: Create Github Release
         uses: ncipollo/release-action@v1
         with:
           artifacts: "build/app/outputs/apk/release/*.apk,build/app/outputs/bundle/release/*.aab"
+
+      # Step ini digunakan untuk menyimpan appbundle ke artifacts yang nantinya akan diteruskan ke step 2
+      - name: Save APPBUNDLE to Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: APPBUNDLE
+          path: build/app/outputs/bundle/release/app-release.aab
+
+  release_internal:
+    #2. Release Artifact ke Internal track Play Console
+    name: Release Artifacts to internal track
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Get APPBUNDLE from Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: APPBUNDLE
+      - name: Release APPBUNDLE to internal track
+        uses: r0adkll/upload-google-play@v1
+        with:
+          # Ini didapat dari service account yang sudah dibuat
+          serviceAccountJsonPlainText: ${{ secrets.GOOGLE_SERVICE_JSONKEY }}
+          # Ini didapat dari nama package yang sudah diupload melalui internal track
+          packageName: com.akm.fleetime
+          releaseFiles: app-release.aab
+          track: internal
+          status: draft

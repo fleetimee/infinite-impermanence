@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,6 +9,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/agunan/agunan_peralatan/agunan_peralatan.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 class ListAgunanPeralatanController extends GetxController {
   @override

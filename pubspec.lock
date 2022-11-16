@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.2"
-  back_button_interceptor:
-    dependency: transitive
-    description:
-      name: back_button_interceptor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "6.0.2"
   barcode:
     dependency: transitive
     description:
@@ -92,27 +85,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  cached_network_image:
-    dependency: transitive
-    description:
-      name: cached_network_image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.2.2"
-  cached_network_image_platform_interface:
-    dependency: transitive
-    description:
-      name: cached_network_image_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
-  cached_network_image_web:
-    dependency: transitive
-    description:
-      name: cached_network_image_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   change_app_package_name:
     dependency: "direct dev"
     description:
@@ -239,20 +211,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.2"
-  dio:
-    dependency: "direct main"
-    description:
-      name: dio
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "4.0.6"
-  dotted_line:
-    dependency: transitive
-    description:
-      name: dotted_line
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.1.0"
   double_back_to_close_app:
     dependency: "direct main"
     description:
@@ -288,13 +246,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.11"
-  fancy_shimmer_image:
-    dependency: "direct main"
-    description:
-      name: fancy_shimmer_image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   ffi:
     dependency: transitive
     description:
@@ -316,13 +267,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.6.1"
-  filter_list:
-    dependency: "direct main"
-    description:
-      name: filter_list
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   finance:
     dependency: "direct main"
     description:
@@ -344,20 +288,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  flutter_blurhash:
-    dependency: transitive
-    description:
-      name: flutter_blurhash
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.0"
-  flutter_cache_manager:
-    dependency: transitive
-    description:
-      name: flutter_cache_manager
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.3.0"
   flutter_chips_input:
     dependency: transitive
     description:
@@ -739,13 +669,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-  loader_overlay:
-    dependency: "direct main"
-    description:
-      name: loader_overlay
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.0"
   logging:
     dependency: transitive
     description:
@@ -830,13 +753,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  octo_image:
-    dependency: transitive
-    description:
-      name: octo_image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   open_file:
     dependency: "direct main"
     description:
@@ -851,13 +767,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.15"
-  overlay_loading_progress:
-    dependency: "direct main"
-    description:
-      name: overlay_loading_progress
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   package_config:
     dependency: transitive
     description:
@@ -942,13 +851,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.8.4"
-  pedantic:
-    dependency: transitive
-    description:
-      name: pedantic
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.11.1"
   permission_handler:
     dependency: transitive
     description:
@@ -1098,13 +1000,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.9.1"
-  rxdart:
-    dependency: transitive
-    description:
-      name: rxdart
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.27.5"
   scaffold_gradient_background:
     dependency: "direct main"
     description:
@@ -1138,13 +1033,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  slide_digital_clock:
-    dependency: "direct main"
-    description:
-      name: slide_digital_clock
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.2"
   source_span:
     dependency: transitive
     description:
@@ -1152,20 +1040,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.2"
-  sqflite:
-    dependency: transitive
-    description:
-      name: sqflite
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.3+1"
-  sqflite_common:
-    dependency: transitive
-    description:
-      name: sqflite_common
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.1+1"
   stack_trace:
     dependency: transitive
     description:
@@ -1173,13 +1047,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
-  stepper_page_view:
-    dependency: "direct main"
-    description:
-      name: stepper_page_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.2"
   string_scanner:
     dependency: transitive
     description:
@@ -1187,13 +1054,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
-  synchronized:
-    dependency: transitive
-    description:
-      name: synchronized
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0+3"
   terbilang_id:
     dependency: "direct main"
     description:
@@ -1299,13 +1159,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
-  uuid:
-    dependency: transitive
-    description:
-      name: uuid
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.6"
   vector_math:
     dependency: "direct main"
     description:

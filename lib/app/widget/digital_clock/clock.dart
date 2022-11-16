@@ -1,10 +1,16 @@
 // ignore_for_file: library_private_types_in_public_api
 
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:developer';
+
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:ntp/ntp.dart';
 
+// 🌎 Project imports:
 import 'clock_model.dart';
 import 'spinner_text.dart';
 

@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -7,11 +6,12 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/agunan/agunan_los/agunan_los.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-import 'package:intl/intl.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 class ListAgunanLosController extends GetxController {
   @override

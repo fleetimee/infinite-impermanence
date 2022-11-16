@@ -1,9 +1,7 @@
 // 🐦 Flutter imports:
 // ignore_for_file: prefer_is_empty
 
-import 'package:akm/app/modules/asuransi/controllers/asuransi_controller.dart';
-import 'package:akm/app/modules/ijin_legitimasi/controllers/ijin_legitimasi_controller.dart';
-import 'package:akm/app/modules/list_syarat_lainnya/controllers/list_syarat_lainnya_controller.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,7 +11,10 @@ import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/asuransi/controllers/asuransi_controller.dart';
+import 'package:akm/app/modules/ijin_legitimasi/controllers/ijin_legitimasi_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/modules/list_syarat_lainnya/controllers/list_syarat_lainnya_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 
 class HeaderSyarat extends StatelessWidget {

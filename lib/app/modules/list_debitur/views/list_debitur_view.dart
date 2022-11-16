@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+// ignore_for_file: must_be_immutable
+
 import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';

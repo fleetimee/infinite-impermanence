@@ -3307,22 +3307,6 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
   return pdf.save();
 }
 
-Widget titleTextNo(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
 Widget textUmur(
   final String text, {
   final TextAlign align = TextAlign.left,
@@ -3344,21 +3328,6 @@ Widget textUmurWide(
 }) =>
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget textUmurModified(
-  final String text, {
-  final TextAlign align = TextAlign.left,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 2),
       child: Text(
         text,
         textAlign: align,
@@ -3396,36 +3365,6 @@ Widget textUmurBold(
         style: TextStyle(
           fontSize: 10,
           fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-
-Widget contentIsi(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
-        ),
-      ),
-    );
-
-Widget alphabetText(
-  final String text, {
-  final TextAlign align = TextAlign.right,
-}) =>
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 2),
-      child: Text(
-        text,
-        textAlign: align,
-        style: const TextStyle(
-          fontSize: 10,
         ),
       ),
     );

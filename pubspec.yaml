@@ -11,14 +11,11 @@ dependencies:
   cupertino_icons: ^1.0.5
   currency_text_input_formatter: ^2.1.8
   data_table_2: ^2.3.8
-  dio: ^4.0.6
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
   extended_masked_text: ^2.3.1
   faker_dart: ^0.1.11
-  fancy_shimmer_image: ^2.0.2
   file_picker: ^4.6.1
-  filter_list: ^1.0.2
   finance:
     git:
       url: https://github.com/yuvaraja2303/finance/
@@ -51,7 +48,6 @@ dependencies:
   image_picker: ^0.8.6
   intl: ^0.17.0
   latlong2: ^0.8.1
-  loader_overlay: ^2.1.0
   map_launcher: ^2.4.0
   modal_bottom_sheet: ^2.1.2
   nekos: ^0.0.7
@@ -59,7 +55,6 @@ dependencies:
   numerus: ^2.0.0
   open_file: ^3.2.1
   open_street_map_search_and_pick: ^0.0.15
-  overlay_loading_progress: ^1.0.0
   pdf: ^3.8.4
   printing: ^5.9.3
   responsive_framework:
@@ -68,8 +63,6 @@ dependencies:
       ref: master
   scaffold_gradient_background: ^1.0.3+1
   shimmer: ^2.0.0
-  slide_digital_clock: ^1.0.2
-  stepper_page_view: ^0.0.2
   terbilang_id: ^0.1.0
   url_launcher: ^6.1.6
   vector_math: null

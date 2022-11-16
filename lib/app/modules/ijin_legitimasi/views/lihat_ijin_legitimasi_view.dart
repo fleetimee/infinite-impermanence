@@ -1,14 +1,17 @@
-import 'package:akm/app/common/style.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/ijin_legitimasi_controller.dart';
 
 class LihatIjinLegitimasiView extends GetView<IjinLegitimasiController> {

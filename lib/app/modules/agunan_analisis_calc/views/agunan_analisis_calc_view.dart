@@ -1,13 +1,16 @@
-import 'package:akm/app/common/style.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 
+// 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/agunan_analisis_calc_controller.dart';
 
 class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {

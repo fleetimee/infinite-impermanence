@@ -1,10 +1,9 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
-import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 
 // 📦 Package imports:
+import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -14,6 +13,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/input_keuangan_controller.dart';
 
 class EditInputKeuanganView extends GetView<InputKeuanganController> {

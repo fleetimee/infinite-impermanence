@@ -17,11 +17,9 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.dart';
 
 // 🌎 Project imports:
-import '../controllers/uploads_controller.dart';
-
-// 🌎 Project imports:
 import '../../../common/style.dart';
 import '../../../widget/drawer.dart';
+import '../controllers/uploads_controller.dart';
 
 class UploadsView extends GetView<UploadsController> {
   const UploadsView({Key? key}) : super(key: key);

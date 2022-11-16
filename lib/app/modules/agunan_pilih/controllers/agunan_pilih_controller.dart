@@ -1,8 +1,6 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -11,9 +9,11 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/agunan/agunan_pilihan/agunan_pilih.provider.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/service/debtor_service.dart';
 
 class AgunanPilihController extends GetxController {
   void patchProgressBar(int id) {

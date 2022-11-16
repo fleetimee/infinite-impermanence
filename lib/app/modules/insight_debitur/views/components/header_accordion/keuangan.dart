@@ -98,7 +98,7 @@ class MenuNeraca extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Neraca',
+                'Keterangan Neraca',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -270,7 +270,7 @@ class MenuRugiLaba extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                'Rugi / Laba',
+                'Laporan Keuangan',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w600,
@@ -357,7 +357,7 @@ class MenuRugiLaba extends StatelessWidget {
                                         colorText: Colors.white);
                                   },
                                   child: const Text(
-                                    "Input Neraca terlebih dahulu",
+                                    "Input Keterangan Neraca terlebih dahulu",
                                     style: TextStyle(
                                       color: secondaryColor,
                                       fontSize: 18,
@@ -555,7 +555,7 @@ class MenuInputKeuangan extends StatelessWidget {
                                         colorText: Colors.white);
                                   },
                                   child: const Text(
-                                    "Input Rugi Laba terlebih dahulu",
+                                    "Input Laporan Keuangan terlebih dahulu",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 18,

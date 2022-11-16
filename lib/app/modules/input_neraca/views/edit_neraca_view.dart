@@ -22,7 +22,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Neraca'),
+        title: const Text('Edit Keterangan Neraca'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

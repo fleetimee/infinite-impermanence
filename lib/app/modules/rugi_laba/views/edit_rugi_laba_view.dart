@@ -28,7 +28,7 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Edit Rugi / Laba'),
+        title: const Text('Edit Laporan Keuangan'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

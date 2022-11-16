@@ -31,7 +31,7 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detail Rugi / Laba'),
+        title: const Text('Detail Laporan Keuangan'),
         centerTitle: true,
         actions: [
           IconButton(

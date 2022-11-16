@@ -24,7 +24,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Neraca #${data.id}'),
+        title: const Text('Detail Keterangan Neraca'),
         centerTitle: true,
         // actions: [
         //   IconButton(

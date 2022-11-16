@@ -43,33 +43,18 @@ class AgunanAnalisisCalcController extends GetxController {
         getAllAgunanCashAnalisis(data[4].id ?? 0);
       }
     });
-    // if (data[2].id != null || data[2].id != 0) {
-    //   getAllAgunanPeralatanAnalisis(data[3].id ?? 0);
-    // }
 
-    // if (data[3].id != null || data[3].id != 0) {
-    //   getAllAgunanCashAnalisis(data[4].id ?? 0);
-    // }
-
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 5), () {
       if (data[4].id != null || data[4].id != 0) {
-        getAllAgunanLainnyaAnalisis(data[5].id ?? 0);
+        getAllAgunanLosAnalisis(data[5].id ?? 0);
       }
     });
 
-    // if (data[4].id != null || data[4].id != 0) {
-    //   getAllAgunanLosAnalisis(data[5].id ?? 0);
-    // }
-
-    Future.delayed(const Duration(seconds: 6), () {
+    Future.delayed(const Duration(seconds: 5), () {
       if (data[5].id != null || data[5].id != 0) {
-        getAllAgunanLosAnalisis(data[6].id ?? 0);
+        getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
       }
     });
-
-    // if (data[5].id != null || data[5].id != 0) {
-    //   getAllAgunanLainnyaAnalisis(data[6].id ?? 0);
-    // }
 
     // Check if future done
 

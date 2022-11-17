@@ -17,26 +17,24 @@ class NetworkErrorItem extends StatelessWidget {
           Colors.blue.shade900,
         ],
       ),
-      body: Container(
-        child: Align(
-          alignment: Alignment.center,
-          child: EmptyWidget(
-            image: 'assets/images/home/satania-crying.png',
-            title: 'Koneksi internet terputus',
-            titleTextStyle: const TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.w800,
-              color: secondaryColor,
-            ),
-            subtitleTextStyle: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w200,
-              color: secondaryColor,
-            ),
-            hideBackgroundAnimation: true,
-            subTitle:
-                'Aplikasi Analisis Kredit Mikro membutuhkan koneksi internet untuk menjalankannya, reconnect dengan data / wifi dan coba lagi',
+      body: Align(
+        alignment: Alignment.center,
+        child: EmptyWidget(
+          image: 'assets/images/home/satania-crying.png',
+          title: 'Koneksi internet terputus',
+          titleTextStyle: const TextStyle(
+            fontSize: 35,
+            fontWeight: FontWeight.w800,
+            color: secondaryColor,
           ),
+          subtitleTextStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w200,
+            color: secondaryColor,
+          ),
+          hideBackgroundAnimation: true,
+          subTitle:
+              'Aplikasi Analisis Kredit Mikro membutuhkan koneksi internet untuk menjalankannya, reconnect dengan data / wifi dan coba lagi',
         ),
       ),
     );

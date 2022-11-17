@@ -19,8 +19,6 @@ class HomeController extends GetxController {
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
     productName.value = androidInfo.product.toString();
     brandName.value = androidInfo.brand.toString().toCapitalized();
-
-    print(androidInfo.toMap());
   }
 
   var productName = ''.obs;

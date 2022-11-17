@@ -9,7 +9,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:form_builder_file_picker/form_builder_file_picker.dart';
+// import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -87,211 +87,211 @@ class UploadsView extends GetView<UploadsController> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(
-                    height: 25.0,
-                  ),
-                  FormBuilderFilePicker(
-                    name: 'ktp',
-                    decoration: InputDecoration(
-                      labelText: 'KTP',
-                      alignLabelWithHint: true,
-                      hintText: 'KTP',
-                      labelStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w300,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    maxFiles: null,
-                    allowMultiple: true,
-                    previewImages: true,
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.any,
-                        selector: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih KTP',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  FormBuilderFilePicker(
-                    name: 'kk',
-                    decoration: InputDecoration(
-                      labelText: 'Kartu Keluarga (Max 2 file)',
-                      alignLabelWithHint: true,
-                      labelStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w300,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    maxFiles: 2,
-                    allowMultiple: true,
-                    previewImages: true,
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.any,
-                        selector: Row(
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih Kartu Keluarga',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  FormBuilderFilePicker(
-                    name: 'surat_nikah',
-                    decoration: InputDecoration(
-                      labelText: 'Surat Nikah (Opsional)',
-                      alignLabelWithHint: true,
-                      labelStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w300,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    maxFiles: 2,
-                    allowMultiple: true,
-                    previewImages: true,
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.any,
-                        selector: Row(
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih Surat Nikah',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  FormBuilderFilePicker(
-                    name: 'surat_cerai_kematian',
-                    decoration: InputDecoration(
-                      labelText: 'Surat Cerai/Kematian (Opsional)',
-                      alignLabelWithHint: true,
-                      labelStyle: const TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.w300,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    maxFiles: 1,
-                    allowMultiple: true,
-                    previewImages: true,
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.any,
-                        selector: Row(
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih Surat Cerai/Kematian',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
-                  const SizedBox(
-                    height: 16.0,
-                  ),
-                  FormBuilderFilePicker(
-                    name: 'npwp',
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      labelText: 'NPWP (Opsional)',
-                      labelStyle: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    maxFiles: null,
-                    allowMultiple: true,
-                    previewImages: true,
-                    allowedExtensions: const ['pdf', 'doc', 'docx'],
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.custom,
-                        selector: Row(
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih NPWP',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
+                  // const SizedBox(
+                  //   height: 25.0,
+                  // ),
+                  // FormBuilderFilePicker(
+                  //   name: 'ktp',
+                  //   decoration: InputDecoration(
+                  //     labelText: 'KTP',
+                  //     alignLabelWithHint: true,
+                  //     hintText: 'KTP',
+                  //     labelStyle: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 25,
+                  //       letterSpacing: 1,
+                  //       fontWeight: FontWeight.w300,
+                  //     ),
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //   ),
+                  //   maxFiles: null,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.any,
+                  //       selector: Row(
+                  //         mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih KTP',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
+                  // const SizedBox(
+                  //   height: 20.0,
+                  // ),
+                  // FormBuilderFilePicker(
+                  //   name: 'kk',
+                  //   decoration: InputDecoration(
+                  //     labelText: 'Kartu Keluarga (Max 2 file)',
+                  //     alignLabelWithHint: true,
+                  //     labelStyle: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 25,
+                  //       letterSpacing: 1,
+                  //       fontWeight: FontWeight.w300,
+                  //     ),
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //   ),
+                  //   maxFiles: 2,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.any,
+                  //       selector: Row(
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih Kartu Keluarga',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
+                  // const SizedBox(
+                  //   height: 16.0,
+                  // ),
+                  // FormBuilderFilePicker(
+                  //   name: 'surat_nikah',
+                  //   decoration: InputDecoration(
+                  //     labelText: 'Surat Nikah (Opsional)',
+                  //     alignLabelWithHint: true,
+                  //     labelStyle: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 25,
+                  //       letterSpacing: 1,
+                  //       fontWeight: FontWeight.w300,
+                  //     ),
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //   ),
+                  //   maxFiles: 2,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.any,
+                  //       selector: Row(
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih Surat Nikah',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
+                  // const SizedBox(
+                  //   height: 16.0,
+                  // ),
+                  // FormBuilderFilePicker(
+                  //   name: 'surat_cerai_kematian',
+                  //   decoration: InputDecoration(
+                  //     labelText: 'Surat Cerai/Kematian (Opsional)',
+                  //     alignLabelWithHint: true,
+                  //     labelStyle: const TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 25,
+                  //       letterSpacing: 1,
+                  //       fontWeight: FontWeight.w300,
+                  //     ),
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //   ),
+                  //   maxFiles: 1,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.any,
+                  //       selector: Row(
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih Surat Cerai/Kematian',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
+                  // const SizedBox(
+                  //   height: 16.0,
+                  // ),
+                  // FormBuilderFilePicker(
+                  //   name: 'npwp',
+                  //   decoration: InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     labelText: 'NPWP (Opsional)',
+                  //     labelStyle: const TextStyle(
+                  //       fontSize: 25,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   maxFiles: null,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   allowedExtensions: const ['pdf', 'doc', 'docx'],
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.custom,
+                  //       selector: Row(
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih NPWP',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
                   const SizedBox(
                     height: 25.0,
                   ),
@@ -324,42 +324,42 @@ class UploadsView extends GetView<UploadsController> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  FormBuilderFilePicker(
-                    name: 'berkas_agunan',
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      labelText: 'Berkas Agunan',
-                      labelStyle: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    maxFiles: 10,
-                    allowMultiple: true,
-                    previewImages: true,
-                    allowedExtensions: const ['pdf', 'doc', 'docx'],
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.custom,
-                        selector: Row(
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih Berkas Agunan',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
+                  // FormBuilderFilePicker(
+                  //   name: 'berkas_agunan',
+                  //   decoration: InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     labelText: 'Berkas Agunan',
+                  //     labelStyle: const TextStyle(
+                  //       fontSize: 25,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   maxFiles: 10,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   allowedExtensions: const ['pdf', 'doc', 'docx'],
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.custom,
+                  //       selector: Row(
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih Berkas Agunan',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
                   const SizedBox(
                     height: 16.0,
                   ),
@@ -529,42 +529,42 @@ class UploadsView extends GetView<UploadsController> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  FormBuilderFilePicker(
-                    name: 'surat_keterangan_usaha',
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      labelText: 'Surat Keterangan Usaha',
-                      labelStyle: const TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    maxFiles: null,
-                    allowMultiple: true,
-                    previewImages: true,
-                    allowedExtensions: const ['pdf', 'doc', 'docx'],
-                    onChanged: (val) => debugPrint(val.toString()),
-                    typeSelectors: [
-                      TypeSelector(
-                        type: FileType.custom,
-                        selector: Row(
-                          children: const [
-                            Icon(FontAwesomeIcons.upload),
-                            SizedBox(width: 25),
-                            Text(
-                              'Pilih Surat Keterangan Usaha',
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
-                    onFileLoading: (val) {
-                      debugPrint(val.toString());
-                    },
-                  ),
+                  // FormBuilderFilePicker(
+                  //   name: 'surat_keterangan_usaha',
+                  //   decoration: InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     labelText: 'Surat Keterangan Usaha',
+                  //     labelStyle: const TextStyle(
+                  //       fontSize: 25,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  //   maxFiles: null,
+                  //   allowMultiple: true,
+                  //   previewImages: true,
+                  //   allowedExtensions: const ['pdf', 'doc', 'docx'],
+                  //   onChanged: (val) => debugPrint(val.toString()),
+                  //   typeSelectors: [
+                  //     TypeSelector(
+                  //       type: FileType.custom,
+                  //       selector: Row(
+                  //         children: const [
+                  //           Icon(FontAwesomeIcons.upload),
+                  //           SizedBox(width: 25),
+                  //           Text(
+                  //             'Pilih Surat Keterangan Usaha',
+                  //             style: TextStyle(fontSize: 18),
+                  //           ),
+                  //         ],
+                  //       ),
+                  //     )
+                  //   ],
+                  //   onFileLoading: (val) {
+                  //     debugPrint(val.toString());
+                  //   },
+                  // ),
                   const SizedBox(
                     height: 16.0,
                   ),

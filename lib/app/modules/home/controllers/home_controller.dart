@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 
 // 📦 Package imports:
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -13,7 +14,24 @@ class HomeController extends GetxController {
   void onInit() async {
     // _getThemeStatus();
     super.onInit();
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    deviceName.value = androidInfo.model.toString();
   }
+
+  var deviceName = ''.obs;
+
+  // void deviceInfo() async {
+  //   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+
+  //   if (GetPlatform.isAndroid) {
+  //     deviceName = deviceInfo.androidInfo.toString();
+  //   } else if (GetPlatform.isIOS) {
+  //     deviceName = deviceInfo.iosInfo.toString();
+  //   } else if (GetPlatform.isWeb) {
+  //     deviceName = deviceInfo.webBrowserInfo.toString();
+  //   }
+  // }
 
   Future<String> img = Nekos().avatar();
 

@@ -11,11 +11,11 @@ dependencies:
   cupertino_icons: ^1.0.5
   currency_text_input_formatter: ^2.1.8
   data_table_2: ^2.3.8
+  device_info_plus: 4.1.0
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
   extended_masked_text: ^2.3.1
   faker_dart: ^0.1.11
-  file_picker: ^4.6.1
   finance:
     git:
       url: https://github.com/yuvaraja2303/finance/
@@ -38,13 +38,16 @@ dependencies:
   flutter_tex_js: ^1.2.17
   font_awesome_flutter: ^10.2.1
   form_builder_extra_fields: ^8.3.0
-  form_builder_file_picker: ^2.3.0
   form_builder_image_picker: ^3.1.0
   form_builder_validators: ^8.4.0
   get: 4.6.5
   getwidget: ^3.0.1
   google_fonts: ^3.0.1
   http: ^0.13.5
+  data_connection_checker:
+    git:
+      url: https://github.com/chornthorn/data_connection_checker.git
+      ref: master
   image_picker: ^0.8.6
   intl: ^0.17.0
   latlong2: ^0.8.1
@@ -53,7 +56,10 @@ dependencies:
   nekos: ^0.0.7
   ntp: ^2.0.0
   numerus: ^2.0.0
-  open_file: ^3.2.1
+  open_file:
+    git:
+      url: https://github.com/crazecoder/open_file
+      ref: master
   open_street_map_search_and_pick: ^0.0.15
   pdf: ^3.8.4
   printing: ^5.9.3

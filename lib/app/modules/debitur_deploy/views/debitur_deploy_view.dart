@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -38,10 +38,12 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Center(
-                    child: SvgPicture.asset(
-                      'assets/images/debitur_real/farmer.svg',
+                    child: Lottie.asset(
+                      'assets/images/home/add_debitur.json',
+                      fit: BoxFit.cover,
+                      repeat: true,
                       height: 350,
-                      fit: BoxFit.contain,
+                      frameRate: FrameRate.max,
                     ),
                   ),
                   const SizedBox(height: 30),

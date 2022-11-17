@@ -40,11 +40,14 @@ class HomeMenu extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                Obx(() => Text(
-                      'Running on ${controller.deviceName}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
+                Obx(() => SizedBox(
+                      width: 400,
+                      child: Text(
+                        'Running on ${controller.brandName} ${controller.productName} ',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
                       ),
                     )),
               ],

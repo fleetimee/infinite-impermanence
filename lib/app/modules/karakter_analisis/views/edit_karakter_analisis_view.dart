@@ -10,6 +10,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
@@ -456,8 +457,8 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                       Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: const [
-                                          Center(
+                                        children: [
+                                          const Center(
                                             child: Text(
                                               'Yeay berhasil memperbarui',
                                               style: TextStyle(
@@ -466,7 +467,7 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                               ),
                                             ),
                                           ),
-                                          Center(
+                                          const Center(
                                             child: Text(
                                               'CRR Karakter 🎉🎉🎉',
                                               style: TextStyle(
@@ -475,17 +476,25 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                                               ),
                                             ),
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 20,
                                           ),
                                           Center(
-                                            child: GFImageOverlay(
-                                              height: 200,
-                                              width: 350,
-                                              shape: BoxShape.rectangle,
-                                              image: NetworkImage(
-                                                  'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
-                                              boxFit: BoxFit.cover,
+                                            child: Lottie.asset(
+                                              'assets/images/home/karakter_promp.zip',
+                                              frameRate: FrameRate.max,
+                                              height: 280,
+                                              fit: BoxFit.cover,
+                                              repeat: true,
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return const Text(
+                                                  'Gagal memuat animasi',
+                                                  style: TextStyle(
+                                                    color: Colors.red,
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ],

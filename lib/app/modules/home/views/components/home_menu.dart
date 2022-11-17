@@ -1,11 +1,13 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:getwidget/colors/gf_color.dart';
 import '../../../../widget/digital_clock/clock.dart';
 import '../../controllers/home_controller.dart';
 import 'menu_item/greeting.dart';
@@ -24,7 +26,33 @@ class HomeMenu extends StatelessWidget {
         [
           Greeting(),
           const SizedBox(
-            height: 40,
+            height: 20,
+          ),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                const Icon(
+                  FontAwesomeIcons.check,
+                  color: GFColors.SUCCESS,
+                ),
+                const SizedBox(
+                  width: 8,
+                ),
+                Obx(() => Text(
+                      'Running on ${controller.deviceName}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    )),
+              ],
+            ),
+          ),
+
+          const SizedBox(
+            height: 20,
           ),
 
           const DigitalClock(
@@ -44,7 +72,7 @@ class HomeMenu extends StatelessWidget {
           ),
 
           const SizedBox(
-            height: 40,
+            height: 60,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -17,7 +17,7 @@ class HomeController extends GetxController {
     super.onInit();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    productName.value = androidInfo.product.toString();
+    productName.value = androidInfo.product.toString().toUpperCase();
     brandName.value = androidInfo.brand.toString().toCapitalized();
   }
 

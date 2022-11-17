@@ -12,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
@@ -279,83 +280,100 @@ class KeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                   builder: (context) {
                                     controller.hitungCrr();
                                     return Container(
-                                        height: 450,
-                                        padding: const EdgeInsets.all(16),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const Center(
-                                              child: Text(
-                                                'Yeay berhasil mendapatkan',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 24,
+                                      height: 550,
+                                      padding: const EdgeInsets.all(16),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const Center(
+                                                child: Text(
+                                                  'Yeay berhasil mendapatkan',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 24,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            const Center(
-                                              child: Text(
-                                                'CRR Keuangan 🎉🎉🎉',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 24,
+                                              const Center(
+                                                child: Text(
+                                                  'CRR Keuangan 🎉🎉🎉',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 24,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            const Center(
-                                              child: GFImageOverlay(
-                                                height: 200,
-                                                width: 350,
-                                                shape: BoxShape.rectangle,
-                                                image: NetworkImage(
-                                                    'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
-                                                boxFit: BoxFit.cover,
+                                              const SizedBox(
+                                                height: 20,
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Center(
-                                              child: Text(
-                                                'Total CRR : ${controller.crr.text}',
-                                                style: GoogleFonts.spaceGrotesk(
-                                                  fontSize: 35,
-                                                  fontWeight: FontWeight.w700,
+                                              Center(
+                                                child: Lottie.asset(
+                                                  'assets/images/home/keuangan_promp.zip',
+                                                  frameRate: FrameRate.max,
+                                                  height: 280,
+                                                  fit: BoxFit.cover,
+                                                  repeat: true,
+                                                  errorBuilder: (context, error,
+                                                      stackTrace) {
+                                                    return const Text(
+                                                      'Gagal memuat animasi',
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                      ),
+                                                    );
+                                                  },
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            GFButton(
-                                              onPressed: () {
-                                                if (controller
-                                                        .formKeyAnalisaKeuangan
-                                                        .currentState
-                                                        ?.saveAndValidate() ??
-                                                    false) {
-                                                  controller
-                                                      .saveAnalisisKeuangan();
-                                                  // controller.patchProgressBar(
-                                                  //     data.id);
-                                                  Get.back();
-                                                  Get.back();
-                                                } else {
-                                                  debugPrint(
-                                                      'validation failed');
-                                                }
-                                              },
-                                              text: 'Simpan',
-                                              color: primaryColor,
-                                              fullWidthButton: true,
-                                              size: GFSize.LARGE,
-                                            ),
-                                          ],
-                                        ));
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              Center(
+                                                child: Text(
+                                                  'Total CRR : ${controller.crr.text}',
+                                                  style:
+                                                      GoogleFonts.spaceGrotesk(
+                                                    fontSize: 35,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                            ],
+                                          ),
+                                          GFButton(
+                                            onPressed: () {
+                                              if (controller
+                                                      .formKeyAnalisaKeuangan
+                                                      .currentState
+                                                      ?.saveAndValidate() ??
+                                                  false) {
+                                                controller
+                                                    .saveAnalisisKeuangan();
+                                                // controller.patchProgressBar(
+                                                //     data.id);
+                                                Get.back();
+                                                Get.back();
+                                              } else {
+                                                debugPrint('validation failed');
+                                              }
+                                            },
+                                            text: 'Simpan',
+                                            color: primaryColor,
+                                            fullWidthButton: true,
+                                            size: GFSize.LARGE,
+                                          ),
+                                        ],
+                                      ),
+                                    );
                                   },
                                   backgroundColor: secondaryColor,
                                   bounce: true,

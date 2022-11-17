@@ -12,6 +12,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
@@ -296,17 +297,22 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                                 ),
                                               ),
                                             ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            const Center(
-                                              child: GFImageOverlay(
-                                                height: 200,
-                                                width: 350,
-                                                shape: BoxShape.rectangle,
-                                                image: NetworkImage(
-                                                    'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
-                                                boxFit: BoxFit.cover,
+                                            Center(
+                                              child: Lottie.asset(
+                                                'assets/images/home/keuangan_promp.zip',
+                                                frameRate: FrameRate.max,
+                                                height: 280,
+                                                fit: BoxFit.cover,
+                                                repeat: true,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return const Text(
+                                                    'Gagal memuat animasi',
+                                                    style: TextStyle(
+                                                      color: Colors.red,
+                                                    ),
+                                                  );
+                                                },
                                               ),
                                             ),
                                             const SizedBox(
@@ -320,9 +326,6 @@ class LihatKeuanganAnalisisView extends GetView<KeuanganAnalisisController> {
                                                   fontWeight: FontWeight.w700,
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
                                             ),
                                           ],
                                         ));

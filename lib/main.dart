@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:akm/app/utils/dependency_injection.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -17,8 +18,23 @@ import 'app/themes/light.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(
-    GetMaterialApp(
+  Get.testMode = true;
+
+  runApp(const MyApp());
+
+  DependencyInjection.init();
+
+  FlutterNativeSplash.remove();
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       builder: (context, child) => ResponsiveWrapper.builder(
         child,
         maxWidth: 1200,
@@ -60,8 +76,6 @@ void main() {
         Locale('en'),
       ],
       locale: const Locale('en'),
-    ),
-  );
-
-  FlutterNativeSplash.remove();
+    );
+  }
 }

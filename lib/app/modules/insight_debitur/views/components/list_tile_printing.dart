@@ -31,8 +31,8 @@ class PrintInput extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.vaadin,
+        child: FaIcon(
+          FontAwesomeIcons.keyboard,
           color: secondaryColor,
         ),
       ),
@@ -81,7 +81,7 @@ class PrintNeraca extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Neraca',
+        'Keterangan Neraca',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -90,12 +90,12 @@ class PrintNeraca extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.squareReddit,
+        child: FaIcon(
+          FontAwesomeIcons.scaleUnbalanced,
           color: secondaryColor,
         ),
       ),
-      subTitleText: 'Print Neraca',
+      subTitleText: 'Print Keterangan Neraca',
       icon: controller.insightDebitur.value.inputNeraca != null
           ? GFButton(
               onPressed: () {
@@ -134,7 +134,7 @@ class PrintUsulanBaru extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Usulan Baru',
+        'Surat Usulan Baru',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -143,8 +143,8 @@ class PrintUsulanBaru extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.lyft,
+        child: FaIcon(
+          FontAwesomeIcons.comments,
           color: secondaryColor,
         ),
       ),
@@ -192,7 +192,7 @@ class PrintRugiLaba extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Rugi Laba',
+        'Laporan Keuangan',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -201,12 +201,12 @@ class PrintRugiLaba extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.twitter,
+        child: FaIcon(
+          FontAwesomeIcons.fileContract,
           color: secondaryColor,
         ),
       ),
-      subTitleText: 'Print Rugi Laba',
+      subTitleText: 'Print Laporan Keuangan',
       icon: controller.insightDebitur.value.inputRugiLaba != null
           ? GFButton(
               onPressed: () {
@@ -245,7 +245,7 @@ class PrintAgunan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Agunan',
+        'Analisa Agunan',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -254,8 +254,8 @@ class PrintAgunan extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.uber,
+        child: FaIcon(
+          FontAwesomeIcons.fileInvoice,
           color: secondaryColor,
         ),
       ),
@@ -298,7 +298,7 @@ class PrintPutusan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Putusan',
+        'Surat Putusan',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -307,8 +307,8 @@ class PrintPutusan extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.rebel,
+        child: FaIcon(
+          FontAwesomeIcons.personBreastfeeding,
           color: secondaryColor,
         ),
       ),
@@ -357,7 +357,7 @@ class PrintUsulan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Usulan',
+        'Surat Usulan',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -366,8 +366,8 @@ class PrintUsulan extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.uikit,
+        child: FaIcon(
+          FontAwesomeIcons.comment,
           color: secondaryColor,
         ),
       ),
@@ -416,7 +416,7 @@ class PrintKeuangan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Keuangan',
+        'Analisa Keuangan',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -425,8 +425,8 @@ class PrintKeuangan extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.gitlab,
+        child: FaIcon(
+          FontAwesomeIcons.fileInvoiceDollar,
           color: secondaryColor,
         ),
       ),
@@ -509,7 +509,7 @@ class BisnisPrint extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Bisnis',
+        'Analisa Bisnis',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -518,8 +518,8 @@ class BisnisPrint extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.docker,
+        child: FaIcon(
+          FontAwesomeIcons.filePrescription,
           color: secondaryColor,
         ),
       ),
@@ -562,7 +562,7 @@ class KarakterPrint extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Karakter',
+        'Analisa Karakter',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -571,8 +571,8 @@ class KarakterPrint extends StatelessWidget {
       ),
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
-        child: Icon(
-          FontAwesomeIcons.teamspeak,
+        child: FaIcon(
+          FontAwesomeIcons.fileCode,
           color: secondaryColor,
         ),
       ),
@@ -615,7 +615,7 @@ class JenisUsahaPrint extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Jenis Usaha',
+        'Analisa Jenis Usaha',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -625,7 +625,7 @@ class JenisUsahaPrint extends StatelessWidget {
       avatar: const GFAvatar(
         backgroundColor: primaryColor,
         child: Icon(
-          FontAwesomeIcons.unity,
+          FontAwesomeIcons.fileMedical,
           color: secondaryColor,
         ),
       ),

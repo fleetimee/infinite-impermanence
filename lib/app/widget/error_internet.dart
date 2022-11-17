@@ -35,7 +35,7 @@ class NetworkErrorItem extends StatelessWidget {
             ),
             hideBackgroundAnimation: true,
             subTitle:
-                'Aplikasi Analisis Kredit Mikro membutuhkan konteksi internet untuk menjalankannya, reconnect dengan data / wifi dan coba lagi',
+                'Aplikasi Analisis Kredit Mikro membutuhkan koneksi internet untuk menjalankannya, reconnect dengan data / wifi dan coba lagi',
           ),
         ),
       ),

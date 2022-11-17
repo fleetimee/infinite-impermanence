@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 
 // 📦 Package imports:
+import 'package:akm/app/utils/capitalize.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
@@ -16,10 +17,14 @@ class HomeController extends GetxController {
     super.onInit();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    deviceName.value = androidInfo.model.toString();
+    productName.value = androidInfo.product.toString();
+    brandName.value = androidInfo.brand.toString().toCapitalized();
+
+    print(androidInfo.toMap());
   }
 
-  var deviceName = ''.obs;
+  var productName = ''.obs;
+  var brandName = ''.obs;
 
   // void deviceInfo() async {
   //   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();

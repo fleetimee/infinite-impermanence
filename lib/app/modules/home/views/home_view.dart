@@ -8,6 +8,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -29,6 +30,15 @@ class HomeView extends GetView<HomeController> {
       throw 'Could not launch $_url';
     }
   }
+
+  final List<String> imageList = [
+    "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2017/12/13/00/23/christmas-3015776_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2019/12/19/10/55/christmas-market-4705877_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2019/12/20/00/03/road-4707345_960_720.jpg",
+    "https://cdn.pixabay.com/photo/2019/12/22/04/18/x-mas-4711785__340.jpg",
+    "https://cdn.pixabay.com/photo/2016/11/22/07/09/spruce-1848543__340.jpg"
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -66,13 +76,32 @@ class HomeView extends GetView<HomeController> {
               floating: false,
               expandedHeight: 250,
               flexibleSpace: FlexibleSpaceBar(
-                background: Obx(
-                  () => Image.asset(
-                    controller.isDarkModeEnabled.value
-                        ? 'assets/images/home/appbar_light.jpg'
-                        : 'assets/images/home/pede.png',
-                    fit: BoxFit.cover,
-                  ),
+                background: GFCarousel(
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 7),
+                  hasPagination: true,
+                  activeIndicator: Colors.white,
+                  passiveIndicator: Colors.white54,
+                  enlargeMainPage: true,
+                  pagerSize: 10,
+                  viewportFraction: 0.9,
+                  items: imageList.map(
+                    (url) {
+                      return Container(
+                        margin: const EdgeInsets.all(8.0),
+                        child: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5.0)),
+                          child: Image.network(url,
+                              fit: BoxFit.cover, width: 1000.0),
+                        ),
+                      );
+                    },
+                  ).toList(),
+                  // onPageChanged: (index) {
+                  //   controller.pageChanged(index);
+
+                  // },
                 ),
               ),
             ),

@@ -10,6 +10,10 @@ dependencies:
   awesome_dialog: ^3.0.2
   cupertino_icons: ^1.0.5
   currency_text_input_formatter: ^2.1.8
+  data_connection_checker:
+    git:
+      url: https://github.com/chornthorn/data_connection_checker.git
+      ref: master
   data_table_2: ^2.3.8
   device_info_plus: 4.1.0
   double_back_to_close_app: ^2.1.0
@@ -44,13 +48,10 @@ dependencies:
   getwidget: ^3.0.1
   google_fonts: ^3.0.1
   http: ^0.13.5
-  data_connection_checker:
-    git:
-      url: https://github.com/chornthorn/data_connection_checker.git
-      ref: master
   image_picker: ^0.8.6
   intl: ^0.17.0
   latlong2: ^0.8.1
+  lottie: ^2.0.0
   map_launcher: ^2.4.0
   modal_bottom_sheet: ^2.1.2
   nekos: ^0.0.7

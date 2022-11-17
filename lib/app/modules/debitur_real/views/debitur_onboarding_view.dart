@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
@@ -156,6 +157,17 @@ class DebiturOnboardingView extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 150,
+                    ),
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: Lottie.asset(
+                        'assets/images/home/confused_person.zip',
+                        height: 400,
+                        frameRate: FrameRate.max,
                       ),
                     ),
                   ],

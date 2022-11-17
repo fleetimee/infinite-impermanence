@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
+import 'package:lottie/lottie.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -458,37 +459,44 @@ class ListDebiturView extends GetView<ListDebiturController> {
                 children: [
                   Animate(
                       child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: GFCard(
-                      boxFit: BoxFit.cover,
-                      titlePosition: GFPosition.start,
-                      showOverlayImage: true,
-                      imageOverlay: const AssetImage(
-                        'assets/images/home/kantor-cabang.png',
-                      ),
-                      colorFilter: const ColorFilter.mode(
-                        Color.fromARGB(136, 0, 0, 0),
-                        BlendMode.darken,
-                      ),
-                      title: GFListTile(
-                        // color: // White with opactity
-                        //     Colors.white.withOpacity(0.5),
-                        title: Text(
-                          'Ada ${controller.listDebitur.length} debitur yang terdaftar',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 47,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      content: const Text(
-                        'Klik tombol details untuk mulai menginputkan data analisa debitur',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    // child: GFCard(
+                    //   boxFit: BoxFit.cover,
+                    //   titlePosition: GFPosition.start,
+                    //   showOverlayImage: true,
+                    //   imageOverlay: const AssetImage(
+                    //     'assets/images/home/kantor-cabang.png',
+                    //   ),
+                    //   colorFilter: const ColorFilter.mode(
+                    //     Color.fromARGB(136, 0, 0, 0),
+                    //     BlendMode.darken,
+                    //   ),
+                    //   title: GFListTile(
+                    //     // color: // White with opactity
+                    //     //     Colors.white.withOpacity(0.5),
+                    //     title: Text(
+                    //       'Ada ${controller.listDebitur.length} debitur yang terdaftar',
+                    //       style: const TextStyle(
+                    //         color: Colors.white,
+                    //         fontSize: 47,
+                    //         fontWeight: FontWeight.bold,
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   content: const Text(
+                    //     'Klik tombol details untuk mulai menginputkan data analisa debitur',
+                    //     style: TextStyle(
+                    //         color: Colors.white,
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.bold),
+                    //   ),
+                    // ),
+                    child: Lottie.asset(
+                      'assets/images/home/search_user.zip',
+                      fit: BoxFit.cover,
+                      repeat: true,
+                      height: 350,
+                      frameRate: FrameRate.max,
                     ),
                   )
                           .animate()

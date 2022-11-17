@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:lottie/lottie.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -37,16 +36,17 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Center(
-                    child: Lottie.asset(
-                      'assets/images/home/add_debitur.json',
-                      fit: BoxFit.cover,
-                      repeat: true,
-                      height: 350,
-                      frameRate: FrameRate.max,
-                    ),
-                  ),
-                  const SizedBox(height: 30),
+                  // Align(
+                  //   alignment: Alignment.center,
+                  //   child: Lottie.asset(
+                  //     'assets/images/home/farmer.zip',
+                  //     repeat: true,
+                  //     fit: BoxFit.contain,
+                  //     height: 350,
+                  //     frameRate: FrameRate.max,
+                  //   ),
+                  // ),
+
                   Padding(
                     padding: const EdgeInsets.only(right: 300),
                     child: Text(

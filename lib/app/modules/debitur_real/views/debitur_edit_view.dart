@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
@@ -43,14 +42,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Center(
-                    child: SvgPicture.asset(
-                      'assets/images/debitur_real/farmer.svg',
-                      height: 350,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.only(right: 300),
                     child: Text(

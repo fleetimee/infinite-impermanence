@@ -54,7 +54,7 @@ class HeaderSyarat extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.twitch,
+                    FontAwesomeIcons.grip,
                     size: 28,
                   ),
                 ),

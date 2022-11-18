@@ -431,7 +431,7 @@ class HomeView extends GetView<HomeController> {
                           applicationName: 'Analisis Kredit Mikro',
                           context: context,
                           values: {
-                            'version': '0.1.9 (alpha)',
+                            'version': '0.5.5',
                             'year': DateTime.now().year.toString(),
                           },
                           applicationLegalese:
@@ -440,7 +440,7 @@ class HomeView extends GetView<HomeController> {
                               'Analisis Kredit Mikro bertujuan untuk memudahkan penginputan calon debitur serta aplikasi ini juga dapat langsung menganalisa diterima atau tidaknya debitur tersebut dengan berbagai parameter yang sudah dibuat.'),
                           children: const <Widget>[
                             MarkdownPageListTile(
-                              filename: 'README.md',
+                              filename: 'ABOUT.md',
                               title: Text('View Readme'),
                               icon: Icon(Icons.all_inclusive),
                             ),

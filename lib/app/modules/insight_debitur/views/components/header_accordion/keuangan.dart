@@ -53,7 +53,7 @@ class HeaderKeuangan extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.paypal,
+                    FontAwesomeIcons.moneyCheckDollar,
                     size: 28,
                   ),
                 ),

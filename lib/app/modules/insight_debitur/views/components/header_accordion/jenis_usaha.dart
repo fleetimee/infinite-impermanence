@@ -51,7 +51,7 @@ class HeaderJenisUsaha extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.battleNet,
+                    FontAwesomeIcons.cashRegister,
                     size: 28,
                   ),
                 ),

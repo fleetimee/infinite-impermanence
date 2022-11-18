@@ -46,7 +46,7 @@ class HeaderDetailDebitur extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.keybase,
+                    FontAwesomeIcons.accessibleIcon,
                     size: 28,
                   ),
                 ),

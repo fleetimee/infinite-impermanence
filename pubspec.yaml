@@ -1,5 +1,5 @@
 name: akm
-version: 1.0.4+11
+version: 1.0.5+12
 publish_to: none
 description: Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS.
 environment:
@@ -15,7 +15,7 @@ dependencies:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
   data_table_2: ^2.3.8
-  device_info_plus: 4.1.0
+  device_info_plus: ^8.0.0
   double_back_to_close_app: ^2.1.0
   empty_widget: ^0.0.5
   extended_masked_text: ^2.3.1
@@ -57,10 +57,7 @@ dependencies:
   nekos: ^0.0.7
   ntp: ^2.0.0
   numerus: ^2.0.0
-  better_open_file:
-    git:
-      url: https://github.com/bertoldofonseca/better_open_file
-      ref: master
+  open_filex: ^4.3.1
   open_street_map_search_and_pick: ^0.0.15
   pdf: ^3.8.4
   printing: ^5.9.3
@@ -91,13 +88,12 @@ flutter:
     - assets/images/home/
     - assets/images/splash_screen/
     - assets/images/upload/
-    - assets/images/agunan/
     - assets/images/pdf/
     - assets/fonts/times-new-roman.ttf
     - assets/fonts/times-new-roman-bold.ttf
     - assets/fonts/times-new-roman-italic.ttf
     - assets/fonts/times-new-roman-bold-italic.ttf
-    - README.md
+    - ABOUT.md
     - LICENSE.md
     - CHANGELOG.md
     - CONTRIBUTING.md
@@ -112,10 +108,17 @@ flutter_native_splash:
   background_image: "assets/images/splash_screen/background.png"
   image: "assets/images/splash_screen/splash_icon.png"
   branding: "assets/images/splash_screen/branding.png"
+  fullscreen: true
+  web: false
 
 android_12:
   image: "assets/images/splash_screen/splash_icon.png"
+  branding: "assets/images/splash_screen/branding.png"
+
 
 dependency_overrides:
   intl: ^0.17.0
   markdown: ^6.0.1
+
+
+

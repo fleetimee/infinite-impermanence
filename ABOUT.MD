@@ -10,3 +10,4 @@ Mobile app untuk Analisis Kredit Mikro digunakan untuk menentukan debitur layak 
 - Cetak Berkas Penginputan
 - Simulasi Angsuran Tetap
 - Simulasi Angsuran Porsekot
+- Soon 🎉

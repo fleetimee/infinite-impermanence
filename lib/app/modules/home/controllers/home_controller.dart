@@ -1,6 +1,8 @@
 // 🐦 Flutter imports:
 
 // 📦 Package imports:
+import 'dart:io';
+
 import 'package:akm/app/utils/capitalize.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:faker_dart/faker_dart.dart';
@@ -16,9 +18,22 @@ class HomeController extends GetxController {
     // _getThemeStatus();
     super.onInit();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
-    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    productName.value = androidInfo.product.toString().toUpperCase();
-    brandName.value = androidInfo.brand.toString().toCapitalized();
+
+    if (Platform.isAndroid) {
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      productName.value = androidInfo.product.toString().toUpperCase();
+      brandName.value = androidInfo.brand.toString().toCapitalized();
+    } else if (Platform.isIOS) {
+      IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
+      productName.value = iosInfo.name.toString().toUpperCase();
+      brandName.value = iosInfo.utsname.machine.toString().toCapitalized();
+    } else if (GetPlatform.isWeb) {
+      WebBrowserInfo webBrowserInfo = await deviceInfo.webBrowserInfo;
+      productName.value = webBrowserInfo.userAgent.toString();
+    } else {
+      productName.value = 'Unknown Device';
+      brandName.value = '';
+    }
   }
 
   var productName = ''.obs;

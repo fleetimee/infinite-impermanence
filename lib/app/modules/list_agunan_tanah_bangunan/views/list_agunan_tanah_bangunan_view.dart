@@ -1,11 +1,12 @@
 // 🐦 Flutter imports:
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:empty_widget/empty_widget.dart';
+import 'package:lottie/lottie.dart' as animasi;
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -26,7 +27,6 @@ import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_agunan_tanah/views/list_agunan_tanah_view.dart';
-import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/list_agunan_tanah_bangunan_controller.dart';
 
@@ -84,7 +84,7 @@ class ListAgunanTanahBangunanView
       body: Obx(() {
         if (controller.isAgunanTanahBangunanProcessing.value) {
           return const Center(
-            child: SataniaLoading(),
+            child: BpdDiyLoader(),
           );
         } else {
           if (controller.listAgunanTanahBangunan.isNotEmpty) {
@@ -524,23 +524,73 @@ class ListAgunanTanahBangunanView
               },
             );
           } else {
-            return Center(
-              child: EmptyWidget(
-                image: 'assets/images/home/satania-crying.png',
-                title: 'Tidak ada data',
-                titleTextStyle: const TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.w800,
-                  color: secondaryColor,
+            // return Center(
+            //   child: EmptyWidget(
+            //     image: 'assets/images/home/satania-crying.png',
+            //     title: 'Tidak ada data',
+            //     titleTextStyle: const TextStyle(
+            //       fontSize: 35,
+            //       fontWeight: FontWeight.w800,
+            //       color: secondaryColor,
+            //     ),
+            //     subtitleTextStyle: const TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.w200,
+            //       color: secondaryColor,
+            //     ),
+            //     hideBackgroundAnimation: true,
+            //     subTitle:
+            //         'Tidak ada data agunan tanah dan bangunan yang terdaftar atau koneksi internet bermasalah',
+            //   ),
+            // );
+            return Align(
+              alignment: Alignment.center,
+              child: Container(
+                padding: const EdgeInsets.all(32),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Center(
+                      child: Text(
+                        'Tidak ada data',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.w800,
+                          color: secondaryColor,
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: animasi.Lottie.asset(
+                        'assets/images/home/404.zip',
+                        frameRate: animasi.FrameRate.max,
+                        fit: BoxFit.cover,
+                        repeat: true,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Text(
+                            'Gagal memuat animasi',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    const Center(
+                      child: Text(
+                        'Tidak ada data agunan tanah dan bangunan yang terdaftar atau koneksi internet bermasalah',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w200,
+                          color: secondaryColor,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
                 ),
-                subtitleTextStyle: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w200,
-                  color: secondaryColor,
-                ),
-                hideBackgroundAnimation: true,
-                subTitle:
-                    'Tidak ada data agunan tanah dan bangunan yang terdaftar atau koneksi internet bermasalah',
               ),
             );
           }

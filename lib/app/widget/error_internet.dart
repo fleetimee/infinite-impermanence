@@ -1,6 +1,5 @@
-import 'package:akm/app/common/style.dart';
-import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 class NetworkErrorItem extends StatelessWidget {
@@ -19,22 +18,53 @@ class NetworkErrorItem extends StatelessWidget {
       ),
       body: Align(
         alignment: Alignment.center,
-        child: EmptyWidget(
-          image: 'assets/images/home/satania-crying.png',
-          title: 'Koneksi internet terputus',
-          titleTextStyle: const TextStyle(
-            fontSize: 35,
-            fontWeight: FontWeight.w800,
-            color: secondaryColor,
+        child: Container(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Center(
+                child: Text(
+                  'No Internet Connection',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Center(
+                child: Lottie.asset(
+                  'assets/images/home/no_internet.zip',
+                  frameRate: FrameRate.max,
+                  fit: BoxFit.cover,
+                  repeat: true,
+                  errorBuilder: (context, error, stackTrace) {
+                    return const Text(
+                      'Gagal memuat animasi',
+                      style: TextStyle(
+                        color: Colors.red,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              const Center(
+                child: Text(
+                  'Aplikasi ini membutuhkan konektifitas internet untuk dapat berjalan secara optimal \n\n Reconnect data/wifi anda kemudian tunggu sampai aplikasi ini bisa terhubung kembali ke internet',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.normal,
+                    letterSpacing: 1.2,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
           ),
-          subtitleTextStyle: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w200,
-            color: secondaryColor,
-          ),
-          hideBackgroundAnimation: true,
-          subTitle:
-              'Aplikasi Analisis Kredit Mikro membutuhkan koneksi internet untuk menjalankannya, reconnect dengan data / wifi dan coba lagi',
         ),
       ),
     );

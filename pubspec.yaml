@@ -1,5 +1,5 @@
 name: akm
-version: 1.0.3+9
+version: 1.0.3+10
 publish_to: none
 description: Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS.
 environment:
@@ -57,9 +57,9 @@ dependencies:
   nekos: ^0.0.7
   ntp: ^2.0.0
   numerus: ^2.0.0
-  open_file:
+  better_open_file:
     git:
-      url: https://github.com/crazecoder/open_file
+      url: https://github.com/bertoldofonseca/better_open_file
       ref: master
   open_street_map_search_and_pick: ^0.0.15
   pdf: ^3.8.4

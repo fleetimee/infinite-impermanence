@@ -10,6 +10,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_marker_popup/flutter_map_marker_popup.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -602,6 +603,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Keterangan',
               hintText: 'Sebidang tanah di kota X',
+              prefixIcon: Icon(Icons.description),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -617,6 +619,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             controller: controller.namaPemilikEdit =
                 TextEditingController(text: data.namaPemilik),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person),
               labelText: 'Nama Pemilik',
               hintText: 'Novian Andika',
               border: OutlineInputBorder(
@@ -634,6 +637,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             controller: controller.buktiKepemilikanEdit =
                 TextEditingController(text: data.buktiKepemilikan),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.document_scanner),
               labelText: 'Bukti Kepemilikan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -647,10 +651,13 @@ class FormUpdateAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'luas_tanah',
+            keyboardType: TextInputType.number,
             controller: controller.luasTanahEdit =
                 TextEditingController(text: data.luasTanah.toString()),
             decoration: const InputDecoration(
               labelText: 'Luas Tanah',
+              prefixIcon: Icon(Icons.square_foot),
+              suffixText: 'M2',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -675,6 +682,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             format: DateFormat('dd/MM/yyyy'),
             decoration: const InputDecoration(
               labelText: 'Tanggal',
+              prefixIcon: Icon(Icons.calendar_today),
+              suffixIcon: Icon(Icons.arrow_drop_down),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -691,6 +700,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                 TextEditingController(text: data.pengikatan),
             decoration: const InputDecoration(
               labelText: 'Pengikatan',
+              prefixIcon: Icon(Icons.change_circle_outlined),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -725,6 +735,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                           precision: 0),
                   decoration: const InputDecoration(
                     labelText: 'Nilai Pasar',
+                    prefixText: 'Rp. ',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -742,6 +753,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                   controller: controller.persentaseEdit,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
+                    suffixText: '%',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -766,6 +778,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                     precision: 0),
             decoration: const InputDecoration(
               labelText: 'Nilai Likuidasi',
+              prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -787,6 +800,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                     precision: 0),
             decoration: const InputDecoration(
               labelText: 'Nilai Pengikatan',
+              prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -839,6 +853,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                 TextEditingController(text: data.titikKoordinat),
             decoration: const InputDecoration(
               labelText: 'Titik Koordinat',
+              prefixIcon: Icon(Icons.location_searching),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1013,8 +1028,12 @@ class FormInputAgunanTanah extends StatelessWidget {
           FormBuilderTextField(
             name: 'deskripsi_pendek',
             controller: controller.deskripsiPendek,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Keterangan',
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.description),
               hintText: 'Sebidang tanah di kota X',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1029,8 +1048,12 @@ class FormInputAgunanTanah extends StatelessWidget {
           FormBuilderTextField(
             name: 'nama_pemilik',
             controller: controller.namaPemilik,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Nama Pemilik',
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.person),
               hintText: 'Novian Andika',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1045,8 +1068,12 @@ class FormInputAgunanTanah extends StatelessWidget {
           FormBuilderTextField(
             name: 'bukti_kepemilikan',
             controller: controller.buktiKepemilikan,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Bukti Kepemilikan',
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.document_scanner),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1059,9 +1086,18 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'luas_tanah',
+            keyboardType: TextInputType.number,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.luasTanah,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.numeric(),
+            ]),
             decoration: const InputDecoration(
               labelText: 'Luas Tanah',
+              suffixText: 'M2',
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.square_foot),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1074,6 +1110,7 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderDateTimePicker(
             name: 'tanggal',
+            validator: FormBuilderValidators.required(),
             inputType: InputType.date,
             onChanged: (value) {
               controller.tanggal = value!;
@@ -1084,6 +1121,8 @@ class FormInputAgunanTanah extends StatelessWidget {
             },
             format: DateFormat('dd/MM/yyyy'),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.calendar_today),
+              suffixIcon: Icon(Icons.arrow_drop_down),
               labelText: 'Tanggal',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1097,9 +1136,13 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'pengikatan',
+            validator: FormBuilderValidators.required(),
             controller: controller.pengikatan,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Pengikatan',
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.change_circle_outlined),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1126,9 +1169,14 @@ class FormInputAgunanTanah extends StatelessWidget {
                 flex: 4,
                 child: FormBuilderTextField(
                   name: 'nilai_pasar',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.required(),
                   controller: controller.nilaiPasar,
                   decoration: const InputDecoration(
                     labelText: 'Nilai Pasar',
+                    alignLabelWithHint: true,
+                    prefixText: 'Rp. ',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1143,8 +1191,18 @@ class FormInputAgunanTanah extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'persentase',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.max(100),
+                    FormBuilderValidators.min(0),
+                    FormBuilderValidators.maxLength(3),
+                  ]),
                   controller: controller.persentase,
                   decoration: const InputDecoration(
+                    suffixText: '%',
                     labelText: 'Persen',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -1161,10 +1219,13 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_likuidasi',
-            enabled: false,
+            validator: FormBuilderValidators.required(),
+            readOnly: true,
             controller: controller.nilaiLiquidasi,
             decoration: const InputDecoration(
               labelText: 'Nilai Likuidasi',
+              alignLabelWithHint: true,
+              prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1177,9 +1238,11 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_pengikatan',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiPengikatan,
             decoration: const InputDecoration(
+              alignLabelWithHint: true,
+              prefixText: 'Rp. ',
               labelText: 'Nilai Pengikatan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1214,8 +1277,8 @@ class FormInputAgunanTanah extends StatelessWidget {
             maxLines: 4,
             controller: controller.lokasi,
             decoration: const InputDecoration(
-              alignLabelWithHint: true,
               labelText: 'Lokasi',
+              hintText: 'Masukkan/Pilih Lokasi Agunan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1228,8 +1291,11 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'titik_koordinat',
+            validator: FormBuilderValidators.required(),
             controller: controller.titikKoordinat,
             decoration: const InputDecoration(
+              alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.location_searching),
               labelText: 'Titik Koordinat',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(

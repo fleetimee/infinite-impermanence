@@ -83,7 +83,8 @@ class HomeView extends GetView<HomeController> {
                   passiveIndicator: Colors.white54,
                   enlargeMainPage: true,
                   pagerSize: 10,
-                  viewportFraction: 1,
+
+                  viewportFraction: 0.9,
                   items: imageList.map(
                     (url) {
                       return Container(
@@ -91,8 +92,11 @@ class HomeView extends GetView<HomeController> {
                         child: ClipRRect(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5.0)),
-                          child: Image.asset(url,
-                              fit: BoxFit.cover, width: 1000.0),
+                          child: Image.asset(
+                            url,
+                            fit: BoxFit.cover,
+                            width: 1000.0,
+                          ),
                         ),
                       );
                     },

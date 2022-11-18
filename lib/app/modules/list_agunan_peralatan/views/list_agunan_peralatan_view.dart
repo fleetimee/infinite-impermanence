@@ -1,9 +1,9 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -11,6 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:numerus/numerus.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
@@ -18,7 +19,6 @@ import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/list_agunan_tanah/views/list_agunan_tanah_view.dart';
-import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/list_agunan_peralatan_controller.dart';
 
@@ -76,7 +76,7 @@ class ListAgunanPeralatanView extends GetView<ListAgunanPeralatanController> {
         () {
           if (controller.isAgunanPeralatanProcessing.value) {
             return const Center(
-              child: SataniaLoading(),
+              child: BpdDiyLoader(),
             );
           } else {
             if (controller.listAgunanPeralatan.isNotEmpty) {
@@ -305,23 +305,54 @@ class ListAgunanPeralatanView extends GetView<ListAgunanPeralatanController> {
                 },
               );
             } else {
-              return Center(
-                child: EmptyWidget(
-                  image: 'assets/images/home/satania-crying.png',
-                  title: 'Tidak ada data',
-                  titleTextStyle: const TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.w800,
-                    color: secondaryColor,
+              return Align(
+                alignment: Alignment.center,
+                child: Container(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Center(
+                        child: Text(
+                          'Tidak ada data',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 35,
+                            fontWeight: FontWeight.w800,
+                            color: secondaryColor,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Lottie.asset(
+                          'assets/images/home/404.zip',
+                          frameRate: FrameRate.max,
+                          fit: BoxFit.cover,
+                          repeat: true,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Text(
+                              'Gagal memuat animasi',
+                              style: TextStyle(
+                                color: Colors.red,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      const Center(
+                        child: Text(
+                          'Tidak ada data agunan peralatan yang terdaftar atau koneksi internet bermasalah',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w200,
+                            color: secondaryColor,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
-                  subtitleTextStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200,
-                    color: secondaryColor,
-                  ),
-                  hideBackgroundAnimation: true,
-                  subTitle:
-                      'Tidak ada data agunan peralatan yang terdaftar atau koneksi internet bermasalah',
                 ),
               );
             }

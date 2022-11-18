@@ -10,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
@@ -139,8 +140,8 @@ class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
                         children: [
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
-                              Center(
+                            children: [
+                              const Center(
                                 child: Text(
                                   'Yeay berhasil mendapatkan',
                                   style: TextStyle(
@@ -149,7 +150,7 @@ class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
                                   ),
                                 ),
                               ),
-                              Center(
+                              const Center(
                                 child: Text(
                                   'CRR Agunan 🎉🎉🎉',
                                   style: TextStyle(
@@ -158,17 +159,23 @@ class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Center(
-                                child: GFImageOverlay(
-                                  height: 200,
-                                  width: 350,
-                                  shape: BoxShape.rectangle,
-                                  image: NetworkImage(
-                                      'https://i.pinimg.com/originals/17/bb/14/17bb14d09f89ccc0efb7c30c3b49c926.jpg'),
-                                  boxFit: BoxFit.cover,
+                                child: Lottie.asset(
+                                  'assets/images/home/agunan_promp.zip',
+                                  frameRate: FrameRate.max,
+                                  height: 280,
+                                  repeat: true,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return const Text(
+                                      'Gagal memuat animasi',
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                      ),
+                                    );
+                                  },
                                 ),
                               ),
                             ],

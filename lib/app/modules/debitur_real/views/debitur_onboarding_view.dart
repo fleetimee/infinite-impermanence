@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -35,7 +36,7 @@ class DebiturOnboardingView extends StatelessWidget {
       body: Obx(
         () => deployController.isInputDebiturProcessing.value
             ? const Center(
-                child: CircularProgressIndicator(),
+                child: BpdDiyLoader(),
               )
             : SingleChildScrollView(
                 child: Column(

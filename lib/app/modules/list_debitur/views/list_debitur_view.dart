@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:empty_widget/empty_widget.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -451,7 +450,7 @@ class ListDebiturView extends GetView<ListDebiturController> {
         () {
           if (controller.isDataProcessing.value) {
             return const Center(
-              child: SataniaLoading(),
+              child: BpdDiyLoader(),
             );
           } else {
             if (controller.listDebitur.isNotEmpty) {
@@ -517,7 +516,9 @@ class ListDebiturView extends GetView<ListDebiturController> {
                           if (index == controller.listDebitur.length - 1 &&
                               controller.isMoreDataAvailable.value == true) {
                             return const Center(
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
                             );
                           } else {
                             return Container(
@@ -786,23 +787,55 @@ class ListDebiturView extends GetView<ListDebiturController> {
                 ],
               );
             } else {
-              return Center(
-                child: EmptyWidget(
-                  image: 'assets/images/home/satania-crying.png',
-                  title: 'Tidak ada data',
-                  titleTextStyle: const TextStyle(
-                    fontSize: 35,
-                    fontWeight: FontWeight.w800,
-                    color: secondaryColor,
+              return Align(
+                alignment: Alignment.center,
+                child: Container(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Center(
+                        child: Text(
+                          'Data Tidak Ditemukan',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: Lottie.asset(
+                          'assets/images/home/404.zip',
+                          frameRate: FrameRate.max,
+                          fit: BoxFit.cover,
+                          repeat: true,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Text(
+                              'Gagal memuat animasi',
+                              style: TextStyle(
+                                color: Colors.red,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      const Center(
+                        child: Text(
+                          'Data tidak dapat ditemukan di database atau list debitur masih kosong',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 1.2,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ],
                   ),
-                  subtitleTextStyle: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w200,
-                    color: secondaryColor,
-                  ),
-                  hideBackgroundAnimation: true,
-                  subTitle:
-                      'Tidak ada data debitur yang terdaftar atau koneksi internet bermasalah',
                 ),
               );
             }
@@ -1344,8 +1377,8 @@ class ListDebiturView extends GetView<ListDebiturController> {
   }
 }
 
-class SataniaLoading extends StatelessWidget {
-  const SataniaLoading({
+class BpdDiyLoader extends StatelessWidget {
+  const BpdDiyLoader({
     Key? key,
   }) : super(key: key);
 

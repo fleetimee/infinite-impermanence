@@ -49,7 +49,7 @@ class HeaderKarakter extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.steam,
+                    FontAwesomeIcons.userGroup,
                     size: 28,
                   ),
                 ),

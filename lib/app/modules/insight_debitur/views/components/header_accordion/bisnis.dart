@@ -51,7 +51,7 @@ class HeaderBisnis extends StatelessWidget {
               children: const [
                 Expanded(
                   child: Icon(
-                    FontAwesomeIcons.tiktok,
+                    FontAwesomeIcons.arrowTrendUp,
                     size: 28,
                   ),
                 ),

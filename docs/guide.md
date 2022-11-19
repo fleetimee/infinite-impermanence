@@ -78,7 +78,6 @@ Isikan data dengan benar dan tepat, ada beberapa field yang opsional dan tidak d
 
 Di menu `search` ini ditampilkan apa yang sudah diinputkan tadi, dengan beberapa detail yang sedikit, nantinya disini akan ada filter untuk memfilter debitur berdasarkan nama, alamat, no ktp, dll (next version), Untuk melanjutkan pilih salah satu debitur yang sudah diinput tadi kemudian tekan tombol `detail`
 
-![image](https://user-images.githubusercontent.com/45744788/199647543-dd8457de-adf6-427a-a91e-a96fceb0ca3b.png)
 
 !> Things will get interesting from here
 

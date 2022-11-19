@@ -59,6 +59,8 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            iconTheme: const IconThemeData(color: primaryColor),
+            backgroundColor: Colors.transparent,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(0),
               child: Container(
@@ -68,7 +70,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                       topRight: Radius.circular(500),
                     ),
                     color: secondaryColor),
-                padding: const EdgeInsets.only(bottom: 25, top: 5),
+                // padding: const EdgeInsets.only(bottom: 25, top: 5),
                 width: double.maxFinite,
               ),
             ),

@@ -108,12 +108,14 @@ flutter_native_splash:
   background_image: "assets/images/splash_screen/background.png"
   image: "assets/images/splash_screen/splash_icon.png"
   branding: "assets/images/splash_screen/branding.png"
-  fullscreen: true
-  web: false
 
-android_12:
-  image: "assets/images/splash_screen/splash_icon.png"
-  branding: "assets/images/splash_screen/branding.png"
+  android_12:
+    image: "assets/images/splash_screen/splash_icon.png"
+    branding: "assets/images/splash_screen/branding.png"
+
+  web: false
+  fullscreen: true
+
 
 
 dependency_overrides:

@@ -20,7 +20,9 @@ void main() {
 
   Get.testMode = true;
 
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 
   DependencyInjection.init();
 

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:lottie/lottie.dart' as animasi;
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -1217,8 +1218,11 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           FormBuilderTextField(
             name: 'deskripsi_pendek',
             controller: controller.deskripsiPendek,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Keterangan',
+              prefixIcon: Icon(Icons.description),
               hintText: 'Sebidang tanah di kota X',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1232,8 +1236,11 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nama_pemilik',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.namaPemilik,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person),
               labelText: 'Nama Pemilik',
               hintText: 'Novian Andika',
               border: OutlineInputBorder(
@@ -1248,8 +1255,11 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'bukti_kepemilikan',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.buktiKepemilikan,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.document_scanner),
               labelText: 'Bukti Kepemilikan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1263,9 +1273,17 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'luas_tanah',
+            keyboardType: TextInputType.number,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.numeric(),
+            ]),
             controller: controller.luasTanah,
             decoration: const InputDecoration(
               labelText: 'Luas Tanah',
+              suffixText: 'M2',
+              prefixIcon: Icon(Icons.square_foot),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1279,6 +1297,8 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           FormBuilderDateTimePicker(
             name: 'tanggal',
             inputType: InputType.date,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: FormBuilderValidators.required(),
             onChanged: (value) {
               controller.tanggal = value!;
               debugPrint(value.toString());
@@ -1288,6 +1308,8 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
             },
             format: DateFormat('dd/MM/yyyy'),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.calendar_today),
+              suffixIcon: Icon(Icons.arrow_drop_down),
               labelText: 'Tanggal',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1301,8 +1323,11 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'pengikatan',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.pengikatan,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.change_circle_outlined),
               labelText: 'Pengikatan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1340,8 +1365,11 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
                 flex: 4,
                 child: FormBuilderTextField(
                   name: 'nilai_pasar_tanah',
+                  keyboardType: TextInputType.number,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.nilaiPasarTanah,
                   decoration: const InputDecoration(
+                    prefixText: 'Rp. ',
                     labelText: 'Nilai Pasar Tanah',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -1357,9 +1385,19 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'persentase_tanah',
+                  keyboardType: TextInputType.number,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.max(100),
+                    FormBuilderValidators.min(0),
+                    FormBuilderValidators.maxLength(3),
+                  ]),
                   controller: controller.persentaseTanah,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
+                    suffixText: '%',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1375,9 +1413,10 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilaiLiquidasiTanah',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiLiquidasiTanah,
             decoration: const InputDecoration(
+              prefixText: 'Rp. ',
               labelText: 'Nilai Liquidasi Tanah',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(

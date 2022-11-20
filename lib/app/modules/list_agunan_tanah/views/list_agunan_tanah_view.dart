@@ -1110,6 +1110,7 @@ class FormInputAgunanTanah extends StatelessWidget {
           ),
           FormBuilderDateTimePicker(
             name: 'tanggal',
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: FormBuilderValidators.required(),
             inputType: InputType.date,
             onChanged: (value) {

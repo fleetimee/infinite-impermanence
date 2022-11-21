@@ -171,7 +171,7 @@ class InputNeracaController extends GetxController {
                 title: 'Sukses Diperbarui',
                 bodyHeaderDistance: 25,
                 desc:
-                    'Untuk mengsinkronkan data, silahkan edit Rugi Laba pada menu di bawah ini',
+                    'Untuk mengsinkronkan data, silahkan edit Laporan Keuangan pada menu di bawah ini',
                 dismissOnTouchOutside: false,
                 btnOkOnPress: () {
                   Get.toNamed(
@@ -179,7 +179,7 @@ class InputNeracaController extends GetxController {
                     arguments: debiturController.insightDebitur.value,
                   );
                 },
-                btnOkText: 'Edit Rugi Laba',
+                btnOkText: 'Edit Laporan Keuangan',
               ).show();
       }, onError: (err) {
         isNeracaProcessing(false);

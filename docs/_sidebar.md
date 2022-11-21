@@ -3,9 +3,9 @@
   - [Quick start](guide.md "Quick start")
   - [Detail Debitur](debitur_detail.md "Detail Debitur")
   - **Keuangan**
-  - [Neraca](neraca.md "Neraca")
-  - [Rugi Laba](rugi_laba.md "Rugi Laba")
-  - [Laporan Keuangan](keuangan.md "Keuangan")
+  - [Keterangan Neraca](neraca.md "Keterangan Neraca")
+  - [Laporan Keuangan](rugi_laba.md "Laporan Keuangan")
+  - [Input Keuangan](keuangan.md "Keuangan")
   - [Analisa Keuangan](analisa_keuangan.md "Analisa Keuangan")
   - **Karakter**
   - [Analisa Karakter](analisa_karakter.md "Analisa Karakter")
@@ -17,3 +17,5 @@
   - [Jenis Agunan](jenis_agunan.md "Analisa Agunan")
   - [Form Agunan](form_agunan.md "Form Agunan")
   - [Analisa Agunan](analisa_agunan.md "Analisa Agunan")
+  - **Lain - Lain**
+  - [Syarat Lain](syarat_lain.md "Syarat Lain")

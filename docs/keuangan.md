@@ -1,8 +1,8 @@
-?> Untuk melihat perhitungan Keuangan lebih detail lihat `disini`
+> [!NOTE] Untuk melihat perhitungan Keuangan lebih detail lihat `disini`
 
 ## Cara Penggunaan
 
-!> Untuk Membuka menu Keuangan, terlebih dulu input [Rugi Laba](rugi_laba.md)
+> [!WARNING] Untuk Membuka menu Keuangan, terlebih dulu input [Rugi Laba](rugi_laba.md)
 
 Untuk memulai penginputan Keuangan Debitur, Pilih Menu `Keuangan`, kemudian buka dropdown nya sampai muncul tombol input 
 
@@ -16,7 +16,7 @@ Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertamba
 
 ## Input Keuangan
 
-!> Untuk melihat rumus rumus perhitungan Keuangan lebih detail lihat `disini`
+> [!WARNING] Untuk melihat rumus rumus perhitungan Keuangan lebih detail lihat `disini`
 
 Setelah menu `Keuangan` di klik, maka akan muncul halaman input Keuangan seperti dibawah ini : 
 
@@ -26,7 +26,7 @@ Berikut field yang harus diinputkan untuk melengkapi Data Keuangan debitur :
 
 ### Data Keuangan
 
-!> Section yang paling penting disini, so proceed with caution
+> [!ATTENTION] Section yang paling penting disini, so proceed with caution
 
 - `Kredit Diusulkan / Plafon`: Inputan ini berfungsi untuk menentukan jumlah kredit yang diusulkan oleh debitur.
 - `Jangka Waktu`: Inputan ini berfungsi untuk menentukan jangka waktu kredit yang diusulkan oleh debitur.
@@ -45,7 +45,7 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 ### Asumsi Keuangan
 
 
-> Untuk field keuangan kini semua datanya diambil dari Rugi Laba yang telah diinput
+> [!NOTE] Untuk field keuangan kini semua datanya diambil dari Rugi Laba yang telah diinput
 
 #### Keuangan Kini
 - `Penjualan per bulan / Omzet`: Terisi otomatis, diambil dari `omzet` di `Rugi Laba`.
@@ -56,7 +56,7 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 #### Asumsi (Keuangan Yang Akan Datang)
 
-!> Untuk melihat rumus rumus perhitungan Asumsi Keuangan lebih detail lihat `disini`
+> [!NOTE] Untuk melihat rumus rumus perhitungan Asumsi Keuangan lebih detail lihat `disini`
 
 - `Penjualan YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
 - `Biaya Bahan YAD`: Terisi otomatis setelah tombol `Hitung Asumsi` di tekan.
@@ -72,8 +72,6 @@ Jika semuanya sudah di cek lalu klik tombol `Hitung Asumsi` maka hasil otomatis 
 Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik tab diatas
 
 ### Interest
-
-?> Yay kita sudah sampai di bagian terakhir
 
 - `Bunga Kredit`: Terisi otomatis, diambil dari `Bunga Kredit` di `Data Keuangan`.
 - `Jangka Waktu`: Terisi otomatis, diambil dari `Jangka Waktu` di `Data Keuangan`.

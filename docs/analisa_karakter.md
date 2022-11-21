@@ -1,4 +1,4 @@
-?> Untuk melihat perhitungan Analisa Karakter lebih detail lihat `disini`
+> [!NOTE] Untuk melihat perhitungan Analisa Karakter lebih detail lihat `disini`
 
 ## Sekilas Analisa Karakter
 
@@ -34,7 +34,7 @@ Ada beberapa parameter yang harus diinputkan untuk mendapatkan CRR Karakter debi
 
 ### Hasil
 
-?> Untuk mengetahui bagaimana proses hitung CRR nya klik `disini`
+> [!NOTE] Untuk mengetahui bagaimana proses hitung CRR nya klik `disini`
 
 Sekarang langkah anda tinggal Klik `lihat hasil` dan `simpan` 
 

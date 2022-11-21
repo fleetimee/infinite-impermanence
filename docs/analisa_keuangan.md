@@ -1,10 +1,10 @@
-?> Untuk melihat perhitungan Analisa Keuangan lebih detail lihat `disini`
+> [!NOTE] Untuk melihat perhitungan Analisa Keuangan lebih detail lihat `disini`
 
-!> Section ini memiliki banyak subsection, so bear in mind proceed with caution !
+> [!WARNING] Section ini memiliki banyak subsection, so bear in mind proceed with caution !
 
 ## Cara Penggunaan
 
-!> Untuk Membuka menu Analisa Keuangan, terlebih dulu input [Keuangan](keuangan.md)
+> [!WARNING] Untuk Membuka menu Analisa Keuangan, terlebih dulu input [Keuangan](keuangan.md)
 
 Untuk memulai penginputan Analisa Keuangan Debitur, Pilih Menu `Analisa Keuangan`, kemudian buka dropdown nya sampai muncul tombol input 
 
@@ -17,7 +17,7 @@ Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertamba
 
 ## Input Analisa Keuangan
 
-!> Untuk melihat rumus rumus perhitungan Analisa Keuangan lebih detail lihat `disini`
+> [!NOTE] Untuk melihat rumus rumus perhitungan Analisa Keuangan lebih detail lihat `disini`
 
 Setelah menu `Analisa Keuangan` di klik, maka akan muncul halaman Analisa Keuangan seperti dibawah ini : 
 
@@ -42,7 +42,7 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 ### Angsuran
 
-> Field ini harusnya sudah diisi secara otomatis semua
+> [!TIP] Field ini harusnya sudah diisi secara otomatis semua
 
 Langsung saja klik tombol `Hitung Total Angsuran` untuk menghitung angsuran debitur.
 
@@ -51,9 +51,9 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 ### Asumsi Keuangan
 
-?> Untuk section ini data Asumsi diambil dari `Input Keuangan`, jadi cuma untuk menghitung persentasinya saja
+> [!NOTE] Untuk section ini data Asumsi diambil dari `Input Keuangan`, jadi cuma untuk menghitung persentasinya saja
 
-!> Lihat cara perhitungannya `disini`
+> [!NOTE] Lihat cara perhitungannya `disini`
 
 - `Persen Omzet Kini`: Default nya 100%.
 - `Persen Omzet YAD`: Default nya 100%.
@@ -88,7 +88,7 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 ### Analisa Ratio
 
-!> Untuk perhitungan Analisa Ratio lebih detail lihat `disini`
+> [!NOTE] Untuk perhitungan Analisa Ratio lebih detail lihat `disini`
 
 Di section ini tugas anda hanya menekan banyak tombol saja, mudah bukan 😎
 
@@ -106,9 +106,7 @@ Untuk melanjutkan ke step selanjutnya silahkan swipe kiri layar anda, atau klik 
 
 ### Summary
 
-> Uoohhh akhirnya section terakhir 😭😭😭
-
-?> Disini banyak hitungannya kalau penasaran gimana cara kerjanya klik `disini`
+> [!NOTE] Disini banyak hitungannya kalau penasaran gimana cara kerjanya klik `disini`
 
 - `Pinjaman Maksimal`: Terisi otomatis, jika tombol `Hitung Semua` di klik. Ini adalah batas maksimal pinjaman yang bisa diajukan oleh debitur. 
 - `Perhitungan Modal/Kerja`: Terisi otomatis, jika tombol `Hitung Semua` di klik. Ini adalah perhitungan modal kerja/investasi yang dibutuhkan oleh debitur.
@@ -120,7 +118,7 @@ Tekan tombol `Hitung Semua` untuk menghitung semua hasil diatas.
 
 ![image](https://user-images.githubusercontent.com/45744788/199920720-4895dff8-0d9e-47d6-8742-ecbc83ee5151.png)
 
-!> Pastikan section yang sebelumnnya sudah terisi semua, lalu tekan tombol `Hitung Semua` untuk menghitung semua hasilnya.
+> [!ATTENTION] Pastikan section yang sebelumnnya sudah terisi semua, lalu tekan tombol `Hitung Semua` untuk menghitung semua hasilnya.
 
 Jika hitungan yang atas sukses dan berhasil ditampilkan, sekarang saatnya untuk verifikasi Jumlah Plafon dan Pinjaman Maksimalnya
 
@@ -130,9 +128,7 @@ Jika Plafon Kurang dari Pinjaman maka akan ada Check Hijau, jika tidak akan di C
 
 ### Result
 
-> AAAAAAAAAAAAAAAAAA Selesai juga 🤣🤣🤣
-
-?> Untuk mengetahui bagaimana proses hitung CRR nya klik `disini`
+> [!NOTE] Untuk mengetahui bagaimana proses hitung CRR nya klik `disini`
 
 Sekarang langkah anda tinggal Klik `lihat hasil` dan `simpan` 
 

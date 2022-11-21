@@ -1,4 +1,4 @@
-?> Untuk melihat perhitungan Laporan Keuangan lebih detail lihat `disini`
+> [!NOTE] Untuk melihat perhitungan Laporan Keuangan lebih detail lihat `disini`
 
 ## Sekilas Laporan Keuangan
 
@@ -6,9 +6,9 @@ Laporan laba rugi merupakan laporan yang menyajikan informasi pengeluaran, penda
 
 ## Cara Penggunaan
 
-!> Untuk Membuka menu Laporan Keuangan, terlebih dulu input [Neraca](neraca.md)
+> [!WARNING] Untuk Membuka menu Laporan Keuangan, terlebih dulu input [Neraca](neraca.md)
 
-!> Tabel Laporan Keuangan bisa digeser ke kanan dan ke kiri untuk melihat data yang tidak terlihat
+> [!TIP] Tabel Laporan Keuangan bisa digeser ke kanan dan ke kiri untuk melihat data yang tidak terlihat
 
 Untuk memulai penginputan Laporan Keuangan Debitur, Pilih Menu `Laporan Keuangan`, kemudian buka dropdown nya sampai muncul tombol input 
 
@@ -29,7 +29,7 @@ Berikut field yang harus diinputkan untuk melengkapi Data Rugi Laba debitur :
 
 ### Perkiraan Neraca
 
-?> Kebanyakan data neraca sudah terisi otomatis, namun jika ada yang belum terisi maka bisa diisi manual.
+> [!WARNING] Kebanyakan data neraca sudah terisi otomatis, namun jika ada yang belum terisi maka bisa diisi manual.
 
 #### Aktiva
 
@@ -72,7 +72,7 @@ Untuk perhitungan perkiraan neraca sudah selesai sampai disini 🎉
 
 ### Perkiraan Laba Rugi
 
-?> Disini banyak yang diisi jadi perhatikan ya adick adick 😁
+> [!WARNING] Disini banyak yang diisi jadi perhatikan ya adick adick 😁
 
 #### Perkiraan Penjualan
 
@@ -88,7 +88,7 @@ Jika kedua field (`omzet` & `persentase`) diatas sudah diisi gunakan tombol `hit
 
 #### Perkiraan Biaya
 
-!> Untuk melihat rumus rumus hitungannya bisa lihat `disini`
+> [!NOTE] Untuk melihat rumus rumus hitungannya bisa lihat `disini`
 
 - `Biaya Tenaga Kerja` : Bisa diisi secara manual, berisi biaya tenaga kerja (gaji karyawan) dari usaha debitur selama periode yang diinputkan.
 - `Biaya Operasionals` : Bisa diisi secara manual, berisi biaya operasional dari usaha debitur selama periode yang diinputkan.
@@ -107,7 +107,7 @@ Untuk perhitungan perkiraan Laba Rugi sudah selesai sampai disini 🎉
 
 #### Perkiraan Penghasilan Bersih Per Bulan
 
-> Ini cuma satu inputan duh 👀
+> [!TIP] Ini cuma satu inputan duh 👀
 - `Penghasilan Rata Rata Per Bulan` : Nilai ini didapatkan dari Laba setelah Pajak di Perkiraan Biaya
 - `Biaya Hidup` : Bisa diisi secara manual, berisi biaya hidup debitur selama periode yang diinputkan.
 - `Sisa Penghasilan` : Terisi otomatis dari perhitungan data Penghasilan Rata Rata Per Bulan dan Biaya Hidup

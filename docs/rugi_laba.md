@@ -1,16 +1,16 @@
-?> Untuk melihat perhitungan Rugi Laba lebih detail lihat `disini`
+?> Untuk melihat perhitungan Laporan Keuangan lebih detail lihat `disini`
 
-## Sekilas Rugi Laba
+## Sekilas Laporan Keuangan
 
 Laporan laba rugi merupakan laporan yang menyajikan informasi pengeluaran, pendapatan, serta laba atau rugi yang dihasilkan perusahaan selama periode tertentu. Melalui laporan laba rugi ini, bisa memperlihatkan kinerja keuangan dari suatu usaha atau perusahaan.
 
 ## Cara Penggunaan
 
-!> Untuk Membuka menu Rugi Laba, terlebih dulu input [Neraca](neraca.md)
+!> Untuk Membuka menu Laporan Keuangan, terlebih dulu input [Neraca](neraca.md)
 
-!> Tabel Rugi Laba bisa digeser ke kanan dan ke kiri untuk melihat data yang tidak terlihat
+!> Tabel Laporan Keuangan bisa digeser ke kanan dan ke kiri untuk melihat data yang tidak terlihat
 
-Untuk memulai penginputan Rugi Laba Debitur, Pilih Menu `Rugi Laba`, kemudian buka dropdown nya sampai muncul tombol input 
+Untuk memulai penginputan Laporan Keuangan Debitur, Pilih Menu `Laporan Keuangan`, kemudian buka dropdown nya sampai muncul tombol input 
 
 ![image](https://user-images.githubusercontent.com/45744788/199829692-1083dc7c-33c5-41fd-8429-dc2baa65afc8.png)
 
@@ -19,7 +19,7 @@ Serta indikator diatas akan berubah menjadi hijau dan progress bar akan bertamba
 
 ![image](https://user-images.githubusercontent.com/45744788/199679832-23a70373-c5d0-4564-8081-7a66134af793.png)
 
-## Input Rugi Laba
+## Input Laporan Keuangan
 
 Setelah menu `Rugi Laba` di klik, maka akan muncul halaman input Rugi Laba seperti dibawah ini : 
 

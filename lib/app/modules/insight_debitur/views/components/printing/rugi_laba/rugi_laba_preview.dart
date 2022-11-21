@@ -20,7 +20,7 @@ class RugiLabaPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rugi Laba: ${data.peminjam1}'),
+        title: Text('Laporan Keuangan: ${data.peminjam1}'),
         centerTitle: true,
       ),
       body: Theme(
@@ -39,7 +39,7 @@ class RugiLabaPreview extends StatelessWidget {
             )
           },
           pdfFileName: // date
-              '${DateFormat('dd-MM-yy').format(DateTime.now())}_RUGI_LABA_${data.peminjam1}.pdf',
+              '${DateFormat('dd-MM-yy').format(DateTime.now())}_LAPORAN_KEUANGAN_${data.peminjam1}.pdf',
           onShared: (context) {
             Get.snackbar(
               'Berhasil',

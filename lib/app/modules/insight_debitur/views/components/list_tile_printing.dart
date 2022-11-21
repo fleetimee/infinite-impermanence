@@ -221,7 +221,7 @@ class PrintRugiLaba extends StatelessWidget {
               onPressed: () {
                 Get.snackbar(
                   'Error',
-                  'Data Rugi Laba belum lengkap',
+                  'Data Laporan Keuangan belum lengkap',
                   backgroundColor: Colors.red,
                   colorText: Colors.white,
                 );

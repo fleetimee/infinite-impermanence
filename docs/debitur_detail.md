@@ -60,7 +60,7 @@ Sebenarnya flow input ini bisa dari mana saja tetapi ada beberapa section yang m
 Untuk ke 5 modul diatas akan menghasilkan CRR (Credit Risk Rating) tiap sectionnya
 
  - Lain - lain (Bisa diakses dari menu `Lain - lain`)
-    - [Syarat Lain]() 
+    - [Syarat Lain](syaarat_lain.md)) 
     - [Ijin Yang Dilegitimasi]()
     - [Premi & Asuransi]() (Membutuhkan `Input Keuangan` diinput)
 

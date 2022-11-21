@@ -55,7 +55,7 @@ Jika sudah terisi semua klik tombol `simpan`, maka tampilan akan kembali ke deta
 dan progress akan terisi sebanyak 10% serta tombol input berubah menjadi `lihat` dan `edit` yang berarti 
 Data Keterangan Neraca sudah sukses diinput 🎉
 
-!> Developer note: Pastikan field sudah terisi semua, sebelum klik `simpan`
+> [!NOTE] Developer note: Pastikan field sudah terisi semua, sebelum klik `simpan`
 
 ## Lihat Keterangan Neraca
 
@@ -63,18 +63,18 @@ Untuk melihat neraca yang sudah diinputkan tadi bisa melalui 2 cara yaitu :
 - Klik tombol `lihat` di section `keterangan neraca`
 - Langsung lewat `printing centre` dengan cara klik tombol `READY` di section `keterangan neraca`
 
-?> Pastikan sudah di-input jika ingin mencetak Neraca, karena jika belum ya gak akan bisa juga sih 🤣
+> [!NOTE] Pastikan sudah di-input jika ingin mencetak Neraca, karena jika belum ya gak akan bisa juga sih 🤣
 
 ![image](https://user-images.githubusercontent.com/45744788/199674160-9de59f02-18d7-4e77-8db4-10a211431389.png)
 
 ## Edit Keterangan Neraca
 
-!> Developer note: Jika isian Laporan Keuangan dst sudah terisi, maka ulangi edit Laporan Keuangan Dst setelah diedit Neraca.
+> [!WARNING] Developer note: Jika isian Laporan Keuangan dst sudah terisi, maka ulangi edit Laporan Keuangan Dst setelah diedit Neraca.
 
-!> Contoh : Field Neraca untuk Kas on Hand berubah di Neraca, karena Nilai Neraca yang terbaru dibutuhkan 
+> [!WARNING] Contoh : Field Neraca untuk Kas on Hand berubah di Neraca, karena Nilai Neraca yang terbaru dibutuhkan 
 untuk perhitungan Laporan Keuangan maka anda harus mengedit Laporan Keuangan Dst setelah Neraca di edit.
 
-!> Setelah menginputkan value yang baru jangan lupa di klik tombol `Hitung` untuk menghitung totalnya yang terupdate.
+> [!WARNING] Setelah menginputkan value yang baru jangan lupa di klik tombol `Hitung` untuk menghitung totalnya yang terupdate.
 
 Jika ada yang keliru penginputan nya (why ?? 😭) bisa di edit dengan cara klik tombol `edit` di section `neraca`.
 

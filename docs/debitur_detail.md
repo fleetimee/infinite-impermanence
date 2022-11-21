@@ -61,8 +61,8 @@ Untuk ke 5 modul diatas akan menghasilkan CRR (Credit Risk Rating) tiap sectionn
 
  - Lain - lain (Bisa diakses dari menu `Lain - lain`)
     - [Syarat Lain](syaarat_lain.md)) 
-    - [Ijin Yang Dilegitimasi]()
-    - [Premi & Asuransi]() (Membutuhkan `Input Keuangan` diinput)
+    - [Ijin Yang Dilegitimasi](ijin.md)
+    - [Premi & Asuransi](premi.md) (Membutuhkan `Input Keuangan` diinput)
 
 <!-- ![as](https://user-images.githubusercontent.com/45744788/199656141-f25e42de-926f-4dcd-86c0-6270d2d412c9.png) -->
 

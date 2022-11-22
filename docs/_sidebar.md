@@ -21,3 +21,5 @@
   - [Syarat Lain](syarat_lain.md "Syarat Lain")
   - [Ijin Legitimasi](ijin.md "Ijin Yang Dilegitimasi")
   - [Premi & Asuransi](premi.md "Premi & Asuransi")
+
+  - [Cetak](printing.md "Cetak")

@@ -2,25 +2,25 @@
 
   - [Quick start](guide.md "Quick start")
   - [Detail Debitur](debitur_detail.md "Detail Debitur")
-  - **Keuangan**
-  - [Keterangan Neraca](neraca.md "Keterangan Neraca")
-  - [Laporan Keuangan](rugi_laba.md "Laporan Keuangan")
-  - [Input Keuangan](keuangan.md "Keuangan")
-  - [Analisa Keuangan](analisa_keuangan.md "Analisa Keuangan")
-  - **Karakter**
-  - [Analisa Karakter](analisa_karakter.md "Analisa Karakter")
-  - **Bisnis**
-  - [Analisa Bisnis](analisa_bisnis.md "Analisa Bisnis")
-  - **Jenis Usaha**
-  - [Analisa Jenis Usaha](jenis_usaha.md "Analisa Jenis Usaha")
-  - **Agunan**
-  - [Jenis Agunan](jenis_agunan.md "Analisa Agunan")
-  - [Form Agunan](form_agunan.md "Form Agunan")
-  - [Analisa Agunan](analisa_agunan.md "Analisa Agunan")
-  - **Lain - Lain**
-  - [Syarat Lain](syarat_lain.md "Syarat Lain")
-  - [Ijin Legitimasi](ijin.md "Ijin Yang Dilegitimasi")
-  - [Premi & Asuransi](premi.md "Premi & Asuransi")
+  - Keuangan
+    - [Keterangan Neraca](neraca.md "Keterangan Neraca")
+    - [Laporan Keuangan](rugi_laba.md "Laporan Keuangan")
+    - [Input Keuangan](keuangan.md "Keuangan")
+    - [Analisa Keuangan](analisa_keuangan.md "Analisa Keuangan")
+  - Karakter
+    - [Analisa Karakter](analisa_karakter.md "Analisa Karakter")
+  - Bisnis
+    - [Analisa Bisnis](analisa_bisnis.md "Analisa Bisnis")
+  - Jenis Usaha
+    - [Analisa Jenis Usaha](jenis_usaha.md "Analisa Jenis Usaha")
+  - Agunan
+    - [Jenis Agunan](jenis_agunan.md "Analisa Agunan")
+    - [Form Agunan](form_agunan.md "Form Agunan")
+    - [Analisa Agunan](analisa_agunan.md "Analisa Agunan")
+  - Lain - Lain
+    - [Syarat Lain](syarat_lain.md "Syarat Lain")
+    - [Ijin Legitimasi](ijin.md "Ijin Yang Dilegitimasi")
+    - [Premi & Asuransi](premi.md "Premi & Asuransi")
 
-- [Cetak](printing.md "Cetak")
-- [Perhitungan](perhitungan.md "Perhitungan")
+  - [Cetak](printing.md "Cetak")
+  - [Perhitungan](perhitungan.md "Perhitungan")

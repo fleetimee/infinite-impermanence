@@ -44,6 +44,54 @@ Jumlah Aktiva Tetap &= Tanah dan Bangunan + Kendaraan + Mesin  \\
 \end{align}
 $$
 
+##### Hitung Jumlah Aktiva
+
+$$
+\begin{align}
+Jumlah Aktiva &= Jumlah Aktiva Lancar + Jumlah Aktiva Tetap \\
+&= 4000000 + 3000000 \\
+&= 7000000
+\end{align}
+$$
+
+##### Hitung Jumlah Hutang
+
+$$
+\begin{align}
+Jumlah Hutang &= Hutang Dagang + Hutang Bank + Hutang Lainnya \\
+&= 1000000 + 1000000 + 1000000 \\
+&= 3000000
+\end{align}
+$$
+
+##### Hitung Modal
+
+$$
+\begin{align}
+Modal &= Jumlah Aktiva - Jumlah Hutang \\
+&= 7000000 - 3000000 \\
+&= 4000000
+\end{align}
+$$
+
+
+##### Hitung Jumlah Modal
+$$
+\begin{align}
+Jumlah Modal &= Modal
+\end{align}
+$$
+
+
+##### Hitung Jumlah Pasiva
+$$
+\begin{align}
+Jumlah Pasiva &= Jumlah Hutang + Jumlah Modal \\
+&= 3000000 + 4000000 \\
+&= 7000000
+\end{align}
+$$
+
 
 #### **Input Keuangan**
 [keterangan neraca](https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=131998037 ':include :type=iframe width=100% height=800px')

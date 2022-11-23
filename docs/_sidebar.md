@@ -22,4 +22,5 @@
   - [Ijin Legitimasi](ijin.md "Ijin Yang Dilegitimasi")
   - [Premi & Asuransi](premi.md "Premi & Asuransi")
 
-  - [Cetak](printing.md "Cetak")
+- [Cetak](printing.md "Cetak")
+- [Perhitungan](perhitungan.md "Perhitungan")

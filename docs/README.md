@@ -33,4 +33,3 @@
     Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS   
   </p>
 </div>
-

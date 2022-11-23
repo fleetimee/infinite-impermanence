@@ -8,7 +8,9 @@ Pada section ini merupakan referensi kumpulan perhitungan yang dilakukan oleh ap
 
 ## Keterangan Neraca
 
-[keterangan neraca](https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=67255475 ':include :type=iframe width=100% height=800px')
+```link-preview
+https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=67255475
+```
 
 
 Pada Keterangan Neraca bisa dilihat hitungannya hanya hanya penjumlahan simpel saja.
@@ -18,7 +20,7 @@ Pada Keterangan Neraca bisa dilihat hitungannya hanya hanya penjumlahan simpel s
 
 ## Laporan Keuangan 
 
-[keterangan neraca](https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=1312808746 ':include :type=iframe width=100% height=800px')
+<!-- [keterangan neraca](https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=1312808746 ':include :type=iframe width=100% height=800px') -->
 
 ### Hitung Perkiraan Neraca
 
@@ -178,7 +180,7 @@ $$
 
 Tabel di bawah ini merupakan simulasi kredit yang diinputkan ke aplikasi ini.
 
-[keterangan neraca](https://docs.google.com/spreadsheets/d/1SJs6FhtwjygQY_OIjjo-tRZtBQUbkdVNeFdSOsIuieM/edit?usp=sharing ':include :type=iframe width=100% height=800px')
+<!-- [keterangan neraca](https://docs.google.com/spreadsheets/d/1SJs6FhtwjygQY_OIjjo-tRZtBQUbkdVNeFdSOsIuieM/edit?usp=sharing ':include :type=iframe width=100% height=800px') -->
 
 ### Hitung Angsuran
 
@@ -266,7 +268,7 @@ $$
 #### **Analisa Keuangan**
 
 ## Analisa Keuangan
-[keterangan neraca](https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=131998037 ':include :type=iframe width=100% height=800px')
+<!-- [keterangan neraca](https://docs.google.com/spreadsheets/d/1GVi1LWD_Agzt1jity-GR054ZJ96Z-wJYgSQC2RztsY0/edit#gid=131998037 ':include :type=iframe width=100% height=800px') -->
 
 ### Hitung Data Keuangan 
 

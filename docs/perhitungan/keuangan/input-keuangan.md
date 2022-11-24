@@ -1,5 +1,7 @@
 ## Input Keuangan
 
+> [!NOTE] Angka yang digunakan dalam simulasi perhitungan ini adalah random, dan tidak memiliki kaitan dengan data yang ada di aplikasi.
+
 Tabel di bawah ini merupakan simulasi kredit yang diinputkan ke aplikasi ini.
 
 [keterangan neraca](https://docs.google.com/spreadsheets/d/1SJs6FhtwjygQY_OIjjo-tRZtBQUbkdVNeFdSOsIuieM/edit?usp=sharing ':include :type=iframe width=100% height=800px')

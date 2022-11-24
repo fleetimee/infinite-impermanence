@@ -35,3 +35,8 @@
       - [Analisa Bisnis](perhitungan/bisnis/analisa-bisnis.md "Analisa Bisnis")
     - [Jenis Usaha](perhitungan.md)
       - [Analisa Jenis Usaha](perhitungan/jenis-usaha/analisa-jenis-usaha.md "Analisa Jenis Usaha")
+    - [Agunan](perhitungan.md)
+      - [Analisa Agunan](perhitungan/agunan/analisa-agunan.md "Analisa Agunan")
+    - [Lain-Lain](perhitungan.md)
+      - [Premi & Asuransi](perhitungan/lain-lain/premi-asuransi.md "Premi & Asuransi")
+      - [Overall](perhitungan/lain-lain/overall.md "Overall")

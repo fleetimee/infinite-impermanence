@@ -13,3 +13,8 @@ Pada section ini merupakan referensi kumpulan perhitungan yang dilakukan oleh ap
   - [Analisa Bisnis](perhitungan/bisnis/analisa-bisnis.md)
 - Jenis Usaha
   - [Analisa Jenis Usaha](perhitungan/jenis-usaha/analisa-jenis-usaha.md)
+- Agunan
+  - [Analisa Agunan](perhitungan/agunan/analisa-agunan.md)
+- Lain - Lain
+  - [Premi & Asuransi](perhitungan/lain-lain/premi-asuransi.md)
+  - [Overall](perhitungan/lain-lain/overall.md)

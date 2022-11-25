@@ -702,10 +702,13 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'deskripsi_pendek',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.deskripsiPendekEdit = TextEditingController(
               text: data.deskripsiPendek,
             ),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.description),
               labelText: 'Keterangan',
               hintText: 'KBP Pasar Lempuyangan...',
               border: OutlineInputBorder(
@@ -720,11 +723,14 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'komponen',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.komponenEdit = TextEditingController(
               text: data.komponen,
             ),
             decoration: const InputDecoration(
               labelText: 'Komponen',
+              prefixIcon: Icon(Icons.settings_input_component),
               hintText: 'KBP.',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -738,10 +744,13 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'tempat_dasaran',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.tempatDasaranEdit = TextEditingController(
               text: data.tempatDasaran,
             ),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.home_mini),
               labelText: 'Tempat Dasaran',
               alignLabelWithHint: true,
               hintText: '4Los2C',
@@ -757,10 +766,13 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'no_registrasi',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.noRegistrasiEdit = TextEditingController(
               text: data.noRegistrasi,
             ),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.confirmation_number),
               labelText: 'No Registrasi',
               hintText: '0017/LMPY/-/2021',
               alignLabelWithHint: true,
@@ -776,11 +788,18 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'luas',
+            keyboardType: TextInputType.number,
             controller: controller.luasLosEdit = TextEditingController(
               text: data.luasLos.toString(),
             ),
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.numeric(),
+            ]),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Luas',
+              prefixIcon: Icon(Icons.square_foot),
               alignLabelWithHint: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -794,11 +813,14 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'jenis_dagangan',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.jenisDaganganEdit = TextEditingController(
               text: data.jenisDagangan,
             ),
             decoration: const InputDecoration(
               labelText: 'Jenis Dagangan',
+              prefixIcon: Icon(Icons.shopping_bag),
               alignLabelWithHint: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -817,6 +839,8 @@ class FormUpdateAgunanKios extends StatelessWidget {
                   initialValue: // convert HH:MM:SS to DateTime
                       DateTime.parse('2021-01-01 ${data.waktuBuka}.000'),
                   name: 'waktu_buka',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   helpText: 'Waktu Buka',
                   inputType: InputType.time,
                   format: DateFormat('HH:mm'),
@@ -831,6 +855,7 @@ class FormUpdateAgunanKios extends StatelessWidget {
                   },
                   decoration: const InputDecoration(
                     labelText: 'Waktu Buka',
+                    prefixIcon: Icon(Icons.access_time),
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -848,6 +873,8 @@ class FormUpdateAgunanKios extends StatelessWidget {
                   initialValue: // convert HH:MM:SS to DateTime
                       DateTime.parse('2021-01-01 ${data.waktuTutup}.000'),
                   name: 'waktu_tutup',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   helpText: 'Waktu Tutup',
                   inputType: InputType.time,
                   format: DateFormat('HH:mm'),
@@ -861,6 +888,7 @@ class FormUpdateAgunanKios extends StatelessWidget {
                     controller.waktuTutupEdit = value!;
                   },
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.access_time),
                     labelText: 'Waktu Tutup',
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(
@@ -879,6 +907,8 @@ class FormUpdateAgunanKios extends StatelessWidget {
           FormBuilderDateTimePicker(
             initialValue: data.berlakuSampai,
             name: 'berlaku_sampai',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (value) {
               controller.berlakuSampaiEdit = value!;
               debugPrint(value.toString());
@@ -892,6 +922,8 @@ class FormUpdateAgunanKios extends StatelessWidget {
             inputType: InputType.date,
             decoration: const InputDecoration(
               labelText: 'Berlaku Sampai',
+              prefixIcon: Icon(Icons.calendar_today),
+              suffixIcon: Icon(Icons.arrow_drop_down),
               alignLabelWithHint: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -906,11 +938,14 @@ class FormUpdateAgunanKios extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'lokasi_pasar',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.lokasiPasarEdit = TextEditingController(
               text: data.lokasiPasar,
             ),
             maxLines: 3,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.location_on),
               labelText: 'Lokasi Pasar',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
@@ -929,6 +964,7 @@ class FormUpdateAgunanKios extends StatelessWidget {
               text: data.titikKoordinat,
             ),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.location_searching),
               labelText: 'Titik Koordinat',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
@@ -1364,8 +1400,11 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'deskripsi_pendek',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.deskripsiPendek,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.description),
               labelText: 'Keterangan',
               hintText: 'KBP Pasar Lempuyangan...',
               border: OutlineInputBorder(
@@ -1381,8 +1420,11 @@ class FormInputAgunanLos extends StatelessWidget {
           FormBuilderTextField(
             name: 'komponen',
             controller: controller.komponen,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Komponen',
+              prefixIcon: Icon(Icons.settings_input_component),
               hintText: 'KBP.',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1396,8 +1438,11 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'tempat_dasaran',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.tempatDasaran,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.home_mini),
               labelText: 'Tempat Dasaran',
               alignLabelWithHint: true,
               hintText: '4Los2C',
@@ -1414,7 +1459,10 @@ class FormInputAgunanLos extends StatelessWidget {
           FormBuilderTextField(
             name: 'no_registrasi',
             controller: controller.noRegistrasi,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.confirmation_number),
               labelText: 'No Registrasi',
               hintText: '0017/LMPY/-/2021',
               alignLabelWithHint: true,
@@ -1430,9 +1478,16 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'luas',
+            keyboardType: TextInputType.number,
             controller: controller.luasLos,
+            validator: FormBuilderValidators.compose([
+              FormBuilderValidators.required(),
+              FormBuilderValidators.numeric(),
+            ]),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               labelText: 'Luas',
+              prefixIcon: Icon(Icons.square_foot),
               alignLabelWithHint: true,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1447,7 +1502,10 @@ class FormInputAgunanLos extends StatelessWidget {
           FormBuilderTextField(
             name: 'jenis_dagangan',
             controller: controller.jenisDagangan,
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.shopping_bag),
               labelText: 'Jenis Dagangan',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
@@ -1466,6 +1524,8 @@ class FormInputAgunanLos extends StatelessWidget {
                 child: FormBuilderDateTimePicker(
                   name: 'waktu_buka',
                   helpText: 'Waktu Buka',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   inputType: InputType.time,
                   format: DateFormat('HH:mm'),
                   currentDate: DateTime.now(),
@@ -1479,6 +1539,7 @@ class FormInputAgunanLos extends StatelessWidget {
                   },
                   decoration: const InputDecoration(
                     labelText: 'Waktu Buka',
+                    prefixIcon: Icon(Icons.access_time),
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -1494,6 +1555,8 @@ class FormInputAgunanLos extends StatelessWidget {
               Expanded(
                 child: FormBuilderDateTimePicker(
                   name: 'waktu_tutup',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   helpText: 'Waktu Tutup',
                   inputType: InputType.time,
                   format: DateFormat('HH:mm'),
@@ -1507,6 +1570,7 @@ class FormInputAgunanLos extends StatelessWidget {
                     controller.waktuTutup = value!;
                   },
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.access_time),
                     labelText: 'Waktu Tutup',
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(
@@ -1524,6 +1588,8 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderDateTimePicker(
             name: 'berlaku_sampai',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             onChanged: (value) {
               controller.berlakuSampai = value!;
               debugPrint(value.toString());
@@ -1532,6 +1598,8 @@ class FormInputAgunanLos extends StatelessWidget {
             errorInvalidText: 'Tanggal tidak valid',
             inputType: InputType.date,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.calendar_today),
+              suffixIcon: Icon(Icons.arrow_drop_down),
               labelText: 'Berlaku Sampai',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
@@ -1547,9 +1615,12 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'lokasi_pasar',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.lokasiPasar,
             maxLines: 3,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.location_on),
               labelText: 'Lokasi Pasar',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
@@ -1566,6 +1637,7 @@ class FormInputAgunanLos extends StatelessWidget {
             name: 'titik_koordinat',
             controller: controller.titikKoordinat,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.location_searching),
               labelText: 'Titik Koordinat',
               alignLabelWithHint: true,
               border: OutlineInputBorder(
@@ -1625,7 +1697,10 @@ class FormInputAgunanLos extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'nilai_pasar',
                   controller: controller.nilaiPasar,
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.required(),
                   decoration: const InputDecoration(
+                    prefixText: 'Rp. ',
                     labelText: 'Nilai Pasar',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -1641,9 +1716,18 @@ class FormInputAgunanLos extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'persentase',
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.max(100),
+                    FormBuilderValidators.min(0),
+                  ]),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.persentase,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
+                    suffixText: '%',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1659,9 +1743,10 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_likuidasi',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiLiquidasi,
             decoration: const InputDecoration(
+              prefixText: 'Rp. ',
               labelText: 'Nilai Likuidasi',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1675,9 +1760,10 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_pengikatan',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiPengikatan,
             decoration: const InputDecoration(
+              prefixText: 'Rp. ',
               labelText: 'Nilai Pengikatan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1691,8 +1777,11 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'pengikatan',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.pengikatan,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.bookmark_outlined),
               labelText: 'Pengikatan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1705,7 +1794,25 @@ class FormInputAgunanLos extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasi();
+                if (controller.formKey.currentState?.fields['nilai_pasar']
+                            ?.value !=
+                        '' &&
+                    controller.formKey.currentState?.fields['persentase']
+                            ?.value !=
+                        '') {
+                  controller.hitungNilaiLiquidasi();
+                } else {
+                  Get.snackbar(
+                    'Error',
+                    'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                    icon: const Icon(
+                      Icons.error,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                }
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,
@@ -1724,8 +1831,11 @@ class FormInputAgunanLos extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'atas_nama',
+            validator: FormBuilderValidators.required(),
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             controller: controller.namaPemilik,
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person_outline),
               labelText: 'Nama Pemilik',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1742,6 +1852,7 @@ class FormInputAgunanLos extends StatelessWidget {
               Expanded(
                 child: FormBuilderSearchableDropdown<String>(
                   name: 'tempat_lahir',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   onChanged: (value) {
                     controller.tempatLahir.text = value!;
                     debugPrint(value);
@@ -1760,6 +1871,7 @@ class FormInputAgunanLos extends StatelessWidget {
                   filterFn: (provinsi, filter) =>
                       provinsi.toLowerCase().contains(filter.toLowerCase()),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.location_on_outlined),
                     labelText: 'Tempat Lahir',
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(
@@ -1776,6 +1888,8 @@ class FormInputAgunanLos extends StatelessWidget {
               Expanded(
                 child: FormBuilderDateTimePicker(
                   name: 'tanggal_lahir',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   onChanged: (value) {
                     controller.tanggalLahir = value!;
                     debugPrint(value.toString());
@@ -1784,6 +1898,8 @@ class FormInputAgunanLos extends StatelessWidget {
                   errorInvalidText: 'Tanggal tidak valid',
                   inputType: InputType.date,
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.calendar_today_outlined),
+                    suffixIcon: Icon(Icons.arrow_drop_down),
                     labelText: 'Tanggal Lahir',
                     alignLabelWithHint: true,
                     border: OutlineInputBorder(
@@ -1807,6 +1923,7 @@ class FormInputAgunanLos extends StatelessWidget {
             decoration: const InputDecoration(
               labelText: 'Alamat Pemilik',
               alignLabelWithHint: true,
+              prefixIcon: Icon(Icons.location_on_outlined),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),

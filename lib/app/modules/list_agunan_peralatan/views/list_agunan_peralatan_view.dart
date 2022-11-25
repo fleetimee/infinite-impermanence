@@ -746,6 +746,7 @@ class FormInputAgunanPeralatan extends StatelessWidget {
                     flex: 4,
                     child: FormBuilderTextField(
                       name: 'nilai_pasar',
+                      keyboardType: TextInputType.number,
                       validator: FormBuilderValidators.required(),
                       controller: controller.nilaiPasar,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -766,6 +767,7 @@ class FormInputAgunanPeralatan extends StatelessWidget {
                   Expanded(
                     child: FormBuilderTextField(
                       name: 'persentase',
+                      keyboardType: TextInputType.number,
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(),
                         FormBuilderValidators.numeric(),
@@ -827,6 +829,8 @@ class FormInputAgunanPeralatan extends StatelessWidget {
               FormBuilderTextField(
                 name: 'pengikatan',
                 controller: controller.pengikatan,
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: const InputDecoration(
                   labelText: 'Pengikatan',
                   hintText: 'SKUM',

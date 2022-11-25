@@ -1,6 +1,6 @@
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/widget/error_internet.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NetworkStatusService extends GetxService {
@@ -27,6 +27,17 @@ class NetworkStatusService extends GetxService {
   void _validateSession() {
     // Get.offNamedUntil(
     //     Routes.HOME, (_) => false); //Here redirecting to home page
-    Get.offAllNamed(Routes.HOME);
+    Get.back();
+    Get.snackbar(
+      'Back Online',
+      'You are connected to internet',
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: Colors.green,
+      colorText: Colors.white,
+      icon: const Icon(
+        Icons.wifi,
+        color: Colors.white,
+      ),
+    );
   }
 }

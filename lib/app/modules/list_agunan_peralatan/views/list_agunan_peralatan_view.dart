@@ -470,6 +470,7 @@ class FormUpdateAgunanPeralatan extends StatelessWidget {
                       validator: FormBuilderValidators.required(),
                       autovalidateMode: AutovalidateMode.onUserInteraction,
                       name: 'nilai_pasar_edit',
+                      keyboardType: TextInputType.number,
                       controller: controller.nilaiPasarEdit =
                           MoneyMaskedTextController(
                         decimalSeparator: '',
@@ -556,6 +557,7 @@ class FormUpdateAgunanPeralatan extends StatelessWidget {
                           data.nilaiPengikatan.toString(),
                         )),
                 decoration: const InputDecoration(
+                  prefixText: 'Rp. ',
                   labelText: 'Nilai Pengikatan',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(

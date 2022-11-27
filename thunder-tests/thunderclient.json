@@ -1263,22 +1263,21 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=10&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=progress,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=5&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-14T07:18:17.141Z",
+    "modified": "2022-11-26T08:42:29.351Z",
     "headers": [],
     "params": [
       {
         "name": "limit",
-        "value": "10",
+        "value": "5",
         "isPath": false
       },
       {
         "name": "page",
         "value": "1",
-        "isDisabled": true,
         "isPath": false
       },
       {
@@ -1294,7 +1293,7 @@
       },
       {
         "name": "sort",
-        "value": "progress,ASC",
+        "value": "id,ASC",
         "isPath": false
       },
       {

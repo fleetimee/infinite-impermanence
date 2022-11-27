@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -66,7 +67,10 @@ class AsuransiView extends GetView<AsuransiController> {
                       ),
                   FormBuilderTextField(
                       name: 'nama_perusahaan',
+                      validator: FormBuilderValidators.required(),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.business),
                         labelText: 'Nama Perusahaan Asuransi',
                         border: OutlineInputBorder(),
                         hintText: 'JAMKRINDO, ASKRINDO, dll',
@@ -77,9 +81,17 @@ class AsuransiView extends GetView<AsuransiController> {
                   ),
                   FormBuilderTextField(
                       name: 'premi',
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.max(100),
+                        FormBuilderValidators.min(0),
+                      ]),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.money),
                         labelText: 'Premi',
                         suffixText: '%',
                         border: OutlineInputBorder(),
@@ -110,7 +122,22 @@ class AsuransiView extends GetView<AsuransiController> {
                     alignment: Alignment.bottomRight,
                     child: GFButton(
                       onPressed: () {
-                        controller.hitungJumlahAsuransi();
+                        if (controller
+                                .formKey.currentState?.fields['premi']?.value !=
+                            "") {
+                          controller.hitungJumlahAsuransi();
+                        } else {
+                          Get.snackbar(
+                            'Error',
+                            'Premi tidak boleh kosong',
+                            icon: const Icon(
+                              Icons.error,
+                              color: Colors.white,
+                            ),
+                            backgroundColor: Colors.red,
+                            colorText: Colors.white,
+                          );
+                        }
                       },
                       text: 'Hitung Asuransi',
                       elevation: 10,
@@ -125,6 +152,12 @@ class AsuransiView extends GetView<AsuransiController> {
                   FormBuilderTextField(
                     readOnly: true,
                     name: 'jumlahAsuransi',
+                    keyboardType: TextInputType.number,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                    ]),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
                       labelText: 'Jumlah Asuransi',
                       border: OutlineInputBorder(),

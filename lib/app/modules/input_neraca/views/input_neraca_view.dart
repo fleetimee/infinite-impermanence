@@ -112,6 +112,7 @@ class InputNeracaView extends GetView<InputNeracaController> {
                         inputType: InputType.date,
                         format: DateFormat('dd/MM/yyyy'),
                         validator: FormBuilderValidators.required(),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
                         name: 'Tanggal',
                       ),
                     ),
@@ -206,7 +207,26 @@ class InputNeracaView extends GetView<InputNeracaController> {
                           DataCell(
                             GFButton(
                               onPressed: () {
-                                controller.hitungKasDanBank();
+                                if (controller.formKey.currentState
+                                            ?.fields['kas_on_hand']?.value !=
+                                        '' &&
+                                    controller.formKey.currentState
+                                            ?.fields['tabungan']?.value !=
+                                        '') {
+                                  controller.hitungKasDanBank();
+                                } else {
+                                  Get.snackbar(
+                                    'Error',
+                                    'Kolom Kas On Hand dan Tabungan tidak boleh kosong',
+                                    snackPosition: SnackPosition.TOP,
+                                    backgroundColor: Colors.red,
+                                    colorText: Colors.white,
+                                    icon: const Icon(
+                                      Icons.error,
+                                      color: Colors.white,
+                                    ),
+                                  );
+                                }
                               },
                               text: 'Hitung',
                               fullWidthButton: true,
@@ -545,7 +565,32 @@ class InputNeracaView extends GetView<InputNeracaController> {
                             // ),
                             GFButton(
                               onPressed: () {
-                                controller.hitungAktivaTetap();
+                                if (controller
+                                            .formKey
+                                            .currentState
+                                            ?.fields['peralatan_mesin']
+                                            ?.value !=
+                                        '' &&
+                                    controller.formKey.currentState
+                                            ?.fields['kendaraan']?.value !=
+                                        '' &&
+                                    controller.formKey.currentState
+                                            ?.fields['tanah_bangunan']?.value !=
+                                        '') {
+                                  controller.hitungAktivaTetap();
+                                } else {
+                                  Get.snackbar(
+                                    'Error',
+                                    'Harap isi semua kolom',
+                                    snackPosition: SnackPosition.TOP,
+                                    backgroundColor: Colors.red,
+                                    colorText: Colors.white,
+                                    icon: const Icon(
+                                      Icons.error,
+                                      color: Colors.white,
+                                    ),
+                                  );
+                                }
                               },
                               text: 'Hitung',
                               type: GFButtonType.solid,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -66,7 +67,10 @@ class EditAsuransiView extends GetView<AsuransiController> {
                       ),
                   FormBuilderTextField(
                     name: 'nama_perusahaan',
+                    validator: FormBuilderValidators.required(),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.business),
                       labelText: 'Nama Perusahaan Asuransi',
                       border: OutlineInputBorder(),
                       hintText: 'JAMKRINDO, ASKRINDO, dll',
@@ -81,7 +85,11 @@ class EditAsuransiView extends GetView<AsuransiController> {
                   FormBuilderTextField(
                       name: 'premi',
                       textAlign: TextAlign.right,
+                      validator: FormBuilderValidators.required(),
+                      keyboardType: TextInputType.number,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(Icons.money),
                         labelText: 'Premi',
                         suffixText: '%',
                         border: OutlineInputBorder(),
@@ -112,7 +120,14 @@ class EditAsuransiView extends GetView<AsuransiController> {
                     alignment: Alignment.bottomRight,
                     child: GFButton(
                       onPressed: () {
-                        controller.hitungJumlahAsuransi();
+                        if (controller.formKey.currentState?.fields['premi']
+                                    ?.value !=
+                                '' ||
+                            controller.formKey.currentState?.fields['premi']
+                                    ?.value !=
+                                '0') {
+                          controller.hitungJumlahAsuransi();
+                        }
                       },
                       text: 'Hitung Asuransi',
                       elevation: 10,

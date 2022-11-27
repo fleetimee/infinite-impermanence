@@ -8,6 +8,7 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -419,11 +420,14 @@ class FormInputAgunanLainnya extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'deskripsi_pendek',
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: controller.deskripsiPanjang =
                     TextEditingController(text: 'Asuransi Penjaminan Kredit'),
                 decoration: const InputDecoration(
                   labelText: 'Keterangan',
                   hintText: 'Mesin Pemisah Gabah...',
+                  prefixIcon: Icon(Icons.description),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
@@ -436,8 +440,11 @@ class FormInputAgunanLainnya extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nama_perusahaan',
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: controller.namaPerusahaan,
                 decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.business),
                   labelText: 'Nama Perusahaan',
                   hintText: 'JAMKRINDO, ASKRINDO, dll',
                   border: OutlineInputBorder(
@@ -462,7 +469,9 @@ class FormInputAgunanLainnya extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nilai_liquidasi',
-                enabled: false,
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                readOnly: true,
                 controller: controller.plafonKredit = TextEditingController(
                   text: MoneyMaskedTextController(
                     decimalSeparator: '',
@@ -473,6 +482,7 @@ class FormInputAgunanLainnya extends StatelessWidget {
                   ).text,
                 ),
                 decoration: const InputDecoration(
+                  prefixText: 'Rp. ',
                   labelText: 'Plafon Kredit',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -535,9 +545,12 @@ class FormInputAgunanLainnya extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nilai_pasar',
-                enabled: false,
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                readOnly: true,
                 controller: controller.nilaiPasar,
                 decoration: const InputDecoration(
+                  prefixText: 'Rp. ',
                   labelText: 'Nilai Pasar',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(

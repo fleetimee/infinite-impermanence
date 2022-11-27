@@ -275,15 +275,30 @@ class RugiLabaView extends StatelessWidget {
                           DataCell(
                             GFButton(
                               onPressed: () {
-                                GFToast.showToast(
-                                  'Sisa Penghasilan Berhasil Dihitung',
-                                  context,
-                                  toastPosition: GFToastPosition.TOP,
-                                  textStyle: const TextStyle(
-                                      fontSize: 16, color: GFColors.WHITE),
-                                  backgroundColor: GFColors.DARK,
-                                );
-                                controller.sumSisaPenghasilan();
+                                if (controller.formKey.currentState
+                                            ?.fields['biaya_hidup']?.value !=
+                                        '' &&
+                                    controller.formKey.currentState
+                                            ?.fields['penghasilan']?.value !=
+                                        '') {
+                                  controller.sumSisaPenghasilan();
+                                  GFToast.showToast(
+                                    'Sisa Penghasilan Berhasil Dihitung',
+                                    context,
+                                    toastPosition: GFToastPosition.TOP,
+                                    textStyle: const TextStyle(
+                                        fontSize: 16, color: GFColors.WHITE),
+                                    backgroundColor: GFColors.DARK,
+                                  );
+                                } else {
+                                  Get.snackbar(
+                                    'Peringatan',
+                                    'Mohon isi semua kolom',
+                                    backgroundColor: GFColors.DANGER,
+                                    colorText: GFColors.WHITE,
+                                    snackPosition: SnackPosition.TOP,
+                                  );
+                                }
                               },
                               text: 'Hitung',
                               color: primaryColor,

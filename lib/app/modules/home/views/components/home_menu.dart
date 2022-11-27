@@ -69,7 +69,7 @@ class HomeMenu extends StatelessWidget {
                         ),
                       )
                     : const Icon(
-                        FontAwesomeIcons.mapMarkerAlt,
+                        FontAwesomeIcons.locationDot,
                         color: GFColors.DANGER,
                       )),
                 const SizedBox(

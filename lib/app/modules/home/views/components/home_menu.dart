@@ -78,26 +78,26 @@ class HomeMenu extends StatelessWidget {
                 Obx(() => controller.address.value == 'Getting address'
                     ? SizedBox(
                         child: Row(
-                          children: [
-                            const Text(
+                          children: const [
+                            Text(
                               'Getting address',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               width: 20,
                             ),
-                            IconButton(
-                              onPressed: () {
-                                controller.getLocation();
-                              },
-                              icon: const Icon(
-                                FontAwesomeIcons.sync,
-                                color: Colors.white,
-                              ),
-                            ),
+                            // IconButton(
+                            //   onPressed: () {
+                            //     controller.getLocation();
+                            //   },
+                            //   icon: const Icon(
+                            //     FontAwesomeIcons.sync,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
                           ],
                         ),
                       )

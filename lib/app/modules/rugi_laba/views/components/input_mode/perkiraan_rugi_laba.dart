@@ -142,16 +142,34 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     GFButton(
                       onPressed: () {
-                        GFToast.showToast(
-                          'Laba Kotor Berhasil Dihitung',
-                          context,
-                          toastPosition: GFToastPosition.TOP,
-                          textStyle: const TextStyle(
-                              fontSize: 16, color: GFColors.WHITE),
-                          backgroundColor: GFColors.DARK,
-                        );
-                        controller.hitungHpp();
-                        controller.sumLabaKotor();
+                        if (controller
+                                    .formKey
+                                    .currentState
+                                    ?.fields['omzet_penjualan_rata_rata']
+                                    ?.value !=
+                                '' &&
+                            controller.formKey.currentState
+                                    ?.fields['persen_hpp']?.value !=
+                                '') {
+                          controller.hitungHpp();
+                          controller.sumLabaKotor();
+                          GFToast.showToast(
+                            'Laba Kotor Berhasil Dihitung',
+                            context,
+                            toastPosition: GFToastPosition.TOP,
+                            textStyle: const TextStyle(
+                                fontSize: 16, color: GFColors.WHITE),
+                            backgroundColor: GFColors.DARK,
+                          );
+                        } else {
+                          Get.snackbar(
+                            'Peringatan',
+                            'Mohon isi semua field',
+                            snackPosition: SnackPosition.TOP,
+                            backgroundColor: GFColors.DANGER,
+                            colorText: GFColors.WHITE,
+                          );
+                        }
                       },
                       color: primaryColor,
                       fullWidthButton: true,
@@ -225,15 +243,33 @@ class PerkiraanLabaRugi extends StatelessWidget {
                   DataCell(
                     GFButton(
                         onPressed: () {
-                          GFToast.showToast(
-                            'Perkiraan Laba Berhasil Dihitung',
-                            context,
-                            toastPosition: GFToastPosition.TOP,
-                            textStyle: const TextStyle(
-                                fontSize: 16, color: GFColors.WHITE),
-                            backgroundColor: GFColors.DARK,
-                          );
-                          controller.perkiraanLaba();
+                          if (controller.formKey.currentState
+                                      ?.fields['biaya_tenaga_kerja']?.value !=
+                                  '' &&
+                              controller.formKey.currentState
+                                      ?.fields['biaya_operasional']?.value !=
+                                  '' &&
+                              controller.formKey.currentState
+                                      ?.fields['biaya_lainnya']?.value !=
+                                  '') {
+                            GFToast.showToast(
+                              'Perkiraan Laba Berhasil Dihitung',
+                              context,
+                              toastPosition: GFToastPosition.TOP,
+                              textStyle: const TextStyle(
+                                  fontSize: 16, color: GFColors.WHITE),
+                              backgroundColor: GFColors.DARK,
+                            );
+                            controller.perkiraanLaba();
+                          } else {
+                            Get.snackbar(
+                              'Peringatan',
+                              'Mohon isi semua field',
+                              snackPosition: SnackPosition.TOP,
+                              backgroundColor: GFColors.DANGER,
+                              colorText: GFColors.WHITE,
+                            );
+                          }
                         },
                         color: primaryColor,
                         fullWidthButton: true,

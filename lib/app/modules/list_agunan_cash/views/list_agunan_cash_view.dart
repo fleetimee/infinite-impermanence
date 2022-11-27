@@ -7,6 +7,7 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -475,6 +476,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                     TextEditingController(text: data.deskripsiPanjang),
                 decoration: const InputDecoration(
                   labelText: 'Keterangan',
+                  prefixIcon: Icon(Icons.description),
                   hintText: 'Mesin Pemisah Gabah...',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -502,6 +504,9 @@ class FormUpdateAgunanCash extends StatelessWidget {
                     flex: 4,
                     child: FormBuilderTextField(
                       name: 'nilai_pasar_edit',
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: controller.nilaiPasarEdit =
                           MoneyMaskedTextController(
                         decimalSeparator: '',
@@ -513,6 +518,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                       ),
                       decoration: const InputDecoration(
                         labelText: 'Nilai Pasar',
+                        prefixText: 'Rp. ',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
@@ -526,9 +532,18 @@ class FormUpdateAgunanCash extends StatelessWidget {
                   ),
                   Expanded(
                     child: FormBuilderTextField(
-                      name: 'persentase',
+                      name: 'persentase_edit',
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.max(100),
+                        FormBuilderValidators.min(0),
+                      ]),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: controller.persentaseEdit,
                       decoration: const InputDecoration(
+                        suffixText: '%',
                         labelText: 'Persen',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -545,7 +560,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nilai_liquidasi',
-                enabled: false,
+                readOnly: true,
                 controller: controller.nilaiLiquidasiEdit =
                     MoneyMaskedTextController(
                         decimalSeparator: '',
@@ -555,6 +570,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                           data.nilaiLiquidasi.toString(),
                         )),
                 decoration: const InputDecoration(
+                  prefixText: 'Rp. ',
                   labelText: 'Nilai Liquidasi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -568,7 +584,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nilai_pengikatan',
-                enabled: false,
+                readOnly: true,
                 controller: controller.nilaiPengikatanEdit =
                     MoneyMaskedTextController(
                         decimalSeparator: '',
@@ -578,6 +594,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                           data.nilaiPengikatan.toString(),
                         )),
                 decoration: const InputDecoration(
+                  prefixText: 'Rp. ',
                   labelText: 'Nilai Pengikatan',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -591,10 +608,13 @@ class FormUpdateAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'pengikatan',
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: controller.pengikatanEdit =
                     TextEditingController(text: data.pengikatan),
                 decoration: const InputDecoration(
                   labelText: 'Pengikatan',
+                  prefixIcon: Icon(Icons.bookmark_add_outlined),
                   hintText: 'SKUM',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -607,7 +627,25 @@ class FormUpdateAgunanCash extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: GFButton(
                   onPressed: () {
-                    controller.hitungNilaiLiquidasiEdit();
+                    if (controller.formKey.currentState
+                                ?.fields['nilai_pasar_edit']?.value !=
+                            '' &&
+                        controller.formKey.currentState
+                                ?.fields['persentase_edit']?.value !=
+                            '') {
+                      controller.hitungNilaiLiquidasiEdit();
+                    } else {
+                      Get.snackbar(
+                        'Error',
+                        'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                        icon: const Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                    }
                   },
                   text: 'Hitung Nilai Liquidasi',
                   elevation: 10,
@@ -678,7 +716,10 @@ class FormInputAgunanCash extends StatelessWidget {
               FormBuilderTextField(
                 name: 'deskripsi_pendek',
                 controller: controller.deskripsiPanjang,
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.description),
                   labelText: 'Keterangan',
                   hintText: 'Mesin Pemisah Gabah...',
                   border: OutlineInputBorder(
@@ -707,9 +748,13 @@ class FormInputAgunanCash extends StatelessWidget {
                     flex: 4,
                     child: FormBuilderTextField(
                       name: 'nilai_pasar',
+                      keyboardType: TextInputType.number,
+                      validator: FormBuilderValidators.required(),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       controller: controller.nilaiPasar,
                       decoration: const InputDecoration(
                         labelText: 'Nilai Pasar',
+                        prefixText: 'Rp. ',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
@@ -724,8 +769,17 @@ class FormInputAgunanCash extends StatelessWidget {
                   Expanded(
                     child: FormBuilderTextField(
                       name: 'persentase',
+                      keyboardType: TextInputType.number,
                       controller: controller.persentase,
+                      validator: FormBuilderValidators.compose([
+                        FormBuilderValidators.required(),
+                        FormBuilderValidators.numeric(),
+                        FormBuilderValidators.max(100),
+                        FormBuilderValidators.min(0),
+                      ]),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
+                        suffixText: '%',
                         labelText: 'Persen',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
@@ -742,9 +796,10 @@ class FormInputAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nilai_liquidasi',
-                enabled: false,
+                readOnly: true,
                 controller: controller.nilaiLiquidasi,
                 decoration: const InputDecoration(
+                  prefixText: 'Rp. ',
                   labelText: 'Nilai Liquidasi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -758,10 +813,11 @@ class FormInputAgunanCash extends StatelessWidget {
               ),
               FormBuilderTextField(
                 name: 'nilai_pengikatan',
-                enabled: false,
+                readOnly: true,
                 controller: controller.nilaiPengikatan,
                 decoration: const InputDecoration(
                   labelText: 'Nilai Pengikatan',
+                  prefixText: 'Rp. ',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
@@ -775,8 +831,11 @@ class FormInputAgunanCash extends StatelessWidget {
               FormBuilderTextField(
                 name: 'pengikatan',
                 controller: controller.pengikatan,
+                validator: FormBuilderValidators.required(),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 decoration: const InputDecoration(
                   labelText: 'Pengikatan',
+                  prefixIcon: Icon(Icons.bookmark_add_outlined),
                   hintText: 'SKUM',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -789,7 +848,25 @@ class FormInputAgunanCash extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: GFButton(
                   onPressed: () {
-                    controller.hitungNilaiLiquidasi();
+                    if (controller.formKey.currentState?.fields['nilai_pasar']
+                                ?.value !=
+                            '' &&
+                        controller.formKey.currentState?.fields['persentase']
+                                ?.value !=
+                            '') {
+                      controller.hitungNilaiLiquidasi();
+                    } else {
+                      Get.snackbar(
+                        'Error',
+                        'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                        icon: const Icon(
+                          Icons.error,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.red,
+                        colorText: Colors.white,
+                      );
+                    }
                   },
                   text: 'Hitung Nilai Liquidasi',
                   elevation: 10,

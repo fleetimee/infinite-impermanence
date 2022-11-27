@@ -726,7 +726,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: FormBuilderTextField(
-                  name: 'nilai_pasar',
+                  name: 'nilai_pasar_edit',
+                  keyboardType: TextInputType.number,
                   controller: controller.nilaiPasarEdit =
                       MoneyMaskedTextController(
                           initialValue: double.parse(data.nilaiPasar),
@@ -749,7 +750,8 @@ class FormUpdateAgunanTanah extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'persentase',
+                  name: 'persentase_edit',
+                  keyboardType: TextInputType.number,
                   controller: controller.persentaseEdit,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
@@ -812,7 +814,25 @@ class FormUpdateAgunanTanah extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasiEdit();
+                if (controller.formKey.currentState?.fields['nilai_pasar_edit']
+                            ?.value !=
+                        '' &&
+                    controller.formKey.currentState?.fields['persentase_edit']
+                            ?.value !=
+                        '') {
+                  controller.hitungNilaiLiquidasiEdit();
+                } else {
+                  Get.snackbar(
+                    'Error',
+                    'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                    icon: const Icon(
+                      Icons.error,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                }
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,
@@ -1256,7 +1276,25 @@ class FormInputAgunanTanah extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasi();
+                if (controller.formKey.currentState?.fields['nilai_pasar']
+                            ?.value !=
+                        '' &&
+                    controller.formKey.currentState?.fields['persentase']
+                            ?.value !=
+                        '') {
+                  controller.hitungNilaiLiquidasi();
+                } else {
+                  Get.snackbar(
+                    'Error',
+                    'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                    icon: const Icon(
+                      Icons.error,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                }
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,

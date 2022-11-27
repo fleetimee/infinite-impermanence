@@ -7,6 +7,7 @@ import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -582,6 +583,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                   }).toList(),
                   decoration: const InputDecoration(
                     labelText: 'Jenis Kendaraan',
+                    prefixIcon: Icon(Icons.car_rental),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -608,6 +610,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.merk,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.branding_watermark),
                     labelText: 'Merk',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -631,6 +634,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.type,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.type_specimen),
                     labelText: 'Type',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -650,6 +654,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.warna,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.color_lens),
                     labelText: 'Warna',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -669,11 +674,21 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'tahun',
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.maxLength(4),
+                    FormBuilderValidators.min(1900),
+                    FormBuilderValidators.max(2300),
+                  ]),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.tahunEdit = TextEditingController(
                     text: data.tahun.toString(),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Tahun',
+                    prefixIcon: Icon(Icons.calendar_today),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -693,6 +708,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                   ),
                   decoration: const InputDecoration(
                     labelText: 'No Polisi',
+                    prefixIcon: Icon(Icons.policy),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -715,6 +731,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.noRangka,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.hdr_auto_sharp),
                     labelText: 'No Rangka',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -734,6 +751,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.noMesin,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.account_tree_sharp),
                     labelText: 'No Mesin',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -757,6 +775,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.noBpkb,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.account_balance_wallet),
                     labelText: 'No BPKB',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -776,6 +795,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     text: data.kondisi,
                   ),
                   decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.control_point_duplicate_outlined),
                     labelText: 'Kondisi',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
@@ -796,6 +816,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
               text: data.namaPemilik,
             ),
             decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person),
               labelText: 'Atas Nama',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -822,7 +843,8 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: FormBuilderTextField(
-                  name: 'nilai_pasar',
+                  name: 'nilai_pasar_edit',
+                  keyboardType: TextInputType.number,
                   controller: controller.nilaiPasarEdit =
                       MoneyMaskedTextController(
                     decimalSeparator: '',
@@ -832,6 +854,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                   ),
                   decoration: const InputDecoration(
                     labelText: 'Nilai Pasar',
+                    prefixText: 'Rp. ',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -845,10 +868,18 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
               ),
               Expanded(
                 child: FormBuilderTextField(
-                  name: 'persentase',
+                  name: 'persentase_edit',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.max(100),
+                    FormBuilderValidators.min(0),
+                  ]),
                   controller: controller.persentaseEdit,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
+                    suffixText: '%',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -864,7 +895,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_likuidasi',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiLiquidasiEdit =
                 MoneyMaskedTextController(
                     initialValue: double.parse(data.nilaiLiquidasi),
@@ -873,6 +904,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     precision: 0),
             decoration: const InputDecoration(
               labelText: 'Nilai Likuidasi',
+              prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -885,7 +917,7 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_pengikatan',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiPengikatanEdit =
                 MoneyMaskedTextController(
                     initialValue: double.parse(data.nilaiPengikatan),
@@ -893,7 +925,27 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
                     decimalSeparator: '',
                     precision: 0),
             decoration: const InputDecoration(
+              prefixText: 'Rp. ',
               labelText: 'Nilai Pengikatan',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 12.0,
+          ),
+          FormBuilderTextField(
+            name: 'pengikatan',
+            validator: FormBuilderValidators.required(),
+            controller: controller.pengikatanEdit = TextEditingController(
+              text: data.pengikatan,
+            ),
+            decoration: const InputDecoration(
+              labelText: 'Pengikatan',
+              prefixIcon: Icon(Icons.bookmark_rounded),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -905,7 +957,25 @@ class FormUpdateAgunanKendaraan extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasiEdit();
+                if (controller.formKey.currentState?.fields['nilai_pasar_edit']
+                            ?.value !=
+                        '' &&
+                    controller.formKey.currentState?.fields['persentase_edit']
+                            ?.value !=
+                        '') {
+                  controller.hitungNilaiLiquidasiEdit();
+                } else {
+                  Get.snackbar(
+                    'Error',
+                    'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                    icon: const Icon(
+                      Icons.error,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                }
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,
@@ -1053,8 +1123,11 @@ class FormInputAgunanKendaraan extends StatelessWidget {
                       child: Text(value),
                     );
                   }).toList(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.required(),
                   decoration: const InputDecoration(
                     labelText: 'Jenis Kendaraan',
+                    prefixIcon: Icon(Icons.car_rental),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1077,9 +1150,11 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'merk',
+                  validator: FormBuilderValidators.required(),
                   controller: controller.merk,
                   decoration: const InputDecoration(
                     labelText: 'Merk',
+                    prefixIcon: Icon(Icons.branding_watermark),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1099,8 +1174,11 @@ class FormInputAgunanKendaraan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'type',
                   controller: controller.type,
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
                     labelText: 'Type',
+                    prefixIcon: Icon(Icons.type_specimen),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1115,9 +1193,12 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'warna',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.warna,
                   decoration: const InputDecoration(
                     labelText: 'Warna',
+                    prefixIcon: Icon(Icons.color_lens),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1136,9 +1217,19 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'tahun',
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.maxLength(4),
+                    FormBuilderValidators.min(1900),
+                    FormBuilderValidators.max(2300),
+                  ]),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.tahun,
                   decoration: const InputDecoration(
                     labelText: 'Tahun',
+                    prefixIcon: Icon(Icons.calendar_today),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1153,9 +1244,12 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'no_polisi',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.noPolisi,
                   decoration: const InputDecoration(
                     labelText: 'No Polisi',
+                    prefixIcon: Icon(Icons.policy),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1174,9 +1268,12 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'no_rangka',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.noRangka,
                   decoration: const InputDecoration(
                     labelText: 'No Rangka',
+                    prefixIcon: Icon(Icons.hdr_auto_sharp),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1191,9 +1288,12 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'no_mesin',
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.noMesin,
                   decoration: const InputDecoration(
                     labelText: 'No Mesin',
+                    prefixIcon: Icon(Icons.account_tree_sharp),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1213,8 +1313,11 @@ class FormInputAgunanKendaraan extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'no_bpkb',
                   controller: controller.noBpkb,
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: const InputDecoration(
                     labelText: 'No BPKB',
+                    prefixIcon: Icon(Icons.account_balance_wallet),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1229,9 +1332,13 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'kondisi',
+                  enableSuggestions: true,
+                  validator: FormBuilderValidators.required(),
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: controller.keadaan,
                   decoration: const InputDecoration(
                     labelText: 'Kondisi',
+                    prefixIcon: Icon(Icons.control_point_duplicate_outlined),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1250,6 +1357,7 @@ class FormInputAgunanKendaraan extends StatelessWidget {
             controller: controller.atasNama,
             decoration: const InputDecoration(
               labelText: 'Atas Nama',
+              prefixIcon: Icon(Icons.person),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1276,9 +1384,12 @@ class FormInputAgunanKendaraan extends StatelessWidget {
                 flex: 4,
                 child: FormBuilderTextField(
                   name: 'nilai_pasar',
+                  keyboardType: TextInputType.number,
+                  validator: FormBuilderValidators.required(),
                   controller: controller.nilaiPasar,
                   decoration: const InputDecoration(
                     labelText: 'Nilai Pasar',
+                    prefixText: 'Rp. ',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1293,9 +1404,17 @@ class FormInputAgunanKendaraan extends StatelessWidget {
               Expanded(
                 child: FormBuilderTextField(
                   name: 'persentase',
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: FormBuilderValidators.compose([
+                    FormBuilderValidators.required(),
+                    FormBuilderValidators.numeric(),
+                    FormBuilderValidators.max(100),
+                    FormBuilderValidators.min(0),
+                  ]),
                   controller: controller.persentase,
                   decoration: const InputDecoration(
                     labelText: 'Persen',
+                    suffixText: '%',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
@@ -1311,10 +1430,12 @@ class FormInputAgunanKendaraan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_likuidasi',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiLiquidasi,
+            validator: FormBuilderValidators.required(),
             decoration: const InputDecoration(
               labelText: 'Nilai Likuidasi',
+              prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1327,9 +1448,11 @@ class FormInputAgunanKendaraan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'nilai_pengikatan',
-            enabled: false,
+            readOnly: true,
             controller: controller.nilaiPengikatan,
+            validator: FormBuilderValidators.required(),
             decoration: const InputDecoration(
+              prefixText: 'Rp. ',
               labelText: 'Nilai Pengikatan',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1343,9 +1466,11 @@ class FormInputAgunanKendaraan extends StatelessWidget {
           ),
           FormBuilderTextField(
             name: 'pengikatan',
+            validator: FormBuilderValidators.required(),
             controller: controller.pengikatan,
             decoration: const InputDecoration(
               labelText: 'Pengikatan',
+              prefixIcon: Icon(Icons.bookmark_rounded),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1357,7 +1482,25 @@ class FormInputAgunanKendaraan extends StatelessWidget {
             alignment: Alignment.bottomRight,
             child: GFButton(
               onPressed: () {
-                controller.hitungNilaiLiquidasi();
+                if (controller.formKey.currentState?.fields['nilai_pasar']
+                            ?.value !=
+                        '' &&
+                    controller.formKey.currentState?.fields['persentase']
+                            ?.value !=
+                        '') {
+                  controller.hitungNilaiLiquidasi();
+                } else {
+                  Get.snackbar(
+                    'Error',
+                    'Nilai Pasar Tanah & Persentase Tidak Boleh Kosong',
+                    icon: const Icon(
+                      Icons.error,
+                      color: Colors.white,
+                    ),
+                    backgroundColor: Colors.red,
+                    colorText: Colors.white,
+                  );
+                }
               },
               text: 'Hitung Nilai Liquidasi',
               elevation: 10,

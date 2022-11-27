@@ -109,6 +109,11 @@ class ListDebiturController extends GetxController {
     });
   }
 
+  void restartPaginate() {
+    page = 1;
+    isMoreDataAvailable(true);
+  }
+
   void refreshList() async {
     page = 1;
     getAllDebitur(page.toString(), sort);
@@ -120,6 +125,7 @@ class ListDebiturController extends GetxController {
       isSortIdDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -159,6 +165,7 @@ class ListDebiturController extends GetxController {
       isSortIdDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -179,6 +186,7 @@ class ListDebiturController extends GetxController {
       isSortNameDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -199,6 +207,7 @@ class ListDebiturController extends GetxController {
       isSortNameDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -219,6 +228,7 @@ class ListDebiturController extends GetxController {
       isSortTanggalDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -239,6 +249,7 @@ class ListDebiturController extends GetxController {
       isSortTanggalDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -259,6 +270,7 @@ class ListDebiturController extends GetxController {
       isSortUmurDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -279,6 +291,7 @@ class ListDebiturController extends GetxController {
       isSortUmurDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -299,6 +312,7 @@ class ListDebiturController extends GetxController {
       isSortPlafondDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -319,6 +333,7 @@ class ListDebiturController extends GetxController {
       isSortPlafondDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -339,6 +354,7 @@ class ListDebiturController extends GetxController {
       isSortProgressDesc(true);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();
@@ -359,6 +375,7 @@ class ListDebiturController extends GetxController {
       isSortProgressDesc(false);
       isDataProcessing(true);
       ListDebiturProvider().fetchDebiturs(page, sort).then((resp) {
+        restartPaginate();
         isDataProcessing(false);
         // clear list
         listDebitur.clear();

@@ -106,6 +106,7 @@ class LihatAsuransiView extends GetView<AsuransiController> {
                     name: 'nama_perusahaan',
                     readOnly: true,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.business),
                       labelText: 'Nama Perusahaan Asuransi',
                       border: OutlineInputBorder(),
                       hintText: 'JAMKRINDO, ASKRINDO, dll',
@@ -124,6 +125,7 @@ class LihatAsuransiView extends GetView<AsuransiController> {
                     controller: controller.premi =
                         TextEditingController(text: data.asuransi.premi),
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.money),
                       labelText: 'Premi',
                       suffixText: '%',
                       border: OutlineInputBorder(),

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
@@ -74,7 +76,12 @@ class IjinLegitimasiView extends GetView<IjinLegitimasiController> {
                       ),
                   FormBuilderTextField(
                       name: 'jenisIjinLegitimasi',
+                      validator: FormBuilderValidators.required(),
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
                       decoration: const InputDecoration(
+                        prefixIcon: Icon(
+                          FontAwesomeIcons.solidFileLines,
+                        ),
                         labelText: 'Jenis Ijin',
                         border: OutlineInputBorder(),
                         hintText: 'Surat Keterangan Usaha',
@@ -85,8 +92,11 @@ class IjinLegitimasiView extends GetView<IjinLegitimasiController> {
                   ),
                   FormBuilderTextField(
                     name: 'keteranganIjinLegitimasi',
+                    validator: FormBuilderValidators.required(),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     controller: controller.keteranganIjinLegitimasi,
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.description),
                       labelText: 'Keterangan',
                       border: OutlineInputBorder(),
                       hintText: '107/UU/NGT/III/2022',

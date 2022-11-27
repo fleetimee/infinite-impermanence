@@ -119,6 +119,9 @@ class LihatIjinLegitimasiView extends GetView<IjinLegitimasiController> {
                       text: data.ijinLegitimasi.jenisIjin,
                     ),
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(
+                        FontAwesomeIcons.solidFileLines,
+                      ),
                       labelText: 'Jenis Ijin',
                       border: OutlineInputBorder(),
                       hintText: 'Surat Keterangan Usaha',
@@ -134,6 +137,7 @@ class LihatIjinLegitimasiView extends GetView<IjinLegitimasiController> {
                         TextEditingController(
                             text: data.ijinLegitimasi.keteranganIjin),
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.description),
                       labelText: 'Keterangan',
                       border: OutlineInputBorder(),
                       hintText: '107/UU/NGT/III/2022',

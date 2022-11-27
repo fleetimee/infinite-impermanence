@@ -80,16 +80,16 @@ class HomeController extends GetxController {
         dismissOnTouchOutside: false,
         titleTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.w500,
         ),
         descTextStyle: GoogleFonts.poppins(
           color: secondaryColor,
-          fontSize: 15,
+          fontSize: 13,
           fontWeight: FontWeight.w400,
         ),
         animType: AnimType.bottomSlide,
-        title: 'Location Services Disabled',
+        title: 'GPS Disabled',
         desc: 'Please enable location services to continue',
         btnOkIcon: Icons.location_on,
         btnOkOnPress: () {

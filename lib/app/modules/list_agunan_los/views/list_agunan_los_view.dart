@@ -952,7 +952,13 @@ class FormUpdateAgunanKios extends StatelessWidget {
                   enableDrag: false,
                   builder: (context) {
                     return OpenStreetMapSearchAndPick(
-                        center: LatLong(-7.8013753, 110.3647927),
+                        center: LatLong(
+                          double.parse(controller.homeController.latitude.value
+                              .split(' ')[1]),
+                          double.parse(controller
+                              .homeController.longtitude.value
+                              .split(' ')[1]),
+                        ),
                         buttonColor: primaryColor,
                         buttonText: 'Pilih Lokasi',
                         onPicked: (pickedData) {
@@ -1825,7 +1831,13 @@ class FormInputAgunanLos extends StatelessWidget {
                   enableDrag: false,
                   builder: (context) {
                     return OpenStreetMapSearchAndPick(
-                        center: LatLong(-7.8013753, 110.3647927),
+                        center: LatLong(
+                          double.parse(controller.homeController.latitude.value
+                              .split(' ')[1]),
+                          double.parse(controller
+                              .homeController.longtitude.value
+                              .split(' ')[1]),
+                        ),
                         buttonColor: primaryColor,
                         buttonText: 'Pilih Lokasi',
                         onPicked: (pickedData) {

@@ -102,7 +102,7 @@ class HomeController extends GetxController {
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemark[0];
-    address.value = '${place.locality}, ${place.country}';
+    address.value = '${place.locality}, ${place.administrativeArea}';
   }
 
   // void deviceInfo() async {

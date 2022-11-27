@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -19,6 +20,8 @@ class ListAgunanLosController extends GetxController {
     super.onInit();
     getAllAgunanLos(agunanId.id);
   }
+
+  final homeController = Get.put(HomeController());
 
   var listAgunanLos = List<FormLo>.empty(growable: true).obs;
 

@@ -53,6 +53,41 @@ class HomeMenu extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Obx(() => controller.address.value == 'Getting address'
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Icon(
+                        FontAwesomeIcons.mapMarkerAlt,
+                        color: GFColors.DANGER,
+                      )),
+                const SizedBox(
+                  width: 8,
+                ),
+                Obx(() => SizedBox(
+                      width: 400,
+                      child: Text(
+                        controller.address.value,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    )),
+              ],
+            ),
+          ),
 
           const SizedBox(
             height: 20,
@@ -75,7 +110,7 @@ class HomeMenu extends StatelessWidget {
           ),
 
           const SizedBox(
-            height: 60,
+            height: 40,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,

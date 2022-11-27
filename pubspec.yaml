@@ -1,5 +1,5 @@
 name: akm
-version: 1.0.5+12
+version: 1.0.6+13
 publish_to: none
 description: Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS.
 environment:
@@ -44,6 +44,8 @@ dependencies:
   form_builder_extra_fields: ^8.3.0
   form_builder_image_picker: ^3.1.0
   form_builder_validators: ^8.4.0
+  geocoding: ^2.0.5
+  geolocator: ^9.0.2
   get: 4.6.5
   getwidget: ^3.0.1
   google_fonts: ^3.0.1

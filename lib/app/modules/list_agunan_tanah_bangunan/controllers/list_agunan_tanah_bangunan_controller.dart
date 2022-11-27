@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -18,6 +19,8 @@ class ListAgunanTanahBangunanController extends GetxController {
     super.onInit();
     getAllAgunanTanahBangunan(agunanId.id);
   }
+
+  final homeController = Get.put(HomeController());
 
   var listAgunanTanahBangunan =
       List<FormTanahBangunan>.empty(growable: true).obs;

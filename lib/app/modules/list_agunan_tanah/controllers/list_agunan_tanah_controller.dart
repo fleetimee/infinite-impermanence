@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -20,6 +21,8 @@ class ListAgunanTanahController extends GetxController {
     super.onInit();
     getAllAgunanTanah(agunanId.id);
   }
+
+  final homeController = Get.put(HomeController());
 
   var listAgunanTanah = List<FormTanah>.empty(growable: true).obs;
 

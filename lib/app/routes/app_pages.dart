@@ -1,9 +1,5 @@
-// 📦 Package imports:
 import 'package:get/get.dart';
 
-// 🌎 Project imports:
-import 'package:akm/app/modules/asuransi/views/edit_asuransi_view.dart';
-import 'package:akm/app/modules/asuransi/views/lihat_asuransi_view.dart';
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
 import '../modules/agunan_analisis/views/agunan_analisis_view.dart';
 import '../modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
@@ -15,6 +11,8 @@ import '../modules/agunan_pilih/bindings/agunan_pilih_binding.dart';
 import '../modules/agunan_pilih/views/agunan_pilih_view.dart';
 import '../modules/asuransi/bindings/asuransi_binding.dart';
 import '../modules/asuransi/views/asuransi_view.dart';
+import '../modules/asuransi/views/edit_asuransi_view.dart';
+import '../modules/asuransi/views/lihat_asuransi_view.dart';
 import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/edit_bisnis_analisis_view.dart';
@@ -24,6 +22,8 @@ import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
+import '../modules/gallery_image/bindings/gallery_image_binding.dart';
+import '../modules/gallery_image/views/gallery_image_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/ijin_legitimasi/bindings/ijin_legitimasi_binding.dart';
@@ -78,6 +78,8 @@ import '../modules/list_debitur/bindings/list_debitur_binding.dart';
 import '../modules/list_debitur/views/list_debitur_view.dart';
 import '../modules/list_syarat_lainnya/bindings/list_syarat_lainnya_binding.dart';
 import '../modules/list_syarat_lainnya/views/list_syarat_lainnya_view.dart';
+import '../modules/media/bindings/media_binding.dart';
+import '../modules/media/views/media_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
@@ -94,6 +96,10 @@ import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
 import '../modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
+
+// 📦 Package imports:
+
+// 🌎 Project imports:
 
 // ignore_for_file: constant_identifier_names
 
@@ -441,6 +447,16 @@ class AppPages {
       name: _Paths.EDIT_ASURANSI,
       page: () => EditAsuransiView(),
       binding: AsuransiBinding(),
+    ),
+    GetPage(
+      name: _Paths.MEDIA,
+      page: () => MediaView(),
+      binding: MediaBinding(),
+    ),
+    GetPage(
+      name: _Paths.GALLERY_IMAGE,
+      page: () => const GalleryImageView(),
+      binding: GalleryImageBinding(),
     ),
   ];
 }

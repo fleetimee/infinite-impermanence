@@ -59,7 +59,9 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            iconTheme: const IconThemeData(color: primaryColor),
+            iconTheme: const IconThemeData(
+              color: primaryColor,
+            ),
             backgroundColor: Colors.transparent,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(0),
@@ -205,6 +207,17 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                   arguments: controller.insightDebitur.value);
                             },
                             icon: const Icon(FontAwesomeIcons.pencil),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Get.toNamed(Routes.MEDIA,
+                                  arguments: controller.insightDebitur.value);
+                            },
+                            icon: const Icon(
+                              FontAwesomeIcons.photoFilm,
+                            ),
+                            enableFeedback: true,
+                            color: primaryColor,
                           ),
                           IconButton(
                             color: primaryColor,

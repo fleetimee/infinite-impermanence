@@ -1,4 +1,5 @@
 import 'package:akm/app/data/provider/media/save_mediaprovider.dart';
+import 'package:akm/app/modules/gallery_image/controllers/gallery_image_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import 'package:akm/app/widget/upload_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -10,6 +11,7 @@ class MediaController extends GetxController {
   var keterangan = TextEditingController();
 
   final debiturController = Get.put(InsightDebiturController());
+  final galleryController = Get.put(GalleryImageController());
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -30,6 +32,8 @@ class MediaController extends GetxController {
       MediaProvider().saveMedia(id, body).then((resp) {
         isMediaProcessing(false);
         clearForm();
+        galleryController.imageList.clear();
+        galleryController.getImages(id);
         Get.back();
         debiturController.fetchOneDebitur(id);
         Get.snackbar(

@@ -1223,5 +1223,19 @@
       ]
     },
     "tests": []
+  },
+  {
+    "_id": "f6559a9b-4679-432c-8be5-5cf255a4fdd8",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "3b567af2-0207-4ab8-ad8a-d6f6169ebd11",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/debiturs/2/uploads/18",
+    "method": "DELETE",
+    "sortNum": 900000,
+    "created": "2022-11-29T06:31:13.541Z",
+    "modified": "2022-11-29T06:31:23.074Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

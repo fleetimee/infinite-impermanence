@@ -26,12 +26,12 @@ dependencies:
       ref: patch-1
   flutter:
     sdk: flutter
-  flutter_easyloading: 
-   git:
-      url: https://github.com/fleetimee/flutter_easyloading
-      ref: develop
   flutter_animate: ^2.0.1
   flutter_custom_clippers: ^2.0.0
+  flutter_easyloading:
+    git:
+      url: https://github.com/fleetimee/flutter_easyloading
+      ref: develop
   flutter_echarts: ^2.4.0
   flutter_form_builder: ^7.7.0
   flutter_localizations:
@@ -66,6 +66,7 @@ dependencies:
   open_filex: ^4.3.1
   open_street_map_search_and_pick: ^0.0.15
   pdf: ^3.8.4
+  photo_view: ^0.14.0
   printing: ^5.9.3
   responsive_framework:
     git:

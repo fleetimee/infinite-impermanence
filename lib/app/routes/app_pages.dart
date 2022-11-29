@@ -455,7 +455,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.GALLERY_IMAGE,
-      page: () => const GalleryImageView(),
+      page: () => GalleryImageView(),
       binding: GalleryImageBinding(),
     ),
   ];

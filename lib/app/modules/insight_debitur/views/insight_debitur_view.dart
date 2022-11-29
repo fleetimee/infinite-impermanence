@@ -210,7 +210,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                           ),
                           IconButton(
                             onPressed: () {
-                              Get.toNamed(Routes.MEDIA,
+                              Get.toNamed(Routes.GALLERY_IMAGE,
                                   arguments: controller.insightDebitur.value);
                             },
                             icon: const Icon(

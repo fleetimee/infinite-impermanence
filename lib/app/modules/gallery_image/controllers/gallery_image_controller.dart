@@ -1,23 +1,33 @@
+import 'package:akm/app/data/provider/media/save_mediaprovider.dart';
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:get/get.dart';
 
 class GalleryImageController extends GetxController {
-  //TODO: Implement GalleryImageController
-
-  final count = 0.obs;
   @override
   void onInit() {
+    getImages(debiturId.id);
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  var imageList = List<Upload>.empty(growable: true).obs;
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+  final isImageLoading = false.obs;
 
-  void increment() => count.value++;
+  final debiturId = Get.arguments;
+
+  void getImages(int id) {
+    try {
+      isImageLoading(true);
+      MediaProvider().fetchMedia(id).then((resp) {
+        isImageLoading(false);
+        imageList.addAll(resp);
+      }, onError: (e) {
+        isImageLoading(false);
+        Get.snackbar('Error', e.toString());
+      });
+    } catch (e) {
+      isImageLoading(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
 }

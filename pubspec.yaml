@@ -26,6 +26,10 @@ dependencies:
       ref: patch-1
   flutter:
     sdk: flutter
+  flutter_easyloading: 
+   git:
+      url: https://github.com/fleetimee/flutter_easyloading
+      ref: develop
   flutter_animate: ^2.0.1
   flutter_custom_clippers: ^2.0.0
   flutter_echarts: ^2.4.0

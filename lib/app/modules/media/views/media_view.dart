@@ -1,5 +1,4 @@
 import 'package:akm/app/common/style.dart';
-import 'package:empty_widget/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -9,6 +8,7 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:lottie/lottie.dart';
 
 import '../controllers/media_controller.dart';
 
@@ -73,7 +73,6 @@ class MediaView extends GetView<MediaController> {
                   FormBuilderTextField(
                     name: 'keterangan',
                     validator: FormBuilderValidators.required(),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
                       prefixIcon: Icon(
                         FontAwesomeIcons.solidFileLines,
@@ -97,11 +96,36 @@ class MediaView extends GetView<MediaController> {
                     loadingWidget: ((context) => const Center(
                           child: CircularProgressIndicator(),
                         )),
-                    placeholderWidget: EmptyWidget(
-                      image: null,
-                      title: 'Tidak ada gambar',
-                      subTitle: 'Silahkan pilih gambar',
-                      packageImage: PackageImage.Image_1,
+                    placeholderWidget: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Lottie.asset(
+                              'assets/images/home/upload-files.zip',
+                              frameRate: FrameRate.max,
+                              height: 112,
+                              repeat: true,
+                              errorBuilder: (context, error, stackTrace) {
+                                return const Text(
+                                  'Gagal memuat animasi',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const Center(
+                            child: Text(
+                              'Klik untuk memilih gambar / dokumen ',
+                              style: TextStyle(
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     imageQuality: 50,
                     showDecoration: true,
@@ -109,39 +133,30 @@ class MediaView extends GetView<MediaController> {
                     validator: FormBuilderValidators.required(),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey,
-                          width: 0.0,
-                        ),
-                      ),
+                      border: OutlineInputBorder(),
                       hintText: 'Gambar / Dokumen',
                     ),
                   )
                 ],
               ),
               Obx(
-                () => controller.isMediaProcessing.value
-                    ? const Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : GFButton(
-                        color: primaryColor,
-                        size: GFSize.LARGE,
-                        fullWidthButton: true,
-                        onPressed: () {
-                          if (controller.formKey.currentState
-                                  ?.saveAndValidate() ??
-                              false) {
-                            controller.saveMedia(data.id);
-                          } else {
-                            debugPrint(controller.formKey.currentState?.value
-                                .toString());
-                            debugPrint('validation failed');
-                          }
-                        },
-                        text: 'Upload',
-                      ),
+                () => GFButton(
+                  color: primaryColor,
+                  size: GFSize.LARGE,
+                  fullWidthButton: true,
+                  onPressed: () {
+                    if (controller.formKey.currentState?.saveAndValidate() ??
+                        false) {
+                      controller.saveMedia(data.id);
+                    } else {
+                      debugPrint(
+                          controller.formKey.currentState?.value.toString());
+                      debugPrint('validation failed');
+                    }
+                  },
+                  text:
+                      controller.isMediaProcessing.value ? 'Loading' : 'Upload',
+                ),
               )
             ],
           ),

@@ -325,6 +325,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_easyloading:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: develop
+      resolved-ref: "0d811bf4f2a8359e9988033339c2ef48883e4df9"
+      url: "https://github.com/fleetimee/flutter_easyloading"
+    source: git
+    version: "3.0.4"
   flutter_echarts:
     dependency: "direct main"
     description:
@@ -428,6 +437,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_spinkit:
+    dependency: transitive
+    description:
+      name: flutter_spinkit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.1.0"
   flutter_styled_toast:
     dependency: "direct main"
     description:

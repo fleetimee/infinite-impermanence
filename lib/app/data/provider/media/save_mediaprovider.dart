@@ -22,7 +22,10 @@ class MediaProvider {
         Uri.parse('${baseUrl}debiturs/$id/uploads/'),
       )
         ..headers.addAll(
-          {'Content-Type': 'application/json', 'Accept': 'application/json'},
+          {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
         )
         ..files.add(await http.MultipartFile.fromPath('file', body['file']));
 

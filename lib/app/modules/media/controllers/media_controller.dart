@@ -1,5 +1,6 @@
 import 'package:akm/app/data/provider/media/save_mediaprovider.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/widget/upload_screen.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -22,12 +23,18 @@ class MediaController extends GetxController {
 
     try {
       isMediaProcessing(true);
+      Get.dialog(
+        const UploadScreen(),
+        barrierDismissible: false,
+      );
       MediaProvider().saveMedia(id, body).then((resp) {
         isMediaProcessing(false);
+        clearForm();
+        Get.back();
         debiturController.fetchOneDebitur(id);
         Get.snackbar(
           'Success',
-          'Data berhasil disimpan',
+          'File berhasil disimpan',
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
@@ -53,5 +60,10 @@ class MediaController extends GetxController {
         btnOkOnPress: () {},
       ).show();
     }
+  }
+
+  void clearForm() {
+    formKey.currentState?.fields['file']?.reset();
+    keterangan.clear();
   }
 }

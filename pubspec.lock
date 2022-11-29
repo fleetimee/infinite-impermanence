@@ -134,6 +134,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
+  community_material_icon:
+    dependency: transitive
+    description:
+      name: community_material_icon
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.9.55"
   convert:
     dependency: transitive
     description:
@@ -276,6 +283,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
+  file_picker:
+    dependency: transitive
+    description:
+      name: file_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.2.2"
   finance:
     dependency: "direct main"
     description:
@@ -519,6 +533,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "8.3.0"
+  form_builder_file_picker:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: e3144ef0732d430a75ec75873c285619089c211f
+      url: "https://github.com/flutter-form-builder-ecosystem/form_builder_file_picker"
+    source: git
+    version: "2.3.0"
   form_builder_image_picker:
     dependency: "direct main"
     description:
@@ -652,6 +675,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.2"
+  image_downloader:
+    dependency: "direct main"
+    description:
+      name: image_downloader
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.31.0"
   image_picker:
     dependency: "direct main"
     description:
@@ -932,6 +962,41 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.8.4"
+  permission_handler:
+    dependency: transitive
+    description:
+      name: permission_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "10.2.0"
+  permission_handler_android:
+    dependency: transitive
+    description:
+      name: permission_handler_android
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "10.2.0"
+  permission_handler_apple:
+    dependency: transitive
+    description:
+      name: permission_handler_apple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "9.0.7"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.9.0"
+  permission_handler_windows:
+    dependency: transitive
+    description:
+      name: permission_handler_windows
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   petitparser:
     dependency: transitive
     description:
@@ -1267,7 +1332,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.7.0"
+    version: "3.1.2"
   wkt_parser:
     dependency: transitive
     description:

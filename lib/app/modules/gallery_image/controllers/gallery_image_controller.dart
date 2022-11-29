@@ -13,6 +13,8 @@ class GalleryImageController extends GetxController {
 
   final isImageLoading = false.obs;
 
+  final isImageListView = false.obs;
+
   final debiturId = Get.arguments;
 
   void getImages(int id) {

@@ -46,6 +46,10 @@ dependencies:
   flutter_tex_js: ^1.2.17
   font_awesome_flutter: ^10.2.1
   form_builder_extra_fields: ^8.3.0
+  form_builder_file_picker: 
+    git:
+      url: https://github.com/flutter-form-builder-ecosystem/form_builder_file_picker
+      ref: main
   form_builder_image_picker: ^3.1.0
   form_builder_validators: ^8.4.0
   geocoding: ^2.0.5
@@ -55,6 +59,7 @@ dependencies:
   google_fonts: ^3.0.1
   http: ^0.13.5
   image_picker: ^0.8.6
+  image_downloader: 0.31.0
   intl: ^0.17.0
   latlong2: ^0.8.1
   lottie: ^2.0.0

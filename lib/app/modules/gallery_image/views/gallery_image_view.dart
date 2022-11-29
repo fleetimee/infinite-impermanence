@@ -1,11 +1,15 @@
 import 'package:akm/app/routes/app_pages.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:image_downloader/image_downloader.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 import '../controllers/gallery_image_controller.dart';
 
@@ -62,14 +66,14 @@ class GalleryImageView extends GetView<GalleryImageController> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        showMaterialModalBottomSheet(
-                          context: context,
-                          builder: (context) => PhotoView(
-                            imageProvider: NetworkImage(
-                              controller.imageList[index].file!,
-                            ),
-                          ),
-                        );
+                        // showMaterialModalBottomSheet(
+                        //   context: context,
+                        //   builder: (context) => PhotoView(
+                        //     imageProvider: NetworkImage(
+                        //       controller.imageList[index].file!,
+                        //     ),
+                        //   ),
+                        // );
                       },
                       child: GFListTile(
                         avatar: GFAvatar(
@@ -77,66 +81,113 @@ class GalleryImageView extends GetView<GalleryImageController> {
                             controller.imageList[index].file!,
                           ),
                           shape: GFAvatarShape.square,
+                          backgroundColor: Colors.transparent,
                         ),
                         titleText: controller.imageList[index].keterangan,
                         subTitleText: DateFormat('dd MMMM yyyy')
                             .format(controller.imageList[index].createdDate!),
-                        // description: GFButton(
-                        //   onPressed: () async {
-                        //     try {
-                        //       var imageId = await ImageDownloader.downloadImage(
-                        //         controller.imageList[index].file!,
-                        //       );
-                        //       if (imageId == null) {
-                        //         return;
-                        //       }
-                        //       var filename =
-                        //           await ImageDownloader.findName(imageId);
-                        //       var path =
-                        //           await ImageDownloader.findPath(imageId);
-                        //       var size =
-                        //           await ImageDownloader.findByteSize(imageId);
-                        //       var mimeType =
-                        //           await ImageDownloader.findMimeType(imageId);
-                        //       Get.snackbar('Success', 'Image downloaded');
-                        //     } on Exception catch (error) {
-                        //       Get.snackbar('Error', error.toString());
-                        //     }
-                        //   },
-                        //   text: 'Download',
-                        //   color: Colors.red,
-                        //   type: GFButtonType.outline,
-                        // ),
-                      ),
-                    );
-                  },
-                )
-              : GridView.builder(
-                  itemCount: controller.imageList.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        showMaterialModalBottomSheet(
-                          context: context,
-                          builder: (context) => PhotoView(
-                            imageProvider: NetworkImage(
-                              controller.imageList[index].file!,
-                            ),
-                          ),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(5),
-                        child: Image.network(
-                          controller.imageList[index].file!,
-                          fit: BoxFit.cover,
+                        icon: GFButton(
+                          onPressed: () async {
+                            try {
+                              var imageId = await ImageDownloader.downloadImage(
+                                controller.imageList[index].file!,
+                              );
+                              if (imageId == null) {
+                                return;
+                              }
+                              var filename =
+                                  await ImageDownloader.findName(imageId);
+                              var path =
+                                  await ImageDownloader.findPath(imageId);
+                              var size =
+                                  await ImageDownloader.findByteSize(imageId);
+                              var mimeType =
+                                  await ImageDownloader.findMimeType(imageId);
+                              Get.snackbar(
+                                'Downloaded',
+                                'Image downloaded to $path',
+                                snackPosition: SnackPosition.TOP,
+                                icon: const Icon(Icons.download_done),
+                                colorText: Colors.white,
+                                backgroundColor: Colors.green,
+                              );
+                            } on Exception catch (error) {
+                              Get.snackbar('Error', error.toString());
+                            }
+                          },
+                          text: 'Download',
+                          color: GFColors.SUCCESS,
+                          type: GFButtonType.solid,
+                          size: GFSize.LARGE,
+                          shape: GFButtonShape.pills,
                         ),
                       ),
                     );
                   },
+                )
+              : GridView.custom(
+                  gridDelegate: SliverQuiltedGridDelegate(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 4,
+                    crossAxisSpacing: 4,
+                    repeatPattern: QuiltedGridRepeatPattern.inverted,
+                    pattern: [
+                      const QuiltedGridTile(2, 2),
+                      const QuiltedGridTile(1, 1),
+                      const QuiltedGridTile(1, 1),
+                      const QuiltedGridTile(1, 2),
+                    ],
+                  ),
+                  childrenDelegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          showMaterialModalBottomSheet(
+                            context: context,
+                            builder: (context) => PhotoViewGallery.builder(
+                              pageController: PageController(
+                                initialPage: index,
+                              ),
+                              scrollPhysics: const BouncingScrollPhysics(),
+                              itemCount: controller.imageList.length,
+                              onPageChanged: (index) {
+                                controller.imageList[index].id;
+                              },
+                              builder: (context, index) {
+                                return PhotoViewGalleryPageOptions(
+                                  imageProvider: NetworkImage(
+                                      controller.imageList[index].file!),
+                                  heroAttributes: PhotoViewHeroAttributes(
+                                    tag: controller.imageList[index].id
+                                        .toString(),
+                                  ),
+                                );
+                              },
+                              loadingBuilder: (context, event) => Center(
+                                child: SizedBox(
+                                  width: 20.0,
+                                  height: 20.0,
+                                  child: CircularProgressIndicator(
+                                    value: event == null
+                                        ? 0
+                                        : event.cumulativeBytesLoaded /
+                                            event.expectedTotalBytes!,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        child: FancyShimmerImage(
+                          boxFit: BoxFit.cover,
+                          imageUrl: controller.imageList[index].file!,
+                          shimmerBaseColor: Colors.grey[300]!,
+                          shimmerHighlightColor: Colors.grey[100]!,
+                        ),
+                      );
+                    },
+                    childCount: controller.imageList.length,
+                  ),
                 );
         }
       }),
@@ -149,3 +200,58 @@ class GalleryImageView extends GetView<GalleryImageController> {
     );
   }
 }
+
+// GridView.builder(
+//                   itemCount: controller.imageList.length,
+//                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//                     crossAxisCount: 2,
+//                   ),
+//                   itemBuilder: (context, index) {
+//                     return GestureDetector(
+//                       onTap: () {
+//                         showMaterialModalBottomSheet(
+//                           context: context,
+//                           builder: (context) => PhotoViewGallery.builder(
+//                             pageController: PageController(
+//                               initialPage: index,
+//                             ),
+//                             scrollPhysics: const BouncingScrollPhysics(),
+//                             itemCount: controller.imageList.length,
+//                             onPageChanged: (index) {
+//                               controller.imageList[index].id;
+//                             },
+//                             builder: (context, index) {
+//                               return PhotoViewGalleryPageOptions(
+//                                 imageProvider: NetworkImage(
+//                                     controller.imageList[index].file!),
+//                                 heroAttributes: PhotoViewHeroAttributes(
+//                                   tag:
+//                                       controller.imageList[index].id.toString(),
+//                                 ),
+//                               );
+//                             },
+//                             loadingBuilder: (context, event) => Center(
+//                               child: SizedBox(
+//                                 width: 20.0,
+//                                 height: 20.0,
+//                                 child: CircularProgressIndicator(
+//                                   value: event == null
+//                                       ? 0
+//                                       : event.cumulativeBytesLoaded /
+//                                           event.expectedTotalBytes!,
+//                                 ),
+//                               ),
+//                             ),
+//                           ),
+//                         );
+//                       },
+//                       child: Container(
+//                         margin: const EdgeInsets.all(5),
+//                         child: FancyShimmerImage(
+//                           boxFit: BoxFit.cover,
+//                           imageUrl: controller.imageList[index].file!,
+//                         ),
+//                       ),
+//                     );
+//                   },
+//                 );

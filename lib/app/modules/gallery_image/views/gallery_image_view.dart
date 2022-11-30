@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:image_downloader/image_downloader.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:photo_view/photo_view.dart';
@@ -86,40 +85,43 @@ class GalleryImageView extends GetView<GalleryImageController> {
                         titleText: controller.imageList[index].keterangan,
                         subTitleText: DateFormat('dd MMMM yyyy')
                             .format(controller.imageList[index].createdDate!),
-                        icon: GFButton(
-                          onPressed: () async {
-                            try {
-                              var imageId = await ImageDownloader.downloadImage(
-                                controller.imageList[index].file!,
-                              );
-                              if (imageId == null) {
-                                return;
-                              }
-                              var filename =
-                                  await ImageDownloader.findName(imageId);
-                              var path =
-                                  await ImageDownloader.findPath(imageId);
-                              var size =
-                                  await ImageDownloader.findByteSize(imageId);
-                              var mimeType =
-                                  await ImageDownloader.findMimeType(imageId);
-                              Get.snackbar(
-                                'Downloaded',
-                                'Image downloaded to $path',
-                                snackPosition: SnackPosition.TOP,
-                                icon: const Icon(Icons.download_done),
-                                colorText: Colors.white,
-                                backgroundColor: Colors.green,
-                              );
-                            } on Exception catch (error) {
-                              Get.snackbar('Error', error.toString());
-                            }
-                          },
-                          text: 'Download',
-                          color: GFColors.SUCCESS,
-                          type: GFButtonType.solid,
-                          size: GFSize.LARGE,
-                          shape: GFButtonShape.pills,
+                        icon: Row(
+                          children: [
+                            GFButton(
+                              onPressed: () {
+                                controller.shareNetworkImage(
+                                  controller.imageList[index].file!,
+                                  controller.imageList[index].keterangan!,
+                                );
+                              },
+                              text: 'Share',
+                              color: GFColors.INFO,
+                              type: GFButtonType.solid,
+                              size: GFSize.LARGE,
+                              shape: GFButtonShape.pills,
+                            ),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            GFButton(
+                              onPressed: () async {
+                                try {
+                                  controller.downloadNetworkImage(
+                                    controller.imageList[index].file!,
+                                    controller.imageList[index].keterangan!,
+                                    'AKM-${data.peminjam1}',
+                                  );
+                                } on Exception catch (error) {
+                                  Get.snackbar('Error', error.toString());
+                                }
+                              },
+                              text: 'Download',
+                              color: GFColors.SUCCESS,
+                              type: GFButtonType.solid,
+                              size: GFSize.LARGE,
+                              shape: GFButtonShape.pills,
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -143,8 +145,19 @@ class GalleryImageView extends GetView<GalleryImageController> {
                       return GestureDetector(
                         onTap: () {
                           showMaterialModalBottomSheet(
+                            backgroundColor: Colors.transparent,
                             context: context,
                             builder: (context) => PhotoViewGallery.builder(
+                              backgroundDecoration: const BoxDecoration(
+                                color: Colors.black,
+                              ),
+                              allowImplicitScrolling: true,
+                              enableRotation: true,
+                              loadingBuilder: (context, event) => const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.red,
+                                ),
+                              ),
                               pageController: PageController(
                                 initialPage: index,
                               ),
@@ -163,18 +176,21 @@ class GalleryImageView extends GetView<GalleryImageController> {
                                   ),
                                 );
                               },
-                              loadingBuilder: (context, event) => Center(
-                                child: SizedBox(
-                                  width: 20.0,
-                                  height: 20.0,
-                                  child: CircularProgressIndicator(
-                                    value: event == null
-                                        ? 0
-                                        : event.cumulativeBytesLoaded /
-                                            event.expectedTotalBytes!,
-                                  ),
-                                ),
-                              ),
+                              // loadingBuilder: (context, event) => Container(
+                              //   color: Colors.grey[200],
+                              //   child: Center(
+                              //     child: SizedBox(
+                              //       width: 20.0,
+                              //       height: 20.0,
+                              //       child: CircularProgressIndicator(
+                              //         value: event == null
+                              //             ? 0
+                              //             : event.cumulativeBytesLoaded /
+                              //                 event.expectedTotalBytes!,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                             ),
                           );
                         },

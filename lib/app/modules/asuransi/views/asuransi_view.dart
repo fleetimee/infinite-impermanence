@@ -155,7 +155,6 @@ class AsuransiView extends GetView<AsuransiController> {
                     keyboardType: TextInputType.number,
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
                     ]),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(

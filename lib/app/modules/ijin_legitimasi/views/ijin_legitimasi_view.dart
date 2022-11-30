@@ -75,18 +75,19 @@ class IjinLegitimasiView extends GetView<IjinLegitimasiController> {
                       // inherits the delay & duration from move,
                       ),
                   FormBuilderTextField(
-                      name: 'jenisIjinLegitimasi',
-                      validator: FormBuilderValidators.required(),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(
-                          FontAwesomeIcons.solidFileLines,
-                        ),
-                        labelText: 'Jenis Ijin',
-                        border: OutlineInputBorder(),
-                        hintText: 'Surat Keterangan Usaha',
+                    name: 'jenisIjinLegitimasi',
+                    validator: FormBuilderValidators.required(),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(
+                        FontAwesomeIcons.solidFileLines,
                       ),
-                      controller: controller.jenisIjinLegitimasi),
+                      labelText: 'Jenis Ijin',
+                      border: OutlineInputBorder(),
+                      hintText: 'Surat Keterangan Usaha',
+                    ),
+                    controller: controller.jenisIjinLegitimasi,
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),

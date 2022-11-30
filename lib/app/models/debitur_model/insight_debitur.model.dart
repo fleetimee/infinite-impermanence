@@ -58,6 +58,7 @@ class DebiturInsight {
     this.syaratLain,
     this.asuransi,
     this.analisaAgunan,
+    this.upload,
   });
 
   int? id;
@@ -109,6 +110,7 @@ class DebiturInsight {
   List<Agunan>? agunan;
   List<SyaratLain>? syaratLain;
   AnalisaAgunan? analisaAgunan;
+  List<Upload>? upload;
 
   factory DebiturInsight.fromJson(Map<String, dynamic> json) => DebiturInsight(
         id: json["id"],
@@ -188,6 +190,9 @@ class DebiturInsight {
         analisaAgunan: json["analisaAgunan"] == null
             ? null
             : AnalisaAgunan.fromJson(json["analisaAgunan"]),
+        upload: json["upload"] == null
+            ? null
+            : List<Upload>.from(json["upload"].map((x) => Upload.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -249,6 +254,51 @@ class DebiturInsight {
             ? null
             : List<dynamic>.from(syaratLain!.map((x) => x.toJson())),
         "analisaAgunan": analisaAgunan == null ? null : analisaAgunan?.toJson(),
+        "upload": upload == null
+            ? null
+            : List<dynamic>.from(upload!.map((x) => x.toJson())),
+      };
+}
+
+class Upload {
+  Upload({
+    this.id,
+    this.keterangan,
+    this.file,
+    this.createdDate,
+    this.updatedDate,
+    this.debiturId,
+  });
+
+  int? id;
+  String? keterangan;
+  String? file;
+  DateTime? createdDate;
+  DateTime? updatedDate;
+  int? debiturId;
+
+  factory Upload.fromJson(Map<String, dynamic> json) => Upload(
+        id: json["id"] ?? null,
+        keterangan: json["keterangan"] ?? null,
+        file: json["file"] ?? null,
+        createdDate: json["createdDate"] == null
+            ? null
+            : DateTime.parse(json["createdDate"]),
+        updatedDate: json["updatedDate"] == null
+            ? null
+            : DateTime.parse(json["updatedDate"]),
+        debiturId: json["debiturId"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "keterangan": keterangan ?? null,
+        "file": file ?? null,
+        "createdDate":
+            createdDate == null ? null : createdDate?.toIso8601String(),
+        "updatedDate":
+            updatedDate == null ? null : updatedDate?.toIso8601String(),
+        "debiturId": debiturId ?? null,
       };
 }
 

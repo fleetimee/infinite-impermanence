@@ -2,7 +2,7 @@
   {
     "_id": "664f5f60-ada2-4f7b-9346-3664891144d4",
     "name": "neo-claudius",
-    "default": true,
+    "default": false,
     "sortNum": 10000,
     "created": "2022-07-05T23:42:20.152Z",
     "modified": "2022-11-13T21:48:56.624Z",
@@ -16,7 +16,7 @@
   {
     "_id": "484e6cb8-b6c0-48a9-b8f7-edaa58016485",
     "name": "A",
-    "default": false,
+    "default": true,
     "sortNum": 20000,
     "created": "2022-09-20T05:25:05.997Z",
     "modified": "2022-11-11T03:26:23.446Z",

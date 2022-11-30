@@ -29,6 +29,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_animate: ^2.0.1
+  flutter_cached_pdfview:
+    git:
+      url: https://github.com/ewilliams-zoot/flutter_cached_pdfview/
+      ref: patch-1
   flutter_custom_clippers: ^2.0.0
   flutter_easyloading:
     git:

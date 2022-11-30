@@ -79,6 +79,8 @@ abstract class Routes {
   static const EDIT_ASURANSI = _Paths.EDIT_ASURANSI;
   static const MEDIA = _Paths.MEDIA;
   static const GALLERY_IMAGE = _Paths.GALLERY_IMAGE;
+  static const GALLERY_FILE = _Paths.GALLERY_FILE;
+  static const MEDIA_DOCS = _Paths.MEDIA_DOCS;
 }
 
 abstract class _Paths {
@@ -156,4 +158,6 @@ abstract class _Paths {
   static const EDIT_ASURANSI = '/edit-asuransi';
   static const MEDIA = '/media';
   static const GALLERY_IMAGE = '/gallery-image';
+  static const GALLERY_FILE = '/gallery-file';
+  static const MEDIA_DOCS = '/media-docs';
 }

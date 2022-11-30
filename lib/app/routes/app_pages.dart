@@ -22,6 +22,8 @@ import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
+import '../modules/gallery_file/bindings/gallery_file_binding.dart';
+import '../modules/gallery_file/views/gallery_file_view.dart';
 import '../modules/gallery_image/bindings/gallery_image_binding.dart';
 import '../modules/gallery_image/views/gallery_image_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -80,6 +82,8 @@ import '../modules/list_syarat_lainnya/bindings/list_syarat_lainnya_binding.dart
 import '../modules/list_syarat_lainnya/views/list_syarat_lainnya_view.dart';
 import '../modules/media/bindings/media_binding.dart';
 import '../modules/media/views/media_view.dart';
+import '../modules/media_docs/bindings/media_docs_binding.dart';
+import '../modules/media_docs/views/media_docs_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
@@ -457,6 +461,16 @@ class AppPages {
       name: _Paths.GALLERY_IMAGE,
       page: () => GalleryImageView(),
       binding: GalleryImageBinding(),
+    ),
+    GetPage(
+      name: _Paths.GALLERY_FILE,
+      page: () => GalleryFileView(),
+      binding: GalleryFileBinding(),
+    ),
+    GetPage(
+      name: _Paths.MEDIA_DOCS,
+      page: () => const MediaDocsView(),
+      binding: MediaDocsBinding(),
     ),
   ];
 }

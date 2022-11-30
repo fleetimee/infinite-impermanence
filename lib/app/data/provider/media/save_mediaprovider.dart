@@ -17,8 +17,34 @@ class MediaProvider {
 
   Future<List<Upload>> fetchMedia(int id) async {
     try {
+      const contL = '\$contL';
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}debiturs/$id/uploads/'),
+        Uri.parse('${baseUrl}debiturs/$id/uploads/?filter=file||$contL||jpg'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return (data as List).map((e) => Upload.fromJson(e)).toList();
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
+
+  Future<List<Upload>> fetchDocs(int id) async {
+    try {
+      const contL = '\$contL';
+
+      final response = await httpClient.get(
+        Uri.parse('${baseUrl}debiturs/$id/uploads/?filter=file||$contL||pdf'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

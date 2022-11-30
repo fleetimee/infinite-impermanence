@@ -4,11 +4,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/5?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
+    "url": "{{baseUrl}}api/v1/debiturs/1?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-08-20T00:12:21.220Z",
-    "modified": "2022-11-28T14:51:32.701Z",
+    "modified": "2022-11-30T07:58:59.774Z",
     "headers": [],
     "params": [
       {
@@ -638,16 +638,16 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "e9deb1b2-3088-4fc0-9c9f-4ae39119ec95",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=5&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-10-01T12:22:30.534Z",
-    "modified": "2022-11-26T08:42:29.351Z",
+    "modified": "2022-11-30T06:55:21.209Z",
     "headers": [],
     "params": [
       {
         "name": "limit",
-        "value": "5",
+        "value": "15",
         "isPath": false
       },
       {
@@ -1185,13 +1185,31 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "3b567af2-0207-4ab8-ad8a-d6f6169ebd11",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/2/uploads/",
+    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/?filter=file||$contL||pdf",
     "method": "GET",
-    "sortNum": 880000,
+    "sortNum": 445000,
     "created": "2022-11-28T04:38:57.552Z",
-    "modified": "2022-11-29T01:27:52.826Z",
+    "modified": "2022-11-30T06:56:17.810Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "s",
+        "value": "{\"file\": {\"$or\": {\"$eq\": \".pdf\", \"$eq\": \"docs\"}}}",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "file||$contL||pdf",
+        "isPath": false
+      },
+      {
+        "name": "or",
+        "value": "file||$contL||docx",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
     "tests": []
   },
   {
@@ -1199,11 +1217,11 @@
     "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
     "containerId": "3b567af2-0207-4ab8-ad8a-d6f6169ebd11",
     "name": "Post",
-    "url": "{{baseUrl}}api/v1/debiturs/5/uploads/",
+    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/",
     "method": "POST",
     "sortNum": 890000,
     "created": "2022-11-28T04:42:22.215Z",
-    "modified": "2022-11-28T14:13:13.682Z",
+    "modified": "2022-11-30T08:46:42.822Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1212,13 +1230,13 @@
       "form": [
         {
           "name": "keterangan",
-          "value": "adada"
+          "value": "Rangiku"
         }
       ],
       "files": [
         {
           "name": "file",
-          "value": "c:\\Users\\Novian Andika\\Desktop\\278122273_5151241421581206_3504391876146381605_n.jpg"
+          "value": "..\\..\\..\\..\\College\\Pengumpulan Perpus\\4. Pdf Naskah Publikasi\\Publikasi-18.01.4133-Novian Andika.pdf"
         }
       ]
     },
@@ -1236,6 +1254,26 @@
     "modified": "2022-11-29T06:31:23.074Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "883b0a09-b04c-4085-a7e1-918ffef521ce",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "3b567af2-0207-4ab8-ad8a-d6f6169ebd11",
+    "name": "Get Copy",
+    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/?filter=file||$contL||jpg",
+    "method": "GET",
+    "sortNum": 667500,
+    "created": "2022-11-30T06:48:54.448Z",
+    "modified": "2022-11-30T06:56:39.169Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "filter",
+        "value": "file||$contL||jpg",
+        "isPath": false
+      }
+    ],
     "tests": []
   }
 ]

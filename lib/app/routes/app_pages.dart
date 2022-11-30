@@ -469,7 +469,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MEDIA_DOCS,
-      page: () => const MediaDocsView(),
+      page: () => MediaDocsView(),
       binding: MediaDocsBinding(),
     ),
   ];

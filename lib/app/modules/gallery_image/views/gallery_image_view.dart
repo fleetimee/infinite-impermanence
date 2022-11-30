@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
@@ -22,13 +23,12 @@ class GalleryImageView extends GetView<GalleryImageController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Gallery: ${data.peminjam1}'),
-        centerTitle: true,
         actions: [
           Obx(() => PopupMenuButton(
                 icon: controller.isImageListView.value
                     ? const Icon(
                         // gridview icon
-                        Icons.list,
+                        Icons.view_list,
                       )
                     : const Icon(
                         // listview icon
@@ -36,19 +36,24 @@ class GalleryImageView extends GetView<GalleryImageController> {
                       ),
                 itemBuilder: (_) {
                   return [
-                    PopupMenuItem(
-                      child: TextButton(
-                        onPressed: () {
-                          Get.back();
-                          controller.isImageListView.toggle();
-                          // Get.toNamed(Routes.GALLERY_IMAGE, arguments: data);
-                        },
-                        child: controller.isImageListView.value
-                            ? const Text('Grid view')
-                            : const Text('List view'),
-                      ),
+                    CheckedPopupMenuItem(
+                      value: 1,
+                      checked: controller.isImageListView.value,
+                      child: const Text('List View'),
+                    ),
+                    CheckedPopupMenuItem(
+                      value: 2,
+                      checked: !controller.isImageListView.value,
+                      child: const Text('Grid View'),
                     ),
                   ];
+                },
+                onSelected: (value) {
+                  if (value == 1) {
+                    controller.isImageListView.value = true;
+                  } else {
+                    controller.isImageListView.value = false;
+                  }
                 },
               ))
         ],
@@ -64,64 +69,69 @@ class GalleryImageView extends GetView<GalleryImageController> {
                   itemCount: controller.imageList.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
-                      onTap: () {
-                        // showMaterialModalBottomSheet(
-                        //   context: context,
-                        //   builder: (context) => PhotoView(
-                        //     imageProvider: NetworkImage(
-                        //       controller.imageList[index].file!,
-                        //     ),
-                        //   ),
-                        // );
-                      },
-                      child: GFListTile(
-                        avatar: GFAvatar(
-                          backgroundImage: NetworkImage(
-                            controller.imageList[index].file!,
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        child: Card(
+                          color: GFColors.LIGHT,
+                          child: GFListTile(
+                            avatar: GFAvatar(
+                              backgroundImage: NetworkImage(
+                                controller.imageList[index].file!,
+                              ),
+                              shape: GFAvatarShape.square,
+                              backgroundColor: Colors.transparent,
+                            ),
+                            titleText: controller.imageList[index].keterangan,
+                            subTitleText: DateFormat('dd MMMM yyyy').format(
+                                controller.imageList[index].createdDate!),
+                            icon: Row(
+                              children: [
+                                GFButton(
+                                  icon: const Icon(
+                                    Icons.share,
+                                    color: GFColors.WHITE,
+                                  ),
+                                  onPressed: () {
+                                    controller.shareNetworkImage(
+                                      controller.imageList[index].file!,
+                                      controller.imageList[index].keterangan!,
+                                    );
+                                  },
+                                  text: 'Share',
+                                  color: GFColors.INFO,
+                                  type: GFButtonType.solid,
+                                  size: GFSize.LARGE,
+                                  shape: GFButtonShape.pills,
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                GFButton(
+                                  icon: const Icon(
+                                    Icons.download,
+                                    color: GFColors.WHITE,
+                                  ),
+                                  onPressed: () async {
+                                    try {
+                                      controller.downloadNetworkImage(
+                                        controller.imageList[index].file!,
+                                        controller.imageList[index].keterangan!,
+                                        'AKM-${data.peminjam1}',
+                                      );
+                                    } on Exception catch (error) {
+                                      Get.snackbar('Error', error.toString());
+                                    }
+                                  },
+                                  text: 'D/L',
+                                  color: GFColors.SUCCESS,
+                                  type: GFButtonType.solid,
+                                  size: GFSize.LARGE,
+                                  shape: GFButtonShape.pills,
+                                ),
+                              ],
+                            ),
                           ),
-                          shape: GFAvatarShape.square,
-                          backgroundColor: Colors.transparent,
-                        ),
-                        titleText: controller.imageList[index].keterangan,
-                        subTitleText: DateFormat('dd MMMM yyyy')
-                            .format(controller.imageList[index].createdDate!),
-                        icon: Row(
-                          children: [
-                            GFButton(
-                              onPressed: () {
-                                controller.shareNetworkImage(
-                                  controller.imageList[index].file!,
-                                  controller.imageList[index].keterangan!,
-                                );
-                              },
-                              text: 'Share',
-                              color: GFColors.INFO,
-                              type: GFButtonType.solid,
-                              size: GFSize.LARGE,
-                              shape: GFButtonShape.pills,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            GFButton(
-                              onPressed: () async {
-                                try {
-                                  controller.downloadNetworkImage(
-                                    controller.imageList[index].file!,
-                                    controller.imageList[index].keterangan!,
-                                    'AKM-${data.peminjam1}',
-                                  );
-                                } on Exception catch (error) {
-                                  Get.snackbar('Error', error.toString());
-                                }
-                              },
-                              text: 'Download',
-                              color: GFColors.SUCCESS,
-                              type: GFButtonType.solid,
-                              size: GFSize.LARGE,
-                              shape: GFButtonShape.pills,
-                            ),
-                          ],
                         ),
                       ),
                     );
@@ -153,11 +163,16 @@ class GalleryImageView extends GetView<GalleryImageController> {
                               ),
                               allowImplicitScrolling: true,
                               enableRotation: true,
-                              loadingBuilder: (context, event) => const Center(
+                              loadingBuilder: (context, event) => Center(
                                 child: CircularProgressIndicator(
-                                  color: Colors.red,
+                                  color: primaryColor,
+                                  value: event == null
+                                      ? 0
+                                      : event.cumulativeBytesLoaded /
+                                          event.expectedTotalBytes!,
                                 ),
                               ),
+
                               pageController: PageController(
                                 initialPage: index,
                               ),
@@ -208,10 +223,17 @@ class GalleryImageView extends GetView<GalleryImageController> {
         }
       }),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        heroTag: 'btn1',
         onPressed: () {
-          Get.toNamed(Routes.MEDIA, arguments: data);
+          Get.toNamed(
+            Routes.MEDIA,
+            arguments: data,
+          );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add_photo_alternate_outlined,
+        ),
       ),
     );
   }

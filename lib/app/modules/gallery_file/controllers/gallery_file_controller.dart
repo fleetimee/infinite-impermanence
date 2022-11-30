@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:akm/app/data/provider/media/save_mediaprovider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:printing/printing.dart';
 
 class GalleryFileController extends GetxController {
   @override
@@ -30,4 +36,55 @@ class GalleryFileController extends GetxController {
       Get.snackbar('Error', e.toString());
     }
   }
+
+  void downloadNetworkFile(String url, String filename) async {
+    Directory tempDir = await getTemporaryDirectory();
+
+    final path = tempDir.path;
+
+    await Dio().download(url, '$path/$filename');
+
+    Get.snackbar('Success', 'File downloaded to $path/$filename');
+  }
+
+  void printFile(String url, String filename) async {
+    Directory tempDir = await getTemporaryDirectory();
+
+    final path = tempDir.path;
+
+    // Download as ui8list
+    final response = await Dio()
+        .get(url, options: Options(responseType: ResponseType.bytes));
+
+    // Save to temp directory
+    final file = File('$path/$filename');
+
+    await file.writeAsBytes(response.data);
+
+    // Print
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => file.readAsBytesSync(),
+    );
+  }
+
+  // void viewFile(String url, String filename) async {
+  //   Directory tempDir = await getTemporaryDirectory();
+
+  //   final path = tempDir.path;
+
+  //   // Download as ui8list
+  //   final response = await Dio()
+  //       .get(url, options: Options(responseType: ResponseType.bytes));
+
+  //   // Save to temp directory
+  //   final file = File('$path/$filename.pdf');
+
+  //   await file.writeAsBytes(response.data);
+
+  //   // Open
+  //   PdfPreview(
+  //     build: (format) => file.readAsBytesSync(),
+
+  //   );
+  // }
 }

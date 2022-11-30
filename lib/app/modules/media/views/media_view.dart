@@ -94,7 +94,9 @@ class MediaView extends GetView<MediaController> {
                     previewAutoSizeWidth: true,
                     galleryLabel: const Text('Pilih dari Galeri'),
                     loadingWidget: ((context) => const Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ),
                         )),
                     placeholderWidget: Center(
                       child: Column(

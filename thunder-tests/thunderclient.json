@@ -1275,5 +1275,24 @@
       }
     ],
     "tests": []
+  },
+  {
+    "_id": "f0565d18-8c51-4414-bffd-7da31e7877da",
+    "colId": "3e42347a-acbf-4266-ae30-f61da3c0cc82",
+    "containerId": "3b567af2-0207-4ab8-ad8a-d6f6169ebd11",
+    "name": "Patch",
+    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/3",
+    "method": "PATCH",
+    "sortNum": 910000,
+    "created": "2022-11-30T13:47:14.090Z",
+    "modified": "2022-11-30T13:48:00.989Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"keterangan\": \"Satania\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

@@ -1,7 +1,7 @@
 // 🐦 Flutter imports:
-
-// 🐦 Flutter imports:
 import 'package:akm/app/utils/dependency_injection.dart';
+import 'package:akm/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -15,8 +15,13 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'app/routes/app_pages.dart';
 import 'app/themes/light.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   Get.testMode = true;
 

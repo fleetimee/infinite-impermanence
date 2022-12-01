@@ -47,7 +47,16 @@ class GalleryImageController extends GetxController {
 
     await Dio().download(url, '$path/$filename.jpg');
 
-    Share.shareFiles(['$path/$filename.jpg']);
+    // Share.shareFiles(['$path/$filename.jpg']);
+
+    // convert string to XFile
+    XFile file = XFile(
+      '$path/$filename.jpg',
+      bytes: File('$path/$filename.jpg').readAsBytesSync(),
+      length: File('$path/$filename.jpg').lengthSync(),
+    );
+
+    Share.shareXFiles([file]);
   }
 
   void downloadNetworkImage(

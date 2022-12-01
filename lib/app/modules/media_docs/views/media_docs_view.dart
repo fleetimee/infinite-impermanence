@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:form_builder_image_picker/form_builder_image_picker.dart';
+import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:lottie/lottie.dart';
 
-import '../controllers/media_controller.dart';
+import '../controllers/media_docs_controller.dart';
 
-class MediaView extends GetView<MediaController> {
-  MediaView({Key? key}) : super(key: key);
+class MediaDocsView extends GetView<MediaDocsController> {
+  MediaDocsView({Key? key}) : super(key: key);
 
   final data = Get.arguments;
 
@@ -21,7 +20,7 @@ class MediaView extends GetView<MediaController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Upload Gambar'),
+        title: const Text('Lampirkan Berkas'),
       ),
       body: FormBuilder(
         key: controller.formKey,
@@ -85,58 +84,56 @@ class MediaView extends GetView<MediaController> {
                   const SizedBox(
                     height: 20,
                   ),
-                  FormBuilderImagePicker(
+                  FormBuilderFilePicker(
                     name: 'file',
-                    bottomSheetPadding: const EdgeInsets.all(16),
-                    fit: BoxFit.cover,
-                    cameraLabel: const Text('Ambil Foto'),
-                    previewAutoSizeWidth: true,
-                    galleryLabel: const Text('Pilih dari Galeri'),
-                    loadingWidget: ((context) => const Center(
-                          child: CircularProgressIndicator(
-                            color: primaryColor,
-                          ),
-                        )),
-                    placeholderWidget: Center(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: Lottie.asset(
-                              'assets/images/home/upload-files.zip',
-                              frameRate: FrameRate.max,
-                              height: 112,
-                              repeat: true,
-                              errorBuilder: (context, error, stackTrace) {
-                                return const Text(
-                                  'Gagal memuat animasi',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const Center(
-                            child: Text(
-                              'Klik untuk memilih gambar / dokumen ',
-                              style: TextStyle(
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    imageQuality: 50,
-                    showDecoration: true,
-                    maxImages: 1,
+                    allowedExtensions: const [
+                      'pdf',
+                    ],
+                    maxFiles: 1,
                     validator: FormBuilderValidators.required(),
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    typeSelectors: [
+                      TypeSelector(
+                          type: FileType.custom,
+                          selector: Row(
+                            children: const [
+                              Icon(
+                                Icons.attach_file,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Attach File',
+                                style: TextStyle(
+                                  color: Colors.black45,
+                                ),
+                              ),
+                            ],
+                          )),
+                    ],
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: 'Gambar / Dokumen',
+                      labelText: 'Lampiran',
+                      counterText: '',
                     ),
+                    customFileViewerBuilder: customFileViewerBuilder,
+                    onChanged: (value) {
+                      if (value!.toList().isNotEmpty) {
+                        Get.snackbar(
+                          'Attached',
+                          'File berhasil di lampirkan',
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: GFColors.INFO,
+                          colorText: Colors.white,
+                          shouldIconPulse: true,
+                          icon: const Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                          ),
+                        );
+                      }
+                    },
                   )
                 ],
               ),
@@ -148,7 +145,7 @@ class MediaView extends GetView<MediaController> {
                   onPressed: () {
                     if (controller.formKey.currentState?.saveAndValidate() ??
                         false) {
-                      controller.saveMedia(data.id);
+                      controller.deployDocs(data.id);
                     } else {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());
@@ -156,7 +153,7 @@ class MediaView extends GetView<MediaController> {
                     }
                   },
                   text:
-                      controller.isMediaProcessing.value ? 'Loading' : 'Upload',
+                      controller.isDocsProcessing.value ? 'Loading' : 'Upload',
                 ),
               )
             ],
@@ -165,4 +162,30 @@ class MediaView extends GetView<MediaController> {
       ),
     );
   }
+}
+
+Widget customFileViewerBuilder(
+  List<PlatformFile>? files,
+  FormFieldSetter<List<PlatformFile>> setter,
+) {
+  return ListView.separated(
+    shrinkWrap: true,
+    itemBuilder: (context, index) {
+      final file = files![index];
+      return ListTile(
+        title: Text(file.name),
+        trailing: IconButton(
+          icon: const Icon(Icons.delete),
+          onPressed: () {
+            files.removeAt(index);
+            setter.call([...files]);
+          },
+        ),
+      );
+    },
+    separatorBuilder: (context, index) => const Divider(
+      color: Colors.blueAccent,
+    ),
+    itemCount: files!.length,
+  );
 }

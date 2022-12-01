@@ -220,6 +220,17 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                             color: primaryColor,
                           ),
                           IconButton(
+                            onPressed: () {
+                              Get.toNamed(Routes.GALLERY_FILE,
+                                  arguments: controller.insightDebitur.value);
+                            },
+                            icon: const Icon(
+                              FontAwesomeIcons.folderOpen,
+                            ),
+                            enableFeedback: true,
+                            color: primaryColor,
+                          ),
+                          IconButton(
                             color: primaryColor,
                             enableFeedback: true,
                             onPressed: () {

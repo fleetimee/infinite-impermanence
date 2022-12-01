@@ -44,6 +44,7 @@ class MediaController extends GetxController {
         );
       }, onError: (e) {
         isMediaProcessing(false);
+        Get.back();
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.error,
@@ -55,6 +56,7 @@ class MediaController extends GetxController {
       });
     } catch (e) {
       isMediaProcessing(false);
+      Get.back();
       AwesomeDialog(
         context: Get.context!,
         dialogType: DialogType.error,

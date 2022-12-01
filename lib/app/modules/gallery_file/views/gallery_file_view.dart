@@ -48,9 +48,10 @@ class GalleryFileView extends GetView<GalleryFileController> {
                             .format(controller.fileList[index].createdDate!),
                         icon: Row(
                           children: [
-                            GFButton(
-                              icon: const Icon(
-                                Icons.remove_red_eye,
+                            GFIconButton(
+                              icon: const FaIcon(
+                                FontAwesomeIcons.magnifyingGlass,
+                                size: 15,
                                 color: GFColors.WHITE,
                               ),
                               onPressed: () {
@@ -79,17 +80,16 @@ class GalleryFileView extends GetView<GalleryFileController> {
                                               child: Text(error.toString())),
                                         ));
                               },
-                              text: 'Lihat',
                               color: GFColors.INFO,
-                              size: GFSize.LARGE,
-                              shape: GFButtonShape.pills,
+                              size: GFSize.SMALL,
                             ),
                             const SizedBox(
                               width: 10,
                             ),
-                            GFButton(
-                              icon: const Icon(
-                                Icons.download,
+                            GFIconButton(
+                              icon: const FaIcon(
+                                FontAwesomeIcons.print,
+                                size: 15,
                                 color: GFColors.WHITE,
                               ),
                               onPressed: () {
@@ -97,11 +97,25 @@ class GalleryFileView extends GetView<GalleryFileController> {
                                     controller.fileList[index].file!,
                                     controller.fileList[index].keterangan!);
                               },
-                              text: 'Print',
                               color: GFColors.SUCCESS,
-                              size: GFSize.LARGE,
-                              shape: GFButtonShape.pills,
+                              size: GFSize.SMALL,
                             ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            GFIconButton(
+                              size: GFSize.SMALL,
+                              color: GFColors.DANGER,
+                              icon: const Icon(
+                                Icons.share,
+                              ),
+                              onPressed: () {
+                                controller.shareFile(
+                                  controller.fileList[index].file!,
+                                  controller.fileList[index].keterangan!,
+                                );
+                              },
+                            )
                           ],
                         ),
                       ),
@@ -118,8 +132,8 @@ class GalleryFileView extends GetView<GalleryFileController> {
             arguments: data,
           );
         },
-        child: const Icon(
-          Icons.file_present_outlined,
+        child: const FaIcon(
+          FontAwesomeIcons.folderPlus,
           color: GFColors.WHITE,
         ),
       ),

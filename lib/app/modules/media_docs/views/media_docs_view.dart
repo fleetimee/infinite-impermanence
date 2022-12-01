@@ -20,8 +20,7 @@ class MediaDocsView extends GetView<MediaDocsController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Upload Gambar'),
-        centerTitle: true,
+        title: const Text('Lampirkan Berkas'),
       ),
       body: FormBuilder(
         key: controller.formKey,
@@ -98,13 +97,16 @@ class MediaDocsView extends GetView<MediaDocsController> {
                           selector: Row(
                             children: const [
                               Icon(
-                                FontAwesomeIcons.filePdf,
+                                Icons.attach_file,
                               ),
                               SizedBox(
                                 width: 10,
                               ),
                               Text(
-                                'Lampirkan Dokumen',
+                                'Attach File',
+                                style: TextStyle(
+                                  color: Colors.black45,
+                                ),
                               ),
                             ],
                           )),
@@ -113,8 +115,25 @@ class MediaDocsView extends GetView<MediaDocsController> {
                       border: OutlineInputBorder(),
                       hintText: 'Gambar / Dokumen',
                       labelText: 'Lampiran',
+                      counterText: '',
                     ),
                     customFileViewerBuilder: customFileViewerBuilder,
+                    onChanged: (value) {
+                      if (value!.toList().isNotEmpty) {
+                        Get.snackbar(
+                          'Attached',
+                          'File berhasil di lampirkan',
+                          snackPosition: SnackPosition.BOTTOM,
+                          backgroundColor: GFColors.INFO,
+                          colorText: Colors.white,
+                          shouldIconPulse: true,
+                          icon: const Icon(
+                            Icons.check_circle,
+                            color: Colors.white,
+                          ),
+                        );
+                      }
+                    },
                   )
                 ],
               ),
@@ -126,7 +145,7 @@ class MediaDocsView extends GetView<MediaDocsController> {
                   onPressed: () {
                     if (controller.formKey.currentState?.saveAndValidate() ??
                         false) {
-                      // controller.saveMedia(data.id);
+                      controller.deployDocs(data.id);
                     } else {
                       debugPrint(
                           controller.formKey.currentState?.value.toString());

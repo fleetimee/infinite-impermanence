@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
+import 'package:share_plus/share_plus.dart';
 
 class GalleryFileController extends GetxController {
   @override
@@ -65,6 +66,22 @@ class GalleryFileController extends GetxController {
     await Printing.layoutPdf(
       onLayout: (PdfPageFormat format) async => file.readAsBytesSync(),
     );
+  }
+
+  void shareFile(String url, String filename) async {
+    Directory tempDir = await getTemporaryDirectory();
+
+    final path = tempDir.path;
+
+    await Dio().download(url, '$path/$filename.pdf');
+
+    XFile file = XFile(
+      '$path/$filename.pdf',
+      bytes: File('$path/$filename.pdf').readAsBytesSync(),
+      length: File('$path/$filename.pdf').lengthSync(),
+    );
+
+    Share.shareXFiles([file]);
   }
 
   // void viewFile(String url, String filename) async {

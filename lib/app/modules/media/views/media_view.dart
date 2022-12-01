@@ -22,7 +22,6 @@ class MediaView extends GetView<MediaController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Upload Gambar'),
-        centerTitle: true,
       ),
       body: FormBuilder(
         key: controller.formKey,

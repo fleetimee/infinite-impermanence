@@ -80,6 +80,8 @@ import '../modules/list_debitur/bindings/list_debitur_binding.dart';
 import '../modules/list_debitur/views/list_debitur_view.dart';
 import '../modules/list_syarat_lainnya/bindings/list_syarat_lainnya_binding.dart';
 import '../modules/list_syarat_lainnya/views/list_syarat_lainnya_view.dart';
+import '../modules/login-page/bindings/login_page_binding.dart';
+import '../modules/login-page/views/login_page_view.dart';
 import '../modules/media/bindings/media_binding.dart';
 import '../modules/media/views/media_view.dart';
 import '../modules/media_docs/bindings/media_docs_binding.dart';
@@ -471,6 +473,11 @@ class AppPages {
       name: _Paths.MEDIA_DOCS,
       page: () => MediaDocsView(),
       binding: MediaDocsBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN_PAGE,
+      page: () => const LoginPageView(),
+      binding: LoginPageBinding(),
     ),
   ];
 }

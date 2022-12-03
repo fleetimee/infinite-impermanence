@@ -81,6 +81,7 @@ abstract class Routes {
   static const GALLERY_IMAGE = _Paths.GALLERY_IMAGE;
   static const GALLERY_FILE = _Paths.GALLERY_FILE;
   static const MEDIA_DOCS = _Paths.MEDIA_DOCS;
+  static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
 }
 
 abstract class _Paths {
@@ -160,4 +161,5 @@ abstract class _Paths {
   static const GALLERY_IMAGE = '/gallery-image';
   static const GALLERY_FILE = '/gallery-file';
   static const MEDIA_DOCS = '/media-docs';
+  static const LOGIN_PAGE = '/login-page';
 }

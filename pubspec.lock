@@ -92,6 +92,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bottom_bar_matu:
+    dependency: "direct main"
+    description:
+      name: bottom_bar_matu
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.2"
   build_config:
     dependency: transitive
     description:

@@ -48,6 +48,8 @@ class HomeController extends GetxController {
     streamSubscription.cancel();
   }
 
+  final PageController controller = PageController();
+
   var productName = ''.obs;
   var brandName = ''.obs;
 
@@ -181,7 +183,7 @@ class HomeController extends GetxController {
   String dateNow() {
     var date = DateTime.now();
     // Format date to indonesia format with days, month and year
-    var format = DateFormat('EEEE, dd MMMM yyyy');
+    var format = DateFormat('dd MMMM yyyy');
     return format.format(date);
   }
 

@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -635,6 +636,16 @@ class HomeView extends GetView<HomeController> {
             )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomBarBubble(
+        items: [
+          BottomBarItem(iconData: Icons.home),
+          BottomBarItem(iconData: Icons.chat),
+          BottomBarItem(iconData: Icons.notifications),
+          BottomBarItem(iconData: Icons.calendar_month),
+          BottomBarItem(iconData: Icons.settings),
+        ],
+        onSelect: (index) {},
       ),
     );
   }

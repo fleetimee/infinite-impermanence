@@ -1,3 +1,4 @@
+import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/data/provider/auth/auth.provider.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,17 +7,26 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 class LoginPageController extends GetxController {
+  late Rx<User?> firebaseUser;
+
+  static LoginPageController instance = Get.find();
+
   @override
-  void onInit() {
-    FirebaseAuth.instance.userChanges().listen((User? user) {
-      if (user == null) {
-        debugPrint('User is currently signed out!');
-      } else {
-        debugPrint('User is signed in!');
-        Get.offAllNamed(Routes.HOME);
-      }
-    });
-    super.onInit();
+  void onReady() {
+    firebaseUser = Rx<User?>(auth.currentUser);
+
+    firebaseUser.bindStream(auth.userChanges());
+    ever(firebaseUser, setInitialScreen);
+  }
+
+  void setInitialScreen(User? user) {
+    if (user == null) {
+      debugPrint('User is currently signed out!');
+      Get.offAllNamed(Routes.LOGIN_PAGE);
+    } else {
+      debugPrint('User is signed in!');
+      Get.offAllNamed(Routes.HOME);
+    }
   }
 
   final formKey = GlobalKey<FormBuilderState>();
@@ -25,6 +35,7 @@ class LoginPageController extends GetxController {
   var password = TextEditingController();
 
   final isLoginProcessing = false.obs;
+  final isPasswordVisible = false.obs;
 
   void login() {
     try {
@@ -45,14 +56,18 @@ class LoginPageController extends GetxController {
             .signInWithCustomToken(token!)
             .then((value) => value.user!.getIdToken());
 
+        final displayName =
+            FirebaseAuth.instance.currentUser!.displayName ?? 'Anonymous';
+
         // Temporary print ID Token
         debugPrint(idToken);
+        clear();
 
         isLoginProcessing(false);
 
         Get.snackbar(
           'Success',
-          'Login berhasil with',
+          'Login berhasil with ID Token: $displayName',
           backgroundColor: Colors.green,
           colorText: Colors.white,
           icon: const Icon(
@@ -60,8 +75,6 @@ class LoginPageController extends GetxController {
             color: Colors.white,
           ),
         );
-
-        Get.offAllNamed(Routes.HOME);
       }, onError: (e) {
         isLoginProcessing(false);
         Get.snackbar(
@@ -80,6 +93,13 @@ class LoginPageController extends GetxController {
         colorText: Colors.white,
       );
     }
+  }
+
+  void clear() {
+    email.clear();
+    password.clear();
+    formKey.currentState?.fields['password']?.reset();
+    formKey.currentState!.reset();
   }
 
   // void verify() async {

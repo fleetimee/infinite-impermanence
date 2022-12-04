@@ -28,7 +28,8 @@ class AuthProvider {
         debugPrint(data.toString());
         return Auth.fromJson(data);
       } else {
-        throw Exception('Failed to load data');
+        var data = jsonDecode(response.body);
+        throw Exception(data['message']);
       }
     } catch (e) {
       return Future.error(e);

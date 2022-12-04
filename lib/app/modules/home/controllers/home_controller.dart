@@ -9,7 +9,9 @@ import 'package:akm/app/utils/capitalize.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:faker_dart/faker_dart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
@@ -48,7 +50,27 @@ class HomeController extends GetxController {
     streamSubscription.cancel();
   }
 
+  void logout() {
+    AwesomeDialog(
+      context: Get.context!,
+      dialogType: DialogType.question,
+      animType: AnimType.scale,
+      title: 'Logout',
+      desc: 'Are you sure want to logout?',
+      btnCancelOnPress: () {},
+      btnOkOnPress: () async {
+        await FirebaseAuth.instance.signOut();
+      },
+    ).show();
+  }
+
   final PageController controller = PageController();
+  final formKey = GlobalKey<FormBuilderState>();
+
+  var email = TextEditingController();
+  var displayName = TextEditingController();
+  var phoneNumber = TextEditingController();
+  var isEmailVerified = false.obs;
 
   var productName = ''.obs;
   var brandName = ''.obs;

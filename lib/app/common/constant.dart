@@ -2,6 +2,11 @@
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/';
 
 // For mobile based
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
+import 'package:akm/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+
 const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
@@ -22,6 +27,14 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 // List debitur field string
 const field =
     'peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress';
+
+LoginPageController loginPageController = LoginPageController.instance;
+
+FirebaseAuth auth = FirebaseAuth.instance;
+
+final Future<FirebaseApp> firebaseInitialization = Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
 
 // Insight debitur query string
 const joinTable =

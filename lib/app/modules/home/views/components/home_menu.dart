@@ -6,9 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
 import 'package:getwidget/colors/gf_color.dart';
-import '../../../../widget/digital_clock/clock.dart';
 import '../../controllers/home_controller.dart';
 import 'menu_item/greeting.dart';
 
@@ -116,45 +114,26 @@ class HomeMenu extends StatelessWidget {
           ),
 
           const SizedBox(
-            height: 20,
-          ),
-
-          const DigitalClock(
-            digitAnimationStyle: Curves.elasticOut,
-            is24HourTimeFormat: true,
-            areaDecoration: BoxDecoration(
-              color: Colors.transparent,
-            ),
-            hourMinuteDigitTextStyle: TextStyle(
-              color: secondaryColor,
-              fontSize: 50,
-            ),
-            amPmDigitTextStyle: TextStyle(
-              color: secondaryColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-          const SizedBox(
             height: 40,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-                child: Text(
-                  'Menu Utama',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: secondaryColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
+
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   mainAxisSize: MainAxisSize.min,
+          //   children: const [
+          //     Padding(
+          //       padding: EdgeInsets.symmetric(horizontal: 8),
+          //       child: Text(
+          //         'Menu Utama',
+          //         style: TextStyle(
+          //           fontSize: 30,
+          //           fontWeight: FontWeight.bold,
+          //           color: secondaryColor,
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           // Obx(
           //   () => Center(
           //     // child: Text(

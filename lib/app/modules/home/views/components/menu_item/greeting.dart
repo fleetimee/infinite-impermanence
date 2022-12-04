@@ -1,8 +1,8 @@
 // 🐦 Flutter imports:
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wave/config.dart';
@@ -17,6 +17,8 @@ class Greeting extends StatelessWidget {
   Greeting({Key? key}) : super(key: key);
 
   final controller = Get.put(HomeController());
+
+  final account = FirebaseAuth.instance.currentUser?.displayName ?? 'User';
 
   @override
   Widget build(BuildContext context) {
@@ -91,9 +93,7 @@ class Greeting extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    controller.faker.name.firstName(
-                      gender: Gender.female,
-                    ),
+                    account,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,

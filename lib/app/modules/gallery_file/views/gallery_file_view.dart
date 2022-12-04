@@ -148,7 +148,7 @@ class GalleryFileView extends GetView<GalleryFileController> {
                         ),
                         Center(
                           child: Lottie.asset(
-                            'assets/images/home/yeaa.zip',
+                            'assets/images/home/404.zip',
                             frameRate: FrameRate.max,
                             fit: BoxFit.cover,
                             repeat: true,

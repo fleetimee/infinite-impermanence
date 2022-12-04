@@ -69,7 +69,6 @@ dependencies:
   getwidget: ^3.0.1
   google_fonts: ^3.0.1
   http: ^0.13.5
-  image_downloader: 0.31.0
   image_picker: ^0.8.6
   intl: ^0.17.0
   latlong2: ^0.8.1
@@ -112,7 +111,6 @@ flutter:
     - assets/images/splash_side/
     - assets/images/home/
     - assets/images/splash_screen/
-    - assets/images/upload/
     - assets/images/pdf/
     - assets/fonts/times-new-roman.ttf
     - assets/fonts/times-new-roman-bold.ttf

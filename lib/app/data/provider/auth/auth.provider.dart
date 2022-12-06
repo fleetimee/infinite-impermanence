@@ -40,7 +40,7 @@ class AuthProvider {
   Future<Auth> verifyIdToken(String idToken) async {
     try {
       final response = await httpClient.post(
-        Uri.parse('${baseUrl}auth/verifyIdToken'),
+        Uri.parse('${baseUrl}auth/verify'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'

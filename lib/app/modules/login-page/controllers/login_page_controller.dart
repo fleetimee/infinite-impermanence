@@ -11,17 +11,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LoginPageController extends GetxController {
   @override
   void onInit() {
-    initSharedPref();
     super.onInit();
+    initSharedPref();
   }
-
-  var pernahLogin = false.obs;
 
   void initSharedPref() async {
     final prefs = await SharedPreferences.getInstance();
-    final isLogin = prefs.getBool('pernahLogin') ?? false;
+    final isLogin = prefs.getBool('pernahLogin');
 
-    pernahLogin.value = isLogin;
+    pernahLogin.value = isLogin ?? false;
   }
 
   late Rx<User?> firebaseUser;
@@ -53,6 +51,7 @@ class LoginPageController extends GetxController {
 
   final isLoginProcessing = false.obs;
   final isPasswordVisible = false.obs;
+  final pernahLogin = false.obs;
 
   void login() {
     try {
@@ -73,6 +72,11 @@ class LoginPageController extends GetxController {
             .signInWithCustomToken(token!)
             .then((value) => value.user!.getIdToken());
 
+        // // Send idToken to server to verify
+        // AuthProvider().verifyIdToken(idToken).then((resp) async {
+        //   debugPrint('ID Token: $idToken');
+        // });
+
         final displayName =
             FirebaseAuth.instance.currentUser!.displayName ?? 'Anonymous';
 
@@ -82,7 +86,6 @@ class LoginPageController extends GetxController {
 
         // Save id from response to shared preferences
         final prefs = await SharedPreferences.getInstance();
-        prefs.setBool('pernahLogin', true);
         prefs.setInt('id', resp.data!.user!.id!);
         prefs.setString('photo', resp.data!.user!.photoUrl!);
 

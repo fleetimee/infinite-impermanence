@@ -80,7 +80,11 @@ class HomeController extends GetxController {
       btnCancelOnPress: () {},
       btnOkOnPress: () async {
         await FirebaseAuth.instance.signOut();
-        await GoogleSignIn().disconnect();
+
+        // check if user is currently signed in with google
+        if (await GoogleSignIn().isSignedIn()) {
+          await GoogleSignIn().disconnect();
+        }
       },
     ).show();
   }
@@ -93,7 +97,11 @@ class HomeController extends GetxController {
 
   // Bunch of controllers for textfield
   var uid = TextEditingController();
+  var setPassword = TextEditingController();
   var email = TextEditingController();
+  var refreshEmail = TextEditingController();
+  var refreshPassword = TextEditingController();
+  var password = TextEditingController();
   var displayName = TextEditingController();
   var phoneNumber = TextEditingController();
   var isEmailVerified = false.obs;
@@ -116,6 +124,8 @@ class HomeController extends GetxController {
   var isEmailReadOnly = true.obs;
   var isPhoneReadOnly = true.obs;
   var isLinked = false.obs;
+  var isReauthProcessing = false.obs;
+  var isPasswordProcessing = false.obs;
 
   void getImage() async {
     final prefs = await SharedPreferences.getInstance();
@@ -367,6 +377,108 @@ class HomeController extends GetxController {
     }
   }
 
+  // Reauthenticate user
+  void reauthenticate() async {
+    // Get current credentials
+    isReauthProcessing(true);
+    var credential = EmailAuthProvider.credential(
+      email: refreshEmail.value.text,
+      password: refreshPassword.value.text,
+    );
+
+    try {
+      await FirebaseAuth.instance.currentUser!
+          .reauthenticateWithCredential(credential)
+          .then((value) {
+        isReauthProcessing(false);
+        clearReauth();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Reauthenticate successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        isReauthProcessing(false);
+        clearReauth();
+
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: error.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      isReauthProcessing(false);
+      clearReauth();
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  void setPasswordFun() async {
+    isPasswordProcessing(true);
+    try {
+      await FirebaseAuth.instance.currentUser!
+          .updatePassword(setPassword.value.text)
+          .then((value) {
+        isPasswordProcessing(false);
+        clearReauth();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Password updated successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        isPasswordProcessing(false);
+        clearReauth();
+        FirebaseAuthException exception = error as FirebaseAuthException;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: exception.message.toString(),
+          btnOkOnPress: () async {
+            await FirebaseAuth.instance.signOut();
+            // Check if user sign in with Google Sign In
+            if (await GoogleSignIn().isSignedIn()) {
+              await GoogleSignIn().signOut();
+            }
+          },
+          btnOkText: 'Sign Out',
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      isPasswordProcessing(false);
+      clearReauth();
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
   // RxBool isDarkModeEnabled = false.obs;
 
   // Greeting
@@ -389,6 +501,11 @@ class HomeController extends GetxController {
     // Format date to indonesia format with days, month and year
     var format = DateFormat('dd MMMM yyyy');
     return format.format(date);
+  }
+
+  void clearReauth() {
+    formKey.currentState?.fields['refresh-password']?.reset();
+    refreshPassword.clear();
   }
 
   // link with Google Account

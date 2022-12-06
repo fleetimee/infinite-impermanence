@@ -1,5 +1,9 @@
 // 🐦 Flutter imports:
+// ignore_for_file: must_be_immutable
+
+import 'package:akm/app/modules/home/views/components/password/password.dart';
 import 'package:akm/app/modules/home/views/components/profile/profile.dart';
+import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +17,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -652,6 +657,16 @@ class HomeView extends GetView<HomeController> {
                           leading: const Icon(Icons.phone_android_outlined),
                         ),
                         SettingsTile.navigation(
+                          title: const Text('Password'),
+                          description: const Text('Change / set your password'),
+                          onPressed: ((context) {
+                            showMaterialModalBottomSheet(
+                                context: context,
+                                builder: (context) => SetPassword());
+                          }),
+                          leading: const Icon(Icons.lock_outline_rounded),
+                        ),
+                        SettingsTile.navigation(
                           // logoute
                           leading: const Icon(Icons.refresh_outlined),
                           title: const Text('Refresh Token'),
@@ -662,6 +677,11 @@ class HomeView extends GetView<HomeController> {
 
                             // await prefs.clear();
                             // controller.logout();
+                            showMaterialModalBottomSheet(
+                              backgroundColor: secondaryColor,
+                              context: context,
+                              builder: (context) => RefreshToken(),
+                            );
                           })),
                         )
                       ],
@@ -693,6 +713,8 @@ class HomeView extends GetView<HomeController> {
                           description: const Text('Log out of your account'),
                           onPressed: (((context) async {
                             final prefs = await SharedPreferences.getInstance();
+
+                            await prefs.setBool('pernahLogin', true);
 
                             // clear shared preferences id
                             await prefs.remove('id');

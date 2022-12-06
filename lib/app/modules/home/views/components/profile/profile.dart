@@ -360,7 +360,7 @@ class FormFirebase extends StatelessWidget {
                                                     AwesomeDialog(
                                                       context: Get.context!,
                                                       dialogType:
-                                                          DialogType.SUCCES,
+                                                          DialogType.success,
                                                       animType: AnimType.scale,
                                                       title: 'Email sent',
                                                       desc:

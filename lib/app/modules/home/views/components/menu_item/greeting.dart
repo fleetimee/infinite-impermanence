@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -51,32 +50,38 @@ class Greeting extends StatelessWidget {
           ),
           child: Row(
             children: [
-              FutureBuilder(
-                future: controller.img,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Shimmer(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.white,
-                          Colors.grey,
-                        ],
-                      ),
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.white,
-                      ),
-                    );
-                  } else {
-                    return CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(
-                        snapshot.data.toString(),
-                      ),
-                    );
-                  }
-                },
-              ),
+              // FutureBuilder(
+              //   future: controller.img,
+              //   builder: (context, snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.waiting) {
+              //       return const Shimmer(
+              //         gradient: LinearGradient(
+              //           colors: [
+              //             Colors.white,
+              //             Colors.grey,
+              //           ],
+              //         ),
+              //         child: CircleAvatar(
+              //           radius: 30,
+              //           backgroundColor: Colors.white,
+              //         ),
+              //       );
+              //     } else {
+              //       return CircleAvatar(
+              //         radius: 30,
+              //         backgroundImage: NetworkImage(
+              //           snapshot.data.toString(),
+              //         ),
+              //       );
+              //     }
+              //   },
+              // ),
+              const CircleAvatar(
+                  radius: 30,
+                  child: Icon(
+                    Icons.person,
+                    size: 40,
+                  )),
               const SizedBox(
                 width: 15,
               ),

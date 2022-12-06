@@ -73,6 +73,7 @@ dependencies:
   get: 4.6.5
   getwidget: ^3.0.1
   google_fonts: ^3.0.1
+  google_sign_in: ^5.4.2
   http: ^0.13.5
   image_picker: ^0.8.6
   intl: ^0.17.0

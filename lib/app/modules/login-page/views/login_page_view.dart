@@ -17,113 +17,56 @@ class LoginPageView extends GetView<LoginPageController> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
-        // child: Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: const [
-        //     // GFButton(
-        //     //   // onPressed: () async {
-        //     //   //   try {
-        //     //   //     final userCredential = await FirebaseAuth.instance
-        //     //   //         .signInWithCustomToken(
-        //     //   //             'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY3MDA2NzY3NSwiZXhwIjoxNjcwMDcxMjc1LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1wMmN1MEBhbmFsaXNpcy1rcmVkaXQtbWlrcm8uaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1wMmN1MEBhbmFsaXNpcy1rcmVkaXQtbWlrcm8uaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiJiNmE0MDdjYi00YTJiLTQ5NDEtODRmMi00NTZjMjllMjhjOTAifQ.JGUTXzy1TfqV6WQAgK9xY8CIk9EEi6H252JsQzAMd_jssjIBQ7SbFg4FkfOESwr0RbV-HCtktFyFs1cqpkey4EhSZDrkiq91sCf330UxPIek9OUu-Xu1zTmykdiSNt-uOzlitUd3lubrKGF1pF0SugZGoM964nVSXGxAr5uFdUxHzqm-Qw8Ix64bvmXFWhZcbdoU0Yia6Gbqk4VgpolfUQs_TMSs8CtXj3lMuA-dg4bkSqWOSN4piL7g3sTwlnAuJlcBj_P5-sLJsqUmbTp4-aENda8vicNAuBz6j5DHIOcXoR1QENvRjDEZuxwzGpFJbFrEejXwq8bXuM_1wrt9ZA');
-        //     //   //     print("Sign-in successful.");
-
-        //     //   //     print(userCredential.user!.uid);
-        //     //   //   } on FirebaseAuthException catch (e) {
-        //     //   //     switch (e.code) {
-        //     //   //       case "invalid-custom-token":
-        //     //   //         print(
-        //     //   //             "The supplied token is not a Firebase custom auth token.");
-        //     //   //         break;
-        //     //   //       case "custom-token-mismatch":
-        //     //   //         print(
-        //     //   //             "The supplied token is for a different Firebase project.");
-        //     //   //         break;
-        //     //   //       default:
-        //     //   //         print("Unkown error.");
-        //     //   //     }
-        //     //   //   }
-        //     //   // },
-        //     //   text: 'Login',
-        //     // ),
-        //     // const SizedBox(
-        //     //   height: 20,
-        //     // ),
-        //     // GFButton(
-        //     //   onPressed: () {
-        //     //     FirebaseAuth.instance.signOut();
-        //     //     debugPrint('Signed out');
-        //     //   },
-        //     //   text: 'Logout',
-        //     // ),
-        //     // const SizedBox(
-        //     //   height: 20,
-        //     // ),
-        //     // GFButton(
-        //     //     onPressed: () {
-        //     //       FirebaseAuth.instance.currentUser!.getIdToken().then((value) {
-        //     //         debugPrint(value);
-        //     //       });
-        //     //     },
-        //     //     text: 'Get IdToken'),
-        //   ],
-        // ),
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                // add red line debug border
-                // decoration: BoxDecoration(
-                //   border: Border.all(color: Colors.red),
-                // ),
-                child: Stack(
-                  children: [
-                    Center(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 40, horizontal: 20),
-                        child: Image.asset(
-                          'assets/images/home/stackable.png',
-                          fit: BoxFit.cover,
+              Stack(
+                children: [
+                  Center(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 40, horizontal: 20),
+                      child: Image.asset(
+                        'assets/images/home/stackable.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 160,
+                    left: 0,
+                    right: 0,
+                    child: Column(
+                      children: [
+                        Text(
+                          'Welcome back',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 35,
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Sign in to your account',
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                            // add custom google font
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                          ),
+                        ),
+                      ],
                     ),
-                    Positioned(
-                      top: 160,
-                      left: 0,
-                      right: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            'Welcome back',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 35,
-                              fontFamily: GoogleFonts.montserrat().fontFamily,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Sign in to your account',
-                            style: TextStyle(
-                              color: Colors.black87,
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              // add custom google font
-                              fontFamily: GoogleFonts.montserrat().fontFamily,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Container(
                 child: FormBuilder(
@@ -368,7 +311,9 @@ class LoginPageView extends GetView<LoginPageController> {
                     FontAwesomeIcons.google,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.signInWithGoogle();
+                  },
                   text: 'SIGN IN WITH GOOGLE',
                   textStyle: TextStyle(
                     color: Colors.white,

@@ -35,4 +35,32 @@ class AuthProvider {
       return Future.error(e);
     }
   }
+
+  // verifyIdToken
+  Future<Auth> verifyIdToken(String idToken) async {
+    try {
+      final response = await httpClient.post(
+        Uri.parse('${baseUrl}auth/verifyIdToken'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(<String, String>{
+          'idToken': idToken,
+        }),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 201) {
+        var data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return Auth.fromJson(data);
+      } else {
+        var data = jsonDecode(response.body);
+        throw Exception(data['message']);
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

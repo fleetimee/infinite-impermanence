@@ -8,7 +8,6 @@ import 'package:akm/app/common/style.dart';
 import 'package:akm/app/utils/capitalize.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:faker_dart/faker_dart.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -16,8 +15,9 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl/intl.dart';
-import 'package:nekos/nekos.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: unnecessary_overrides
 
@@ -28,6 +28,10 @@ class HomeController extends GetxController {
     super.onInit();
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
+    // Check if already linked to google account
+    checkIfLinked();
+
+    // Get hardware info
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
       productName.value = androidInfo.product.toString().toUpperCase();
@@ -46,10 +50,26 @@ class HomeController extends GetxController {
     getLocation();
   }
 
-  void onClosed() {
-    streamSubscription.cancel();
+  // Initialize firebase auth
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  // When the controller is closed, cancel the subscription
+  // void onClosed() {
+  //   streamSubscription.cancel();
+  // }
+
+  // Check if user is already linked to google account
+  void checkIfLinked() async {
+    final User? user = auth.currentUser;
+    final List<UserInfo> userInfo = user!.providerData;
+    for (final UserInfo info in userInfo) {
+      if (info.providerId == 'google.com') {
+        isLinked.value = true;
+      }
+    }
   }
 
+  // Logout firebase and google sign in
   void logout() {
     AwesomeDialog(
       context: Get.context!,
@@ -60,26 +80,51 @@ class HomeController extends GetxController {
       btnCancelOnPress: () {},
       btnOkOnPress: () async {
         await FirebaseAuth.instance.signOut();
+        await GoogleSignIn().disconnect();
       },
     ).show();
   }
 
+  // Controller for pageview
   final PageController controller = PageController();
+
+  // Controller for formKey
   final formKey = GlobalKey<FormBuilderState>();
 
+  // Bunch of controllers for textfield
   var email = TextEditingController();
   var displayName = TextEditingController();
   var phoneNumber = TextEditingController();
   var isEmailVerified = false.obs;
 
+  // Variables for device info
   var productName = ''.obs;
   var brandName = ''.obs;
+  var profileImage = ''.obs;
 
+  // Variables for location
   var latitude = 'Getting latitude'.obs;
   var longtitude = 'Getting longtitude'.obs;
   var address = 'Getting address'.obs;
+
+  // StreamSubscriptioon for location
   late StreamSubscription<Position> streamSubscription;
 
+  // Variables for boolean
+  var isDisplayNameReadOnly = true.obs;
+  var isEmailReadOnly = true.obs;
+  var isPhoneReadOnly = true.obs;
+  var isLinked = false.obs;
+
+  void getImage() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final image = prefs.getString('photo');
+
+    profileImage.value = image!;
+  }
+
+  // Get location
   void getLocation() async {
     /// Determine the current position of the device.
     ///
@@ -163,6 +208,7 @@ class HomeController extends GetxController {
     });
   }
 
+  // Get address from latlang
   Future<void> getAddressFromLatlang(Position position) async {
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
@@ -170,24 +216,96 @@ class HomeController extends GetxController {
     address.value = '${place.locality}, ${place.administrativeArea}';
   }
 
-  // void deviceInfo() async {
-  //   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  // Link google account
+  void linkGoogleAccount() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  //   if (GetPlatform.isAndroid) {
-  //     deviceName = deviceInfo.androidInfo.toString();
-  //   } else if (GetPlatform.isIOS) {
-  //     deviceName = deviceInfo.iosInfo.toString();
-  //   } else if (GetPlatform.isWeb) {
-  //     deviceName = deviceInfo.webBrowserInfo.toString();
-  //   }
-  // }
+    try {
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
 
-  Future<String> img = Nekos().avatar();
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-  final faker = Faker.instance;
+      await FirebaseAuth.instance.currentUser!
+          .linkWithCredential(credential)
+          .then((value) {
+        isLinked.value = true;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Account linked successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: error.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
 
-  RxBool isDarkModeEnabled = false.obs;
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
 
+  // Unlink google account
+  void unlinkGoogleAccount() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.unlink('google.com').then(
+          (value) {
+        isLinked.value = false;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Account unlinked successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: error.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  // RxBool isDarkModeEnabled = false.obs;
+
+  // Greeting
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 10) {
@@ -208,6 +326,33 @@ class HomeController extends GetxController {
     var format = DateFormat('dd MMMM yyyy');
     return format.format(date);
   }
+
+  // link with Google Account
+
+  // void updatePhoneNumber() {
+  //   try {
+  //     FirebaseAuth.instance.currentUser!.set
+  //     AwesomeDialog(
+  //       context: Get.context!,
+  //       dialogType: DialogType.SUCCES,
+  //       animType: AnimType.BOTTOMSLIDE,
+  //       title: 'Success',
+  //       desc: 'Phone number has been updated',
+  //       btnOkIcon: Icons.check_circle,
+  //       btnOkOnPress: () {},
+  //     ).show();
+  //   } catch (e) {
+  //     AwesomeDialog(
+  //       context: Get.context!,
+  //       dialogType: DialogType.ERROR,
+  //       animType: AnimType.BOTTOMSLIDE,
+  //       title: 'Error',
+  //       desc: e.toString(),
+  //       btnOkIcon: Icons.error,
+  //       btnOkOnPress: () {},
+  //     ).show();
+  //   }
+  // }
 
   // final Future<SharedPreferences> initPref = SharedPreferences.getInstance();
 

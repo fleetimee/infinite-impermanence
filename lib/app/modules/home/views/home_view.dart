@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/home/views/components/profile/profile.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/services.dart';
 import 'package:about/about.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -659,55 +659,7 @@ class HomeView extends GetView<HomeController> {
               const Center(
                 child: Text('Third Page'),
               ),
-              FormBuilder(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        color: Colors.black.withOpacity(0.5),
-                        height: 800,
-                        width: 400,
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(20),
-                              child: GFImageOverlay(
-                                height: 200,
-                                width: 200,
-                                shape: BoxShape.circle,
-                                image: Image.network(
-                                  'https://avatars.githubusercontent.com/u/45744788?v=4',
-                                ).image,
-                                boxFit: BoxFit.cover,
-                              ),
-                            ),
-                            Text(
-                              auth.currentUser?.displayName ?? 'Unregistered',
-                              style: const TextStyle(
-                                fontSize: 30,
-                                color: secondaryColor,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [],
-                    ),
-                    GFButton(
-                      onPressed: () {
-                        controller.logout();
-                      },
-                      text: 'Logout',
-                    ),
-                  ],
-                ),
-              ),
+              FormFirebase(auth: auth, controller: controller),
               const Center(
                 child: Text('Five Page'),
               ),

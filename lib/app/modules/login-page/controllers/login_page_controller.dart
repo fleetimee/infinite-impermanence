@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
   late Rx<User?> firebaseUser;
@@ -15,7 +17,7 @@ class LoginPageController extends GetxController {
   void onReady() {
     firebaseUser = Rx<User?>(auth.currentUser);
 
-    firebaseUser.bindStream(auth.userChanges());
+    firebaseUser.bindStream(auth.authStateChanges());
     ever(firebaseUser, setInitialScreen);
   }
 
@@ -63,6 +65,17 @@ class LoginPageController extends GetxController {
         debugPrint(idToken);
         clear();
 
+        // Save id from response to shared preferences
+        final prefs = await SharedPreferences.getInstance();
+        prefs.setInt('id', resp.data!.user!.id!);
+        prefs.setString('photo', resp.data!.user!.photoUrl!);
+
+        final getPhoto = prefs.getString('photo');
+        final getId = prefs.getInt('id');
+
+        debugPrint('Photo from sharepref: $getPhoto');
+        debugPrint('ID from sharepref: $getId');
+
         isLoginProcessing(false);
 
         Get.snackbar(
@@ -93,6 +106,26 @@ class LoginPageController extends GetxController {
         colorText: Colors.white,
       );
     }
+  }
+
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    debugPrint('Google Auth: ${googleAuth?.idToken}');
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   void clear() {

@@ -150,6 +150,14 @@ class LoginPageView extends GetView<LoginPageController> {
                               cursorHeight: 20,
                               controller: controller.password,
                               decoration: InputDecoration(
+                                hintStyle: TextStyle(
+                                  color: Colors.black45,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  // add custom google font
+                                  fontFamily:
+                                      GoogleFonts.montserrat().fontFamily,
+                                ),
                                 suffixIcon: IconButton(
                                   icon: Icon(
                                     size: 25,
@@ -229,107 +237,116 @@ class LoginPageView extends GetView<LoginPageController> {
               ),
             ],
           ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Obx(() => GFButton(
-                      onPressed: () {
-                        if (controller.formKey.currentState
-                                ?.saveAndValidate() ??
-                            false) {
-                          controller.login();
-                        } else {
-                          debugPrint('validation failed');
-                        }
-                      },
-                      text: controller.isLoginProcessing.value
-                          ? 'LOADING..'
-                          : 'LOGIN',
-                      textStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        // add custom google font
-                        fontFamily: GoogleFonts.montserrat().fontFamily,
-                      ),
-                      fullWidthButton: true,
-                      color: primaryColor,
-                      size: 45,
-                      shape: GFButtonShape.pills,
-                      icon: controller.isLoginProcessing.value
-                          ? const GFLoader(
-                              type: GFLoaderType.circle,
-                              loaderColorOne: Colors.white,
-                              loaderColorTwo: Colors.white,
-                              loaderColorThree: Colors.white,
-                            )
-                          : const Icon(
-                              FontAwesomeIcons.rightToBracket,
-                              color: Colors.white,
-                              size: 20,
+          Obx(() => Container(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Obx(() => GFButton(
+                          onPressed: () {
+                            if (controller.formKey.currentState
+                                    ?.saveAndValidate() ??
+                                false) {
+                              controller.login();
+                            } else {
+                              debugPrint('validation failed');
+                            }
+                          },
+                          text:
+                              controller.isLoginProcessing.value ? '' : 'LOGIN',
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            // add custom google font
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                          ),
+                          fullWidthButton: true,
+                          color: primaryColor,
+                          size: 45,
+                          shape: GFButtonShape.pills,
+                          icon: controller.isLoginProcessing.value
+                              ? const GFLoader(
+                                  type: GFLoaderType.circle,
+                                  loaderColorOne: Colors.white,
+                                  loaderColorTwo: Colors.white,
+                                  loaderColorThree: Colors.white,
+                                )
+                              : const Icon(
+                                  FontAwesomeIcons.rightToBracket,
+                                  color: Colors.white,
+                                  size: 20,
+                                ),
+                        )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    // divider with text in between
+                    // Get shared preferences instance
+
+                    controller.pernahLogin.value == false
+                        ? Container()
+                        : Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 50),
+                            child: Row(
+                              children: [
+                                const Expanded(
+                                  child: Divider(
+                                    color: Colors.black,
+                                    thickness: 2,
+                                  ),
+                                ),
+                                Text(
+                                  "     OR     ",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.w800,
+                                    // add custom google font
+                                    fontFamily:
+                                        GoogleFonts.montserrat().fontFamily,
+                                  ),
+                                ),
+                                const Expanded(
+                                  child: Divider(
+                                    color: Colors.black,
+                                    thickness: 2,
+                                  ),
+                                ),
+                              ],
                             ),
-                    )),
-                const SizedBox(
-                  height: 10,
+                          ),
+                    controller.pernahLogin.value == false
+                        ? Container()
+                        : const SizedBox(
+                            height: 10,
+                          ),
+
+                    controller.pernahLogin.value == false
+                        ? Container()
+                        : GFButton(
+                            icon: const FaIcon(
+                              FontAwesomeIcons.google,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              controller.signInWithGoogle();
+                            },
+                            text: 'SIGN IN WITH GOOGLE',
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              // add custom google font
+                              fontFamily: GoogleFonts.montserrat().fontFamily,
+                            ),
+                            fullWidthButton: true,
+                            color: GFColors.DANGER,
+                            size: 45,
+                            shape: GFButtonShape.pills,
+                          ),
+                  ],
                 ),
-                // divider with text in between
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: Row(
-                    children: [
-                      const Expanded(
-                        child: Divider(
-                          color: Colors.black,
-                          thickness: 2,
-                        ),
-                      ),
-                      Text(
-                        "     OR     ",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w800,
-                          // add custom google font
-                          fontFamily: GoogleFonts.montserrat().fontFamily,
-                        ),
-                      ),
-                      const Expanded(
-                        child: Divider(
-                          color: Colors.black,
-                          thickness: 2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                GFButton(
-                  icon: const FaIcon(
-                    FontAwesomeIcons.google,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
-                    controller.signInWithGoogle();
-                  },
-                  text: 'SIGN IN WITH GOOGLE',
-                  textStyle: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    // add custom google font
-                    fontFamily: GoogleFonts.montserrat().fontFamily,
-                  ),
-                  fullWidthButton: true,
-                  color: GFColors.DANGER,
-                  size: 45,
-                  shape: GFButtonShape.pills,
-                ),
-              ],
-            ),
-          ),
+              )),
         ],
       ),
     );

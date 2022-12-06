@@ -92,6 +92,7 @@ class HomeController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
 
   // Bunch of controllers for textfield
+  var uid = TextEditingController();
   var email = TextEditingController();
   var displayName = TextEditingController();
   var phoneNumber = TextEditingController();
@@ -242,26 +243,89 @@ class HomeController extends GetxController {
           btnOkOnPress: () {},
         ).show();
       }, onError: (error) {
+        // Sign out from google
+        GoogleSignIn().signOut();
+
+        FirebaseAuthException exception = error as FirebaseAuthException;
+
+        if (exception.code == 'credential-already-in-use') {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error',
+            desc: 'The account already exists with a different credential.',
+            btnOkOnPress: () {},
+          ).show();
+        }
+
+        if (exception.code == 'email-already-in-use') {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error',
+            desc: 'The email address is already in use by another account.',
+            btnOkOnPress: () {},
+          ).show();
+        }
+
+        if (exception.code == 'invalid-credential') {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error',
+            desc: 'The supplied auth credential is malformed or has expired.',
+            btnOkOnPress: () {},
+          ).show();
+        }
+
+        // AwesomeDialog(
+        //   context: Get.context!,
+        //   dialogType: DialogType.error,
+        //   animType: AnimType.scale,
+        //   title: 'Error',
+        //   desc: error.toString(),
+        //   btnOkOnPress: () {},
+        // ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+
+      // Sign out from google sign in
+      await GoogleSignIn().signOut();
+
+      if (exception.code == 'account-exists-with-different-credential') {
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.error,
           animType: AnimType.scale,
           title: 'Error',
-          desc: error.toString(),
+          desc: 'The account already exists with a different credential.',
           btnOkOnPress: () {},
         ).show();
-      });
-    } catch (e) {
-      FirebaseAuthException exception = e as FirebaseAuthException;
+      } else if (exception.code == 'invalid-credential') {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: 'Error occurred while accessing credentials. Try again.',
+          btnOkOnPress: () {},
+        ).show();
+      }
 
-      AwesomeDialog(
-        context: Get.context!,
-        dialogType: DialogType.error,
-        animType: AnimType.scale,
-        title: e.toString(),
-        desc: exception.message.toString(),
-        btnOkOnPress: () {},
-      ).show();
+      // AwesomeDialog(
+      //   context: Get.context!,
+      //   dialogType: DialogType.error,
+      //   animType: AnimType.scale,
+      //   title: e.toString(),
+      //   desc: exception.message.toString(),
+      //   btnOkOnPress: () async {
+      //     await GoogleSignIn().signOut();
+      //   },
+      // ).show();
     }
   }
 

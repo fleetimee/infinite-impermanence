@@ -9,6 +9,21 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPageController extends GetxController {
+  @override
+  void onInit() {
+    initSharedPref();
+    super.onInit();
+  }
+
+  var pernahLogin = false.obs;
+
+  void initSharedPref() async {
+    final prefs = await SharedPreferences.getInstance();
+    final isLogin = prefs.getBool('pernahLogin') ?? false;
+
+    pernahLogin.value = isLogin;
+  }
+
   late Rx<User?> firebaseUser;
 
   static LoginPageController instance = Get.find();
@@ -67,6 +82,7 @@ class LoginPageController extends GetxController {
 
         // Save id from response to shared preferences
         final prefs = await SharedPreferences.getInstance();
+        prefs.setBool('pernahLogin', true);
         prefs.setInt('id', resp.data!.user!.id!);
         prefs.setString('photo', resp.data!.user!.photoUrl!);
 

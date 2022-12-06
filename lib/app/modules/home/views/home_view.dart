@@ -14,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
+import 'package:settings_ui/settings_ui.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
@@ -44,11 +46,26 @@ class HomeView extends GetView<HomeController> {
     "assets/images/home/image5.jpg",
   ];
 
+  SettingsThemeData dark = SettingsThemeData(
+    settingsListBackground: Colors.blue.shade900,
+    leadingIconsColor: Colors.white,
+    settingsSectionBackground: Colors.blue.shade900,
+    titleTextColor: secondaryColor,
+    dividerColor: Colors.lightBlue,
+    settingsTileTextColor: secondaryColor,
+    inactiveSubtitleColor: Colors.green,
+    tileHighlightColor: Colors.black54,
+    tileDescriptionTextColor: Colors.grey,
+    trailingTextColor: Colors.purple,
+    inactiveTitleColor: Colors.teal,
+  );
+
   @override
   Widget build(BuildContext context) {
     var selectedIndex = 0.obs;
 
     return ScaffoldGradientBackground(
+      resizeToAvoidBottomInset: false,
       gradient: LinearGradient(
         colors: [
           Colors.blue,
@@ -443,57 +460,7 @@ class HomeView extends GetView<HomeController> {
                               width: 5.0,
                             ),
                             InkWell(
-                              onTap: () => showAboutPage(
-                                applicationName: 'Analisis Kredit Mikro',
-                                context: context,
-                                values: {
-                                  'version': '0.5.5',
-                                  'year': DateTime.now().year.toString(),
-                                },
-                                applicationLegalese:
-                                    'Copyright © Novian Andika, {{ year }}',
-                                applicationDescription: const Text(
-                                    'Analisis Kredit Mikro bertujuan untuk memudahkan penginputan calon debitur serta aplikasi ini juga dapat langsung menganalisa diterima atau tidaknya debitur tersebut dengan berbagai parameter yang sudah dibuat.'),
-                                children: const <Widget>[
-                                  MarkdownPageListTile(
-                                    filename: 'ABOUT.md',
-                                    title: Text('View Readme'),
-                                    icon: Icon(Icons.all_inclusive),
-                                  ),
-                                  MarkdownPageListTile(
-                                    icon: Icon(Icons.list),
-                                    title: Text('Changelog'),
-                                    filename: 'CHANGELOG.md',
-                                  ),
-                                  MarkdownPageListTile(
-                                    filename: 'LICENSE.md',
-                                    title: Text('View License'),
-                                    icon: Icon(Icons.description),
-                                  ),
-                                  MarkdownPageListTile(
-                                    filename: 'CONTRIBUTING.md',
-                                    title: Text('Contributing'),
-                                    icon: Icon(Icons.share),
-                                  ),
-                                  MarkdownPageListTile(
-                                    filename: 'CODE_OF_CONDUCT.md',
-                                    title: Text('Code of conduct'),
-                                    icon: Icon(Icons.sentiment_satisfied),
-                                  ),
-                                  LicensesPageListTile(
-                                    title: Text('Open source Licenses'),
-                                    icon: Icon(Icons.favorite),
-                                  ),
-                                ],
-                                applicationIcon: const SizedBox(
-                                  width: 100,
-                                  height: 100,
-                                  child: Image(
-                                    image: AssetImage(
-                                        'assets/images/splash_screen/splash_icon.png'),
-                                  ),
-                                ),
-                              ),
+                              onTap: () => showAboutPag(context),
                               child: SizedBox(
                                 width: 200,
                                 child: Card(
@@ -660,8 +627,83 @@ class HomeView extends GetView<HomeController> {
                 child: Text('Third Page'),
               ),
               FormFirebase(auth: auth, controller: controller),
-              const Center(
-                child: Text('Five Page'),
+              SafeArea(
+                child: SettingsList(
+                  lightTheme: dark,
+                  sections: [
+                    SettingsSection(
+                      title: const Text('Account'),
+                      tiles: <SettingsTile>[
+                        SettingsTile.navigation(
+                          leading: const Icon(Icons.email_rounded),
+                          title: const Text('Email'),
+                          description: const Text('Verify your email address'),
+                          onPressed: ((context) {
+                            // showAboutPag(context);
+                          }),
+                        ),
+                        SettingsTile.navigation(
+                          title: const Text('Phone'),
+                          description:
+                              const Text('Add / Verify your phone number'),
+                          onPressed: ((context) {
+                            // showTutorial(context);
+                          }),
+                          leading: const Icon(Icons.phone_android_outlined),
+                        ),
+                        SettingsTile.navigation(
+                          // logoute
+                          leading: const Icon(Icons.refresh_outlined),
+                          title: const Text('Refresh Token'),
+                          description:
+                              const Text('Reauthenticate your account'),
+                          onPressed: (((context) async {
+                            // final prefs = await SharedPreferences.getInstance();
+
+                            // await prefs.clear();
+                            // controller.logout();
+                          })),
+                        )
+                      ],
+                    ),
+                    SettingsSection(
+                      title: const Text('Common'),
+                      tiles: <SettingsTile>[
+                        SettingsTile.navigation(
+                          leading: const Icon(Icons.info_outline),
+                          title: const Text('About'),
+                          description:
+                              const Text('Show information about this app'),
+                          onPressed: ((context) {
+                            showAboutPag(context);
+                          }),
+                        ),
+                        SettingsTile.navigation(
+                          title: const Text('Tutorial'),
+                          description: const Text('Show tutorial'),
+                          onPressed: ((context) {
+                            // showTutorial(context);
+                          }),
+                          leading: const Icon(Icons.book),
+                        ),
+                        SettingsTile.navigation(
+                          // logoute
+                          leading: const Icon(Icons.logout),
+                          title: const Text('Logout'),
+                          description: const Text('Log out of your account'),
+                          onPressed: (((context) async {
+                            final prefs = await SharedPreferences.getInstance();
+
+                            // clear shared preferences id
+                            await prefs.remove('id');
+                            await prefs.remove('photo');
+                            controller.logout();
+                          })),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           )),
@@ -681,6 +723,58 @@ class HomeView extends GetView<HomeController> {
             curve: Curves.easeInOut,
           );
         },
+      ),
+    );
+  }
+
+  Future<void> showAboutPag(BuildContext context) {
+    return showAboutPage(
+      applicationName: 'Analisis Kredit Mikro',
+      context: context,
+      values: {
+        'version': '0.5.5',
+        'year': DateTime.now().year.toString(),
+      },
+      applicationLegalese: 'Copyright © Novian Andika, {{ year }}',
+      applicationDescription: const Text(
+          'Analisis Kredit Mikro bertujuan untuk memudahkan penginputan calon debitur serta aplikasi ini juga dapat langsung menganalisa diterima atau tidaknya debitur tersebut dengan berbagai parameter yang sudah dibuat.'),
+      children: const <Widget>[
+        MarkdownPageListTile(
+          filename: 'ABOUT.md',
+          title: Text('View Readme'),
+          icon: Icon(Icons.all_inclusive),
+        ),
+        MarkdownPageListTile(
+          icon: Icon(Icons.list),
+          title: Text('Changelog'),
+          filename: 'CHANGELOG.md',
+        ),
+        MarkdownPageListTile(
+          filename: 'LICENSE.md',
+          title: Text('View License'),
+          icon: Icon(Icons.description),
+        ),
+        MarkdownPageListTile(
+          filename: 'CONTRIBUTING.md',
+          title: Text('Contributing'),
+          icon: Icon(Icons.share),
+        ),
+        MarkdownPageListTile(
+          filename: 'CODE_OF_CONDUCT.md',
+          title: Text('Code of conduct'),
+          icon: Icon(Icons.sentiment_satisfied),
+        ),
+        LicensesPageListTile(
+          title: Text('Open source Licenses'),
+          icon: Icon(Icons.favorite),
+        ),
+      ],
+      applicationIcon: const SizedBox(
+        width: 100,
+        height: 100,
+        child: Image(
+          image: AssetImage('assets/images/splash_screen/splash_icon.png'),
+        ),
       ),
     );
   }

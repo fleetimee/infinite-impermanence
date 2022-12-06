@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
           color: const Color(0xFFF5F5F5),
         ),
       ),
-      defaultTransition: Transition.cupertino,
+      defaultTransition: Transition.fadeIn,
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       // darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),

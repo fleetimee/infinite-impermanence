@@ -86,14 +86,14 @@ class LoginPageController extends GetxController {
 
         // Save id from response to shared preferences
         final prefs = await SharedPreferences.getInstance();
-        prefs.setInt('id', resp.data!.user!.id!);
+        prefs.setString('id', resp.data!.user!.id!);
         prefs.setString('photo', resp.data!.user!.photoUrl!);
 
         final getPhoto = prefs.getString('photo');
-        final getId = prefs.getInt('id');
+        final getId = prefs.getString('id');
 
         debugPrint('Photo from sharepref: $getPhoto');
-        debugPrint('ID from sharepref: $getId');
+        debugPrint('Id from sharepref: $getId');
 
         isLoginProcessing(false);
 

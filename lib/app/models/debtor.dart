@@ -42,6 +42,8 @@ class Debtor {
     this.noSkpk,
     this.tglSekarang,
     this.deskripsiDebitur,
+    this.userId,
+    this.user,
     this.inputNeraca,
     this.inputRugiLaba,
     this.inputKeuangan,
@@ -79,6 +81,8 @@ class Debtor {
   String? noSkpk;
   DateTime? tglSekarang;
   String? deskripsiDebitur;
+  String? userId;
+  User? user;
   InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
@@ -116,6 +120,8 @@ class Debtor {
         noSkpk: json["no_skpk"],
         tglSekarang: DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
+        userId: json["userId"] ?? null,
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
         inputNeraca: json["inputNeraca"] == null
             ? null
             : InputNeraca.fromJson(json["inputNeraca"]),
@@ -170,6 +176,8 @@ class Debtor {
         "tgl_sekarang":
             "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
+        "userId": userId ?? null,
+        "user": user == null ? null : user?.toJson(),
         "inputNeraca": inputNeraca == null ? null : inputNeraca!.toJson(),
         "inputRugiLaba": inputRugiLaba == null ? null : inputRugiLaba?.toJson(),
         "inputKeuangan": inputKeuangan == null ? null : inputKeuangan?.toJson(),
@@ -181,6 +189,48 @@ class Debtor {
         "analisaJenisUsaha":
             analisaJenisUsaha == null ? null : analisaJenisUsaha?.toJson(),
         "createdBy": createdBy,
+      };
+}
+
+class User {
+  User({
+    this.id,
+    this.email,
+    this.phoneNumber,
+    this.password,
+    this.displayName,
+    this.photoUrl,
+    this.createdAt,
+  });
+
+  String? id;
+  String? email;
+  String? phoneNumber;
+  String? password;
+  String? displayName;
+  String? photoUrl;
+  DateTime? createdAt;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"] ?? null,
+        email: json["email"] ?? null,
+        phoneNumber: json["phoneNumber"] ?? null,
+        password: json["password"] ?? null,
+        displayName: json["displayName"] ?? null,
+        photoUrl: json["photoURL"] ?? null,
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "email": email ?? null,
+        "phoneNumber": phoneNumber ?? null,
+        "password": password ?? null,
+        "displayName": displayName ?? null,
+        "photoURL": photoUrl ?? null,
+        "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
       };
 }
 

@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -43,14 +44,25 @@ class FormFirebase extends StatelessWidget {
                       Center(
                         child: Container(
                           padding: const EdgeInsets.all(20),
-                          child: GFImageOverlay(
-                            height: 200,
-                            width: 200,
-                            shape: BoxShape.circle,
-                            image: Image.network(
-                              'https://avatars.githubusercontent.com/u/45744788?v=4',
-                            ).image,
-                            boxFit: BoxFit.cover,
+                          child: CircleAvatar(
+                            radius: 85,
+                            child: CachedNetworkImage(
+                              imageUrl: controller.profileImage.toString(),
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
                           ),
                         ),
                       ),

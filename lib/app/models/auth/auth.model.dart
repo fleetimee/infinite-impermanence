@@ -57,7 +57,6 @@ class Data {
 class User {
   User({
     this.id,
-    this.uid,
     this.email,
     this.phoneNumber,
     this.password,
@@ -66,8 +65,7 @@ class User {
     this.createdAt,
   });
 
-  int? id;
-  String? uid;
+  String? id;
   String? email;
   String? phoneNumber;
   String? password;
@@ -77,7 +75,6 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
-        uid: json["uid"],
         email: json["email"],
         phoneNumber: json["phoneNumber"],
         password: json["password"],
@@ -90,7 +87,6 @@ class User {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "uid": uid,
         "email": email,
         "phoneNumber": phoneNumber,
         "password": password,

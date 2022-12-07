@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 // ignore_for_file: must_be_immutable
 
+import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
 import 'package:akm/app/modules/home/views/components/password/password.dart';
 import 'package:akm/app/modules/home/views/components/profile/profile.dart';
 import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
@@ -644,7 +645,20 @@ class HomeView extends GetView<HomeController> {
                           title: const Text('Email'),
                           description: const Text('Verify your email address'),
                           onPressed: ((context) {
-                            // showAboutPag(context);
+                            // Check if email already verified
+                            if (auth.currentUser!.emailVerified) {
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.infoReverse,
+                                animType: AnimType.scale,
+                                title: 'Huh ?',
+                                desc: 'Email already verified',
+                                btnOkOnPress: () {},
+                              ).show();
+                            } else {
+                              // Send verification email
+                              controller.verifyEmail();
+                            }
                           }),
                         ),
                         SettingsTile.navigation(
@@ -683,6 +697,21 @@ class HomeView extends GetView<HomeController> {
                               builder: (context) => RefreshToken(),
                             );
                           })),
+                        )
+                      ],
+                    ),
+                    SettingsSection(
+                      title: const Text('Hardware'),
+                      tiles: [
+                        SettingsTile.navigation(
+                          title: const Text('Device Info'),
+                          leading: const Icon(Icons.phonelink_setup_outlined),
+                          description: const Text('Show info for this devices'),
+                          onPressed: (context) {
+                            showMaterialModalBottomSheet(
+                                context: context,
+                                builder: (context) => DeviceInfo());
+                          },
                         )
                       ],
                     ),

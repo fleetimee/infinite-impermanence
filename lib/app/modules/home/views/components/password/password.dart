@@ -49,6 +49,7 @@ class SetPassword extends StatelessWidget {
                         // add custom google font
                         fontFamily: GoogleFonts.montserrat().fontFamily,
                       ),
+                      controller: controller.setPassword,
                       cursorColor: Colors.black,
                       cursorHeight: 20,
                       decoration: InputDecoration(

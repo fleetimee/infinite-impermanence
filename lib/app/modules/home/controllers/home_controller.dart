@@ -24,8 +24,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HomeController extends GetxController {
   @override
   void onInit() async {
-    // _getThemeStatus();
     super.onInit();
+    getPhotoUrl();
+
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
     // Check if already linked to google account
@@ -34,6 +35,16 @@ class HomeController extends GetxController {
     // Get hardware info
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      manufacturer.value = androidInfo.manufacturer.toString();
+      androidVersion.value = androidInfo.version.release.toString();
+      bootloader.value = androidInfo.bootloader.toString();
+      board.value = androidInfo.board.toString();
+      modelName.value = androidInfo.model.toString();
+      display.value = androidInfo.display.toString();
+      device.value = androidInfo.device.toString();
+      board.value = androidInfo.hardware.toString();
+      hardware.value = androidInfo.board.toString();
+      isPhysicalDevice.value = androidInfo.isPhysicalDevice;
       productName.value = androidInfo.product.toString().toUpperCase();
       brandName.value = androidInfo.brand.toString().toCapitalized();
     } else if (Platform.isIOS) {
@@ -57,6 +68,24 @@ class HomeController extends GetxController {
   // void onClosed() {
   //   streamSubscription.cancel();
   // }
+
+  // Get value from shared preferences
+  void getPhotoUrl() async {
+    // Check if signed in with google
+    if (await GoogleSignIn().isSignedIn()) {
+      if (auth.currentUser!.photoURL == null) {
+        for (final UserInfo info in auth.currentUser!.providerData) {
+          if (info.providerId == 'google.com') {
+            profileImage.value = info.photoURL!;
+          }
+        }
+      }
+    } else {
+      SharedPreferences.getInstance().then((prefs) {
+        profileImage.value = prefs.getString('photo')!;
+      });
+    }
+  }
 
   // Check if user is already linked to google account
   void checkIfLinked() async {
@@ -105,11 +134,20 @@ class HomeController extends GetxController {
   var displayName = TextEditingController();
   var phoneNumber = TextEditingController();
   var isEmailVerified = false.obs;
+  var profileImage = ''.obs;
 
   // Variables for device info
+  var androidVersion = ''.obs;
+  var bootloader = ''.obs;
+  var manufacturer = ''.obs;
   var productName = ''.obs;
   var brandName = ''.obs;
-  var profileImage = ''.obs;
+  var modelName = ''.obs;
+  var device = ''.obs;
+  var board = ''.obs;
+  var hardware = ''.obs;
+  var display = ''.obs;
+  var isPhysicalDevice = false.obs;
 
   // Variables for location
   var latitude = 'Getting latitude'.obs;
@@ -127,13 +165,13 @@ class HomeController extends GetxController {
   var isReauthProcessing = false.obs;
   var isPasswordProcessing = false.obs;
 
-  void getImage() async {
-    final prefs = await SharedPreferences.getInstance();
+  // void getImage() async {
+  //   final prefs = await SharedPreferences.getInstance();
 
-    final image = prefs.getString('photo');
+  //   final image = prefs.getString('photo');
 
-    profileImage.value = image!;
-  }
+  //   profileImage.value = image!;
+  // }
 
   // Get location
   void getLocation() async {
@@ -428,6 +466,7 @@ class HomeController extends GetxController {
     }
   }
 
+  // Set Password
   void setPasswordFun() async {
     isPasswordProcessing(true);
     try {
@@ -435,7 +474,7 @@ class HomeController extends GetxController {
           .updatePassword(setPassword.value.text)
           .then((value) {
         isPasswordProcessing(false);
-        clearReauth();
+        clearSetPassword();
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,
@@ -446,7 +485,7 @@ class HomeController extends GetxController {
         ).show();
       }, onError: (error) {
         isPasswordProcessing(false);
-        clearReauth();
+        clearSetPassword();
         FirebaseAuthException exception = error as FirebaseAuthException;
         AwesomeDialog(
           context: Get.context!,
@@ -467,7 +506,6 @@ class HomeController extends GetxController {
     } catch (e) {
       FirebaseAuthException exception = e as FirebaseAuthException;
       isPasswordProcessing(false);
-      clearReauth();
       AwesomeDialog(
         context: Get.context!,
         dialogType: DialogType.error,
@@ -479,7 +517,115 @@ class HomeController extends GetxController {
     }
   }
 
-  // RxBool isDarkModeEnabled = false.obs;
+  // Verify email
+  void verifyEmail() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification().then(
+          (value) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Verification email sent successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        FirebaseAuthException exception = error as FirebaseAuthException;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: exception.message.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  // Change Profile Picture
+  // void changeAvatarUrl() async {
+  //   try {
+  //     await FirebaseAuth.instance.currentUser!
+  //         .updatePhotoURL(avatarUrl.value.text)
+  //         .then((value) {
+  //       AwesomeDialog(
+  //         context: Get.context!,
+  //         dialogType: DialogType.success,
+  //         animType: AnimType.scale,
+  //         title: 'Success',
+  //         desc: 'Profile picture updated successfully',
+  //         btnOkOnPress: () {},
+  //       ).show();
+  //     }, onError: (error) {
+  //       FirebaseAuthException exception = error as FirebaseAuthException;
+  //       AwesomeDialog(
+  //         context: Get.context!,
+  //         dialogType: DialogType.error,
+  //         animType: AnimType.scale,
+  //         title: 'Error',
+  //         desc: exception.message.toString(),
+  //         btnOkOnPress: () {},
+  //       ).show();
+  //     });
+  //   } catch (e) {
+  //     FirebaseAuthException exception = e as FirebaseAuthException;
+  //     AwesomeDialog(
+  //       context: Get.context!,
+  //       dialogType: DialogType.error,
+  //       animType: AnimType.scale,
+  //       title: e.toString(),
+  //       desc: exception.message.toString(),
+  //       btnOkOnPress: () {},
+  //     ).show();
+  //   }
+  // }
+
+  // Verify phone number
+  void verifyPhoneNumber() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: '+62${phoneNumber.value.text}',
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await FirebaseAuth.instance.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: e.toString(),
+          desc: e.message.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.INFO,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Verification code sent successfully',
+          btnOkOnPress: () {},
+        ).show();
+        // Get.toNamed(Routes.VERIFY_PHONE, arguments: {
+        //   'verificationId': verificationId,
+        //   'phoneNumber': '+62' + phoneNumber.value.text,
+        // });
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
 
   // Greeting
   String greeting() {
@@ -506,6 +652,11 @@ class HomeController extends GetxController {
   void clearReauth() {
     formKey.currentState?.fields['refresh-password']?.reset();
     refreshPassword.clear();
+  }
+
+  void clearSetPassword() {
+    formKey.currentState?.fields['set-password']?.reset();
+    setPassword.clear();
   }
 
   // link with Google Account

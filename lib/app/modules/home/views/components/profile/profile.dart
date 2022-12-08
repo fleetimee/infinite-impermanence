@@ -301,6 +301,8 @@ class FormFirebase extends StatelessWidget {
                                                       } catch (e) {
                                                         return Future.error(e);
                                                       }
+                                                      controller.isEmailReadOnly
+                                                          .toggle();
                                                     },
                                                     icon: const Icon(
                                                       Icons.check,

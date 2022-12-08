@@ -28,7 +28,7 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // List debitur field string
 const field =
-    'peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress';
+    'peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId';
 
 LoginPageController loginPageController = LoginPageController.instance;
 

@@ -56,12 +56,14 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  FormBuilderTextField(
-                    name: 'id',
-                    readOnly: true,
-                    controller: controller.penginput.value =
-                        TextEditingController(text: auth.currentUser!.uid),
+                  Visibility(
+                    visible: false,
+                    child: FormBuilderTextField(
+                      name: 'id',
+                      readOnly: true,
+                      controller: controller.penginput.value =
+                          TextEditingController(text: auth.currentUser!.uid),
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Row(

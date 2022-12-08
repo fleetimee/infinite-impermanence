@@ -5,6 +5,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/user/inputted_debitur.provider.dart';
+import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
 import 'package:akm/app/utils/capitalize.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -25,9 +27,9 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    getPhotoUrl();
 
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    getPhotoUrl();
 
     // Check if already linked to google account
     checkIfLinked();
@@ -61,6 +63,15 @@ class HomeController extends GetxController {
     getLocation();
   }
 
+  @override
+  void onReady() {
+    Future.delayed(const Duration(seconds: 2), () {
+      // Get the current user
+      getMyDebiturInput(sort);
+    });
+    super.onReady();
+  }
+
   // Initialize firebase auth
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -79,10 +90,12 @@ class HomeController extends GetxController {
             profileImage.value = info.photoURL!;
           }
         }
+        idUntukFetchInput.value = auth.currentUser!.uid;
       }
     } else {
       SharedPreferences.getInstance().then((prefs) {
         profileImage.value = prefs.getString('photo')!;
+        idUntukFetchInput.value = prefs.getString('id')!;
       });
     }
   }
@@ -118,6 +131,14 @@ class HomeController extends GetxController {
     ).show();
   }
 
+  // for my input
+  var page = 1;
+  var sort = 'id,ASC';
+  var isMyInputProcessing = false.obs;
+  var isMoreMyInputDataAvailable = true.obs;
+  var listMyInput = List<Datum>.empty(growable: true).obs;
+  ScrollController scrollController = ScrollController();
+
   // Controller for pageview
   final PageController controller = PageController();
 
@@ -135,6 +156,7 @@ class HomeController extends GetxController {
   var phoneNumber = TextEditingController();
   var isEmailVerified = false.obs;
   var profileImage = ''.obs;
+  var idUntukFetchInput = ''.obs;
 
   // Variables for device info
   var androidVersion = ''.obs;
@@ -164,14 +186,6 @@ class HomeController extends GetxController {
   var isLinked = false.obs;
   var isReauthProcessing = false.obs;
   var isPasswordProcessing = false.obs;
-
-  // void getImage() async {
-  //   final prefs = await SharedPreferences.getInstance();
-
-  //   final image = prefs.getString('photo');
-
-  //   profileImage.value = image!;
-  // }
 
   // Get location
   void getLocation() async {
@@ -328,15 +342,6 @@ class HomeController extends GetxController {
             btnOkOnPress: () {},
           ).show();
         }
-
-        // AwesomeDialog(
-        //   context: Get.context!,
-        //   dialogType: DialogType.error,
-        //   animType: AnimType.scale,
-        //   title: 'Error',
-        //   desc: error.toString(),
-        //   btnOkOnPress: () {},
-        // ).show();
       });
     } catch (e) {
       FirebaseAuthException exception = e as FirebaseAuthException;
@@ -363,17 +368,6 @@ class HomeController extends GetxController {
           btnOkOnPress: () {},
         ).show();
       }
-
-      // AwesomeDialog(
-      //   context: Get.context!,
-      //   dialogType: DialogType.error,
-      //   animType: AnimType.scale,
-      //   title: e.toString(),
-      //   desc: exception.message.toString(),
-      //   btnOkOnPress: () async {
-      //     await GoogleSignIn().signOut();
-      //   },
-      // ).show();
     }
   }
 
@@ -627,6 +621,57 @@ class HomeController extends GetxController {
     );
   }
 
+  void getMyDebiturInput(String sort) async {
+    try {
+      isMoreMyInputDataAvailable(false);
+      isMyInputProcessing(true);
+      DebiturInputtedByProvider()
+          .fetchMyInputtedDebitur(page, sort, idUntukFetchInput.value)
+          .then((resp) {
+        isMyInputProcessing(false);
+        listMyInput.clear();
+        listMyInput.addAll(resp);
+      }, onError: (error) {
+        isMyInputProcessing(false);
+        Get.snackbar('Error', error.toString());
+      });
+    } catch (e) {
+      isMyInputProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void getMoreMyDebiturInput(String sort) {
+    try {
+      DebiturInputtedByProvider()
+          .fetchMyInputtedDebitur(page, sort, idUntukFetchInput.value)
+          .then((resp) {
+        if (resp.isNotEmpty) {
+          isMoreMyInputDataAvailable(true);
+        } else {
+          isMoreMyInputDataAvailable(false);
+          debugPrint('No more data');
+        }
+        listMyInput.addAll(resp);
+      }, onError: (error) {
+        Get.snackbar('Error', error.toString());
+      });
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void paginateMyInput(String sort) {
+    scrollController.addListener(() {
+      // Scroll listener
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        page++;
+        getMoreMyDebiturInput(sort);
+      }
+    });
+  }
+
   // Greeting
   String greeting() {
     var hour = DateTime.now().hour;
@@ -658,47 +703,4 @@ class HomeController extends GetxController {
     formKey.currentState?.fields['set-password']?.reset();
     setPassword.clear();
   }
-
-  // link with Google Account
-
-  // void updatePhoneNumber() {
-  //   try {
-  //     FirebaseAuth.instance.currentUser!.set
-  //     AwesomeDialog(
-  //       context: Get.context!,
-  //       dialogType: DialogType.SUCCES,
-  //       animType: AnimType.BOTTOMSLIDE,
-  //       title: 'Success',
-  //       desc: 'Phone number has been updated',
-  //       btnOkIcon: Icons.check_circle,
-  //       btnOkOnPress: () {},
-  //     ).show();
-  //   } catch (e) {
-  //     AwesomeDialog(
-  //       context: Get.context!,
-  //       dialogType: DialogType.ERROR,
-  //       animType: AnimType.BOTTOMSLIDE,
-  //       title: 'Error',
-  //       desc: e.toString(),
-  //       btnOkIcon: Icons.error,
-  //       btnOkOnPress: () {},
-  //     ).show();
-  //   }
-  // }
-
-  // final Future<SharedPreferences> initPref = SharedPreferences.getInstance();
-
-  // saveThemeStatus() async {
-  //   SharedPreferences pref = await initPref;
-  //   pref.setBool('theme', isDarkModeEnabled.value);
-  // }
-
-  // _getThemeStatus() async {
-  //   var isLight = initPref.then((SharedPreferences prefs) {
-  //     return prefs.getBool('theme') ?? true;
-  //   }).obs;
-  //   isDarkModeEnabled.value = (await isLight.value);
-  //   Get.changeThemeMode(
-  //       isDarkModeEnabled.value ? ThemeMode.dark : ThemeMode.light);
-  // }
 }

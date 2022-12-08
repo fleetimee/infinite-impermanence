@@ -2,6 +2,8 @@
 // ignore_for_file: must_be_immutable
 
 // 🐦 Flutter imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -21,7 +23,6 @@ import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 // 🌎 Project imports:
 import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/list_debitur_controller.dart';
 
 class ListDebiturView extends GetView<ListDebiturController> {
@@ -759,16 +760,30 @@ class ListDebiturView extends GetView<ListDebiturController> {
                                         ),
                                       ],
                                     ),
-                                    icon: GFButton(
-                                      onPressed: () {
-                                        Get.toNamed(Routes.INSIGHT_DEBITUR,
-                                            arguments: controller
-                                                .listDebitur[index].id);
-                                      },
-                                      text: 'Details',
-                                      color: primaryColor,
-                                      type: GFButtonType.outline,
-                                    ),
+                                    icon: controller
+                                                .listDebitur[index].userId !=
+                                            auth.currentUser?.uid
+                                        ? Container()
+                                        : GFButton(
+                                            onPressed: () {
+                                              controller.listDebitur[index]
+                                                          .userId ==
+                                                      auth.currentUser?.uid
+                                                  ? Get.toNamed(
+                                                      Routes.INSIGHT_DEBITUR,
+                                                      arguments: controller
+                                                          .listDebitur[index]
+                                                          .id)
+                                                  : null;
+                                            },
+                                            disabledColor: Colors.grey,
+                                            disabledTextColor: Colors.white,
+                                            disabledElevation: 0,
+                                            text: 'Details',
+                                            color: GFColors.INFO,
+                                            shape: GFButtonShape.pills,
+                                            size: GFSize.LARGE,
+                                          ),
                                   ),
                                 ].animate(
                                   interval: 100.ms,

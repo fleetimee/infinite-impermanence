@@ -7,6 +7,8 @@
 // 🎯 Dart imports:
 import 'dart:convert';
 
+import 'package:akm/app/models/debtor.dart';
+
 ListDebitur listDebiturFromJson(String str) =>
     ListDebitur.fromJson(json.decode(str));
 
@@ -58,6 +60,8 @@ class Datum {
     this.umur,
     this.tglSekarang,
     this.progress,
+    this.userId,
+    this.user,
     this.inputKeuangan,
     this.createdBy,
   });
@@ -70,6 +74,9 @@ class Datum {
   int? umur;
   DateTime? tglSekarang;
   String? progress;
+  String? userId;
+  // this is from debtor sebelah
+  User? user;
   dynamic createdBy;
   InputKeuangan? inputKeuangan;
 
@@ -84,6 +91,8 @@ class Datum {
             ? null
             : DateTime.parse(json["tgl_sekarang"]),
         progress: json["progress"] ?? null,
+        userId: json["userId"] ?? null,
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
         createdBy: json["createdBy"],
         inputKeuangan: json["inputKeuangan"] == null
             ? null
@@ -101,6 +110,8 @@ class Datum {
             ? null
             : "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "progress": progress ?? null,
+        "userId": userId ?? null,
+        "user": user == null ? null : user?.toJson(),
         "createdBy": createdBy,
         "inputKeuangan": inputKeuangan == null ? null : inputKeuangan?.toJson(),
       };

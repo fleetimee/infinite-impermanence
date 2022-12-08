@@ -15,9 +15,12 @@ import 'package:about/about.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -629,8 +632,265 @@ class HomeView extends GetView<HomeController> {
               const Center(
                 child: Text('Second Page'),
               ),
-              const Center(
-                child: Text('Third Page'),
+              SafeArea(
+                child: DefaultTabController(
+                  length: 2,
+                  child: Column(
+                    children: [
+                      const TabBar(
+                        physics: NeverScrollableScrollPhysics(),
+                        indicatorColor: Colors.white,
+                        tabs: [
+                          Tab(
+                            text: 'History',
+                            icon: Icon(Icons.history),
+                          ),
+                          Tab(
+                            icon: Icon(Icons.subject_outlined),
+                            text: 'Submissions',
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            Obx(() {
+                              if (controller.isMyInputProcessing.value) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                if (controller.listMyInput.isNotEmpty) {
+                                  return ListView.builder(
+                                    controller: controller.scrollController,
+                                    itemCount: controller.listMyInput.length,
+                                    itemBuilder: (context, index) {
+                                      bool isSameDate = true;
+                                      final dateString = controller
+                                          .listMyInput[index].tglSekarang;
+
+                                      final item =
+                                          controller.listMyInput[index];
+
+                                      if (index == 0) {
+                                        isSameDate = false;
+                                      } else {
+                                        final prevDateString = controller
+                                            .listMyInput[index - 1].tglSekarang
+                                            ?.toIso8601String();
+                                        final DateTime prevDate =
+                                            DateTime.parse(prevDateString!);
+                                        isSameDate = dateString!
+                                            .isAtSameMomentAs(prevDate);
+                                      }
+                                      if (index == 0 || !(isSameDate)) {
+                                        return Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              DateFormat('EEEE, dd MMMM yyyy')
+                                                  .format(dateString!),
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            GFCard(
+                                              border: Border.all(
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                              ),
+                                              padding: const EdgeInsets.all(10),
+                                              color:
+                                                  Colors.white.withOpacity(0.9),
+                                              elevation: 5,
+                                              titlePosition: GFPosition.start,
+                                              title: GFListTile(
+                                                avatar: const Icon(
+                                                    FontAwesomeIcons
+                                                        .bookBookmark),
+                                                title: Text(
+                                                  controller.listMyInput[index]
+                                                      .peminjam1!,
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.black87,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                subTitle: Text(
+                                                  controller.listMyInput[index]
+                                                      .bidangUsaha!,
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.black54,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                icon: GFButton(
+                                                  onPressed: (() {
+                                                    Get.toNamed(
+                                                        Routes.INSIGHT_DEBITUR,
+                                                        arguments: controller
+                                                            .listMyInput[index]
+                                                            .id);
+                                                  }),
+                                                  text: 'Detail',
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      } else {
+                                        return GFCard(
+                                          border: Border.all(
+                                            color:
+                                                Colors.black.withOpacity(0.1),
+                                          ),
+                                          padding: const EdgeInsets.all(10),
+                                          color: Colors.white.withOpacity(0.9),
+                                          elevation: 5,
+                                          titlePosition: GFPosition.start,
+                                          title: GFListTile(
+                                            avatar: const Icon(
+                                                FontAwesomeIcons.bookBookmark),
+                                            title: Text(
+                                              controller.listMyInput[index]
+                                                  .peminjam1!,
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.black87,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            subTitle: Text(
+                                              controller.listMyInput[index]
+                                                  .bidangUsaha!,
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.black54,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            icon: GFButton(
+                                              onPressed: (() {
+                                                Get.toNamed(
+                                                    Routes.INSIGHT_DEBITUR,
+                                                    arguments: controller
+                                                        .listMyInput[index].id);
+                                              }),
+                                              text: 'Detail',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  );
+                                } else {
+                                  return Align(
+                                    alignment: Alignment.center,
+                                    child: Container(
+                                      padding: const EdgeInsets.all(32),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const Center(
+                                            child: Text(
+                                              'Data Tidak Ditemukan',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                          Center(
+                                            child: Lottie.asset(
+                                              'assets/images/home/404.zip',
+                                              frameRate: FrameRate.max,
+                                              fit: BoxFit.cover,
+                                              repeat: true,
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return const Text(
+                                                  'Gagal memuat animasi',
+                                                  style: TextStyle(
+                                                    color: Colors.red,
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                          const Center(
+                                            child: Text(
+                                              'Data tidak dapat ditemukan di database atau list debitur masih kosong',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 22,
+                                                fontWeight: FontWeight.normal,
+                                                letterSpacing: 1.2,
+                                              ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }
+                              }
+                            }),
+                            Container(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Center(
+                                    child: Text(
+                                      'Under Construction :(',
+                                      style: TextStyle(
+                                        fontSize: 35,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Lottie.asset(
+                                    'assets/images/home/coming-soon.zip',
+                                    frameRate: FrameRate.max,
+                                    fit: BoxFit.cover,
+                                    repeat: true,
+                                    errorBuilder: (context, error, stackTrace) {
+                                      return const Text(
+                                        'Gagal memuat animasi',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                        ),
+                                      );
+                                    },
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               FormFirebase(auth: auth, controller: controller),
               SafeArea(
@@ -759,6 +1019,7 @@ class HomeView extends GetView<HomeController> {
             ],
           )),
       bottomNavigationBar: BottomBarBubble(
+        color: Colors.white,
         items: [
           BottomBarItem(iconData: Icons.home),
           BottomBarItem(iconData: Icons.chat),

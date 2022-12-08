@@ -54,6 +54,8 @@ import '../modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba
 import '../modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/insight_debitur/views/insight_debitur_view.dart';
+import '../modules/intro-screen/bindings/intro_screen_binding.dart';
+import '../modules/intro-screen/views/intro_screen_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
 import '../modules/karakter_analisis/views/edit_karakter_analisis_view.dart';
 import '../modules/karakter_analisis/views/karakter_analisis_view.dart';
@@ -439,6 +441,11 @@ class AppPages {
       name: _Paths.LOGIN_PAGE,
       page: () => const LoginPageView(),
       binding: LoginPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.INTRO_SCREEN,
+      page: () => const IntroScreenView(),
+      binding: IntroScreenBinding(),
     ),
   ];
 }

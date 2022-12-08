@@ -78,6 +78,10 @@ dependencies:
   http: ^0.13.5
   image_picker: ^0.8.6
   intl: ^0.17.0
+  introduction_screen:
+    git:
+      url: https://github.com/Pyozer/introduction_screen
+      ref: master
   latlong2: ^0.8.1
   lottie: ^2.0.0
   map_launcher: ^2.4.0

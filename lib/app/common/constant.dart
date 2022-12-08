@@ -24,7 +24,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 //     'https://3f5d-2001-448a-4045-2d04-1c17-eda9-fc8-7519.ap.ngrok.io/api/v1/';
 
 const baseUrl =
-    'https://number-41-bagooska-the-terribly-tired-tapir-5.fleetimee.repl.co/api/v1/';
+    'https://number-41-bagooska-the-terribly-tired-tapir.fleetimee.repl.co/api/v1/';
 
 // List debitur field string
 const field =

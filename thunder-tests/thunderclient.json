@@ -161,11 +161,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-12-02T12:49:21.437Z",
-    "modified": "2022-12-07T18:21:16.372Z",
+    "modified": "2022-12-08T20:47:04.846Z",
     "headers": [],
     "params": [
       {
@@ -181,6 +181,7 @@
       {
         "name": "fields",
         "value": "peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId",
+        "isDisabled": true,
         "isPath": false
       },
       {
@@ -1515,6 +1516,69 @@
         "name": "filter",
         "value": "inputKeuangan.kredit_diusulkan||$between||0,120000000",
         "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "27972201-968d-4978-9dc1-10fa583c71f5",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
+    "name": "Get By NIK",
+    "url": "{{baseUrl}}api/v1/debiturs?limit=15&page=1&s={\"no_ktp1\": {\"$eq\": \"46464645445\"}}&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,no_ktp1,userId",
+    "method": "GET",
+    "sortNum": 175000,
+    "created": "2022-12-08T20:45:44.697Z",
+    "modified": "2022-12-08T22:25:30.840Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "limit",
+        "value": "15",
+        "isPath": false
+      },
+      {
+        "name": "page",
+        "value": "1",
+        "isPath": false
+      },
+      {
+        "name": "s",
+        "value": "{\"no_ktp1\": {\"$eq\": \"46464645445\"}}",
+        "isPath": false
+      },
+      {
+        "name": "sort",
+        "value": "id,ASC",
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "ktp1||$eq||Aceh Barat Daya",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "tgl_sekarang||$between||2022-11-03,2022-12-03",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "filter",
+        "value": "inputKeuangan.kredit_diusulkan||$between||0,120000000",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "join",
+        "value": "inputKeuangan||kredit_diusulkan,digunakan_untuk",
+        "isPath": false
+      },
+      {
+        "name": "fields",
+        "value": "peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,no_ktp1,userId",
         "isPath": false
       }
     ],

@@ -5,8 +5,11 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/search/search.provider.dart';
 import 'package:akm/app/data/provider/user/inputted_debitur.provider.dart';
 import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
+import 'package:akm/app/models/search/search.model.dart' as search;
+
 import 'package:akm/app/utils/capitalize.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:device_info_plus/device_info_plus.dart';
@@ -157,6 +160,11 @@ class HomeController extends GetxController {
   var isEmailVerified = false.obs;
   var profileImage = ''.obs;
   var idUntukFetchInput = ''.obs;
+
+  // Search NIK
+  var nik = TextEditingController();
+  final isSearchNikProcessing = false.obs;
+  var listSearchNik = List<search.Datum>.empty(growable: true).obs;
 
   // Variables for device info
   var androidVersion = ''.obs;
@@ -543,6 +551,49 @@ class HomeController extends GetxController {
         animType: AnimType.scale,
         title: e.toString(),
         desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  void searchNik(String query) {
+    try {
+      isSearchNikProcessing(true);
+      SearchNikProvider().searchNik(query).then((resp) {
+        isSearchNikProcessing(false);
+
+        if (resp.isEmpty) {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.info,
+            animType: AnimType.scale,
+            title: 'Info',
+            desc: 'Tidak ada debitur dengan NIK $query',
+            btnOkOnPress: () {},
+          ).show();
+        }
+
+        listSearchNik.clear();
+        listSearchNik.addAll(resp);
+      }, onError: (error) {
+        isSearchNikProcessing(false);
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: error.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      isSearchNikProcessing(false);
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: 'Error',
+        desc: e.toString(),
         btnOkOnPress: () {},
       ).show();
     }

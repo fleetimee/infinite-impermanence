@@ -39,8 +39,17 @@ class LoginPageController extends GetxController {
       debugPrint('User is currently signed out!');
       Get.offAllNamed(Routes.LOGIN_PAGE);
     } else {
-      debugPrint('User is signed in!');
-      Get.offAllNamed(Routes.HOME);
+      // if user email and display name is null from firebase then route to intro page
+      if (auth.currentUser?.email == null ||
+          auth.currentUser?.email == '' &&
+              auth.currentUser?.displayName == null ||
+          auth.currentUser?.displayName == '') {
+        debugPrint('User is signed in! but email and display name is null');
+        Get.offAllNamed(Routes.INTRO_SCREEN);
+      } else {
+        debugPrint('User is signed in!');
+        Get.offAllNamed(Routes.HOME);
+      }
     }
   }
 

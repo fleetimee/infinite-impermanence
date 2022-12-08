@@ -290,6 +290,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
+  dots_indicator:
+    dependency: transitive
+    description:
+      name: dots_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   double_back_to_close_app:
     dependency: "direct main"
     description:
@@ -929,6 +936,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.0"
+  introduction_screen:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: cd0e6ddc39d0e4079c1c225c09558cda70633f03
+      url: "https://github.com/Pyozer/introduction_screen"
+    source: git
+    version: "3.1.1"
   io:
     dependency: transitive
     description:

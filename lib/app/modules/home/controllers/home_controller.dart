@@ -606,7 +606,7 @@ class HomeController extends GetxController {
       codeSent: (String verificationId, int? resendToken) async {
         AwesomeDialog(
           context: Get.context!,
-          dialogType: DialogType.INFO,
+          dialogType: DialogType.info,
           animType: AnimType.scale,
           title: 'Success',
           desc: 'Verification code sent successfully',

@@ -31,34 +31,67 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
       body: FormBuilder(
         key: controller.formKey,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(32),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Animate(
-                      effects: const [FadeEffect(), ScaleEffect()],
-                      child: Text('Berapa plafon kredit yang akan diajukan ?',
+          child: Card(
+            elevation: 10,
+            margin: const EdgeInsets.all(10),
+            color: Colors.white.withOpacity(0.9),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Animate(
+                        effects: const [FadeEffect(), ScaleEffect()],
+                        child: Text('Berapa plafon kredit yang akan diajukan ?',
+                            style: GoogleFonts.poppins(
+                              color: primaryColor,
+                              fontSize: 35,
+                              fontWeight: FontWeight.w500,
+                            )),
+                      ),
+                      Animate(
+                        effects: const [],
+                        child: FormBuilderTextField(
+                          name: 'plafon',
+                          controller: controller.plafon,
                           style: GoogleFonts.poppins(
-                            color: primaryColor,
-                            fontSize: 35,
-                            fontWeight: FontWeight.w500,
-                          )),
-                    ),
-                    Animate(
-                      effects: const [],
-                      child: FormBuilderTextField(
-                        name: 'plafon',
-                        controller: controller.plafon,
+                            color: secondaryColor,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w200,
+                          ),
+                          decoration: const InputDecoration(
+                            hintText: 'Isi disini... (angka dalam rp)',
+                            hintStyle: TextStyle(
+                              color: secondaryColor,
+                              fontSize: 28,
+                              fontWeight: FontWeight.w200,
+                            ),
+                            // disable underline
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 35),
+                      Text(
+                        'Berapa lama tenor yang akan diajukan ?',
+                        style: GoogleFonts.poppins(
+                          color: primaryColor,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      FormBuilderTextField(
+                        name: 'tenor',
+                        controller: controller.tenor,
                         style: GoogleFonts.poppins(
                           color: secondaryColor,
                           fontSize: 28,
                           fontWeight: FontWeight.w200,
                         ),
                         decoration: const InputDecoration(
-                          hintText: 'Isi disini... (angka dalam rp)',
+                          hintText: 'Isi disini... (angka dlm bulan)',
                           hintStyle: TextStyle(
                             color: secondaryColor,
                             fontSize: 28,
@@ -68,147 +101,119 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                           border: InputBorder.none,
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 35),
-                    Text(
-                      'Berapa lama tenor yang akan diajukan ?',
-                      style: GoogleFonts.poppins(
-                        color: primaryColor,
-                        fontSize: 35,
-                        fontWeight: FontWeight.w500,
+                      const SizedBox(height: 40),
+                      Text(
+                        'Berapa bunga per tahun nya ?',
+                        style: GoogleFonts.poppins(
+                          color: primaryColor,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    FormBuilderTextField(
-                      name: 'tenor',
-                      controller: controller.tenor,
-                      style: GoogleFonts.poppins(
-                        color: secondaryColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w200,
-                      ),
-                      decoration: const InputDecoration(
-                        hintText: 'Isi disini... (angka dlm bulan)',
-                        hintStyle: TextStyle(
+                      FormBuilderTextField(
+                        name: 'bunga',
+                        controller: controller.bunga,
+                        style: GoogleFonts.poppins(
                           color: secondaryColor,
                           fontSize: 28,
                           fontWeight: FontWeight.w200,
                         ),
-                        // disable underline
-                        border: InputBorder.none,
-                      ),
-                    ),
-                    const SizedBox(height: 40),
-                    Text(
-                      'Berapa bunga per tahun nya ?',
-                      style: GoogleFonts.poppins(
-                        color: primaryColor,
-                        fontSize: 35,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    FormBuilderTextField(
-                      name: 'bunga',
-                      controller: controller.bunga,
-                      style: GoogleFonts.poppins(
-                        color: secondaryColor,
-                        fontSize: 28,
-                        fontWeight: FontWeight.w200,
-                      ),
-                      decoration: const InputDecoration(
-                        hintText: 'Isi disini... (angka dalam %)',
-                        hintStyle: TextStyle(
-                          color: secondaryColor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w200,
+                        decoration: const InputDecoration(
+                          hintText: 'Isi disini... (angka dalam %)',
+                          hintStyle: TextStyle(
+                            color: secondaryColor,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w200,
+                          ),
+                          // disable underline
+                          border: InputBorder.none,
                         ),
-                        // disable underline
-                        border: InputBorder.none,
                       ),
-                    ),
-                    const SizedBox(height: 40),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: primaryColor,
-                              shape: const StadiumBorder(),
-                            ),
-                            onPressed: () {
-                              controller.hitung();
-                            },
-                            child: const Text(
-                              "Cek Angsuran",
-                              style: TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.w500),
+                      const SizedBox(height: 40),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: primaryColor,
+                                shape: const StadiumBorder(),
+                              ),
+                              onPressed: () {
+                                controller.hitung();
+                              },
+                              child: const Text(
+                                "Cek Angsuran",
+                                style: TextStyle(
+                                    fontSize: 25, fontWeight: FontWeight.w500),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 50),
-                    Text(
-                      'Hasilnya :',
-                      style: GoogleFonts.poppins(
-                        color: primaryColor,
-                        fontSize: 35,
-                        fontWeight: FontWeight.w500,
+                        ],
                       ),
-                    ),
-                    FormBuilderTextField(
-                      name: 'hasil',
-                      enabled: false,
-                      controller: controller.hasil,
-                      style: GoogleFonts.poppins(
-                        color: secondaryColor,
-                        fontSize: 35,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      decoration: const InputDecoration(
-                        hintText: 'Hasilnya disini...',
-                        hintStyle: TextStyle(
+                      const SizedBox(height: 50),
+                      Text(
+                        'Hasilnya :',
+                        style: GoogleFonts.poppins(
                           color: primaryColor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w200,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w500,
                         ),
-                        // disable underline
-                        border: InputBorder.none,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                    Text(
-                      'Jadi :',
-                      style: GoogleFonts.poppins(
-                        color: primaryColor,
-                        fontSize: 35,
-                        fontWeight: FontWeight.w500,
+                      FormBuilderTextField(
+                        name: 'hasil',
+                        enabled: false,
+                        controller: controller.hasil,
+                        style: GoogleFonts.poppins(
+                          color: secondaryColor,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        decoration: const InputDecoration(
+                          hintText: 'Hasilnya disini...',
+                          hintStyle: TextStyle(
+                            color: primaryColor,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w200,
+                          ),
+                          // disable underline
+                          border: InputBorder.none,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                    ),
-                    FormBuilderTextField(
-                      name: 'hasil2',
-                      enabled: false,
-                      controller: controller.hasil2,
-                      style: GoogleFonts.poppins(
-                        color: secondaryColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      maxLines: 10,
-                      decoration: const InputDecoration(
-                        hintText: 'Hasilnya disini...',
-                        hintStyle: TextStyle(
+                      Text(
+                        'Jadi :',
+                        style: GoogleFonts.poppins(
                           color: primaryColor,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w200,
+                          fontSize: 35,
+                          fontWeight: FontWeight.w500,
                         ),
-                        // disable underline
-                        border: InputBorder.none,
                       ),
-                    ),
-                  ],
+                      FormBuilderTextField(
+                        name: 'hasil2',
+                        enabled: false,
+                        controller: controller.hasil2,
+                        style: GoogleFonts.poppins(
+                          color: secondaryColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                        ),
+                        maxLines: 10,
+                        decoration: const InputDecoration(
+                          hintText: 'Hasilnya disini...',
+                          hintStyle: TextStyle(
+                            color: primaryColor,
+                            fontSize: 28,
+                            fontWeight: FontWeight.w200,
+                          ),
+                          // disable underline
+                          border: InputBorder.none,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

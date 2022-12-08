@@ -669,9 +669,6 @@ class HomeView extends GetView<HomeController> {
                                       final dateString = controller
                                           .listMyInput[index].tglSekarang;
 
-                                      final item =
-                                          controller.listMyInput[index];
-
                                       if (index == 0) {
                                         isSameDate = false;
                                       } else {

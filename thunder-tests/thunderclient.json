@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 720000,
     "created": "2022-12-01T20:28:47.355Z",
-    "modified": "2022-12-08T08:07:31.453Z",
+    "modified": "2022-12-08T19:12:27.058Z",
     "headers": [
       {
         "name": "Accept",
@@ -33,7 +33,7 @@
       "form": [
         {
           "name": "email",
-          "value": "test@gmail.com"
+          "value": "test1@gmail.com"
         },
         {
           "name": "password",
@@ -41,7 +41,7 @@
         },
         {
           "name": "displayName",
-          "value": "Novian Clone"
+          "value": "Novian Clone 1"
         },
         {
           "name": "phoneNumber",

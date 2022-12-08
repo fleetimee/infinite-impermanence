@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "391153260721",
+    "project_id": "analisis-kredit-mikro",
+    "storage_bucket": "analisis-kredit-mikro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391153260721:android:5d39f44753ec08c5bc6a90",
+        "android_client_info": {
+          "package_name": "com.akm.fleetime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391153260721-sv001eku0075j4cqpprametdq6s70425.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZoN67kRMA6o04kEXWwuZSLxGL7hzkg0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391153260721-sv001eku0075j4cqpprametdq6s70425.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

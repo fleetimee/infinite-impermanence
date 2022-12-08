@@ -1,6 +1,6 @@
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -77,12 +77,33 @@ class GalleryImageView extends GetView<GalleryImageController> {
                           child: Card(
                             color: GFColors.LIGHT,
                             child: GFListTile(
-                              avatar: GFAvatar(
-                                backgroundImage: NetworkImage(
-                                  controller.imageList[index].file!,
+                              // avatar: GFAvatar(
+                              //   backgroundImage: NetworkImage(
+                              //     controller.imageList[index].file!,
+                              //   ),
+                              //   shape: GFAvatarShape.square,
+                              //   backgroundColor: Colors.transparent,
+                              // ),
+                              avatar: CircleAvatar(
+                                child: CachedNetworkImage(
+                                  imageUrl: controller.imageList[index].file!,
+                                  imageBuilder: (context, imageProvider) =>
+                                      Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        image: imageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
                                 ),
-                                shape: GFAvatarShape.square,
-                                backgroundColor: Colors.transparent,
                               ),
                               titleText: controller.imageList[index].keterangan,
                               subTitleText: DateFormat('dd MMMM yyyy').format(
@@ -156,69 +177,78 @@ class GalleryImageView extends GetView<GalleryImageController> {
                     childrenDelegate: SliverChildBuilderDelegate(
                       (context, index) {
                         return GestureDetector(
-                          onTap: () {
-                            showMaterialModalBottomSheet(
-                              backgroundColor: Colors.transparent,
-                              context: context,
-                              builder: (context) => PhotoViewGallery.builder(
-                                backgroundDecoration: const BoxDecoration(
-                                  color: Colors.black,
-                                ),
-                                allowImplicitScrolling: true,
-                                enableRotation: true,
-                                loadingBuilder: (context, event) => Center(
-                                  child: CircularProgressIndicator(
-                                    color: primaryColor,
-                                    value: event == null
-                                        ? 0
-                                        : event.cumulativeBytesLoaded /
-                                            event.expectedTotalBytes!,
+                            onTap: () {
+                              showMaterialModalBottomSheet(
+                                backgroundColor: Colors.transparent,
+                                context: context,
+                                builder: (context) => PhotoViewGallery.builder(
+                                  backgroundDecoration: const BoxDecoration(
+                                    color: Colors.black,
                                   ),
-                                ),
-
-                                pageController: PageController(
-                                  initialPage: index,
-                                ),
-                                scrollPhysics: const BouncingScrollPhysics(),
-                                itemCount: controller.imageList.length,
-                                onPageChanged: (index) {
-                                  controller.imageList[index].id;
-                                },
-                                builder: (context, index) {
-                                  return PhotoViewGalleryPageOptions(
-                                    imageProvider: NetworkImage(
-                                        controller.imageList[index].file!),
-                                    heroAttributes: PhotoViewHeroAttributes(
-                                      tag: controller.imageList[index].id
-                                          .toString(),
+                                  allowImplicitScrolling: true,
+                                  enableRotation: true,
+                                  loadingBuilder: (context, event) => Center(
+                                    child: CircularProgressIndicator(
+                                      color: primaryColor,
+                                      value: event == null
+                                          ? 0
+                                          : event.cumulativeBytesLoaded /
+                                              event.expectedTotalBytes!,
                                     ),
-                                  );
-                                },
-                                // loadingBuilder: (context, event) => Container(
-                                //   color: Colors.grey[200],
-                                //   child: Center(
-                                //     child: SizedBox(
-                                //       width: 20.0,
-                                //       height: 20.0,
-                                //       child: CircularProgressIndicator(
-                                //         value: event == null
-                                //             ? 0
-                                //             : event.cumulativeBytesLoaded /
-                                //                 event.expectedTotalBytes!,
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
+                                  ),
+
+                                  pageController: PageController(
+                                    initialPage: index,
+                                  ),
+                                  scrollPhysics: const BouncingScrollPhysics(),
+                                  itemCount: controller.imageList.length,
+                                  onPageChanged: (index) {
+                                    controller.imageList[index].id;
+                                  },
+                                  builder: (context, index) {
+                                    return PhotoViewGalleryPageOptions(
+                                      imageProvider: NetworkImage(
+                                          controller.imageList[index].file!),
+                                      heroAttributes: PhotoViewHeroAttributes(
+                                        tag: controller.imageList[index].id
+                                            .toString(),
+                                      ),
+                                    );
+                                  },
+                                  // loadingBuilder: (context, event) => Container(
+                                  //   color: Colors.grey[200],
+                                  //   child: Center(
+                                  //     child: SizedBox(
+                                  //       width: 20.0,
+                                  //       height: 20.0,
+                                  //       child: CircularProgressIndicator(
+                                  //         value: event == null
+                                  //             ? 0
+                                  //             : event.cumulativeBytesLoaded /
+                                  //                 event.expectedTotalBytes!,
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              color: GFColors.LIGHT,
+                              // child: Image.network(
+                              //   controller.imageList[index].file!,
+                              //   fit: BoxFit.cover,
+                              // ),
+                              child: CachedNetworkImage(
+                                imageUrl: controller.imageList[index].file!,
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => const Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
-                            );
-                          },
-                          child: FancyShimmerImage(
-                            boxFit: BoxFit.cover,
-                            imageUrl: controller.imageList[index].file!,
-                            shimmerBaseColor: Colors.grey[300]!,
-                            shimmerHighlightColor: Colors.grey[100]!,
-                          ),
-                        );
+                            ));
                       },
                       childCount: controller.imageList.length,
                     ),
@@ -248,7 +278,7 @@ class GalleryImageView extends GetView<GalleryImageController> {
                     ),
                     Center(
                       child: Lottie.asset(
-                        'assets/images/home/yeaa.zip',
+                        'assets/images/home/404.zip',
                         frameRate: FrameRate.max,
                         fit: BoxFit.cover,
                         repeat: true,

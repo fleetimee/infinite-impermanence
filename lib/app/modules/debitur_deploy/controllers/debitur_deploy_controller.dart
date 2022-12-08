@@ -55,8 +55,11 @@ class DebiturDeployController extends GetxController {
   final tanggalSekarangInput = DateTime.now().obs;
   final deskripsiDebitur = TextEditingController().obs;
 
+  final penginput = TextEditingController().obs;
+
   void saveDebtor() {
     final body = {
+      'userId': penginput.value.text,
       'peminjam1': peminjam1.value.text,
       'ktp1': ktp1.value.text,
       'peminjam2': peminjam2.value.text,
@@ -119,6 +122,7 @@ class DebiturDeployController extends GetxController {
   }
 
   void clearForm() {
+    penginput.value.clear();
     peminjam1.value.clear();
     peminjam2.value.clear();
     peminjam3.value.clear();

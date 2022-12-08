@@ -80,6 +80,8 @@ import '../modules/list_debitur/bindings/list_debitur_binding.dart';
 import '../modules/list_debitur/views/list_debitur_view.dart';
 import '../modules/list_syarat_lainnya/bindings/list_syarat_lainnya_binding.dart';
 import '../modules/list_syarat_lainnya/views/list_syarat_lainnya_view.dart';
+import '../modules/login-page/bindings/login_page_binding.dart';
+import '../modules/login-page/views/login_page_view.dart';
 import '../modules/media/bindings/media_binding.dart';
 import '../modules/media/views/media_view.dart';
 import '../modules/media_docs/bindings/media_docs_binding.dart';
@@ -119,223 +121,184 @@ class AppPages {
       name: _Paths.SEARCH_NIK,
       page: () => const SearchNikView(),
       binding: SearchNikBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.HOME,
       page: () => HomeView(),
       binding: HomeBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.UPLOADS,
       page: () => const UploadsView(),
       binding: UploadsBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.BISNIS_ANALISIS,
       page: () => BisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LIHAT_BISNIS_ANALISIS,
       page: () => LihatBisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_BISNIS_ANALISIS,
       page: () => EditBisnisAnalisisView(),
       binding: BisnisAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.INPUT_PRINT,
       page: () => InputPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.BISNIS_PRINT,
       page: () => BisnisPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.KARAKTER_ANALISIS,
       page: () => KarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LIHAT_KARAKTER_ANALISIS,
       page: () => LihatKarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_KARAKTER_ANALISIS,
       page: () => EditKarakterAnalisisView(),
       binding: KarakterAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.KARAKTER_PRINT,
       page: () => KarakterPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.KEUANGAN_ANALISIS,
       page: () => KeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LIHAT_KEUANGAN_ANALISIS,
       page: () => LihatKeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_KEUANGAN_ANALISIS,
       page: () => EditLihatKeuanganAnalisisView(),
       binding: KeuanganAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.KEUANGAN_PRINT,
       page: () => KeuanganPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.DEBITUR_REAL,
       page: () => DebiturOnboardingView(),
       binding: DebiturRealBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.DEBITUR_EDIT,
       page: () => DebiturEditView(),
       binding: DebiturRealBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.INPUT_KEUANGAN,
       page: () => InputKeuanganView(),
       binding: InputKeuanganBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LIHAT_KEUANGAN,
       page: () => LihatInputKeuanganView(),
       binding: InputKeuanganBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_KEUANGAN,
       page: () => EditInputKeuanganView(),
       binding: InputKeuanganBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PORSEKOT_TABLE,
       page: () => const PorsekotTableView(),
       binding: PorsekotTableBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.INPUT_NERACA,
       page: () => InputNeracaView(),
       binding: InputNeracaBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LIHAT_NERACA,
       page: () => LihatneracaView(),
       binding: InputNeracaBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_NERACA,
       page: () => EditNeracaView(),
       binding: InputNeracaBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.RUGI_LABA,
       page: () => RugiLabaView(),
       binding: RugiLabaBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.VIEW_RUGI_LABA,
       page: () => LihatRugiLabaView(),
       binding: RugiLabaBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_RUGI_LABA,
       page: () => EditRugiLabaView(),
       binding: RugiLabaBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.USAHA_ANALISIS,
       page: () => UsahaAnalisisView(),
       binding: UsahaAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.LIHAT_USAHA_ANALISIS,
       page: () => LihatUsahaAnalisisView(),
       binding: UsahaAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.EDIT_USAHA_ANALISIS,
       page: () => EditUsahaAnalisisView(),
       binding: UsahaAnalisisBinding(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_USAHA,
       page: () => JenisUsahaPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_NERACA,
       page: () => NeracaPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_AGUNAN,
       page: () => AgunanPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_RUGILABA,
       page: () => RugiLabaPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_MODEL,
       page: () => ModelPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_USULAN,
       page: () => UsulanPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_PUTUSAN,
       page: () => PutusanPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.PRINT_USULAN_BARU,
       page: () => UsulanBaruPreview(),
-      transition: Transition.cupertino,
     ),
     GetPage(
       name: _Paths.SIMULASI_TETAP,
@@ -471,6 +434,11 @@ class AppPages {
       name: _Paths.MEDIA_DOCS,
       page: () => MediaDocsView(),
       binding: MediaDocsBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGIN_PAGE,
+      page: () => const LoginPageView(),
+      binding: LoginPageBinding(),
     ),
   ];
 }

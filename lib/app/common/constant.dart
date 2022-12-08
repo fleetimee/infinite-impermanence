@@ -1,8 +1,15 @@
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
+import 'package:akm/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 // For web based
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/';
 
 // For mobile based
-// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+
+const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
 
@@ -14,14 +21,26 @@
 
 // for ngrok
 // const baseUrl =
-//     'https://9bf0-2001-448a-4049-68c4-c80c-e641-b21d-cb5c.ap.ngrok.io/api/v1/';
+//     'https://3f5d-2001-448a-4045-2d04-1c17-eda9-fc8-7519.ap.ngrok.io/api/v1/';
 
-const baseUrl =
-    'https://number-41-bagooska-the-terribly-tired-tapir.fleetimee.repl.co/api/v1/';
+// const baseUrl =
+//     'https://number-41-bagooska-the-terribly-tired-tapir.fleetimee.repl.co/api/v1/';
 
 // List debitur field string
 const field =
-    'peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress';
+    'peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId';
+
+LoginPageController loginPageController = LoginPageController.instance;
+
+FirebaseAuth auth = FirebaseAuth.instance;
+
+final Future<FirebaseApp> firebaseInitialization = Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
+
+// Initiialize shared preferences
+
+final Future<SharedPreferences> prefs = SharedPreferences.getInstance();
 
 // Insight debitur query string
 const joinTable =

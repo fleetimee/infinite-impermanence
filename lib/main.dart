@@ -1,6 +1,6 @@
 // 🐦 Flutter imports:
-
-// 🐦 Flutter imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
 import 'package:akm/app/utils/dependency_injection.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +15,10 @@ import 'package:responsive_framework/responsive_wrapper.dart';
 import 'app/routes/app_pages.dart';
 import 'app/themes/light.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize firebase
 
   Get.testMode = true;
 
@@ -25,6 +27,10 @@ void main() {
   );
 
   DependencyInjection.init();
+
+  await firebaseInitialization.then((value) {
+    Get.put(LoginPageController());
+  });
 
   FlutterNativeSplash.remove();
 }
@@ -60,13 +66,17 @@ class MyApp extends StatelessWidget {
           color: const Color(0xFFF5F5F5),
         ),
       ),
-      defaultTransition: Transition.cupertino,
+      defaultTransition: Transition.fadeIn,
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       // darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
       themeMode: ThemeMode.light,
       title: "Analisis Kredit Mikro",
-      initialRoute: AppPages.INITIAL,
+      // initialRoute: AppPages.INITIAL,
+      // initialRoute: Routes.LOGIN_PAGE,
+      home: const Center(
+        child: CircularProgressIndicator(),
+      ),
       getPages: AppPages.routes,
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,

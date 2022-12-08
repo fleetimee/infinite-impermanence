@@ -5,29 +5,48 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/user/inputted_debitur.provider.dart';
+import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
 import 'package:akm/app/utils/capitalize.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:faker_dart/faker_dart.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl/intl.dart';
-import 'package:nekos/nekos.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore_for_file: unnecessary_overrides
 
 class HomeController extends GetxController {
   @override
   void onInit() async {
-    // _getThemeStatus();
     super.onInit();
-    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
 
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    getPhotoUrl();
+
+    // Check if already linked to google account
+    checkIfLinked();
+
+    // Get hardware info
     if (Platform.isAndroid) {
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      manufacturer.value = androidInfo.manufacturer.toString();
+      androidVersion.value = androidInfo.version.release.toString();
+      bootloader.value = androidInfo.bootloader.toString();
+      board.value = androidInfo.board.toString();
+      modelName.value = androidInfo.model.toString();
+      display.value = androidInfo.display.toString();
+      device.value = androidInfo.device.toString();
+      board.value = androidInfo.hardware.toString();
+      hardware.value = androidInfo.board.toString();
+      isPhysicalDevice.value = androidInfo.isPhysicalDevice;
       productName.value = androidInfo.product.toString().toUpperCase();
       brandName.value = androidInfo.brand.toString().toCapitalized();
     } else if (Platform.isIOS) {
@@ -44,18 +63,131 @@ class HomeController extends GetxController {
     getLocation();
   }
 
-  void onClosed() {
-    streamSubscription.cancel();
+  @override
+  void onReady() {
+    Future.delayed(const Duration(seconds: 2), () {
+      // Get the current user
+      getMyDebiturInput(sort);
+    });
+    super.onReady();
   }
 
+  // Initialize firebase auth
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  // When the controller is closed, cancel the subscription
+  // void onClosed() {
+  //   streamSubscription.cancel();
+  // }
+
+  // Get value from shared preferences
+  void getPhotoUrl() async {
+    // Check if signed in with google
+    if (await GoogleSignIn().isSignedIn()) {
+      if (auth.currentUser!.photoURL == null) {
+        for (final UserInfo info in auth.currentUser!.providerData) {
+          if (info.providerId == 'google.com') {
+            profileImage.value = info.photoURL!;
+          }
+        }
+        idUntukFetchInput.value = auth.currentUser!.uid;
+      }
+    } else {
+      SharedPreferences.getInstance().then((prefs) {
+        profileImage.value = prefs.getString('photo')!;
+        idUntukFetchInput.value = prefs.getString('id')!;
+      });
+    }
+  }
+
+  // Check if user is already linked to google account
+  void checkIfLinked() async {
+    final User? user = auth.currentUser;
+    final List<UserInfo> userInfo = user!.providerData;
+    for (final UserInfo info in userInfo) {
+      if (info.providerId == 'google.com') {
+        isLinked.value = true;
+      }
+    }
+  }
+
+  // Logout firebase and google sign in
+  void logout() {
+    AwesomeDialog(
+      context: Get.context!,
+      dialogType: DialogType.question,
+      animType: AnimType.scale,
+      title: 'Logout',
+      desc: 'Are you sure want to logout?',
+      btnCancelOnPress: () {},
+      btnOkOnPress: () async {
+        await FirebaseAuth.instance.signOut();
+
+        // check if user is currently signed in with google
+        if (await GoogleSignIn().isSignedIn()) {
+          await GoogleSignIn().disconnect();
+        }
+      },
+    ).show();
+  }
+
+  // for my input
+  var page = 1;
+  var sort = 'id,ASC';
+  var isMyInputProcessing = false.obs;
+  var isMoreMyInputDataAvailable = true.obs;
+  var listMyInput = List<Datum>.empty(growable: true).obs;
+  ScrollController scrollController = ScrollController();
+
+  // Controller for pageview
+  final PageController controller = PageController();
+
+  // Controller for formKey
+  final formKey = GlobalKey<FormBuilderState>();
+
+  // Bunch of controllers for textfield
+  var uid = TextEditingController();
+  var setPassword = TextEditingController();
+  var email = TextEditingController();
+  var refreshEmail = TextEditingController();
+  var refreshPassword = TextEditingController();
+  var password = TextEditingController();
+  var displayName = TextEditingController();
+  var phoneNumber = TextEditingController();
+  var isEmailVerified = false.obs;
+  var profileImage = ''.obs;
+  var idUntukFetchInput = ''.obs;
+
+  // Variables for device info
+  var androidVersion = ''.obs;
+  var bootloader = ''.obs;
+  var manufacturer = ''.obs;
   var productName = ''.obs;
   var brandName = ''.obs;
+  var modelName = ''.obs;
+  var device = ''.obs;
+  var board = ''.obs;
+  var hardware = ''.obs;
+  var display = ''.obs;
+  var isPhysicalDevice = false.obs;
 
+  // Variables for location
   var latitude = 'Getting latitude'.obs;
   var longtitude = 'Getting longtitude'.obs;
   var address = 'Getting address'.obs;
+
+  // StreamSubscriptioon for location
   late StreamSubscription<Position> streamSubscription;
 
+  // Variables for boolean
+  var isDisplayNameReadOnly = true.obs;
+  var isEmailReadOnly = true.obs;
+  var isPhoneReadOnly = true.obs;
+  var isLinked = false.obs;
+  var isReauthProcessing = false.obs;
+  var isPasswordProcessing = false.obs;
+
+  // Get location
   void getLocation() async {
     /// Determine the current position of the device.
     ///
@@ -139,6 +271,7 @@ class HomeController extends GetxController {
     });
   }
 
+  // Get address from latlang
   Future<void> getAddressFromLatlang(Position position) async {
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
@@ -146,24 +279,400 @@ class HomeController extends GetxController {
     address.value = '${place.locality}, ${place.administrativeArea}';
   }
 
-  // void deviceInfo() async {
-  //   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  // Link google account
+  void linkGoogleAccount() async {
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  //   if (GetPlatform.isAndroid) {
-  //     deviceName = deviceInfo.androidInfo.toString();
-  //   } else if (GetPlatform.isIOS) {
-  //     deviceName = deviceInfo.iosInfo.toString();
-  //   } else if (GetPlatform.isWeb) {
-  //     deviceName = deviceInfo.webBrowserInfo.toString();
+    try {
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      await FirebaseAuth.instance.currentUser!
+          .linkWithCredential(credential)
+          .then((value) {
+        isLinked.value = true;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Account linked successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        // Sign out from google
+        GoogleSignIn().signOut();
+
+        FirebaseAuthException exception = error as FirebaseAuthException;
+
+        if (exception.code == 'credential-already-in-use') {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error',
+            desc: 'The account already exists with a different credential.',
+            btnOkOnPress: () {},
+          ).show();
+        }
+
+        if (exception.code == 'email-already-in-use') {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error',
+            desc: 'The email address is already in use by another account.',
+            btnOkOnPress: () {},
+          ).show();
+        }
+
+        if (exception.code == 'invalid-credential') {
+          AwesomeDialog(
+            context: Get.context!,
+            dialogType: DialogType.error,
+            animType: AnimType.scale,
+            title: 'Error',
+            desc: 'The supplied auth credential is malformed or has expired.',
+            btnOkOnPress: () {},
+          ).show();
+        }
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+
+      // Sign out from google sign in
+      await GoogleSignIn().signOut();
+
+      if (exception.code == 'account-exists-with-different-credential') {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: 'The account already exists with a different credential.',
+          btnOkOnPress: () {},
+        ).show();
+      } else if (exception.code == 'invalid-credential') {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: 'Error occurred while accessing credentials. Try again.',
+          btnOkOnPress: () {},
+        ).show();
+      }
+    }
+  }
+
+  // Unlink google account
+  void unlinkGoogleAccount() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.unlink('google.com').then(
+          (value) {
+        isLinked.value = false;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Account unlinked successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: error.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  // Reauthenticate user
+  void reauthenticate() async {
+    // Get current credentials
+    isReauthProcessing(true);
+    var credential = EmailAuthProvider.credential(
+      email: refreshEmail.value.text,
+      password: refreshPassword.value.text,
+    );
+
+    try {
+      await FirebaseAuth.instance.currentUser!
+          .reauthenticateWithCredential(credential)
+          .then((value) {
+        isReauthProcessing(false);
+        clearReauth();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Reauthenticate successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        isReauthProcessing(false);
+        clearReauth();
+
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: error.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      isReauthProcessing(false);
+      clearReauth();
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  // Set Password
+  void setPasswordFun() async {
+    isPasswordProcessing(true);
+    try {
+      await FirebaseAuth.instance.currentUser!
+          .updatePassword(setPassword.value.text)
+          .then((value) {
+        isPasswordProcessing(false);
+        clearSetPassword();
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Password updated successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        isPasswordProcessing(false);
+        clearSetPassword();
+        FirebaseAuthException exception = error as FirebaseAuthException;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: exception.message.toString(),
+          btnOkOnPress: () async {
+            await FirebaseAuth.instance.signOut();
+            // Check if user sign in with Google Sign In
+            if (await GoogleSignIn().isSignedIn()) {
+              await GoogleSignIn().signOut();
+            }
+          },
+          btnOkText: 'Sign Out',
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      isPasswordProcessing(false);
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  // Verify email
+  void verifyEmail() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification().then(
+          (value) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.success,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Verification email sent successfully',
+          btnOkOnPress: () {},
+        ).show();
+      }, onError: (error) {
+        FirebaseAuthException exception = error as FirebaseAuthException;
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: 'Error',
+          desc: exception.message.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      AwesomeDialog(
+        context: Get.context!,
+        dialogType: DialogType.error,
+        animType: AnimType.scale,
+        title: e.toString(),
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
+  // Change Profile Picture
+  // void changeAvatarUrl() async {
+  //   try {
+  //     await FirebaseAuth.instance.currentUser!
+  //         .updatePhotoURL(avatarUrl.value.text)
+  //         .then((value) {
+  //       AwesomeDialog(
+  //         context: Get.context!,
+  //         dialogType: DialogType.success,
+  //         animType: AnimType.scale,
+  //         title: 'Success',
+  //         desc: 'Profile picture updated successfully',
+  //         btnOkOnPress: () {},
+  //       ).show();
+  //     }, onError: (error) {
+  //       FirebaseAuthException exception = error as FirebaseAuthException;
+  //       AwesomeDialog(
+  //         context: Get.context!,
+  //         dialogType: DialogType.error,
+  //         animType: AnimType.scale,
+  //         title: 'Error',
+  //         desc: exception.message.toString(),
+  //         btnOkOnPress: () {},
+  //       ).show();
+  //     });
+  //   } catch (e) {
+  //     FirebaseAuthException exception = e as FirebaseAuthException;
+  //     AwesomeDialog(
+  //       context: Get.context!,
+  //       dialogType: DialogType.error,
+  //       animType: AnimType.scale,
+  //       title: e.toString(),
+  //       desc: exception.message.toString(),
+  //       btnOkOnPress: () {},
+  //     ).show();
   //   }
   // }
 
-  Future<String> img = Nekos().avatar();
+  // Verify phone number
+  void verifyPhoneNumber() async {
+    await FirebaseAuth.instance.verifyPhoneNumber(
+      phoneNumber: '+62${phoneNumber.value.text}',
+      verificationCompleted: (PhoneAuthCredential credential) async {
+        await FirebaseAuth.instance.signInWithCredential(credential);
+      },
+      verificationFailed: (FirebaseAuthException e) {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.scale,
+          title: e.toString(),
+          desc: e.message.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      },
+      codeSent: (String verificationId, int? resendToken) async {
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.INFO,
+          animType: AnimType.scale,
+          title: 'Success',
+          desc: 'Verification code sent successfully',
+          btnOkOnPress: () {},
+        ).show();
+        // Get.toNamed(Routes.VERIFY_PHONE, arguments: {
+        //   'verificationId': verificationId,
+        //   'phoneNumber': '+62' + phoneNumber.value.text,
+        // });
+      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
+    );
+  }
 
-  final faker = Faker.instance;
+  void getMyDebiturInput(String sort) async {
+    try {
+      isMoreMyInputDataAvailable(false);
+      isMyInputProcessing(true);
+      DebiturInputtedByProvider()
+          .fetchMyInputtedDebitur(page, sort, idUntukFetchInput.value)
+          .then((resp) {
+        isMyInputProcessing(false);
+        listMyInput.clear();
+        listMyInput.addAll(resp);
+      }, onError: (error) {
+        isMyInputProcessing(false);
+        Get.snackbar('Error', error.toString());
+      });
+    } catch (e) {
+      isMyInputProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
 
-  RxBool isDarkModeEnabled = false.obs;
+  void getMoreMyDebiturInput(String sort) {
+    try {
+      DebiturInputtedByProvider()
+          .fetchMyInputtedDebitur(page, sort, idUntukFetchInput.value)
+          .then((resp) {
+        if (resp.isNotEmpty) {
+          isMoreMyInputDataAvailable(true);
+        } else {
+          isMoreMyInputDataAvailable(false);
+          debugPrint('No more data');
+        }
+        listMyInput.addAll(resp);
+      }, onError: (error) {
+        Get.snackbar('Error', error.toString());
+      });
+    } catch (e) {
+      Get.snackbar('Error', e.toString());
+    }
+  }
 
+  void paginateMyInput(String sort) {
+    scrollController.addListener(() {
+      // Scroll listener
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        page++;
+        getMoreMyDebiturInput(sort);
+      }
+    });
+  }
+
+  // Greeting
   String greeting() {
     var hour = DateTime.now().hour;
     if (hour < 10) {
@@ -181,23 +690,17 @@ class HomeController extends GetxController {
   String dateNow() {
     var date = DateTime.now();
     // Format date to indonesia format with days, month and year
-    var format = DateFormat('EEEE, dd MMMM yyyy');
+    var format = DateFormat('dd MMMM yyyy');
     return format.format(date);
   }
 
-  // final Future<SharedPreferences> initPref = SharedPreferences.getInstance();
+  void clearReauth() {
+    formKey.currentState?.fields['refresh-password']?.reset();
+    refreshPassword.clear();
+  }
 
-  // saveThemeStatus() async {
-  //   SharedPreferences pref = await initPref;
-  //   pref.setBool('theme', isDarkModeEnabled.value);
-  // }
-
-  // _getThemeStatus() async {
-  //   var isLight = initPref.then((SharedPreferences prefs) {
-  //     return prefs.getBool('theme') ?? true;
-  //   }).obs;
-  //   isDarkModeEnabled.value = (await isLight.value);
-  //   Get.changeThemeMode(
-  //       isDarkModeEnabled.value ? ThemeMode.dark : ThemeMode.light);
-  // }
+  void clearSetPassword() {
+    formKey.currentState?.fields['set-password']?.reset();
+    setPassword.clear();
+  }
 }

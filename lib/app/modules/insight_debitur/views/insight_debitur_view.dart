@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/constant.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -173,7 +174,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                 ),
                               )
                             : Text(
-                                'Di-input oleh ${controller.insightDebitur.value.createdBy ?? 'Admin'} pada ${DateFormat('dd MMMM yyyy').format(
+                                'Di-input oleh ${auth.currentUser?.displayName ?? 'Admin'} pada ${DateFormat('dd MMMM yyyy').format(
                                   DateTime.parse(controller
                                       .insightDebitur.value.tglSekarang
                                       .toString()),

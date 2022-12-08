@@ -1,10 +1,10 @@
 // 🐦 Flutter imports:
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:faker_dart/faker_dart.dart';
 import 'package:get/get.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
@@ -17,6 +17,8 @@ class Greeting extends StatelessWidget {
   Greeting({Key? key}) : super(key: key);
 
   final controller = Get.put(HomeController());
+
+  final account = FirebaseAuth.instance.currentUser?.displayName ?? 'User';
 
   @override
   Widget build(BuildContext context) {
@@ -49,32 +51,51 @@ class Greeting extends StatelessWidget {
           ),
           child: Row(
             children: [
-              FutureBuilder(
-                future: controller.img,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Shimmer(
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.white,
-                          Colors.grey,
-                        ],
+              // FutureBuilder(
+              //   future: controller.img,
+              //   builder: (context, snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.waiting) {
+              //       return const Shimmer(
+              //         gradient: LinearGradient(
+              //           colors: [
+              //             Colors.white,
+              //             Colors.grey,
+              //           ],
+              //         ),
+              //         child: CircleAvatar(
+              //           radius: 30,
+              //           backgroundColor: Colors.white,
+              //         ),
+              //       );
+              //     } else {
+              //       return CircleAvatar(
+              //         radius: 30,
+              //         backgroundImage: NetworkImage(
+              //           snapshot.data.toString(),
+              //         ),
+              //       );
+              //     }
+              //   },
+              // ),
+              Obx(() => CircleAvatar(
+                    radius: 30,
+                    child: CachedNetworkImage(
+                      imageUrl: controller.profileImage.toString(),
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                       ),
-                      child: CircleAvatar(
-                        radius: 30,
-                        backgroundColor: Colors.white,
-                      ),
-                    );
-                  } else {
-                    return CircleAvatar(
-                      radius: 30,
-                      backgroundImage: NetworkImage(
-                        snapshot.data.toString(),
-                      ),
-                    );
-                  }
-                },
-              ),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  )),
               const SizedBox(
                 width: 15,
               ),
@@ -91,9 +112,7 @@ class Greeting extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    controller.faker.name.firstName(
-                      gender: Gender.female,
-                    ),
+                    account,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.normal,

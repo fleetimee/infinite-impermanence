@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/constant.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -23,7 +24,6 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Input Debitur'),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -56,7 +56,16 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  Visibility(
+                    visible: false,
+                    child: FormBuilderTextField(
+                      name: 'id',
+                      readOnly: true,
+                      controller: controller.penginput.value =
+                          TextEditingController(text: auth.currentUser!.uid),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(

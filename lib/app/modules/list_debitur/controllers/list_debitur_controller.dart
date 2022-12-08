@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/constant.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -55,6 +56,16 @@ class ListDebiturController extends GetxController {
 
   // Trigger reload with data change with Observable
   var isDataProcessing = false.obs;
+
+  // Check if uid is same with current user
+  var isSameUser = false.obs;
+  void checkSameUser(String uid) {
+    if (uid == auth.currentUser?.uid) {
+      isSameUser(true);
+    } else {
+      isSameUser(false);
+    }
+  }
 
   // Pagination variable
   ScrollController scrollController = ScrollController();

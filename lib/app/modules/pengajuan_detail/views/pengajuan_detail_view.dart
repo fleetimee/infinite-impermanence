@@ -64,7 +64,6 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
-                          color: Colors.black54,
                         ),
                       ),
                       Obx(
@@ -145,39 +144,81 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                           ],
                         ),
                       )),
-                  Obx(() => Container(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: Text(
-                                'Pemutus',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 17,
-                                ),
+                  Obx(
+                    () => Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Pemutus',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
                               ),
                             ),
-                            controller.isPenganjuanDetailLoading.value
-                                ? const Text('Loading...')
-                                : Text(
-                                    controller.pengajuanDetail.value.user![0]
-                                        .displayName!,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 17,
-                                    ),
+                          ),
+                          controller.isPenganjuanDetailLoading.value
+                              ? const Text('Loading...')
+                              : Text(
+                                  controller.pengajuanDetail.value.user![0]
+                                      .displayName!,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 17,
                                   ),
-                          ],
-                        ),
-                      )),
+                                ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
           ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            child: GFButton(
+              onPressed: () {
+                Get.dialog(
+                  AlertDialog(
+                    icon: const Icon(Icons.info_outline),
+                    title: const Text('Detail'),
+                    content: Obx(
+                      () => controller.isPenganjuanDetailLoading.value
+                          ? const Text('Loading...')
+                          : Text(
+                              controller.pengajuanDetail.value.status!,
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                              ),
+                            ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              text: 'Detail',
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+              elevation: 5,
+              fullWidthButton: true,
+              size: GFSize.LARGE,
+              color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
+            ),
+          ),
           Obx(() => Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: ListView(
                   children: [
                     controller.pengajuanDetail.value.status == 'PENDING'
                         ? // Initial

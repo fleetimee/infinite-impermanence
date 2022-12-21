@@ -7,6 +7,7 @@ import 'dart:io';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/search/search.provider.dart';
 import 'package:akm/app/data/provider/user/inputted_debitur.provider.dart';
+import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
 import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
 import 'package:akm/app/models/search/search.model.dart' as search;
 
@@ -71,6 +72,7 @@ class HomeController extends GetxController {
     Future.delayed(const Duration(seconds: 2), () {
       // Get the current user
       getMyDebiturInput(sort);
+      getMySubmission();
     });
     super.onReady();
   }
@@ -141,6 +143,10 @@ class HomeController extends GetxController {
   var isMoreMyInputDataAvailable = true.obs;
   var listMyInput = List<Datum>.empty(growable: true).obs;
   ScrollController scrollController = ScrollController();
+
+  // for my submission
+  var isMySubmissionProcessing = false.obs;
+  List listMySubmission = <Pengajuan>[].obs;
 
   // Controller for pageview
   final PageController controller = PageController();
@@ -672,6 +678,7 @@ class HomeController extends GetxController {
     );
   }
 
+  // Get inputted debitur
   void getMyDebiturInput(String sort) async {
     try {
       isMoreMyInputDataAvailable(false);
@@ -721,6 +728,28 @@ class HomeController extends GetxController {
         getMoreMyDebiturInput(sort);
       }
     });
+  }
+
+  // Get inputted submission
+  void getMySubmission() async {
+    try {
+      isMySubmissionProcessing(true);
+      MySubmissionProvider().fetchMyPengajuan(idUntukFetchInput.value).then(
+          (resp) {
+        isMySubmissionProcessing(false);
+        final finalList = resp.pengajuan?.toList();
+
+        listMySubmission.clear();
+
+        listMySubmission = finalList ?? [];
+      }, onError: (error) {
+        isMySubmissionProcessing(false);
+        Get.snackbar('Error', error.toString());
+      });
+    } catch (e) {
+      isMySubmissionProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
   }
 
   // Greeting

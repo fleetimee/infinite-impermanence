@@ -105,6 +105,7 @@ dependencies:
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
   terbilang_id: ^0.1.0
+  timeline_tile: ^2.0.0
   url_launcher: ^6.1.7
   vector_math: null
   wave: ^0.2.2

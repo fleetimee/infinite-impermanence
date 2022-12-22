@@ -472,7 +472,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HOME_REVIEWER,
-      page: () => const HomeReviewerView(),
+      page: () => HomeReviewerView(),
       binding: HomeReviewerBinding(),
     ),
   ];

@@ -57,16 +57,15 @@ class LoginPageController extends GetxController {
             claims.claims!['pengutus'] == false) {
           debugPrint('User is signed in! and is analis only');
           Get.offAllNamed(Routes.HOME);
-        } else if (claims.claims!['analis'] == false &&
+        } else if (claims.claims!['reviewer'] == true &&
             claims.claims!['admin'] == false &&
-            claims.claims!['reviewer'] == true &&
+            claims.claims!['analis'] == false &&
             claims.claims!['pengutus'] == false) {
           debugPrint('User is signed in! and is reviewer only');
           Get.offAllNamed(Routes.HOME_REVIEWER);
         } else {
           // check shared preferences if user already login
           final prefs = await SharedPreferences.getInstance();
-
           // if user already login then route to dashboard page
           if (prefs.getString('role') == 'analis') {
             debugPrint('User is signed in! and already choose analis role');
@@ -74,10 +73,10 @@ class LoginPageController extends GetxController {
           } else if (prefs.getString('role') == 'reviewer') {
             debugPrint('User is signed in! and already choose reviewer role');
             Get.offAllNamed(Routes.HOME_REVIEWER);
+          } else {
+            debugPrint('User is signed in! but role is null');
+            Get.offAllNamed(Routes.GATE);
           }
-
-          // If user is not analis then route to dashboard page
-
         }
       }
     }

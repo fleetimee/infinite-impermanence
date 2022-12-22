@@ -62,6 +62,7 @@ class Datum {
     this.progress,
     this.userId,
     this.user,
+    this.pengajuan,
     this.inputKeuangan,
     this.createdBy,
   });
@@ -73,6 +74,7 @@ class Datum {
   String? ktp1;
   int? umur;
   DateTime? tglSekarang;
+  List<Pengajuan>? pengajuan;
   String? progress;
   String? userId;
   // this is from debtor sebelah
@@ -93,6 +95,10 @@ class Datum {
         progress: json["progress"] ?? null,
         userId: json["userId"] ?? null,
         user: json["user"] == null ? null : User.fromJson(json["user"]),
+        pengajuan: json["pengajuan"] == null
+            ? null
+            : List<Pengajuan>.from(
+                json["pengajuan"].map((x) => Pengajuan.fromJson(x))),
         createdBy: json["createdBy"],
         inputKeuangan: json["inputKeuangan"] == null
             ? null
@@ -112,8 +118,51 @@ class Datum {
         "progress": progress ?? null,
         "userId": userId ?? null,
         "user": user == null ? null : user?.toJson(),
+        "pengajuan": pengajuan == null
+            ? null
+            : List<dynamic>.from(pengajuan!.map((x) => x.toJson())),
         "createdBy": createdBy,
         "inputKeuangan": inputKeuangan == null ? null : inputKeuangan?.toJson(),
+      };
+}
+
+class Pengajuan {
+  Pengajuan({
+    this.id,
+    this.status,
+    this.tglSubmit,
+    this.tglReview,
+    this.debiturId,
+  });
+
+  String? id;
+  String? status;
+  DateTime? tglSubmit;
+  DateTime? tglReview;
+  int? debiturId;
+
+  factory Pengajuan.fromJson(Map<String, dynamic> json) => Pengajuan(
+        id: json["id"] ?? null,
+        status: json["status"] ?? null,
+        tglSubmit: json["tgl_submit"] == null
+            ? null
+            : DateTime.parse(json["tgl_submit"]),
+        tglReview: json["tgl_review"] == null
+            ? null
+            : DateTime.parse(json["tgl_review"]),
+        debiturId: json["debiturId"] ?? null,
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "status": status ?? null,
+        "tgl_submit": tglSubmit == null
+            ? null
+            : "${tglSubmit?.year.toString().padLeft(4, '0')}-${tglSubmit?.month.toString().padLeft(2, '0')}-${tglSubmit?.day.toString().padLeft(2, '0')}",
+        "tgl_review": tglReview == null
+            ? null
+            : "${tglReview?.year.toString().padLeft(4, '0')}-${tglReview?.month.toString().padLeft(2, '0')}-${tglReview?.day.toString().padLeft(2, '0')}",
+        "debiturId": debiturId ?? null,
       };
 }
 

@@ -8,7 +8,7 @@
     "method": "POST",
     "sortNum": 720000,
     "created": "2022-12-01T20:28:47.355Z",
-    "modified": "2022-12-08T19:12:27.058Z",
+    "modified": "2022-12-09T01:24:43.077Z",
     "headers": [
       {
         "name": "Accept",
@@ -33,7 +33,7 @@
       "form": [
         {
           "name": "email",
-          "value": "test1@gmail.com"
+          "value": "sonia@gmail.com"
         },
         {
           "name": "password",
@@ -41,7 +41,7 @@
         },
         {
           "name": "displayName",
-          "value": "Novian Clone 1"
+          "value": "Test User"
         },
         {
           "name": "phoneNumber",
@@ -161,11 +161,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-12-02T12:49:21.437Z",
-    "modified": "2022-12-08T20:47:04.846Z",
+    "modified": "2022-12-09T01:46:37.820Z",
     "headers": [],
     "params": [
       {
@@ -181,7 +181,6 @@
       {
         "name": "fields",
         "value": "peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId",
-        "isDisabled": true,
         "isPath": false
       },
       {
@@ -254,11 +253,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/16?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
+    "url": "{{baseUrl}}api/v1/debiturs/22?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-12-02T12:49:21.440Z",
-    "modified": "2022-12-07T07:25:48.332Z",
+    "modified": "2022-12-09T01:46:58.120Z",
     "headers": [],
     "params": [
       {
@@ -1449,11 +1448,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "441a228d-423a-4749-be19-2b42bd098312",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/users/8001a68f-9d1e-4ec5-9a4d-ebe61c41107f",
+    "url": "{{baseUrl}}api/v1/users/d58bf452-4bee-4771-ae14-62547b2aa1fe",
     "method": "DELETE",
     "sortNum": 980000,
     "created": "2022-12-07T06:53:05.931Z",
-    "modified": "2022-12-07T07:14:08.396Z",
+    "modified": "2022-12-08T23:32:42.420Z",
     "headers": [],
     "params": [],
     "tests": []

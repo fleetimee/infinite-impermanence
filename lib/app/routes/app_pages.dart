@@ -88,6 +88,10 @@ import '../modules/media/bindings/media_binding.dart';
 import '../modules/media/views/media_view.dart';
 import '../modules/media_docs/bindings/media_docs_binding.dart';
 import '../modules/media_docs/views/media_docs_view.dart';
+import '../modules/pengajuan_detail/bindings/pengajuan_detail_binding.dart';
+import '../modules/pengajuan_detail/views/pengajuan_detail_view.dart';
+import '../modules/pengajuan_submit_analis/bindings/pengajuan_submit_analis_binding.dart';
+import '../modules/pengajuan_submit_analis/views/pengajuan_submit_analis_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
@@ -446,6 +450,16 @@ class AppPages {
       name: _Paths.INTRO_SCREEN,
       page: () => const IntroScreenView(),
       binding: IntroScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGAJUAN_DETAIL,
+      page: () => const PengajuanDetailView(),
+      binding: PengajuanDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGAJUAN_SUBMIT_ANALIS,
+      page: () => PengajuanSubmitAnalisView(),
+      binding: PengajuanSubmitAnalisBinding(),
     ),
   ];
 }

@@ -83,6 +83,8 @@ abstract class Routes {
   static const MEDIA_DOCS = _Paths.MEDIA_DOCS;
   static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
   static const INTRO_SCREEN = _Paths.INTRO_SCREEN;
+  static const PENGAJUAN_DETAIL = _Paths.PENGAJUAN_DETAIL;
+  static const PENGAJUAN_SUBMIT_ANALIS = _Paths.PENGAJUAN_SUBMIT_ANALIS;
 }
 
 abstract class _Paths {
@@ -164,4 +166,6 @@ abstract class _Paths {
   static const MEDIA_DOCS = '/media-docs';
   static const LOGIN_PAGE = '/login-page';
   static const INTRO_SCREEN = '/intro-screen';
+  static const PENGAJUAN_DETAIL = '/pengajuan-detail';
+  static const PENGAJUAN_SUBMIT_ANALIS = '/pengajuan-submit-analis';
 }

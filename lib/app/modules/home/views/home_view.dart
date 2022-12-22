@@ -1148,8 +1148,7 @@ class HomeView extends GetView<HomeController> {
                                             ?.toIso8601String();
                                         final DateTime prevDate =
                                             DateTime.parse(prevDateString!);
-                                        isSameDate = dateString!
-                                            .isSameMomentAs(prevDate);
+                                        isSameDate = dateString! == prevDate;
                                       }
 
                                       if (index == 0 || !(isSameDate)) {
@@ -1297,13 +1296,66 @@ class HomeView extends GetView<HomeController> {
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),
+                                            subTitle: controller
+                                                        .listMySubmission[index]
+                                                        .status ==
+                                                    'PENDING'
+                                                ? const Text(
+                                                    'Status : Pending',
+                                                    style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  )
+                                                : controller
+                                                            .listMySubmission[
+                                                                index]
+                                                            .status ==
+                                                        'DIREVIEW'
+                                                    ? const Text(
+                                                        'Status : Sedang Direview',
+                                                        style: TextStyle(
+                                                          color: Colors.yellow,
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      )
+                                                    : controller
+                                                                .listMySubmission[
+                                                                    index]
+                                                                .status ==
+                                                            'DITERIMA'
+                                                        ? const Text(
+                                                            'Status : Diterima',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                          )
+                                                        : const Text(
+                                                            'Status : Belum Diverifikasi',
+                                                            style: TextStyle(
+                                                              color: Colors.red,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400,
+                                                            ),
+                                                          ),
                                             icon: GFButton(
                                               onPressed: (() {
-                                                // Get.toNamed(
-                                                //     '/detail-submission',
-                                                //     arguments: controller
-                                                //         .listMySubmission[
-                                                //             index]);
+                                                Get.toNamed(
+                                                    Routes.PENGAJUAN_DETAIL,
+                                                    arguments: controller
+                                                        .listMySubmission[index]
+                                                        .id);
                                               }),
                                               text: 'Detail',
                                               color: Colors.blue,

@@ -92,58 +92,70 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
               elevation: 5,
               child: Column(
                 children: [
-                  Obx(() => Container(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: Text(
-                                'Analis',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 17,
-                                ),
+                  Obx(
+                    () => Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Analis',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
                               ),
                             ),
-                            controller.isPenganjuanDetailLoading.value
-                                ? const Text('Loading...')
-                                : Text(
-                                    controller.pengajuanDetail.value.user![0]
-                                        .displayName!,
+                          ),
+                          controller.isPenganjuanDetailLoading.value
+                              ? const Text('Loading...')
+                              : Text(
+                                  controller.pengajuanDetail.value.user![0]
+                                      .displayName!,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 17,
+                                  ),
+                                ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Obx(
+                    () => Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            width: 100,
+                            child: Text(
+                              'Reviewer',
+                              style: GoogleFonts.poppins(
+                                fontSize: 17,
+                              ),
+                            ),
+                          ),
+                          controller.isPenganjuanDetailLoading.value
+                              ? const Text('Loading...')
+                              : SizedBox(
+                                  width: 120,
+                                  child: Text(
+                                    // ignore: prefer_is_empty
+                                    controller.pengajuanDetail.value.user!
+                                                .length <
+                                            2
+                                        ? '-'
+                                        : controller.pengajuanDetail.value
+                                            .user![1].displayName!,
                                     style: GoogleFonts.poppins(
                                       fontSize: 17,
                                     ),
                                   ),
-                          ],
-                        ),
-                      )),
-                  Obx(() => Container(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              width: 100,
-                              child: Text(
-                                'Reviewer',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 17,
                                 ),
-                              ),
-                            ),
-                            controller.isPenganjuanDetailLoading.value
-                                ? const Text('Loading...')
-                                : Text(
-                                    controller.pengajuanDetail.value.user![0]
-                                        .displayName!,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                          ],
-                        ),
-                      )),
+                        ],
+                      ),
+                    ),
+                  ),
                   Obx(
                     () => Container(
                       padding: const EdgeInsets.all(10),
@@ -161,11 +173,13 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                           ),
                           controller.isPenganjuanDetailLoading.value
                               ? const Text('Loading...')
-                              : Text(
-                                  controller.pengajuanDetail.value.user![0]
-                                      .displayName!,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 17,
+                              : SizedBox(
+                                  width: 120,
+                                  child: Text(
+                                    '-',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
                         ],

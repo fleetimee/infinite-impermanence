@@ -458,7 +458,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PENGAJUAN_SUBMIT_ANALIS,
-      page: () => const PengajuanSubmitAnalisView(),
+      page: () => PengajuanSubmitAnalisView(),
       binding: PengajuanSubmitAnalisBinding(),
     ),
   ];

@@ -911,7 +911,11 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                               ),
                               child: GFButton(
                                   onPressed: () {
-                                    Get.toNamed(Routes.PENGAJUAN_SUBMIT_ANALIS);
+                                    Get.toNamed(
+                                      Routes.PENGAJUAN_SUBMIT_ANALIS,
+                                      arguments:
+                                          controller.insightDebitur.value,
+                                    );
                                   },
                                   text: 'Kirim Pengajuan',
                                   textStyle: const TextStyle(

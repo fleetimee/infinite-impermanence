@@ -92,31 +92,14 @@ class PengajuanSubmitAnalisView
                     asyncItems: (filter) {
                       return _getItems();
                     },
-
-                    dropdownBuilder: (context, selectedItem) {
-                      return Container(
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          selectedItem ?? 'Pilih Reviewer',
-                          style: const TextStyle(color: Colors.black),
-                        ),
-                      );
-                    },
-                    // Customize dropdown text
-
                     clearButtonProps: const ClearButtonProps(
                       icon: Icon(Icons.clear),
                       color: Colors.red,
                     ),
                     itemAsString: (item) {
                       // hide the uid from screen
-                      return item.split(' - ')[0];
+                      return item.split(':')[0];
                     },
-
                     onChanged: (value) {
                       debugPrint('value: $value');
                     },
@@ -124,6 +107,7 @@ class PengajuanSubmitAnalisView
                       border: // no border
                           InputBorder.none,
                       prefixIcon: Icon(Icons.person),
+                      hintText: 'Pilih Reviewer',
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -143,6 +127,7 @@ class PengajuanSubmitAnalisView
                     format: DateFormat('dd-MM-yyyy'),
                     resetIcon: const Icon(Icons.clear),
                     decoration: const InputDecoration(
+                      hintText: 'Pilih Tanggal Pengajuan',
                       prefixIcon: Icon(Icons.date_range),
                       suffixIcon: Icon(Icons.arrow_drop_down),
                       border: // no border
@@ -151,6 +136,31 @@ class PengajuanSubmitAnalisView
                       ),
                     ),
                   ),
+                  // const SizedBox(height: 16),
+                  // const Text(
+                  //   'Self Review ?',
+                  //   style: TextStyle(
+                  //     fontSize: 16,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+                  // FormBuilderRadioGroup(
+                  //   name: 'selfReview',
+                  //   options: const [
+                  //     FormBuilderFieldOption(
+                  //       value: 'Ya',
+                  //       child: Text('Ya'),
+                  //     ),
+                  //     FormBuilderFieldOption(
+                  //       value: 'Tidak',
+                  //       child: Text('Tidak'),
+                  //     ),
+                  //   ],
+                  //   decoration: const InputDecoration(
+                  //     border: // no border
+                  //         InputBorder.none,
+                  //   ),
+                  // ),
                 ],
               ),
               Column(

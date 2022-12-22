@@ -87,7 +87,46 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
             ),
           ),
           Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Card(
+              child: Obx(
+                () => Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 100,
+                        child: Text(
+                          'Debitur',
+                          style: GoogleFonts.poppins(
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
+                      controller.isPenganjuanDetailLoading.value
+                          ? const Text('Loading...')
+                          : SizedBox(
+                              width: 120,
+                              child: Text(
+                                controller
+                                    .pengajuanDetail.value.debitur!.peminjam1!,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Card(
               elevation: 5,
               child: Column(
@@ -189,6 +228,9 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                 ],
               ),
             ),
+          ),
+          const SizedBox(
+            height: 5,
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12),

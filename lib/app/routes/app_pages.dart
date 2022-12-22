@@ -26,8 +26,12 @@ import '../modules/gallery_file/bindings/gallery_file_binding.dart';
 import '../modules/gallery_file/views/gallery_file_view.dart';
 import '../modules/gallery_image/bindings/gallery_image_binding.dart';
 import '../modules/gallery_image/views/gallery_image_view.dart';
+import '../modules/gate/bindings/gate_binding.dart';
+import '../modules/gate/views/gate_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home_reviewer/bindings/home_reviewer_binding.dart';
+import '../modules/home_reviewer/views/home_reviewer_view.dart';
 import '../modules/ijin_legitimasi/bindings/ijin_legitimasi_binding.dart';
 import '../modules/ijin_legitimasi/views/edit_ijin_legitimasi_view.dart';
 import '../modules/ijin_legitimasi/views/ijin_legitimasi_view.dart';
@@ -460,6 +464,16 @@ class AppPages {
       name: _Paths.PENGAJUAN_SUBMIT_ANALIS,
       page: () => PengajuanSubmitAnalisView(),
       binding: PengajuanSubmitAnalisBinding(),
+    ),
+    GetPage(
+      name: _Paths.GATE,
+      page: () => const GateView(),
+      binding: GateBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_REVIEWER,
+      page: () => const HomeReviewerView(),
+      binding: HomeReviewerBinding(),
     ),
   ];
 }

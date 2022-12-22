@@ -1539,6 +1539,42 @@ class HomeView extends GetView<HomeController> {
                           leading: const Icon(Icons.book),
                         ),
                         SettingsTile.navigation(
+                          title: const Text('Change Role'),
+                          description: const Text('Switch to another role'),
+                          onPressed: ((context) async {
+                            // Check if user has multiple customClaims
+                            final customClaims =
+                                await auth.currentUser!.getIdTokenResult();
+
+                            // get total boolean value from map customClaims
+                            var values = customClaims.claims?.values
+                                .where((element) => element == true)
+                                .toList();
+
+                            // check if user has multiple customClaims
+                            if (values!.length > 1) {
+                              // Get value from shared preferences
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+
+                              // delete value from shared preferences
+                              await prefs.remove('role');
+
+                              Get.offAllNamed(Routes.GATE);
+                            } else {
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.INFO,
+                                animType: AnimType.SCALE,
+                                title: 'Huh ?',
+                                desc: 'You only have one role',
+                                btnOkOnPress: () {},
+                              ).show();
+                            }
+                          }),
+                          leading: const Icon(Icons.switch_account_outlined),
+                        ),
+                        SettingsTile.navigation(
                           // logoute
                           leading: const Icon(Icons.logout),
                           title: const Text('Logout'),
@@ -1551,6 +1587,7 @@ class HomeView extends GetView<HomeController> {
                             // clear shared preferences id
                             await prefs.remove('id');
                             await prefs.remove('photo');
+                            await prefs.remove('role');
                             controller.logout();
                           })),
                         )

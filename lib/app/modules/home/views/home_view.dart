@@ -1543,8 +1543,8 @@ class HomeView extends GetView<HomeController> {
                           } else {
                             AwesomeDialog(
                               context: context,
-                              dialogType: DialogType.INFO,
-                              animType: AnimType.SCALE,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.scale,
                               title: 'Huh ?',
                               desc: 'You only have one role',
                               btnOkOnPress: () {},

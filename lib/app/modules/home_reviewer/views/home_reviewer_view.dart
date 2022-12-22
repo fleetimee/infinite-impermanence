@@ -17,6 +17,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controllers/home_reviewer_controller.dart';
 
+// ignore: must_be_immutable
 class HomeReviewerView extends GetView<HomeReviewerController> {
   HomeReviewerView({Key? key}) : super(key: key);
 
@@ -234,8 +235,8 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                           } else {
                             AwesomeDialog(
                               context: context,
-                              dialogType: DialogType.INFO,
-                              animType: AnimType.SCALE,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.scale,
                               title: 'Huh ?',
                               desc: 'You only have one role',
                               btnOkOnPress: () {},

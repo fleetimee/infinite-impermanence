@@ -126,6 +126,15 @@ class HomeController extends GetxController {
       desc: 'Are you sure want to logout?',
       btnCancelOnPress: () {},
       btnOkOnPress: () async {
+        final prefs = await SharedPreferences.getInstance();
+
+        await prefs.setBool('pernahLogin', true);
+
+        // clear shared preferences id
+        await prefs.remove('id');
+        await prefs.remove('photo');
+        await prefs.remove('role');
+
         await FirebaseAuth.instance.signOut();
 
         // check if user is currently signed in with google

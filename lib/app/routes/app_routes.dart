@@ -87,6 +87,7 @@ abstract class Routes {
   static const PENGAJUAN_SUBMIT_ANALIS = _Paths.PENGAJUAN_SUBMIT_ANALIS;
   static const GATE = _Paths.GATE;
   static const HOME_REVIEWER = _Paths.HOME_REVIEWER;
+  static const REVIEWER_SUBMIT = _Paths.REVIEWER_SUBMIT;
 }
 
 abstract class _Paths {
@@ -172,4 +173,5 @@ abstract class _Paths {
   static const PENGAJUAN_SUBMIT_ANALIS = '/pengajuan-submit-analis';
   static const GATE = '/gate';
   static const HOME_REVIEWER = '/home-reviewer';
+  static const REVIEWER_SUBMIT = '/reviewer-submit';
 }

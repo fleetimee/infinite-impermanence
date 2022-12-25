@@ -1074,41 +1074,6 @@ class HomeView extends GetView<HomeController> {
                               }
                             }
                           }),
-                          // Container(
-                          //   padding: const EdgeInsets.all(16),
-                          //   child: Column(
-
-                          //     children: [
-                          //       const Center(
-                          //         child: Text(
-                          //           'Under Construction :(',
-                          //           style: TextStyle(
-                          //             fontSize: 35,
-                          //             fontWeight: FontWeight.w800,
-                          //             color: Colors.white,
-                          //           ),
-                          //         ),
-                          //       ),
-                          //       const SizedBox(
-                          //         height: 30,
-                          //       ),
-                          //       Lottie.asset(
-                          //         'assets/images/home/coming-soon.zip',
-                          //         frameRate: FrameRate.max,
-                          //         fit: BoxFit.cover,
-                          //         repeat: true,
-                          //         errorBuilder: (context, error, stackTrace) {
-                          //           return const Text(
-                          //             'Gagal memuat animasi',
-                          //             style: TextStyle(
-                          //               color: Colors.red,
-                          //             ),
-                          //           );
-                          //         },
-                          //       )
-                          //     ],
-                          //   ),
-                          // ),
                           Obx(() {
                             if (controller.isMySubmissionProcessing.value) {
                               return const Center(
@@ -1440,15 +1405,6 @@ class HomeView extends GetView<HomeController> {
                         }),
                       ),
                       SettingsTile.navigation(
-                        title: const Text('Phone'),
-                        description:
-                            const Text('Add / Verify your phone number'),
-                        onPressed: ((context) {
-                          // showTutorial(context);
-                        }),
-                        leading: const Icon(Icons.phone_android_outlined),
-                      ),
-                      SettingsTile.navigation(
                         title: const Text('Password'),
                         description: const Text('Change / set your password'),
                         onPressed: ((context) {
@@ -1559,14 +1515,6 @@ class HomeView extends GetView<HomeController> {
                         title: const Text('Logout'),
                         description: const Text('Log out of your account'),
                         onPressed: (((context) async {
-                          final prefs = await SharedPreferences.getInstance();
-
-                          await prefs.setBool('pernahLogin', true);
-
-                          // clear shared preferences id
-                          await prefs.remove('id');
-                          await prefs.remove('photo');
-                          await prefs.remove('role');
                           controller.logout();
                         })),
                       )

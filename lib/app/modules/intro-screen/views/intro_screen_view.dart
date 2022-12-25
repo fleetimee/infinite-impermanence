@@ -15,6 +15,7 @@ import '../controllers/intro_screen_controller.dart';
 
 class IntroScreenView extends GetView<IntroScreenController> {
   const IntroScreenView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return FormBuilder(

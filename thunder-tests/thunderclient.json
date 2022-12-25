@@ -576,11 +576,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "cfa639f0-01ff-45a0-9c14-286b83e679b1",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/?filter=file||$contL||pdf",
+    "url": "{{baseUrl}}api/v1/debiturs/22/uploads/?filter=file||$contL||pdf",
     "method": "GET",
     "sortNum": 445000,
     "created": "2022-12-02T12:49:21.454Z",
-    "modified": "2022-12-02T12:49:21.454Z",
+    "modified": "2022-12-24T11:57:42.653Z",
     "headers": [],
     "params": [
       {
@@ -957,11 +957,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "cfa639f0-01ff-45a0-9c14-286b83e679b1",
     "name": "Get Copy",
-    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/?filter=file||$contL||jpg",
+    "url": "{{baseUrl}}api/v1/debiturs/22/uploads/?filter=file||$contL||jpg",
     "method": "GET",
     "sortNum": 667500,
     "created": "2022-12-02T12:49:21.476Z",
-    "modified": "2022-12-02T12:49:21.476Z",
+    "modified": "2022-12-24T11:57:51.217Z",
     "headers": [],
     "params": [
       {
@@ -1290,11 +1290,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "cfa639f0-01ff-45a0-9c14-286b83e679b1",
     "name": "Post",
-    "url": "{{baseUrl}}api/v1/debiturs/1/uploads/",
+    "url": "{{baseUrl}}api/v1/debiturs/23/uploads/",
     "method": "POST",
     "sortNum": 890000,
     "created": "2022-12-02T12:49:21.497Z",
-    "modified": "2022-12-02T12:49:21.497Z",
+    "modified": "2022-12-24T23:52:50.407Z",
     "headers": [],
     "params": [],
     "body": {
@@ -1309,7 +1309,7 @@
       "files": [
         {
           "name": "file",
-          "value": "..\\..\\..\\..\\College\\Pengumpulan Perpus\\4. Pdf Naskah Publikasi\\Publikasi-18.01.4133-Novian Andika.pdf"
+          "value": "c:\\Users\\Novian Andika\\Desktop\\Screenshot 2022-12-21 104616.jpg"
         }
       ]
     },
@@ -1353,11 +1353,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "441a228d-423a-4749-be19-2b42bd098312",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/users",
+    "url": "{{baseUrl}}api/v1/users/",
     "method": "GET",
     "sortNum": 475000,
     "created": "2022-12-02T22:18:24.713Z",
-    "modified": "2022-12-02T22:18:46.496Z",
+    "modified": "2022-12-20T07:57:14.437Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1462,11 +1462,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get Filter By Penginput",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=userId||$eq||e0c43436-0e97-4a81-ba29-e2b907b86144",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=userId||$eq||cd547839-c4bf-40ef-a359-9df2ee008692",
     "method": "GET",
     "sortNum": 210000,
     "created": "2022-12-07T18:10:20.005Z",
-    "modified": "2022-12-07T18:12:09.390Z",
+    "modified": "2022-12-20T07:15:24.302Z",
     "headers": [],
     "params": [
       {
@@ -1502,7 +1502,7 @@
       },
       {
         "name": "filter",
-        "value": "userId||$eq||e0c43436-0e97-4a81-ba29-e2b907b86144",
+        "value": "userId||$eq||cd547839-c4bf-40ef-a359-9df2ee008692",
         "isPath": false
       },
       {
@@ -1578,6 +1578,306 @@
       {
         "name": "fields",
         "value": "peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,no_ktp1,userId",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "16f3ad21-5bb2-4274-a63a-2aa01665346f",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Get all users",
+    "url": "{{baseUrl}}api/v1/firebase-remote",
+    "method": "GET",
+    "sortNum": 990000,
+    "created": "2022-12-15T03:47:37.552Z",
+    "modified": "2022-12-15T04:04:43.592Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "574cd191-9793-4bcd-be51-6a8dd0b80368",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Delete a user",
+    "url": "{{baseUrl}}api/v1/firebase-remote/YQVPqkO6foPK4ssYSpwcvbgtqK62",
+    "method": "DELETE",
+    "sortNum": 1000000,
+    "created": "2022-12-15T03:50:37.210Z",
+    "modified": "2022-12-22T08:24:15.229Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "3ac66aa4-0ecf-4571-96c0-39479b53ac8a",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Update a user",
+    "url": "{{baseUrl}}api/v1/firebase-remote/aabdd11f-c633-4967-82eb-71debb331c73",
+    "method": "PUT",
+    "sortNum": 1010000,
+    "created": "2022-12-15T03:54:40.346Z",
+    "modified": "2022-12-15T06:53:39.017Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"haha@gmail.com\",\n  \"displayName\": \"Zanpakuto\",\n  \"photoUrl\": \"https://aniyuki.com/wp-content/uploads/2022/03/aniyuki-anime-girl-avatar-26.jpg\",\n  \"password\": \"BUGGY227\",\n  \"phoneNumber\": \"+62823193193\",\n  \"disabled\": false,\n  \"emailVerified\": false\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "d680e931-5525-454c-9df8-a50ebd74944f",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Set a user claims",
+    "url": "{{baseUrl}}api/v1/firebase-remote/27e875a0-9aec-4626-8d54-f7f61d5ac21e/set-user-claims",
+    "method": "POST",
+    "sortNum": 1020000,
+    "created": "2022-12-15T03:55:11.701Z",
+    "modified": "2022-12-23T02:36:55.636Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"admin\": true,\n  \"analis\": true,\n  \"reviewer\": true,\n  \"pengutus\": true\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "cbf95433-c84b-4758-9423-b8218b5ba07a",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Get reviewers",
+    "url": "",
+    "method": "GET",
+    "sortNum": 1030000,
+    "created": "2022-12-17T04:40:45.651Z",
+    "modified": "2022-12-17T04:40:45.651Z",
+    "headers": []
+  },
+  {
+    "_id": "fbacb63b-c841-4558-bce6-7c263ffbdc37",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Get reviewers",
+    "url": "{{baseUrl}}api/v1/firebase-remote/reviewers",
+    "method": "GET",
+    "sortNum": 995000,
+    "created": "2022-12-17T04:40:56.648Z",
+    "modified": "2022-12-22T08:18:54.762Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "de326a1d-aa36-4c6c-8860-6c04f0eea985",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Get analis",
+    "url": "{{baseUrl}}api/v1/firebase-remote/analis",
+    "method": "GET",
+    "sortNum": 992500,
+    "created": "2022-12-17T04:49:58.813Z",
+    "modified": "2022-12-17T04:50:46.366Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "13711f78-9229-4942-ac9c-ddc4bf6b034c",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Get admin",
+    "url": "{{baseUrl}}api/v1/firebase-remote/admin",
+    "method": "GET",
+    "sortNum": 991250,
+    "created": "2022-12-17T04:50:31.252Z",
+    "modified": "2022-12-17T04:50:50.335Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "88ea19d9-fe8e-4b35-9aa0-fed83bc2b243",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "d9a0235c-68d6-4377-97eb-8acd5f8f774d",
+    "name": "Get pengutus",
+    "url": "{{baseUrl}}api/v1/firebase-remote/pengutus",
+    "method": "GET",
+    "sortNum": 997500,
+    "created": "2022-12-17T04:50:56.324Z",
+    "modified": "2022-12-17T04:51:12.321Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "94c0b8b4-29b1-4f7a-9ad7-0cc5d2df2e2d",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-pXS4-20221222",
+    "method": "GET",
+    "sortNum": 1040000,
+    "created": "2022-12-19T03:23:05.812Z",
+    "modified": "2022-12-23T21:16:50.990Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "7f325441-d0c1-4dfa-bda6-b278d9a58e81",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/pengajuan",
+    "method": "POST",
+    "sortNum": 1050000,
+    "created": "2022-12-19T03:32:06.460Z",
+    "modified": "2022-12-20T07:42:56.634Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"status\": \"PENDING\",\n  \"tgl_submit\": \"2022-12-09\",\n  \"tgl_review\": \"2022-12-09\",\n  \"user\": [\n    {\n      \"id\": \"cd547839-c4bf-40ef-a359-9df2ee008692\"\n    }\n  ],\n  \"debiturId\": 22\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "28f0a027-b340-4de7-a592-5dad873eeb60",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "f33b7119-aff2-4dcc-accf-f728ede0bf19",
+    "name": "Get",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-skHA-20221219/check-reviewer",
+    "method": "GET",
+    "sortNum": 1060000,
+    "created": "2022-12-19T05:38:58.068Z",
+    "modified": "2022-12-20T04:41:36.603Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "2b018e88-5ac1-4d56-8683-6c3afed7851d",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Patch User",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-FNyt-20221220",
+    "method": "PUT",
+    "sortNum": 1070000,
+    "created": "2022-12-19T07:11:09.367Z",
+    "modified": "2022-12-21T12:58:06.186Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"user\": [\n    {\n      \"id\": \"cd547839-c4bf-40ef-a359-9df2ee008692\"\n    },\n    {\n      \"id\": \"cd547839-c4bf-40ef-a359-9df2ee008692\"\n    },\n    {\n      \"id\": \"cd547839-c4bf-40ef-a359-9df2ee008692\"\n    }\n  ]\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "6f55ee24-3d33-4beb-9dd8-c3eaa96385bd",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Put",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-pXS4-20221222",
+    "method": "PUT",
+    "sortNum": 1080000,
+    "created": "2022-12-19T08:20:32.539Z",
+    "modified": "2022-12-22T06:37:36.244Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"tgl_submit\": \"2022-12-09\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5015ea0f-cbee-45c2-9a74-3d6e741182ef",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "f33b7119-aff2-4dcc-accf-f728ede0bf19",
+    "name": "Post",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-skHA-20221219/check-reviewer",
+    "method": "POST",
+    "sortNum": 1090000,
+    "created": "2022-12-19T08:52:27.738Z",
+    "modified": "2022-12-20T04:43:58.289Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"is_keuangan_approved\": true,\n  \"is_karakter_approved\": true,\n  \"is_agunan_approved\": true,\n  \"is_bisnis_approved\": true,\n  \"is_jenis_usaha_approved\": true\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f7481d25-d69a-4642-86fb-76e56c89ac21",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "f33b7119-aff2-4dcc-accf-f728ede0bf19",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/check-reviewer/1",
+    "method": "DELETE",
+    "sortNum": 1100000,
+    "created": "2022-12-19T12:16:34.617Z",
+    "modified": "2022-12-19T12:16:44.253Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "a6d56465-cd69-4df4-a190-abd8a02d1bb2",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Delete",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-Pr1a-20221219",
+    "method": "DELETE",
+    "sortNum": 1110000,
+    "created": "2022-12-20T07:36:56.767Z",
+    "modified": "2022-12-21T12:49:39.732Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "fe0e6454-d8f5-4285-9470-debb37879d16",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "441a228d-423a-4749-be19-2b42bd098312",
+    "name": "Get user by id",
+    "url": "{{baseUrl}}api/v1/users/cd547839-c4bf-40ef-a359-9df2ee008692",
+    "method": "GET",
+    "sortNum": 597500,
+    "created": "2022-12-20T07:57:20.509Z",
+    "modified": "2022-12-20T07:57:25.622Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "6723947c-5a24-4665-8258-cdc191f1c03a",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "441a228d-423a-4749-be19-2b42bd098312",
+    "name": "Get user by id Copy",
+    "url": "{{baseUrl}}api/v1/users/cd547839-c4bf-40ef-a359-9df2ee008692?fields=pengajuan",
+    "method": "GET",
+    "sortNum": 658750,
+    "created": "2022-12-20T07:57:33.511Z",
+    "modified": "2022-12-23T21:12:51.981Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "fields",
+        "value": "pengajuan",
         "isPath": false
       }
     ],

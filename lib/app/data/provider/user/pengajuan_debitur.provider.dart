@@ -32,4 +32,25 @@ class MySubmissionProvider {
       return Future.error(e);
     }
   }
+
+  Future<UserPengajuan> fetchMyReview(String userId) async {
+    try {
+      final response = await httpClient.get(
+        Uri.parse('${baseUrl}users/$userId?fields=review'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = jsonDecode(response.body);
+        debugPrint(data.toString());
+        return UserPengajuan.fromJson(data);
+      } else {
+        throw Exception('Failed to load pengajuan');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

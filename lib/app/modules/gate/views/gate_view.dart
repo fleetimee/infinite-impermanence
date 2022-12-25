@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -33,6 +34,7 @@ class GateView extends GetView<GateController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Roles and Claims'),
+        centerTitle: true,
       ),
       body: Container(
         width: double.infinity,
@@ -74,53 +76,92 @@ class GateView extends GetView<GateController> {
                         )),
                   ],
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
                 Expanded(
                   child: Obx(() => ListView(
                         children: [
                           controller.customClaims.contains('analis')
-                              ? GFListTile(
-                                  avatar: Lottie.asset(
-                                    'assets/images/home/writing.zip',
-                                    height: 80,
+                              ? Card(
+                                  color: blue200,
+                                  elevation: 5,
+                                  child: GFListTile(
+                                    avatar: Lottie.asset(
+                                      'assets/images/home/writing.zip',
+                                      height: 80,
+                                    ),
+                                    title: const Text(
+                                      'Analis',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                    onTap: () async {
+                                      // Initialize the shared preferences
+                                      final prefs =
+                                          await SharedPreferences.getInstance();
+
+                                      await prefs.setString('role', 'analis');
+
+                                      Get.offAllNamed(Routes.HOME);
+                                    },
                                   ),
-                                  titleText: 'Analis',
-                                  onTap: () async {
-                                    // Initialize the shared preferences
-                                    final prefs =
-                                        await SharedPreferences.getInstance();
-
-                                    await prefs.setString('role', 'analis');
-
-                                    Get.offAllNamed(Routes.HOME);
-                                  },
                                 )
                               : Container(),
+                          // Separate the list tile with divider
+
                           controller.customClaims.contains('reviewer')
-                              ? GFListTile(
-                                  avatar: Lottie.asset(
-                                    'assets/images/home/pengajuan_create.zip',
-                                    height: 80,
+                              ? Card(
+                                  color: blue200,
+                                  elevation: 5,
+                                  child: GFListTile(
+                                    avatar: Lottie.asset(
+                                      'assets/images/home/pengajuan_create.zip',
+                                      height: 80,
+                                    ),
+                                    title: const Text(
+                                      'Reviewer',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                    onTap: () async {
+                                      // Initialize the shared preferences
+                                      final prefs =
+                                          await SharedPreferences.getInstance();
+
+                                      await prefs.setString('role', 'reviewer');
+
+                                      Get.offAllNamed(Routes.HOME_REVIEWER);
+                                    },
                                   ),
-                                  titleText: 'Reviewer',
-                                  onTap: () async {
-                                    // Initialize the shared preferences
-                                    final prefs =
-                                        await SharedPreferences.getInstance();
-
-                                    await prefs.setString('role', 'reviewer');
-
-                                    Get.offAllNamed(Routes.HOME_REVIEWER);
-                                  },
                                 )
                               : Container(),
                           controller.customClaims.contains('pengutus')
-                              ? GFListTile(
-                                  avatar: Lottie.asset(
-                                    'assets/images/home/pengajuan_create.zip',
-                                    height: 80,
+                              ? Card(
+                                  color: blue200,
+                                  elevation: 5,
+                                  child: GFListTile(
+                                    avatar: Lottie.asset(
+                                      'assets/images/home/checked.zip',
+                                      height: 80,
+                                    ),
+                                    title: const Text(
+                                      'Pemutus',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                    listItemTextColor: Colors.white,
+                                    onTap: () {},
                                   ),
-                                  titleText: 'Pengutus',
-                                  onTap: () {},
                                 )
                               : Container(),
                         ],
@@ -130,6 +171,23 @@ class GateView extends GetView<GateController> {
             ),
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          controller.logout();
+        },
+        label: const Text(
+          'Logout',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        isExtended: true,
+        tooltip: 'Logout',
+        elevation: 10,
+        icon: const Icon(Icons.logout),
+        backgroundColor: primaryColor,
       ),
     );
   }

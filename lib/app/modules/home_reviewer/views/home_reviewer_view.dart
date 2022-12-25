@@ -1,19 +1,26 @@
 import 'package:about/about.dart';
 import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/common/waves.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
 import 'package:akm/app/modules/home/views/components/password/password.dart';
 import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wave/config.dart';
+import 'package:wave/wave.dart';
 
 import '../controllers/home_reviewer_controller.dart';
 
@@ -87,9 +94,14 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
     );
   }
 
+  final homeCtrl = Get.put(HomeController());
+
+  final account = FirebaseAuth.instance.currentUser?.displayName ?? 'User';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: DoubleBackToCloseApp(
         snackBar: SnackBar(
           shape: RoundedRectangleBorder(
@@ -107,10 +119,301 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
           controller: controller.controller,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            const Center(
-              child: Text(
-                'HomeReviewerView is working',
-                style: TextStyle(fontSize: 20),
+            SafeArea(
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const GFTypography(
+                      text: 'Reviewer Dashboard',
+                      fontWeight: FontWeight.bold,
+                      type: GFTypographyType.typo1,
+                      textColor: primaryColor,
+                      dividerColor: primaryColor,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Stack(
+                      children: <Widget>[
+                        Container(
+                          height: 90,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 80,
+                          child: WaveWidget(
+                            config: CustomConfig(
+                              colors: WavesSettings.waveColors,
+                              heightPercentages:
+                                  WavesSettings.waveHeightPercentages,
+                              durations: WavesSettings.waveDurations,
+                            ),
+                            waveAmplitude: 10,
+                            size: const Size(double.infinity, double.infinity),
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 25,
+                            vertical: 15,
+                          ),
+                          child: Row(
+                            children: [
+                              // FutureBuilder(
+                              //   future: controller.img,
+                              //   builder: (context, snapshot) {
+                              //     if (snapshot.connectionState == ConnectionState.waiting) {
+                              //       return const Shimmer(
+                              //         gradient: LinearGradient(
+                              //           colors: [
+                              //             Colors.white,
+                              //             Colors.grey,
+                              //           ],
+                              //         ),
+                              //         child: CircleAvatar(
+                              //           radius: 30,
+                              //           backgroundColor: Colors.white,
+                              //         ),
+                              //       );
+                              //     } else {
+                              //       return CircleAvatar(
+                              //         radius: 30,
+                              //         backgroundImage: NetworkImage(
+                              //           snapshot.data.toString(),
+                              //         ),
+                              //       );
+                              //     }
+                              //   },
+                              // ),
+                              Obx(() => CircleAvatar(
+                                    radius: 30,
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          homeCtrl.profileImage.toString(),
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    ),
+                                  )),
+                              const SizedBox(
+                                width: 15,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Selamat ${homeCtrl.greeting()}',
+                                    style: const TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color: secondaryColor,
+                                    ),
+                                  ),
+                                  Text(
+                                    account,
+                                    style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.normal,
+                                      color: secondaryColor,
+                                    ),
+                                  ),
+                                  // Date text now
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          top: 65,
+                          right: 10,
+                          child: Text(
+                            homeCtrl.dateNow(),
+                            style: const TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: secondaryColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const GFTypography(
+                      text: 'Pending',
+                      icon: Icon(
+                        Icons.pending,
+                        color: GFColors.DANGER,
+                      ),
+                      fontWeight: FontWeight.bold,
+                      type: GFTypographyType.typo1,
+                      textColor: primaryColor,
+                      dividerColor: primaryColor,
+                      showDivider: false,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    SizedBox(
+                      height: 350,
+                      child: Card(child: Obx(() {
+                        if (controller.isMyPendingReviewProcessing.value) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        } else {
+                          if (controller.listMyPendingReview.isNotEmpty) {
+                            return ListView.builder(
+                              itemCount: controller.listMyPendingReview.length,
+                              itemBuilder: (context, index) {
+                                return ListTile(
+                                  leading: const Icon(
+                                    Icons.book,
+                                    color: Colors.red,
+                                  ),
+                                  title: Text(
+                                    controller.listMyPendingReview[index].id!,
+                                  ),
+                                  trailing: const Icon(Icons.arrow_forward_ios),
+                                  onTap: () {
+                                    Get.dialog(AlertDialog(
+                                      title: const Text(
+                                        'Detail Review',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      content: const Text(
+                                          'Apa yang ingin anda lakukan terhadap review ini?',
+                                          style: TextStyle(fontSize: 15)),
+                                      actions: [
+                                        GFButton(
+                                          onPressed: () {
+                                            Get.back();
+                                            Get.toNamed(Routes.REVIEWER_SUBMIT,
+                                                arguments: controller
+                                                        .listMyPendingReview[
+                                                    index]);
+                                            // close dialog
+                                          },
+                                          text: 'Review Pengajuan Ini',
+                                          color: GFColors.DARK,
+                                        ),
+                                        GFButton(
+                                          onPressed: () {
+                                            Get.back();
+                                            Get.toNamed(Routes.PENGAJUAN_DETAIL,
+                                                arguments: controller
+                                                    .listMyPendingReview[index]
+                                                    .id!);
+                                          },
+                                          text: 'Lihat Progress',
+                                        )
+                                      ],
+                                    ));
+                                  },
+                                );
+                              },
+                            );
+                          } else {
+                            return const Center(
+                              child: Text(
+                                'Belum ada review yang pending',
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            );
+                          }
+                        }
+                      })),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const GFTypography(
+                      text: 'Completed',
+                      icon: Icon(
+                        Icons.check_circle,
+                        color: GFColors.SUCCESS,
+                      ),
+                      fontWeight: FontWeight.bold,
+                      type: GFTypographyType.typo1,
+                      textColor: primaryColor,
+                      dividerColor: primaryColor,
+                      showDivider: false,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Expanded(
+                      child: Card(
+                        child: Obx(() {
+                          if (controller.isMyCompletedReviewProcessing.value) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          } else {
+                            if (controller.listMyCompletedReview.isNotEmpty) {
+                              return ListView.builder(
+                                itemCount:
+                                    controller.listMyCompletedReview.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    leading: const Icon(
+                                      Icons.book,
+                                      color: Colors.green,
+                                    ),
+                                    title: Text(
+                                      controller
+                                          .listMyCompletedReview[index].id!,
+                                    ),
+                                    trailing:
+                                        const Icon(Icons.arrow_forward_ios),
+                                    onTap: () {
+                                      // Get.toNamed(
+                                      //   Routes.DETAIL_REVIEW,
+                                      //   arguments: controller.listMyCompletedReview[index].id,
+                                      // );
+                                    },
+                                  );
+                                },
+                              );
+                            } else {
+                              return const Center(
+                                child: Text(
+                                  'Belum ada review yang selesai',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              );
+                            }
+                          }
+                        }),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SafeArea(
@@ -251,14 +554,6 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                         title: const Text('Logout'),
                         description: const Text('Log out of your account'),
                         onPressed: (((context) async {
-                          final prefs = await SharedPreferences.getInstance();
-
-                          await prefs.setBool('pernahLogin', true);
-
-                          // clear shared preferences id
-                          await prefs.remove('id');
-                          await prefs.remove('photo');
-                          await prefs.remove('role');
                           controller.logout();
                         })),
                       )

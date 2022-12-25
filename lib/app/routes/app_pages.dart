@@ -98,6 +98,8 @@ import '../modules/pengajuan_submit_analis/bindings/pengajuan_submit_analis_bind
 import '../modules/pengajuan_submit_analis/views/pengajuan_submit_analis_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
+import '../modules/reviewer_submit/bindings/reviewer_submit_binding.dart';
+import '../modules/reviewer_submit/views/reviewer_submit_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
 import '../modules/rugi_laba/views/edit_rugi_laba_view.dart';
 import '../modules/rugi_laba/views/rugi_laba_view.dart';
@@ -474,6 +476,11 @@ class AppPages {
       name: _Paths.HOME_REVIEWER,
       page: () => HomeReviewerView(),
       binding: HomeReviewerBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVIEWER_SUBMIT,
+      page: () => const ReviewerSubmitView(),
+      binding: ReviewerSubmitBinding(),
     ),
   ];
 }

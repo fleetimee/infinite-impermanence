@@ -292,11 +292,11 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:3000/api/v1/auth/",
-    "url": "localhost:3000/api/v1/auth/",
+    "url": "localhost:3000/api/v1/firebase-remote",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-12-02T22:10:33.116Z",
-    "modified": "2022-12-02T22:10:33.116Z",
+    "modified": "2022-12-14T07:00:59.282Z",
     "headers": [],
     "params": [],
     "tests": []

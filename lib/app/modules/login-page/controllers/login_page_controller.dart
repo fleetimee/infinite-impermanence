@@ -34,7 +34,7 @@ class LoginPageController extends GetxController {
     ever(firebaseUser, setInitialScreen);
   }
 
-  void setInitialScreen(User? user) {
+  void setInitialScreen(User? user) async {
     if (user == null) {
       debugPrint('User is currently signed out!');
       Get.offAllNamed(Routes.LOGIN_PAGE);
@@ -47,8 +47,37 @@ class LoginPageController extends GetxController {
         debugPrint('User is signed in! but email and display name is null');
         Get.offAllNamed(Routes.INTRO_SCREEN);
       } else {
-        debugPrint('User is signed in!');
-        Get.offAllNamed(Routes.HOME);
+        // Check user custom claims
+        final claims = await auth.currentUser!.getIdTokenResult();
+
+        // If user is analis then route to analis page
+        if (claims.claims!['analis'] == true &&
+            claims.claims!['admin'] == false &&
+            claims.claims!['reviewer'] == false &&
+            claims.claims!['pengutus'] == false) {
+          debugPrint('User is signed in! and is analis only');
+          Get.offAllNamed(Routes.HOME);
+        } else if (claims.claims!['reviewer'] == true &&
+            claims.claims!['admin'] == false &&
+            claims.claims!['analis'] == false &&
+            claims.claims!['pengutus'] == false) {
+          debugPrint('User is signed in! and is reviewer only');
+          Get.offAllNamed(Routes.HOME_REVIEWER);
+        } else {
+          // check shared preferences if user already login
+          final prefs = await SharedPreferences.getInstance();
+          // if user already login then route to dashboard page
+          if (prefs.getString('role') == 'analis') {
+            debugPrint('User is signed in! and already choose analis role');
+            Get.offAllNamed(Routes.HOME);
+          } else if (prefs.getString('role') == 'reviewer') {
+            debugPrint('User is signed in! and already choose reviewer role');
+            Get.offAllNamed(Routes.HOME_REVIEWER);
+          } else {
+            debugPrint('User is signed in! but role is null');
+            Get.offAllNamed(Routes.GATE);
+          }
+        }
       }
     }
   }

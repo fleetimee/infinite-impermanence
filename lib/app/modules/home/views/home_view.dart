@@ -1,5 +1,5 @@
 // 🐦 Flutter imports:
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, prefer_is_empty
 
 import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
 import 'package:akm/app/modules/home/views/components/password/password.dart';
@@ -88,688 +88,700 @@ class HomeView extends GetView<HomeController> {
       ),
       // drawer: SideMenu(),
       body: DoubleBackToCloseApp(
-          snackBar: SnackBar(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            elevation: 10,
-            content: const Text(
-              'Press again to exit',
-              style: TextStyle(
-                fontSize: 20,
-              ),
+        snackBar: SnackBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 10,
+          content: const Text(
+            'Press again to exit',
+            style: TextStyle(
+              fontSize: 20,
             ),
           ),
-          child: PageView(
-            onPageChanged: (value) => selectedIndex.value = value,
-            controller: controller.controller,
-            physics: const NeverScrollableScrollPhysics(),
-            children: [
-              CustomScrollView(
-                slivers: <Widget>[
-                  SliverAppBar(
-                    leading: (ModalRoute.of(context)?.canPop ?? false)
-                        ? const BackButton()
-                        : null,
-                    pinned: true,
-                    snap: false,
-                    floating: false,
-                    expandedHeight: 250,
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: GFCarousel(
-                        autoPlay: true,
-                        autoPlayInterval: const Duration(seconds: 7),
-                        hasPagination: true,
-                        activeIndicator: Colors.white,
-                        passiveIndicator: Colors.white54,
-                        enlargeMainPage: true,
-                        pagerSize: 10,
+        ),
+        child: PageView(
+          onPageChanged: (value) => selectedIndex.value = value,
+          controller: controller.controller,
+          physics: const NeverScrollableScrollPhysics(),
+          children: [
+            CustomScrollView(
+              slivers: <Widget>[
+                SliverAppBar(
+                  leading: (ModalRoute.of(context)?.canPop ?? false)
+                      ? const BackButton()
+                      : null,
+                  pinned: true,
+                  snap: false,
+                  floating: false,
+                  expandedHeight: 250,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: GFCarousel(
+                      autoPlay: true,
+                      autoPlayInterval: const Duration(seconds: 7),
+                      hasPagination: true,
+                      activeIndicator: Colors.white,
+                      passiveIndicator: Colors.white54,
+                      enlargeMainPage: true,
+                      pagerSize: 10,
 
-                        viewportFraction: 0.9,
-                        items: imageList.map(
-                          (url) {
-                            return Container(
-                              margin: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(5.0)),
-                                child: Image.asset(
-                                  url,
-                                  fit: BoxFit.cover,
-                                  width: 1000.0,
-                                ),
+                      viewportFraction: 0.9,
+                      items: imageList.map(
+                        (url) {
+                          return Container(
+                            margin: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5.0)),
+                              child: Image.asset(
+                                url,
+                                fit: BoxFit.cover,
+                                width: 1000.0,
                               ),
-                            );
-                          },
-                        ).toList(),
-                        // onPageChanged: (index) {
-                        //   controller.pageChanged(index);
+                            ),
+                          );
+                        },
+                      ).toList(),
+                      // onPageChanged: (index) {
+                      //   controller.pageChanged(index);
 
-                        // },
-                      ),
+                      // },
                     ),
                   ),
-                  SliverPadding(
+                ),
+                SliverPadding(
+                  padding: const EdgeInsets.all(16),
+                  sliver: HomeMenu(),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
                     padding: const EdgeInsets.all(16),
-                    sliver: HomeMenu(),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: SizedBox(
-                        height: 300,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            InkWell(
-                              onTap: () => Get.toNamed(
-                                Routes.DEBITUR_REAL,
-                              ),
-                              child: SizedBox(
-                                width: 200,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            // Gradient color
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Colors.blue,
-                                                primaryColor,
-                                              ],
-                                            ),
+                    child: SizedBox(
+                      height: 300,
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          InkWell(
+                            onTap: () => Get.toNamed(
+                              Routes.DEBITUR_REAL,
+                            ),
+                            child: SizedBox(
+                              width: 200,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                elevation: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          // Gradient color
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Colors.blue,
+                                              primaryColor,
+                                            ],
                                           ),
                                         ),
-                                        Positioned.fill(
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 15,
+                                        right: 50,
+                                        child: Text(
+                                          'Debitur',
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 15,
-                                          right: 50,
-                                          child: Text(
-                                            'Debitur',
-                                            style: TextStyle(
-                                              fontSize: 35,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
+                                      ),
+                                      Positioned(
+                                        bottom: -170,
+                                        right: -15,
+                                        // child: Image.asset(
+                                        //   'assets/images/home/robot.png',
+                                        //   fit: BoxFit.cover,
+                                        //   height: 380,
+                                        // ),
+                                        child: SvgPicture.asset(
+                                          'assets/images/home/robot.svg',
+                                          fit: BoxFit.cover,
+                                          height: 380,
                                         ),
-                                        Positioned(
-                                          bottom: -170,
-                                          right: -15,
-                                          // child: Image.asset(
-                                          //   'assets/images/home/robot.png',
-                                          //   fit: BoxFit.cover,
-                                          //   height: 380,
-                                          // ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/home/robot.svg',
-                                            fit: BoxFit.cover,
-                                            height: 380,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5.0,
-                            ),
-                            InkWell(
-                              onTap: () => _launchUrl(),
-                              child: SizedBox(
-                                width: 200,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            // Gradient color
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Colors.blue,
-                                                primaryColor,
-                                              ],
-                                            ),
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () => _launchUrl(),
+                            child: SizedBox(
+                              width: 200,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                elevation: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          // Gradient color
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Colors.blue,
+                                              primaryColor,
+                                            ],
                                           ),
                                         ),
-                                        Positioned.fill(
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 15,
+                                        right: 95,
+                                        child: Text(
+                                          'User',
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 15,
-                                          right: 95,
-                                          child: Text(
-                                            'User',
-                                            style: TextStyle(
-                                              fontSize: 35,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                      ),
+                                      const Positioned(
+                                        top: 55,
+                                        right: 20,
+                                        child: Text(
+                                          'Guide   ',
+                                          style: TextStyle(
+                                            fontSize: 28,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 55,
-                                          right: 20,
-                                          child: Text(
-                                            'Guide   ',
-                                            style: TextStyle(
-                                              fontSize: 28,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
+                                      ),
+                                      Positioned(
+                                        bottom: -10,
+                                        right: 5,
+                                        // child: Image.asset(
+                                        //   'assets/images/home/money.png',
+                                        //   fit: BoxFit.cover,
+                                        //   height: 250,
+                                        // ),
+                                        child: SvgPicture.asset(
+                                          'assets/images/home/help.svg',
+                                          fit: BoxFit.cover,
+                                          height: 200,
                                         ),
-                                        Positioned(
-                                          bottom: -10,
-                                          right: 5,
-                                          // child: Image.asset(
-                                          //   'assets/images/home/money.png',
-                                          //   fit: BoxFit.cover,
-                                          //   height: 250,
-                                          // ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/home/help.svg',
-                                            fit: BoxFit.cover,
-                                            height: 200,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5.0,
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () => Get.toNamed(
+                              Routes.SIMULASI_TETAP,
                             ),
-                            InkWell(
-                              onTap: () => Get.toNamed(
-                                Routes.SIMULASI_TETAP,
-                              ),
-                              child: SizedBox(
-                                width: 200,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            // Gradient color
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Colors.blue,
-                                                primaryColor,
-                                              ],
-                                            ),
+                            child: SizedBox(
+                              width: 200,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                elevation: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          // Gradient color
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Colors.blue,
+                                              primaryColor,
+                                            ],
                                           ),
                                         ),
-                                        Positioned.fill(
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 15,
+                                        right: 35,
+                                        child: Text(
+                                          'Simulasi',
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 15,
-                                          right: 35,
-                                          child: Text(
-                                            'Simulasi',
-                                            style: TextStyle(
-                                              fontSize: 35,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                      ),
+                                      const Positioned(
+                                        top: 55,
+                                        right: 20,
+                                        child: Text(
+                                          'Tetap   ',
+                                          style: TextStyle(
+                                            fontSize: 28,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 55,
-                                          right: 20,
-                                          child: Text(
-                                            'Tetap   ',
-                                            style: TextStyle(
-                                              fontSize: 28,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
+                                      ),
+                                      Positioned(
+                                        bottom: -10,
+                                        right: -45,
+                                        // child: Image.asset(
+                                        //   'assets/images/home/money.png',
+                                        //   fit: BoxFit.cover,
+                                        //   height: 250,
+                                        // ),
+                                        child: SvgPicture.asset(
+                                          'assets/images/home/tetap.svg',
+                                          fit: BoxFit.cover,
+                                          height: 200,
                                         ),
-                                        Positioned(
-                                          bottom: -10,
-                                          right: -45,
-                                          // child: Image.asset(
-                                          //   'assets/images/home/money.png',
-                                          //   fit: BoxFit.cover,
-                                          //   height: 250,
-                                          // ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/home/tetap.svg',
-                                            fit: BoxFit.cover,
-                                            height: 200,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5.0,
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () => Get.toNamed(
+                              Routes.PORSEKOT_TABLE,
                             ),
-                            InkWell(
-                              onTap: () => Get.toNamed(
-                                Routes.PORSEKOT_TABLE,
-                              ),
-                              child: SizedBox(
-                                width: 200,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            // Gradient color
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Colors.blue,
-                                                primaryColor,
-                                              ],
-                                            ),
+                            child: SizedBox(
+                              width: 200,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                elevation: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          // Gradient color
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Colors.blue,
+                                              primaryColor,
+                                            ],
                                           ),
                                         ),
-                                        Positioned.fill(
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 15,
+                                        right: 35,
+                                        child: Text(
+                                          'Simulasi',
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 15,
-                                          right: 35,
-                                          child: Text(
-                                            'Simulasi',
-                                            style: TextStyle(
-                                              fontSize: 35,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                      ),
+                                      const Positioned(
+                                        top: 55,
+                                        right: 35,
+                                        child: Text(
+                                          'Porsekot',
+                                          style: TextStyle(
+                                            fontSize: 28,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 55,
-                                          right: 35,
-                                          child: Text(
-                                            'Porsekot',
-                                            style: TextStyle(
-                                              fontSize: 28,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
+                                      ),
+                                      Positioned(
+                                        bottom: -50,
+                                        right: -15,
+                                        // child: Image.asset(
+                                        //   'assets/images/home/money.png',
+                                        //   fit: BoxFit.cover,
+                                        //   height: 250,
+                                        // ),
+                                        child: SvgPicture.asset(
+                                          'assets/images/home/money.svg',
+                                          fit: BoxFit.cover,
+                                          height: 250,
                                         ),
-                                        Positioned(
-                                          bottom: -50,
-                                          right: -15,
-                                          // child: Image.asset(
-                                          //   'assets/images/home/money.png',
-                                          //   fit: BoxFit.cover,
-                                          //   height: 250,
-                                          // ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/home/money.svg',
-                                            fit: BoxFit.cover,
-                                            height: 250,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              width: 5.0,
-                            ),
-                            InkWell(
-                              onTap: () => showAboutPag(context),
-                              child: SizedBox(
-                                width: 200,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            // Gradient color
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Colors.blue,
-                                                primaryColor,
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned.fill(
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
-                                          ),
-                                        ),
-                                        const Positioned(
-                                          top: 15,
-                                          right: 70,
-                                          child: Text(
-                                            'About',
-                                            style: TextStyle(
-                                              fontSize: 35,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: -50,
-                                          right: -15,
-                                          // child: Image.asset(
-                                          //   'assets/images/home/money.png',
-                                          //   fit: BoxFit.cover,
-                                          //   height: 250,
-                                          // ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/home/about.svg',
-                                            fit: BoxFit.cover,
-                                            height: 250,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () => showAboutPag(context),
+                            child: SizedBox(
+                              width: 200,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 5.0,
-                            ),
-                            InkWell(
-                              onTap: () => AwesomeDialog(
-                                context: Get.context!,
-                                dialogType: DialogType.infoReverse,
-                                animType: AnimType.bottomSlide,
-                                title: 'Keluar ?',
-                                desc: 'Apakah anda yakin ingin keluar ?',
-                                dialogBackgroundColor: primaryColor,
-                                titleTextStyle: GoogleFonts.poppins(
-                                  color: secondaryColor,
-                                  fontSize: 30,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                descTextStyle: GoogleFonts.poppins(
-                                  color: secondaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                btnOkOnPress: () {
-                                  SystemNavigator.pop();
-                                },
-                                btnCancelText: 'Tidak',
-                                btnOkText: 'Ya',
-                                btnCancelOnPress: () => Get.back(),
-                              ).show(),
-                              child: SizedBox(
-                                width: 200,
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            // Gradient color
-                                            gradient: LinearGradient(
-                                              begin: Alignment.topLeft,
-                                              end: Alignment.bottomRight,
-                                              colors: [
-                                                Colors.blue,
-                                                primaryColor,
-                                              ],
-                                            ),
+                                elevation: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          // Gradient color
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Colors.blue,
+                                              primaryColor,
+                                            ],
                                           ),
                                         ),
-                                        Positioned.fill(
-                                          child: Container(
-                                            color:
-                                                Colors.black.withOpacity(0.5),
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 15,
+                                        right: 70,
+                                        child: Text(
+                                          'About',
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                         ),
-                                        const Positioned(
-                                          top: 15,
-                                          right: 70,
-                                          child: Text(
-                                            'Keluar',
-                                            style: TextStyle(
-                                              fontSize: 35,
-                                              color: secondaryColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
+                                      ),
+                                      Positioned(
+                                        bottom: -50,
+                                        right: -15,
+                                        // child: Image.asset(
+                                        //   'assets/images/home/money.png',
+                                        //   fit: BoxFit.cover,
+                                        //   height: 250,
+                                        // ),
+                                        child: SvgPicture.asset(
+                                          'assets/images/home/about.svg',
+                                          fit: BoxFit.cover,
+                                          height: 250,
                                         ),
-                                        Positioned(
-                                          bottom: -15,
-                                          right: -75,
-                                          // child: Image.asset(
-                                          //   'assets/images/home/money.png',
-                                          //   fit: BoxFit.cover,
-                                          //   height: 250,
-                                          // ),
-                                          child: SvgPicture.asset(
-                                            'assets/images/home/exit.svg',
-                                            fit: BoxFit.cover,
-                                            height: 200,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          InkWell(
+                            onTap: () => AwesomeDialog(
+                              context: Get.context!,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.bottomSlide,
+                              title: 'Keluar ?',
+                              desc: 'Apakah anda yakin ingin keluar ?',
+                              dialogBackgroundColor: primaryColor,
+                              titleTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              descTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              btnOkOnPress: () {
+                                SystemNavigator.pop();
+                              },
+                              btnCancelText: 'Tidak',
+                              btnOkText: 'Ya',
+                              btnCancelOnPress: () => Get.back(),
+                            ).show(),
+                            child: SizedBox(
+                              width: 200,
+                              child: Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                elevation: 10,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        decoration: const BoxDecoration(
+                                          // Gradient color
+                                          gradient: LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Colors.blue,
+                                              primaryColor,
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned.fill(
+                                        child: Container(
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      ),
+                                      const Positioned(
+                                        top: 15,
+                                        right: 70,
+                                        child: Text(
+                                          'Keluar',
+                                          style: TextStyle(
+                                            fontSize: 35,
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      Positioned(
+                                        bottom: -15,
+                                        right: -75,
+                                        // child: Image.asset(
+                                        //   'assets/images/home/money.png',
+                                        //   fit: BoxFit.cover,
+                                        //   height: 250,
+                                        // ),
+                                        child: SvgPicture.asset(
+                                          'assets/images/home/exit.svg',
+                                          fit: BoxFit.cover,
+                                          height: 200,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  )
-                ],
-              ),
-              SafeArea(
-                child: FormBuilder(
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      child: Card(
-                        color: Colors.black.withOpacity(0.5),
-                        elevation: 10,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                const SizedBox(
-                                  height: 20,
+                  ),
+                )
+              ],
+            ),
+            SafeArea(
+              child: FormBuilder(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    child: Card(
+                      color: Colors.black.withOpacity(0.5),
+                      elevation: 10,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              const Text(
+                                'Quick Search',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  color: secondaryColor,
+                                  fontWeight: FontWeight.bold,
                                 ),
-                                const Text(
-                                  'Quick Search',
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Lottie.asset(
+                                'assets/images/home/search-nik.zip',
+                                height: 200,
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                ),
+                                child: FormBuilderTextField(
+                                  name: 'nik',
+                                  keyboardType: TextInputType.number,
                                   style: TextStyle(
-                                    fontSize: 30,
-                                    color: secondaryColor,
-                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    // add custom google font
+                                    fontFamily:
+                                        GoogleFonts.montserrat().fontFamily,
                                   ),
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Lottie.asset(
-                                  'assets/images/home/search-nik.zip',
-                                  height: 200,
-                                ),
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 20,
-                                  ),
-                                  child: FormBuilderTextField(
-                                    name: 'nik',
-                                    keyboardType: TextInputType.number,
-                                    style: TextStyle(
-                                      color: Colors.black87,
+                                  onEditingComplete: () {
+                                    controller.searchNik(controller.nik.text);
+                                  },
+                                  controller: controller.nik,
+                                  cursorColor: Colors.black,
+                                  cursorHeight: 20,
+                                  decoration: InputDecoration(
+                                    alignLabelWithHint: true,
+                                    prefixIcon: const Icon(
+                                      Icons.numbers_outlined,
+                                      color: Colors.black,
+                                      size: 25,
+                                    ),
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        controller
+                                            .searchNik(controller.nik.text);
+                                      },
+                                      icon: const Icon(
+                                        Icons.search,
+                                        color: Colors.black,
+                                        size: 25,
+                                      ),
+                                    ),
+                                    isDense: true,
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      vertical: 25,
+                                    ),
+                                    focusColor: Colors.red,
+                                    fillColor: Colors.grey.shade300,
+                                    hoverColor: Colors.red,
+                                    filled: true,
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Colors.black45),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          color: Colors.transparent),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    border: const OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(10),
+                                      ),
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                      ),
+                                    ),
+                                    hintText: 'Masukkan NIK',
+                                    hintStyle: TextStyle(
+                                      color: Colors.black45,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600,
                                       // add custom google font
                                       fontFamily:
                                           GoogleFonts.montserrat().fontFamily,
                                     ),
-                                    onEditingComplete: () {
-                                      controller.searchNik(controller.nik.text);
-                                    },
-                                    controller: controller.nik,
-                                    cursorColor: Colors.black,
-                                    cursorHeight: 20,
-                                    decoration: InputDecoration(
-                                      alignLabelWithHint: true,
-                                      prefixIcon: const Icon(
-                                        Icons.numbers_outlined,
-                                        color: Colors.black,
-                                        size: 25,
-                                      ),
-                                      suffixIcon: IconButton(
-                                        onPressed: () {
-                                          controller
-                                              .searchNik(controller.nik.text);
-                                        },
-                                        icon: const Icon(
-                                          Icons.search,
-                                          color: Colors.black,
-                                          size: 25,
-                                        ),
-                                      ),
-                                      isDense: true,
-                                      contentPadding:
-                                          const EdgeInsets.symmetric(
-                                        vertical: 25,
-                                      ),
-                                      focusColor: Colors.red,
-                                      fillColor: Colors.grey.shade300,
-                                      hoverColor: Colors.red,
-                                      filled: true,
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.black45),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: const BorderSide(
-                                            color: Colors.transparent),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      border: const OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                        ),
-                                      ),
-                                      hintText: 'Masukkan NIK',
-                                      hintStyle: TextStyle(
-                                        color: Colors.black45,
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600,
-                                        // add custom google font
-                                        fontFamily:
-                                            GoogleFonts.montserrat().fontFamily,
-                                      ),
-                                    ),
-                                    validator: FormBuilderValidators.compose([
-                                      FormBuilderValidators.required(),
-                                    ]),
                                   ),
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(),
+                                  ]),
                                 ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Expanded(child: Obx(
-                              () {
-                                if (controller.isSearchNikProcessing.value) {
-                                  return const Center(
-                                    child: BpdDiyLoader(),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Expanded(child: Obx(
+                            () {
+                              if (controller.isSearchNikProcessing.value) {
+                                return const Center(
+                                  child: BpdDiyLoader(),
+                                );
+                              } else {
+                                if (controller.listSearchNik.isEmpty) {
+                                  return Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        'No Data',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w600,
+                                          // add custom google font
+                                          fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,
+                                        ),
+                                      ),
+                                    ],
                                   );
                                 } else {
-                                  if (controller.listSearchNik.isEmpty) {
-                                    return Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Text(
-                                          'No Data',
+                                  return ListView.builder(
+                                    itemCount: controller.listSearchNik.length,
+                                    itemBuilder: (context, index) {
+                                      return GFListTile(
+                                        color: Colors.black.withOpacity(0.5),
+                                        title: Text(
+                                          controller
+                                              .listSearchNik[index].peminjam1!,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 20,
@@ -779,788 +791,741 @@ class HomeView extends GetView<HomeController> {
                                                 .fontFamily,
                                           ),
                                         ),
-                                      ],
-                                    );
-                                  } else {
-                                    return ListView.builder(
-                                      itemCount:
-                                          controller.listSearchNik.length,
-                                      itemBuilder: (context, index) {
-                                        return GFListTile(
-                                          color: Colors.black.withOpacity(0.5),
-                                          title: Text(
+                                        subTitle: Text(
+                                          controller.listSearchNik[index]
+                                              .bidangUsaha!,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            // add custom google font
+                                            fontFamily: GoogleFonts.montserrat()
+                                                .fontFamily,
+                                          ),
+                                        ),
+                                        icon: GFButton(
+                                          onPressed: () {
+                                            // controller
+                                            //     .getDetailNik(controller
+                                            //         .listSearchNik[index]
+                                            //         .nik!)
+                                            //     .then((value) {
+                                            //   Get.toNamed(
+                                            //       '/detailNik/${controller.listSearchNik[index].nik}');
+                                            // });
                                             controller.listSearchNik[index]
-                                                .peminjam1!,
-                                            style: TextStyle(
+                                                        .userId ==
+                                                    auth.currentUser?.uid
+                                                ? Get.toNamed(
+                                                    Routes.INSIGHT_DEBITUR,
+                                                    arguments: controller
+                                                        .listSearchNik[index]
+                                                        .id)
+                                                : AwesomeDialog(
+                                                        context: context,
+                                                        dialogType:
+                                                            DialogType.error,
+                                                        animType: AnimType
+                                                            .bottomSlide,
+                                                        title: 'Error',
+                                                        desc:
+                                                            'Anda tidak memiliki akses untuk melihat detail debitur ini',
+                                                        btnOkOnPress: () {},
+                                                        btnOkIcon: Icons.cancel,
+                                                        btnOkColor: Colors.red)
+                                                    .show();
+                                          },
+                                          text: 'Detail',
+                                          color: Colors.white,
+                                          textStyle: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            // add custom google font
+                                            fontFamily: GoogleFonts.montserrat()
+                                                .fontFamily,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }
+                              }
+                            },
+                          )),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SafeArea(
+              child: DefaultTabController(
+                length: 2,
+                child: Column(
+                  children: [
+                    const TabBar(
+                      physics: NeverScrollableScrollPhysics(),
+                      indicatorColor: Colors.white,
+                      tabs: [
+                        Tab(
+                          text: 'History',
+                          icon: Icon(Icons.history),
+                        ),
+                        Tab(
+                          icon: Icon(Icons.subject_outlined),
+                          text: 'Submissions',
+                        ),
+                      ],
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          Obx(() {
+                            if (controller.isMyInputProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              if (controller.listMyInput.isNotEmpty) {
+                                return ListView.builder(
+                                  controller: controller.scrollController,
+                                  itemCount: controller.listMyInput.length,
+                                  itemBuilder: (context, index) {
+                                    bool isSameDate = true;
+                                    final dateString = controller
+                                        .listMyInput[index].tglSekarang;
+
+                                    if (index == 0) {
+                                      isSameDate = false;
+                                    } else {
+                                      final prevDateString = controller
+                                          .listMyInput[index - 1].tglSekarang
+                                          ?.toIso8601String();
+                                      final DateTime prevDate =
+                                          DateTime.parse(prevDateString!);
+                                      isSameDate = dateString!
+                                          .isAtSameMomentAs(prevDate);
+                                    }
+                                    if (index == 0 || !(isSameDate)) {
+                                      return Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            DateFormat('EEEE, dd MMMM yyyy')
+                                                .format(dateString!),
+                                            style: GoogleFonts.poppins(
                                               color: Colors.white,
                                               fontSize: 20,
-                                              fontWeight: FontWeight.w600,
-                                              // add custom google font
-                                              fontFamily:
-                                                  GoogleFonts.montserrat()
-                                                      .fontFamily,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          GFCard(
+                                            border: Border.all(
+                                              color:
+                                                  Colors.black.withOpacity(0.1),
+                                            ),
+                                            padding: const EdgeInsets.all(10),
+                                            color:
+                                                Colors.white.withOpacity(0.9),
+                                            elevation: 5,
+                                            titlePosition: GFPosition.start,
+                                            title: GFListTile(
+                                              avatar: const Icon(
+                                                  FontAwesomeIcons
+                                                      .bookBookmark),
+                                              title: Text(
+                                                controller.listMyInput[index]
+                                                    .peminjam1!,
+                                                style: GoogleFonts.montserrat(
+                                                  color: Colors.black87,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              subTitle: Text(
+                                                controller.listMyInput[index]
+                                                    .bidangUsaha!,
+                                                style: GoogleFonts.montserrat(
+                                                  color: Colors.black54,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              icon: GFButton(
+                                                onPressed: (() {
+                                                  Get.toNamed(
+                                                      Routes.INSIGHT_DEBITUR,
+                                                      arguments: controller
+                                                          .listMyInput[index]
+                                                          .id);
+                                                }),
+                                                text: 'Detail',
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    } else {
+                                      return GFCard(
+                                        border: Border.all(
+                                          color: Colors.black.withOpacity(0.1),
+                                        ),
+                                        padding: const EdgeInsets.all(10),
+                                        color: Colors.white.withOpacity(0.9),
+                                        elevation: 5,
+                                        titlePosition: GFPosition.start,
+                                        title: GFListTile(
+                                          avatar: const Icon(
+                                              FontAwesomeIcons.bookBookmark),
+                                          title: Text(
+                                            controller
+                                                .listMyInput[index].peminjam1!,
+                                            style: GoogleFonts.montserrat(
+                                              color: Colors.black87,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                           subTitle: Text(
-                                            controller.listSearchNik[index]
+                                            controller.listMyInput[index]
                                                 .bidangUsaha!,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600,
-                                              // add custom google font
-                                              fontFamily:
-                                                  GoogleFonts.montserrat()
-                                                      .fontFamily,
+                                            style: GoogleFonts.montserrat(
+                                              color: Colors.black54,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                           icon: GFButton(
-                                            onPressed: () {
-                                              // controller
-                                              //     .getDetailNik(controller
-                                              //         .listSearchNik[index]
-                                              //         .nik!)
-                                              //     .then((value) {
-                                              //   Get.toNamed(
-                                              //       '/detailNik/${controller.listSearchNik[index].nik}');
-                                              // });
-                                              controller.listSearchNik[index]
-                                                          .userId ==
-                                                      auth.currentUser?.uid
-                                                  ? Get.toNamed(
-                                                      Routes.INSIGHT_DEBITUR,
-                                                      arguments: controller
-                                                          .listSearchNik[index]
-                                                          .id)
-                                                  : AwesomeDialog(
-                                                          context: context,
-                                                          dialogType:
-                                                              DialogType.error,
-                                                          animType: AnimType
-                                                              .bottomSlide,
-                                                          title: 'Error',
-                                                          desc:
-                                                              'Anda tidak memiliki akses untuk melihat detail debitur ini',
-                                                          btnOkOnPress: () {},
-                                                          btnOkIcon:
-                                                              Icons.cancel,
-                                                          btnOkColor:
-                                                              Colors.red)
-                                                      .show();
-                                            },
+                                            onPressed: (() {
+                                              Get.toNamed(
+                                                  Routes.INSIGHT_DEBITUR,
+                                                  arguments: controller
+                                                      .listMyInput[index].id);
+                                            }),
                                             text: 'Detail',
-                                            color: Colors.white,
-                                            textStyle: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600,
-                                              // add custom google font
-                                              fontFamily:
-                                                  GoogleFonts.montserrat()
-                                                      .fontFamily,
-                                            ),
                                           ),
-                                        );
-                                      },
-                                    );
-                                  }
-                                }
-                              },
-                            )),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SafeArea(
-                child: DefaultTabController(
-                  length: 2,
-                  child: Column(
-                    children: [
-                      const TabBar(
-                        physics: NeverScrollableScrollPhysics(),
-                        indicatorColor: Colors.white,
-                        tabs: [
-                          Tab(
-                            text: 'History',
-                            icon: Icon(Icons.history),
-                          ),
-                          Tab(
-                            icon: Icon(Icons.subject_outlined),
-                            text: 'Submissions',
-                          ),
-                        ],
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            Obx(() {
-                              if (controller.isMyInputProcessing.value) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 );
                               } else {
-                                if (controller.listMyInput.isNotEmpty) {
-                                  return ListView.builder(
-                                    controller: controller.scrollController,
-                                    itemCount: controller.listMyInput.length,
-                                    itemBuilder: (context, index) {
-                                      bool isSameDate = true;
-                                      final dateString = controller
-                                          .listMyInput[index].tglSekarang;
-
-                                      if (index == 0) {
-                                        isSameDate = false;
-                                      } else {
-                                        final prevDateString = controller
-                                            .listMyInput[index - 1].tglSekarang
-                                            ?.toIso8601String();
-                                        final DateTime prevDate =
-                                            DateTime.parse(prevDateString!);
-                                        isSameDate = dateString!
-                                            .isAtSameMomentAs(prevDate);
-                                      }
-                                      if (index == 0 || !(isSameDate)) {
-                                        return Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 10,
+                                return Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(32),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Center(
+                                          child: Text(
+                                            'Data Tidak Ditemukan',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            Text(
-                                              DateFormat('EEEE, dd MMMM yyyy')
-                                                  .format(dateString!),
-                                              style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            GFCard(
-                                              border: Border.all(
-                                                color: Colors.black
-                                                    .withOpacity(0.1),
-                                              ),
-                                              padding: const EdgeInsets.all(10),
-                                              color:
-                                                  Colors.white.withOpacity(0.9),
-                                              elevation: 5,
-                                              titlePosition: GFPosition.start,
-                                              title: GFListTile(
-                                                avatar: const Icon(
-                                                    FontAwesomeIcons
-                                                        .bookBookmark),
-                                                title: Text(
-                                                  controller.listMyInput[index]
-                                                      .peminjam1!,
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.black87,
-                                                    fontSize: 25,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Lottie.asset(
+                                            'assets/images/home/404.zip',
+                                            frameRate: FrameRate.max,
+                                            fit: BoxFit.cover,
+                                            repeat: true,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return const Text(
+                                                'Gagal memuat animasi',
+                                                style: TextStyle(
+                                                  color: Colors.red,
                                                 ),
-                                                subTitle: Text(
-                                                  controller.listMyInput[index]
-                                                      .bidangUsaha!,
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.black54,
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        const Center(
+                                          child: Text(
+                                            'Data tidak dapat ditemukan di database atau list debitur masih kosong',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.normal,
+                                              letterSpacing: 1.2,
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                            }
+                          }),
+                          Obx(() {
+                            if (controller.isMySubmissionProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              if (controller.listMySubmission.isNotEmpty) {
+                                return ListView.builder(
+                                  itemCount: controller.listMySubmission.length,
+                                  itemBuilder: (context, index) {
+                                    bool isSameDate = true;
+                                    final dateString = controller
+                                        .listMySubmission[index].tglSubmit;
+
+                                    if (index == 0) {
+                                      isSameDate = false;
+                                    } else {
+                                      final prevDateString = controller
+                                          .listMySubmission[index - 1].tglSubmit
+                                          ?.toIso8601String();
+                                      final DateTime prevDate =
+                                          DateTime.parse(prevDateString!);
+                                      isSameDate = dateString! == prevDate;
+                                    }
+
+                                    if (index == 0 || !(isSameDate)) {
+                                      return Column(
+                                        children: [
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            DateFormat('EEEE, dd MMMM yyyy')
+                                                .format(dateString!),
+                                            style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          GFCard(
+                                            border: Border.all(
+                                              color:
+                                                  Colors.black.withOpacity(0.1),
+                                            ),
+                                            padding: const EdgeInsets.all(10),
+                                            color:
+                                                Colors.white.withOpacity(0.9),
+                                            elevation: 5,
+                                            titlePosition: GFPosition.start,
+                                            title: GFListTile(
+                                              avatar: const Icon(
+                                                  FontAwesomeIcons
+                                                      .bookBookmark),
+                                              title: Text(
+                                                controller
+                                                    .listMySubmission[index]
+                                                    .id!,
+                                                style: GoogleFonts.montserrat(
+                                                  color: Colors.black87,
+                                                  fontSize: 25,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              subTitle: controller
+                                                          .listMySubmission[
+                                                              index]
+                                                          .status ==
+                                                      'PENDING'
+                                                  ? const Text(
+                                                      'Status : Pending',
+                                                      style: TextStyle(
+                                                        color: Colors.red,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                    )
+                                                  : controller
+                                                              .listMySubmission[
+                                                                  index]
+                                                              .status ==
+                                                          'DIREVIEW'
+                                                      ? const Text(
+                                                          'Status : Sedang Direview',
+                                                          style: TextStyle(
+                                                            color:
+                                                                Colors.yellow,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        )
+                                                      : controller
+                                                                  .listMySubmission[
+                                                                      index]
+                                                                  .status ==
+                                                              'DITERIMA'
+                                                          ? const Text(
+                                                              'Status : Diterima',
+                                                              style: TextStyle(
+                                                                color: Colors
+                                                                    .green,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                              ),
+                                                            )
+                                                          : const Text(
+                                                              'Status : Belum Diverifikasi',
+                                                              style: TextStyle(
+                                                                color:
+                                                                    Colors.red,
+                                                                fontSize: 18,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                              ),
+                                                            ),
+                                              icon: GFButton(
+                                                onPressed: (() {
+                                                  Get.toNamed(
+                                                      Routes.PENGAJUAN_DETAIL,
+                                                      arguments: controller
+                                                          .listMySubmission[
+                                                              index]
+                                                          .id);
+                                                }),
+                                                text: 'Detail',
+                                                color: Colors.blue,
+                                                textStyle:
+                                                    GoogleFonts.montserrat(
+                                                  color: Colors.white,
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      );
+                                    } else {
+                                      return GFCard(
+                                        border: Border.all(
+                                          color: Colors.black.withOpacity(0.1),
+                                        ),
+                                        padding: const EdgeInsets.all(10),
+                                        color: Colors.white.withOpacity(0.9),
+                                        elevation: 5,
+                                        titlePosition: GFPosition.start,
+                                        title: GFListTile(
+                                          avatar: const Icon(
+                                              FontAwesomeIcons.bookBookmark),
+                                          title: Text(
+                                            controller
+                                                .listMySubmission[index].id!,
+                                            style: GoogleFonts.montserrat(
+                                              color: Colors.black87,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                          subTitle: controller
+                                                      .listMySubmission[index]
+                                                      .status ==
+                                                  'PENDING'
+                                              ? const Text(
+                                                  'Status : Pending',
+                                                  style: TextStyle(
+                                                    color: Colors.red,
                                                     fontSize: 18,
                                                     fontWeight: FontWeight.w400,
                                                   ),
-                                                ),
-                                                icon: GFButton(
-                                                  onPressed: (() {
-                                                    Get.toNamed(
-                                                        Routes.INSIGHT_DEBITUR,
-                                                        arguments: controller
-                                                            .listMyInput[index]
-                                                            .id);
-                                                  }),
-                                                  text: 'Detail',
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      } else {
-                                        return GFCard(
-                                          border: Border.all(
-                                            color:
-                                                Colors.black.withOpacity(0.1),
-                                          ),
-                                          padding: const EdgeInsets.all(10),
-                                          color: Colors.white.withOpacity(0.9),
-                                          elevation: 5,
-                                          titlePosition: GFPosition.start,
-                                          title: GFListTile(
-                                            avatar: const Icon(
-                                                FontAwesomeIcons.bookBookmark),
-                                            title: Text(
-                                              controller.listMyInput[index]
-                                                  .peminjam1!,
-                                              style: GoogleFonts.montserrat(
-                                                color: Colors.black87,
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            subTitle: Text(
-                                              controller.listMyInput[index]
-                                                  .bidangUsaha!,
-                                              style: GoogleFonts.montserrat(
-                                                color: Colors.black54,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            icon: GFButton(
-                                              onPressed: (() {
-                                                Get.toNamed(
-                                                    Routes.INSIGHT_DEBITUR,
-                                                    arguments: controller
-                                                        .listMyInput[index].id);
-                                              }),
-                                              text: 'Detail',
+                                                )
+                                              : controller
+                                                          .listMySubmission[
+                                                              index]
+                                                          .status ==
+                                                      'DIREVIEW'
+                                                  ? const Text(
+                                                      'Status : Sedang Direview',
+                                                      style: TextStyle(
+                                                        color: Colors.yellow,
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                    )
+                                                  : controller
+                                                              .listMySubmission[
+                                                                  index]
+                                                              .status ==
+                                                          'DITERIMA'
+                                                      ? const Text(
+                                                          'Status : Diterima',
+                                                          style: TextStyle(
+                                                            color: Colors.green,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        )
+                                                      : const Text(
+                                                          'Status : Belum Diverifikasi',
+                                                          style: TextStyle(
+                                                            color: Colors.red,
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                          ),
+                                                        ),
+                                          icon: GFButton(
+                                            onPressed: (() {
+                                              Get.toNamed(
+                                                  Routes.PENGAJUAN_DETAIL,
+                                                  arguments: controller
+                                                      .listMySubmission[index]
+                                                      .id);
+                                            }),
+                                            text: 'Detail',
+                                            color: Colors.blue,
+                                            textStyle: GoogleFonts.montserrat(
+                                              color: Colors.white,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
-                                        );
-                                      }
-                                    },
-                                  );
-                                } else {
-                                  return Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(32),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Center(
-                                            child: Text(
-                                              'Data Tidak Ditemukan',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 35,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          Center(
-                                            child: Lottie.asset(
-                                              'assets/images/home/404.zip',
-                                              frameRate: FrameRate.max,
-                                              fit: BoxFit.cover,
-                                              repeat: true,
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return const Text(
-                                                  'Gagal memuat animasi',
-                                                  style: TextStyle(
-                                                    color: Colors.red,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          const Center(
-                                            child: Text(
-                                              'Data tidak dapat ditemukan di database atau list debitur masih kosong',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.normal,
-                                                letterSpacing: 1.2,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                }
-                              }
-                            }),
-                            // Container(
-                            //   padding: const EdgeInsets.all(16),
-                            //   child: Column(
-
-                            //     children: [
-                            //       const Center(
-                            //         child: Text(
-                            //           'Under Construction :(',
-                            //           style: TextStyle(
-                            //             fontSize: 35,
-                            //             fontWeight: FontWeight.w800,
-                            //             color: Colors.white,
-                            //           ),
-                            //         ),
-                            //       ),
-                            //       const SizedBox(
-                            //         height: 30,
-                            //       ),
-                            //       Lottie.asset(
-                            //         'assets/images/home/coming-soon.zip',
-                            //         frameRate: FrameRate.max,
-                            //         fit: BoxFit.cover,
-                            //         repeat: true,
-                            //         errorBuilder: (context, error, stackTrace) {
-                            //           return const Text(
-                            //             'Gagal memuat animasi',
-                            //             style: TextStyle(
-                            //               color: Colors.red,
-                            //             ),
-                            //           );
-                            //         },
-                            //       )
-                            //     ],
-                            //   ),
-                            // ),
-                            Obx(() {
-                              if (controller.isMySubmissionProcessing.value) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
+                                        ),
+                                      );
+                                    }
+                                  },
                                 );
                               } else {
-                                if (controller.listMySubmission.isNotEmpty) {
-                                  return ListView.builder(
-                                    itemCount:
-                                        controller.listMySubmission.length,
-                                    itemBuilder: (context, index) {
-                                      bool isSameDate = true;
-                                      final dateString = controller
-                                          .listMySubmission[index].tglSubmit;
-
-                                      if (index == 0) {
-                                        isSameDate = false;
-                                      } else {
-                                        final prevDateString = controller
-                                            .listMySubmission[index - 1]
-                                            .tglSubmit
-                                            ?.toIso8601String();
-                                        final DateTime prevDate =
-                                            DateTime.parse(prevDateString!);
-                                        isSameDate = dateString! == prevDate;
-                                      }
-
-                                      if (index == 0 || !(isSameDate)) {
-                                        return Column(
-                                          children: [
-                                            const SizedBox(
-                                              height: 10,
+                                return Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(32),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Center(
+                                          child: Text(
+                                            'Data Tidak Ditemukan',
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            Text(
-                                              DateFormat('EEEE, dd MMMM yyyy')
-                                                  .format(dateString!),
-                                              style: GoogleFonts.poppins(
-                                                color: Colors.white,
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            GFCard(
-                                              border: Border.all(
-                                                color: Colors.black
-                                                    .withOpacity(0.1),
-                                              ),
-                                              padding: const EdgeInsets.all(10),
-                                              color:
-                                                  Colors.white.withOpacity(0.9),
-                                              elevation: 5,
-                                              titlePosition: GFPosition.start,
-                                              title: GFListTile(
-                                                avatar: const Icon(
-                                                    FontAwesomeIcons
-                                                        .bookBookmark),
-                                                title: Text(
-                                                  controller
-                                                      .listMySubmission[index]
-                                                      .id!,
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.black87,
-                                                    fontSize: 25,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
+                                          ),
+                                        ),
+                                        Center(
+                                          child: Lottie.asset(
+                                            'assets/images/home/404.zip',
+                                            frameRate: FrameRate.max,
+                                            fit: BoxFit.cover,
+                                            repeat: true,
+                                            errorBuilder:
+                                                (context, error, stackTrace) {
+                                              return const Text(
+                                                'Gagal memuat animasi',
+                                                style: TextStyle(
+                                                  color: Colors.red,
                                                 ),
-                                                subTitle: controller
-                                                            .listMySubmission[
-                                                                index]
-                                                            .status ==
-                                                        'PENDING'
-                                                    ? const Text(
-                                                        'Status : Pending',
-                                                        style: TextStyle(
-                                                          color: Colors.red,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                        ),
-                                                      )
-                                                    : controller
-                                                                .listMySubmission[
-                                                                    index]
-                                                                .status ==
-                                                            'DIREVIEW'
-                                                        ? const Text(
-                                                            'Status : Sedang Direview',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.yellow,
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          )
-                                                        : controller
-                                                                    .listMySubmission[
-                                                                        index]
-                                                                    .status ==
-                                                                'DITERIMA'
-                                                            ? const Text(
-                                                                'Status : Diterima',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .green,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                ),
-                                                              )
-                                                            : const Text(
-                                                                'Status : Belum Diverifikasi',
-                                                                style:
-                                                                    TextStyle(
-                                                                  color: Colors
-                                                                      .red,
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w400,
-                                                                ),
-                                                              ),
-                                                icon: GFButton(
-                                                  onPressed: (() {
-                                                    Get.toNamed(
-                                                        Routes.PENGAJUAN_DETAIL,
-                                                        arguments: controller
-                                                            .listMySubmission[
-                                                                index]
-                                                            .id);
-                                                  }),
-                                                  text: 'Detail',
-                                                  color: Colors.blue,
-                                                  textStyle:
-                                                      GoogleFonts.montserrat(
-                                                    color: Colors.white,
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        );
-                                      } else {
-                                        return GFCard(
-                                          border: Border.all(
-                                            color:
-                                                Colors.black.withOpacity(0.1),
+                                              );
+                                            },
                                           ),
-                                          padding: const EdgeInsets.all(10),
-                                          color: Colors.white.withOpacity(0.9),
-                                          elevation: 5,
-                                          titlePosition: GFPosition.start,
-                                          title: GFListTile(
-                                            avatar: const Icon(
-                                                FontAwesomeIcons.bookBookmark),
-                                            title: Text(
-                                              controller
-                                                  .listMySubmission[index].id!,
-                                              style: GoogleFonts.montserrat(
-                                                color: Colors.black87,
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                        ),
+                                        const Center(
+                                          child: Text(
+                                            'Data tidak dapat ditemukan di database atau list debitur masih kosong',
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.normal,
+                                              letterSpacing: 1.2,
                                             ),
-                                            subTitle: controller
-                                                        .listMySubmission[index]
-                                                        .status ==
-                                                    'PENDING'
-                                                ? const Text(
-                                                    'Status : Pending',
-                                                    style: TextStyle(
-                                                      color: Colors.red,
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                    ),
-                                                  )
-                                                : controller
-                                                            .listMySubmission[
-                                                                index]
-                                                            .status ==
-                                                        'DIREVIEW'
-                                                    ? const Text(
-                                                        'Status : Sedang Direview',
-                                                        style: TextStyle(
-                                                          color: Colors.yellow,
-                                                          fontSize: 18,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                        ),
-                                                      )
-                                                    : controller
-                                                                .listMySubmission[
-                                                                    index]
-                                                                .status ==
-                                                            'DITERIMA'
-                                                        ? const Text(
-                                                            'Status : Diterima',
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.green,
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          )
-                                                        : const Text(
-                                                            'Status : Belum Diverifikasi',
-                                                            style: TextStyle(
-                                                              color: Colors.red,
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                            icon: GFButton(
-                                              onPressed: (() {
-                                                Get.toNamed(
-                                                    Routes.PENGAJUAN_DETAIL,
-                                                    arguments: controller
-                                                        .listMySubmission[index]
-                                                        .id);
-                                              }),
-                                              text: 'Detail',
-                                              color: Colors.blue,
-                                              textStyle: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
+                                            textAlign: TextAlign.center,
                                           ),
-                                        );
-                                      }
-                                    },
-                                  );
-                                } else {
-                                  return Align(
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      padding: const EdgeInsets.all(32),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Center(
-                                            child: Text(
-                                              'Data Tidak Ditemukan',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 35,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ),
-                                          Center(
-                                            child: Lottie.asset(
-                                              'assets/images/home/404.zip',
-                                              frameRate: FrameRate.max,
-                                              fit: BoxFit.cover,
-                                              repeat: true,
-                                              errorBuilder:
-                                                  (context, error, stackTrace) {
-                                                return const Text(
-                                                  'Gagal memuat animasi',
-                                                  style: TextStyle(
-                                                    color: Colors.red,
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                          const Center(
-                                            child: Text(
-                                              'Data tidak dapat ditemukan di database atau list debitur masih kosong',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 22,
-                                                fontWeight: FontWeight.normal,
-                                                letterSpacing: 1.2,
-                                              ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
-                                  );
-                                }
+                                  ),
+                                );
                               }
-                            })
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              FormFirebase(auth: auth, controller: controller),
-              SafeArea(
-                child: SettingsList(
-                  lightTheme: dark,
-                  sections: [
-                    SettingsSection(
-                      title: const Text('Account'),
-                      tiles: <SettingsTile>[
-                        SettingsTile.navigation(
-                          leading: const Icon(Icons.email_rounded),
-                          title: const Text('Email'),
-                          description: const Text('Verify your email address'),
-                          onPressed: ((context) {
-                            // Check if email already verified
-                            if (auth.currentUser!.emailVerified) {
-                              AwesomeDialog(
-                                context: context,
-                                dialogType: DialogType.infoReverse,
-                                animType: AnimType.scale,
-                                title: 'Huh ?',
-                                desc: 'Email already verified',
-                                btnOkOnPress: () {},
-                              ).show();
-                            } else {
-                              // Send verification email
-                              controller.verifyEmail();
                             }
-                          }),
-                        ),
-                        SettingsTile.navigation(
-                          title: const Text('Phone'),
-                          description:
-                              const Text('Add / Verify your phone number'),
-                          onPressed: ((context) {
-                            // showTutorial(context);
-                          }),
-                          leading: const Icon(Icons.phone_android_outlined),
-                        ),
-                        SettingsTile.navigation(
-                          title: const Text('Password'),
-                          description: const Text('Change / set your password'),
-                          onPressed: ((context) {
-                            showMaterialModalBottomSheet(
-                                context: context,
-                                builder: (context) => SetPassword());
-                          }),
-                          leading: const Icon(Icons.lock_outline_rounded),
-                        ),
-                        SettingsTile.navigation(
-                          // logoute
-                          leading: const Icon(Icons.refresh_outlined),
-                          title: const Text('Refresh Token'),
-                          description:
-                              const Text('Reauthenticate your account'),
-                          onPressed: (((context) async {
-                            // final prefs = await SharedPreferences.getInstance();
-
-                            // await prefs.clear();
-                            // controller.logout();
-                            showMaterialModalBottomSheet(
-                              backgroundColor: secondaryColor,
-                              context: context,
-                              builder: (context) => RefreshToken(),
-                            );
-                          })),
-                        )
-                      ],
-                    ),
-                    SettingsSection(
-                      title: const Text('Hardware'),
-                      tiles: [
-                        SettingsTile.navigation(
-                          title: const Text('Device Info'),
-                          leading: const Icon(Icons.phonelink_setup_outlined),
-                          description: const Text('Show info for this devices'),
-                          onPressed: (context) {
-                            showMaterialModalBottomSheet(
-                                context: context,
-                                builder: (context) => DeviceInfo());
-                          },
-                        )
-                      ],
-                    ),
-                    SettingsSection(
-                      title: const Text('Common'),
-                      tiles: <SettingsTile>[
-                        SettingsTile.navigation(
-                          leading: const Icon(Icons.info_outline),
-                          title: const Text('About'),
-                          description:
-                              const Text('Show information about this app'),
-                          onPressed: ((context) {
-                            showAboutPag(context);
-                          }),
-                        ),
-                        SettingsTile.navigation(
-                          title: const Text('Tutorial'),
-                          description: const Text('Show tutorial'),
-                          onPressed: ((context) {
-                            // showTutorial(context);
-                          }),
-                          leading: const Icon(Icons.book),
-                        ),
-                        SettingsTile.navigation(
-                          // logoute
-                          leading: const Icon(Icons.logout),
-                          title: const Text('Logout'),
-                          description: const Text('Log out of your account'),
-                          onPressed: (((context) async {
-                            final prefs = await SharedPreferences.getInstance();
-
-                            await prefs.setBool('pernahLogin', true);
-
-                            // clear shared preferences id
-                            await prefs.remove('id');
-                            await prefs.remove('photo');
-                            controller.logout();
-                          })),
-                        )
-                      ],
+                          })
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
-            ],
-          )),
+            ),
+            FormFirebase(auth: auth, controller: controller),
+            SafeArea(
+              child: SettingsList(
+                lightTheme: dark,
+                sections: [
+                  SettingsSection(
+                    title: const Text('Account'),
+                    tiles: <SettingsTile>[
+                      SettingsTile.navigation(
+                        leading: const Icon(Icons.email_rounded),
+                        title: const Text('Email'),
+                        description: const Text('Verify your email address'),
+                        onPressed: ((context) {
+                          // Check if email already verified
+                          if (auth.currentUser!.emailVerified) {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.scale,
+                              title: 'Huh ?',
+                              desc: 'Email already verified',
+                              btnOkOnPress: () {},
+                            ).show();
+                          } else {
+                            // Send verification email
+                            controller.verifyEmail();
+                          }
+                        }),
+                      ),
+                      SettingsTile.navigation(
+                        title: const Text('Password'),
+                        description: const Text('Change / set your password'),
+                        onPressed: ((context) {
+                          showMaterialModalBottomSheet(
+                              context: context,
+                              builder: (context) => SetPassword());
+                        }),
+                        leading: const Icon(Icons.lock_outline_rounded),
+                      ),
+                      SettingsTile.navigation(
+                        // logoute
+                        leading: const Icon(Icons.refresh_outlined),
+                        title: const Text('Refresh Token'),
+                        description: const Text('Reauthenticate your account'),
+                        onPressed: (((context) async {
+                          // final prefs = await SharedPreferences.getInstance();
+
+                          // await prefs.clear();
+                          // controller.logout();
+                          showMaterialModalBottomSheet(
+                            backgroundColor: secondaryColor,
+                            context: context,
+                            builder: (context) => RefreshToken(),
+                          );
+                        })),
+                      )
+                    ],
+                  ),
+                  SettingsSection(
+                    title: const Text('Hardware'),
+                    tiles: [
+                      SettingsTile.navigation(
+                        title: const Text('Device Info'),
+                        leading: const Icon(Icons.phonelink_setup_outlined),
+                        description: const Text('Show info for this devices'),
+                        onPressed: (context) {
+                          showMaterialModalBottomSheet(
+                              context: context,
+                              builder: (context) => DeviceInfo());
+                        },
+                      )
+                    ],
+                  ),
+                  SettingsSection(
+                    title: const Text('Common'),
+                    tiles: <SettingsTile>[
+                      SettingsTile.navigation(
+                        leading: const Icon(Icons.info_outline),
+                        title: const Text('About'),
+                        description:
+                            const Text('Show information about this app'),
+                        onPressed: ((context) {
+                          showAboutPag(context);
+                        }),
+                      ),
+                      SettingsTile.navigation(
+                        title: const Text('Tutorial'),
+                        description: const Text('Show tutorial'),
+                        onPressed: ((context) {
+                          // showTutorial(context);
+                        }),
+                        leading: const Icon(Icons.book),
+                      ),
+                      SettingsTile.navigation(
+                        title: const Text('Change Role'),
+                        description: const Text('Switch to another role'),
+                        onPressed: ((context) async {
+                          // Check if user has multiple customClaims
+                          final customClaims =
+                              await auth.currentUser!.getIdTokenResult();
+
+                          final filteredMap = customClaims.claims!.entries
+                              .where(
+                                  (element) => element.key != 'email_verified')
+                              .toList();
+
+                          // get total boolean value from map customClaims
+                          final values = filteredMap
+                              .map((e) => e.value)
+                              .where((element) => element == true)
+                              .toList();
+
+                          // check if user has multiple customClaims
+                          if (values.length >= 2) {
+                            // Get value from shared preferences
+                            final prefs = await SharedPreferences.getInstance();
+
+                            // delete value from shared preferences
+                            await prefs.remove('role');
+
+                            Get.offAllNamed(Routes.GATE);
+                          } else {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.scale,
+                              title: 'Huh ?',
+                              desc: 'You only have one role',
+                              btnOkOnPress: () {},
+                            ).show();
+                          }
+                        }),
+                        leading: const Icon(Icons.switch_account_outlined),
+                      ),
+                      SettingsTile.navigation(
+                        // logoute
+                        leading: const Icon(Icons.logout),
+                        title: const Text('Logout'),
+                        description: const Text('Log out of your account'),
+                        onPressed: (((context) async {
+                          controller.logout();
+                        })),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomBarBubble(
         color: Colors.white,
         items: [

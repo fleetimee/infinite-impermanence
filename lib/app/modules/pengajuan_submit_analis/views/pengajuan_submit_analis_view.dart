@@ -15,6 +15,7 @@ import 'package:intl/intl.dart';
 
 import '../controllers/pengajuan_submit_analis_controller.dart';
 
+// ignore: must_be_immutable
 class PengajuanSubmitAnalisView
     extends GetView<PengajuanSubmitAnalisController> {
   PengajuanSubmitAnalisView({Key? key}) : super(key: key);

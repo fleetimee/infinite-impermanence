@@ -85,6 +85,9 @@ abstract class Routes {
   static const INTRO_SCREEN = _Paths.INTRO_SCREEN;
   static const PENGAJUAN_DETAIL = _Paths.PENGAJUAN_DETAIL;
   static const PENGAJUAN_SUBMIT_ANALIS = _Paths.PENGAJUAN_SUBMIT_ANALIS;
+  static const GATE = _Paths.GATE;
+  static const HOME_REVIEWER = _Paths.HOME_REVIEWER;
+  static const REVIEWER_SUBMIT = _Paths.REVIEWER_SUBMIT;
 }
 
 abstract class _Paths {
@@ -168,4 +171,7 @@ abstract class _Paths {
   static const INTRO_SCREEN = '/intro-screen';
   static const PENGAJUAN_DETAIL = '/pengajuan-detail';
   static const PENGAJUAN_SUBMIT_ANALIS = '/pengajuan-submit-analis';
+  static const GATE = '/gate';
+  static const HOME_REVIEWER = '/home-reviewer';
+  static const REVIEWER_SUBMIT = '/reviewer-submit';
 }

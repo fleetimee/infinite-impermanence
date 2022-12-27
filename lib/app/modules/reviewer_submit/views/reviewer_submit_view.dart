@@ -111,6 +111,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       border: // no border
                           InputBorder.none,
                     ),
+                    validator: FormBuilderValidators.required(),
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -146,6 +147,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       prefixIcon: Icon(Icons.person),
                       hintText: 'Pilih Pemutus',
                     ),
+                    validator: FormBuilderValidators.required(),
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -867,8 +869,25 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                               size: GFSize.LARGE,
                             ),
                             const SizedBox(height: 10),
+                            GFButton(
+                              onPressed: () {
+                                Get.toNamed(Routes.PUTUSAN_PRINT,
+                                    arguments: controller.insightDebitur.value);
+                              },
+                              color: primaryColor,
+                              shape: GFButtonShape.pills,
+                              text: 'Lihat Draft Putusan',
+                              icon: const Icon(
+                                Icons.summarize_outlined,
+                                size: 18,
+                                color: secondaryColor,
+                              ),
+                              fullWidthButton: true,
+                              size: GFSize.LARGE,
+                            ),
+                            const SizedBox(height: 10),
                             FormBuilderCheckbox(
-                              name: 'accept_terms',
+                              name: 'inputan',
                               onChanged: (value) {
                                 controller.isInputanRead.value = value!;
                               },
@@ -916,6 +935,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   ),
                   const SizedBox(height: 20),
                   GalleryCard(controller: controller),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -1028,6 +1048,7 @@ class AgunanCard extends StatelessWidget {
                     child: Text('👎 Tidak'),
                   ),
                 ],
+                validator: FormBuilderValidators.required(),
               )
             ],
           ),
@@ -1140,6 +1161,7 @@ class UsahaCard extends StatelessWidget {
                     child: Text('👎 Tidak'),
                   ),
                 ],
+                validator: FormBuilderValidators.required(),
               )
             ],
           ),
@@ -1253,6 +1275,7 @@ class BisnisCard extends StatelessWidget {
                     child: Text('👎 Tidak'),
                   ),
                 ],
+                validator: FormBuilderValidators.required(),
               )
             ],
           ),
@@ -1361,6 +1384,7 @@ class KarakterCard extends StatelessWidget {
                 onChanged: (value) {
                   controller.isKarakterPressed.value = true;
                 },
+                validator: FormBuilderValidators.required(),
               ),
             ],
           ),
@@ -1505,6 +1529,7 @@ class KeuanganCard extends StatelessWidget {
                       child: Text('👎 Tidak'),
                     ),
                   ],
+                  validator: FormBuilderValidators.required(),
                 ),
               ),
             ],
@@ -1532,10 +1557,31 @@ class GalleryCard extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const GFTypography(
-                text: 'Gallery Debitur',
-                type: GFTypographyType.typo3,
-                showDivider: false,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Expanded(
+                    flex: 6,
+                    child: GFTypography(
+                      text: 'Gallery Debitur',
+                      type: GFTypographyType.typo3,
+                      showDivider: false,
+                    ),
+                  ),
+                  Expanded(
+                    child: Obx(
+                      () => Icon(
+                        controller.isGalleryRead.value == true
+                            ? Icons.check_box
+                            : Icons.close,
+                        color: controller.isGalleryRead.value == true
+                            ? Colors.green
+                            : Colors.transparent,
+                        size: 30,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 10),
               Text(
@@ -1609,6 +1655,28 @@ class GalleryCard extends StatelessWidget {
                 ),
                 fullWidthButton: true,
                 size: GFSize.LARGE,
+              ),
+              const SizedBox(height: 10),
+              FormBuilderCheckbox(
+                name: 'berkas',
+                onChanged: (value) {
+                  controller.isGalleryRead.value = value!;
+                },
+                initialValue: controller.isGalleryRead.value,
+                title: RichText(
+                  text: const TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Saya sudah melihat berkas ini',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                validator: FormBuilderValidators.equal(
+                  true,
+                  errorText: 'Saya sudah melihat berkas ini',
+                ),
               ),
             ],
           ),

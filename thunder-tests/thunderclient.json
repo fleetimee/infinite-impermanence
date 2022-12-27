@@ -1840,11 +1840,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/pengajuan/P-Pr1a-20221219",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-FNyt-20221220",
     "method": "DELETE",
     "sortNum": 1110000,
     "created": "2022-12-20T07:36:56.767Z",
-    "modified": "2022-12-21T12:49:39.732Z",
+    "modified": "2022-12-27T01:29:10.377Z",
     "headers": [],
     "params": [],
     "tests": []

@@ -1,5 +1,5 @@
 import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
-import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
+import 'package:akm/app/models/user/user_pengajuan.model.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +13,8 @@ class HomeReviewerController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     getUid();
+    super.onInit();
   }
 
   @override
@@ -27,7 +27,7 @@ class HomeReviewerController extends GetxController {
   }
 
   // var
-  var uid = ''.obs;
+  late var uid = ''.obs;
 
   // Get uid from sharedPreferences
   Future<void> getUid() async {
@@ -58,6 +58,10 @@ class HomeReviewerController extends GetxController {
       isMyPendingReviewProcessing(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  Future<void> refreshReview() async {
+    getMyPendingReview();
   }
 
   void getMyCompletedReview() async {

@@ -54,6 +54,9 @@ class Pengajuan {
     this.id,
     this.status,
     this.tglSubmit,
+    this.user,
+    this.debitur,
+    this.checkReviewer,
     this.tglReview,
     this.debiturId,
   });
@@ -62,6 +65,10 @@ class Pengajuan {
   String? status;
   DateTime? tglSubmit;
   DateTime? tglReview;
+  List<User>? user;
+  Debitur? debitur;
+  dynamic checkReviewer;
+
   int? debiturId;
 
   factory Pengajuan.fromJson(Map<String, dynamic> json) => Pengajuan(
@@ -74,6 +81,12 @@ class Pengajuan {
             ? null
             : DateTime.parse(json["tgl_review"]),
         debiturId: json["debiturId"],
+        user: json["user"] == null
+            ? null
+            : List<User>.from(json["user"].map((x) => User.fromJson(x))),
+        debitur:
+            json["debitur"] == null ? null : Debitur.fromJson(json["debitur"]),
+        checkReviewer: json["checkReviewer"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -86,5 +99,68 @@ class Pengajuan {
             ? null
             : "${tglReview?.year.toString().padLeft(4, '0')}-${tglReview?.month.toString().padLeft(2, '0')}-${tglReview?.day.toString().padLeft(2, '0')}",
         "debiturId": debiturId,
+      };
+}
+
+class Debitur {
+  Debitur({
+    this.id,
+    this.noDebitur,
+    this.peminjam1,
+  });
+
+  int? id;
+  String? noDebitur;
+  String? peminjam1;
+
+  factory Debitur.fromJson(Map<String, dynamic> json) => Debitur(
+        id: json["id"],
+        noDebitur: json["no_debitur"],
+        peminjam1: json["peminjam1"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "no_debitur": noDebitur,
+        "peminjam1": peminjam1,
+      };
+}
+
+class User {
+  User({
+    this.id,
+    this.email,
+    this.phoneNumber,
+    this.displayName,
+    this.photoUrl,
+    this.createdAt,
+  });
+
+  String? id;
+  String? email;
+  String? phoneNumber;
+  String? displayName;
+  String? photoUrl;
+  DateTime? createdAt;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        email: json["email"],
+        phoneNumber: json["phoneNumber"],
+        displayName: json["displayName"],
+        photoUrl: json["photoURL"],
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "displayName": displayName,
+        "photoURL": photoUrl,
+        // ignore: prefer_null_aware_operators
+        "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
       };
 }

@@ -285,58 +285,71 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                           );
                         } else {
                           if (controller.listMyPendingReview.isNotEmpty) {
-                            return ListView.builder(
-                              itemCount: controller.listMyPendingReview.length,
-                              itemBuilder: (context, index) {
-                                return ListTile(
-                                  leading: const Icon(
-                                    Icons.book,
-                                    color: Colors.red,
-                                  ),
-                                  title: Text(
-                                    controller.listMyPendingReview[index].id!,
-                                  ),
-                                  trailing: const Icon(Icons.arrow_forward_ios),
-                                  onTap: () {
-                                    Get.dialog(AlertDialog(
-                                      title: const Text(
-                                        'Detail Review',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      content: const Text(
-                                          'Apa yang ingin anda lakukan terhadap review ini?',
-                                          style: TextStyle(fontSize: 15)),
-                                      actions: [
-                                        GFButton(
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.toNamed(Routes.REVIEWER_SUBMIT,
-                                                arguments: controller
-                                                        .listMyPendingReview[
-                                                    index]);
-                                            // close dialog
-                                          },
-                                          text: 'Review Pengajuan Ini',
-                                          color: GFColors.DARK,
-                                        ),
-                                        GFButton(
-                                          onPressed: () {
-                                            Get.back();
-                                            Get.toNamed(Routes.PENGAJUAN_DETAIL,
-                                                arguments: controller
-                                                    .listMyPendingReview[index]
-                                                    .id!);
-                                          },
-                                          text: 'Lihat Progress',
-                                        )
-                                      ],
-                                    ));
-                                  },
-                                );
+                            return RefreshIndicator(
+                              onRefresh: () {
+                                return controller.refreshReview();
                               },
+                              child: ListView.builder(
+                                itemCount:
+                                    controller.listMyPendingReview.length,
+                                itemBuilder: (context, index) {
+                                  return ListTile(
+                                    leading: const Icon(
+                                      Icons.book,
+                                      color: Colors.red,
+                                    ),
+                                    title: Text(
+                                      controller.listMyPendingReview[index].id!,
+                                    ),
+                                    trailing:
+                                        const Icon(Icons.arrow_forward_ios),
+                                    onTap: () {
+                                      Get.dialog(AlertDialog(
+                                        title: const Text(
+                                          'Detail Review',
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        content: const Text(
+                                            'Apa yang ingin anda lakukan terhadap review ini?',
+                                            style: TextStyle(fontSize: 15)),
+                                        actions: [
+                                          if (controller.uid.value ==
+                                              controller
+                                                  .listMyPendingReview[index]
+                                                  .user[0]
+                                                  .id)
+                                            GFButton(
+                                              onPressed: () {
+                                                Get.back();
+                                                Get.toNamed(
+                                                    Routes.REVIEWER_SUBMIT,
+                                                    arguments: controller
+                                                            .listMyPendingReview[
+                                                        index]);
+                                              },
+                                              text: 'Review',
+                                            ),
+                                          GFButton(
+                                            onPressed: () {
+                                              Get.back();
+                                              Get.toNamed(
+                                                  Routes.PENGAJUAN_DETAIL,
+                                                  arguments: controller
+                                                      .listMyPendingReview[
+                                                          index]
+                                                      .id!);
+                                            },
+                                            text: 'Lihat Progress',
+                                          )
+                                        ],
+                                      ));
+                                    },
+                                  );
+                                },
+                              ),
                             );
                           } else {
                             return const Center(

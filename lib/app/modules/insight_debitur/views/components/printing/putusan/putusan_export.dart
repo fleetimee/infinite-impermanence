@@ -3,14 +3,12 @@ import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
-import 'package:get/get.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
 import 'package:terbilang_id/terbilang_id.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 import '../print_widget.dart';
 
 // 📦 Package imports:
@@ -35,8 +33,6 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
     pageMode: PdfPageMode.fullscreen,
     version: PdfVersion.pdf_1_5,
   );
-
-  final controller = Get.put(InsightDebiturController());
 
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
@@ -1395,7 +1391,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
             ),
             TableRow(
               children: [
-                center(controller.faker.name.fullName()),
+                center('Yami Yugi'),
               ],
             ),
             TableRow(

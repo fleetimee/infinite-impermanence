@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -57,6 +58,8 @@ class DebiturDeployController extends GetxController {
 
   final penginput = TextEditingController().obs;
 
+  final homeCtrl = Get.put(HomeController());
+
   void saveDebtor() {
     final body = {
       'userId': penginput.value.text,
@@ -99,6 +102,7 @@ class DebiturDeployController extends GetxController {
       DebtorService().addDebtor(body).then((resp) {
         isInputDebiturProcessing(false);
         clearForm();
+        homeCtrl.getMyDebiturInput(homeCtrl.sort);
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

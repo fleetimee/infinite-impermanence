@@ -1,77 +1,40 @@
 // To parse this JSON data, do
 //
-//     final userPengajuan = userPengajuanFromJson(jsonString);
+//     final pengajuanReviewer = pengajuanReviewerFromJson(jsonString);
+
+// ignore_for_file: prefer_null_aware_operators
 
 import 'dart:convert';
 
-UserPengajuan userPengajuanFromJson(String str) =>
-    UserPengajuan.fromJson(json.decode(str));
+PengajuanReviewer pengajuanReviewerFromJson(String str) =>
+    PengajuanReviewer.fromJson(json.decode(str));
 
-String userPengajuanToJson(UserPengajuan data) => json.encode(data.toJson());
+String pengajuanReviewerToJson(PengajuanReviewer data) =>
+    json.encode(data.toJson());
 
-class UserPengajuan {
-  UserPengajuan({
-    this.id,
-    this.roles,
-    this.pengajuan,
-    this.createdBy,
-    this.updatedBy,
-  });
-
-  String? id;
-  List<dynamic>? roles;
-  List<Pengajuan>? pengajuan;
-  dynamic createdBy;
-  dynamic updatedBy;
-
-  factory UserPengajuan.fromJson(Map<String, dynamic> json) => UserPengajuan(
-        id: json["id"],
-        roles: json["roles"] == null
-            ? null
-            : List<dynamic>.from(json["roles"].map((x) => x)),
-        pengajuan: json["pengajuan"] == null
-            ? null
-            : List<Pengajuan>.from(
-                json["pengajuan"].map((x) => Pengajuan.fromJson(x))),
-        createdBy: json["createdBy"],
-        updatedBy: json["updatedBy"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "roles":
-            roles == null ? null : List<dynamic>.from(roles!.map((x) => x)),
-        "pengajuan": pengajuan == null
-            ? null
-            : List<dynamic>.from(pengajuan!.map((x) => x.toJson())),
-        "createdBy": createdBy,
-        "updatedBy": updatedBy,
-      };
-}
-
-class Pengajuan {
-  Pengajuan({
+class PengajuanReviewer {
+  PengajuanReviewer({
     this.id,
     this.status,
     this.tglSubmit,
+    this.tglReview,
+    this.debiturId,
     this.user,
     this.debitur,
     this.checkReviewer,
-    this.tglReview,
-    this.debiturId,
   });
 
   String? id;
   String? status;
   DateTime? tglSubmit;
   DateTime? tglReview;
+  int? debiturId;
   List<User>? user;
   Debitur? debitur;
-  dynamic checkReviewer;
+  CheckReviewer? checkReviewer;
 
-  int? debiturId;
-
-  factory Pengajuan.fromJson(Map<String, dynamic> json) => Pengajuan(
+  factory PengajuanReviewer.fromJson(Map<String, dynamic> json) =>
+      PengajuanReviewer(
         id: json["id"],
         status: json["status"],
         tglSubmit: json["tgl_submit"] == null
@@ -86,7 +49,9 @@ class Pengajuan {
             : List<User>.from(json["user"].map((x) => User.fromJson(x))),
         debitur:
             json["debitur"] == null ? null : Debitur.fromJson(json["debitur"]),
-        checkReviewer: json["checkReviewer"],
+        checkReviewer: json["checkReviewer"] == null
+            ? null
+            : CheckReviewer.fromJson(json["checkReviewer"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -99,12 +64,57 @@ class Pengajuan {
             ? null
             : "${tglReview?.year.toString().padLeft(4, '0')}-${tglReview?.month.toString().padLeft(2, '0')}-${tglReview?.day.toString().padLeft(2, '0')}",
         "debiturId": debiturId,
+        "user": user == null
+            ? null
+            : List<dynamic>.from(user!.map((x) => x.toJson())),
+        "debitur": debitur == null ? null : debitur?.toJson(),
+        "checkReviewer": checkReviewer == null ? null : checkReviewer?.toJson(),
+      };
+}
+
+class CheckReviewer {
+  CheckReviewer({
+    this.id,
+    this.isKeuanganApproved,
+    this.isKarakterApproved,
+    this.isAgunanApproved,
+    this.isBisnisApproved,
+    this.isJenisUsahaApproved,
+    this.pengajuanId,
+  });
+
+  int? id;
+  bool? isKeuanganApproved;
+  bool? isKarakterApproved;
+  bool? isAgunanApproved;
+  bool? isBisnisApproved;
+  bool? isJenisUsahaApproved;
+  String? pengajuanId;
+
+  factory CheckReviewer.fromJson(Map<String, dynamic> json) => CheckReviewer(
+        id: json["id"],
+        isKeuanganApproved: json["is_keuangan_approved"],
+        isKarakterApproved: json["is_karakter_approved"],
+        isAgunanApproved: json["is_agunan_approved"],
+        isBisnisApproved: json["is_bisnis_approved"],
+        isJenisUsahaApproved: json["is_jenis_usaha_approved"],
+        pengajuanId: json["pengajuanId"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "is_keuangan_approved": isKeuanganApproved,
+        "is_karakter_approved": isKarakterApproved,
+        "is_agunan_approved": isAgunanApproved,
+        "is_bisnis_approved": isBisnisApproved,
+        "is_jenis_usaha_approved": isJenisUsahaApproved,
+        "pengajuanId": pengajuanId,
       };
 }
 
 class Debitur {
   Debitur({
-    this.id,
+    required this.id,
     this.noDebitur,
     this.peminjam1,
   });
@@ -160,7 +170,6 @@ class User {
         "phoneNumber": phoneNumber,
         "displayName": displayName,
         "photoURL": photoUrl,
-        // ignore: prefer_null_aware_operators
         "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
       };
 }

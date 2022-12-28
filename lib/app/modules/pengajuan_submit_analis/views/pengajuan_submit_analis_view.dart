@@ -53,6 +53,22 @@ class PengajuanSubmitAnalisView
     }
   }
 
+  List<Widget> formBuilderFields = List.empty(growable: true);
+
+  Widget MyWidget(int num) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: [
+          FormBuilderTextField(
+            name: 'name$num',
+            decoration: const InputDecoration(labelText: 'Name'),
+          ),
+        ],
+      ),
+    );
+  }
+
   DebiturInsight data = Get.arguments;
 
   @override
@@ -137,6 +153,8 @@ class PengajuanSubmitAnalisView
                       ),
                     ),
                   ),
+                  const SizedBox(height: 16),
+
                   // const SizedBox(height: 16),
                   // const Text(
                   //   'Self Review ?',

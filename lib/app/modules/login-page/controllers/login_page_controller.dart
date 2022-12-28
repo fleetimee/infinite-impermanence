@@ -26,6 +26,18 @@ class LoginPageController extends GetxController {
 
   static LoginPageController instance = Get.find();
 
+  // convert User object to map
+  final mapCreated = Map.from({
+    'email': auth.currentUser?.email,
+    'displayName': auth.currentUser?.displayName,
+    'photoURL': auth.currentUser?.photoURL,
+    'phoneNumber': auth.currentUser?.phoneNumber,
+    'isAnonymous': auth.currentUser?.isAnonymous,
+    'uid': auth.currentUser?.uid,
+    'claims': auth.currentUser?.getIdTokenResult(),
+    'tenantId': auth.currentUser?.tenantId,
+  });
+
   @override
   void onReady() {
     firebaseUser = Rx<User?>(auth.currentUser);
@@ -57,13 +69,46 @@ class LoginPageController extends GetxController {
             claims.claims!['pengutus'] == false) {
           debugPrint('User is signed in! and is analis only');
           Get.offAllNamed(Routes.HOME);
+          // if user is reviewer then route to reviewer page
         } else if (claims.claims!['reviewer'] == true &&
             claims.claims!['admin'] == false &&
             claims.claims!['analis'] == false &&
             claims.claims!['pengutus'] == false) {
           debugPrint('User is signed in! and is reviewer only');
           Get.offAllNamed(Routes.HOME_REVIEWER);
-        } else {
+        } // if user is pengutus then route to pengutus page
+        else if (claims.claims!['pengutus'] == true &&
+            claims.claims!['admin'] == false &&
+            claims.claims!['analis'] == false &&
+            claims.claims!['reviewer'] == false) {
+          debugPrint('User is signed in! and is pengutus only');
+          Get.offAllNamed(Routes.HOME_PENGUTUS);
+          // Get.offAllNamed(Routes.HOME_PENGUTUS);
+        } // check if claims is empty or null
+        // else if (mapCreated['claims'] == null) {
+        //   debugPrint('User is signed in! but claims is empty or null');
+        //   Get.dialog(AlertDialog(
+        //     title: const Text('Perhatian'),
+        //     content: const Text(
+        //         'Akun anda belum terdaftar sebagai analis atau reviewer. Silahkan hubungi admin untuk melakukan registrasi.'),
+        //     actions: [
+        //       TextButton(
+        //         onPressed: () {
+        //           Get.back();
+        //           Get.offAllNamed(Routes.LOGIN_PAGE);
+        //         },
+        //         child: const Text('OK'),
+        //       ),
+        //     ],
+        //   )).then((value) async {
+        //     auth.signOut();
+
+        //     final prefs = await SharedPreferences.getInstance();
+
+        //     // remove all data from shared preferences
+        //     prefs.clear();
+        //   });
+        else {
           // check shared preferences if user already login
           final prefs = await SharedPreferences.getInstance();
           // if user already login then route to dashboard page

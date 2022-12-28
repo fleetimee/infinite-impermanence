@@ -7,10 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class HomeReviewerController extends GetxController {
-  // Controller for pageview
-  final PageController controller = PageController();
-
+class HomePengutusController extends GetxController {
   @override
   void onInit() {
     getUid();
@@ -20,34 +17,33 @@ class HomeReviewerController extends GetxController {
   @override
   void onReady() {
     Future.delayed(Duration.zero, () {
-      getMyPendingReview();
-      getMyCompletedReview();
+      getMyPendingPemutusan();
+      // getMyCompleted();
     });
     super.onReady();
   }
 
-  // var
+  final PageController controller = PageController();
+
   late var uid = ''.obs;
 
-  // Get uid from sharedPreferences
   Future<void> getUid() async {
     final prefs = await SharedPreferences.getInstance();
     uid.value = prefs.getString('id') ?? '';
   }
 
-  // Pending review
-  var isMyPendingReviewProcessing = false.obs;
-  var isMyCompletedReviewProcessing = false.obs;
-  List listMyPendingReview = <Pengajuan>[].obs;
-  List listMyCompletedReview = <Pengajuan>[].obs;
+  var isMyPendingPemutusanProcessing = false.obs;
+  var isMyCompletedPemutusanProcessing = false.obs;
+  List listMyPendingPemutusan = <Pengajuan>[].obs;
+  List listMyCompletedPemutusan = <Pengajuan>[].obs;
 
-  void getMyPendingReview() async {
+  void getMyPendingPemutusan() async {
     try {
-      isMyPendingReviewProcessing(true);
+      isMyPendingPemutusanProcessing(true);
       MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
-        isMyPendingReviewProcessing(false);
+        isMyPendingPemutusanProcessing(false);
         final finalList = resp.pengajuan?.where((element) {
-          if (element.status == 'PENDING') {
+          if (element.status == 'REVIEWED') {
             return true;
           } else if (element.status == 'REJECTED') {
             return true;
@@ -56,41 +52,20 @@ class HomeReviewerController extends GetxController {
           }
         }).toList();
 
-        listMyPendingReview.clear();
-        listMyPendingReview = finalList ?? [];
+        listMyPendingPemutusan.clear();
+        listMyPendingPemutusan = finalList ?? [];
       }, onError: (err) {
-        isMyPendingReviewProcessing(false);
+        isMyPendingPemutusanProcessing(false);
         Get.snackbar('Error', err.toString());
       });
     } catch (e) {
-      isMyPendingReviewProcessing(false);
+      isMyPendingPemutusanProcessing(false);
       Get.snackbar('Error', e.toString());
     }
   }
 
-  Future<void> refreshReview() async {
-    getMyPendingReview();
-  }
-
-  void getMyCompletedReview() async {
-    try {
-      isMyCompletedReviewProcessing(true);
-      MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
-        isMyCompletedReviewProcessing(false);
-        final finalList = resp.pengajuan
-            ?.where((element) => element.status == 'REVIEWED')
-            .toList();
-
-        listMyCompletedReview.clear();
-        listMyCompletedReview = finalList ?? [];
-      }, onError: (err) {
-        isMyCompletedReviewProcessing(false);
-        Get.snackbar('Error', err.toString());
-      });
-    } catch (e) {
-      isMyCompletedReviewProcessing(false);
-      Get.snackbar('Error', e.toString());
-    }
+  Future<void> refreshPemutusan() async {
+    getMyPendingPemutusan();
   }
 
   void logout() {

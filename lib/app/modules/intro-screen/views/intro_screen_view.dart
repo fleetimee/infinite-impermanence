@@ -1,5 +1,5 @@
 import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/routes/app_pages.dart';
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -10,11 +10,14 @@ import 'package:getwidget/colors/gf_color.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controllers/intro_screen_controller.dart';
 
 class IntroScreenView extends GetView<IntroScreenController> {
-  const IntroScreenView({Key? key}) : super(key: key);
+  IntroScreenView({Key? key}) : super(key: key);
+
+  final loginCtrl = Get.put(LoginPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -299,12 +302,17 @@ class IntroScreenView extends GetView<IntroScreenController> {
             next: const Text("Next"),
             done: const Text("Done",
                 style: TextStyle(fontWeight: FontWeight.w700)),
-            onDone: () {
+            onDone: () async {
               if (auth.currentUser?.displayName != null ||
                   auth.currentUser?.displayName != '' &&
                       auth.currentUser?.email != null ||
                   auth.currentUser?.email != '') {
-                Get.offAllNamed(Routes.HOME);
+                auth.signOut();
+
+                final prefs = await SharedPreferences.getInstance();
+
+                // remove all data from shared preferences
+                prefs.clear();
               } else {
                 AwesomeDialog(
                   context: context,

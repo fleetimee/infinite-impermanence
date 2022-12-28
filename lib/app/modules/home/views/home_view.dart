@@ -881,6 +881,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Expanded(
                       child: TabBarView(
+                        physics: const NeverScrollableScrollPhysics(),
                         children: [
                           Obx(() {
                             if (controller.isMyInputProcessing.value) {
@@ -889,132 +890,138 @@ class HomeView extends GetView<HomeController> {
                               );
                             } else {
                               if (controller.listMyInput.isNotEmpty) {
-                                return ListView.builder(
-                                  controller: controller.scrollController,
-                                  itemCount: controller.listMyInput.length,
-                                  itemBuilder: (context, index) {
-                                    bool isSameDate = true;
-                                    final dateString = controller
-                                        .listMyInput[index].tglSekarang;
-
-                                    if (index == 0) {
-                                      isSameDate = false;
-                                    } else {
-                                      final prevDateString = controller
-                                          .listMyInput[index - 1].tglSekarang
-                                          ?.toIso8601String();
-                                      final DateTime prevDate =
-                                          DateTime.parse(prevDateString!);
-                                      isSameDate = dateString!
-                                          .isAtSameMomentAs(prevDate);
-                                    }
-                                    if (index == 0 || !(isSameDate)) {
-                                      return Column(
-                                        children: [
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            DateFormat('EEEE, dd MMMM yyyy')
-                                                .format(dateString!),
-                                            style: GoogleFonts.poppins(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          GFCard(
-                                            border: Border.all(
-                                              color:
-                                                  Colors.black.withOpacity(0.1),
-                                            ),
-                                            padding: const EdgeInsets.all(10),
-                                            color:
-                                                Colors.white.withOpacity(0.9),
-                                            elevation: 5,
-                                            titlePosition: GFPosition.start,
-                                            title: GFListTile(
-                                              avatar: const Icon(
-                                                  FontAwesomeIcons
-                                                      .bookBookmark),
-                                              title: Text(
-                                                controller.listMyInput[index]
-                                                    .peminjam1!,
-                                                style: GoogleFonts.montserrat(
-                                                  color: Colors.black87,
-                                                  fontSize: 25,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              subTitle: Text(
-                                                controller.listMyInput[index]
-                                                    .bidangUsaha!,
-                                                style: GoogleFonts.montserrat(
-                                                  color: Colors.black54,
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              icon: GFButton(
-                                                onPressed: (() {
-                                                  Get.toNamed(
-                                                      Routes.INSIGHT_DEBITUR,
-                                                      arguments: controller
-                                                          .listMyInput[index]
-                                                          .id);
-                                                }),
-                                                text: 'Detail',
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      );
-                                    } else {
-                                      return GFCard(
-                                        border: Border.all(
-                                          color: Colors.black.withOpacity(0.1),
-                                        ),
-                                        padding: const EdgeInsets.all(10),
-                                        color: Colors.white.withOpacity(0.9),
-                                        elevation: 5,
-                                        titlePosition: GFPosition.start,
-                                        title: GFListTile(
-                                          avatar: const Icon(
-                                              FontAwesomeIcons.bookBookmark),
-                                          title: Text(
-                                            controller
-                                                .listMyInput[index].peminjam1!,
-                                            style: GoogleFonts.montserrat(
-                                              color: Colors.black87,
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          subTitle: Text(
-                                            controller.listMyInput[index]
-                                                .bidangUsaha!,
-                                            style: GoogleFonts.montserrat(
-                                              color: Colors.black54,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          icon: GFButton(
-                                            onPressed: (() {
-                                              Get.toNamed(
-                                                  Routes.INSIGHT_DEBITUR,
-                                                  arguments: controller
-                                                      .listMyInput[index].id);
-                                            }),
-                                            text: 'Detail',
-                                          ),
-                                        ),
-                                      );
-                                    }
+                                return RefreshIndicator(
+                                  onRefresh: () {
+                                    return controller.refreshInputtan();
                                   },
+                                  child: ListView.builder(
+                                    controller: controller.scrollController,
+                                    itemCount: controller.listMyInput.length,
+                                    itemBuilder: (context, index) {
+                                      bool isSameDate = true;
+                                      final dateString = controller
+                                          .listMyInput[index].tglSekarang;
+
+                                      if (index == 0) {
+                                        isSameDate = false;
+                                      } else {
+                                        final prevDateString = controller
+                                            .listMyInput[index - 1].tglSekarang
+                                            ?.toIso8601String();
+                                        final DateTime prevDate =
+                                            DateTime.parse(prevDateString!);
+                                        isSameDate = dateString!
+                                            .isAtSameMomentAs(prevDate);
+                                      }
+                                      if (index == 0 || !(isSameDate)) {
+                                        return Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              DateFormat('EEEE, dd MMMM yyyy')
+                                                  .format(dateString!),
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            GFCard(
+                                              border: Border.all(
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                              ),
+                                              padding: const EdgeInsets.all(10),
+                                              color:
+                                                  Colors.white.withOpacity(0.9),
+                                              elevation: 5,
+                                              titlePosition: GFPosition.start,
+                                              title: GFListTile(
+                                                avatar: const Icon(
+                                                    FontAwesomeIcons
+                                                        .bookBookmark),
+                                                title: Text(
+                                                  controller.listMyInput[index]
+                                                      .peminjam1!,
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.black87,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                subTitle: Text(
+                                                  controller.listMyInput[index]
+                                                      .bidangUsaha!,
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.black54,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                icon: GFButton(
+                                                  onPressed: (() {
+                                                    Get.toNamed(
+                                                        Routes.INSIGHT_DEBITUR,
+                                                        arguments: controller
+                                                            .listMyInput[index]
+                                                            .id);
+                                                  }),
+                                                  text: 'Detail',
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      } else {
+                                        return GFCard(
+                                          border: Border.all(
+                                            color:
+                                                Colors.black.withOpacity(0.1),
+                                          ),
+                                          padding: const EdgeInsets.all(10),
+                                          color: Colors.white.withOpacity(0.9),
+                                          elevation: 5,
+                                          titlePosition: GFPosition.start,
+                                          title: GFListTile(
+                                            avatar: const Icon(
+                                                FontAwesomeIcons.bookBookmark),
+                                            title: Text(
+                                              controller.listMyInput[index]
+                                                  .peminjam1!,
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.black87,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            subTitle: Text(
+                                              controller.listMyInput[index]
+                                                  .bidangUsaha!,
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.black54,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            icon: GFButton(
+                                              onPressed: (() {
+                                                Get.toNamed(
+                                                    Routes.INSIGHT_DEBITUR,
+                                                    arguments: controller
+                                                        .listMyInput[index].id);
+                                              }),
+                                              text: 'Detail',
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  ),
                                 );
                               } else {
                                 return Align(
@@ -1159,12 +1166,12 @@ class HomeView extends GetView<HomeController> {
                                                               .listMySubmission[
                                                                   index]
                                                               .status ==
-                                                          'DIREVIEW'
+                                                          'REVIEWED'
                                                       ? const Text(
                                                           'Status : Sedang Direview',
                                                           style: TextStyle(
                                                             color:
-                                                                Colors.yellow,
+                                                                Colors.orange,
                                                             fontSize: 18,
                                                             fontWeight:
                                                                 FontWeight.w400,
@@ -1174,7 +1181,7 @@ class HomeView extends GetView<HomeController> {
                                                                   .listMySubmission[
                                                                       index]
                                                                   .status ==
-                                                              'DITERIMA'
+                                                              'DONE'
                                                           ? const Text(
                                                               'Status : Diterima',
                                                               style: TextStyle(

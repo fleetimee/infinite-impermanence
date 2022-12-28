@@ -77,6 +77,10 @@ class HomeController extends GetxController {
     super.onReady();
   }
 
+  Future<void> refreshInputtan() async {
+    getMyDebiturInput(sort);
+  }
+
   // Initialize firebase auth
   FirebaseAuth auth = FirebaseAuth.instance;
 

@@ -19,6 +19,10 @@ class PengajuanSubmitAnalisController extends GetxController {
 
   // split uuid from string
 
+  void resetForm() {
+    formKey.currentState?.reset();
+  }
+
   void submitPengajuanAnalis() {
     List<String> parts =
         formKey.currentState?.fields['reviewers']?.value.split(':');
@@ -49,6 +53,8 @@ class PengajuanSubmitAnalisController extends GetxController {
       isPengajuanLoading(true);
       PengajuanSubmitProvider().submitPengajuanAnalis(body).then((resp) {
         isPengajuanLoading(false);
+        resetForm();
+        homeCtrl.getMySubmission();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

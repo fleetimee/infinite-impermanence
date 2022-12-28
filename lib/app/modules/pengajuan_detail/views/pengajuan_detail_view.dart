@@ -40,13 +40,30 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                           fontSize: 20,
                         ),
                       ),
-                      GFButton(
-                        icon: const Icon(Icons.pending, color: Colors.white),
-                        onPressed: () {},
-                        text: 'Pending',
-                        color: GFColors.DANGER,
-                        size: GFSize.LARGE,
-                      )
+                      Obx(() => GFButton(
+                            icon: Icon(
+                              controller.pengajuanDetail.value.status ==
+                                      'PENDING'
+                                  ? Icons.pending_actions_outlined
+                                  : controller.pengajuanDetail.value.status ==
+                                          'REVIEWED'
+                                      ? Icons.pentagon
+                                      : Icons.check_circle_outline,
+                              color: Colors.white,
+                            ),
+                            onPressed: () {},
+                            text: controller.isPenganjuanDetailLoading.value
+                                ? 'Loading...'
+                                : controller.pengajuanDetail.value.status!,
+                            color: controller.pengajuanDetail.value.status ==
+                                    'PENDING'
+                                ? GFColors.DANGER
+                                : controller.pengajuanDetail.value.status ==
+                                        'REVIEWED'
+                                    ? GFColors.WARNING
+                                    : GFColors.SUCCESS,
+                            size: GFSize.LARGE,
+                          ))
                     ],
                   ),
                   // vertical divider
@@ -215,7 +232,12 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                               : SizedBox(
                                   width: 120,
                                   child: Text(
-                                    '-',
+                                    controller.pengajuanDetail.value.user!
+                                                .length <
+                                            3
+                                        ? '-'
+                                        : controller.pengajuanDetail.value
+                                            .user![2].displayName!,
                                     style: GoogleFonts.poppins(
                                       fontSize: 17,
                                     ),
@@ -279,7 +301,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                     controller.pengajuanDetail.value.status == 'PENDING'
                         ? // Initial
                         const BuildPending()
-                        : controller.pengajuanDetail.value.status == 'REVIEW'
+                        : controller.pengajuanDetail.value.status == 'REVIEWED'
                             ? // Done
                             const BuildReviewed()
                             : // Rejected

@@ -67,6 +67,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
           padding: const EdgeInsets.all(16),
           child: SingleChildScrollView(
             child: FormBuilder(
+              key: controller.formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -125,7 +126,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   ),
                   const SizedBox(height: 20),
                   FormBuilderSearchableDropdown<String>(
-                    name: 'reviewers',
+                    name: 'pemutus',
                     popupProps: const PopupProps.menu(showSearchBox: true),
                     asyncItems: (filter) {
                       return _getItems();
@@ -936,6 +937,48 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   const SizedBox(height: 20),
                   GalleryCard(controller: controller),
                   const SizedBox(height: 20),
+                  GFButton(
+                    onPressed: () {
+                      if (controller.formKey.currentState!.saveAndValidate()) {
+                        // controller.submit();
+                        debugPrint(
+                            controller.formKey.currentState!.value.toString());
+                        Get.dialog(
+                          AlertDialog(
+                            title: const Text('Submit'),
+                            content: const Text(
+                                'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Get.back();
+                                },
+                                child: const Text('Tidak'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  controller.saveReview();
+                                },
+                                child: const Text('Ya'),
+                              ),
+                            ],
+                          ),
+                        );
+                      } else {
+                        debugPrint('validation failed');
+                      }
+                    },
+                    text: 'Submit',
+                    shape: GFButtonShape.square,
+                    color: GFColors.SUCCESS,
+                    fullWidthButton: true,
+                    size: GFSize.LARGE,
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),

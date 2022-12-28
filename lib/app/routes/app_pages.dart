@@ -30,6 +30,8 @@ import '../modules/gate/bindings/gate_binding.dart';
 import '../modules/gate/views/gate_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home_pengutus/bindings/home_pengutus_binding.dart';
+import '../modules/home_pengutus/views/home_pengutus_view.dart';
 import '../modules/home_reviewer/bindings/home_reviewer_binding.dart';
 import '../modules/home_reviewer/views/home_reviewer_view.dart';
 import '../modules/ijin_legitimasi/bindings/ijin_legitimasi_binding.dart';
@@ -454,7 +456,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.INTRO_SCREEN,
-      page: () => const IntroScreenView(),
+      page: () => IntroScreenView(),
       binding: IntroScreenBinding(),
     ),
     GetPage(
@@ -481,6 +483,11 @@ class AppPages {
       name: _Paths.REVIEWER_SUBMIT,
       page: () => const ReviewerSubmitView(),
       binding: ReviewerSubmitBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_PENGUTUS,
+      page: () => HomePengutusView(),
+      binding: HomePengutusBinding(),
     ),
   ];
 }

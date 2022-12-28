@@ -156,6 +156,12 @@ class ReviewerSubmitController extends GetxController {
       "tgl_review": formatted,
       "user": [
         {
+          "id": pengajuan.user![0].id,
+        },
+        {
+          "id": pengajuan.user![1].id,
+        },
+        {
           "id": uuid,
         }
       ],
@@ -176,6 +182,7 @@ class ReviewerSubmitController extends GetxController {
         isSubmitLoading(false);
         homeReviewCtrl.getMyPendingReview();
         homeReviewCtrl.getMyCompletedReview();
+        resetForm();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

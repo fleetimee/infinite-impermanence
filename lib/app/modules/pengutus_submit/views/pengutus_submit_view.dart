@@ -1,60 +1,22 @@
-import 'dart:convert';
-
-import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../controllers/reviewer_submit_controller.dart';
+import '../controllers/pengutus_submit_controller.dart';
 
 // ignore: must_be_immutable
-class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
-  ReviewerSubmitView({Key? key}) : super(key: key);
+class PengutusSubmitView extends GetView<PengutusSubmitController> {
+  PengutusSubmitView({Key? key}) : super(key: key);
 
   String formatDatetime(DateTime date) {
     return DateFormat('dd MMMM yyyy').format(date);
-  }
-
-  Future<List<String>> _getItems() async {
-    final httpClient = http.Client();
-    try {
-      final response = await httpClient.get(
-        Uri.parse('${baseUrl}firebase-remote/pengutus'),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Access-Control-Allow-Origin': '*'
-        },
-      );
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = jsonDecode(response.body);
-        debugPrint('data: $data');
-        var uid = data['data'].map<String>((e) => e['uid'].toString()).toList();
-        var displayName = data['data']
-            .map<String>((e) => e['displayName'].toString())
-            .toList();
-
-        var combined = displayName
-            .map<String>((e) => '$e : ${uid[displayName.indexOf(e)]}')
-            .toList();
-
-        return combined;
-      } else {
-        var data = jsonDecode(response.body);
-        throw Exception(data['message']);
-      }
-    } catch (e) {
-      return Future.error(e);
-    }
   }
 
   Widget myWidget(int num) {
@@ -87,7 +49,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: secondaryColor,
+      backgroundColor: Colors.pink[600],
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.all(16),
@@ -98,8 +60,10 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const GFTypography(
-                    text: 'Review Pengajuan',
+                    text: 'Putusan Pengajuan',
                     type: GFTypographyType.typo1,
+                    textColor: secondaryColor,
+                    dividerColor: secondaryColor,
                   ),
                   const SizedBox(height: 20),
                   Obx(
@@ -111,68 +75,53 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
+                              color: secondaryColor,
                             ),
                           ),
                     ),
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    'Tanggal Review :',
+                    'Tanggal Putusan :',
                     style: Theme.of(context).textTheme.caption?.merge(
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
+                            color: secondaryColor,
                           ),
                         ),
                   ),
                   const SizedBox(height: 20),
                   FormBuilderDateTimePicker(
-                    name: 'tglReview',
+                    name: 'tglPutusan',
+                    cursorColor: secondaryColor,
                     inputType: InputType.date,
+                    style: GoogleFonts.poppins(
+                      color: secondaryColor,
+                      fontSize: 16,
+                    ),
                     format: DateFormat('dd-MM-yyyy'),
                     resetIcon: const Icon(Icons.clear),
                     decoration: const InputDecoration(
-                      hintText: 'Pilih Tanggal Review',
-                      prefixIcon: Icon(Icons.date_range),
-                      suffixIcon: Icon(Icons.arrow_drop_down),
+                      focusColor: secondaryColor,
+                      hintText: 'Pilih Tanggal Putusan',
+                      fillColor: secondaryColor,
+                      labelStyle: TextStyle(
+                        color: secondaryColor,
+                      ),
+                      hintStyle: TextStyle(
+                        color: secondaryColor,
+                      ),
+                      prefixIcon: Icon(
+                        Icons.date_range,
+                        color: secondaryColor,
+                      ),
+                      suffixIcon: Icon(
+                        Icons.arrow_drop_down,
+                        color: secondaryColor,
+                      ),
                       border: // no border
                           InputBorder.none,
-                    ),
-                    validator: FormBuilderValidators.required(),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Ditujukan Kepada :',
-                    style: Theme.of(context).textTheme.caption?.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                  ),
-                  const SizedBox(height: 20),
-                  FormBuilderSearchableDropdown<String>(
-                    name: 'pemutus',
-                    popupProps: const PopupProps.menu(showSearchBox: true),
-                    asyncItems: (filter) {
-                      return _getItems();
-                    },
-                    clearButtonProps: const ClearButtonProps(
-                      icon: Icon(Icons.clear),
-                      color: Colors.red,
-                    ),
-                    itemAsString: (item) {
-                      // hide the uid from screen
-                      return item.split(':')[0];
-                    },
-                    onChanged: (value) {
-                      debugPrint('value: $value');
-                    },
-                    decoration: const InputDecoration(
-                      border: // no border
-                          InputBorder.none,
-                      prefixIcon: Icon(Icons.person),
-                      hintText: 'Pilih Pemutus',
                     ),
                     validator: FormBuilderValidators.required(),
                   ),
@@ -183,6 +132,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
+                            color: secondaryColor,
                           ),
                         ),
                   ),
@@ -850,7 +800,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                 Get.toNamed(Routes.INPUT_PRINT,
                                     arguments: controller.insightDebitur.value);
                               },
-                              color: primaryColor,
+                              color: Colors.pink,
                               shape: GFButtonShape.pills,
                               text: 'Lihat Hasil Inputan',
                               icon: const Icon(
@@ -867,7 +817,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                 Get.toNamed(Routes.USULAN_PRINT,
                                     arguments: controller.insightDebitur.value);
                               },
-                              color: primaryColor,
+                              color: Colors.pink,
                               shape: GFButtonShape.pills,
                               text: 'Lihat Draft Usulan',
                               icon: const Icon(
@@ -884,7 +834,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                 Get.toNamed(Routes.USULAN_BARU_PRINT,
                                     arguments: controller.insightDebitur.value);
                               },
-                              color: primaryColor,
+                              color: Colors.pink,
                               shape: GFButtonShape.pills,
                               text: 'Lihat Draft Usulan Baru',
                               icon: const Icon(
@@ -901,7 +851,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                 Get.toNamed(Routes.PUTUSAN_PRINT,
                                     arguments: controller.insightDebitur.value);
                               },
-                              color: primaryColor,
+                              color: Colors.pink,
                               shape: GFButtonShape.pills,
                               text: 'Lihat Draft Putusan',
                               icon: const Icon(
@@ -957,6 +907,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
+                            color: secondaryColor,
                           ),
                         ),
                   ),
@@ -969,15 +920,16 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const GFTypography(
-                              text: 'Bahasan Reviewer',
+                              text: 'Bahasan Pemutus',
                               type: GFTypographyType.typo3,
                               showDivider: false,
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
+                              'Ini merupakan catatan pemutus untuk debitur ini',
                               style: Theme.of(context).textTheme.caption?.merge(
                                     const TextStyle(
                                       fontSize: 14,
@@ -1062,6 +1014,53 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  Container(
+                    color: Colors.grey[200],
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const GFTypography(
+                              text: 'Putusan',
+                              type: GFTypographyType.typo3,
+                              showDivider: false,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Decision time, TERIMA / TOLAK ?',
+                              style: Theme.of(context).textTheme.caption?.merge(
+                                    const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                            ),
+                            const SizedBox(height: 10),
+                            FormBuilderDropdown(
+                              name: 'putusan',
+                              alignment: Alignment.centerLeft,
+                              decoration: const InputDecoration(
+                                hintText: 'Terima / Tolak ?',
+                                border: InputBorder.none,
+                              ),
+                              items: const [
+                                DropdownMenuItem(
+                                  value: 'DONE',
+                                  child: Text('TERIMA'),
+                                ),
+                                DropdownMenuItem(
+                                  value: 'REJECTED',
+                                  child: Text('TOLAK'),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   GFButton(
                     onPressed: () {
                       if (controller.formKey.currentState!.saveAndValidate()) {
@@ -1072,7 +1071,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                           AlertDialog(
                             title: const Text('Submit'),
                             content: Text(
-                              'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?',
+                              'Tolong double check data yang telah diinputkan, apakah sudah benar ?',
                               style: Theme.of(context).textTheme.bodyText2,
                             ),
                             actions: [
@@ -1094,14 +1093,15 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                   list2.removeWhere(
                                     (element) =>
                                         element.key == 'pemutus' ||
-                                        element.key == 'tglReview' ||
+                                        element.key == 'tglPutusan' ||
                                         element.key == 'inputan' ||
                                         element.key == 'keuangan' ||
                                         element.key == 'karakter' ||
                                         element.key == 'bisnis' ||
                                         element.key == 'usaha' ||
                                         element.key == 'agunan' ||
-                                        element.key == 'berkas',
+                                        element.key == 'berkas' ||
+                                        element.key == 'putusan',
                                   );
 
                                   // debugPrint('list2: $list2');
@@ -1116,13 +1116,13 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                   list3 =
                                       list3.map((e) => e.toString()).toList();
 
-                                  controller.bahasanReviewer = list3;
+                                  controller.bahasanPemutus = list3;
 
-                                  var listFinal = controller.bahasanReviewer;
+                                  var listFinal = controller.bahasanPemutus;
 
                                   debugPrint(listFinal.toString());
 
-                                  controller.saveReview();
+                                  controller.savePutusan();
                                   Get.back();
                                   Get.back();
                                 },
@@ -1162,7 +1162,7 @@ class AgunanCard extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1217,7 +1217,7 @@ class AgunanCard extends StatelessWidget {
                   Get.toNamed(Routes.AGUNAN_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 text: 'Lihat Summary Agunan',
                 icon: const Icon(
@@ -1274,7 +1274,7 @@ class UsahaCard extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1329,7 +1329,7 @@ class UsahaCard extends StatelessWidget {
                       arguments: controller.insightDebitur.value);
                 },
                 text: 'Lihat Summary Jenis Usaha',
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 icon: const Icon(
                   Icons.summarize,
@@ -1387,7 +1387,7 @@ class BisnisCard extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1442,7 +1442,7 @@ class BisnisCard extends StatelessWidget {
                   Get.toNamed(Routes.BISNIS_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 text: 'Lihat Summary Bisnis',
                 icon: const Icon(
@@ -1501,7 +1501,7 @@ class KarakterCard extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1555,7 +1555,7 @@ class KarakterCard extends StatelessWidget {
                       arguments: controller.insightDebitur.value);
                 },
                 text: 'Lihat Summary Karakter',
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 icon: const Icon(
                   Icons.summarize,
@@ -1610,7 +1610,7 @@ class KeuanganCard extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1663,7 +1663,7 @@ class KeuanganCard extends StatelessWidget {
                   Get.toNamed(Routes.NERACA_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 text: 'Lihat Neraca',
                 icon: const Icon(
@@ -1680,7 +1680,7 @@ class KeuanganCard extends StatelessWidget {
                   Get.toNamed(Routes.RUGILABA_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 text: 'Lihat Laporan Keuangan',
                 icon: const Icon(
@@ -1697,7 +1697,7 @@ class KeuanganCard extends StatelessWidget {
                   Get.toNamed(Routes.KEUANGAN_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 text: 'Lihat Summary Keuangan',
                 icon: const Icon(
@@ -1756,7 +1756,7 @@ class GalleryCard extends StatelessWidget {
     required this.controller,
   }) : super(key: key);
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1809,7 +1809,7 @@ class GalleryCard extends StatelessWidget {
                       arguments: controller.insightDebitur.value);
                 },
                 text: 'Lihat Gallery',
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 icon: const Icon(
                   Icons.image,
@@ -1855,7 +1855,7 @@ class GalleryCard extends StatelessWidget {
                   Get.toNamed(Routes.GALLERY_FILE,
                       arguments: controller.insightDebitur.value);
                 },
-                color: primaryColor,
+                color: Colors.pink,
                 shape: GFButtonShape.pills,
                 text: 'Lihat Dokumen',
                 icon: const Icon(

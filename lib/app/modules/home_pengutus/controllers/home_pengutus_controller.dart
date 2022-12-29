@@ -18,7 +18,7 @@ class HomePengutusController extends GetxController {
   void onReady() {
     Future.delayed(Duration.zero, () {
       getMyPendingPemutusan();
-      // getMyCompleted();
+      getMyCompletedPutusan();
     });
     super.onReady();
   }
@@ -42,15 +42,9 @@ class HomePengutusController extends GetxController {
       isMyPendingPemutusanProcessing(true);
       MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
         isMyPendingPemutusanProcessing(false);
-        final finalList = resp.pengajuan?.where((element) {
-          if (element.status == 'REVIEWED') {
-            return true;
-          } else if (element.status == 'REJECTED') {
-            return true;
-          } else {
-            return false;
-          }
-        }).toList();
+        final finalList = resp.pengajuan
+            ?.where((element) => element.status == 'REVIEWED')
+            .toList();
 
         listMyPendingPemutusan.clear();
         listMyPendingPemutusan = finalList ?? [];
@@ -60,6 +54,28 @@ class HomePengutusController extends GetxController {
       });
     } catch (e) {
       isMyPendingPemutusanProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void getMyCompletedPutusan() async {
+    try {
+      isMyCompletedPemutusanProcessing(true);
+      MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
+        isMyCompletedPemutusanProcessing(false);
+        final finalList = resp.pengajuan
+            ?.where((element) =>
+                element.status == 'DONE' || element.status == 'REJECTED')
+            .toList();
+
+        listMyCompletedPemutusan.clear();
+        listMyCompletedPemutusan = finalList ?? [];
+      }, onError: (err) {
+        isMyCompletedPemutusanProcessing(false);
+        Get.snackbar('Error', err.toString());
+      });
+    } catch (e) {
+      isMyCompletedPemutusanProcessing(false);
       Get.snackbar('Error', e.toString());
     }
   }

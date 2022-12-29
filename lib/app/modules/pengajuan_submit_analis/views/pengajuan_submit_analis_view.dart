@@ -6,6 +6,7 @@ import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -53,21 +54,35 @@ class PengajuanSubmitAnalisView
     }
   }
 
-  List<Widget> formBuilderFields = List.empty(growable: true);
+  // List<Widget> formBuilderFields = List.empty(growable: true);
 
-  Widget MyWidget(int num) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-          FormBuilderTextField(
+  Widget myWidget(int num) {
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: FormBuilderTextField(
             name: 'name$num',
-            decoration: const InputDecoration(labelText: 'Name'),
+            maxLines: 3,
+            onChanged: (value) {
+              debugPrint('value: $value');
+            },
+            validator: FormBuilderValidators.required(),
+            decoration: InputDecoration(
+              alignLabelWithHint: true,
+              labelText: 'Poin ${num + 1}',
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              ),
+            ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
+
+  // make list of strings
+  var list = List.empty(growable: true).obs;
 
   DebiturInsight data = Get.arguments;
 
@@ -105,6 +120,7 @@ class PengajuanSubmitAnalisView
                   ),
                   FormBuilderSearchableDropdown<String>(
                     name: 'reviewers',
+                    validator: FormBuilderValidators.required(),
                     popupProps: const PopupProps.menu(showSearchBox: true),
                     asyncItems: (filter) {
                       return _getItems();
@@ -142,6 +158,7 @@ class PengajuanSubmitAnalisView
                     name: 'tglPengajuan',
                     inputType: InputType.date,
                     format: DateFormat('dd-MM-yyyy'),
+                    validator: FormBuilderValidators.required(),
                     resetIcon: const Icon(Icons.clear),
                     decoration: const InputDecoration(
                       hintText: 'Pilih Tanggal Pengajuan',
@@ -154,32 +171,86 @@ class PengajuanSubmitAnalisView
                     ),
                   ),
                   const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Bahasan Analis',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          GFIconButton(
+                            shape: GFIconButtonShape.circle,
+                            size: GFSize.SMALL,
+                            color: GFColors.SUCCESS,
+                            onPressed: () {
+                              list.add(
+                                // Get dynamic string from textfield
+                                controller.formKey.currentState?.fields['name']
+                                    ?.value,
+                              );
+                            },
+                            icon: const Icon(Icons.add),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GFIconButton(
+                            color: GFColors.DANGER,
+                            size: GFSize.SMALL,
+                            shape: GFIconButtonShape.circle,
+                            onPressed: () {
+                              list.removeLast();
+                              controller.formKey.currentState
+                                  ?.removeInternalFieldValue(
+                                      'name${list.length}',
+                                      isSetState: true);
+                              debugPrint('list: $list');
+                            },
+                            icon: const Icon(Icons.remove),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  // GFButton(onPressed: (() => list.clear()), text: 'Clear'),
 
-                  // const SizedBox(height: 16),
-                  // const Text(
-                  //   'Self Review ?',
-                  //   style: TextStyle(
-                  //     fontSize: 16,
-                  //     fontWeight: FontWeight.bold,
-                  //   ),
-                  // ),
-                  // FormBuilderRadioGroup(
-                  //   name: 'selfReview',
-                  //   options: const [
-                  //     FormBuilderFieldOption(
-                  //       value: 'Ya',
-                  //       child: Text('Ya'),
-                  //     ),
-                  //     FormBuilderFieldOption(
-                  //       value: 'Tidak',
-                  //       child: Text('Tidak'),
-                  //     ),
-                  //   ],
-                  //   decoration: const InputDecoration(
-                  //     border: // no border
-                  //         InputBorder.none,
-                  //   ),
-                  // ),
+                  Obx(() {
+                    if (list.isEmpty) {
+                      return Column(
+                        children: const [
+                          SizedBox(
+                            height: 150,
+                          ),
+                          Center(
+                            child: Text(
+                              'Tambahkan Bahasan Analis',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    } else {
+                      return SizedBox(
+                        height: 400,
+                        child: Scrollbar(
+                          child: ListView.builder(
+                            itemCount: list.length,
+                            itemBuilder: (context, index) {
+                              return myWidget(index);
+                            },
+                          ),
+                        ),
+                      );
+                    }
+                  }),
                 ],
               ),
               Column(
@@ -198,7 +269,48 @@ class PengajuanSubmitAnalisView
                   const SizedBox(height: 16),
                   GFButton(
                     onPressed: () {
-                      controller.submitPengajuanAnalis();
+                      if (controller.formKey.currentState?.saveAndValidate() ??
+                          false) {
+                        // debugPrint(
+                        //     'form data: ${controller.formKey.currentState!.value}');
+
+                        // Intitial map
+                        var list = controller.formKey.currentState!.value;
+
+                        // Transform map to list
+                        var list2 = list.entries.toList();
+
+                        // // remove MapEntry and key
+                        list2.removeWhere((element) =>
+                            element.key == 'reviewers' ||
+                            element.key == 'tglPengajuan');
+
+                        // debugPrint('list2: $list2');
+
+                        // Transform list2 to list of string
+                        var list3 = list2.map((e) => e.value).toList();
+
+                        // list3.removeWhere((element) => element.k)
+
+                        // transform list3 to string
+                        list3 = list3.map((e) => e.toString()).toList();
+
+                        controller.bahasanAnalis = list3;
+
+                        var listFinal = controller.bahasanAnalis;
+
+                        debugPrint(listFinal.toString());
+
+                        controller.submitPengajuanAnalis();
+                        Get.back();
+                      } else {
+                        Get.dialog(
+                          const AlertDialog(
+                            title: Text('Error'),
+                            content: Text('Please fill all the fields'),
+                          ),
+                        );
+                      }
                     },
                     text: 'Submit',
                     fullWidthButton: true,

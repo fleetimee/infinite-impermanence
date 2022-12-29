@@ -98,6 +98,8 @@ import '../modules/pengajuan_detail/bindings/pengajuan_detail_binding.dart';
 import '../modules/pengajuan_detail/views/pengajuan_detail_view.dart';
 import '../modules/pengajuan_submit_analis/bindings/pengajuan_submit_analis_binding.dart';
 import '../modules/pengajuan_submit_analis/views/pengajuan_submit_analis_view.dart';
+import '../modules/pengutus_submit/bindings/pengutus_submit_binding.dart';
+import '../modules/pengutus_submit/views/pengutus_submit_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/reviewer_submit/bindings/reviewer_submit_binding.dart';
@@ -481,13 +483,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.REVIEWER_SUBMIT,
-      page: () => const ReviewerSubmitView(),
+      page: () => ReviewerSubmitView(),
       binding: ReviewerSubmitBinding(),
     ),
     GetPage(
       name: _Paths.HOME_PENGUTUS,
       page: () => HomePengutusView(),
       binding: HomePengutusBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGUTUS_SUBMIT,
+      page: () => PengutusSubmitView(),
+      binding: PengutusSubmitBinding(),
     ),
   ];
 }

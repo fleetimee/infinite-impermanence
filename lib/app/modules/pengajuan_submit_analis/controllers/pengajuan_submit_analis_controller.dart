@@ -17,6 +17,7 @@ class PengajuanSubmitAnalisController extends GetxController {
 
   final formKey = GlobalKey<FormBuilderState>();
 
+  var bahasanAnalis = List.empty(growable: true);
   // split uuid from string
 
   void resetForm() {
@@ -39,8 +40,9 @@ class PengajuanSubmitAnalisController extends GetxController {
     final body = {
       'status': 'PENDING',
       'debiturId': data.id,
+      'bahasan_analis': bahasanAnalis,
       'tgl_submit': formatted,
-      'tgl_review': '2022-12-09',
+      'tgl_review': '1970-01-01',
       'user': [
         // ID ANALIS
         {'id': homeCtrl.idUntukFetchInput.value},
@@ -53,8 +55,9 @@ class PengajuanSubmitAnalisController extends GetxController {
       isPengajuanLoading(true);
       PengajuanSubmitProvider().submitPengajuanAnalis(body).then((resp) {
         isPengajuanLoading(false);
-        resetForm();
         homeCtrl.getMySubmission();
+        resetForm();
+
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

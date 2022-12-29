@@ -47,14 +47,11 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   //   ),
                   // ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(right: 300),
-                    child: Text(
-                      'Data Peminjam',
-                      style: GoogleFonts.bangers(
-                          fontSize: 20, color: Colors.grey[700]),
-                      textAlign: TextAlign.left,
-                    ),
+                  Text(
+                    'Data Peminjam',
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
                   ),
                   Visibility(
                     visible: false,
@@ -66,125 +63,202 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: 'peminjam1',
-                          controller: controller.peminjam1.value,
-                          validator: FormBuilderValidators.required(),
-                          decoration: const InputDecoration(
-                            labelText: 'Peminjam 1',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan Peminjam 1',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
+                  Text(
+                    'Peminjam Pertama',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Detail untuk peminjam pertama (wajib diisi)',
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: FormBuilderSearchableDropdown<String>(
-                          name: 'ktp1',
-                          onChanged: (value) {
-                            controller.ktp1.value.text = value!;
-                          },
-                          onSaved: (value) {
-                            controller.ktp1.value.text = value!;
-                          },
-                          validator: FormBuilderValidators.required(),
-                          items: allProvinsi,
-                          popupProps:
-                              const PopupProps.menu(showSearchBox: true),
-                          dropdownSearchDecoration: const InputDecoration(
-                            hintText: 'Search',
-                            labelText: 'Search',
-                          ),
-                          filterFn: (provinsi, filter) => provinsi
-                              .toLowerCase()
-                              .contains(filter.toLowerCase()),
-                          decoration: const InputDecoration(
-                            labelText: 'Asal KTP 1',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Asal KTP 1',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: 'peminjam2',
-                          controller: controller.peminjam2.value,
-                          decoration: const InputDecoration(
-                            labelText: 'Peminjam 2',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan Peminjam 2',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                        ),
+                  FormBuilderTextField(
+                    name: 'peminjam1',
+                    controller: controller.peminjam1.value,
+                    validator: FormBuilderValidators.required(),
+                    decoration: const InputDecoration(
+                      labelText: 'Peminjam 1',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Nama Peminjam Pertama',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: FormBuilderSearchableDropdown<String>(
-                          name: 'ktp2',
-                          onChanged: (value) {
-                            if (value != null) {
-                              controller.ktp2.value.text = value;
-                            } else {
-                              controller.ktp2.value.text = '-';
-                            }
-                          },
-                          onSaved: (value) {
-                            if (value != null) {
-                              controller.ktp2.value.text = value;
-                            } else {
-                              controller.ktp2.value.text = '-';
-                            }
-                          },
-                          items: allProvinsi,
-                          popupProps:
-                              const PopupProps.menu(showSearchBox: true),
-                          dropdownSearchDecoration: const InputDecoration(
-                            hintText: 'Search',
-                            labelText: 'Search',
-                          ),
-                          filterFn: (provinsi, filter) => provinsi
-                              .toLowerCase()
-                              .contains(filter.toLowerCase()),
-                          decoration: const InputDecoration(
-                            labelText: 'Asal KTP 2',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Asal KTP 2',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                        ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
                       ),
-                    ],
+                    ),
                   ),
+                  const SizedBox(height: 16),
+                  FormBuilderSearchableDropdown<String>(
+                    name: 'ktp1',
+                    onChanged: (value) {
+                      controller.ktp1.value.text = value!;
+                    },
+                    onSaved: (value) {
+                      controller.ktp1.value.text = value!;
+                    },
+                    validator: FormBuilderValidators.required(),
+                    items: allProvinsi,
+                    popupProps: const PopupProps.menu(showSearchBox: true),
+                    dropdownSearchDecoration: const InputDecoration(
+                      hintText: 'Search',
+                      labelText: 'Search',
+                    ),
+                    filterFn: (provinsi, filter) =>
+                        provinsi.toLowerCase().contains(filter.toLowerCase()),
+                    decoration: const InputDecoration(
+                      labelText: 'Asal KTP Peminjam 1',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Asal Peminjam 1',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'no_ktp1',
+                    validator: FormBuilderValidators.compose(
+                        [FormBuilderValidators.required()]),
+                    controller: controller.noKtp1.value,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No KTP Peminjam 1',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No KTP',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'noTelp',
+                    controller: controller.noHp.value,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: FormBuilderValidators.compose([
+                      FormBuilderValidators.required(),
+                      FormBuilderValidators.numeric(),
+                    ]),
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No Telp Peminjam Pertama',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No Handphone',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+                  Text(
+                    'Peminjam Kedua',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Detail untuk peminjam kedua (opsional)',
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                        ),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'peminjam2',
+                    controller: controller.peminjam2.value,
+                    decoration: const InputDecoration(
+                      labelText: 'Nama Peminjam Kedua',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan Peminjam 2',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+                  FormBuilderSearchableDropdown<String>(
+                    name: 'ktp2',
+                    onChanged: (value) {
+                      if (value != null) {
+                        controller.ktp2.value.text = value;
+                      } else {
+                        controller.ktp2.value.text = '-';
+                      }
+                    },
+                    onSaved: (value) {
+                      if (value != null) {
+                        controller.ktp2.value.text = value;
+                      } else {
+                        controller.ktp2.value.text = '-';
+                      }
+                    },
+                    items: allProvinsi,
+                    popupProps: const PopupProps.menu(showSearchBox: true),
+                    dropdownSearchDecoration: const InputDecoration(
+                      hintText: 'Search',
+                      labelText: 'Search',
+                    ),
+                    filterFn: (provinsi, filter) =>
+                        provinsi.toLowerCase().contains(filter.toLowerCase()),
+                    decoration: const InputDecoration(
+                      labelText: 'Asal KTP 2',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Asal KTP 2',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  FormBuilderTextField(
+                    name: 'no_ktp2',
+                    controller: controller.noKtp2.value,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      labelText: 'No Ktp 2',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Masukkan No KTP',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
+
                   Visibility(
                     visible: false,
                     maintainState: true,
@@ -244,6 +318,24 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     ),
                   ),
                   const SizedBox(height: 25),
+                  Text(
+                    'Pemilik Agunan',
+                    style: GoogleFonts.poppins(
+                        fontSize: 18, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Diisi dengan nama pemilik agunan (bisa dikosongkan)',
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                        ),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
@@ -265,31 +357,6 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       const SizedBox(width: 16),
                       Expanded(
                         child: FormBuilderTextField(
-                          name: 'no_ktp1',
-                          validator: FormBuilderValidators.compose(
-                              [FormBuilderValidators.required()]),
-                          controller: controller.noKtp1.value,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: 'No Ktp 1',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan No KTP',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FormBuilderTextField(
                           name: 'pemilik_agunan_2',
                           controller: controller.pemilikAgunan2.value,
                           decoration: const InputDecoration(
@@ -304,58 +371,26 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                           ),
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: FormBuilderTextField(
-                          name: 'no_ktp2',
-                          controller: controller.noKtp2.value,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: 'No Ktp 2',
-                            labelStyle: TextStyle(fontSize: 18),
-                            hintText: 'Masukkan No KTP',
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.grey),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  FormBuilderTextField(
-                    name: 'noTelp',
-                    controller: controller.noHp.value,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: FormBuilderValidators.compose([
-                      FormBuilderValidators.required(),
-                      FormBuilderValidators.numeric(),
-                    ]),
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      labelText: 'No Telp',
-                      labelStyle: TextStyle(fontSize: 18),
-                      hintText: 'Masukkan No Handphone',
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: primaryColor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey),
-                      ),
-                    ),
-                  ),
+
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 280),
-                    child: Text(
-                      'Alamat Peminjam',
-                      style: GoogleFonts.bangers(
-                          fontSize: 20, color: Colors.grey[700]),
-                      textAlign: TextAlign.left,
-                    ),
+                  Text(
+                    'Alamat Peminjam',
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'Alamat 2 sampai 4 bisa dikosongkan',
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                        ),
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 10),
                   Column(
@@ -438,14 +473,22 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     ],
                   ),
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 230),
-                    child: Text(
-                      'Data Pribadi Peminjam',
-                      style: GoogleFonts.bangers(
-                          fontSize: 20, color: Colors.grey[700]),
-                      textAlign: TextAlign.left,
-                    ),
+                  Text(
+                    'Data Pribadi Peminjam',
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    'NPWP jika tidak ada, bisa dikosongkan',
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(
+                            color: Colors.grey,
+                            fontSize: 15,
+                          ),
+                        ),
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -508,6 +551,17 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                           onChanged: (value) {
                             controller.tanggalLahir.value = value!;
                             debugPrint(value.toString());
+
+                            // get the year from value
+                            final year = value.year;
+                            // get the current year
+                            final currentYear = DateTime.now().year;
+
+                            // subtract the current year from the year of the value
+                            final age = currentYear - year;
+
+                            // set the age
+                            controller.umur.value.text = age.toString();
                           },
                           errorFormatText: 'Format tanggal salah',
                           errorInvalidText: 'Tanggal tidak valid',
@@ -534,6 +588,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'umur',
+                          readOnly: true,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           controller: controller.umur.value,
                           validator: FormBuilderValidators.compose([
@@ -661,14 +716,11 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 280),
-                    child: Text(
-                      'Usaha Peminjam',
-                      style: GoogleFonts.bangers(
-                          fontSize: 20, color: Colors.grey[700]),
-                      textAlign: TextAlign.left,
-                    ),
+                  Text(
+                    'Usaha Peminjam',
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -780,14 +832,11 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 250),
-                    child: Text(
-                      'Pendidikan Peminjam',
-                      style: GoogleFonts.bangers(
-                          fontSize: 20, color: Colors.grey[700]),
-                      textAlign: TextAlign.left,
-                    ),
+                  Text(
+                    'Pendidikan Peminjam',
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 10),
                   FormBuilderDropdown(
@@ -809,14 +858,11 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     }).toList(),
                   ),
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 250),
-                    child: Text(
-                      'Pekerjaan Peminjam',
-                      style: GoogleFonts.bangers(
-                          fontSize: 20, color: Colors.grey[700]),
-                      textAlign: TextAlign.left,
-                    ),
+                  Text(
+                    'Pekerjaan Peminjam',
+                    style: GoogleFonts.poppins(
+                        fontSize: 20, color: Colors.grey[700]),
+                    textAlign: TextAlign.left,
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -857,7 +903,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     padding: const EdgeInsets.only(right: 340),
                     child: Text(
                       'Lainnya',
-                      style: GoogleFonts.bangers(
+                      style: GoogleFonts.poppins(
                           fontSize: 20, color: Colors.grey[700]),
                       textAlign: TextAlign.left,
                     ),

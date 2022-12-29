@@ -502,6 +502,17 @@ class DebiturEditView extends GetView<DebiturRealController> {
                           onChanged: (value) {
                             controller.tanggalLahir.value = value!;
                             debugPrint(value.toString());
+
+                            // get the year from value
+                            final year = value.year;
+                            // get the current year
+                            final currentYear = DateTime.now().year;
+
+                            // subtract the current year from the year of the value
+                            final age = currentYear - year;
+
+                            // set the age value
+                            controller.umur.value.text = age.toString();
                           },
                           errorFormatText: 'Format tanggal salah',
                           errorInvalidText: 'Tanggal tidak valid',
@@ -528,6 +539,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
                       Expanded(
                         child: FormBuilderTextField(
                           name: 'umur',
+                          readOnly: true,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           controller: controller.umur.value =
                               TextEditingController(

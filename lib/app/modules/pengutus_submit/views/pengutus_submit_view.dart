@@ -1660,23 +1660,6 @@ class KeuanganCard extends StatelessWidget {
               const SizedBox(height: 10),
               GFButton(
                 onPressed: () {
-                  Get.toNamed(Routes.NERACA_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Neraca',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
                   Get.toNamed(Routes.RUGILABA_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
@@ -1694,12 +1677,29 @@ class KeuanganCard extends StatelessWidget {
               const SizedBox(height: 10),
               GFButton(
                 onPressed: () {
+                  Get.toNamed(Routes.NERACA_PRINT,
+                      arguments: controller.insightDebitur.value);
+                },
+                color: Colors.pink,
+                shape: GFButtonShape.pills,
+                text: 'Lihat Keterangan Neraca',
+                icon: const Icon(
+                  Icons.summarize,
+                  size: 18,
+                  color: secondaryColor,
+                ),
+                fullWidthButton: true,
+                size: GFSize.LARGE,
+              ),
+              const SizedBox(height: 10),
+              GFButton(
+                onPressed: () {
                   Get.toNamed(Routes.KEUANGAN_PRINT,
                       arguments: controller.insightDebitur.value);
                 },
                 color: Colors.pink,
                 shape: GFButtonShape.pills,
-                text: 'Lihat Summary Keuangan',
+                text: 'Lihat Analisa Keuangan',
                 icon: const Icon(
                   Icons.summarize,
                   size: 18,

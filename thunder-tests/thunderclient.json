@@ -253,11 +253,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/23?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
+    "url": "{{baseUrl}}api/v1/debiturs/26?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-12-02T12:49:21.440Z",
-    "modified": "2022-12-25T02:50:42.703Z",
+    "modified": "2022-12-29T23:19:19.182Z",
     "headers": [],
     "params": [
       {

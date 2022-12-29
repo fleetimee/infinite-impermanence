@@ -46,15 +46,9 @@ class HomeReviewerController extends GetxController {
       isMyPendingReviewProcessing(true);
       MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
         isMyPendingReviewProcessing(false);
-        final finalList = resp.pengajuan?.where((element) {
-          if (element.status == 'PENDING') {
-            return true;
-          } else if (element.status == 'REJECTED') {
-            return true;
-          } else {
-            return false;
-          }
-        }).toList();
+        final finalList = resp.pengajuan
+            ?.where((element) => element.status == 'PENDING')
+            .toList();
 
         listMyPendingReview.clear();
         listMyPendingReview = finalList ?? [];
@@ -78,7 +72,10 @@ class HomeReviewerController extends GetxController {
       MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
         isMyCompletedReviewProcessing(false);
         final finalList = resp.pengajuan
-            ?.where((element) => element.status == 'REVIEWED')
+            ?.where((element) =>
+                element.status == 'REVIEWED' ||
+                element.status == 'REJECTED' ||
+                element.status == 'DONE')
             .toList();
 
         listMyCompletedReview.clear();

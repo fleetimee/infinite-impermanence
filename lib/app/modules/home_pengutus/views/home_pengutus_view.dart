@@ -27,16 +27,16 @@ import '../controllers/home_pengutus_controller.dart';
 class HomePengutusView extends GetView<HomePengutusController> {
   HomePengutusView({Key? key}) : super(key: key);
 
-  SettingsThemeData dark = const SettingsThemeData(
-    settingsListBackground: secondaryColor,
-    leadingIconsColor: primaryColor,
-    settingsSectionBackground: secondaryColor,
-    titleTextColor: primaryColor,
+  SettingsThemeData dark = SettingsThemeData(
+    settingsListBackground: Colors.pink[600],
+    leadingIconsColor: secondaryColor,
+    settingsSectionBackground: Colors.pink[600],
+    titleTextColor: secondaryColor,
     dividerColor: Colors.lightBlue,
-    settingsTileTextColor: primaryColor,
+    settingsTileTextColor: secondaryColor,
     inactiveSubtitleColor: Colors.green,
     tileHighlightColor: Colors.black54,
-    tileDescriptionTextColor: primaryColor,
+    tileDescriptionTextColor: secondaryColor,
     trailingTextColor: Colors.purple,
     inactiveTitleColor: Colors.teal,
   );
@@ -337,6 +337,11 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                                     //             .listMyPendingReview[
                                                     //         index]
                                                     //         );
+                                                    Get.toNamed(
+                                                        Routes.PENGUTUS_SUBMIT,
+                                                        arguments: controller
+                                                                .listMyPendingPemutusan[
+                                                            index]);
                                                   },
                                                   text: 'Review',
                                                 ),
@@ -349,6 +354,12 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                                   //         .listMyPendingReview[
                                                   //             index]
                                                   //         .id!);
+                                                  Get.toNamed(
+                                                      Routes.PENGAJUAN_DETAIL,
+                                                      arguments: controller
+                                                          .listMyPendingPemutusan[
+                                                              index]
+                                                          .id!);
                                                 },
                                                 text: 'Lihat Progress',
                                               )

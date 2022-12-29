@@ -1854,11 +1854,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "441a228d-423a-4749-be19-2b42bd098312",
     "name": "Get user by id",
-    "url": "{{baseUrl}}api/v1/users/cd547839-c4bf-40ef-a359-9df2ee008692",
+    "url": "{{baseUrl}}api/v1/users/6a6a2154-4dea-4d4f-b869-b9b50dd25847",
     "method": "GET",
     "sortNum": 597500,
     "created": "2022-12-20T07:57:20.509Z",
-    "modified": "2022-12-20T07:57:25.622Z",
+    "modified": "2022-12-29T02:00:40.456Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1898,6 +1898,39 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"checkReviewer\": {\n      \"is_keuangan_approved\": true,\n      \"is_karakter_approved\": true,\n      \"is_agunan_approved\": true,\n      \"is_bisnis_approved\": true,\n      \"is_jenis_usaha_approved\": true\n  }\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "3cadd9ba-6730-4bcc-bc6a-85b8f80b3df7",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Get Copy",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-pXS4-20221222",
+    "method": "GET",
+    "sortNum": 1045000,
+    "created": "2022-12-29T01:18:56.749Z",
+    "modified": "2022-12-29T01:19:00.918Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "f360e4d9-d42a-4350-84ba-fe605d33a3c9",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
+    "name": "Pacth Review Copy",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-pXS4-20221222",
+    "method": "PATCH",
+    "sortNum": 1077500,
+    "created": "2022-12-29T01:19:29.690Z",
+    "modified": "2022-12-29T01:20:32.360Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"checkPengutus\": {\n      \"is_keuangan_approved\": true,\n      \"is_karakter_approved\": true,\n      \"is_agunan_approved\": true,\n      \"is_bisnis_approved\": true,\n      \"is_jenis_usaha_approved\": true\n  }\n}",
       "form": []
     },
     "tests": []

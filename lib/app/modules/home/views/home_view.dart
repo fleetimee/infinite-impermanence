@@ -1159,7 +1159,7 @@ class HomeView extends GetView<HomeController> {
                                                         color: Colors.red,
                                                         fontSize: 18,
                                                         fontWeight:
-                                                            FontWeight.w400,
+                                                            FontWeight.bold,
                                                       ),
                                                     )
                                                   : controller
@@ -1174,7 +1174,7 @@ class HomeView extends GetView<HomeController> {
                                                                 Colors.orange,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                FontWeight.w400,
+                                                                FontWeight.bold,
                                                           ),
                                                         )
                                                       : controller
@@ -1194,14 +1194,14 @@ class HomeView extends GetView<HomeController> {
                                                               ),
                                                             )
                                                           : const Text(
-                                                              'Status : Belum Diverifikasi',
+                                                              'Status : Ditolak 🤣',
                                                               style: TextStyle(
                                                                 color:
-                                                                    Colors.red,
+                                                                    Colors.pink,
                                                                 fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w400,
+                                                                        .bold,
                                                               ),
                                                             ),
                                               icon: GFButton(
@@ -1256,14 +1256,14 @@ class HomeView extends GetView<HomeController> {
                                                   style: TextStyle(
                                                     color: Colors.red,
                                                     fontSize: 18,
-                                                    fontWeight: FontWeight.w400,
+                                                    fontWeight: FontWeight.bold,
                                                   ),
                                                 )
                                               : controller
                                                           .listMySubmission[
                                                               index]
                                                           .status ==
-                                                      'DIREVIEW'
+                                                      'REVIEWED'
                                                   ? const Text(
                                                       'Status : Sedang Direview',
                                                       style: TextStyle(
@@ -1277,23 +1277,23 @@ class HomeView extends GetView<HomeController> {
                                                               .listMySubmission[
                                                                   index]
                                                               .status ==
-                                                          'DITERIMA'
+                                                          'DONE'
                                                       ? const Text(
                                                           'Status : Diterima',
                                                           style: TextStyle(
                                                             color: Colors.green,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                FontWeight.w400,
+                                                                FontWeight.bold,
                                                           ),
                                                         )
                                                       : const Text(
-                                                          'Status : Belum Diverifikasi',
+                                                          'Status : Ditolak 🤣',
                                                           style: TextStyle(
-                                                            color: Colors.red,
+                                                            color: Colors.pink,
                                                             fontSize: 18,
                                                             fontWeight:
-                                                                FontWeight.w400,
+                                                                FontWeight.bold,
                                                           ),
                                                         ),
                                           icon: GFButton(

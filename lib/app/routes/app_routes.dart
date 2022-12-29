@@ -89,6 +89,7 @@ abstract class Routes {
   static const HOME_REVIEWER = _Paths.HOME_REVIEWER;
   static const REVIEWER_SUBMIT = _Paths.REVIEWER_SUBMIT;
   static const HOME_PENGUTUS = _Paths.HOME_PENGUTUS;
+  static const PENGUTUS_SUBMIT = _Paths.PENGUTUS_SUBMIT;
 }
 
 abstract class _Paths {
@@ -176,4 +177,5 @@ abstract class _Paths {
   static const HOME_REVIEWER = '/home-reviewer';
   static const REVIEWER_SUBMIT = '/reviewer-submit';
   static const HOME_PENGUTUS = '/home-pengutus';
+  static const PENGUTUS_SUBMIT = '/pengutus-submit';
 }

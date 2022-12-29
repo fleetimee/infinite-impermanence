@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
 
-class PengajuanSubmitReviewProvider {
+class PengajuanSubmitPutusanProvider {
   final httpClient = http.Client();
 
-  Future<PengajuanAnalis> submitPengajuanAnalis(String id, Map body) async {
+  Future<PengajuanAnalis> submitPengajuanPemutus(String id, Map body) async {
     try {
       final response = await httpClient.put(
         Uri.parse('${baseUrl}pengajuan/$id'),

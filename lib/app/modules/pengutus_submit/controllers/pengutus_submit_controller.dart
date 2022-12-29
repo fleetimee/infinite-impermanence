@@ -1,26 +1,14 @@
 import 'package:akm/app/data/provider/debitur/detail_debitur.provider.dart';
-import 'package:akm/app/data/provider/pengajuan/pengajuan_submit_reviewer.provider.dart';
+import 'package:akm/app/data/provider/pengajuan/pengajuan_submit_pemutus.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/models/user/user_pengajuan.model.dart';
-import 'package:akm/app/modules/home_reviewer/controllers/home_reviewer_controller.dart';
+import 'package:akm/app/modules/home_pengutus/controllers/home_pengutus_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-class ReviewerSubmitController extends GetxController {
-  Pengajuan pengajuan = Get.arguments;
-  var isProcessing = false.obs;
-  var insightDebitur = DebiturInsight().obs;
-
-  var rating = ''.obs;
-  var keterangan = ''.obs;
-  var totalCrr = ''.obs;
-
-  final formKey = GlobalKey<FormBuilderState>();
-
-  var isSubmitLoading = false.obs;
-
+class PengutusSubmitController extends GetxController {
   @override
   void onInit() {
     super.onInit();
@@ -36,9 +24,22 @@ class ReviewerSubmitController extends GetxController {
     super.onReady();
   }
 
-  var bahasanReviewer = List.empty(growable: true);
+  Pengajuan pengajuan = Get.arguments;
 
-  var homeReviewCtrl = Get.put(HomeReviewerController());
+  var isProcessing = false.obs;
+  var insightDebitur = DebiturInsight().obs;
+
+  var rating = ''.obs;
+  var keterangan = ''.obs;
+  var totalCrr = ''.obs;
+
+  final formKey = GlobalKey<FormBuilderState>();
+
+  final homeCtrl = Get.put(HomePengutusController());
+
+  var isSubmitLoading = false.obs;
+
+  var bahasanPemutus = List.empty(growable: true);
 
   var isKeuanganPressed = false.obs;
   var keuanganValue = false.obs;
@@ -141,34 +142,18 @@ class ReviewerSubmitController extends GetxController {
     }
   }
 
-  void saveReview() {
-    List<String> parts =
-        formKey.currentState?.fields['pemutus']?.value.split(':');
-
-    String uuid = parts[1].trim();
-
-    var tglReview = formKey.currentState?.fields['tglReview']?.value;
+  void savePutusan() {
+    var tglPutusan = formKey.currentState?.fields['tglPutusan']?.value;
 
     var formatter = DateFormat('yyyy-MM-dd');
 
-    String formatted = formatter.format(tglReview);
+    String formatted = formatter.format(tglPutusan);
 
     final body = {
-      "status": "REVIEWED",
-      "tgl_review": formatted,
-      "user": [
-        {
-          "id": pengajuan.user![0].id,
-        },
-        {
-          "id": pengajuan.user![1].id,
-        },
-        {
-          "id": uuid,
-        }
-      ],
-      "bahasan_reviewer": bahasanReviewer,
-      "checkReviewer": {
+      "status": formKey.currentState?.fields['putusan']?.value,
+      "tgl_pemutusan": formatted,
+      "bahasan_pengutus": bahasanPemutus,
+      "checkPengutus": {
         "is_keuangan_approved": formKey.currentState!.fields['keuangan']?.value,
         "is_karakter_approved": formKey.currentState!.fields['karakter']?.value,
         "is_agunan_approved": formKey.currentState!.fields['agunan']?.value,
@@ -179,13 +164,12 @@ class ReviewerSubmitController extends GetxController {
 
     try {
       isSubmitLoading(true);
-      PengajuanSubmitReviewProvider()
-          .submitPengajuanAnalis(pengajuan.id!, body)
+      PengajuanSubmitPutusanProvider()
+          .submitPengajuanPemutus(pengajuan.id!, body)
           .then((resp) {
         isSubmitLoading(false);
-        homeReviewCtrl.getMyPendingReview();
-        homeReviewCtrl.getMyCompletedReview();
-        resetForm();
+        homeCtrl.getMyPendingPemutusan();
+        homeCtrl.getMyCompletedPutusan();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

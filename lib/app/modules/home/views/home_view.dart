@@ -1190,7 +1190,7 @@ class HomeView extends GetView<HomeController> {
                                                                 fontSize: 18,
                                                                 fontWeight:
                                                                     FontWeight
-                                                                        .w400,
+                                                                        .bold,
                                                               ),
                                                             )
                                                           : const Text(

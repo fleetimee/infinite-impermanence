@@ -1,3 +1,4 @@
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -262,15 +263,29 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                   AlertDialog(
                     icon: const Icon(Icons.info_outline),
                     title: const Text('Detail'),
-                    content: Obx(
-                      () => controller.isPenganjuanDetailLoading.value
-                          ? const Text('Loading...')
-                          : Text(
-                              controller.pengajuanDetail.value.status!,
-                              style: GoogleFonts.poppins(
-                                fontSize: 17,
-                              ),
-                            ),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Obx(
+                          () => controller.isPenganjuanDetailLoading.value
+                              ? const Text('Loading...')
+                              : Text(
+                                  controller.pengajuanDetail.value.status!,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 17,
+                                  ),
+                                ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GFButton(
+                            onPressed: () {
+                              Get.toNamed(Routes.ANALIS_PRINT,
+                                  arguments: controller.pengajuanDetail.value);
+                            },
+                            text: 'Tanggapan Analis'),
+                      ],
                     ),
                     actions: [
                       TextButton(

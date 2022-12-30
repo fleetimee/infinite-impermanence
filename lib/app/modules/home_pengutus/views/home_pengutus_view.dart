@@ -119,288 +119,293 @@ class HomePengutusView extends GetView<HomePengutusController> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             SafeArea(
-              child: Container(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const GFTypography(
-                      text: 'Pemutus Dashboard',
-                      fontWeight: FontWeight.bold,
-                      type: GFTypographyType.typo1,
-                      textColor: secondaryColor,
-                      dividerColor: secondaryColor,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Stack(
-                      children: <Widget>[
-                        Container(
-                          height: 90,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: primaryColor,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 80,
-                          child: WaveWidget(
-                            config: CustomConfig(
-                              colors: WavesSettings.waveColors,
-                              heightPercentages:
-                                  WavesSettings.waveHeightPercentages,
-                              durations: WavesSettings.waveDurations,
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const GFTypography(
+                        text: 'Pemutus Dashboard',
+                        fontWeight: FontWeight.bold,
+                        type: GFTypographyType.typo1,
+                        textColor: secondaryColor,
+                        dividerColor: secondaryColor,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Stack(
+                        children: <Widget>[
+                          Container(
+                            height: 90,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: primaryColor,
+                              borderRadius: BorderRadius.circular(10),
                             ),
-                            waveAmplitude: 10,
-                            size: const Size(double.infinity, double.infinity),
                           ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 25,
-                            vertical: 15,
+                          SizedBox(
+                            height: 80,
+                            child: WaveWidget(
+                              config: CustomConfig(
+                                colors: WavesSettings.waveColors,
+                                heightPercentages:
+                                    WavesSettings.waveHeightPercentages,
+                                durations: WavesSettings.waveDurations,
+                              ),
+                              waveAmplitude: 10,
+                              size:
+                                  const Size(double.infinity, double.infinity),
+                            ),
                           ),
-                          child: Row(
-                            children: [
-                              // FutureBuilder(
-                              //   future: controller.img,
-                              //   builder: (context, snapshot) {
-                              //     if (snapshot.connectionState == ConnectionState.waiting) {
-                              //       return const Shimmer(
-                              //         gradient: LinearGradient(
-                              //           colors: [
-                              //             Colors.white,
-                              //             Colors.grey,
-                              //           ],
-                              //         ),
-                              //         child: CircleAvatar(
-                              //           radius: 30,
-                              //           backgroundColor: Colors.white,
-                              //         ),
-                              //       );
-                              //     } else {
-                              //       return CircleAvatar(
-                              //         radius: 30,
-                              //         backgroundImage: NetworkImage(
-                              //           snapshot.data.toString(),
-                              //         ),
-                              //       );
-                              //     }
-                              //   },
-                              // ),
-                              Obx(() => CircleAvatar(
-                                    radius: 30,
-                                    child: CachedNetworkImage(
-                                      imageUrl:
-                                          homeCtrl.profileImage.toString(),
-                                      imageBuilder: (context, imageProvider) =>
-                                          Container(
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                            image: imageProvider,
-                                            fit: BoxFit.cover,
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 25,
+                              vertical: 15,
+                            ),
+                            child: Row(
+                              children: [
+                                // FutureBuilder(
+                                //   future: controller.img,
+                                //   builder: (context, snapshot) {
+                                //     if (snapshot.connectionState == ConnectionState.waiting) {
+                                //       return const Shimmer(
+                                //         gradient: LinearGradient(
+                                //           colors: [
+                                //             Colors.white,
+                                //             Colors.grey,
+                                //           ],
+                                //         ),
+                                //         child: CircleAvatar(
+                                //           radius: 30,
+                                //           backgroundColor: Colors.white,
+                                //         ),
+                                //       );
+                                //     } else {
+                                //       return CircleAvatar(
+                                //         radius: 30,
+                                //         backgroundImage: NetworkImage(
+                                //           snapshot.data.toString(),
+                                //         ),
+                                //       );
+                                //     }
+                                //   },
+                                // ),
+                                Obx(() => CircleAvatar(
+                                      radius: 30,
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            homeCtrl.profileImage.toString(),
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
+                                        placeholder: (context, url) =>
+                                            const CircularProgressIndicator(),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
                                       ),
-                                      placeholder: (context, url) =>
-                                          const CircularProgressIndicator(),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
+                                    )),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Selamat ${homeCtrl.greeting()}',
+                                      style: const TextStyle(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                        color: secondaryColor,
+                                      ),
                                     ),
-                                  )),
-                              const SizedBox(
-                                width: 15,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Selamat ${homeCtrl.greeting()}',
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color: secondaryColor,
+                                    Text(
+                                      account,
+                                      style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.normal,
+                                        color: secondaryColor,
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    account,
-                                    style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.normal,
-                                      color: secondaryColor,
-                                    ),
-                                  ),
-                                  // Date text now
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        Positioned(
-                          top: 65,
-                          right: 10,
-                          child: Text(
-                            homeCtrl.dateNow(),
-                            style: const TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w600,
-                              color: secondaryColor,
+                                    // Date text now
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const GFTypography(
-                      text: 'Pending',
-                      icon: Icon(
-                        Icons.pending,
-                        color: GFColors.LIGHT,
+                          Positioned(
+                            top: 65,
+                            right: 10,
+                            child: Text(
+                              homeCtrl.dateNow(),
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.w600,
+                                color: secondaryColor,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      fontWeight: FontWeight.bold,
-                      type: GFTypographyType.typo1,
-                      textColor: secondaryColor,
-                      dividerColor: primaryColor,
-                      showDivider: false,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Container(
-                      height: 350,
-                      color: Colors.pink[200],
-                      child: Card(
-                          color: Colors.pink[100],
-                          child: Obx(() {
-                            if (controller
-                                .isMyPendingPemutusanProcessing.value) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                            } else {
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const GFTypography(
+                        text: 'Pending',
+                        icon: Icon(
+                          Icons.pending,
+                          color: GFColors.LIGHT,
+                        ),
+                        fontWeight: FontWeight.bold,
+                        type: GFTypographyType.typo1,
+                        textColor: secondaryColor,
+                        dividerColor: primaryColor,
+                        showDivider: false,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        height: 350,
+                        color: Colors.pink[200],
+                        child: Card(
+                            color: Colors.pink[100],
+                            child: Obx(() {
                               if (controller
-                                  .listMyPendingPemutusan.isNotEmpty) {
-                                return RefreshIndicator(
-                                  onRefresh: () {
-                                    return controller.refreshPemutusan();
-                                  },
-                                  child: ListView.builder(
-                                    itemCount: controller
-                                        .listMyPendingPemutusan.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        leading: const Icon(
-                                          Icons.book,
-                                          color: Colors.red,
-                                        ),
-                                        title: Text(
-                                          controller
-                                              .listMyPendingPemutusan[index]
-                                              .id!,
-                                        ),
-                                        trailing:
-                                            const Icon(Icons.arrow_forward_ios),
-                                        onTap: () {
-                                          Get.dialog(AlertDialog(
-                                            title: const Text(
-                                              'Detail Review',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.bold,
+                                  .isMyPendingPemutusanProcessing.value) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else {
+                                if (controller
+                                    .listMyPendingPemutusan.isNotEmpty) {
+                                  return RefreshIndicator(
+                                    onRefresh: () {
+                                      return controller.refreshPemutusan();
+                                    },
+                                    child: ListView.builder(
+                                      itemCount: controller
+                                          .listMyPendingPemutusan.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          leading: const Icon(
+                                            Icons.book,
+                                            color: Colors.red,
+                                          ),
+                                          title: Text(
+                                            controller
+                                                .listMyPendingPemutusan[index]
+                                                .id!,
+                                          ),
+                                          trailing: const Icon(
+                                              Icons.arrow_forward_ios),
+                                          onTap: () {
+                                            Get.dialog(AlertDialog(
+                                              title: const Text(
+                                                'Detail Review',
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                               ),
-                                            ),
-                                            content: const Text(
-                                                'Apa yang ingin anda lakukan terhadap review ini?',
-                                                style: TextStyle(fontSize: 15)),
-                                            actions: [
-                                              if (controller.uid.value ==
-                                                  controller
-                                                      .listMyPendingPemutusan[
-                                                          index]
-                                                      .user[0]
-                                                      .id)
+                                              content: const Text(
+                                                  'Apa yang ingin anda lakukan terhadap review ini?',
+                                                  style:
+                                                      TextStyle(fontSize: 15)),
+                                              actions: [
+                                                if (controller.uid.value ==
+                                                    controller
+                                                        .listMyPendingPemutusan[
+                                                            index]
+                                                        .user[0]
+                                                        .id)
+                                                  GFButton(
+                                                    onPressed: () {
+                                                      Get.back();
+                                                      // Get.toNamed(
+                                                      //     Routes.REVIEWER_SUBMIT,
+                                                      //     arguments: controller
+                                                      //             .listMyPendingReview[
+                                                      //         index]
+                                                      //         );
+                                                      Get.toNamed(
+                                                          Routes
+                                                              .PENGUTUS_SUBMIT,
+                                                          arguments: controller
+                                                                  .listMyPendingPemutusan[
+                                                              index]);
+                                                    },
+                                                    text: 'Review',
+                                                  ),
                                                 GFButton(
                                                   onPressed: () {
                                                     Get.back();
                                                     // Get.toNamed(
-                                                    //     Routes.REVIEWER_SUBMIT,
+                                                    //     Routes.PENGAJUAN_DETAIL,
                                                     //     arguments: controller
-                                                    //             .listMyPendingReview[
-                                                    //         index]
-                                                    //         );
+                                                    //         .listMyPendingReview[
+                                                    //             index]
+                                                    //         .id!);
                                                     Get.toNamed(
-                                                        Routes.PENGUTUS_SUBMIT,
+                                                        Routes.PENGAJUAN_DETAIL,
                                                         arguments: controller
-                                                                .listMyPendingPemutusan[
-                                                            index]);
+                                                            .listMyPendingPemutusan[
+                                                                index]
+                                                            .id!);
                                                   },
-                                                  text: 'Review',
-                                                ),
-                                              GFButton(
-                                                onPressed: () {
-                                                  Get.back();
-                                                  // Get.toNamed(
-                                                  //     Routes.PENGAJUAN_DETAIL,
-                                                  //     arguments: controller
-                                                  //         .listMyPendingReview[
-                                                  //             index]
-                                                  //         .id!);
-                                                  Get.toNamed(
-                                                      Routes.PENGAJUAN_DETAIL,
-                                                      arguments: controller
-                                                          .listMyPendingPemutusan[
-                                                              index]
-                                                          .id!);
-                                                },
-                                                text: 'Lihat Progress',
-                                              )
-                                            ],
-                                          ));
-                                        },
-                                      );
-                                    },
-                                  ),
-                                );
-                              } else {
-                                return const Center(
-                                  child: Text(
-                                    'Belum ada pemutusan yang pending',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                );
+                                                  text: 'Lihat Progress',
+                                                )
+                                              ],
+                                            ));
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  );
+                                } else {
+                                  return const Center(
+                                    child: Text(
+                                      'Belum ada pemutusan yang pending',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  );
+                                }
                               }
-                            }
-                          })),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const GFTypography(
-                      text: 'Completed',
-                      icon: Icon(
-                        Icons.check_circle,
-                        color: GFColors.LIGHT,
+                            })),
                       ),
-                      fontWeight: FontWeight.bold,
-                      type: GFTypographyType.typo1,
-                      textColor: secondaryColor,
-                      dividerColor: primaryColor,
-                      showDivider: false,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Expanded(
-                      child: Container(
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const GFTypography(
+                        text: 'Completed',
+                        icon: Icon(
+                          Icons.check_circle,
+                          color: GFColors.LIGHT,
+                        ),
+                        fontWeight: FontWeight.bold,
+                        type: GFTypographyType.typo1,
+                        textColor: secondaryColor,
+                        dividerColor: primaryColor,
+                        showDivider: false,
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Container(
+                        height: 350,
                         color: Colors.pink[200],
                         child: Card(
                           color: Colors.pink[100],
@@ -472,8 +477,8 @@ class HomePengutusView extends GetView<HomePengutusController> {
                           }),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

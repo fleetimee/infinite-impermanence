@@ -296,6 +296,16 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                           },
                           text: 'Tanggapan Reviewer',
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GFButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.PENGUTUS_PRINT,
+                                arguments: controller.pengajuanDetail.value);
+                          },
+                          text: 'Tanggapan Pemutus',
+                        ),
                       ],
                     ),
                     actions: [

@@ -1907,11 +1907,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
     "name": "Get Copy",
-    "url": "{{baseUrl}}api/v1/pengajuan/P-pXS4-20221222",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-x3rj-20221229",
     "method": "GET",
     "sortNum": 1045000,
     "created": "2022-12-29T01:18:56.749Z",
-    "modified": "2022-12-29T01:19:00.918Z",
+    "modified": "2022-12-30T04:56:19.630Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1932,6 +1932,30 @@
       "type": "json",
       "raw": "{\n  \"checkPengutus\": {\n      \"is_keuangan_approved\": true,\n      \"is_karakter_approved\": true,\n      \"is_agunan_approved\": true,\n      \"is_bisnis_approved\": true,\n      \"is_jenis_usaha_approved\": true\n  }\n}",
       "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "af854992-a0a4-4175-8962-77d43dc7bb32",
+    "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
+    "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
+    "name": "Patch Alamat",
+    "url": "{{baseUrl}}api/v1/debiturs/26",
+    "method": "PATCH",
+    "sortNum": 1120000,
+    "created": "2022-12-30T05:49:51.665Z",
+    "modified": "2022-12-30T05:50:21.987Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formencoded",
+      "raw": "",
+      "form": [
+        {
+          "name": "alamat_1",
+          "value": "Jl. Tentara Pelajar No.7, Bumijo, Kec. Jetis, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55231"
+        }
+      ]
     },
     "tests": []
   }

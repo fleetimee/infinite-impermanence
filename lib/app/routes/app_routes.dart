@@ -90,6 +90,9 @@ abstract class Routes {
   static const REVIEWER_SUBMIT = _Paths.REVIEWER_SUBMIT;
   static const HOME_PENGUTUS = _Paths.HOME_PENGUTUS;
   static const PENGUTUS_SUBMIT = _Paths.PENGUTUS_SUBMIT;
+  static const ANALIS_PRINT = _Paths.ANALIS_PRINT;
+  static const REVIEWER_PRINT = _Paths.REVIEWER_PRINT;
+  static const PENGUTUS_PRINT = _Paths.PENGUTUS_PRINT;
 }
 
 abstract class _Paths {
@@ -178,4 +181,7 @@ abstract class _Paths {
   static const REVIEWER_SUBMIT = '/reviewer-submit';
   static const HOME_PENGUTUS = '/home-pengutus';
   static const PENGUTUS_SUBMIT = '/pengutus-submit';
+  static const ANALIS_PRINT = '/analis-print';
+  static const REVIEWER_PRINT = '/reviewer-print';
+  static const PENGUTUS_PRINT = '/pengutus-print';
 }

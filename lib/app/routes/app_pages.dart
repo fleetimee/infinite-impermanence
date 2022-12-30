@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_analis/analis_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
@@ -495,6 +496,10 @@ class AppPages {
       name: _Paths.PENGUTUS_SUBMIT,
       page: () => PengutusSubmitView(),
       binding: PengutusSubmitBinding(),
+    ),
+    GetPage(
+      name: _Paths.ANALIS_PRINT,
+      page: () => AnalisPreview(),
     ),
   ];
 }

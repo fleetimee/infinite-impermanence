@@ -18,20 +18,30 @@ class PengajuanDetail {
     this.status,
     this.tglSubmit,
     this.tglReview,
+    this.tglPemutusan,
+    this.bahasanAnalis,
+    this.bahasanReviewer,
+    this.bahasanPengutus,
     this.debiturId,
     this.user,
     this.debitur,
     this.checkReviewer,
+    this.checkPengutus,
   });
 
   String? id;
   String? status;
   DateTime? tglSubmit;
   DateTime? tglReview;
+  DateTime? tglPemutusan;
+  List<String>? bahasanAnalis;
+  List<String>? bahasanReviewer;
+  List<String>? bahasanPengutus;
   int? debiturId;
   List<User>? user;
   Debitur? debitur;
-  CheckReviewer? checkReviewer;
+  Check? checkReviewer;
+  Check? checkPengutus;
 
   factory PengajuanDetail.fromJson(Map<String, dynamic> json) =>
       PengajuanDetail(
@@ -43,6 +53,18 @@ class PengajuanDetail {
         tglReview: json["tgl_review"] == null
             ? null
             : DateTime.parse(json["tgl_review"]),
+        tglPemutusan: json["tgl_pemutusan"] == null
+            ? null
+            : DateTime.parse(json["tgl_pemutusan"]),
+        bahasanAnalis: json["bahasan_analis"] == null
+            ? null
+            : List<String>.from(json["bahasan_analis"].map((x) => x)),
+        bahasanReviewer: json["bahasan_reviewer"] == null
+            ? null
+            : List<String>.from(json["bahasan_reviewer"].map((x) => x)),
+        bahasanPengutus: json["bahasan_pengutus"] == null
+            ? null
+            : List<String>.from(json["bahasan_pengutus"].map((x) => x)),
         debiturId: json["debiturId"],
         user: json["user"] == null
             ? null
@@ -51,7 +73,10 @@ class PengajuanDetail {
             json["debitur"] == null ? null : Debitur.fromJson(json["debitur"]),
         checkReviewer: json["checkReviewer"] == null
             ? null
-            : CheckReviewer.fromJson(json["checkReviewer"]),
+            : Check.fromJson(json["checkReviewer"]),
+        checkPengutus: json["checkPengutus"] == null
+            ? null
+            : Check.fromJson(json["checkPengutus"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -63,17 +88,30 @@ class PengajuanDetail {
         "tgl_review": tglReview == null
             ? null
             : "${tglReview?.year.toString().padLeft(4, '0')}-${tglReview?.month.toString().padLeft(2, '0')}-${tglReview?.day.toString().padLeft(2, '0')}",
+        "tgl_pemutusan": tglPemutusan == null
+            ? null
+            : "${tglPemutusan?.year.toString().padLeft(4, '0')}-${tglPemutusan?.month.toString().padLeft(2, '0')}-${tglPemutusan?.day.toString().padLeft(2, '0')}",
+        "bahasan_analis": bahasanAnalis == null
+            ? null
+            : List<dynamic>.from(bahasanAnalis!.map((x) => x)),
+        "bahasan_reviewer": bahasanReviewer == null
+            ? null
+            : List<dynamic>.from(bahasanReviewer!.map((x) => x)),
+        "bahasan_pengutus": bahasanPengutus == null
+            ? null
+            : List<dynamic>.from(bahasanPengutus!.map((x) => x)),
         "debiturId": debiturId,
         "user": user == null
             ? null
             : List<dynamic>.from(user!.map((x) => x.toJson())),
-        "debitur": debitur == null ? null : debitur!.toJson(),
-        "checkReviewer": checkReviewer == null ? null : checkReviewer!.toJson(),
+        "debitur": debitur == null ? null : debitur?.toJson(),
+        "checkReviewer": checkReviewer == null ? null : checkReviewer?.toJson(),
+        "checkPengutus": checkPengutus == null ? null : checkPengutus?.toJson(),
       };
 }
 
-class CheckReviewer {
-  CheckReviewer({
+class Check {
+  Check({
     this.id,
     this.isKeuanganApproved,
     this.isKarakterApproved,
@@ -91,7 +129,7 @@ class CheckReviewer {
   bool? isJenisUsahaApproved;
   String? pengajuanId;
 
-  factory CheckReviewer.fromJson(Map<String, dynamic> json) => CheckReviewer(
+  factory Check.fromJson(Map<String, dynamic> json) => Check(
         id: json["id"],
         isKeuanganApproved: json["is_keuangan_approved"],
         isKarakterApproved: json["is_karakter_approved"],
@@ -116,23 +154,28 @@ class Debitur {
   Debitur({
     this.id,
     this.noDebitur,
+    this.alamat1,
     this.peminjam1,
   });
 
   int? id;
   String? noDebitur;
+  String? alamat1;
+
   String? peminjam1;
 
   factory Debitur.fromJson(Map<String, dynamic> json) => Debitur(
         id: json["id"],
         noDebitur: json["no_debitur"],
         peminjam1: json["peminjam1"],
+        alamat1: json["alamat_1"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "no_debitur": noDebitur,
         "peminjam1": peminjam1,
+        "alamat_1": alamat1,
       };
 }
 

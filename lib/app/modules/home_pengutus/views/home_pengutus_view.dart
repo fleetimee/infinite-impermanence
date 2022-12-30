@@ -24,6 +24,7 @@ import 'package:wave/wave.dart';
 
 import '../controllers/home_pengutus_controller.dart';
 
+// ignore: must_be_immutable
 class HomePengutusView extends GetView<HomePengutusController> {
   HomePengutusView({Key? key}) : super(key: key);
 

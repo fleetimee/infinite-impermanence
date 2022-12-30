@@ -280,11 +280,22 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                           height: 10,
                         ),
                         GFButton(
-                            onPressed: () {
-                              Get.toNamed(Routes.ANALIS_PRINT,
-                                  arguments: controller.pengajuanDetail.value);
-                            },
-                            text: 'Tanggapan Analis'),
+                          onPressed: () {
+                            Get.toNamed(Routes.ANALIS_PRINT,
+                                arguments: controller.pengajuanDetail.value);
+                          },
+                          text: 'Tanggapan Analis',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        GFButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.REVIEWER_PRINT,
+                                arguments: controller.pengajuanDetail.value);
+                          },
+                          text: 'Tanggapan Reviewer',
+                        ),
                       ],
                     ),
                     actions: [

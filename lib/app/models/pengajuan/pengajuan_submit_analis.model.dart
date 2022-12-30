@@ -2,6 +2,8 @@
 //
 //     final pengajuanAnalis = pengajuanAnalisFromJson(jsonString);
 
+// ignore_for_file: prefer_null_aware_operators
+
 import 'dart:convert';
 
 PengajuanAnalis pengajuanAnalisFromJson(String str) =>

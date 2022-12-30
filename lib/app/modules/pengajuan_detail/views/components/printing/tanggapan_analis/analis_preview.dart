@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
+// ignore: must_be_immutable
 class AnalisPreview extends StatelessWidget {
   AnalisPreview({Key? key}) : super(key: key);
 

@@ -1,4 +1,6 @@
 import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_analis/analis_preview.dart';
+import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_pemutus/pemutus_preview.dart';
+import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_reviewer/reviewer_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
@@ -500,6 +502,14 @@ class AppPages {
     GetPage(
       name: _Paths.ANALIS_PRINT,
       page: () => AnalisPreview(),
+    ),
+    GetPage(
+      name: _Paths.REVIEWER_PRINT,
+      page: () => ReviewerPreview(),
+    ),
+    GetPage(
+      name: _Paths.PENGUTUS_PRINT,
+      page: () => PemutusPreview(),
     ),
   ];
 }

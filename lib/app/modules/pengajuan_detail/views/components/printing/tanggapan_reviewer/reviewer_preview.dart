@@ -1,6 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/user/user_pengajuan.model.dart';
+import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
 import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_reviewer/reviewer_export.dart';
 import 'package:flutter/material.dart';
 
@@ -10,16 +10,17 @@ import 'package:intl/intl.dart';
 import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 
+// ignore: must_be_immutable
 class ReviewerPreview extends StatelessWidget {
   ReviewerPreview({Key? key}) : super(key: key);
 
-  Pengajuan data = Get.arguments;
+  PengajuanDetail data = Get.arguments;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello World'),
+        title: const Text('Tanggapan Reviewer'),
         centerTitle: true,
       ),
       body: Theme(
@@ -38,7 +39,7 @@ class ReviewerPreview extends StatelessWidget {
             )
           },
           pdfFileName: // date
-              '${DateFormat('dd-MM-yy').format(DateTime.now())}_TANGAPAN_ANALIS.pdf',
+              '${DateFormat('dd-MM-yy').format(DateTime.now())}_TANGAPAN_REVIEWER.pdf',
           onShared: (context) {
             Get.snackbar(
               'Berhasil',

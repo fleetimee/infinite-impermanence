@@ -31,6 +31,7 @@ dependencies:
       ref: patch-1
   firebase_auth: ^4.2.2
   firebase_core: ^2.4.0
+  firebase_messaging: ^14.2.1
   flutter:
     sdk: flutter
   flutter_animate: ^2.0.1

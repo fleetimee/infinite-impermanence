@@ -7,12 +7,14 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class LoginPageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
     initSharedPref();
+    initFirebaseFcm();
   }
 
   void initSharedPref() async {
@@ -22,7 +24,15 @@ class LoginPageController extends GetxController {
     pernahLogin.value = isLogin ?? false;
   }
 
+  void initFirebaseFcm() async {
+    final fcmToken = await FirebaseMessaging.instance.getToken();
+
+    print('fcmToken: $fcmToken');
+  }
+
   late Rx<User?> firebaseUser;
+
+  late Rx<RemoteMessage?> message;
 
   static LoginPageController instance = Get.find();
 
@@ -44,6 +54,32 @@ class LoginPageController extends GetxController {
 
     firebaseUser.bindStream(auth.authStateChanges());
     ever(firebaseUser, setInitialScreen);
+
+    // bind stream to listen to fcm message
+    message = Rx<RemoteMessage?>(null);
+
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      debugPrint('Got a message whilst in the foreground!');
+      debugPrint('Message data: ${message.data}');
+
+      if (message.notification != null) {
+        debugPrint(
+            'Message also contained a notification: ${message.notification}');
+        Get.snackbar(
+          message.notification!.title ?? '',
+          message.notification!.body ?? '',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.white,
+          colorText: Colors.black,
+          margin: const EdgeInsets.all(10),
+          borderRadius: 10,
+          icon: const Icon(
+            Icons.notifications,
+            color: Colors.black,
+          ),
+        );
+      }
+    });
   }
 
   void setInitialScreen(User? user) async {

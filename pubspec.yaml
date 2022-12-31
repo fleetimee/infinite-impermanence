@@ -29,8 +29,10 @@ dependencies:
     git:
       url: https://github.com/yuvaraja2303/finance/
       ref: patch-1
+  firebase_analytics: ^10.1.0
   firebase_auth: ^4.2.2
   firebase_core: ^2.4.0
+  firebase_messaging: ^14.2.1
   flutter:
     sdk: flutter
   flutter_animate: ^2.0.1
@@ -45,6 +47,7 @@ dependencies:
       ref: develop
   flutter_echarts: ^2.4.0
   flutter_form_builder: ^7.7.0
+  flutter_local_notifications: ^13.0.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^3.1.0

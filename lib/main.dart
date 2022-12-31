@@ -2,6 +2,8 @@
 import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
 import 'package:akm/app/utils/dependency_injection.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -10,17 +12,52 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // 🌎 Project imports:
 import 'app/routes/app_pages.dart';
 import 'app/themes/light.dart';
 
+@pragma('vm:entry-point')
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+
+  // show push notification
+  await FlutterLocalNotificationsPlugin().show(
+    message.hashCode,
+    message.notification?.title,
+    message.notification?.body,
+    const NotificationDetails(
+      android: AndroidNotificationDetails(
+        enableLights: true,
+        enableVibration: true,
+        largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
+        playSound: true,
+        'channel id',
+        'channel name',
+        importance: Importance.max,
+        priority: Priority.high,
+        showWhen: true,
+        icon: '@mipmap/ic_launcher',
+      ),
+    ),
+  );
+}
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterLocalNotificationsPlugin().initialize(
+    const InitializationSettings(
+      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+    ),
+  );
 
   // Initialize firebase
 
   Get.testMode = true;
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(
     const MyApp(),

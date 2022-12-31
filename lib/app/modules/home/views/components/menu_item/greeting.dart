@@ -80,7 +80,9 @@ class Greeting extends StatelessWidget {
               Obx(() => CircleAvatar(
                     radius: 30,
                     child: CachedNetworkImage(
-                      imageUrl: controller.profileImage.toString(),
+                      imageUrl: controller.profileImage.value == ''
+                          ? 'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'
+                          : '${controller.profileImage}',
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,

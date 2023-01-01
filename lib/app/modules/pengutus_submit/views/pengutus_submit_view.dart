@@ -318,18 +318,26 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                                                       null
                                                   ? const SizedBox.shrink()
                                                   : double.parse(controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .inputKeuangan!
-                                                              .kreditDiusulkan
-                                                              .toString()) >
-                                                          25000000
+                                                                  .insightDebitur
+                                                                  .value
+                                                                  .inputKeuangan!
+                                                                  .kreditDiusulkan
+                                                                  .toString()) >
+                                                              0 &&
+                                                          double.parse(controller
+                                                                  .insightDebitur
+                                                                  .value
+                                                                  .inputKeuangan!
+                                                                  .kreditDiusulkan
+                                                                  .toString()) <=
+                                                              10000000
                                                       ? const Chip(
-                                                          label:
-                                                              Text('Kur Kecil'))
-                                                      : const Chip(
                                                           label: Text(
-                                                              'Kur Mikro')),
+                                                              'KUR Super Mikro'))
+                                                      : double.parse(controller.insightDebitur.value.inputKeuangan!.kreditDiusulkan.toString()) > 10000000 &&
+                                                              double.parse(controller.insightDebitur.value.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000
+                                                          ? const Chip(label: Text('KUR Mikro'))
+                                                          : const Chip(label: Text('KUR Kecil')),
                                         ),
                                       ],
                                     ),

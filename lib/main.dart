@@ -33,14 +33,14 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
       android: AndroidNotificationDetails(
         enableLights: true,
         enableVibration: true,
-        largeIcon: DrawableResourceAndroidBitmap('@mipmap/ic_launcher'),
+        largeIcon: DrawableResourceAndroidBitmap('@mipmap/launcher_icon'),
         playSound: true,
         'channel id',
         'channel name',
         importance: Importance.max,
         priority: Priority.high,
         showWhen: true,
-        icon: '@mipmap/ic_launcher',
+        icon: '@mipmap/launcher_icon',
       ),
     ),
   );
@@ -51,7 +51,7 @@ void main() async {
 
   FlutterLocalNotificationsPlugin().initialize(
     const InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+      android: AndroidInitializationSettings('@mipmap/launcher_icon'),
     ),
   );
 

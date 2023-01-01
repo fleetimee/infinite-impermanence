@@ -51,32 +51,6 @@ class Greeting extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // FutureBuilder(
-              //   future: controller.img,
-              //   builder: (context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.waiting) {
-              //       return const Shimmer(
-              //         gradient: LinearGradient(
-              //           colors: [
-              //             Colors.white,
-              //             Colors.grey,
-              //           ],
-              //         ),
-              //         child: CircleAvatar(
-              //           radius: 30,
-              //           backgroundColor: Colors.white,
-              //         ),
-              //       );
-              //     } else {
-              //       return CircleAvatar(
-              //         radius: 30,
-              //         backgroundImage: NetworkImage(
-              //           snapshot.data.toString(),
-              //         ),
-              //       );
-              //     }
-              //   },
-              // ),
               Obx(() => CircleAvatar(
                     radius: 30,
                     child: CachedNetworkImage(

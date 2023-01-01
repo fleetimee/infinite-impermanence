@@ -26,7 +26,6 @@ class HomeMenu extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Row(
@@ -112,81 +111,9 @@ class HomeMenu extends StatelessWidget {
               ],
             ),
           ),
-
           const SizedBox(
             height: 40,
           ),
-
-          // Column(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   mainAxisSize: MainAxisSize.min,
-          //   children: const [
-          //     Padding(
-          //       padding: EdgeInsets.symmetric(horizontal: 8),
-          //       child: Text(
-          //         'Menu Utama',
-          //         style: TextStyle(
-          //           fontSize: 30,
-          //           fontWeight: FontWeight.bold,
-          //           color: secondaryColor,
-          //         ),
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          // Obx(
-          //   () => Center(
-          //     // child: Text(
-          //     //   '${controller.isDarkModeEnabled.value ? 'Dark' : 'Light'} Mode',
-          //     // ),
-          //     child: Column(
-          //       children: [
-          //         Text(
-          //           controller.isDarkModeEnabled.value
-          //               ? 'Dark Mode (Beta)'
-          //               : 'Light Mode',
-          //           style: TextStyle(
-          //             fontSize: 20,
-          //             fontWeight: FontWeight.bold,
-          //             color: controller.isDarkModeEnabled.value
-          //                 ? Colors.white
-          //                 : Colors.black,
-          //           ),
-          //         ),
-          //         const SizedBox(
-          //           height: 20,
-          //         ),
-          //         Icon(
-          //           controller.isDarkModeEnabled.value
-          //               ? Icons.brightness_3
-          //               : Icons.brightness_7,
-          //           size: 30,
-          //           color: controller.isDarkModeEnabled.value
-          //               ? Colors.yellow
-          //               : Colors.black,
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          // ObxValue(
-          //   (data) => Switch(
-          //     value: controller.isDarkModeEnabled.value,
-          //     onChanged: (val) {
-          //       controller.isDarkModeEnabled.value = val;
-          //       Get.changeThemeMode(
-          //         controller.isDarkModeEnabled.value
-          //             ? ThemeMode.dark
-          //             : ThemeMode.light,
-          //       );
-          //       controller.saveThemeStatus();
-          //     },
-          //   ),
-          //   false.obs,
-          // ),
-          // const SizedBox(
-          //   height: 20,
-          // ),
         ],
       ),
     );

@@ -4,6 +4,8 @@
 
 import 'dart:convert';
 
+import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
+
 UserPengajuan userPengajuanFromJson(String str) =>
     UserPengajuan.fromJson(json.decode(str));
 
@@ -20,7 +22,7 @@ class UserPengajuan {
 
   String? id;
   List<dynamic>? roles;
-  List<Pengajuan>? pengajuan;
+  List<PengajuanDetail>? pengajuan;
   dynamic createdBy;
   dynamic updatedBy;
 
@@ -31,8 +33,8 @@ class UserPengajuan {
             : List<dynamic>.from(json["roles"].map((x) => x)),
         pengajuan: json["pengajuan"] == null
             ? null
-            : List<Pengajuan>.from(
-                json["pengajuan"].map((x) => Pengajuan.fromJson(x))),
+            : List<PengajuanDetail>.from(
+                json["pengajuan"].map((x) => PengajuanDetail.fromJson(x))),
         createdBy: json["createdBy"],
         updatedBy: json["updatedBy"],
       );

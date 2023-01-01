@@ -45,8 +45,13 @@ class DebiturInsight {
     this.tglSekarang,
     this.deskripsiDebitur,
     this.progress,
+    this.userId,
+    this.user,
+    this.pengajuan,
     this.createdBy,
     this.ijinLegitimasi,
+    this.syaratLain,
+    this.asuransi,
     this.inputNeraca,
     this.inputRugiLaba,
     this.inputKeuangan,
@@ -55,8 +60,6 @@ class DebiturInsight {
     this.analisaBisnis,
     this.analisaJenisUsaha,
     this.agunan,
-    this.syaratLain,
-    this.asuransi,
     this.analisaAgunan,
     this.upload,
   });
@@ -96,10 +99,12 @@ class DebiturInsight {
   DateTime? tglSekarang;
   String? deskripsiDebitur;
   String? progress;
+  String? userId;
+  User? user;
+  List<Pengajuan>? pengajuan;
   dynamic createdBy;
   IjinLegitimasi? ijinLegitimasi;
   Asuransi? asuransi;
-
   InputNeraca? inputNeraca;
   InputRugiLaba? inputRugiLaba;
   InputKeuangan? inputKeuangan;
@@ -152,6 +157,12 @@ class DebiturInsight {
             : DateTime.parse(json["tgl_sekarang"]),
         deskripsiDebitur: json["deskripsi_debitur"],
         progress: json["progress"] ?? null,
+        userId: json["userId"] ?? null,
+        user: json["user"] == null ? null : User.fromJson(json["user"]),
+        pengajuan: json["pengajuan"] == null
+            ? null
+            : List<Pengajuan>.from(
+                json["pengajuan"].map((x) => Pengajuan.fromJson(x))),
         createdBy: json["createdBy"],
         ijinLegitimasi: json["ijinLegitimasi"] == null
             ? null
@@ -233,6 +244,11 @@ class DebiturInsight {
             : "${tglSekarang?.year.toString().padLeft(4, '0')}-${tglSekarang?.month.toString().padLeft(2, '0')}-${tglSekarang?.day.toString().padLeft(2, '0')}",
         "deskripsi_debitur": deskripsiDebitur,
         "progress": progress ?? null,
+        "userId": userId ?? null,
+        "user": user == null ? null : user?.toJson(),
+        "pengajuan": pengajuan == null
+            ? null
+            : List<dynamic>.from(pengajuan!.map((x) => x.toJson())),
         "createdBy": createdBy,
         "ijinLegitimasi":
             ijinLegitimasi == null ? null : ijinLegitimasi?.toJson(),
@@ -257,6 +273,128 @@ class DebiturInsight {
         "upload": upload == null
             ? null
             : List<dynamic>.from(upload!.map((x) => x.toJson())),
+      };
+}
+
+class Pengajuan {
+  Pengajuan({
+    this.id,
+    this.status,
+    this.tglSubmit,
+    this.tglReview,
+    this.tglPemutusan,
+    this.bahasanAnalis,
+    this.bahasanReviewer,
+    this.bahasanPengutus,
+    this.debiturId,
+    this.user,
+  });
+
+  String? id;
+  String? status;
+  DateTime? tglSubmit;
+  DateTime? tglReview;
+  DateTime? tglPemutusan;
+  List<String>? bahasanAnalis;
+  List<String>? bahasanReviewer;
+  List<String>? bahasanPengutus;
+  int? debiturId;
+  List<User>? user;
+
+  factory Pengajuan.fromJson(Map<String, dynamic> json) => Pengajuan(
+        id: json["id"] ?? null,
+        status: json["status"] ?? null,
+        tglSubmit: json["tgl_submit"] == null
+            ? null
+            : DateTime.parse(json["tgl_submit"]),
+        tglReview: json["tgl_review"] == null
+            ? null
+            : DateTime.parse(json["tgl_review"]),
+        tglPemutusan: json["tgl_pemutusan"] == null
+            ? null
+            : DateTime.parse(json["tgl_pemutusan"]),
+        bahasanAnalis: json["bahasan_analis"] == null
+            ? null
+            : List<String>.from(json["bahasan_analis"].map((x) => x)),
+        bahasanReviewer: json["bahasan_reviewer"] == null
+            ? null
+            : List<String>.from(json["bahasan_reviewer"].map((x) => x)),
+        bahasanPengutus: json["bahasan_pengutus"] == null
+            ? null
+            : List<String>.from(json["bahasan_pengutus"].map((x) => x)),
+        debiturId: json["debiturId"] ?? null,
+        user: json["user"] == null
+            ? null
+            : List<User>.from(json["user"].map((x) => User.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "status": status ?? null,
+        "tgl_submit": tglSubmit == null
+            ? null
+            : "${tglSubmit?.year.toString().padLeft(4, '0')}-${tglSubmit?.month.toString().padLeft(2, '0')}-${tglSubmit?.day.toString().padLeft(2, '0')}",
+        "tgl_review": tglReview == null
+            ? null
+            : "${tglReview?.year.toString().padLeft(4, '0')}-${tglReview?.month.toString().padLeft(2, '0')}-${tglReview?.day.toString().padLeft(2, '0')}",
+        "tgl_pemutusan": tglPemutusan == null
+            ? null
+            : "${tglPemutusan?.year.toString().padLeft(4, '0')}-${tglPemutusan?.month.toString().padLeft(2, '0')}-${tglPemutusan?.day.toString().padLeft(2, '0')}",
+        "bahasan_analis": bahasanAnalis == null
+            ? null
+            : List<dynamic>.from(bahasanAnalis!.map((x) => x)),
+        "bahasan_reviewer": bahasanReviewer == null
+            ? null
+            : List<dynamic>.from(bahasanReviewer!.map((x) => x)),
+        "bahasan_pengutus": bahasanPengutus == null
+            ? null
+            : List<dynamic>.from(bahasanPengutus!.map((x) => x)),
+        "debiturId": debiturId ?? null,
+        "user": user == null
+            ? null
+            : List<dynamic>.from(user!.map((x) => x.toJson())),
+      };
+}
+
+class User {
+  User({
+    this.id,
+    this.email,
+    this.phoneNumber,
+    this.password,
+    this.displayName,
+    this.photoUrl,
+    this.createdAt,
+  });
+
+  String? id;
+  String? email;
+  String? phoneNumber;
+  String? password;
+  String? displayName;
+  String? photoUrl;
+  DateTime? createdAt;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"] ?? null,
+        email: json["email"] ?? null,
+        phoneNumber: json["phoneNumber"] ?? null,
+        password: json["password"] ?? null,
+        displayName: json["displayName"] ?? null,
+        photoUrl: json["photoURL"] ?? null,
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id ?? null,
+        "email": email ?? null,
+        "phoneNumber": phoneNumber ?? null,
+        "password": password ?? null,
+        "displayName": displayName ?? null,
+        "photoURL": photoUrl ?? null,
+        "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
       };
 }
 

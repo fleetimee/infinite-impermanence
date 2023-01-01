@@ -389,7 +389,7 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
                 textDeskripsiNoBold('5.'),
                 textDeskripsiNoBold("Jenis Kredit"),
                 textDeskripsiNoBold(
-                  "UMKM/${double.parse(debtor.inputRugiLaba!.omzet.toString()) <= 100000000 ? "Mikro" : "Kecil"}/Angsuran Tetap/${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 25000000 ? "KUR Kecil" : "KUR Mikro"}",
+                  "UMKM/${double.parse(debtor.inputRugiLaba!.omzet.toString()) <= 100000000 ? "Mikro" : "Kecil"}/Angsuran Tetap/${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 0 && double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 10000000 ? "KUR Super Mikro" : double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 10000000 && double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000 ? 'KUR Mikro' : 'KUR Kecil'}",
                 ),
               ],
             ),

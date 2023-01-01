@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 // For mobile based
 
-const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
 
@@ -20,8 +20,8 @@ const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 // const baseUrl = 'http://192.168.100.79:3000/';
 
 // for ngrok
-// const baseUrl =
-//     'https://3f5d-2001-448a-4045-2d04-1c17-eda9-fc8-7519.ap.ngrok.io/api/v1/';
+const baseUrl =
+    'https://2bd4-2001-448a-4043-2740-21c6-4c69-e2a2-4e5e.ap.ngrok.io/api/v1/';
 
 // const baseUrl =
 //     'https://number-41-bagooska-the-terribly-tired-tapir.fleetimee.repl.co/api/v1/';

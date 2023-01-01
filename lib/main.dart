@@ -3,7 +3,9 @@ import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
 import 'package:akm/app/utils/dependency_injection.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -68,6 +70,13 @@ void main() async {
   await firebaseInitialization.then((value) {
     Get.put(LoginPageController());
   });
+
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   FlutterNativeSplash.remove();
 }

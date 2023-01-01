@@ -286,7 +286,7 @@ class BisnisAnalisisController extends GetxController {
 
   void generateDeskripsi() {
     deskripsi.text =
-        'Omset yang tercapai setiap bulan ${omzetPenjualanKeterangan.text}, harga yang ditawarkan kepada pelanggan ${hargaBersaingKeterangan.text}, persaingan usaha ${persainganPasarKeterangan.text}, lokasi usaha ${lokasiPasarKeterangan.text}, kapasitas terpasan ${kapasitasTerpasanKeterangan.text}, dan kualitas usaha yang ${ratingKeterangan.text}';
+        'Omset yang tercapai setiap bulan ${omzetPenjualanKeterangan.text}, harga yang ditawarkan kepada pelanggan ${hargaBersaingKeterangan.text}, persaingan usaha ${persainganPasarKeterangan.text}, lokasi usaha ${lokasiPasarKeterangan.text}, kapasitas terpasang ${kapasitasTerpasanKeterangan.text}, dan kualitas usaha yang ${ratingKeterangan.text}';
   }
 
   void clearForm() {

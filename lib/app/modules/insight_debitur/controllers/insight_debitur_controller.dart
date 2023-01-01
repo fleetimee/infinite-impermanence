@@ -35,6 +35,13 @@ class InsightDebiturController extends GetxController
 
   final formKey = GlobalKey<FormBuilderState>();
 
+  Future<void> refreshInsightDebitur() async {
+    fetchOneDebitur(debiturId ?? 0);
+    Future.delayed(const Duration(seconds: 1), () {
+      fetchAgunan(debiturId ?? 0);
+    });
+  }
+
   // For carousel
   final List<String> imageList = [
     "https://cdn.pixabay.com/photo/2017/12/03/18/04/christmas-balls-2995437_960_720.jpg",

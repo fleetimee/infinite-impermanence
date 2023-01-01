@@ -106,7 +106,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     () => Text(
                       controller.isProcessing.value
                           ? 'Loading...'
-                          : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis Novian',
+                          : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis ${controller.pengajuan.user?[0].displayName ?? '-'}',
                       style: Theme.of(context).textTheme.caption?.merge(
                             const TextStyle(
                               fontSize: 16,
@@ -934,6 +934,59 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                 true,
                                 errorText: 'Saya sudah melihat inputan debitur',
                               ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    color: Colors.grey[200],
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const GFTypography(
+                              text: 'Tanggapan Analis',
+                              type: GFTypographyType.typo3,
+                              showDivider: false,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Ini adalah tanggapan analis terhadap pengajuan ini',
+                              style: Theme.of(context).textTheme.caption?.merge(
+                                    const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                                  controller.pengajuan.bahasanAnalis?.length ??
+                                      0,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: Text(
+                                    '${index + 1}. ${controller.pengajuan.bahasanAnalis?[index]}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        ?.merge(
+                                          const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),

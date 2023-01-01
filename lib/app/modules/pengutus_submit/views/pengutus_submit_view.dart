@@ -891,6 +891,112 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                  Container(
+                    color: Colors.grey[200],
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const GFTypography(
+                              text: 'Tanggapan Analis',
+                              type: GFTypographyType.typo3,
+                              showDivider: false,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Ini adalah tanggapan analis terhadap pengajuan ini',
+                              style: Theme.of(context).textTheme.caption?.merge(
+                                    const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount:
+                                  controller.pengajuan.bahasanAnalis?.length ??
+                                      0,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: Text(
+                                    '${index + 1}. ${controller.pengajuan.bahasanAnalis?[index]}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        ?.merge(
+                                          const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    color: Colors.grey[200],
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const GFTypography(
+                              text: 'Tanggapan Reviewer',
+                              type: GFTypographyType.typo3,
+                              showDivider: false,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              'Ini adalah tanggapan reviewer terhadap pengajuan ini',
+                              style: Theme.of(context).textTheme.caption?.merge(
+                                    const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                            ),
+                            ListView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: controller
+                                      .pengajuan.bahasanReviewer?.length ??
+                                  0,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8),
+                                  child: Text(
+                                    '${index + 1}. ${controller.pengajuan.bahasanReviewer?[index]}',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        ?.merge(
+                                          const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   KeuanganCard(controller: controller),
                   const SizedBox(height: 20),
                   KarakterCard(controller: controller),

@@ -36,7 +36,7 @@ class MySubmissionProvider {
   Future<UserPengajuan> fetchMyReview(String userId) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}users/$userId'),
+        Uri.parse('${baseUrl}users/$userId?fields=pengajuan'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -46,7 +46,8 @@ class MySubmissionProvider {
         // if response is List<dynamic> then use this
         // final data = jsonDecode(response.body) as List;
 
-        Map<String, dynamic> data = jsonDecode(response.body);
+        var data = jsonDecode(response.body);
+
         debugPrint(data.toString());
         return UserPengajuan.fromJson(data);
       } else {

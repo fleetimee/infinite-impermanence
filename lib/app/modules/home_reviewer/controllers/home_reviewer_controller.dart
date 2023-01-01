@@ -1,4 +1,5 @@
 import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
+import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
 import 'package:akm/app/models/user/user_pengajuan.model.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,7 +39,7 @@ class HomeReviewerController extends GetxController {
   // Pending review
   var isMyPendingReviewProcessing = false.obs;
   var isMyCompletedReviewProcessing = false.obs;
-  List listMyPendingReview = <Pengajuan>[].obs;
+  List listMyPendingReview = <PengajuanDetail>[].obs;
   List listMyCompletedReview = <Pengajuan>[].obs;
 
   void getMyPendingReview() async {

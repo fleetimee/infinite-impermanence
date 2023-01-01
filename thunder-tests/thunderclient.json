@@ -109,11 +109,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "bc3a3cb6-18b9-485c-9b61-18a055231b82",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/",
+    "url": "{{baseUrl}}api/v1/debiturs/28/agunan/",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-12-02T12:49:21.434Z",
-    "modified": "2022-12-02T12:49:21.434Z",
+    "modified": "2022-12-31T10:19:07.904Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -142,16 +142,16 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "bc3a3cb6-18b9-485c-9b61-18a055231b82",
     "name": "Post Bulk",
-    "url": "{{baseUrl}}api/v1/debiturs/99/agunan/bulk",
+    "url": "{{baseUrl}}api/v1/debiturs/28/agunan/bulk",
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-12-02T12:49:21.436Z",
-    "modified": "2022-12-02T12:49:21.436Z",
+    "modified": "2022-12-31T10:18:50.130Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\r\n  \"bulk\": [\r\n    {\r\n      \"kode_agunan\": 2,\r\n      \"jenis_agunan\": \"Tanah dan Bangunan\",\r\n      \"is_tanah\": true,\r\n      \"is_los\": false,\r\n      \"is_kendaraan\": false\r\n    },\r\n    {\r\n        \"kode_agunan\": 4,\r\n        \"jenis_agunan\": \"Mesin dan Peralatan\",\r\n        \"is_tanah\": false,\r\n        \"is_los\": false,\r\n        \"is_kendaraan\": false\r\n    },\r\n    {\r\n        \"kode_agunan\": 5,\r\n        \"jenis_agunan\": \"Cash Collateral\",\r\n        \"is_tanah\": false,\r\n        \"is_los\": false,\r\n        \"is_kendaraan\": false\r\n    },\r\n    {\r\n        \"kode_agunan\": 6,\r\n        \"jenis_agunan\": \"Kios Pasar\",\r\n        \"is_tanah\": false,\r\n        \"is_los\": false,\r\n        \"is_kendaraan\": false\r\n    }\r\n  \r\n  ]\r\n}",
+      "raw": "{\n  \"bulk\": [\n\n    {\n        \"kode_agunan\": 6,\n        \"jenis_agunan\": \"Kios Pasar\",\n        \"is_tanah\": false,\n        \"is_los\": false,\n        \"is_kendaraan\": false\n    },\n      {\n        \"kode_agunan\": 7,\n        \"jenis_agunan\": \"Lainnya\",\n        \"is_tanah\": false,\n        \"is_los\": false,\n        \"is_kendaraan\": false\n    }\n  \n  ]\n}",
       "form": []
     },
     "tests": []
@@ -253,11 +253,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get Debitur By Id",
-    "url": "{{baseUrl}}api/v1/debiturs/26?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
+    "url": "{{baseUrl}}api/v1/debiturs/28?join=ijinLegitimasi&join=syaratLain&join=asuransi&join=inputNeraca&join=inputRugiLaba&join=inputKeuangan&join=analisaKeuangan&join=analisaKarakter&join=analisaBisnis&join=analisaJenisUsaha&join=agunan&join=agunan.form_tanah&join=agunan.form_kendaraan&join=agunan.form_los&join=agunan.form_peralatan&join=agunan.form_cash&join=agunan.form_lainnya&join=agunan.form_tanah_bangunan&join=analisaAgunan&join=upload",
     "method": "GET",
     "sortNum": 280000,
     "created": "2022-12-02T12:49:21.440Z",
-    "modified": "2022-12-29T23:19:19.182Z",
+    "modified": "2022-12-31T11:11:28.672Z",
     "headers": [],
     "params": [
       {
@@ -1872,7 +1872,7 @@
     "method": "GET",
     "sortNum": 658750,
     "created": "2022-12-20T07:57:33.511Z",
-    "modified": "2022-12-23T21:12:51.981Z",
+    "modified": "2022-12-31T12:22:08.412Z",
     "headers": [],
     "params": [
       {
@@ -1907,11 +1907,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
     "name": "Get Copy",
-    "url": "{{baseUrl}}api/v1/pengajuan/P-x3rj-20221229",
+    "url": "{{baseUrl}}api/v1/pengajuan/P-uCbI-20221231",
     "method": "GET",
     "sortNum": 1045000,
     "created": "2022-12-29T01:18:56.749Z",
-    "modified": "2022-12-30T04:56:19.630Z",
+    "modified": "2022-12-31T23:02:17.636Z",
     "headers": [],
     "params": [],
     "tests": []

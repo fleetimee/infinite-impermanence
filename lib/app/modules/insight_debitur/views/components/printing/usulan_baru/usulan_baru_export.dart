@@ -39,6 +39,18 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
 
+  // if pengajuan is null, return empty list
+
+  var pengajuan = debtor.pengajuan;
+
+  pengajuan ??= [];
+
+  var user = pengajuan.first.user;
+
+  // transform pengajuan into map
+  var pengajuanMap = pengajuan.map((e) => e.toJson()).toList();
+
+  // check which pengajuan is selected
   // Get list of agunan
   var agunanList = debtor.agunan;
 
@@ -1407,8 +1419,9 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    center('Novian'),
-                    center('Dwi Prasetyo'),
+                    // ignore: prefer_is_empty
+                    center(''),
+                    center(''),
                   ],
                 )
               ],

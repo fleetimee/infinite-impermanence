@@ -637,7 +637,7 @@ Future<Uint8List> makeAnalisaBisnisPdf(DebiturInsight debtor) async {
                     Container(
                       width: 50,
                       child:
-                          headerText('Produktivitas terhadap terpasan/omzet'),
+                          headerText('Produktivitas terhadap terpasang/omzet'),
                     ),
                     headerText(
                       debtor.analisaBisnis!.nilaiProduktivitas ==

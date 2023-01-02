@@ -1509,7 +1509,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                 TableRow(
                   children: [
                     textUmurWide('34'),
-                    textUmurWide('Produktivitas thd kapasitas terpasan'),
+                    textUmurWide('Produktivitas thd kapasitas terpasang'),
                     textUmurWide(debtor.analisaBisnis!.keteranganProduktivitas
                         .toString()),
                     textUmurWide(debtor.analisaBisnis!.keteranganProduktivitas

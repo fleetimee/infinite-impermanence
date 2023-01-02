@@ -49,6 +49,42 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:391153260721:android:db5f8c42ac0f898fbc6a90",
+        "android_client_info": {
+          "package_name": "com.example.zanpakuto_ichigo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "391153260721-sv001eku0075j4cqpprametdq6s70425.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZoN67kRMA6o04kEXWwuZSLxGL7hzkg0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "391153260721-sv001eku0075j4cqpprametdq6s70425.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "391153260721-2fmg4f0qlge9qmak0jvdjj85fu1bbn5u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "fleetime.akm"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

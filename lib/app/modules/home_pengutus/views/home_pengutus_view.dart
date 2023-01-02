@@ -199,8 +199,10 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                 Obx(() => CircleAvatar(
                                       radius: 30,
                                       child: CachedNetworkImage(
-                                        imageUrl:
-                                            homeCtrl.profileImage.toString(),
+                                        imageUrl: homeCtrl.profileImage.value ==
+                                                ''
+                                            ? 'https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg'
+                                            : '${homeCtrl.profileImage}',
                                         imageBuilder:
                                             (context, imageProvider) =>
                                                 Container(

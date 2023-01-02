@@ -32,6 +32,129 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
+  // variable for string omzet penjualan
+  var omzetPenjualan = '';
+  var hargaBersaing = '';
+  var persainganPasar = '';
+  var lokasiUsaha = '';
+  var kapasitasTerpasang = '';
+  var kualitas = '';
+
+  // processing kualitas
+  if (debtor.analisaBisnis?.keteranganKualitas == "Sangat baik") {
+    kualitas =
+        "Analisa bisnis menunjukkan bahwa kualitas bisnis saat ini sangat baik. Hal ini dapat dilihat dari hasil penjualan yang tinggi, efisiensi operasional yang baik, dan kepuasan pelanggan yang tinggi.";
+  } else if (debtor.analisaBisnis?.keteranganKualitas == "Baik") {
+    kualitas =
+        "Analisa bisnis menunjukkan bahwa kualitas bisnis saat ini baik. Hal ini dapat dilihat dari hasil penjualan yang tinggi, efisiensi operasional yang baik, dan kepuasan pelanggan yang tinggi.";
+  } else if (debtor.analisaBisnis?.keteranganKualitas == "Cukup") {
+    kualitas =
+        "Analisa bisnis menunjukkan bahwa kualitas bisnis saat ini cukup. Meskipun masih ada ruang untuk peningkatan, debitur ini  telah berhasil menjalankan bisnis dengan efisien dan memenuhi kebutuhan pelanggan dengan baik";
+  } else if (debtor.analisaBisnis?.keteranganKualitas == "Kurang Baik") {
+    kualitas =
+        "Analisa bisnis menunjukkan bahwa kualitas bisnis saat ini kurang baik. perlu segera mengambil tindakan yang efektif untuk meningkatkan kualitas bisnis, seperti meningkatkan efisiensi operasional, meningkatkan kualitas produk atau jasa yang ditawarkan, dan meningkatkan kepuasan pelanggan";
+  } else {
+    kualitas =
+        "Analisa bisnis menunjukkan bahwa kualitas bisnis  saat ini jelek. harus segera mengambil tindakan yang efektif untuk meningkatkan kualitas bisnis , seperti meningkatkan efisiensi operasional, meningkatkan kualitas produk atau jasa yang ditawarkan, dan meningkatkan kepuasan pelanggan. Jika tidak, berisiko mengalami kerugian yang signifikan dan terancam kebangkrutan";
+  }
+
+  // Processing if omzet penjualan keterangan
+  if (debtor.analisaBisnis?.keteranganOmzet == "Lebih dari 80%") {
+    omzetPenjualan =
+        'Hasil analisa omzet penjualan menunjukkan bahwa bisnis yang dijalankan debitur ini telah mencapai omzet lebih dari 80% sampai saat ini. Ini merupakan prestasi yang sangat baik dan menunjukkan bahwa strategi pemasaran yang debitur lakukan telah efektif dalam meningkatkan penjualan.';
+  } else if (debtor.analisaBisnis?.keteranganOmzet == "s/d 80%") {
+    // Processing if omzet penjualan is null
+    omzetPenjualan =
+        'Hasil analisa omzet penjualan menunjukkan bahwa bisnis yang dijalankan debitur ini telah mencapai omzet sampai dengan 80% sampai saat ini. Ini merupakan prestasi yang baik dan menunjukkan bahwa strategi pemasaran yang debitur lakukan telah efektif dalam meningkatkan penjualan.';
+  } else if (debtor.analisaBisnis?.keteranganOmzet == "s/d 70%") {
+    // Processing if omzet penjualan is null
+    omzetPenjualan =
+        'Hasil analisa omzet penjualan menunjukkan bahwa bisnis yang dijalankan debitur ini telah mencapai omzet sampai dengan 70% sampai saat ini. Ini merupakan prestasi yang cukup baik dan menunjukkan bahwa strategi pemasaran yang debitur lakukan telah efektif dalam meningkatkan penjualan.';
+  } else if (debtor.analisaBisnis?.keteranganOmzet == 's/d 60%') {
+    omzetPenjualan =
+        'Hasil analisa omzet penjualan menunjukkan bahwa bisnis yang dijalankan debitur ini telah mencapai omzet sampai dengan 60% sampai saat ini. Ini merupakan prestasi yang kurang dan menunjukkan bahwa strategi pemasaran yang debitur lakukan belum efektif dalam meningkatkan penjualan.';
+  } else {
+    omzetPenjualan =
+        'Hasil analisa omzet penjualan menunjukkan bahwa bisnis yang dijalankan debitur ini belum mencapai omzet sampai saat ini. Ini merupakan prestasi yang sangat kurang dan menunjukkan bahwa strategi pemasaran yang debitur lakukan sangat belum efektif dalam meningkatkan penjualan.';
+  }
+
+  // processing if harga bersaing keterangan
+  if (debtor.analisaBisnis?.keteranganHargaBersaing ==
+      "Lebih murah diatas 10%") {
+    hargaBersaing =
+        "Setelah melakukan analisa harga bersaing, debitur ini memiliki harga yang lebih murah diatas 10% dibandingkan dengan pesaingnya. dengan harga yang lebih kompetitif, debitur dapat memberikan nilai yang lebih baik bagi pelanggan sambil tetap menjaga margin keuntungan yang sehat.";
+  } else if (debtor.analisaBisnis?.keteranganHargaBersaing ==
+      "lebih murah 5 - 10%") {
+    hargaBersaing =
+        "Setelah melakukan analisa harga bersaing, debitur ini memiliki harga yang lebih murah 5 - 10% dibandingkan dengan pesaingnya. dengan harga yang kompetitif, debitur dapat memberikan nilai yang lebih baik bagi pelanggan sambil tetap menjaga margin keuntungan yang sehat.";
+  } else if (debtor.analisaBisnis?.keteranganHargaBersaing ==
+      "lebih murah s/d 5%") {
+    hargaBersaing =
+        "Setelah melakukan analisa harga bersaing, debitur ini memiliki harga yang lebih murah s/d 5% dibandingkan dengan pesaingnya. dengan harga yang kompetitif, debitur dapat memberikan nilai yang lebih baik bagi pelanggan sambil tetap menjaga margin keuntungan yang sehat.";
+  } else if (debtor.analisaBisnis?.keteranganHargaBersaing ==
+      "Sama dengan pesaing") {
+    hargaBersaing =
+        "Setelah melakukan analisa harga bersaing, debitur ini memiliki harga yang sama dengan pesaingnya. dengan harga yang kompetitif, debitur dapat memberikan nilai yang lebih baik bagi pelanggan sambil tetap menjaga margin keuntungan yang sehat.";
+  } else {
+    hargaBersaing =
+        "Setelah melakukan analisa harga bersaing, debitur ini memiliki harga yang lebih mahal dibandingkan dengan pesaingnya. dengan harga yang lebih mahal, debitur dapat memberikan nilai yang lebih baik bagi pelanggan sambil tetap menjaga margin keuntungan yang sehat.";
+  }
+
+  // processing persaingan pasar
+  if (debtor.analisaBisnis?.keteranganPersaingan == "Tidak ketat") {
+    persainganPasar =
+        "Setelah melakukan analisa pasar, dapat disimpulkan bahwa persaingan pasar saat ini tidak terlalu ketat. Hal ini menunjukkan bahwa ada peluang yang bagus bagi debitur untuk meningkatkan pangsa pasar dan meningkatkan omzet penjualan.";
+  } else if (debtor.analisaBisnis?.keteranganPersaingan == "Kurang ketat") {
+    persainganPasar =
+        "Setelah melakukan analisa pasar, dapat disimpulkan bahwa persaingan pasar saat ini kurang ketat. Meskipun demikian, debitur tidak boleh lengah dan harus terus berupaya untuk meningkatkan pangsa pasarnya";
+  } else if (debtor.analisaBisnis?.keteranganPersaingan == "Cukup ketat") {
+    persainganPasar =
+        "Setelah melakukan analisa pasar, dapat disimpulkan bahwa persaingan pasar saat ini cukup ketat. Hal ini menunjukkan bahwa debitur harus terus berupaya untuk meningkatkan pangsa pasarnya.";
+  } else if (debtor.analisaBisnis?.keteranganPersaingan == "Ketat") {
+    persainganPasar =
+        "Setelah melakukan analisa pasar, dapat disimpulkan bahwa persaingan pasar saat ini ketat. Hal ini menunjukkan bahwa debitur harus terus berupaya untuk meningkatkan pangsa pasar agar dapat bersaing dengan baik di tengah persaingan yang ketat ini. Diupayakan debitur terus melakukan strategi pemasaran yang efektif dan meningkatkan kualitas produk untuk dapat bersaing dengan baik di pasar yang ketat ini.";
+  } else {
+    persainganPasar =
+        "Analisa pasar menunjukkan bahwa persaingan saat ini sangat ketat. diupayakan debitur akan terus melakukan strategi pemasaran efektif dan meningkatkan kualitas produk untuk bersaing dengan baik";
+  }
+
+  // processing lokasi usaha
+  if (debtor.analisaBisnis?.keteranganLokasiUsaha == "Sangat strategis") {
+    lokasiUsaha =
+        "Setelah melakukan analisa lokasi pasar, dapat  disimpulkan bahwa lokasi sangat strategis dan dapat membantu meningkatkan pangsa pasar. Lokasi ini berada di area yang ramai dikunjungi oleh banyak orang dan mudah diakses, sehingga sangat memudahkan pelanggan untuk mengunjunginya";
+  } else if (debtor.analisaBisnis?.keteranganLokasiUsaha == "Strategis") {
+    lokasiUsaha =
+        "Setelah melakukan analisa lokasi pasar, dapat  disimpulkan bahwa lokasi strategis dan dapat membantu meningkatkan pangsa pasar. Lokasi ini berada di area yang ramai dikunjungi oleh banyak orang dan mudah diakses, sehingga sangat memudahkan pelanggan untuk mengunjunginya";
+  } else if (debtor.analisaBisnis?.keteranganLokasiUsaha == "Cukup strategis") {
+    lokasiUsaha =
+        "Setelah melakukan analisa lokasi pasar, dapat  disimpulkan bahwa lokasi cukup strategis dan dapat membantu meningkatkan pangsa pasar. Lokasi ini berada di area yang ramai dikunjungi oleh banyak orang dan mudah diakses, sehingga sangat memudahkan pelanggan untuk mengunjunginya";
+  } else if (debtor.analisaBisnis?.keteranganLokasiUsaha ==
+      "Kurang strategis") {
+    lokasiUsaha =
+        "Analisa lokasi menunjukkan bahwa lokasinya kurang strategis dibanding saingan. Debitur diupayakan untuk akan terus berupaya meningkatkan pangsa pasar dengan strategi pemasaran efektif dan meningkatkan kualitas produk serta mencari lokasi alternatif yang lebih strategis";
+  } else {
+    lokasiUsaha =
+        "Analisa lokasi menunjukkan bahwa lokasinya sangat kurang strategis dibanding saingan. Debitur diupayakan untuk akan terus berupaya meningkatkan pangsa pasar dengan strategi pemasaran efektif dan meningkatkan kualitas produk serta mencari lokasi alternatif yang lebih strategis";
+  }
+
+  // processing kapasitas terpasang
+  if (debtor.analisaBisnis?.keteranganProduktivitas == "Lebih dari 80%") {
+    kapasitasTerpasang =
+        "Hasil analisa penjualan menunjukkan bahwa kapasitas terpasang saat ini lebih dari 80%. Hal ini menunjukkan bahwa debitur telah berhasil menggunakan sumber daya penjualan yang dimiliki dengan efektif dan dapat meningkatkan omzet penjualan";
+  } else if (debtor.analisaBisnis?.keteranganProduktivitas == "s/d 80%") {
+    kapasitasTerpasang =
+        "Hasil analisa penjualan menunjukkan bahwa kapasitas terpasang saat ini s/d 80%. Hal ini menunjukkan bahwa debitur telah berhasil menggunakan sumber daya penjualan yang dimiliki dengan efektif dan dapat meningkatkan omzet penjualan";
+  } else if (debtor.analisaBisnis?.keteranganProduktivitas == "s/d 70%") {
+    kapasitasTerpasang =
+        "Hasil analisa penjualan menunjukkan bahwa kapasitas terpasang saat ini sampai dengan 70%. Walaupun masih terbilang cukup tinggi, debitur diupayakan akan terus untuk meningkatkan kapasitas terpasang penjualan agar dapat meningkatkan omzet penjualan.";
+  } else if (debtor.analisaBisnis?.keteranganProduktivitas == "s/d 60%") {
+    kapasitasTerpasang =
+        "Hasil analisa penjualan menunjukkan bahwa kapasitas terpasang  saat ini sampai dengan 60%. Ini menunjukkan bahwa debitur perlu lebih berhati-hati dalam mengelola sumber daya penjualan agar dapat meningkatkan omzet penjualan. Debitur diupayakan terus mengevaluasi strategi penjualan dan mencari cara untuk meningkatkan efektivitas penggunaan sumber daya penjualan demi mencapai hasil yang lebih baik di masa yang akan datang.";
+  } else {
+    kapasitasTerpasang =
+        "Hasil analisa penjualan menunjukkan bahwa kapasitas terpasang saat ini kurang dari 60%. Hal ini menunjukkan bahwa debitur belum berhasil menggunakan sumber daya penjualan yang dimiliki dengan efektif dan dapat meningkatkan omzet penjualan";
+  }
+
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
 
@@ -632,7 +755,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur(
-                            'Usaha ${debtor.bidangUsaha} yang dikelola oleh pemohon, saat ini omset penjualan sebesar ${MoneyMaskedTextController(
+                            'Usaha ${debtor.bidangUsaha!.toLowerCase()} yang dikelola oleh pemohon, saat ini omset penjualan sebesar ${MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
                           leftSymbol: 'Rp. ',
@@ -1473,7 +1596,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmur('30'),
                     textUmur('Omzet Penjualan'),
                     textUmur(debtor.analisaBisnis!.keteranganOmzet.toString()),
-                    textUmur(debtor.analisaBisnis!.keteranganOmzet.toString()),
+                    textUmur(omzetPenjualan),
                   ],
                 ),
                 TableRow(
@@ -1482,8 +1605,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmurWide('Harga Bersaing'),
                     textUmurWide(debtor.analisaBisnis!.keteranganHargaBersaing
                         .toString()),
-                    textUmurWide(debtor.analisaBisnis!.keteranganHargaBersaing
-                        .toString()),
+                    textUmurWide(hargaBersaing),
                   ],
                 ),
                 TableRow(
@@ -1492,8 +1614,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmurWide('Persaingan'),
                     textUmurWide(
                         debtor.analisaBisnis!.keteranganPersaingan.toString()),
-                    textUmurWide(
-                        debtor.analisaBisnis!.keteranganPersaingan.toString()),
+                    textUmurWide(persainganPasar),
                   ],
                 ),
                 TableRow(
@@ -1502,18 +1623,16 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmurWide('Lokasi'),
                     textUmurWide(
                         debtor.analisaBisnis!.keteranganLokasiUsaha.toString()),
-                    textUmurWide(
-                        debtor.analisaBisnis!.keteranganLokasiUsaha.toString()),
+                    textUmurWide(lokasiUsaha),
                   ],
                 ),
                 TableRow(
                   children: [
                     textUmurWide('34'),
-                    textUmurWide('Produktivitas thd kapasitas terpasan'),
+                    textUmurWide('Produktivitas thd kapasitas terpasang'),
                     textUmurWide(debtor.analisaBisnis!.keteranganProduktivitas
                         .toString()),
-                    textUmurWide(debtor.analisaBisnis!.keteranganProduktivitas
-                        .toString()),
+                    textUmurWide(kapasitasTerpasang),
                   ],
                 ),
                 TableRow(
@@ -1522,7 +1641,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmurWide('Kwalitas'),
                     textUmurWide(
                         debtor.analisaBisnis!.keteranganKualitas.toString()),
-                    textUmurWide(''),
+                    textUmurWide(kualitas),
                   ],
                 ),
               ],
@@ -1580,7 +1699,6 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                 TableRow(
                   children: [
                     textUmur(''),
-                    textUmur(''),
                     ListView.builder(
                       itemCount: syaratList!.length,
                       itemBuilder: (context, index) => Align(
@@ -1594,6 +1712,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                         ),
                       ),
                     ),
+                    textUmur(''),
                   ],
                 ),
               ],
@@ -1844,7 +1963,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Pemutus'),
-                    textUmur('Adi Nugraha'),
+                    textUmur(''),
                     textUmur('Pemimpin Cabang Pembantu'),
                   ],
                 ),
@@ -1852,7 +1971,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Analis'),
-                    textUmur('Sumaryanto'),
+                    textUmur(''),
                     textUmur('Analis Kredit Mikro'),
                   ],
                 ),
@@ -1860,7 +1979,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Komite'),
-                    textUmur('Waskitho'),
+                    textUmur(''),
                     textUmur('Leader Kredit Mikro'),
                   ],
                 ),
@@ -1876,7 +1995,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Kota'),
-                    textUmur('Yogyakarta'),
+                    textUmur(''),
                     textUmur(''),
                   ],
                 ),
@@ -1902,7 +2021,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Kode Pos Lokasi Usaha'),
-                    textUmur('14045'),
+                    textUmur(''),
                     textUmur(''),
                   ],
                 ),

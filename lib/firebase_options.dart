@@ -57,6 +57,7 @@ class DefaultFirebaseOptions {
     appId: '1:391153260721:android:5d39f44753ec08c5bc6a90',
     messagingSenderId: '391153260721',
     projectId: 'analisis-kredit-mikro',
+    databaseURL: 'https://analisis-kredit-mikro-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'analisis-kredit-mikro.appspot.com',
   );
 }

@@ -363,7 +363,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                 textDeskripsiNoBold('5.'),
                 textDeskripsiNoBold("Jenis Kredit"),
                 textDeskripsiNoBold(
-                  "UMKM/${double.parse(debtor.inputRugiLaba!.omzet.toString()) <= 100000000 ? "Mikro" : "Kecil"}/Angsuran Tetap/${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 25000000 ? "KUR Kecil" : "KUR Mikro"}",
+                  "UMKM/${double.parse(debtor.inputRugiLaba!.omzet.toString()) <= 100000000 ? "Mikro" : "Kecil"}/Angsuran Tetap/${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 0 && double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 10000000 ? "KUR Super Mikro" : double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) > 10000000 && double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000 ? 'KUR Mikro' : 'KUR Kecil'}",
                 ),
               ],
             ),
@@ -380,9 +380,10 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
               children: [
                 textDeskripsiNoBold('7.'),
                 textDeskripsiNoBold("Angsuran per bulan"),
-                textDeskripsiNoBold(
-                  "Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
-                ),
+                // textDeskripsiNoBold(
+                //   "Rp. ${MoneyMaskedTextController(decimalSeparator: '', thousandSeparator: '.', precision: 0, initialValue: double.parse(debtor.inputKeuangan!.angsuranRp!.toString())).text}",
+                // ),
+                textDeskripsiNoBold('Sesuai dengan skedul angsuran terlampir')
               ],
             ),
             TableRow(
@@ -1236,7 +1237,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
               children: [
                 textDeskripsiNoBold(''),
                 textDeskripsiNoBold(
-                  'Asuransi Penjaminan oleh ${debtor.asuransi?.namaPerusahaan}',
+                  'Asuransi Penjaminan oleh ${debtor.asuransi?.namaPerusahaan} sebesar maksimal 70% dari nilai plafon kredit',
                 ),
                 textDeskripsiNoBold(''),
               ],

@@ -428,11 +428,11 @@ class KarakterAnalisisController extends GetxController {
 
   void generateDescription() {
     deskripsi.text =
-        'Pada umurnya yang berusia ${nilaiUmur.text} tahun, dan berpendidikan $pendidikanInput, dengan pengalaman usaha selama ${lamanyaBerusaha.text} tahun. \n\n'
-        'Pemohon ${keteranganUletDalamBisnis.text} terkait menentukan harga dagangan '
-        'bisnisnya, Debitur ${keteranganKakuFleksibel.text} Untuk  '
-        'menghadapi perubahan, Debitur ${keteranganInovatifKreatif.text}'
-        ' dan Untuk kejujuran dalam berbisnis Debitur ${keteranganJujur.text}.';
+        'Pada umurnya yang berusia ${nilaiUmur.text} tahun, dan berpendidikan $pendidikanInput serta dengan pengalaman usaha selama ${lamanyaBerusaha.text} tahun \n\n'
+        'Terkait menentukan harga dagangan '
+        'bisnisnya, debitur ${keteranganKakuFleksibel.text.toLowerCase()} Untuk  '
+        'menghadapi perubahan, debitur ${keteranganInovatifKreatif.text.toLowerCase()}'
+        ' dan untuk kejujuran dalam berbisnis Debitur ${keteranganJujur.text.toLowerCase()}.';
   }
 
   void hitungCrrPendidikan() {

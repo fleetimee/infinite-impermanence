@@ -483,6 +483,8 @@ class AgunanAnalisisCalcController extends GetxController {
     // Get CRR From ratio
     if (ratio < 0) {
       crrAgunan.text = '0';
+    } else if (ratio < 30) {
+      crrAgunan.text = '0';
     } else if (ratio > 150) {
       crrAgunan.text = '95.0';
     } else {

@@ -359,14 +359,16 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmurR(''),
                         textUmur('Angsuran'),
-                        textUmurBoldLeft(': ${MoneyMaskedTextController(
-                          decimalSeparator: '',
-                          thousandSeparator: '.',
-                          leftSymbol: 'Rp. ',
-                          precision: 0,
-                          initialValue: double.parse(
-                              debtor.inputKeuangan!.angsuranRp.toString()),
-                        ).text}'),
+                        // textUmurBoldLeft(': ${MoneyMaskedTextController(
+                        //   decimalSeparator: '',
+                        //   thousandSeparator: '.',
+                        //   leftSymbol: 'Rp. ',
+                        //   precision: 0,
+                        //   initialValue: double.parse(
+                        //       debtor.inputKeuangan!.angsuranRp.toString()),
+                        // ).text}'),
+                        textUmurBoldLeft(
+                            ': Sesuai skedul angsuran yang terlampir'),
                         textUmurBold('')
                       ],
                     ),

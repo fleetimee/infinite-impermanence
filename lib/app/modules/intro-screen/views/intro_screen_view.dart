@@ -1,10 +1,10 @@
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/colors/gf_color.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +12,9 @@ import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
 import '../controllers/intro_screen_controller.dart';
 
 class IntroScreenView extends GetView<IntroScreenController> {

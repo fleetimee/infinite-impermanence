@@ -1,15 +1,18 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/gallery_file_controller.dart';
 
 class GalleryFileView extends GetView<GalleryFileController> {

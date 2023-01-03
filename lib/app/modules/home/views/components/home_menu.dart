@@ -1,12 +1,12 @@
 // 🐦 Flutter imports:
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 // 📦 Package imports:
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
+import 'package:getwidget/colors/gf_color.dart';
 
 // 🌎 Project imports:
-import 'package:getwidget/colors/gf_color.dart';
 import '../../controllers/home_controller.dart';
 import 'menu_item/greeting.dart';
 

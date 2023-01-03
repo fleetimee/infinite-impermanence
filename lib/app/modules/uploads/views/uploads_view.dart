@@ -9,7 +9,6 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:form_builder_image_picker/form_builder_image_picker.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,6 +19,9 @@ import 'package:open_street_map_search_and_pick/open_street_map_search_and_pick.
 import '../../../common/style.dart';
 import '../../../widget/drawer.dart';
 import '../controllers/uploads_controller.dart';
+
+// import 'package:form_builder_file_picker/form_builder_file_picker.dart';
+
 
 class UploadsView extends GetView<UploadsController> {
   const UploadsView({Key? key}) : super(key: key);

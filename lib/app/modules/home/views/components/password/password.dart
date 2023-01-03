@@ -1,13 +1,18 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
-import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
 
 class SetPassword extends StatelessWidget {
   SetPassword({super.key});

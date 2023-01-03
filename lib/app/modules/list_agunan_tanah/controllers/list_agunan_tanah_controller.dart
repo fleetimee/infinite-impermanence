@@ -1,7 +1,6 @@
 // ignore_for_file: unnecessary_overrides
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -13,6 +12,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/agunan/agunan_tanah/agunan_tanah.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 class ListAgunanTanahController extends GetxController {

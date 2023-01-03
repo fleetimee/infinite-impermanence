@@ -1,16 +1,18 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 
 class FormFirebase extends StatelessWidget {
   const FormFirebase({

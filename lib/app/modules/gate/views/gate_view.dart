@@ -1,12 +1,15 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/gate_controller.dart';
 
 class GateView extends GetView<GateController> {

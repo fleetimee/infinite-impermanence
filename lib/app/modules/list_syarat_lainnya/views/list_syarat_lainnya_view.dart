@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -16,6 +15,7 @@ import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/list_syarat_lainnya_controller.dart';
 

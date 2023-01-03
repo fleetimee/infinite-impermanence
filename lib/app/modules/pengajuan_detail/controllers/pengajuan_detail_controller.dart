@@ -1,6 +1,9 @@
+// 📦 Package imports:
+import 'package:get/get.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/data/provider/pengajuan/pengajuan_detail.provider.dart';
 import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
-import 'package:get/get.dart';
 
 class PengajuanDetailController extends GetxController {
   @override

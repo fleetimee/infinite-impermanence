@@ -1,8 +1,11 @@
-import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
-import 'package:akm/firebase_options.dart';
+// 📦 Package imports:
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
+import 'package:akm/firebase_options.dart';
 
 // For web based
 // const baseUrl = 'http://127.0.0.1:3000/api/v1/';

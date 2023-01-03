@@ -1,7 +1,12 @@
-import 'package:akm/app/widget/error_internet.dart';
-import 'package:data_connection_checker/data_connection_checker.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get/get.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/widget/error_internet.dart';
 
 class NetworkStatusService extends GetxService {
   NetworkStatusService() {

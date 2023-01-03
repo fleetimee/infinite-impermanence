@@ -1,22 +1,22 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
-import 'package:akm/app/utils/dependency_injection.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:form_builder_validators/localization/l10n.dart';
 import 'package:get/get.dart';
 import 'package:responsive_framework/responsive_wrapper.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/modules/login-page/controllers/login_page_controller.dart';
+import 'package:akm/app/utils/dependency_injection.dart';
 import 'app/routes/app_pages.dart';
 import 'app/themes/light.dart';
 

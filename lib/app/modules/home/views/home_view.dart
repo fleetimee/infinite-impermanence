@@ -1,20 +1,16 @@
 // 🐦 Flutter imports:
 // ignore_for_file: must_be_immutable, prefer_is_empty
 
-import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
-import 'package:akm/app/modules/home/views/components/password/password.dart';
-import 'package:akm/app/modules/home/views/components/profile/profile.dart';
-import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
-import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
-import 'package:bottom_bar_matu/bottom_bar_matu.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
 import 'package:about/about.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -31,6 +27,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
+import 'package:akm/app/modules/home/views/components/password/password.dart';
+import 'package:akm/app/modules/home/views/components/profile/profile.dart';
+import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
+import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import '../../../common/style.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';

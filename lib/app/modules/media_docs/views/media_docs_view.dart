@@ -1,14 +1,17 @@
-import 'package:akm/app/common/style.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_builder_file_picker/form_builder_file_picker.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
 import '../controllers/media_docs_controller.dart';
 
 class MediaDocsView extends GetView<MediaDocsController> {

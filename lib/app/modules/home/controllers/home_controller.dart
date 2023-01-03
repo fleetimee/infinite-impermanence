@@ -1,21 +1,16 @@
 // 🐦 Flutter imports:
 
-// 📦 Package imports:
+// 🎯 Dart imports:
 import 'dart:async';
 import 'dart:io';
 
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/data/provider/search/search.provider.dart';
-import 'package:akm/app/data/provider/user/inputted_debitur.provider.dart';
-import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
-import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
-import 'package:akm/app/models/search/search.model.dart' as search;
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
 
-import 'package:akm/app/utils/capitalize.dart';
+// 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
@@ -24,6 +19,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/data/provider/search/search.provider.dart';
+import 'package:akm/app/data/provider/user/inputted_debitur.provider.dart';
+import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
+import 'package:akm/app/models/debitur_model/list_debitur.model.dart';
+import 'package:akm/app/models/search/search.model.dart' as search;
+import 'package:akm/app/utils/capitalize.dart';
 
 // ignore_for_file: unnecessary_overrides
 

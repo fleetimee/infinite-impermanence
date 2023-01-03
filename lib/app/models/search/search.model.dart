@@ -4,8 +4,10 @@
 
 // ignore_for_file: unnecessary_null_in_if_null_operators, prefer_null_aware_operators
 
+// 🎯 Dart imports:
 import 'dart:convert';
 
+// 🌎 Project imports:
 import 'package:akm/app/models/auth/auth.model.dart';
 
 Search searchFromJson(String str) => Search.fromJson(json.decode(str));

@@ -1,8 +1,12 @@
-import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
-import 'package:pdf/pdf.dart';
 
+// 📦 Package imports:
+import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
 
 Future<Uint8List> makeAnalisPdf(PengajuanDetail pengajuan) async {
   var myTheme = ThemeData.withFont(

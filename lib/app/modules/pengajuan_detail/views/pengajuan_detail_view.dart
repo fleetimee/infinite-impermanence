@@ -10,6 +10,7 @@ import 'package:timeline_tile/timeline_tile.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/routes/app_pages.dart';
+import '../../insight_debitur/views/insight_debitur_view.dart';
 import '../controllers/pengajuan_detail_controller.dart';
 
 class PengajuanDetailView extends GetView<PengajuanDetailController> {
@@ -52,7 +53,11 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                   : controller.pengajuanDetail.value.status ==
                                           'REVIEWED'
                                       ? Icons.pentagon
-                                      : Icons.check_circle_outline,
+                                      : controller.pengajuanDetail.value
+                                                  .status ==
+                                              'DONE'
+                                          ? Icons.done_all_outlined
+                                          : Icons.error_outline,
                               color: Colors.white,
                             ),
                             onPressed: () {},
@@ -65,7 +70,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                 : controller.pengajuanDetail.value.status ==
                                         'REVIEWED'
                                     ? GFColors.WARNING
-                                    : GFColors.SUCCESS,
+                                    : GFColors.DARK,
                             size: GFSize.LARGE,
                           ))
                     ],
@@ -112,31 +117,22 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
             child: Card(
               child: Obx(
                 () => Container(
-                  padding: const EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  padding: const EdgeInsets.only(left: 70, bottom: 10, top: 10),
+                  child: Table(
+                    columnWidths: const {
+                      0: FlexColumnWidth(0.40),
+                      1: FlexColumnWidth(0.60),
+                    },
                     children: [
-                      SizedBox(
-                        width: 100,
-                        child: Text(
-                          'Debitur',
-                          style: GoogleFonts.poppins(
-                            fontSize: 17,
-                          ),
-                        ),
-                      ),
-                      controller.isPenganjuanDetailLoading.value
-                          ? const Text('Loading...')
-                          : SizedBox(
-                              width: 120,
-                              child: Text(
-                                controller
-                                    .pengajuanDetail.value.debitur!.peminjam1!,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 17,
-                                ),
-                              ),
-                            ),
+                      TableRow(
+                        children: [
+                          paddedText('Nama Debitur'),
+                          paddedText(controller.isPenganjuanDetailLoading.value
+                              ? 'Loading...'
+                              : controller
+                                  .pengajuanDetail.value.debitur!.peminjam1!),
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -154,99 +150,80 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                 children: [
                   Obx(
                     () => Container(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      padding:
+                          const EdgeInsets.only(left: 70, bottom: 10, top: 10),
+                      child: Table(
+                        columnWidths: const {
+                          0: FlexColumnWidth(0.40),
+                          1: FlexColumnWidth(0.60),
+                        },
                         children: [
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              'Analis',
-                              style: GoogleFonts.poppins(
-                                fontSize: 17,
-                              ),
-                            ),
+                          TableRow(
+                            children: [
+                              paddedText('Nama Analis'),
+                              paddedText(
+                                  controller.isPenganjuanDetailLoading.value
+                                      ? 'Loading...'
+                                      : controller.pengajuanDetail.value
+                                          .user![0].displayName!),
+                            ],
                           ),
-                          controller.isPenganjuanDetailLoading.value
-                              ? const Text('Loading...')
-                              : Text(
-                                  controller.pengajuanDetail.value.user![0]
-                                      .displayName!,
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 17,
-                                  ),
-                                ),
                         ],
                       ),
                     ),
                   ),
                   Obx(
                     () => Container(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      padding:
+                          const EdgeInsets.only(left: 70, bottom: 10, top: 10),
+                      child: Table(
+                        columnWidths: const {
+                          0: FlexColumnWidth(0.40),
+                          1: FlexColumnWidth(0.60),
+                        },
                         children: [
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              'Reviewer',
-                              style: GoogleFonts.poppins(
-                                fontSize: 17,
-                              ),
-                            ),
+                          TableRow(
+                            children: [
+                              paddedText('Nama Reviewer'),
+                              paddedText(
+                                  controller.isPenganjuanDetailLoading.value
+                                      ? 'Loading...'
+                                      : controller.pengajuanDetail.value.user!
+                                                  .length <
+                                              2
+                                          ? '-'
+                                          : controller.pengajuanDetail.value
+                                              .user![1].displayName!),
+                            ],
                           ),
-                          controller.isPenganjuanDetailLoading.value
-                              ? const Text('Loading...')
-                              : SizedBox(
-                                  width: 120,
-                                  child: Text(
-                                    // ignore: prefer_is_empty
-                                    controller.pengajuanDetail.value.user!
-                                                .length <
-                                            2
-                                        ? '-'
-                                        : controller.pengajuanDetail.value
-                                            .user![1].displayName!,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                ),
                         ],
                       ),
                     ),
                   ),
                   Obx(
                     () => Container(
-                      padding: const EdgeInsets.all(10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      padding:
+                          const EdgeInsets.only(left: 70, bottom: 10, top: 10),
+                      child: Table(
+                        columnWidths: const {
+                          0: FlexColumnWidth(0.40),
+                          1: FlexColumnWidth(0.60),
+                        },
                         children: [
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              'Pemutus',
-                              style: GoogleFonts.poppins(
-                                fontSize: 17,
-                              ),
-                            ),
+                          TableRow(
+                            children: [
+                              paddedText('Nama Pemutus'),
+                              paddedText(
+                                  controller.isPenganjuanDetailLoading.value
+                                      ? 'Loading...'
+                                      : controller.pengajuanDetail.value.user!
+                                                  .length <
+                                              3
+                                          ? '-'
+                                          : controller.pengajuanDetail.value
+                                              .user![2].displayName!),
+                            ],
                           ),
-                          controller.isPenganjuanDetailLoading.value
-                              ? const Text('Loading...')
-                              : SizedBox(
-                                  width: 120,
-                                  child: Text(
-                                    controller.pengajuanDetail.value.user!
-                                                .length <
-                                            3
-                                        ? '-'
-                                        : controller.pengajuanDetail.value
-                                            .user![2].displayName!,
-                                    style: GoogleFonts.poppins(
-                                      fontSize: 17,
-                                    ),
-                                  ),
-                                ),
                         ],
                       ),
                     ),

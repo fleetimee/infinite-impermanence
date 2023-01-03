@@ -110,7 +110,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     () => Text(
                       controller.isProcessing.value
                           ? 'Loading...'
-                          : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis ${controller.pengajuan.user?[0].displayName ?? '-'}',
+                          : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis ${controller.pengajuan.user?[1].displayName ?? '-'}',
                       style: Theme.of(context).textTheme.caption?.merge(
                             const TextStyle(
                               fontSize: 16,

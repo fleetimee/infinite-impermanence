@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:nekos/nekos.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/debitur/list_debitur.provider.dart';
@@ -42,9 +41,6 @@ class ListDebiturController extends GetxController {
   RxBool isFilterTanggalPressed = false.obs;
   RxBool isFilterPlafondPressed = false.obs;
   RxBool isFilterJenisUsahaPressed = false.obs;
-
-  // For nekos api
-  Future<String> img = Nekos().avatar();
 
   // Initialize empty list with page
   var listDebitur = List<Datum>.empty(growable: true).obs;

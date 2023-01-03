@@ -1,8 +1,9 @@
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/routes/app_pages.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 
+// 📦 Package imports:
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
@@ -10,8 +11,10 @@ import 'package:lottie/lottie.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/gallery_image_controller.dart';
 
 class GalleryImageView extends GetView<GalleryImageController> {

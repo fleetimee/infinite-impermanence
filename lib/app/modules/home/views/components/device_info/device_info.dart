@@ -1,8 +1,13 @@
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/components/list_tile/gf_list_tile.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 
 class DeviceInfo extends StatelessWidget {
   DeviceInfo({super.key});

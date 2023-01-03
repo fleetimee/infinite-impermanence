@@ -1,19 +1,13 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:about/about.dart';
-import 'package:akm/app/common/constant.dart';
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/common/waves.dart';
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
-import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
-import 'package:akm/app/modules/home/views/components/password/password.dart';
-import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
-import 'package:akm/app/routes/app_pages.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -22,6 +16,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wave/config.dart';
 import 'package:wave/wave.dart';
 
+// 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/common/waves.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
+import 'package:akm/app/modules/home/views/components/device_info/device_info.dart';
+import 'package:akm/app/modules/home/views/components/password/password.dart';
+import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/home_pengutus_controller.dart';
 
 // ignore: must_be_immutable

@@ -1,11 +1,16 @@
-import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
-import 'package:akm/app/models/user/user_pengajuan.model.dart';
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
+import 'package:akm/app/models/user/user_pengajuan.model.dart';
 
 class HomePengutusController extends GetxController {
   @override

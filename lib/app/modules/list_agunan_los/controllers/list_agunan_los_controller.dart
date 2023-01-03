@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -12,6 +11,7 @@ import 'package:intl/intl.dart';
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/agunan/agunan_los/agunan_los.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
 
 class ListAgunanLosController extends GetxController {

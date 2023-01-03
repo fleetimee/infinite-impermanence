@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/constant.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -11,6 +10,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_analisis/controllers/agunan_analisis_controller.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';

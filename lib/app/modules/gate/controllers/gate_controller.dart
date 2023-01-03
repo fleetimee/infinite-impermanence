@@ -1,10 +1,15 @@
-import 'package:akm/app/common/constant.dart';
+// 🐦 Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// 📦 Package imports:
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/common/constant.dart';
 
 class GateController extends GetxController {
   @override

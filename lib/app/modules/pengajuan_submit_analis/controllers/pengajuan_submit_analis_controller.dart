@@ -1,10 +1,15 @@
-import 'package:akm/app/data/provider/pengajuan/pengajuan_submit_analis.provider.dart';
-import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-import 'package:akm/app/modules/home/controllers/home_controller.dart';
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
+import 'package:akm/app/data/provider/pengajuan/pengajuan_submit_analis.provider.dart';
+import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 
 class PengajuanSubmitAnalisController extends GetxController {
   // Inject home controller

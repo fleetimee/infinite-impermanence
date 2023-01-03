@@ -1,12 +1,17 @@
+// 🐦 Flutter imports:
+import 'package:flutter/material.dart';
+
+// 📦 Package imports:
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+// 🌎 Project imports:
 import 'package:akm/app/data/provider/debitur/detail_debitur.provider.dart';
 import 'package:akm/app/data/provider/pengajuan/pengajuan_submit_pemutus.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
 import 'package:akm/app/modules/home_pengutus/controllers/home_pengutus_controller.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class PengutusSubmitController extends GetxController {
   @override

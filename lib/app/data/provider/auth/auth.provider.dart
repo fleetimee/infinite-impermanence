@@ -1,9 +1,15 @@
+// 🎯 Dart imports:
 import 'dart:convert';
 
+// 🐦 Flutter imports:
+import 'package:flutter/cupertino.dart';
+
+// 📦 Package imports:
+import 'package:http/http.dart' as http;
+
+// 🌎 Project imports:
 import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/models/auth/auth.model.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
 
 class AuthProvider {
   final httpClient = http.Client();

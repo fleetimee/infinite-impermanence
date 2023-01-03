@@ -1,4 +1,7 @@
+// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
+
+// 📦 Package imports:
 import 'package:lottie/lottie.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 

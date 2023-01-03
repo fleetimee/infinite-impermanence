@@ -90,7 +90,6 @@ dependencies:
   lottie: ^2.1.0
   map_launcher: ^2.4.0
   modal_bottom_sheet: ^2.1.2
-  nekos: ^0.0.7
   ntp: ^2.0.0
   numerus: ^2.0.0
   open_filex: ^4.3.2

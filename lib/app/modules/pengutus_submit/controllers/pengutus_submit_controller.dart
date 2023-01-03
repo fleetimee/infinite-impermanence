@@ -152,6 +152,20 @@ class PengutusSubmitController extends GetxController {
     final body = {
       "status": formKey.currentState?.fields['putusan']?.value,
       "tgl_pemutusan": formatted,
+      "user": [
+        {
+          "id": pengajuan.user![0].id,
+          "fcmToken": pengajuan.user![0].fcmToken,
+        },
+        {
+          "id": pengajuan.user![1].id,
+          "fcmToken": pengajuan.user![1].fcmToken,
+        },
+        {
+          "id": pengajuan.user![2].id,
+          "fcmtoken": pengajuan.user![2].fcmToken,
+        }
+      ],
       "bahasan_pengutus": bahasanPemutus,
       "checkPengutus": {
         "is_keuangan_approved": formKey.currentState!.fields['keuangan']?.value,

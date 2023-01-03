@@ -63,4 +63,30 @@ class AuthProvider {
       return Future.error(e);
     }
   }
+
+  Future<void> sendFcmToken(String id, String fcmToken) async {
+    try {
+      final response = await httpClient.put(
+        Uri.parse('${baseUrl}users/$id/fcmToken'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: jsonEncode(<String, String>{
+          'fcmToken': fcmToken,
+        }),
+      );
+      debugPrint(response.body);
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        debugPrint(data.toString());
+      } else {
+        var data = jsonDecode(response.body);
+        throw Exception(data['message']);
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

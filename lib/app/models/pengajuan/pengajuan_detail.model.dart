@@ -186,6 +186,7 @@ class User {
     this.phoneNumber,
     this.displayName,
     this.photoUrl,
+    this.fcmToken,
     this.createdAt,
   });
 
@@ -194,6 +195,8 @@ class User {
   String? phoneNumber;
   String? displayName;
   String? photoUrl;
+  String? fcmToken;
+
   DateTime? createdAt;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -202,6 +205,7 @@ class User {
         phoneNumber: json["phoneNumber"],
         displayName: json["displayName"],
         photoUrl: json["photoURL"],
+        fcmToken: json["fcmToken"],
         createdAt: json["createdAt"] == null
             ? null
             : DateTime.parse(json["createdAt"]),
@@ -213,6 +217,7 @@ class User {
         "phoneNumber": phoneNumber,
         "displayName": displayName,
         "photoURL": photoUrl,
+        "fcmToken": fcmToken,
         "createdAt": createdAt == null ? null : createdAt?.toIso8601String(),
       };
 }

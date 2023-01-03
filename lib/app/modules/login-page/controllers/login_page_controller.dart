@@ -4,6 +4,7 @@ import 'package:akm/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -27,7 +28,18 @@ class LoginPageController extends GetxController {
   void initFirebaseFcm() async {
     final fcmToken = await FirebaseMessaging.instance.getToken();
 
-    print('fcmToken: $fcmToken');
+    // check sharedpref if there uid
+    final prefs = await SharedPreferences.getInstance();
+
+    final uid = prefs.getString('id');
+
+    if (uid != null) {
+      await AuthProvider().sendFcmToken(uid, fcmToken!);
+    }
+
+    // check if fcm token is valid
+
+    // send fcm token to server
   }
 
   late Rx<User?> firebaseUser;
@@ -55,6 +67,18 @@ class LoginPageController extends GetxController {
     firebaseUser.bindStream(auth.authStateChanges());
     ever(firebaseUser, setInitialScreen);
 
+    FirebaseMessaging.instance.onTokenRefresh.listen((String token) {
+      // get user id from current user
+      final uid = auth.currentUser?.uid;
+
+      // send fcm token to server
+      AuthProvider().sendFcmToken(uid!, token);
+    }, onError: (Object e) {
+      debugPrint('onTokenRefresh error: $e');
+    }, onDone: () {
+      debugPrint('onTokenRefresh done');
+    });
+
     // bind stream to listen to fcm message
     message = Rx<RemoteMessage?>(null);
 
@@ -65,17 +89,33 @@ class LoginPageController extends GetxController {
       if (message.notification != null) {
         debugPrint(
             'Message also contained a notification: ${message.notification}');
-        Get.snackbar(
-          message.notification!.title ?? '',
-          message.notification!.body ?? '',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.white,
-          colorText: Colors.black,
-          margin: const EdgeInsets.all(10),
-          borderRadius: 10,
-          icon: const Icon(
-            Icons.notifications,
-            color: Colors.black,
+        // Get.snackbar(
+        //   message.notification!.title ?? '',
+        //   message.notification!.body ?? '',
+        //   snackPosition: SnackPosition.BOTTOM,
+        //   backgroundColor: Colors.white,
+        //   colorText: Colors.black,
+        //   margin: const EdgeInsets.all(10),
+        //   borderRadius: 10,
+        //   icon: const Icon(
+        //     Icons.notifications,
+        //     color: Colors.black,
+        //   ),
+        // );
+        FlutterLocalNotificationsPlugin().show(
+          0,
+          message.notification!.title,
+          message.notification!.body,
+          const NotificationDetails(
+            android: AndroidNotificationDetails(
+              'channel id',
+              'channel name',
+              icon: '@mipmap/launcher_icon',
+              largeIcon: DrawableResourceAndroidBitmap('@mipmap/launcher_icon'),
+              importance: Importance.max,
+              priority: Priority.high,
+              showWhen: false,
+            ),
           ),
         );
       }
@@ -213,6 +253,12 @@ class LoginPageController extends GetxController {
 
         debugPrint('Photo from sharepref: $getPhoto');
         debugPrint('Id from sharepref: $getId');
+
+        final fcmToken = await FirebaseMessaging.instance.getToken();
+
+        await AuthProvider().sendFcmToken(getId!, fcmToken!);
+
+        // send fcm token to server
 
         isLoginProcessing(false);
 

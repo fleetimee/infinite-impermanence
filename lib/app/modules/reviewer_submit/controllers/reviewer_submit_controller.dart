@@ -159,9 +159,11 @@ class ReviewerSubmitController extends GetxController {
       "user": [
         {
           "id": pengajuan.user![0].id,
+          "fcmToken": pengajuan.user![0].fcmToken,
         },
         {
           "id": pengajuan.user![1].id,
+          "fcmToken": pengajuan.user![1].fcmToken,
         },
         {
           "id": uuid,

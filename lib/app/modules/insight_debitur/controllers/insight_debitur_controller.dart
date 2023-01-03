@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:faker_dart/faker_dart.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:nekos/nekos.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/debitur/detail_debitur.provider.dart';
@@ -57,9 +56,6 @@ class InsightDebiturController extends GetxController
 
   // For tab Controller
   TabController? tabController;
-
-  // For nekos api
-  Future<String> img = Nekos().wallpaper();
 
   // Get debitur id from previous page
   final debiturId = Get.arguments;

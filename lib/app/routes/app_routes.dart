@@ -93,6 +93,7 @@ abstract class Routes {
   static const ANALIS_PRINT = _Paths.ANALIS_PRINT;
   static const REVIEWER_PRINT = _Paths.REVIEWER_PRINT;
   static const PENGUTUS_PRINT = _Paths.PENGUTUS_PRINT;
+  static const PENGAJUAN_PRINTING = _Paths.PENGAJUAN_PRINTING;
 }
 
 abstract class _Paths {
@@ -184,4 +185,5 @@ abstract class _Paths {
   static const ANALIS_PRINT = '/analis-print';
   static const REVIEWER_PRINT = '/reviewer-print';
   static const PENGUTUS_PRINT = '/pengutus-print';
+  static const PENGAJUAN_PRINTING = '/pengajuan-printing';
 }

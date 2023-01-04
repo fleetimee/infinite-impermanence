@@ -378,9 +378,57 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                               const SizedBox(
                                 height: 25,
                               ),
-                              const GFTypography(
-                                text: 'Data Debitur',
-                                type: GFTypographyType.typo2,
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Expanded(
+                                    child: GFTypography(
+                                      text: 'Data Debitur',
+                                      type: GFTypographyType.typo2,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: GFButton(
+                                      onPressed: () {
+                                        // showMaterialModalBottomSheet(
+                                        //   context: context,
+                                        //   builder: (context) {
+                                        //     return SafeArea(
+                                        //       child: Container(
+                                        //         padding:
+                                        //             const EdgeInsets.symmetric(
+                                        //                 horizontal: 20,
+                                        //                 vertical: 20),
+                                        //         child: Column(
+                                        //           children: const [
+                                        //             GFTypography(
+                                        //               text: 'Print Input',
+                                        //               type: GFTypographyType
+                                        //                   .typo2,
+                                        //             ),
+                                        //           ],
+                                        //         ),
+                                        //       ),
+                                        //     );
+                                        //   },
+                                        // );
+                                        Get.toNamed(Routes.PENGAJUAN_PRINTING,
+                                            arguments: controller
+                                                .pengajuanDetail.value);
+                                      },
+                                      icon: const Icon(
+                                        Icons.person,
+                                        color: GFColors.WHITE,
+                                      ),
+                                      text: 'Lihat Debitur',
+                                      color: GFColors.DARK,
+                                      size: GFSize.LARGE,
+                                      shape: GFButtonShape.pills,
+                                    ),
+                                  ),
+                                ],
                               ),
                               const SizedBox(
                                 height: 10,

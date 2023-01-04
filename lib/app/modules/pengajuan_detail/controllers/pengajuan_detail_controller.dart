@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 // 🌎 Project imports:
 import 'package:akm/app/data/provider/pengajuan/pengajuan_detail.provider.dart';
 import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
+import 'package:intl/intl.dart';
 
 class PengajuanDetailController extends GetxController {
   @override
@@ -31,5 +32,13 @@ class PengajuanDetailController extends GetxController {
       isPenganjuanDetailLoading(false);
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  String formatDate(String date) {
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
+
+    final DateTime dateTime = formatter.parse(date);
+
+    return DateFormat('dd MMMM yyyy').format(dateTime);
   }
 }

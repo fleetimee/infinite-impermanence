@@ -304,24 +304,17 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                                                   style:
                                                       TextStyle(fontSize: 15)),
                                               actions: [
-                                                if (controller.uid.value ==
-                                                    controller
-                                                        .listMyPendingReview[
-                                                            index]
-                                                        .user[0]
-                                                        .id)
-                                                  GFButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      Get.toNamed(
-                                                          Routes
-                                                              .REVIEWER_SUBMIT,
-                                                          arguments: controller
-                                                                  .listMyPendingReview[
-                                                              index]);
-                                                    },
-                                                    text: 'Review',
-                                                  ),
+                                                GFButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                    Get.toNamed(
+                                                        Routes.REVIEWER_SUBMIT,
+                                                        arguments: controller
+                                                                .listMyPendingReview[
+                                                            index]);
+                                                  },
+                                                  text: 'Review',
+                                                ),
                                                 GFButton(
                                                   onPressed: () {
                                                     Get.back();

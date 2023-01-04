@@ -1,10 +1,5 @@
-// 📦 Package imports:
 import 'package:get/get.dart';
 
-// 🌎 Project imports:
-import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_analis/analis_preview.dart';
-import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_pemutus/pemutus_preview.dart';
-import 'package:akm/app/modules/pengajuan_detail/views/components/printing/tanggapan_reviewer/reviewer_preview.dart';
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
 import '../modules/agunan_analisis/views/agunan_analisis_view.dart';
 import '../modules/agunan_analisis/views/lihat_agunan_analisis_view_view.dart';
@@ -100,7 +95,12 @@ import '../modules/media/views/media_view.dart';
 import '../modules/media_docs/bindings/media_docs_binding.dart';
 import '../modules/media_docs/views/media_docs_view.dart';
 import '../modules/pengajuan_detail/bindings/pengajuan_detail_binding.dart';
+import '../modules/pengajuan_detail/views/components/printing/tanggapan_analis/analis_preview.dart';
+import '../modules/pengajuan_detail/views/components/printing/tanggapan_pemutus/pemutus_preview.dart';
+import '../modules/pengajuan_detail/views/components/printing/tanggapan_reviewer/reviewer_preview.dart';
 import '../modules/pengajuan_detail/views/pengajuan_detail_view.dart';
+import '../modules/pengajuan_printing/bindings/pengajuan_printing_binding.dart';
+import '../modules/pengajuan_printing/views/pengajuan_printing_view.dart';
 import '../modules/pengajuan_submit_analis/bindings/pengajuan_submit_analis_binding.dart';
 import '../modules/pengajuan_submit_analis/views/pengajuan_submit_analis_view.dart';
 import '../modules/pengutus_submit/bindings/pengutus_submit_binding.dart';
@@ -512,6 +512,11 @@ class AppPages {
     GetPage(
       name: _Paths.PENGUTUS_PRINT,
       page: () => PemutusPreview(),
+    ),
+    GetPage(
+      name: _Paths.PENGAJUAN_PRINTING,
+      page: () => PengajuanPrintingView(),
+      binding: PengajuanPrintingBinding(),
     ),
   ];
 }

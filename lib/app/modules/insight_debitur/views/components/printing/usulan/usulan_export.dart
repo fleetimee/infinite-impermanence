@@ -1372,7 +1372,15 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                     TableRow(
                       children: [
                         Center(
-                          child: textUmur('Sumaryanto / AKM'),
+                          child: debtor.pengajuan!.isEmpty
+                              ? textUmur('')
+                              : debtor.pengajuan![0].user!.isEmpty
+                                  ? textUmur('')
+                                  : debtor.pengajuan![0].user![0].displayName ==
+                                          null
+                                      ? textUmur('')
+                                      : textUmur(
+                                          '${debtor.pengajuan![0].user![0].displayName} / AKM'),
                         ),
                       ],
                     ),
@@ -1396,7 +1404,14 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                     TableRow(
                       children: [
                         Center(
-                          child: textUmur('Waskhito'),
+                          child: debtor.pengajuan!.isEmpty
+                              ? textUmur('')
+                              : debtor.pengajuan![0].user!.isEmpty
+                                  ? textUmur('')
+                                  : debtor.pengajuan![0].user!.length != 3
+                                      ? textUmur('')
+                                      : textUmur(debtor
+                                          .pengajuan![0].user![2].displayName!),
                         ),
                       ],
                     ),

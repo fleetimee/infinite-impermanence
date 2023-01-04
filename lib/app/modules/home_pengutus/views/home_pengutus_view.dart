@@ -332,30 +332,23 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                                   style:
                                                       TextStyle(fontSize: 15)),
                                               actions: [
-                                                if (controller.uid.value ==
-                                                    controller
-                                                        .listMyPendingPemutusan[
-                                                            index]
-                                                        .user[0]
-                                                        .id)
-                                                  GFButton(
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      // Get.toNamed(
-                                                      //     Routes.REVIEWER_SUBMIT,
-                                                      //     arguments: controller
-                                                      //             .listMyPendingReview[
-                                                      //         index]
-                                                      //         );
-                                                      Get.toNamed(
-                                                          Routes
-                                                              .PENGUTUS_SUBMIT,
-                                                          arguments: controller
-                                                                  .listMyPendingPemutusan[
-                                                              index]);
-                                                    },
-                                                    text: 'Review',
-                                                  ),
+                                                GFButton(
+                                                  onPressed: () {
+                                                    Get.back();
+                                                    // Get.toNamed(
+                                                    //     Routes.REVIEWER_SUBMIT,
+                                                    //     arguments: controller
+                                                    //             .listMyPendingReview[
+                                                    //         index]
+                                                    //         );
+                                                    Get.toNamed(
+                                                        Routes.PENGUTUS_SUBMIT,
+                                                        arguments: controller
+                                                                .listMyPendingPemutusan[
+                                                            index]);
+                                                  },
+                                                  text: 'Review',
+                                                ),
                                                 GFButton(
                                                   onPressed: () {
                                                     Get.back();

@@ -392,31 +392,11 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                   Expanded(
                                     child: GFButton(
                                       onPressed: () {
-                                        // showMaterialModalBottomSheet(
-                                        //   context: context,
-                                        //   builder: (context) {
-                                        //     return SafeArea(
-                                        //       child: Container(
-                                        //         padding:
-                                        //             const EdgeInsets.symmetric(
-                                        //                 horizontal: 20,
-                                        //                 vertical: 20),
-                                        //         child: Column(
-                                        //           children: const [
-                                        //             GFTypography(
-                                        //               text: 'Print Input',
-                                        //               type: GFTypographyType
-                                        //                   .typo2,
-                                        //             ),
-                                        //           ],
-                                        //         ),
-                                        //       ),
-                                        //     );
-                                        //   },
-                                        // );
-                                        Get.toNamed(Routes.PENGAJUAN_PRINTING,
-                                            arguments: controller
-                                                .pengajuanDetail.value);
+                                        Get.toNamed(
+                                          Routes.PENGAJUAN_PRINTING,
+                                          arguments:
+                                              controller.pengajuanDetail.value,
+                                        );
                                       },
                                       icon: const Icon(
                                         Icons.person,

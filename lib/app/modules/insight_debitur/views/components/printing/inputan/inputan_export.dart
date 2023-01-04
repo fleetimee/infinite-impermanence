@@ -1963,7 +1963,17 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Pemutus'),
-                    textUmur(''),
+                    // textUmur(debtor.pengajuan![0].user?.length == 3
+                    //     ? debtor.pengajuan![0].user![2].displayName!
+                    //     : '-'),
+                    debtor.pengajuan!.isEmpty
+                        ? textUmur('')
+                        : debtor.pengajuan![0].user!.isEmpty
+                            ? textUmur('')
+                            : debtor.pengajuan![0].user!.length != 3
+                                ? textUmur('')
+                                : textUmur(
+                                    debtor.pengajuan![0].user![2].displayName!),
                     textUmur('Pemimpin Cabang Pembantu'),
                   ],
                 ),
@@ -1971,7 +1981,14 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Analis'),
-                    textUmur(''),
+                    debtor.pengajuan!.isEmpty
+                        ? textUmur('')
+                        : debtor.pengajuan![0].user!.isEmpty
+                            ? textUmur('')
+                            : debtor.pengajuan![0].user![0].displayName == null
+                                ? textUmur('')
+                                : textUmur(
+                                    debtor.pengajuan![0].user![0].displayName!),
                     textUmur('Analis Kredit Mikro'),
                   ],
                 ),
@@ -1979,7 +1996,15 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Komite'),
-                    textUmur(''),
+                    debtor.pengajuan!.isEmpty
+                        ? textUmur('')
+                        : debtor.pengajuan![0].user!.isEmpty
+                            ? textUmur('')
+                            : debtor.pengajuan![0].user![1].displayName == null
+                                ? textUmur('')
+                                : textUmur(
+                                    debtor.pengajuan![0].user![1].displayName!),
+                    // textUmur(''),
                     textUmur('Leader Kredit Mikro'),
                   ],
                 ),
@@ -1987,7 +2012,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Cabang'),
-                    textUmur('Pembantu Prawirotaman'),
+                    textUmur(''),
                     textUmur(''),
                   ],
                 ),
@@ -1999,24 +2024,24 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmur(''),
                   ],
                 ),
-                TableRow(
-                  children: [
-                    textUmur(''),
-                    textUmur('Tgl Pembahasan'),
-                    textUmur(DateFormat('dd MMMM yyyy').format(
-                        DateTime.parse(DateTime.now().toIso8601String()))),
-                    textUmur(''),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    textUmur(''),
-                    textUmur('Tgl Komite'),
-                    textUmur(DateFormat('dd MMMM yyyy').format(
-                        DateTime.parse(DateTime.now().toIso8601String()))),
-                    textUmur(''),
-                  ],
-                ),
+                // TableRow(
+                //   children: [
+                //     textUmur(''),
+                //     textUmur('Tgl Pembahasan'),
+                //     textUmur(DateFormat('dd MMMM yyyy').format(
+                //         DateTime.parse(DateTime.now().toIso8601String()))),
+                //     textUmur(''),
+                //   ],
+                // ),
+                // TableRow(
+                //   children: [
+                //     textUmur(''),
+                //     textUmur('Tgl Komite'),
+                //     textUmur(DateFormat('dd MMMM yyyy').format(
+                //         DateTime.parse(DateTime.now().toIso8601String()))),
+                //     textUmur(''),
+                //   ],
+                // ),
                 TableRow(
                   children: [
                     textUmur(''),

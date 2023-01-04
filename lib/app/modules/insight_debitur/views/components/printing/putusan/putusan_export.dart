@@ -1392,7 +1392,14 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
             ),
             TableRow(
               children: [
-                center('Yami Yugi'),
+                debtor.pengajuan!.isEmpty
+                    ? center('')
+                    : debtor.pengajuan![0].user!.isEmpty
+                        ? center('')
+                        : debtor.pengajuan![0].user!.length != 3
+                            ? center('')
+                            : center(
+                                debtor.pengajuan![0].user![2].displayName!),
               ],
             ),
             TableRow(

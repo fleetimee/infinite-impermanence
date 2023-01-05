@@ -71,6 +71,7 @@ dependencies:
   google_sign_in: ^5.4.2
   http: ^0.13.5
   image_picker: ^0.8.6
+  in_app_update: ^4.0.1
   intl: ^0.18.0
   introduction_screen:
     git:

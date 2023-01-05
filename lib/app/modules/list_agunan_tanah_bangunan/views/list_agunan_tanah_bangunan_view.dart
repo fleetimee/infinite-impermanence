@@ -523,25 +523,6 @@ class ListAgunanTanahBangunanView
               },
             );
           } else {
-            // return Center(
-            //   child: EmptyWidget(
-            //     image: 'assets/images/home/satania-crying.png',
-            //     title: 'Tidak ada data',
-            //     titleTextStyle: const TextStyle(
-            //       fontSize: 35,
-            //       fontWeight: FontWeight.w800,
-            //       color: secondaryColor,
-            //     ),
-            //     subtitleTextStyle: const TextStyle(
-            //       fontSize: 20,
-            //       fontWeight: FontWeight.w200,
-            //       color: secondaryColor,
-            //     ),
-            //     hideBackgroundAnimation: true,
-            //     subTitle:
-            //         'Tidak ada data agunan tanah dan bangunan yang terdaftar atau koneksi internet bermasalah',
-            //   ),
-            // );
             return Align(
               alignment: Alignment.center,
               child: Container(

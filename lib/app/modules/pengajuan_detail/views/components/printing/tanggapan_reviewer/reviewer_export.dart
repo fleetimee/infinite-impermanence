@@ -247,10 +247,11 @@ Future<Uint8List> makeReviewerPdf(PengajuanDetail pengajuan) async {
                                     pengajuan.bahasanReviewer![index];
                                 return textKolomAtas(
                                   '${index + 1}. $bahasan',
-                                  align: TextAlign.justify,
+                                  align: TextAlign.left,
                                 );
                               },
                             ),
+                            // textKolomAtas('asdasdad'),
                             textKolomAtas(' '),
                           ],
                         ),
@@ -456,6 +457,21 @@ Widget textKolomAtas(
         style: TextStyle(
           fontSize: 11,
           fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+
+Widget textKolomm(
+  final String text, {
+  final TextAlign align = TextAlign.left,
+}) =>
+    Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Text(
+        text,
+        textAlign: align,
+        style: const TextStyle(
+          fontSize: 11,
         ),
       ),
     );

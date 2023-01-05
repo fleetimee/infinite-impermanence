@@ -247,7 +247,7 @@ Future<Uint8List> makePemutusPdf(PengajuanDetail pengajuan) async {
                                     pengajuan.bahasanPengutus![index];
                                 return textKolomAtas(
                                   '${index + 1}. $bahasan',
-                                  align: TextAlign.justify,
+                                  align: TextAlign.left,
                                 );
                               },
                             ),

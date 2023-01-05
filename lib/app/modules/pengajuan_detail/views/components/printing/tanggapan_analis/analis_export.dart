@@ -246,7 +246,7 @@ Future<Uint8List> makeAnalisPdf(PengajuanDetail pengajuan) async {
                                 final bahasan = pengajuan.bahasanAnalis![index];
                                 return textKolomAtas(
                                   '${index + 1}. $bahasan',
-                                  align: TextAlign.justify,
+                                  align: TextAlign.left,
                                 );
                               },
                             ),

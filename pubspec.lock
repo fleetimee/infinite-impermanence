@@ -304,13 +304,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.2"
-  empty_widget:
-    dependency: "direct main"
-    description:
-      name: empty_widget
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.5"
   extended_masked_text:
     dependency: "direct main"
     description:
@@ -332,13 +325,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.11"
-  fancy_shimmer_image:
-    dependency: "direct main"
-    description:
-      name: fancy_shimmer_image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2"
   ffi:
     dependency: transitive
     description:
@@ -530,15 +516,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  flutter_easyloading:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: develop
-      resolved-ref: "0d811bf4f2a8359e9988033339c2ef48883e4df9"
-      url: "https://github.com/fleetimee/flutter_easyloading"
-    source: git
-    version: "3.0.4"
   flutter_echarts:
     dependency: "direct main"
     description:
@@ -663,15 +640,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
-  flutter_signin_button:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: master
-      resolved-ref: "9a5e313cd54442b4b9ff0599d5a50fc27bff62c6"
-      url: "https://github.com/Eugene-Lam/Flutter-Sign-in-Button"
-    source: git
-    version: "2.0.0"
   flutter_slidable:
     dependency: "direct main"
     description:
@@ -679,13 +647,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
-  flutter_spinkit:
-    dependency: transitive
-    description:
-      name: flutter_spinkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.1.0"
   flutter_staggered_grid_view:
     dependency: "direct main"
     description:
@@ -1507,13 +1468,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  shimmer:
-    dependency: "direct main"
-    description:
-      name: shimmer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   signature:
     dependency: transitive
     description:

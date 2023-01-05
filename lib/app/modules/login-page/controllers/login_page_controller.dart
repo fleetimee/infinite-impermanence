@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -8,6 +10,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
@@ -21,6 +24,15 @@ class LoginPageController extends GetxController {
     super.onInit();
     initSharedPref();
     initFirebaseFcm();
+    checkForUpdates();
+  }
+
+  final updateAvailableController = StreamController<AppUpdateInfo>();
+
+  void checkForUpdates() {
+    InAppUpdate.checkForUpdate().then((updateAvailable) {
+      updateAvailableController.add(updateAvailable);
+    });
   }
 
   void initSharedPref() async {
@@ -84,6 +96,20 @@ class LoginPageController extends GetxController {
       debugPrint('onTokenRefresh done');
     });
 
+    final updateAvailableStream = updateAvailableController.stream;
+
+    updateAvailableStream.listen((AppUpdateInfo updateInfo) {
+      if (updateInfo.flexibleUpdateAllowed) {
+        InAppUpdate.startFlexibleUpdate().then((_) {
+          InAppUpdate.completeFlexibleUpdate();
+        });
+      } else if (updateInfo.immediateUpdateAllowed) {
+        InAppUpdate.performImmediateUpdate();
+      } else {
+        debugPrint('No update available');
+      }
+    });
+
     // bind stream to listen to fcm message
     message = Rx<RemoteMessage?>(null);
 
@@ -94,19 +120,6 @@ class LoginPageController extends GetxController {
       if (message.notification != null) {
         debugPrint(
             'Message also contained a notification: ${message.notification}');
-        // Get.snackbar(
-        //   message.notification!.title ?? '',
-        //   message.notification!.body ?? '',
-        //   snackPosition: SnackPosition.BOTTOM,
-        //   backgroundColor: Colors.white,
-        //   colorText: Colors.black,
-        //   margin: const EdgeInsets.all(10),
-        //   borderRadius: 10,
-        //   icon: const Icon(
-        //     Icons.notifications,
-        //     color: Colors.black,
-        //   ),
-        // );
         FlutterLocalNotificationsPlugin().show(
           0,
           message.notification!.title,

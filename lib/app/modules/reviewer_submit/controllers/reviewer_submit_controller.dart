@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/widget/send_screen.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -186,6 +187,10 @@ class ReviewerSubmitController extends GetxController {
 
     try {
       isSubmitLoading(true);
+      Get.dialog(
+        const SendScreen(),
+        barrierDismissible: false,
+      );
       PengajuanSubmitReviewProvider()
           .submitPengajuanAnalis(pengajuan.id!, body)
           .then((resp) {
@@ -193,6 +198,9 @@ class ReviewerSubmitController extends GetxController {
         homeReviewCtrl.getMyPendingReview();
         homeReviewCtrl.getMyCompletedReview();
         resetForm();
+        Get.back();
+        Get.back();
+        Get.back();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

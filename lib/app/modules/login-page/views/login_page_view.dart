@@ -41,53 +41,6 @@ class LoginPageView extends GetView<LoginPageController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Stack(
-                      //   children: [
-                      //     Center(
-                      //       child: Container(
-                      //         padding: const EdgeInsets.symmetric(
-                      //             vertical: 40, horizontal: 20),
-                      //         child: Image.asset(
-                      //           'assets/images/home/stackable.png',
-                      //           fit: BoxFit.cover,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //     Positioned(
-                      //       top: 160,
-                      //       left: 0,
-                      //       right: 0,
-                      //       child: Column(
-                      //         children: [
-                      //           Text(
-                      //             'Welcome back',
-                      //             style: TextStyle(
-                      //               color: Colors.black87,
-                      //               fontSize: 35,
-                      //               fontFamily:
-                      //                   GoogleFonts.montserrat().fontFamily,
-                      //               fontWeight: FontWeight.w600,
-                      //             ),
-                      //           ),
-                      //           const SizedBox(
-                      //             height: 10,
-                      //           ),
-                      //           Text(
-                      //             'Sign in to your account',
-                      //             style: TextStyle(
-                      //               color: Colors.black87,
-                      //               fontSize: 15,
-                      //               fontWeight: FontWeight.bold,
-                      //               // add custom google font
-                      //               fontFamily:
-                      //                   GoogleFonts.montserrat().fontFamily,
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                       const SizedBox(
                         height: 50,
                       ),

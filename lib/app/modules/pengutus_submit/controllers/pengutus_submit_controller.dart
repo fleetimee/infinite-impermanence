@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/widget/send_screen.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -183,12 +184,21 @@ class PengutusSubmitController extends GetxController {
 
     try {
       isSubmitLoading(true);
+      Get.dialog(
+        const SendScreen(),
+        barrierDismissible: false,
+      );
       PengajuanSubmitPutusanProvider()
           .submitPengajuanPemutus(pengajuan.id!, body)
           .then((resp) {
         isSubmitLoading(false);
         homeCtrl.getMyPendingPemutusan();
         homeCtrl.getMyCompletedPutusan();
+
+        resetForm();
+        Get.back();
+        Get.back();
+        Get.back();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

@@ -308,7 +308,6 @@ class PengajuanSubmitAnalisView
                           debugPrint(listFinal.toString());
 
                           controller.submitPengajuanAnalis();
-                          Get.back();
                         } else {
                           Get.dialog(
                             const AlertDialog(

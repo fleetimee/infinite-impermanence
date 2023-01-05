@@ -943,7 +943,10 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                             controller.insightDebitur.value,
                                       );
                                     },
-                                    text: 'Kirim Pengajuan',
+                                    text: controller.insightDebitur.value
+                                            .pengajuan!.isNotEmpty
+                                        ? 'Kirim Pengajuan (lagi ?)'
+                                        : 'Kirim Pengajuan',
                                     textStyle: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20.0,

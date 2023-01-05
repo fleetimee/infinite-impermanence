@@ -631,9 +631,10 @@ class HomePengutusView extends GetView<HomePengutusController> {
         ),
       ),
       bottomNavigationBar: BottomBarBubble(
-        color: secondaryColor,
+        backgroundColor: secondaryColor,
+        color: Colors.pink[700]!,
         items: [
-          BottomBarItem(iconData: Icons.file_copy_sharp),
+          BottomBarItem(iconData: Icons.home_filled),
           BottomBarItem(iconData: Icons.settings),
         ],
         onSelect: (index) {

@@ -618,9 +618,10 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
         ),
       ),
       bottomNavigationBar: BottomBarBubble(
-        color: primaryColor,
+        backgroundColor: primaryColor,
+        color: secondaryColor,
         items: [
-          BottomBarItem(iconData: Icons.file_copy_sharp),
+          BottomBarItem(iconData: Icons.home_filled),
           BottomBarItem(iconData: Icons.settings),
         ],
         onSelect: (index) {

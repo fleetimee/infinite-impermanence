@@ -11,6 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/style.dart';
+import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import '../controllers/login_page_controller.dart';
 
 class LoginPageView extends GetView<LoginPageController> {
@@ -18,10 +19,17 @@ class LoginPageView extends GetView<LoginPageController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldGradientBackground(
+      gradient: const LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          blue200,
+          blue400,
+        ],
+      ),
       resizeToAvoidBottomInset: false,
-      body: Align(
-        alignment: Alignment.center,
+      body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,52 +41,65 @@ class LoginPageView extends GetView<LoginPageController> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Stack(
-                        children: [
-                          Center(
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 40, horizontal: 20),
-                              child: Image.asset(
-                                'assets/images/home/stackable.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            top: 160,
-                            left: 0,
-                            right: 0,
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Welcome back',
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 35,
-                                    fontFamily:
-                                        GoogleFonts.montserrat().fontFamily,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  'Sign in to your account',
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
-                                    // add custom google font
-                                    fontFamily:
-                                        GoogleFonts.montserrat().fontFamily,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      // Stack(
+                      //   children: [
+                      //     Center(
+                      //       child: Container(
+                      //         padding: const EdgeInsets.symmetric(
+                      //             vertical: 40, horizontal: 20),
+                      //         child: Image.asset(
+                      //           'assets/images/home/stackable.png',
+                      //           fit: BoxFit.cover,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Positioned(
+                      //       top: 160,
+                      //       left: 0,
+                      //       right: 0,
+                      //       child: Column(
+                      //         children: [
+                      //           Text(
+                      //             'Welcome back',
+                      //             style: TextStyle(
+                      //               color: Colors.black87,
+                      //               fontSize: 35,
+                      //               fontFamily:
+                      //                   GoogleFonts.montserrat().fontFamily,
+                      //               fontWeight: FontWeight.w600,
+                      //             ),
+                      //           ),
+                      //           const SizedBox(
+                      //             height: 10,
+                      //           ),
+                      //           Text(
+                      //             'Sign in to your account',
+                      //             style: TextStyle(
+                      //               color: Colors.black87,
+                      //               fontSize: 15,
+                      //               fontWeight: FontWeight.bold,
+                      //               // add custom google font
+                      //               fontFamily:
+                      //                   GoogleFonts.montserrat().fontFamily,
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      const SizedBox(
+                        height: 50,
+                      ),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/splash_screen/splash_icon.png',
+                          fit: BoxFit.cover,
+                          height: 200,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 100,
                       ),
                       FormBuilder(
                         key: controller.formKey,
@@ -236,13 +257,29 @@ class LoginPageView extends GetView<LoginPageController> {
                               Align(
                                 alignment: Alignment.centerRight,
                                 child: TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.dialog(
+                                      AlertDialog(
+                                        title: const Text('Hubungi Admin'),
+                                        content: const Text(
+                                          'Silahkan hubungi admin untuk meminta mendaftar akun',
+                                        ),
+                                        actions: [
+                                          GFButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: const Text('OK'))
+                                        ],
+                                      ),
+                                    );
+                                  },
                                   child: Text(
-                                    'Forgot Password?',
+                                    'Daftar ?',
                                     style: TextStyle(
-                                      color: GFColors.FOCUS,
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
+                                      color: GFColors.LIGHT,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
                                       // add custom google font
                                       fontFamily:
                                           GoogleFonts.montserrat().fontFamily,
@@ -257,7 +294,7 @@ class LoginPageView extends GetView<LoginPageController> {
                     ],
                   ),
                   const SizedBox(
-                    height: 150,
+                    height: 250,
                   ),
                   Container(
                     padding: const EdgeInsets.all(20),
@@ -278,14 +315,14 @@ class LoginPageView extends GetView<LoginPageController> {
                                   : 'LOGIN',
                               textStyle: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w800,
                                 // add custom google font
                                 fontFamily: GoogleFonts.montserrat().fontFamily,
                               ),
                               fullWidthButton: true,
                               color: primaryColor,
-                              size: 45,
+                              size: 50,
                               shape: GFButtonShape.pills,
                               icon: controller.isLoginProcessing.value
                                   ? const GFLoader(
@@ -300,77 +337,81 @@ class LoginPageView extends GetView<LoginPageController> {
                                       size: 20,
                                     ),
                             )),
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
                         // divider with text in between
                         // Get shared preferences instance
 
-                        Obx(
-                          () => controller.pernahLogin.value == true
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 50),
-                                      child: Row(
-                                        children: [
-                                          const Expanded(
-                                            child: Divider(
-                                              color: Colors.black,
-                                              thickness: 2,
+                        Visibility(
+                          visible: false,
+                          child: Obx(
+                            () => controller.pernahLogin.value == true
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 50),
+                                        child: Row(
+                                          children: [
+                                            const Expanded(
+                                              child: Divider(
+                                                color: Colors.black,
+                                                thickness: 2,
+                                              ),
                                             ),
-                                          ),
-                                          Text(
-                                            "     OR     ",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w800,
-                                              // add custom google font
-                                              fontFamily:
-                                                  GoogleFonts.montserrat()
-                                                      .fontFamily,
+                                            Text(
+                                              "     OR     ",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w800,
+                                                // add custom google font
+                                                fontFamily:
+                                                    GoogleFonts.montserrat()
+                                                        .fontFamily,
+                                              ),
                                             ),
-                                          ),
-                                          const Expanded(
-                                            child: Divider(
-                                              color: Colors.black,
-                                              thickness: 2,
+                                            const Expanded(
+                                              child: Divider(
+                                                color: Colors.black,
+                                                thickness: 2,
+                                              ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    GFButton(
-                                      icon: const FaIcon(
-                                        FontAwesomeIcons.google,
-                                        color: Colors.white,
+                                      const SizedBox(
+                                        height: 10,
                                       ),
-                                      onPressed: () {
-                                        controller.signInWithGoogle();
-                                      },
-                                      text: 'SIGN IN WITH GOOGLE',
-                                      textStyle: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w600,
-                                        // add custom google font
-                                        fontFamily:
-                                            GoogleFonts.montserrat().fontFamily,
+                                      GFButton(
+                                        icon: const FaIcon(
+                                          FontAwesomeIcons.google,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          controller.signInWithGoogle();
+                                        },
+                                        text: 'SIGN IN WITH GOOGLE',
+                                        textStyle: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w600,
+                                          // add custom google font
+                                          fontFamily: GoogleFonts.montserrat()
+                                              .fontFamily,
+                                        ),
+                                        fullWidthButton: true,
+                                        color: GFColors.DANGER,
+                                        size: 45,
+                                        shape: GFButtonShape.pills,
                                       ),
-                                      fullWidthButton: true,
-                                      color: GFColors.DANGER,
-                                      size: 45,
-                                      shape: GFButtonShape.pills,
-                                    ),
-                                  ],
-                                )
-                              : const SizedBox.shrink(),
+                                    ],
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
                         ),
                       ],
                     ),

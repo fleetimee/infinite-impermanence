@@ -245,9 +245,12 @@ Future<Uint8List> makeReviewerPdf(PengajuanDetail pengajuan) async {
                               itemBuilder: (context, index) {
                                 final bahasan =
                                     pengajuan.bahasanReviewer![index];
-                                return textKolomAtas(
-                                  '${index + 1}. $bahasan',
-                                  align: TextAlign.left,
+                                return Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: textKolomAtas(
+                                    '${index + 1}. $bahasan',
+                                    align: TextAlign.left,
+                                  ),
                                 );
                               },
                             ),

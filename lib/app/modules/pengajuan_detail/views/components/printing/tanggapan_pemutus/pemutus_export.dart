@@ -228,8 +228,8 @@ Future<Uint8List> makePemutusPdf(PengajuanDetail pengajuan) async {
                     // Left Side
                     Table(
                       columnWidths: {
-                        0: const FlexColumnWidth(0.70),
-                        1: const FlexColumnWidth(0.30),
+                        0: const FlexColumnWidth(0.99),
+                        1: const FlexColumnWidth(0.01),
                       },
                       children: [
                         TableRow(
@@ -245,9 +245,12 @@ Future<Uint8List> makePemutusPdf(PengajuanDetail pengajuan) async {
                               itemBuilder: (context, index) {
                                 final bahasan =
                                     pengajuan.bahasanPengutus![index];
-                                return textKolomAtas(
-                                  '${index + 1}. $bahasan',
-                                  align: TextAlign.left,
+                                return Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: textKolomAtas(
+                                    '${index + 1}. $bahasan',
+                                    align: TextAlign.left,
+                                  ),
                                 );
                               },
                             ),

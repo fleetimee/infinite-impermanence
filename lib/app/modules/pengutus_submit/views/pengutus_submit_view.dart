@@ -1101,7 +1101,7 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                                   children: const [
                                     Center(
                                       child: Text(
-                                        'Tambahkan Bahasan Analis',
+                                        'Tambahkan Bahasan Pemutus',
                                         style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.w400,
@@ -1240,8 +1240,6 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                                   debugPrint(listFinal.toString());
 
                                   controller.savePutusan();
-                                  Get.back();
-                                  Get.back();
                                 },
                                 child: const Text('Ya'),
                               ),

@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:akm/app/widget/send_screen.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -14,6 +16,7 @@ import 'package:akm/app/modules/home/controllers/home_controller.dart';
 class PengajuanSubmitAnalisController extends GetxController {
   // Inject home controller
   final homeCtrl = Get.put(HomeController());
+  final insightCtrl = Get.put(InsightDebiturController());
 
   DebiturInsight data = Get.arguments;
   var isPengajuanLoading = false.obs;
@@ -58,11 +61,17 @@ class PengajuanSubmitAnalisController extends GetxController {
 
     try {
       isPengajuanLoading(true);
+      Get.dialog(
+        const SendScreen(),
+        barrierDismissible: false,
+      );
       PengajuanSubmitProvider().submitPengajuanAnalis(body).then((resp) {
         isPengajuanLoading(false);
         homeCtrl.getMySubmission();
+        insightCtrl.fetchOneDebitur(data.id!);
         resetForm();
-
+        Get.back();
+        Get.back();
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

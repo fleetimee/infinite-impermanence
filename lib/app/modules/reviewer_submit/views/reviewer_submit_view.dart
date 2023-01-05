@@ -1097,7 +1097,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                   children: const [
                                     Center(
                                       child: Text(
-                                        'Tambahkan Bahasan Analis',
+                                        'Tambahkan Bahasan Reviewer',
                                         style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.w400,
@@ -1188,8 +1188,6 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                   debugPrint(listFinal.toString());
 
                                   controller.saveReview();
-                                  Get.back();
-                                  Get.back();
                                 },
                                 child: const Text('Ya'),
                               ),

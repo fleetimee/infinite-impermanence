@@ -49,6 +49,13 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // request flutterlocalnotification permission on android 13+
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
+      AndroidFlutterLocalNotificationsPlugin>();
+
   FlutterLocalNotificationsPlugin().initialize(
     const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/launcher_icon'),

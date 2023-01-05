@@ -177,32 +177,7 @@ class LoginPageController extends GetxController {
             claims.claims!['reviewer'] == false) {
           debugPrint('User is signed in! and is pengutus only');
           Get.offAllNamed(Routes.HOME_PENGUTUS);
-          // Get.offAllNamed(Routes.HOME_PENGUTUS);
-        } // check if claims is empty or null
-        // else if (mapCreated['claims'] == null) {
-        //   debugPrint('User is signed in! but claims is empty or null');
-        //   Get.dialog(AlertDialog(
-        //     title: const Text('Perhatian'),
-        //     content: const Text(
-        //         'Akun anda belum terdaftar sebagai analis atau reviewer. Silahkan hubungi admin untuk melakukan registrasi.'),
-        //     actions: [
-        //       TextButton(
-        //         onPressed: () {
-        //           Get.back();
-        //           Get.offAllNamed(Routes.LOGIN_PAGE);
-        //         },
-        //         child: const Text('OK'),
-        //       ),
-        //     ],
-        //   )).then((value) async {
-        //     auth.signOut();
-
-        //     final prefs = await SharedPreferences.getInstance();
-
-        //     // remove all data from shared preferences
-        //     prefs.clear();
-        //   });
-        else {
+        } else {
           // check shared preferences if user already login
           final prefs = await SharedPreferences.getInstance();
           // if user already login then route to dashboard page
@@ -212,6 +187,9 @@ class LoginPageController extends GetxController {
           } else if (prefs.getString('role') == 'reviewer') {
             debugPrint('User is signed in! and already choose reviewer role');
             Get.offAllNamed(Routes.HOME_REVIEWER);
+          } else if (prefs.getString('role') == 'pengutus') {
+            debugPrint('User is signed in! and already choose pengutus role');
+            Get.offAllNamed(Routes.HOME_PENGUTUS);
           } else {
             debugPrint('User is signed in! but role is null');
             Get.offAllNamed(Routes.GATE);

@@ -163,7 +163,15 @@ class GateView extends GetView<GateController> {
                                       ),
                                     ),
                                     listItemTextColor: Colors.white,
-                                    onTap: () {},
+                                    onTap: () async {
+                                      // Initialize the shared preferences
+                                      final prefs =
+                                          await SharedPreferences.getInstance();
+
+                                      await prefs.setString('role', 'pengutus');
+
+                                      Get.offAllNamed(Routes.HOME_PENGUTUS);
+                                    },
                                   ),
                                 )
                               : Container(),

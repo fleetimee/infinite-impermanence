@@ -1048,7 +1048,7 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                         Center(
                                           child: Lottie.asset(
-                                            'assets/images/home/404.zip',
+                                            'assets/images/home/empty.json',
                                             frameRate: FrameRate.max,
                                             fit: BoxFit.cover,
                                             repeat: true,
@@ -1063,16 +1063,50 @@ class HomeView extends GetView<HomeController> {
                                             },
                                           ),
                                         ),
-                                        const Center(
-                                          child: Text(
-                                            'Data tidak dapat ditemukan di database atau list debitur masih kosong',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.normal,
-                                              letterSpacing: 1.2,
-                                            ),
-                                            textAlign: TextAlign.center,
+                                        Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                'Belum ada riwayat input debitur',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.normal,
+                                                  letterSpacing: 1.2,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              const SizedBox(height: 20),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                  backgroundColor:
+                                                      Colors.blueAccent,
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 30,
+                                                      vertical: 15),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  controller.refreshInputtan();
+                                                },
+                                                child: const Text(
+                                                  'Refresh',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 1.2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],
@@ -1089,234 +1123,250 @@ class HomeView extends GetView<HomeController> {
                               );
                             } else {
                               if (controller.listMySubmission.isNotEmpty) {
-                                return ListView.builder(
-                                  itemCount: controller.listMySubmission.length,
-                                  itemBuilder: (context, index) {
-                                    bool isSameDate = true;
-                                    final dateString = controller
-                                        .listMySubmission[index].tglSubmit;
-
-                                    if (index == 0) {
-                                      isSameDate = false;
-                                    } else {
-                                      final prevDateString = controller
-                                          .listMySubmission[index - 1].tglSubmit
-                                          ?.toIso8601String();
-                                      final DateTime prevDate =
-                                          DateTime.parse(prevDateString!);
-                                      isSameDate = dateString! == prevDate;
-                                    }
-
-                                    if (index == 0 || !(isSameDate)) {
-                                      return Column(
-                                        children: [
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text(
-                                            DateFormat('EEEE, dd MMMM yyyy')
-                                                .format(dateString!),
-                                            style: GoogleFonts.poppins(
-                                              color: Colors.white,
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          GFCard(
-                                            border: Border.all(
-                                              color:
-                                                  Colors.black.withOpacity(0.1),
-                                            ),
-                                            padding: const EdgeInsets.all(10),
-                                            color:
-                                                Colors.white.withOpacity(0.9),
-                                            elevation: 5,
-                                            titlePosition: GFPosition.start,
-                                            title: GFListTile(
-                                              avatar: const Icon(
-                                                  FontAwesomeIcons
-                                                      .bookBookmark),
-                                              title: Text(
-                                                controller
-                                                    .listMySubmission[index]
-                                                    .id!,
-                                                style: GoogleFonts.montserrat(
-                                                  color: Colors.black87,
-                                                  fontSize: 25,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                              subTitle: controller
-                                                          .listMySubmission[
-                                                              index]
-                                                          .status ==
-                                                      'PENDING'
-                                                  ? const Text(
-                                                      'Status : Pending',
-                                                      style: TextStyle(
-                                                        color: Colors.red,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .listMySubmission[
-                                                                  index]
-                                                              .status ==
-                                                          'REVIEWED'
-                                                      ? const Text(
-                                                          'Status : Sedang Direview',
-                                                          style: TextStyle(
-                                                            color:
-                                                                Colors.orange,
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : controller
-                                                                  .listMySubmission[
-                                                                      index]
-                                                                  .status ==
-                                                              'DONE'
-                                                          ? const Text(
-                                                              'Status : Diterima',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .green,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            )
-                                                          : const Text(
-                                                              'Status : Ditolak 🤣',
-                                                              style: TextStyle(
-                                                                color:
-                                                                    Colors.pink,
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                              ),
-                                                            ),
-                                              icon: GFButton(
-                                                onPressed: (() {
-                                                  Get.toNamed(
-                                                      Routes.PENGAJUAN_DETAIL,
-                                                      arguments: controller
-                                                          .listMySubmission[
-                                                              index]
-                                                          .id);
-                                                }),
-                                                text: 'Detail',
-                                                color: Colors.blue,
-                                                textStyle:
-                                                    GoogleFonts.montserrat(
-                                                  color: Colors.white,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      );
-                                    } else {
-                                      return GFCard(
-                                        border: Border.all(
-                                          color: Colors.black.withOpacity(0.1),
-                                        ),
-                                        padding: const EdgeInsets.all(10),
-                                        color: Colors.white.withOpacity(0.9),
-                                        elevation: 5,
-                                        titlePosition: GFPosition.start,
-                                        title: GFListTile(
-                                          avatar: const Icon(
-                                              FontAwesomeIcons.bookBookmark),
-                                          title: Text(
-                                            controller
-                                                .listMySubmission[index].id!,
-                                            style: GoogleFonts.montserrat(
-                                              color: Colors.black87,
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                          subTitle: controller
-                                                      .listMySubmission[index]
-                                                      .status ==
-                                                  'PENDING'
-                                              ? const Text(
-                                                  'Status : Pending',
-                                                  style: TextStyle(
-                                                    color: Colors.red,
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                )
-                                              : controller
-                                                          .listMySubmission[
-                                                              index]
-                                                          .status ==
-                                                      'REVIEWED'
-                                                  ? const Text(
-                                                      'Status : Sedang Direview',
-                                                      style: TextStyle(
-                                                        color: Colors.yellow,
-                                                        fontSize: 18,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .listMySubmission[
-                                                                  index]
-                                                              .status ==
-                                                          'DONE'
-                                                      ? const Text(
-                                                          'Status : Diterima',
-                                                          style: TextStyle(
-                                                            color: Colors.green,
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : const Text(
-                                                          'Status : Ditolak 🤣',
-                                                          style: TextStyle(
-                                                            color: Colors.pink,
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                          icon: GFButton(
-                                            onPressed: (() {
-                                              Get.toNamed(
-                                                  Routes.PENGAJUAN_DETAIL,
-                                                  arguments: controller
-                                                      .listMySubmission[index]
-                                                      .id);
-                                            }),
-                                            text: 'Detail',
-                                            color: Colors.blue,
-                                            textStyle: GoogleFonts.montserrat(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.w400,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }
+                                return RefreshIndicator(
+                                  onRefresh: () {
+                                    return controller.refreshPengajuan();
                                   },
+                                  child: ListView.builder(
+                                    itemCount:
+                                        controller.listMySubmission.length,
+                                    itemBuilder: (context, index) {
+                                      bool isSameDate = true;
+                                      final dateString = controller
+                                          .listMySubmission[index].tglSubmit;
+
+                                      if (index == 0) {
+                                        isSameDate = false;
+                                      } else {
+                                        final prevDateString = controller
+                                            .listMySubmission[index - 1]
+                                            .tglSubmit
+                                            ?.toIso8601String();
+                                        final DateTime prevDate =
+                                            DateTime.parse(prevDateString!);
+                                        isSameDate = dateString! == prevDate;
+                                      }
+
+                                      if (index == 0 || !(isSameDate)) {
+                                        return Column(
+                                          children: [
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              DateFormat('EEEE, dd MMMM yyyy')
+                                                  .format(dateString!),
+                                              style: GoogleFonts.poppins(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            GFCard(
+                                              border: Border.all(
+                                                color: Colors.black
+                                                    .withOpacity(0.1),
+                                              ),
+                                              padding: const EdgeInsets.all(10),
+                                              color:
+                                                  Colors.white.withOpacity(0.9),
+                                              elevation: 5,
+                                              titlePosition: GFPosition.start,
+                                              title: GFListTile(
+                                                avatar: const Icon(
+                                                    FontAwesomeIcons
+                                                        .bookBookmark),
+                                                title: Text(
+                                                  controller
+                                                      .listMySubmission[index]
+                                                      .id!,
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.black87,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                subTitle: controller
+                                                            .listMySubmission[
+                                                                index]
+                                                            .status ==
+                                                        'PENDING'
+                                                    ? const Text(
+                                                        'Status : Pending',
+                                                        style: TextStyle(
+                                                          color: Colors.red,
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      )
+                                                    : controller
+                                                                .listMySubmission[
+                                                                    index]
+                                                                .status ==
+                                                            'REVIEWED'
+                                                        ? const Text(
+                                                            'Status : Sedang Direview',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.orange,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                        : controller
+                                                                    .listMySubmission[
+                                                                        index]
+                                                                    .status ==
+                                                                'DONE'
+                                                            ? const Text(
+                                                                'Status : Diterima',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .green,
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              )
+                                                            : const Text(
+                                                                'Status : Ditolak 🤣',
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .pink,
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                ),
+                                                              ),
+                                                icon: GFButton(
+                                                  onPressed: (() {
+                                                    Get.toNamed(
+                                                        Routes.PENGAJUAN_DETAIL,
+                                                        arguments: controller
+                                                            .listMySubmission[
+                                                                index]
+                                                            .id);
+                                                  }),
+                                                  text: 'Detail',
+                                                  color: Colors.blue,
+                                                  textStyle:
+                                                      GoogleFonts.montserrat(
+                                                    color: Colors.white,
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        );
+                                      } else {
+                                        return GFCard(
+                                          border: Border.all(
+                                            color:
+                                                Colors.black.withOpacity(0.1),
+                                          ),
+                                          padding: const EdgeInsets.all(10),
+                                          color: Colors.white.withOpacity(0.9),
+                                          elevation: 5,
+                                          titlePosition: GFPosition.start,
+                                          title: GFListTile(
+                                            avatar: const Icon(
+                                                FontAwesomeIcons.bookBookmark),
+                                            title: Text(
+                                              controller
+                                                  .listMySubmission[index].id!,
+                                              style: GoogleFonts.montserrat(
+                                                color: Colors.black87,
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            subTitle: controller
+                                                        .listMySubmission[index]
+                                                        .status ==
+                                                    'PENDING'
+                                                ? const Text(
+                                                    'Status : Pending',
+                                                    style: TextStyle(
+                                                      color: Colors.red,
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  )
+                                                : controller
+                                                            .listMySubmission[
+                                                                index]
+                                                            .status ==
+                                                        'REVIEWED'
+                                                    ? const Text(
+                                                        'Status : Sedang Direview',
+                                                        style: TextStyle(
+                                                          color: Colors.yellow,
+                                                          fontSize: 18,
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                        ),
+                                                      )
+                                                    : controller
+                                                                .listMySubmission[
+                                                                    index]
+                                                                .status ==
+                                                            'DONE'
+                                                        ? const Text(
+                                                            'Status : Diterima',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.green,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          )
+                                                        : const Text(
+                                                            'Status : Ditolak 🤣',
+                                                            style: TextStyle(
+                                                              color:
+                                                                  Colors.pink,
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                          ),
+                                            icon: GFButton(
+                                              onPressed: (() {
+                                                Get.toNamed(
+                                                    Routes.PENGAJUAN_DETAIL,
+                                                    arguments: controller
+                                                        .listMySubmission[index]
+                                                        .id);
+                                              }),
+                                              text: 'Detail',
+                                              color: Colors.blue,
+                                              textStyle: GoogleFonts.montserrat(
+                                                color: Colors.white,
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    },
+                                  ),
                                 );
                               } else {
                                 return Align(
@@ -1342,7 +1392,7 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                         Center(
                                           child: Lottie.asset(
-                                            'assets/images/home/404.zip',
+                                            'assets/images/home/empty.json',
                                             frameRate: FrameRate.max,
                                             fit: BoxFit.cover,
                                             repeat: true,
@@ -1357,16 +1407,50 @@ class HomeView extends GetView<HomeController> {
                                             },
                                           ),
                                         ),
-                                        const Center(
-                                          child: Text(
-                                            'Data tidak dapat ditemukan di database atau list debitur masih kosong',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 22,
-                                              fontWeight: FontWeight.normal,
-                                              letterSpacing: 1.2,
-                                            ),
-                                            textAlign: TextAlign.center,
+                                        Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                'Belum ada riwayat pengajuan',
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.normal,
+                                                  letterSpacing: 1.2,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              const SizedBox(height: 20),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                  backgroundColor:
+                                                      Colors.blueAccent,
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 30,
+                                                      vertical: 15),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            30),
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  controller.refreshPengajuan();
+                                                },
+                                                child: const Text(
+                                                  'Refresh',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 18,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 1.2,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       ],

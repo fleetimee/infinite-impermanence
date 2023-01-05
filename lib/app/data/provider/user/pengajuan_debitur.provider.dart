@@ -17,7 +17,7 @@ class MySubmissionProvider {
   Future<UserPengajuan> fetchMyPengajuan(String userId) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}users/$userId?fields=pengajuan'),
+        Uri.parse('${baseUrl}users/$userId'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -38,7 +38,7 @@ class MySubmissionProvider {
   Future<UserPengajuan> fetchMyReview(String userId) async {
     try {
       final response = await httpClient.get(
-        Uri.parse('${baseUrl}users/$userId?fields=pengajuan'),
+        Uri.parse('${baseUrl}users/$userId'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

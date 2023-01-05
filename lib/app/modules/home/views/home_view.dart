@@ -1534,7 +1534,8 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomBarBubble(
+      bottomNavigationBar: BottomBarDoubleBullet(
+        backgroundColor: primaryColor,
         color: Colors.white,
         items: [
           BottomBarItem(iconData: Icons.home),
@@ -1547,8 +1548,12 @@ class HomeView extends GetView<HomeController> {
           // selected index pageview
           controller.controller.animateToPage(
             index,
+            // no duration
             duration: const Duration(milliseconds: 300),
-            curve: Curves.easeInOut,
+
+            // duration: const Duration(milliseconds: 300),
+            // no curve
+            curve: Curves.easeOutQuad,
           );
         },
       ),

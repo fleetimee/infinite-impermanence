@@ -85,6 +85,10 @@ class HomeController extends GetxController {
     getMyDebiturInput(sort);
   }
 
+  Future<void> refreshPengajuan() async {
+    getMySubmission();
+  }
+
   // Initialize firebase auth
   FirebaseAuth auth = FirebaseAuth.instance;
 

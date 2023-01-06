@@ -1868,11 +1868,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "441a228d-423a-4749-be19-2b42bd098312",
     "name": "Get user by id Copy",
-    "url": "{{baseUrl}}api/v1/users/cd547839-c4bf-40ef-a359-9df2ee008692?fields=pengajuan",
+    "url": "{{baseUrl}}api/v1/users/edc3cd74-60f6-4eaf-83b1-cfc2fa38fdcb?fields=pengajuan",
     "method": "GET",
     "sortNum": 658750,
     "created": "2022-12-20T07:57:33.511Z",
-    "modified": "2022-12-31T12:22:08.412Z",
+    "modified": "2023-01-06T03:05:57.967Z",
     "headers": [],
     "params": [
       {

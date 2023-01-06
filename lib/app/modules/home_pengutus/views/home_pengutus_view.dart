@@ -314,7 +314,8 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                           title: Text(
                                             controller
                                                 .listMyPendingPemutusan[index]
-                                                .id!,
+                                                .debitur
+                                                .peminjam1!,
                                           ),
                                           trailing: const Icon(
                                               Icons.arrow_forward_ios),
@@ -429,7 +430,8 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                       title: Text(
                                         controller
                                             .listMyCompletedPemutusan[index]
-                                            .id!,
+                                            .debitur
+                                            .peminjam1!,
                                       ),
                                       trailing:
                                           const Icon(Icons.arrow_forward_ios),

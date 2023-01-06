@@ -1179,15 +1179,60 @@ class HomeView extends GetView<HomeController> {
                                                 avatar: const Icon(
                                                     FontAwesomeIcons
                                                         .bookBookmark),
-                                                title: Text(
-                                                  controller
-                                                      .listMySubmission[index]
-                                                      .id!,
-                                                  style: GoogleFonts.montserrat(
-                                                    color: Colors.black87,
-                                                    fontSize: 25,
-                                                    fontWeight: FontWeight.w400,
-                                                  ),
+                                                title: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      controller
+                                                          .listMySubmission[
+                                                              index]
+                                                          .debitur
+                                                          .peminjam1!,
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        color: Colors.black87,
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          '#',
+                                                          style: GoogleFonts
+                                                              .montserrat(
+                                                                  color: Colors
+                                                                      .black87,
+                                                                  fontSize: 16,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        Text(
+                                                          ': ${controller.listMySubmission[index].id}',
+                                                          style: GoogleFonts
+                                                              .montserrat(
+                                                            color:
+                                                                Colors.black87,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                  ],
                                                 ),
                                                 subTitle: controller
                                                             .listMySubmission[
@@ -1283,14 +1328,56 @@ class HomeView extends GetView<HomeController> {
                                           title: GFListTile(
                                             avatar: const Icon(
                                                 FontAwesomeIcons.bookBookmark),
-                                            title: Text(
-                                              controller
-                                                  .listMySubmission[index].id!,
-                                              style: GoogleFonts.montserrat(
-                                                color: Colors.black87,
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                            title: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  controller
+                                                      .listMySubmission[index]
+                                                      .debitur
+                                                      .peminjam1!,
+                                                  style: GoogleFonts.montserrat(
+                                                    color: Colors.black87,
+                                                    fontSize: 25,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '#',
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                              color: Colors
+                                                                  .black87,
+                                                              fontSize: 16,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                    ),
+                                                    const SizedBox(
+                                                      width: 5,
+                                                    ),
+                                                    Text(
+                                                      ': ${controller.listMySubmission[index].id}',
+                                                      style: GoogleFonts
+                                                          .montserrat(
+                                                        color: Colors.black87,
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                              ],
                                             ),
                                             subTitle: controller
                                                         .listMySubmission[index]
@@ -1313,10 +1400,10 @@ class HomeView extends GetView<HomeController> {
                                                     ? const Text(
                                                         'Status : Sedang Direview',
                                                         style: TextStyle(
-                                                          color: Colors.yellow,
+                                                          color: Colors.orange,
                                                           fontSize: 18,
                                                           fontWeight:
-                                                              FontWeight.w400,
+                                                              FontWeight.bold,
                                                         ),
                                                       )
                                                     : controller

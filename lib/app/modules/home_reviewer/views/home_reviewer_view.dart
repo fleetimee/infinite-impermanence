@@ -286,7 +286,9 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                                           ),
                                           title: Text(
                                             controller
-                                                .listMyPendingReview[index].id!,
+                                                .listMyPendingReview[index]
+                                                .debitur
+                                                .peminjam1!,
                                           ),
                                           trailing: const Icon(
                                               Icons.arrow_forward_ios),
@@ -413,7 +415,8 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                                           title: Text(
                                             controller
                                                 .listMyCompletedReview[index]
-                                                .id!,
+                                                .debitur
+                                                .peminjam1!,
                                           ),
                                           trailing: const Icon(
                                               Icons.arrow_forward_ios),

@@ -119,18 +119,18 @@ class DataKeuangan extends StatelessWidget {
                 height: 20,
               ),
               FormBuilderTextField(
-                name: 'debt',
+                name: 'pinjaman_lain',
                 readOnly: true,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(),
                 ]),
                 controller: controller.debtInput = MoneyMaskedTextController(
-                    decimalSeparator: '',
-                    thousandSeparator: '.',
-                    precision: 0,
-                    initialValue:
-                        double.parse(data.inputRugiLaba.hutangLainnya)),
+                  decimalSeparator: '',
+                  thousandSeparator: '.',
+                  precision: 0,
+                  initialValue: double.parse(data.inputNeraca.pinjamanLain),
+                ),
                 decoration: InputDecoration(
                   prefixText: 'Rp. ',
                   labelText: 'Pinjaman lain (bank/non bank)',
@@ -140,48 +140,6 @@ class DataKeuangan extends StatelessWidget {
                 ),
                 keyboardType: TextInputType.number,
               ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       flex: 3,
-              //       child: Text(
-              //         'Tap Here ->',
-              //         style: GoogleFonts.aBeeZee(
-              //           fontSize: 20,
-              //           color: primaryColor,
-              //         ),
-              //         textAlign: TextAlign.right,
-              //       ),
-              //     ),
-              //     const Expanded(
-              //       child: JustTheTooltip(
-              //         backgroundColor: secondaryColor,
-              //         margin: EdgeInsets.only(left: 100),
-              //         elevation: 10,
-              //         triggerMode: TooltipTriggerMode.tap,
-              //         content: Padding(
-              //           padding: EdgeInsets.all(16.0),
-              //           child: Text(
-              //             'Untuk total asset saya hard-code jumlahnya dikarenakan di sheetnya mereferensikan ke worksheet Rugi dan Laba, di sheet yang sebelumnya yang punya pak Nuruddin itu rumus Jumlah asset = Equity + Pinjaman, tetapi di sheet ini (dwi dagang sayur) jumlah asset diambil dari rugi laba.',
-              //             style: TextStyle(fontSize: 20),
-              //           ),
-              //         ),
-              //         child: Material(
-              //           color: primaryColor,
-              //           shape: CircleBorder(),
-              //           elevation: 4.0,
-              //           child: Padding(
-              //             padding: EdgeInsets.all(8.0),
-              //             child: Icon(
-              //               Icons.info_outline,
-              //               color: Colors.white,
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     )
-              //   ],
-              // ),
               const Padding(
                 padding: EdgeInsets.fromLTRB(100, 0, 100, 0),
                 child: Divider(
@@ -212,18 +170,6 @@ class DataKeuangan extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-
-              // Switch(
-              //   value: controller.isKreditPassed.value,
-              //   onChanged: (value) {
-              //     if (value) {
-              //       controller.isKreditPassed.value = true;
-              //     } else {
-              //       controller.isKreditPassed.value = false;
-              //     }
-              //   },
-              // ),
-
               const SizedBox(
                 height: 40,
               ),

@@ -62,6 +62,8 @@ class LoginPageView extends GetView<LoginPageController> {
                             children: [
                               FormBuilderTextField(
                                 name: 'email',
+                                enableSuggestions: true,
+                                autocorrect: true,
                                 style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 20,
@@ -73,6 +75,7 @@ class LoginPageView extends GetView<LoginPageController> {
                                 controller: controller.email,
                                 cursorColor: Colors.black,
                                 cursorHeight: 20,
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   alignLabelWithHint: true,
                                   prefixIcon: const Icon(
@@ -247,49 +250,65 @@ class LoginPageView extends GetView<LoginPageController> {
                     ],
                   ),
                   const SizedBox(
-                    height: 250,
+                    height: 240,
                   ),
                   Container(
                     padding: const EdgeInsets.all(20),
                     child: Column(
                       children: [
-                        Obx(() => GFButton(
-                              onPressed: () {
-                                if (controller.formKey.currentState
-                                        ?.saveAndValidate() ??
-                                    false) {
-                                  controller.login();
-                                } else {
-                                  debugPrint('validation failed');
-                                }
-                              },
-                              text: controller.isLoginProcessing.value
-                                  ? ''
-                                  : 'LOGIN',
-                              textStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w800,
-                                // add custom google font
-                                fontFamily: GoogleFonts.montserrat().fontFamily,
-                              ),
-                              fullWidthButton: true,
-                              color: primaryColor,
-                              size: 50,
-                              shape: GFButtonShape.pills,
-                              icon: controller.isLoginProcessing.value
-                                  ? const GFLoader(
-                                      type: GFLoaderType.circle,
-                                      loaderColorOne: Colors.white,
-                                      loaderColorTwo: Colors.white,
-                                      loaderColorThree: Colors.white,
-                                    )
-                                  : const Icon(
-                                      FontAwesomeIcons.rightToBracket,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                            )),
+                        Obx(
+                          () => GFButton(
+                            onPressed: () {
+                              if (controller.formKey.currentState
+                                      ?.saveAndValidate() ??
+                                  false) {
+                                controller.login();
+                              } else {
+                                debugPrint('validation failed');
+                              }
+                            },
+                            text: controller.isLoginProcessing.value
+                                ? ''
+                                : 'LOGIN',
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w800,
+                              // add custom google font
+                              fontFamily: GoogleFonts.montserrat().fontFamily,
+                            ),
+                            fullWidthButton: true,
+                            color: primaryColor,
+                            size: 50,
+                            shape: GFButtonShape.pills,
+                            icon: controller.isLoginProcessing.value
+                                ? const GFLoader(
+                                    type: GFLoaderType.circle,
+                                    loaderColorOne: Colors.white,
+                                    loaderColorTwo: Colors.white,
+                                    loaderColorThree: Colors.white,
+                                  )
+                                : const Icon(
+                                    FontAwesomeIcons.rightToBracket,
+                                    color: Colors.white,
+                                    size: 20,
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'Crafted with ❤️ in Yogyakarta',
+                          style: TextStyle(
+                            color: GFColors.LIGHT,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            // add custom google font
+                            fontFamily: GoogleFonts.montserrat().fontFamily,
+                          ),
+                        ),
+
                         // const SizedBox(
                         //   height: 10,
                         // ),

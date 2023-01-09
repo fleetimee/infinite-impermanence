@@ -140,17 +140,15 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                       //     ),
                       //   )
                       int.parse(data.inputKeuangan.kreditDiusulkan) > 100000000
-                          ? const GFButton(
-                              onPressed: null,
+                          ? GFButton(
+                              onPressed: () {},
                               text: 'ENABLED',
                               color: Colors.green,
-                              type: GFButtonType.outline,
                             )
-                          : const GFButton(
-                              onPressed: null,
+                          : GFButton(
+                              onPressed: () {},
                               text: 'DISABLED',
-                              color: Colors.red,
-                              type: GFButtonType.outline,
+                              color: GFColors.DANGER,
                             ),
                     ],
                   ),
@@ -269,13 +267,11 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                               onPressed: null,
                               text: 'ENABLED',
                               color: Colors.green,
-                              type: GFButtonType.outline,
                             )
-                          : const GFButton(
-                              onPressed: null,
-                              text: 'DISABLED',
-                              color: Colors.red,
-                              type: GFButtonType.outline,
+                          : GFButton(
+                              onPressed: () {},
+                              text: 'INADVISABLE',
+                              color: GFColors.DANGER,
                             ),
                     ],
                   ),
@@ -284,10 +280,6 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   ),
                   FormBuilderCheckboxGroup<Map<String, dynamic>>(
                     // enabled some of the options
-                    enabled: int.parse(data.inputKeuangan.kreditDiusulkan) <=
-                            100000000
-                        ? true
-                        : false,
                     wrapDirection: Axis.vertical,
                     checkColor: secondaryColor,
                     activeColor: primaryColor,

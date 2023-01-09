@@ -399,8 +399,11 @@ class ViewAnalisaRatio extends StatelessWidget {
                 child: FormBuilderTextField(
                   name: 'dsc_kini',
                   controller: controller.dscKini = TextEditingController(
-                    text: double.parse(data.analisaKeuangan.persenDscKini)
-                        .toStringAsFixed(1),
+                    text: double.parse(data.analisaKeuangan.persenDscKini) > 1.0
+                        ? double.parse(data.analisaKeuangan.persenDscKini)
+                            .toStringAsFixed(1)
+                        : double.parse(data.analisaKeuangan.persenDscKini)
+                            .toStringAsFixed(2),
                   ),
                   decoration: const InputDecoration(
                     labelText: 'DSC Kini',

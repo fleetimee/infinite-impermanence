@@ -142,8 +142,7 @@ Future<Uint8List> makeAnalisaKeuanganPdf(DebiturInsight debtor) async {
                   decimalSeparator: '',
                   thousandSeparator: '.',
                   precision: 0,
-                  initialValue: double.parse(
-                      debtor.inputRugiLaba!.jumlahHutang.toString()),
+                  initialValue: double.parse(debtor.inputNeraca!.pinjamanLain!),
                 ).text),
                 Spacer(
                   flex: 8,
@@ -787,7 +786,15 @@ Future<Uint8List> makeAnalisaKeuanganPdf(DebiturInsight debtor) async {
                       paddedText('Ang (P+B)'),
                       paddedText(' - Bln'),
                       SizedBox.shrink(),
-                      paddedText('-'),
+                      paddedText(MoneyMaskedTextController(
+                        decimalSeparator: '',
+                        thousandSeparator: '.',
+                        precision: 0,
+                        leftSymbol: 'Rp  ',
+                        initialValue: double.parse(
+                          debtor.inputNeraca!.angsuranPinjamanLain.toString(),
+                        ),
+                      ).text),
                     ],
                   ),
                   TableRow(
@@ -858,7 +865,7 @@ Future<Uint8List> makeAnalisaKeuanganPdf(DebiturInsight debtor) async {
                         precision: 0,
                         leftSymbol: 'Rp  ',
                         initialValue: double.parse(
-                          debtor.inputKeuangan!.angsuranRp.toString(),
+                          debtor.analisaKeuangan!.angsuranFix!,
                         ),
                       ).text),
                     ],

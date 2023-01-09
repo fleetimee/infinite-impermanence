@@ -57,11 +57,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "7587599c-f1e6-4a0b-9e7e-16b9466dfc92",
     "name": "Get Input Keuangan",
-    "url": "{{baseUrl}}api/v1/input-keuangan/2",
+    "url": "{{baseUrl}}api/v1/input-keuangan/",
     "method": "GET",
     "sortNum": 5000,
     "created": "2022-12-02T12:49:21.431Z",
-    "modified": "2022-12-02T12:49:21.431Z",
+    "modified": "2023-01-09T16:32:38.485Z",
     "headers": [],
     "params": [],
     "tests": []

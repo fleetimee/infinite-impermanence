@@ -1259,6 +1259,7 @@ class AnalisaKeuangan {
     this.totalAset,
     this.jumlahAsetKini,
     this.totalAngsuranKeseluruhan,
+    this.angsuranFix,
     this.persenOmzetKini,
     this.persenOmzetYad,
     this.persenBiayaBahanKini,
@@ -1299,6 +1300,8 @@ class AnalisaKeuangan {
   String? totalAset;
   String? jumlahAsetKini;
   String? totalAngsuranKeseluruhan;
+  String? angsuranFix;
+
   String? persenOmzetKini;
   String? persenOmzetYad;
   String? persenBiayaBahanKini;
@@ -1340,6 +1343,7 @@ class AnalisaKeuangan {
         totalAset: json["total_aset"],
         jumlahAsetKini: json["jumlah_aset_kini"],
         totalAngsuranKeseluruhan: json["total_angsuran_keseluruhan"],
+        angsuranFix: json["angsuran_fix"],
         persenOmzetKini: json["persen_omzet_kini"],
         persenOmzetYad: json["persen_omzet_yad"],
         persenBiayaBahanKini: json["persen_biaya_bahan_kini"],
@@ -1383,6 +1387,7 @@ class AnalisaKeuangan {
         "total_aset": totalAset,
         "jumlah_aset_kini": jumlahAsetKini,
         "total_angsuran_keseluruhan": totalAngsuranKeseluruhan,
+        "angsuran_fix": angsuranFix,
         "persen_omzet_kini": persenOmzetKini,
         "persen_omzet_yad": persenOmzetYad,
         "persen_biaya_bahan_kini": persenBiayaBahanKini,

@@ -273,9 +273,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   columnWidths: {
                     0: const FlexColumnWidth(0.04),
                     1: const FlexColumnWidth(0.24),
-                    2: const FlexColumnWidth(0.24),
-                    3: const FlexColumnWidth(0.24),
+                    2: const FlexColumnWidth(0.02),
+                    3: const FlexColumnWidth(0.22),
                     4: const FlexColumnWidth(0.24),
+                    5: const FlexColumnWidth(0.02),
+                    6: const FlexColumnWidth(0.22),
                   },
                   tableWidth: TableWidth.min,
                   children: [
@@ -283,46 +285,54 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('1'),
                         textUmur('Peminjam 1'),
-                        textUmur(debtor.peminjam1.toString()),
-                        textUmur('KTP  1'),
-                        textUmur(debtor.ktp1.toString()),
+                        textUmur(':'),
+                        textUmur('${debtor.peminjam1}'),
+                        textUmur('Domisili KTP  1'),
+                        textUmur(':'),
+                        textUmur('${debtor.ktp1}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 2'),
+                        textUmur(':'),
                         debtor.peminjam2 == '' || debtor.peminjam2 == null
                             ? textUmur('-')
                             : textUmur(debtor.peminjam2.toString()),
                         textUmur('KTP 2'),
+                        textUmur(':'),
                         debtor.ktp2 == 0.toString()
                             ? textUmur('-')
-                            : textUmur(debtor.ktp2.toString()),
+                            : textUmur('${debtor.ktp2}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 3'),
+                        textUmur(':'),
                         debtor.peminjam3 == '' || debtor.peminjam3 == null
                             ? textUmur('-')
-                            : textUmur(debtor.peminjam3.toString()),
-                        textUmur('No. KTP'),
-                        textUmur(debtor.noKtp1.toString()),
+                            : textUmur('${debtor.peminjam3}'),
+                        textUmur('No. KTP 1'),
+                        textUmur(':'),
+                        textUmur('${debtor.noKtp1}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Peminjam 4'),
+                        textUmur(':'),
                         debtor.peminjam4 == '' || debtor.peminjam4 == null
                             ? textUmur('-')
-                            : textUmur(debtor.peminjam4.toString()),
-                        textUmur('No. KTP'),
+                            : textUmur('${debtor.peminjam4}'),
+                        textUmur('No. KTP 2'),
+                        textUmur(':'),
                         debtor.noKtp2 == '' || debtor.noKtp2 == null
                             ? textUmur('-')
-                            : textUmur(debtor.noKtp2.toString()),
+                            : textUmur('${debtor.noKtp2}'),
                       ],
                     ),
                   ],
@@ -332,7 +342,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   columnWidths: {
                     0: const FlexColumnWidth(0.04),
                     1: const FlexColumnWidth(0.24),
-                    2: const FlexColumnWidth(0.72),
+                    2: const FlexColumnWidth(0.02),
+                    3: const FlexColumnWidth(0.70),
                   },
                   tableWidth: TableWidth.min,
                   children: [
@@ -340,34 +351,38 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('2'),
                         textUmur('Alamat 1'),
-                        textUmur(debtor.alamat1.toString()),
+                        textUmur(':'),
+                        textUmur('${debtor.alamat1}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Alamat 2'),
+                        textUmur(':'),
                         debtor.alamat2 == '' || debtor.alamat2 == null
                             ? textUmur('-')
-                            : textUmur(debtor.alamat2.toString()),
+                            : textUmur('${debtor.alamat2}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Alamat 3'),
+                        textUmur(':'),
                         debtor.alamat3 == '' || debtor.alamat3 == null
                             ? textUmur('-')
-                            : textUmur(debtor.alamat3.toString()),
+                            : textUmur('${debtor.alamat3}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur(''),
                         textUmur('Alamat 4'),
+                        textUmur(':'),
                         debtor.alamat4 == '' || debtor.alamat4 == null
                             ? textUmur('-')
-                            : textUmur(debtor.alamat4.toString()),
+                            : textUmur('${debtor.alamat4}'),
                       ],
                     ),
                   ],
@@ -376,9 +391,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   columnWidths: {
                     0: const FlexColumnWidth(0.04),
                     1: const FlexColumnWidth(0.24),
-                    2: const FlexColumnWidth(0.24),
-                    3: const FlexColumnWidth(0.24),
+                    2: const FlexColumnWidth(0.02),
+                    3: const FlexColumnWidth(0.22),
                     4: const FlexColumnWidth(0.24),
+                    5: const FlexColumnWidth(0.02),
+                    6: const FlexColumnWidth(0.22),
                   },
                   tableWidth: TableWidth.min,
                   children: [
@@ -386,30 +403,36 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('3'),
                         textUmur('Lamanya berusaha (tahun)'),
-                        textUmur(debtor.lamanyaBerusaha.toString()),
+                        textUmur(':'),
+                        textUmur('${debtor.lamanyaBerusaha}'),
                         textUmur('Pekerjaan 1'),
-                        textUmur(debtor.pekerjaan1.toString()),
+                        textUmur(':'),
+                        textUmur('${debtor.pekerjaan1}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur('4'),
                         textUmur('Tempat tgl lahir'),
+                        textUmur(':'),
                         textUmur('${debtor.tempatLahir}, ${
                             // DateTime Format to dd-mm-yyyy
                             DateFormat('dd/MM/yyyy').format(DateTime.parse(debtor.tanggalLahir.toString()))}'),
                         textUmur('Pekerjaan 2'),
+                        textUmur(':'),
                         debtor.pekerjaan2 == '' || debtor.pekerjaan2 == null
                             ? textUmur('-')
-                            : textUmur(debtor.pekerjaan2.toString()),
+                            : textUmur('${debtor.pekerjaan2}'),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur('5'),
                         textUmur('Pendidikan'),
+                        textUmur(':'),
                         textUmur(debtor.pendidikan.toString()),
                         textUmur('Bidang Usaha'),
+                        textUmur(':'),
                         textUmur(debtor.bidangUsaha.toString()),
                       ],
                     ),
@@ -417,8 +440,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('6'),
                         textUmur('Jenis Usaha'),
+                        textUmur(':'),
                         textUmur(debtor.jenisUsaha.toString()),
                         textUmur('Lokasi Usaha'),
+                        textUmur(':'),
                         textUmur(debtor.lokasiUsaha.toString()),
                       ],
                     ),
@@ -426,8 +451,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('7'),
                         textUmur('SKPK NO'),
+                        textUmur(':'),
                         textUmur(debtor.noSkpk.toString()),
                         textUmur('Umur'),
+                        textUmur(':'),
                         textUmur(debtor.umur.toString()),
                       ],
                     ),
@@ -435,9 +462,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('8'),
                         textUmur('Tanggal'),
+                        textUmur(':'),
                         textUmur(DateFormat('EEEE, dd MMMM, yyyy').format(
                             DateTime.parse(debtor.tglSekarang.toString()))),
                         textUmur('Status Kel'),
+                        textUmur(':'),
                         textUmur(
                             '${debtor.statusKeluarga} Anak ${debtor.jumlahTanggungan}'),
                       ],
@@ -446,6 +475,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Deskripsi data pemohon'),
+                        textUmur(':'),
+                        textUmur(''),
                         textUmur(''),
                         textUmur(''),
                         textUmur(''),
@@ -485,9 +516,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   columnWidths: {
                     0: const FlexColumnWidth(0.04),
                     1: const FlexColumnWidth(0.24),
-                    2: const FlexColumnWidth(0.24),
-                    3: const FlexColumnWidth(0.24),
+                    2: const FlexColumnWidth(0.02),
+                    3: const FlexColumnWidth(0.22),
                     4: const FlexColumnWidth(0.24),
+                    5: const FlexColumnWidth(0.02),
+                    6: const FlexColumnWidth(0.22),
                   },
                   tableWidth: TableWidth.min,
                   children: [
@@ -495,6 +528,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('9'),
                         textUmur('Kredit yang diajukan'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -504,6 +538,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               debtor.inputKeuangan!.kreditDiusulkan.toString()),
                         ).text),
                         textUmur('Angsuran (bulan)'),
+                        textUmur(':'),
                         textUmurR(debtor.inputKeuangan!.angsuran.toString()),
                       ],
                     ),
@@ -511,8 +546,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('10'),
                         textUmur('Provisi (%)'),
+                        textUmur(':'),
                         textUmur(debtor.inputKeuangan!.provisi.toString()),
                         textUmur('Sistim Angsuran'),
+                        textUmur(':'),
                         textUmur(
                             debtor.inputKeuangan!.sistemAngsuran.toString()),
                       ],
@@ -521,9 +558,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('11'),
                         textUmur('Digunakan untuk'),
+                        textUmur(':'),
                         textUmur(
                             debtor.inputKeuangan!.digunakanUntuk.toString()),
                         textUmur('Jumlah Angsuran'),
+                        textUmur(':'),
                         textUmurR((MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -540,6 +579,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmur(''),
                         textUmur(''),
+                        textUmur(''),
+                        textUmur(':'),
                         textUmurR((MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -554,20 +595,24 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('12'),
                         textUmur('Pinjaman Lainnya (Rp)'),
+                        textUmur(':'),
                         textUmurR((MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
                           leftSymbol: 'Rp. ',
                           precision: 0,
-                          initialValue: 0,
+                          initialValue:
+                              double.parse(debtor.inputNeraca!.pinjamanLain!),
                         ).text)),
                         textUmur('Ang/bln pinj lain'),
+                        textUmur(':'),
                         textUmurR((MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
                           leftSymbol: 'Rp. ',
                           precision: 0,
-                          initialValue: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.angsuranPinjamanLain!),
                         ).text)),
                       ],
                     ),
@@ -575,6 +620,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('13'),
                         textUmur('Nilai aset (diluar rumah)'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -590,12 +636,14 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                         ).text),
                         textUmur('Asumsi'),
                         textUmur(''),
+                        textUmur(''),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur('14'),
                         textUmur('Penjualan/bln yll'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -605,6 +653,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               debtor.inputKeuangan!.penjualanKini.toString()),
                         ).text),
                         textUmur('Penjualan yad'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -619,6 +668,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('15'),
                         textUmur('Biaya HPP/bln yll'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -629,6 +679,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               .toString()),
                         ).text),
                         textUmur('Biaya HPP/bln yad'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -644,6 +695,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('16'),
                         textUmur('Biaya upah'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -653,6 +705,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               debtor.inputKeuangan!.biayaUpahKini.toString()),
                         ).text),
                         textUmur('Biaya upah/bln yad'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -667,6 +720,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('17'),
                         textUmur('Biaya operasional'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -677,6 +731,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               .toString()),
                         ).text),
                         textUmur('Biaya operasional/bln yad'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -692,6 +747,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('18'),
                         textUmur('Biaya hidup'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -701,6 +757,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               debtor.inputKeuangan!.biayaHidupKini.toString()),
                         ).text),
                         textUmur('Biaya hidup/bln yad'),
+                        textUmur(':'),
                         textUmurR(MoneyMaskedTextController(
                           decimalSeparator: '',
                           thousandSeparator: '.',
@@ -716,8 +773,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('19'),
                         textUmur('Bunga /thn (%)'),
+                        textUmur(':'),
                         textUmurR('${debtor.inputKeuangan!.bungaPerTahun}'),
                         textUmur('Trade cycle MK'),
+                        textUmur(':'),
                         textUmurR(double.parse(
                                 debtor.inputKeuangan!.tradeCycle.toString())
                             .toStringAsFixed(1)),
@@ -727,7 +786,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('20'),
                         textUmur('Jangka waktu (bulan)'),
+                        textUmur(':'),
                         textUmurR('${debtor.inputKeuangan!.angsuran}'),
+                        textUmur(''),
                         textUmur(''),
                         textUmur(''),
                       ],
@@ -736,6 +797,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur('Deskripsi data keuangan'),
+                        textUmur(':'),
+                        textUmur(''),
                         textUmur(''),
                         textUmur(''),
                         textUmur(''),
@@ -787,9 +850,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.02),
+                6: const FlexColumnWidth(0.22),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -797,6 +862,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('21'),
                     textUmur('Barang agunan'),
+                    textUmur(':'),
+                    textUmur(''),
                     textUmur(''),
                     textUmur(''),
                     textUmur(''),
@@ -1117,9 +1184,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.02),
+                6: const FlexColumnWidth(0.22),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1127,8 +1196,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('22'),
                     textUmur('Asuransi'),
+                    textUmur(':'),
                     textUmur(''),
                     textUmur('Rp. '),
+                    textUmur(':'),
                     textUmur(''),
                   ],
                 ),
@@ -1138,9 +1209,11 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.02),
+                6: const FlexColumnWidth(0.22),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1148,8 +1221,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('23'),
                     textUmur('Nilai Agunan (Rp)'),
+                    textUmur(':'),
                     textUmur(''),
                     textUmur('Bukti Kepemilikan'),
+                    textUmur(''),
                     textUmur(''),
                   ],
                 ),
@@ -1159,8 +1234,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1168,6 +1244,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('a. Tanah'),
+                    textUmur(':'),
                     formAgunanTanah != null
                         ? textUmurR(MoneyMaskedTextController(
                                 precision: 0,
@@ -1197,8 +1274,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1206,6 +1284,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('b. Tanah dan Bangunan'),
+                    textUmur(':'),
                     formAgunanTanahBangunan != null
                         ? textUmurR(MoneyMaskedTextController(
                                 precision: 0,
@@ -1236,8 +1315,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1245,6 +1325,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('c. Kendaraan'),
+                    textUmur(':'),
                     formKendaraan != null
                         ? textUmurR(MoneyMaskedTextController(
                                 precision: 0,
@@ -1274,8 +1355,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1283,6 +1365,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('d. Mesin & Peralatan'),
+                    textUmur(':'),
                     formPeralatan != null
                         ? textUmurR(MoneyMaskedTextController(
                                 precision: 0,
@@ -1312,8 +1395,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1321,6 +1405,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('e. Cash Collateral'),
+                    textUmur(':'),
                     formCash != null
                         ? textUmurR(MoneyMaskedTextController(
                                 precision: 0,
@@ -1350,8 +1435,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1359,6 +1445,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('f. Kios / Los Pasar'),
+                    textUmur(':'),
                     formLos != null
                         ? textUmurR(MoneyMaskedTextController(
                                 precision: 0,
@@ -1388,9 +1475,9 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
-                4: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1398,6 +1485,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('f. Lainnya'),
+                    textUmur(':'),
                     formLainnya != null
                         ? textUmur(MoneyMaskedTextController(
                                 precision: 0,
@@ -1415,7 +1503,6 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                             .text)
                         : textUmur(''),
                     textUmur(''),
-                    textUmur(''),
                   ],
                 ),
               ],
@@ -1424,9 +1511,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.24),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1434,6 +1522,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('24'),
                     textUmur('Bukti Kepemilikan agunan'),
+                    textUmur(':'),
                     textUmur('Yang terlampir diatas'),
                     textUmur(''),
                     textUmur(''),
@@ -1443,6 +1532,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur('25'),
                     textUmur('Ijin yang dimiliki (legitimasi)'),
+                    textUmur(':'),
                     textUmur('${debtor.ijinLegitimasi?.jenisIjin}'),
                     textUmur('${debtor.ijinLegitimasi?.keteranganIjin}'),
                     textUmur(''),
@@ -1452,6 +1542,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Deskripsi Agunan'),
+                    textUmur(':'),
                     textUmur(''),
                     textUmur(''),
                     textUmur(''),
@@ -1691,8 +1782,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
             Table(
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
-                1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.72),
+                1: const FlexColumnWidth(0.72),
+                2: const FlexColumnWidth(0.28),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1722,9 +1813,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.24),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1732,6 +1824,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmurBoldLeft('Hasil Kesimpulan'),
+                    textUmur(''),
                     textUmur(''),
                     textUmurBoldLeft(''),
                     textUmur(''),
@@ -1741,6 +1834,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('ROE (min 10%)'),
+                    textUmur(':'),
                     textUmurR(debtor.analisaKeuangan!.persenRoeYad.toString()),
                     textUmur(debtor.analisaKeuangan!.keteranganRoe.toString()),
                     textUmur(''),
@@ -1750,6 +1844,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('ROA (min 8%)'),
+                    textUmur(':'),
                     textUmurR(debtor.analisaKeuangan!.persenRoaYad.toString()),
                     textUmur(debtor.analisaKeuangan!.keteranganRoa.toString()),
                     textUmur(''),
@@ -1759,6 +1854,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('DER (max 200%)'),
+                    textUmur(':'),
                     textUmurR(debtor.analisaKeuangan!.persenDerYad.toString()),
                     textUmur(debtor.analisaKeuangan!.keteranganDer
                         .toString()
@@ -1770,6 +1866,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('DSC (min 1,3 kali)'),
+                    textUmur(':'),
                     textUmurR(debtor.analisaKeuangan!.persenDscYad.toString()),
                     textUmur(debtor.analisaKeuangan!.keteranganDsc
                         .toString()
@@ -1783,6 +1880,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     debtor.inputKeuangan!.digunakanUntuk == 'Investasi'
                         ? textUmur('Maximum kebutuhan investasi')
                         : textUmur('Maximum kebutuhan modal kerja'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1800,6 +1898,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Maximum kredit yang diberikan'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1822,9 +1921,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.24),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1832,6 +1932,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Penghasilan Bersih'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1848,6 +1949,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Angsuran / Bulan'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1864,6 +1966,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Ttl Angsuran / Bulan'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1883,9 +1986,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.24),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1895,6 +1999,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     debtor.inputKeuangan!.digunakanUntuk == 'Investasi'
                         ? textUmur('Keb Investasi')
                         : textUmur('Keb Modal Kerja'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1912,6 +2017,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Keb Kredit'),
+                    textUmur(':'),
                     textUmurR(MoneyMaskedTextController(
                       decimalSeparator: '',
                       thousandSeparator: '.',
@@ -1932,9 +2038,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
                 4: const FlexColumnWidth(0.24),
+                5: const FlexColumnWidth(0.24),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1942,6 +2049,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmurBoldLeft('Data Bank'),
+                    textUmur(''),
                     textUmur(''),
                     textUmurBoldLeft(''),
                     textUmur(''),
@@ -1953,9 +2061,10 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
               columnWidths: {
                 0: const FlexColumnWidth(0.04),
                 1: const FlexColumnWidth(0.24),
-                2: const FlexColumnWidth(0.24),
-                3: const FlexColumnWidth(0.48),
-                4: const FlexColumnWidth(0.24),
+                2: const FlexColumnWidth(0.02),
+                3: const FlexColumnWidth(0.22),
+                4: const FlexColumnWidth(0.48),
+                5: const FlexColumnWidth(0.24),
               },
               tableWidth: TableWidth.min,
               children: [
@@ -1963,6 +2072,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Pemutus'),
+                    textUmur(':'),
                     // textUmur(debtor.pengajuan![0].user?.length == 3
                     //     ? debtor.pengajuan![0].user![2].displayName!
                     //     : '-'),
@@ -1981,6 +2091,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Analis'),
+                    textUmur(':'),
                     debtor.pengajuan!.isEmpty
                         ? textUmur('')
                         : debtor.pengajuan![0].user!.isEmpty
@@ -1996,6 +2107,8 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Komite'),
+                    textUmur(':'),
+
                     debtor.pengajuan!.isEmpty
                         ? textUmur('')
                         : debtor.pengajuan![0].user!.isEmpty
@@ -2012,6 +2125,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Cabang'),
+                    textUmur(':'),
                     textUmur(''),
                     textUmur(''),
                   ],
@@ -2020,6 +2134,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Kota'),
+                    textUmur(':'),
                     textUmur(''),
                     textUmur(''),
                   ],
@@ -2046,6 +2161,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('Kode Pos Lokasi Usaha'),
+                    textUmur(':'),
                     textUmur(''),
                     textUmur(''),
                   ],
@@ -2054,6 +2170,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('No. Telp Peminjam'),
+                    textUmur(':'),
                     textUmur(debtor.noHp.toString()),
                     textUmur(''),
                   ],
@@ -2062,6 +2179,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                   children: [
                     textUmur(''),
                     textUmur('NPWP'),
+                    textUmur(':'),
                     textUmur(debtor.npwp.toString()),
                     textUmur(''),
                   ],

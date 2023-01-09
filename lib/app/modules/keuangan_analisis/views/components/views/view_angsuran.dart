@@ -32,6 +32,52 @@ class ViewAngsuran extends StatelessWidget {
                 height: 15,
               ),
               const Text(
+                'Angsuran Lain (Bank / Non Bank)',
+                style: TextStyle(
+                  fontSize: 22,
+                ),
+                textAlign: TextAlign.left,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              FormBuilderTextField(
+                name: 'total_angsuran_lain',
+                readOnly: true,
+                controller: controller.angsuranPerBulanLainAtas =
+                    MoneyMaskedTextController(
+                        thousandSeparator: '.',
+                        decimalSeparator: '',
+                        precision: 0,
+                        initialValue: double.parse(
+                            data.inputNeraca.angsuranPinjamanLain)),
+                decoration: InputDecoration(
+                  labelText: 'Angsuran Dibayarkan',
+                  prefixText: 'Rp. ',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+              )
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(100, 0, 100, 0),
+            child: Divider(
+              height: 60,
+              thickness: 1,
+              color: primaryColor,
+            ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              const SizedBox(
+                height: 15,
+              ),
+              const Text(
                 'Angsuran Bank BPD DIY',
                 style: TextStyle(
                   fontSize: 22,
@@ -92,6 +138,7 @@ class ViewAngsuran extends StatelessWidget {
                 children: [
                   Expanded(
                     child: FormBuilderDropdown(
+                      enabled: false,
                       decoration: InputDecoration(
                         labelText: 'Status',
                         border: OutlineInputBorder(
@@ -179,7 +226,7 @@ class ViewAngsuran extends StatelessWidget {
                             decimalSeparator: '',
                             precision: 0,
                             initialValue:
-                                double.parse(data.inputKeuangan.angsuranRp)),
+                                double.parse(data.analisaKeuangan.angsuranFix)),
                     enabled: false,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(

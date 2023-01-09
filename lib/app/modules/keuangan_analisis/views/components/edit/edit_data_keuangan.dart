@@ -133,7 +133,7 @@ class EditDataKeuangan extends StatelessWidget {
                       thousandSeparator: '.',
                       precision: 0,
                       initialValue:
-                          double.parse(data.inputRugiLaba.hutangLainnya)),
+                          double.parse(data.inputNeraca.pinjamanLain)),
                   decoration: InputDecoration(
                     prefixText: 'Rp. ',
                     labelText: 'Pinjaman lain (bank/non bank)',

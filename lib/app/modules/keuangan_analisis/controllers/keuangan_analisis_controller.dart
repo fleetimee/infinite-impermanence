@@ -472,6 +472,7 @@ class KeuanganAnalisisController extends GetxController
       'total_aset': equityInput.text.replaceAll('.', ''),
       'jumlah_aset_kini': netWorth.text.replaceAll('.', ''),
       'total_angsuran_keseluruhan': netWorthPlusCredit.text.replaceAll('.', ''),
+      'angsuran_fix': totalAngsuran.text.replaceAll('.', ''),
       'persen_omzet_kini': omzetKiniPercent.text,
       'persen_omzet_yad': omzetYADPercent.text,
       'persen_biaya_bahan_kini': biayaBahanKiniPercent.text,

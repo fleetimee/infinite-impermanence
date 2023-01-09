@@ -291,7 +291,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       height: 8,
                     ),
                     const Text(
-                      'Perkiraan ini menunjukkan jumlah persediaan bahan baku yang berhubungan usaha,  sebagai berikut :',
+                      'Perkiraan ini menunjukkan jumlah persediaan bahan baku, barang dagangan yang berhubungan usaha,  sebagai berikut :',
                       style: heading2,
                     ),
                   ],
@@ -584,6 +584,83 @@ class EditNeracaView extends GetView<InputNeracaController> {
                 ),
                 const SizedBox(
                   height: 35.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Pinjaman Lain (Bank / Non Bank)', style: heading1),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Text(
+                      'Perkiraan ini tidak dimasukkan kedalam neraca, tetapi akan menjadi parameter perhitungan pada Analisa Keungan nanti (Isi 0 jika tidak ada)',
+                      style: heading2,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                // ! Pinjaman Lain Table
+                SizedBox(
+                  height: 300,
+                  child: DataTable2(
+                    border: TableBorder.all(color: Colors.black),
+                    columns: const [
+                      DataColumn2(label: Text('Keterangan')),
+                      DataColumn2(label: Text('Nilai (Rp)')),
+                    ],
+                    rows: [
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                              Text('Total Pinjaman Lain (Bank / Non Bank)')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'total_pinjaman_lain',
+                              controller: controller.pinjamanLain =
+                                  MoneyMaskedTextController(
+                                initialValue: double.parse(data.pinjamanLain),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              validator: FormBuilderValidators.required(),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefixText: 'Rp. ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Angsuran per Bulan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'angsuranPinjamanLain',
+                              validator: FormBuilderValidators.required(),
+                              controller: controller.angsuranPinjamanLain =
+                                  MoneyMaskedTextController(
+                                initialValue:
+                                    double.parse(data.angsuranPinjamanLain),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefixText: 'Rp. ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 GFButton(
                   onPressed: () {

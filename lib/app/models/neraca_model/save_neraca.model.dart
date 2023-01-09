@@ -27,6 +27,8 @@ class NeracaInput {
     this.kendaraan,
     this.tanahDanBangunan,
     this.aktivaTetap,
+    this.pinjamanLain,
+    this.angsuranPinjamanLain,
     this.debitur,
     this.inputRugiLaba,
   });
@@ -44,6 +46,8 @@ class NeracaInput {
   String? kendaraan;
   String? tanahDanBangunan;
   String? aktivaTetap;
+  String? pinjamanLain;
+  String? angsuranPinjamanLain;
   Debitur? debitur;
   dynamic inputRugiLaba;
 
@@ -63,6 +67,8 @@ class NeracaInput {
         kendaraan: json["kendaraan"],
         tanahDanBangunan: json["tanah_bangunan"],
         aktivaTetap: json["aktiva_tetap"] ?? null,
+        pinjamanLain: json["pinjaman_lain"],
+        angsuranPinjamanLain: json["angsuran_pinjaman_lain"],
         debitur:
             json["debitur"] == null ? null : Debitur.fromJson(json["debitur"]),
         inputRugiLaba: json["inputRugiLaba"],
@@ -84,6 +90,8 @@ class NeracaInput {
         "kendaraan": kendaraan,
         "tanah_bangunan": tanahDanBangunan,
         "aktiva_tetap": aktivaTetap ?? null,
+        "pinjaman_lain": pinjamanLain,
+        "angsuran_pinjaman_lain": angsuranPinjamanLain,
         "debitur": debitur == null ? null : debitur?.toJson(),
         "inputRugiLaba": inputRugiLaba,
       };

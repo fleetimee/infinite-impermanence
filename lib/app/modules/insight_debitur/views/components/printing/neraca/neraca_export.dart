@@ -268,7 +268,7 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur(''),
                         textUmur(
-                            'Perkiraan ini menunjukkan jumlah persediaan bahan baku yang berhubungan usaha, sebagai berikut :'),
+                            'Perkiraan ini menunjukkan jumlah persediaan bahan baku, barang dagangan yang berhubungan usaha, sebagai berikut :'),
                       ],
                     ),
                   ],

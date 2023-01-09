@@ -53,6 +53,10 @@ class InputNeracaController extends GetxController {
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var aktivaTetap = MoneyMaskedTextController(
       decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var pinjamanLain = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
+  var angsuranPinjamanLain = MoneyMaskedTextController(
+      decimalSeparator: '', thousandSeparator: '.', precision: 0);
   var debitur = TextEditingController();
   var tanggalInput = DateTime.now().obs;
 
@@ -72,6 +76,8 @@ class InputNeracaController extends GetxController {
       'kendaraan': kendaraan.text.replaceAll('.', ''),
       'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
+      "pinjaman_lain": pinjamanLain.text.replaceAll('.', ''),
+      "angsuran_pinjaman_lain": angsuranPinjamanLain.text.replaceAll('.', ''),
       'debitur': debitur.text,
     };
     try {
@@ -123,6 +129,8 @@ class InputNeracaController extends GetxController {
       'kendaraan': kendaraan.text.replaceAll('.', ''),
       'tanah_bangunan': tanahDanBangunan.text.replaceAll('.', ''),
       'aktiva_tetap': aktivaTetap.text.replaceAll('.', ''),
+      "pinjaman_lain": pinjamanLain.text.replaceAll('.', ''),
+      "angsuran_pinjaman_lain": angsuranPinjamanLain.text.replaceAll('.', ''),
     };
     try {
       isNeracaProcessing(true);

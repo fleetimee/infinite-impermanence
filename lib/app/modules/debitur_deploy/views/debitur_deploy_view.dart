@@ -36,17 +36,6 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // Align(
-                  //   alignment: Alignment.center,
-                  //   child: Lottie.asset(
-                  //     'assets/images/home/farmer.zip',
-                  //     repeat: true,
-                  //     fit: BoxFit.contain,
-                  //     height: 350,
-                  //     frameRate: FrameRate.max,
-                  //   ),
-                  // ),
-
                   Text(
                     'Data Peminjam',
                     style: GoogleFonts.poppins(
@@ -675,8 +664,6 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.numeric(),
-                      FormBuilderValidators.min(1,
-                          errorText: 'Jumlah tanggungan minimal 1 orang'),
                       FormBuilderValidators.max(99,
                           errorText: 'Jumlah tanggungan maksimal 99 orang'),
                       FormBuilderValidators.maxLength(2,

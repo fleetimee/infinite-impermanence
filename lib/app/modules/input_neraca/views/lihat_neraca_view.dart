@@ -334,7 +334,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                       height: 8,
                     ),
                     const Text(
-                      'Perkiraan ini menunjukkan jumlah persediaan bahan baku yang berhubungan usaha,  sebagai berikut :',
+                      'Perkiraan ini menunjukkan jumlah persediaan bahan baku, barang dagangan yang berhubungan usaha,  sebagai berikut :',
                       style: heading2,
                     ),
                   ],
@@ -613,34 +613,88 @@ class LihatneracaView extends GetView<InputNeracaController> {
                     ],
                   ),
                 ),
-                // const SizedBox(
-                //   height: 8.0,
-                // ),
-                // OutlinedButton.icon(
-                //   icon: const Icon(FontAwesomeIcons.paperPlane),
-                //   label: const Text(
-                //     "Submit",
-                //     style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
-                //   ),
-                //   style: OutlinedButton.styleFrom(
-                //       foregroundColor: secondaryColor,
-                //       backgroundColor: primaryColor,
-                //       shape: const StadiumBorder(),
-                //       maximumSize: const Size.fromWidth(double.infinity),
-                //       fixedSize: const Size(500, 50)),
-                //   onPressed: () {
-                //     if (controller.formKey.currentState?.saveAndValidate() ??
-                //         false) {
-                //       debugPrint(
-                //           controller.formKey.currentState?.value.toString());
-                //       controller.saveNeraca();
-                //     } else {
-                //       debugPrint(
-                //           controller.formKey.currentState?.value.toString());
-                //       debugPrint('validation failed');
-                //     }
-                //   },
-                // ),
+                const SizedBox(
+                  height: 35.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Pinjaman Lain (Bank / Non Bank)', style: heading1),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    const Text(
+                      'Perkiraan ini tidak dimasukkan kedalam neraca, tetapi akan menjadi parameter perhitungan pada Analisa Keungan nanti (Isi 0 jika tidak ada)',
+                      style: heading2,
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                SizedBox(
+                  height: 300,
+                  child: DataTable2(
+                    border: TableBorder.all(color: Colors.black),
+                    columns: const [
+                      DataColumn2(label: Text('Keterangan')),
+                      DataColumn2(label: Text('Nilai (Rp)')),
+                    ],
+                    rows: [
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                              Text('Total Pinjaman Lain (Bank / Non Bank)')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'total_pinjaman_lain',
+                              enabled: false,
+                              controller: controller.pinjamanLain =
+                                  MoneyMaskedTextController(
+                                initialValue:
+                                    double.parse(data.inputNeraca.pinjamanLain),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              validator: FormBuilderValidators.required(),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefixText: 'Rp. ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Angsuran per Bulan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'angsuranPinjamanLain',
+                              enabled: false,
+                              validator: FormBuilderValidators.required(),
+                              controller: controller.angsuranPinjamanLain =
+                                  MoneyMaskedTextController(
+                                initialValue: double.parse(
+                                    data.inputNeraca.angsuranPinjamanLain),
+                                thousandSeparator: '.',
+                                decimalSeparator: '',
+                                precision: 0,
+                              ),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefixText: 'Rp. ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),

@@ -12,7 +12,7 @@ import 'package:akm/firebase_options.dart';
 
 // For mobile based
 
-// const baseUrl = 'http://10.0.2.2:3000/api/v1/';
+const baseUrl = 'http://10.0.2.2:3000/api/v1/';
 
 // check if platform is web
 
@@ -26,7 +26,7 @@ import 'package:akm/firebase_options.dart';
 // const baseUrl =
 //     'https://a7c0-2001-448a-4042-4f35-8424-246-2c77-5cda.ap.ngrok.io/api/v1/';
 
-const baseUrl = 'https://novian-backup.vviia.repl.co/api/v1/';
+// const baseUrl = 'https://novian-backup.vviia.repl.co/api/v1/';
 
 // List debitur field string
 const field =

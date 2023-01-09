@@ -62,6 +62,8 @@ class LoginPageView extends GetView<LoginPageController> {
                             children: [
                               FormBuilderTextField(
                                 name: 'email',
+                                enableSuggestions: true,
+                                autocorrect: true,
                                 style: TextStyle(
                                   color: Colors.black87,
                                   fontSize: 20,
@@ -73,6 +75,7 @@ class LoginPageView extends GetView<LoginPageController> {
                                 controller: controller.email,
                                 cursorColor: Colors.black,
                                 cursorHeight: 20,
+                                textInputAction: TextInputAction.next,
                                 decoration: InputDecoration(
                                   alignLabelWithHint: true,
                                   prefixIcon: const Icon(

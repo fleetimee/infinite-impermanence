@@ -388,7 +388,7 @@ class LihatneracaView extends GetView<InputNeracaController> {
                       height: 8,
                     ),
                     const Text(
-                      'Perkiraan ini menunjukkan jumlah aktiva tetap, sebagai berikut :',
+                      'Perkiraan ini menunjukkan jumlah hutang usaha, sebagai berikut :',
                       style: heading2,
                     ),
                   ],

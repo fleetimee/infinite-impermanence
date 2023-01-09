@@ -25,7 +25,7 @@ class ViewDataKeuangan extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,7 +129,7 @@ class ViewDataKeuangan extends StatelessWidget {
                       thousandSeparator: '.',
                       precision: 0,
                       initialValue:
-                          double.parse(data.inputRugiLaba.hutangLainnya)),
+                          double.parse(data.inputNeraca.pinjamanLain)),
                   decoration: InputDecoration(
                     prefixText: 'Rp. ',
                     labelText: 'Pinjaman lain (bank/non bank)',

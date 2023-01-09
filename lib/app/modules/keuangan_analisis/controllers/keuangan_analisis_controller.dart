@@ -134,6 +134,12 @@ class KeuanganAnalisisController extends GetxController
     thousandSeparator: '.',
     precision: 0,
   );
+  var pinjamanBankLain = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+  );
+
   var netWorth = MoneyMaskedTextController(
     decimalSeparator: '',
     thousandSeparator: '.',
@@ -951,7 +957,7 @@ class KeuanganAnalisisController extends GetxController
 
   void hitungTotalAngsuran() {
     final parseTotalBungaLainAtas =
-        int.parse(totalBungaLainAtas.text.replaceAll('.', ''));
+        int.parse(angsuranPerBulanLainAtas.text.replaceAll('.', ''));
     final parseTotalBungaLainBawah =
         int.parse(totalBungaLainBawah.text.replaceAll('.', ''));
     final parseTotalBunga = int.parse(totalBunga.text.replaceAll('.', ''));
@@ -1153,13 +1159,14 @@ class KeuanganAnalisisController extends GetxController
     isRoeLoading.value = true;
 
     final parseLabaUsaha = int.parse(labaUsahaKini.text.replaceAll('.', ''));
-    final parseTotalAngsuran =
-        int.parse(totalAngsuran.text.replaceAll('.', ''));
+    final parseAngsuranBankBpd = int.parse(totalBunga.text.replaceAll('.', ''));
     final parseModal = int.parse(equityInput.text.replaceAll('.', ''));
 
     final parseLabaUsahaYad = int.parse(labaUsahaYAD.text.replaceAll('.', ''));
+    final parseTotalAngsuran =
+        int.parse(totalAngsuran.text.replaceAll('.', ''));
 
-    final firstCount = parseLabaUsaha - parseTotalAngsuran;
+    final firstCount = parseLabaUsaha - parseAngsuranBankBpd;
     final parseModalPercentage = parseModal / 100;
     final secondCount = firstCount / parseModalPercentage;
     final thirdCount = secondCount * 24;
@@ -1395,7 +1402,7 @@ class KeuanganAnalisisController extends GetxController
     isDscLoading.value = true;
 
     final parseLabaUsahaKini =
-        int.parse(labaUsahaKini.text.replaceAll('.', ''));
+        double.parse(labaUsahaKini.text.replaceAll('.', ''));
     final parseLabaYad = double.parse(labaUsahaYAD.text.replaceAll('.', ''));
     final parseTotalAngsuran =
         double.parse(totalAngsuran.text.replaceAll('.', ''));
@@ -1403,8 +1410,21 @@ class KeuanganAnalisisController extends GetxController
     final firstCount = parseLabaUsahaKini / parseTotalAngsuran;
     final secondCount = parseLabaYad / parseTotalAngsuran;
 
-    dscKini.text = firstCount.toStringAsFixed(1);
-    dscYAD.text = secondCount.toStringAsFixed(1);
+    // if firstcount < 1.0 then toStringAsFixed(2) else toStringAsFixed(1)
+    if (firstCount < 1.0) {
+      dscKini.text = firstCount.toStringAsFixed(2);
+    } else {
+      dscKini.text = firstCount.toStringAsFixed(1);
+    }
+
+    if (secondCount < 1.0) {
+      dscYAD.text = secondCount.toStringAsFixed(2);
+    } else {
+      dscYAD.text = secondCount.toStringAsFixed(1);
+    }
+
+    // dscKini.text = firstCount.toStringAsFixed(2);
+    // dscYAD.text = secondCount.toStringAsFixed(2);
 
     if (double.parse(dscYAD.text) >= double.parse(dscFixed.text)) {
       isDscDescLoading.value = true;

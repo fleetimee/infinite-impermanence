@@ -44,12 +44,14 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                     children: [
                       Animate(
                         effects: const [FadeEffect(), ScaleEffect()],
-                        child: Text('Berapa plafon kredit yang akan diajukan ?',
-                            style: GoogleFonts.poppins(
-                              color: primaryColor,
-                              fontSize: 35,
-                              fontWeight: FontWeight.w500,
-                            )),
+                        child: Text(
+                          'Berapa plafon kredit yang akan diajukan ?',
+                          style: GoogleFonts.poppins(
+                            color: primaryColor,
+                            fontSize: 35,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
                       Animate(
                         effects: const [],
@@ -57,14 +59,14 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                           name: 'plafon',
                           controller: controller.plafon,
                           style: GoogleFonts.poppins(
-                            color: secondaryColor,
+                            color: primaryColor,
                             fontSize: 28,
                             fontWeight: FontWeight.w200,
                           ),
                           decoration: const InputDecoration(
                             hintText: 'Isi disini... (angka dalam rp)',
                             hintStyle: TextStyle(
-                              color: secondaryColor,
+                              color: primaryColor,
                               fontSize: 28,
                               fontWeight: FontWeight.w200,
                             ),
@@ -86,14 +88,14 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                         name: 'tenor',
                         controller: controller.tenor,
                         style: GoogleFonts.poppins(
-                          color: secondaryColor,
+                          color: primaryColor,
                           fontSize: 28,
                           fontWeight: FontWeight.w200,
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Isi disini... (angka dlm bulan)',
                           hintStyle: TextStyle(
-                            color: secondaryColor,
+                            color: primaryColor,
                             fontSize: 28,
                             fontWeight: FontWeight.w200,
                           ),
@@ -114,14 +116,14 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                         name: 'bunga',
                         controller: controller.bunga,
                         style: GoogleFonts.poppins(
-                          color: secondaryColor,
+                          color: primaryColor,
                           fontSize: 28,
                           fontWeight: FontWeight.w200,
                         ),
                         decoration: const InputDecoration(
                           hintText: 'Isi disini... (angka dalam %)',
                           hintStyle: TextStyle(
-                            color: secondaryColor,
+                            color: primaryColor,
                             fontSize: 28,
                             fontWeight: FontWeight.w200,
                           ),
@@ -164,7 +166,7 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                         enabled: false,
                         controller: controller.hasil,
                         style: GoogleFonts.poppins(
-                          color: secondaryColor,
+                          color: primaryColor,
                           fontSize: 35,
                           fontWeight: FontWeight.w400,
                         ),
@@ -193,7 +195,7 @@ class SimulasiTetapView extends GetView<SimulasiTetapController> {
                         enabled: false,
                         controller: controller.hasil2,
                         style: GoogleFonts.poppins(
-                          color: secondaryColor,
+                          color: primaryColor,
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
                         ),

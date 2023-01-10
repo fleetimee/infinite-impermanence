@@ -53,7 +53,9 @@ class PengajuanSubmitAnalisController extends GetxController {
       'tgl_review': '1970-01-01',
       'user': [
         // ID ANALIS
-        {'id': homeCtrl.idUntukFetchInput.value},
+        {
+          'id': homeCtrl.idUntukFetchInput.value,
+        },
         // ID REVIEWER
         {'id': uuid}
       ]

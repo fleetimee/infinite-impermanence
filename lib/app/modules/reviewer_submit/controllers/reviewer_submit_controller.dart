@@ -159,22 +159,30 @@ class ReviewerSubmitController extends GetxController {
 
     String formatted = formatter.format(tglReview);
 
+    List users = [
+      // sort by first
+      {
+        "id": pengajuan.user![0].id,
+        "fcmToken": pengajuan.user![0].fcmToken,
+      },
+      // sort by second
+      {
+        "id": pengajuan.user![1].id,
+        "fcmToken": pengajuan.user![1].fcmToken,
+      },
+      {
+        "id": uuid,
+      },
+      // sort by third
+    ];
+
+    // preserve the arary order
+    users.sort((a, b) => a['id'].compareTo(b['id']));
+
     final body = {
       "status": "REVIEWED",
       "tgl_review": formatted,
-      "user": [
-        {
-          "id": pengajuan.user![0].id,
-          "fcmToken": pengajuan.user![0].fcmToken,
-        },
-        {
-          "id": pengajuan.user![1].id,
-          "fcmToken": pengajuan.user![1].fcmToken,
-        },
-        {
-          "id": uuid,
-        }
-      ],
+      "user": users,
       "bahasan_reviewer": bahasanReviewer,
       "checkReviewer": {
         "is_keuangan_approved": formKey.currentState!.fields['keuangan']?.value,

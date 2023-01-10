@@ -17,7 +17,7 @@ class PengajuanSubmitReviewProvider {
   Future<PengajuanAnalis> submitPengajuanAnalis(String id, Map body) async {
     try {
       final response = await httpClient.patch(
-        Uri.parse('${baseUrl}pengajuan/$id'),
+        Uri.parse('${baseUrl}pengajuan/$id/'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

@@ -1722,11 +1722,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "b4496258-a501-4164-8d31-3431aaebbe18",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/pengajuan/P-bus7-202316",
+    "url": "{{baseUrl}}api/v1/pengajuan/",
     "method": "GET",
     "sortNum": 1040000,
     "created": "2022-12-19T03:23:05.812Z",
-    "modified": "2023-01-10T04:49:35.885Z",
+    "modified": "2023-01-10T07:51:59.262Z",
     "headers": [],
     "params": [],
     "tests": []

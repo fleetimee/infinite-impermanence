@@ -26,7 +26,7 @@ import 'package:akm/firebase_options.dart';
 // const baseUrl =
 //     'https://a7c0-2001-448a-4042-4f35-8424-246-2c77-5cda.ap.ngrok.io/api/v1/';
 
-const baseUrl = 'https://akm-backup-one.vviia.repl.co/api/v1/';
+const baseUrl = 'https://akm-api.vviia.repl.co/api/v1/';
 
 // List debitur field string
 const field =

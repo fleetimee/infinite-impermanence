@@ -90,6 +90,22 @@ class InputKeuanganController extends GetxController
     }
   }
 
+  String interestTop =
+      "Nilai ini merupakan hasil dari inputan sebelumnya di Data Keuangan";
+  String tradeCycleDesc =
+      "Trade cycle adalah siklus perubahan dalam aktivitas ekonomi yang dapat mempengaruhi permintaan dan penawaran dana, suku bunga, dan risiko kredit dalam perbankan.";
+  String deskripsiKredit =
+      "Berapa jumlah kredit yang diminta (plafond) beserta dengan jangka waktu kredit";
+  String bungaDeskripsi =
+      "Parameter bunga untuk mendapatkan angsuran per bulannya";
+  String digunakan = "Digunakan untuk apa pinjaman ini ?";
+  String totalAngsuranDeskripsi =
+      "Berikut adalah angsuran yang dibayarkan debitur tiap bulannya";
+  String keuanganKini =
+      "Nilai ini didapatkan dari laporan keuangan yang sudah diinputkan";
+  String asumsi =
+      "Nilai ini adalah perkalian keuangan sekarang (value asumsi kini * 1.1) yang diharapkan pada waktu yang akan datang akan bertambah nilainya";
+
   final isInputKeuanganProcessing = false.obs;
 
   final debiturController = Get.put(InsightDebiturController());
@@ -108,10 +124,7 @@ class InputKeuanganController extends GetxController
   var tradeCycle = TextEditingController(text: '0');
   var hpp = TextEditingController(text: '75');
   var kreditYangDiusulkan = MoneyMaskedTextController(
-      initialValue: 0,
-      thousandSeparator: '.',
-      decimalSeparator: '',
-      precision: 0);
+      thousandSeparator: '.', decimalSeparator: '', precision: 0);
   var totalAngsuran = MoneyMaskedTextController(
       initialValue: 0,
       thousandSeparator: '.',

@@ -93,6 +93,7 @@ dependencies:
     git:
       url: https://github.com/Codelessly/ResponsiveFramework
       ref: master
+  rive: 0.9.1
   scaffold_gradient_background: ^1.0.3+1
   settings_ui: ^2.0.2
   share_plus: ^6.3.0

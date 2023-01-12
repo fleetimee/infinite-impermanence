@@ -67,364 +67,421 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                 child: TabBarView(
                   controller: controller.tabController,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Center(
-                                child: Text(
-                                  'Data Keuangan',
-                                  style: GoogleFonts.poppins(
-                                    fontSize: 25.0,
-                                    fontWeight: FontWeight.w600,
+                    SingleChildScrollView(
+                      child: Container(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 10.0,
+                                ),
+                                Center(
+                                  child: Text(
+                                    'Data Keuangan',
+                                    style: GoogleFonts.poppins(
+                                      fontSize: 25.0,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Animate(
-                                  child: const GFCard(
-                                boxFit: BoxFit.cover,
-                                titlePosition: GFPosition.start,
-                                showOverlayImage: true,
-                                imageOverlay: AssetImage(
-                                  'assets/images/home/bannerr.jpg',
-                                ),
-                                title: GFListTile(
-                                  title: Text(
+                                Animate(
+                                    child: const GFCard(
+                                  boxFit: BoxFit.cover,
+                                  titlePosition: GFPosition.start,
+                                  showOverlayImage: true,
+                                  imageOverlay: AssetImage(
+                                    'assets/images/home/bannerr.jpg',
+                                  ),
+                                  title: GFListTile(
+                                    title: Text(
+                                      '',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 47,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  content: Text(
                                     '',
                                     style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 47,
-                                      fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )
+                                        .animate()
+                                        .fadeIn() // uses `Animate.defaultDuration`
+                                        .scale() // inherits duration from fadeIn
+                                        .move(
+                                            delay: 300.ms,
+                                            duration: 600
+                                                .ms) // runs after the above w/new duration
+                                    // inherits the delay & duration from move,
+                                    ),
+                                Visibility(
+                                  visible: false,
+                                  child: FormBuilderTextField(
+                                    name: 'debitur_id',
+                                    enabled: false,
+                                    controller: controller.debitur =
+                                        TextEditingController(
+                                      text: data.id.toString(),
+                                    ),
+                                    decoration: InputDecoration(
+                                      labelText: 'Debitur ID',
+                                      prefixIcon:
+                                          const Icon(FontAwesomeIcons.person),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
                                     ),
                                   ),
                                 ),
-                                content: Text(
-                                  '',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                const SizedBox(
+                                  height: 10.0,
                                 ),
-                              )
-                                      .animate()
-                                      .fadeIn() // uses `Animate.defaultDuration`
-                                      .scale() // inherits duration from fadeIn
-                                      .move(
-                                          delay: 300.ms,
-                                          duration: 600
-                                              .ms) // runs after the above w/new duration
-                                  // inherits the delay & duration from move,
-                                  ),
-                              Visibility(
-                                visible: false,
-                                child: FormBuilderTextField(
-                                  name: 'debitur_id',
-                                  enabled: false,
-                                  controller: controller.debitur =
-                                      TextEditingController(
-                                    text: data.id.toString(),
-                                  ),
-                                  decoration: InputDecoration(
-                                    labelText: 'Debitur ID',
-                                    prefixIcon:
-                                        const Icon(FontAwesomeIcons.person),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(8),
+                                Visibility(
+                                  visible: false,
+                                  child: FormBuilderTextField(
+                                    name: 'rugi_laba_id',
+                                    enabled: false,
+                                    controller: controller.rugiLaba =
+                                        TextEditingController(
+                                      text: data.inputRugiLaba.id.toString(),
+                                    ),
+                                    decoration: InputDecoration(
+                                      labelText: 'Rugi Laba ID',
+                                      prefixIcon:
+                                          const Icon(FontAwesomeIcons.person),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 10.0,
-                              ),
-                              Visibility(
-                                visible: false,
-                                child: FormBuilderTextField(
-                                  name: 'rugi_laba_id',
-                                  enabled: false,
-                                  controller: controller.rugiLaba =
+                                const SizedBox(
+                                  height: 8.0,
+                                ),
+                                Text(
+                                  controller.deskripsiKredit,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      ?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 2,
+                                      child: FormBuilderTextField(
+                                        name: 'kredit_diusulkan',
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        validator:
+                                            FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(),
+                                        ]),
+                                        controller:
+                                            controller.kreditYangDiusulkan =
+                                                MoneyMaskedTextController(
+                                          decimalSeparator: '',
+                                          thousandSeparator: '.',
+                                          precision: 0,
+                                          initialValue: double.parse(data
+                                              .inputKeuangan.kreditDiusulkan
+                                              .toString()),
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Kredit Diusulkan',
+                                          prefixText: 'Rp. ',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Expanded(
+                                      child: FormBuilderTextField(
+                                        name: 'angsuran',
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        validator:
+                                            FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(
+                                              errorText: 'Harus diisi'),
+                                          FormBuilderValidators.maxLength(3,
+                                              errorText: 'Max 3 digit'),
+                                        ]),
+                                        controller:
+                                            controller.angsuranPerBulan =
+                                                TextEditingController(
+                                          text: data.inputKeuangan.angsuran
+                                              .toString(),
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Jangka Waktu (bln)',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                Text(
+                                  controller.bungaDeskripsi,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      ?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                ),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                FormBuilderTextField(
+                                  name: 'bunga_per_tahun',
+                                  textAlign: TextAlign.right,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  validator: FormBuilderValidators.compose([
+                                    FormBuilderValidators.required(
+                                        errorText: 'Harus diisi'),
+                                    FormBuilderValidators.numeric(),
+                                    FormBuilderValidators.min(0),
+                                    FormBuilderValidators.max(500),
+                                    FormBuilderValidators.maxLength(3,
+                                        errorText: 'Max 3 digit'),
+                                  ]),
+                                  controller: controller.bungaPerTahun =
                                       TextEditingController(
-                                    text: data.inputRugiLaba.id.toString(),
-                                  ),
+                                          text: data.inputKeuangan.bungaPerTahun
+                                              .toString()),
+                                  keyboardType: TextInputType.number,
                                   decoration: InputDecoration(
-                                    labelText: 'Rugi Laba ID',
-                                    prefixIcon:
-                                        const Icon(FontAwesomeIcons.person),
+                                    labelText: 'Bunga per tahun',
+                                    suffixText: '%',
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    flex: 2,
-                                    child: FormBuilderTextField(
-                                      name: 'kredit_diusulkan',
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(),
-                                      ]),
-                                      controller:
-                                          controller.kreditYangDiusulkan =
-                                              MoneyMaskedTextController(
-                                        decimalSeparator: '',
-                                        thousandSeparator: '.',
-                                        precision: 0,
-                                        initialValue: double.parse(data
-                                            .inputKeuangan.kreditDiusulkan
-                                            .toString()),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        labelText: 'Kredit Diusulkan',
-                                        prefixText: 'Rp. ',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: FormBuilderTextField(
+                                        name: 'provisi',
+                                        textAlign: TextAlign.right,
+                                        controller: controller.provisi =
+                                            TextEditingController(
+                                          text: data.inputKeuangan.provisi
+                                              .toString(),
+                                        ),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        validator:
+                                            FormBuilderValidators.compose([
+                                          FormBuilderValidators.required(
+                                              errorText: 'Harus diisi'),
+                                          FormBuilderValidators.numeric(),
+                                          FormBuilderValidators.min(0),
+                                          FormBuilderValidators.max(500),
+                                          FormBuilderValidators.maxLength(3,
+                                              errorText: 'Max 3 digit'),
+                                        ]),
+                                        keyboardType: TextInputType.number,
+                                        decoration: InputDecoration(
+                                          labelText: 'Provisi %',
+                                          suffixText: '%',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 16),
-                                  Expanded(
-                                    child: FormBuilderTextField(
-                                      name: 'angsuran',
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(
-                                            errorText: 'Harus diisi'),
-                                        FormBuilderValidators.maxLength(3,
-                                            errorText: 'Max 3 digit'),
-                                      ]),
-                                      controller: controller.angsuranPerBulan =
-                                          TextEditingController(
-                                        text: data.inputKeuangan.angsuran
+                                    const SizedBox(
+                                      width: 16.0,
+                                    ),
+                                    Expanded(
+                                      child: FormBuilderDropdown(
+                                        name: 'sistem_angsuran',
+                                        initialValue: data
+                                            .inputKeuangan.sistemAngsuran
                                             .toString(),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        labelText: 'Jangka Waktu (bln)',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                        validator:
+                                            FormBuilderValidators.required(),
+                                        onChanged: (value) {
+                                          controller.sistemAngsuran =
+                                              value.toString();
+                                        },
+                                        onSaved: (value) {
+                                          controller.sistemAngsuran =
+                                              value.toString();
+                                        },
+                                        items: controller.sistemAngsuranList
+                                            .map(
+                                              (element) => DropdownMenuItem(
+                                                value: element,
+                                                child: Text(element),
+                                              ),
+                                            )
+                                            .toList(),
+                                        decoration: InputDecoration(
+                                          labelText: 'Sistem Angsuran',
+                                          hintText: 'Pilih..',
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              ),
-                              FormBuilderTextField(
-                                name: 'bunga_per_tahun',
-                                textAlign: TextAlign.right,
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: FormBuilderValidators.compose([
-                                  FormBuilderValidators.required(
-                                      errorText: 'Harus diisi'),
-                                  FormBuilderValidators.numeric(),
-                                  FormBuilderValidators.min(0),
-                                  FormBuilderValidators.max(500),
-                                  FormBuilderValidators.maxLength(3,
-                                      errorText: 'Max 3 digit'),
-                                ]),
-                                controller: controller.bungaPerTahun =
-                                    TextEditingController(
-                                        text: data.inputKeuangan.bungaPerTahun
-                                            .toString()),
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  labelText: 'Bunga per tahun',
-                                  suffixText: '%',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
+                                  ],
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: FormBuilderTextField(
-                                      name: 'provisi',
-                                      textAlign: TextAlign.right,
-                                      controller: controller.provisi =
-                                          TextEditingController(
-                                        text: data.inputKeuangan.provisi
-                                            .toString(),
-                                      ),
-                                      autovalidateMode:
-                                          AutovalidateMode.onUserInteraction,
-                                      validator: FormBuilderValidators.compose([
-                                        FormBuilderValidators.required(
-                                            errorText: 'Harus diisi'),
-                                        FormBuilderValidators.numeric(),
-                                        FormBuilderValidators.min(0),
-                                        FormBuilderValidators.max(500),
-                                        FormBuilderValidators.maxLength(3,
-                                            errorText: 'Max 3 digit'),
-                                      ]),
-                                      keyboardType: TextInputType.number,
-                                      decoration: InputDecoration(
-                                        labelText: 'Provisi %',
-                                        suffixText: '%',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                      ),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                Text(
+                                  controller.digunakan,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      ?.merge(const TextStyle(fontSize: 14)),
+                                ),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                FormBuilderDropdown<String>(
+                                  name: 'digunakan_untuk',
+                                  initialValue: data
+                                      .inputKeuangan.digunakanUntuk
+                                      .toString(),
+                                  onChanged: (value) {
+                                    controller.digunakanUntuk = value!;
+                                  },
+                                  onSaved: (value) {
+                                    controller.digunakanUntuk = value!;
+                                  },
+                                  decoration: InputDecoration(
+                                    labelText: 'Digunakan Untuk',
+                                    hintText: 'Pilih..',
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    width: 16.0,
-                                  ),
-                                  Expanded(
-                                    child: FormBuilderDropdown(
-                                      name: 'sistem_angsuran',
-                                      initialValue: data
-                                          .inputKeuangan.sistemAngsuran
-                                          .toString(),
-                                      validator:
-                                          FormBuilderValidators.required(),
-                                      onChanged: (value) {
-                                        controller.sistemAngsuran =
-                                            value.toString();
-                                      },
-                                      onSaved: (value) {
-                                        controller.sistemAngsuran =
-                                            value.toString();
-                                      },
-                                      items: controller.sistemAngsuranList
-                                          .map(
-                                            (element) => DropdownMenuItem(
-                                              value: element,
-                                              child: Text(element),
-                                            ),
-                                          )
-                                          .toList(),
-                                      decoration: InputDecoration(
-                                        labelText: 'Sistem Angsuran',
-                                        hintText: 'Pilih..',
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
+                                  items: controller.digunakanUntukList
+                                      .map(
+                                        (element) => DropdownMenuItem(
+                                          value: element,
+                                          child: Text(element),
                                         ),
-                                      ),
+                                      )
+                                      .toList(),
+                                ),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                Text(controller.totalAngsuranDeskripsi,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        ?.merge(const TextStyle(fontSize: 14))),
+                                const SizedBox(
+                                  height: 16.0,
+                                ),
+                                FormBuilderTextField(
+                                  name: 'angsuran_rp',
+                                  readOnly: true,
+                                  controller: controller.totalAngsuran =
+                                      MoneyMaskedTextController(
+                                    decimalSeparator: '',
+                                    thousandSeparator: '.',
+                                    precision: 0,
+                                    initialValue: double.parse(data
+                                        .inputKeuangan.angsuranRp
+                                        .toString()),
+                                  ),
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    labelText: 'Angsuran (Rp)',
+                                    prefixIcon:
+                                        const Icon(FontAwesomeIcons.rupiahSign),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
                                     ),
                                   ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              ),
-                              FormBuilderDropdown<String>(
-                                name: 'digunakan_untuk',
-                                initialValue: data.inputKeuangan.digunakanUntuk
-                                    .toString(),
-                                onChanged: (value) {
-                                  controller.digunakanUntuk = value!;
-                                },
-                                onSaved: (value) {
-                                  controller.digunakanUntuk = value!;
-                                },
-                                decoration: InputDecoration(
-                                  labelText: 'Digunakan Untuk',
-                                  hintText: 'Pilih..',
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
                                 ),
-                                items: controller.digunakanUntukList
-                                    .map(
-                                      (element) => DropdownMenuItem(
-                                        value: element,
-                                        child: Text(element),
-                                      ),
-                                    )
-                                    .toList(),
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              ),
-                              FormBuilderTextField(
-                                name: 'angsuran_rp',
-                                readOnly: true,
-                                controller: controller.totalAngsuran =
-                                    MoneyMaskedTextController(
-                                  decimalSeparator: '',
-                                  thousandSeparator: '.',
-                                  precision: 0,
-                                  initialValue: double.parse(
-                                      data.inputKeuangan.angsuranRp.toString()),
+                                const SizedBox(
+                                  height: 16.0,
                                 ),
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                  labelText: 'Angsuran (Rp)',
-                                  prefixIcon:
-                                      const Icon(FontAwesomeIcons.rupiahSign),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 16.0,
-                              ),
-                            ],
-                          ),
-                          GFButton(
-                            onPressed: () {
-                              if (controller.formKey.currentState
-                                      ?.saveAndValidate() ??
-                                  false) {
-                                controller.mothlyPaymentCalculation();
-                                debugPrint(controller
-                                    .formKey.currentState?.value
-                                    .toString());
-                                showToast(
-                                  'Angsuran per bulan: Rp. ${controller.totalAngsuran.text}',
-                                  textStyle: const TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
-                                    color: secondaryColor,
-                                  ),
-                                  context: context,
-                                  animation: StyledToastAnimation.scale,
-                                  reverseAnimation: StyledToastAnimation.fade,
-                                  position: StyledToastPosition.center,
-                                  animDuration: const Duration(seconds: 1),
-                                  duration: const Duration(seconds: 4),
-                                  curve: Curves.elasticOut,
-                                  reverseCurve: Curves.linear,
-                                );
-                              } else {
-                                debugPrint(controller
-                                    .formKey.currentState?.value
-                                    .toString());
-                                debugPrint('validation failed');
-                              }
-                            },
-                            text: 'Hitung Angsuran Tetap',
-                            size: GFSize.LARGE,
-                            fullWidthButton: true,
-                            color: primaryColor,
-                          ),
-                        ],
+                              ],
+                            ),
+                            GFButton(
+                              onPressed: () {
+                                if (controller.formKey.currentState
+                                        ?.saveAndValidate() ??
+                                    false) {
+                                  controller.mothlyPaymentCalculation();
+                                  debugPrint(controller
+                                      .formKey.currentState?.value
+                                      .toString());
+                                  showToast(
+                                    'Angsuran per bulan: Rp. ${controller.totalAngsuran.text}',
+                                    textStyle: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w500,
+                                      color: secondaryColor,
+                                    ),
+                                    context: context,
+                                    animation: StyledToastAnimation.scale,
+                                    reverseAnimation: StyledToastAnimation.fade,
+                                    position: StyledToastPosition.center,
+                                    animDuration: const Duration(seconds: 1),
+                                    duration: const Duration(seconds: 4),
+                                    curve: Curves.elasticOut,
+                                    reverseCurve: Curves.linear,
+                                  );
+                                } else {
+                                  debugPrint(controller
+                                      .formKey.currentState?.value
+                                      .toString());
+                                  debugPrint('validation failed');
+                                }
+                              },
+                              text: 'Hitung Angsuran Tetap',
+                              size: GFSize.LARGE,
+                              fullWidthButton: true,
+                              color: primaryColor,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     Container(
@@ -495,6 +552,14 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                                 textAlign: TextAlign.left,
                               ),
                             ),
+                            const SizedBox(
+                              height: 8.0,
+                            ),
+                            Text(controller.keuanganKini,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.merge(const TextStyle(fontSize: 14))),
                             const SizedBox(
                               height: 16.0,
                             ),
@@ -646,6 +711,14 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                                 textAlign: TextAlign.left,
                               ),
                             ),
+                            const SizedBox(
+                              height: 8.0,
+                            ),
+                            Text(controller.asumsi,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.merge(const TextStyle(fontSize: 14))),
                             const SizedBox(
                               height: 16.0,
                             ),
@@ -909,6 +982,21 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                                               .ms) // runs after the above w/new duration
                                   // inherits the delay & duration from move,
                                   ),
+                              const SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                controller.interestTop,
+                                style:
+                                    Theme.of(context).textTheme.caption?.merge(
+                                          const TextStyle(
+                                            fontSize: 14.0,
+                                          ),
+                                        ),
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
                               Row(
                                 children: [
                                   Expanded(
@@ -948,6 +1036,16 @@ class EditInputKeuanganView extends GetView<InputKeuanganController> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              Text(controller.tradeCycleDesc,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      ?.merge(const TextStyle(
+                                        fontSize: 14.0,
+                                      ))),
                               const SizedBox(
                                 height: 16.0,
                               ),

@@ -154,7 +154,7 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                               thousandSeparator: '.',
                               precision: 0,
                               initialValue: double.parse(
-                                data.inputNeraca.hutangBank,
+                                data.inputNeraca.pinjamanLain,
                               )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
@@ -193,7 +193,14 @@ class EditPerkiraanNeracaTabelView extends StatelessWidget {
                   DataCell(
                     FormBuilderTextField(
                       name: 'hutang_lainnya',
-                      controller: controller.hutangLainnya,
+                      controller: controller.hutangLainnya =
+                          MoneyMaskedTextController(
+                              decimalSeparator: '',
+                              thousandSeparator: '.',
+                              precision: 0,
+                              initialValue: double.parse(
+                                data.inputNeraca.hutangBank,
+                              )),
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
                         hintText: 'Hasil perhitungan',

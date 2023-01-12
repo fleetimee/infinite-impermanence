@@ -1378,7 +1378,7 @@ packages:
     source: git
     version: "0.2.0"
   rive:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rive
       url: "https://pub.dartlang.org"

@@ -32,6 +32,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               height: 45,
@@ -70,16 +71,19 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                       child: Container(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             const SizedBox(
                               height: 10.0,
                             ),
-                            Text(
-                              'Data Keuangan',
-                              style: GoogleFonts.poppins(
-                                fontSize: 25.0,
-                                fontWeight: FontWeight.w600,
+                            Center(
+                              child: Text(
+                                'Data Keuangan',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 25.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
                             ),
                             Animate(
@@ -157,6 +161,17 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                             ),
                             const SizedBox(
+                              height: 8.0,
+                            ),
+                            Text(
+                              controller.deskripsiKredit,
+                              style: Theme.of(context).textTheme.caption?.merge(
+                                    const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                            ),
+                            const SizedBox(
                               height: 16.0,
                             ),
                             Row(
@@ -204,6 +219,17 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                   ),
                                 ),
                               ],
+                            ),
+                            const SizedBox(
+                              height: 16.0,
+                            ),
+                            Text(
+                              controller.bungaDeskripsi,
+                              style: Theme.of(context).textTheme.caption?.merge(
+                                    const TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
                             ),
                             const SizedBox(
                               height: 16.0,
@@ -303,6 +329,16 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                             const SizedBox(
                               height: 16.0,
                             ),
+                            Text(
+                              controller.digunakan,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .caption
+                                  ?.merge(const TextStyle(fontSize: 14)),
+                            ),
+                            const SizedBox(
+                              height: 16.0,
+                            ),
                             FormBuilderDropdown<String>(
                               name: 'digunakan_untuk',
                               items: controller.digunakanUntukList
@@ -325,6 +361,14 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                             const SizedBox(
                               height: 16.0,
                             ),
+                            Text(controller.totalAngsuranDeskripsi,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.merge(const TextStyle(fontSize: 14))),
+                            const SizedBox(
+                              height: 16.0,
+                            ),
                             FormBuilderTextField(
                               name: 'angsuran_rp',
                               readOnly: true,
@@ -339,7 +383,7 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                             ),
                             const SizedBox(
-                              height: 150,
+                              height: 50,
                             ),
                             GFButton(
                               onPressed: () {
@@ -438,6 +482,14 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                 textAlign: TextAlign.left,
                               ),
                             ),
+                            const SizedBox(
+                              height: 8.0,
+                            ),
+                            Text(controller.keuanganKini,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.merge(const TextStyle(fontSize: 14))),
                             const SizedBox(
                               height: 16.0,
                             ),
@@ -588,6 +640,14 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                 textAlign: TextAlign.left,
                               ),
                             ),
+                            const SizedBox(
+                              height: 8.0,
+                            ),
+                            Text(controller.asumsi,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    ?.merge(const TextStyle(fontSize: 14))),
                             const SizedBox(
                               height: 16.0,
                             ),
@@ -748,6 +808,21 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                               .ms) // runs after the above w/new duration
                                   // inherits the delay & duration from move,
                                   ),
+                              const SizedBox(
+                                height: 10.0,
+                              ),
+                              Text(
+                                controller.interestTop,
+                                style:
+                                    Theme.of(context).textTheme.caption?.merge(
+                                          const TextStyle(
+                                            fontSize: 14.0,
+                                          ),
+                                        ),
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
                               Row(
                                 children: [
                                   Expanded(
@@ -787,6 +862,16 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                   ),
                                 ],
                               ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              Text(controller.tradeCycleDesc,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .caption
+                                      ?.merge(const TextStyle(
+                                        fontSize: 14.0,
+                                      ))),
                               const SizedBox(
                                 height: 16.0,
                               ),

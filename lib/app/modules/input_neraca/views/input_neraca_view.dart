@@ -45,17 +45,21 @@ class InputNeracaView extends GetView<InputNeracaController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Penjelasan Pos Neraca :',
                       style: title,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Text(
                       'Penjelasan mengenai pos neraca adalah menunjukkan besarnya pos neraca posisi :',
-                      style: heading2,
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -128,9 +132,13 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Perkiraan ini menunjukkan jumlah kas dan saldo simpanan di bank, sebagai berikut :',
-                      style: heading2,
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah kas dan saldo simpanan di bank (isi 0 jika tidak ada), sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -247,9 +255,13 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Perkiraan ini menunjukkan jumlah piutang, sebagai berikut :',
-                      style: heading2,
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah piutang (isi 0 jika tidak ada), sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -312,9 +324,13 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Perkiraan ini menunjukkan jumlah persediaan bahan baku, barang dagangan yang berhubungan usaha,  sebagai berikut :',
-                      style: heading2,
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah persediaan bahan baku, barang dagangan yang berhubungan usaha (isi 0 jika tidak ada),  sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -359,9 +375,13 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Perkiraan ini menunjukkan jumlah hutang usaha, sebagai berikut :',
-                      style: heading2,
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah hutang usaha (isi 0 jika tidak ada), sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -402,13 +422,87 @@ class InputNeracaView extends GetView<InputNeracaController> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Hutang Bank', style: heading1),
+                    Text('Hutang Bank Lain (Bank / Non Bank)', style: heading1),
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Perkiraan ini menunjukkan jumlah hutang bank, sebagai berikut :',
-                      style: heading2,
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah hutang bank lain (bisa bank atau platform pinjaman online seperti SPinjam, SPaylater dan sejenisnya (isi 0 di kedua field jika tidak ada), sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                SizedBox(
+                  height: 200,
+                  child: DataTable2(
+                    border: TableBorder.all(color: Colors.black),
+                    columns: const [
+                      DataColumn2(label: Text('Keterangan')),
+                      DataColumn2(label: Text('Nilai (Rp)')),
+                    ],
+                    rows: [
+                      DataRow2(
+                        cells: [
+                          const DataCell(
+                              Text('Total Pinjaman Lain (Bank / Non Bank)')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'total_pinjaman_lain',
+                              controller: controller.pinjamanLain,
+                              validator: FormBuilderValidators.required(),
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefixText: 'Rp. ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      DataRow2(
+                        cells: [
+                          const DataCell(Text('Angsuran per Bulan')),
+                          DataCell(
+                            FormBuilderTextField(
+                              name: 'angsuranPinjamanLain',
+                              validator: FormBuilderValidators.required(),
+                              controller: controller.angsuranPinjamanLain,
+                              keyboardType: TextInputType.number,
+                              decoration: const InputDecoration(
+                                hintText: 'Input disini',
+                                prefixText: 'Rp. ',
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 8.0,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Hutang Lainnya', style: heading1),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah hutang lainnya (isi 0 jika tidak ada), sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -453,9 +547,13 @@ class InputNeracaView extends GetView<InputNeracaController> {
                     const SizedBox(
                       height: 8,
                     ),
-                    const Text(
-                      'Perkiraan ini menunjukkan jumlah nilai buku aktiva yang dimiliki, sebagai berikut :',
-                      style: heading2,
+                    Text(
+                      'Perkiraan ini menunjukkan jumlah nilai buku aktiva yang dimiliki (isi 0 jika tidak ada), sebagai berikut :',
+                      style: Theme.of(context).textTheme.caption?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
                     ),
                   ],
                 ),
@@ -597,72 +695,6 @@ class InputNeracaView extends GetView<InputNeracaController> {
                               size: GFSize.LARGE,
                               color: primaryColor,
                               fullWidthButton: true,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 35.0,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Pinjaman Lain (Bank / Non Bank)', style: heading1),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const Text(
-                      'Perkiraan ini tidak dimasukkan kedalam neraca, tetapi akan menjadi parameter perhitungan pada Analisa Keungan nanti (Isi 0 jika tidak ada)',
-                      style: heading2,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                SizedBox(
-                  height: 300,
-                  child: DataTable2(
-                    border: TableBorder.all(color: Colors.black),
-                    columns: const [
-                      DataColumn2(label: Text('Keterangan')),
-                      DataColumn2(label: Text('Nilai (Rp)')),
-                    ],
-                    rows: [
-                      DataRow2(
-                        cells: [
-                          const DataCell(
-                              Text('Total Pinjaman Lain (Bank / Non Bank)')),
-                          DataCell(
-                            FormBuilderTextField(
-                              name: 'total_pinjaman_lain',
-                              controller: controller.pinjamanLain,
-                              validator: FormBuilderValidators.required(),
-                              keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                hintText: 'Input disini',
-                                prefixText: 'Rp. ',
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      DataRow2(
-                        cells: [
-                          const DataCell(Text('Angsuran per Bulan')),
-                          DataCell(
-                            FormBuilderTextField(
-                              name: 'angsuranPinjamanLain',
-                              validator: FormBuilderValidators.required(),
-                              controller: controller.angsuranPinjamanLain,
-                              keyboardType: TextInputType.number,
-                              decoration: const InputDecoration(
-                                hintText: 'Input disini',
-                                prefixText: 'Rp. ',
-                              ),
                             ),
                           ),
                         ],

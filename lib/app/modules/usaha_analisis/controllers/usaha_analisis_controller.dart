@@ -78,6 +78,9 @@ class UsahaAnalisisController extends GetxController {
     }
   }
 
+  String jenisUsahaDeskripsi =
+      'Penilaian jenis usaha, data diambil otomatis dari saat penginputan pertama debitur. Untuk melihat nilainya tinggal tekan tombol Lihat Hasil.';
+
   final formKey = GlobalKey<FormBuilderState>();
 
   final isAnalisaUsahaProcessing = false.obs;

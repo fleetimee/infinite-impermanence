@@ -74,6 +74,19 @@ class EditIjinLegitimasiView extends GetView<IjinLegitimasiController> {
                                   600.ms) // runs after the above w/new duration
                       // inherits the delay & duration from move,
                       ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    controller.jenisIjinKeterangan,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   FormBuilderTextField(
                     name: 'jenisIjinLegitimasi',
                     validator: FormBuilderValidators.required(),
@@ -89,6 +102,16 @@ class EditIjinLegitimasiView extends GetView<IjinLegitimasiController> {
                       border: OutlineInputBorder(),
                       hintText: 'Surat Keterangan Usaha',
                     ),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    controller.keteranganDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
                   ),
                   const SizedBox(
                     height: 20.0,

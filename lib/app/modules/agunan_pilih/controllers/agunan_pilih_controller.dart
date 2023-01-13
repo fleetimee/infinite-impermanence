@@ -9,74 +9,72 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/data/provider/agunan/agunan_pilihan/agunan_pilih.provider.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
-import 'package:akm/app/service/debtor_service.dart';
 
 class AgunanPilihController extends GetxController {
-  void patchProgressBar(int id) {
-    final body = {
-      'progress': double.parse(
-              debiturController.insightDebitur.value.progress.toString()) +
-          0.1,
-    };
+  // void patchProgressBar(int id) {
+  //   final body = {
+  //     'progress': double.parse(
+  //             debiturController.insightDebitur.value.progress.toString()) +
+  //         0.1,
+  //   };
 
-    try {
-      debiturController.isDataLoading(true);
-      DebtorService().patchProgressBar(body, id).then((resp) {
-        debiturController.isDataLoading(false);
-        debiturController.fetchOneDebitur(id);
-      }, onError: (err) {
-        debiturController.isDataLoading(false);
-        Get.snackbar(
-          'Error',
-          err.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
-  }
+  //   try {
+  //     debiturController.isDataLoading(true);
+  //     DebtorService().patchProgressBar(body, id).then((resp) {
+  //       debiturController.isDataLoading(false);
+  //       debiturController.fetchOneDebitur(id);
+  //     }, onError: (err) {
+  //       debiturController.isDataLoading(false);
+  //       Get.snackbar(
+  //         'Error',
+  //         err.toString(),
+  //         backgroundColor: Colors.red,
+  //         colorText: secondaryColor,
+  //       );
+  //     });
+  //   } catch (e) {
+  //     Get.snackbar(
+  //       'Error',
+  //       e.toString(),
+  //       backgroundColor: Colors.red,
+  //       colorText: secondaryColor,
+  //     );
+  //   }
+  // }
 
-  void purgeProgressBar(int id) {
-    final body = {
-      'progress': double.parse(
-              debiturController.insightDebitur.value.progress.toString()) -
-          0.1,
-    };
+  // void purgeProgressBar(int id) {
+  //   final body = {
+  //     'progress': double.parse(
+  //             debiturController.insightDebitur.value.progress.toString()) -
+  //         0.1,
+  //   };
 
-    try {
-      debiturController.isDataLoading(true);
-      DebtorService().patchProgressBar(body, id).then((resp) {
-        debiturController.isDataLoading(false);
-        debiturController.fetchOneDebitur(id);
-      }, onError: (err) {
-        debiturController.isDataLoading(false);
-        Get.snackbar(
-          'Error',
-          err.toString(),
-          backgroundColor: Colors.red,
-          colorText: secondaryColor,
-        );
-      });
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        backgroundColor: Colors.red,
-        colorText: secondaryColor,
-      );
-    }
-  }
+  //   try {
+  //     debiturController.isDataLoading(true);
+  //     DebtorService().patchProgressBar(body, id).then((resp) {
+  //       debiturController.isDataLoading(false);
+  //       debiturController.fetchOneDebitur(id);
+  //     }, onError: (err) {
+  //       debiturController.isDataLoading(false);
+  //       Get.snackbar(
+  //         'Error',
+  //         err.toString(),
+  //         backgroundColor: Colors.red,
+  //         colorText: secondaryColor,
+  //       );
+  //     });
+  //   } catch (e) {
+  //     Get.snackbar(
+  //       'Error',
+  //       e.toString(),
+  //       backgroundColor: Colors.red,
+  //       colorText: secondaryColor,
+  //     );
+  //   }
+  // }
 
   final data = Get.arguments;
   final debiturController = Get.put(InsightDebiturController());
@@ -90,7 +88,66 @@ class AgunanPilihController extends GetxController {
 
   void saveMultipleAgunan() {
     final body = {
-      'bulk': formKey.currentState!.value['languages'],
+      // 'bulk': formKey.currentState!.value['languages'],
+
+      'bulk': [
+        if (formKey.currentState!.value['agunan_tanah'] == true)
+          {
+            "kode_agunan": 1,
+            "jenis_agunan": "Tanah",
+            "is_tanah": true,
+            "is_los": false,
+            "is_kendaraan": false
+          },
+        if (formKey.currentState!.value['agunan_tanah_bangunan'] == true)
+          {
+            "kode_agunan": 2,
+            "jenis_agunan": "Tanah dan Bangunan",
+            "is_tanah": true,
+            "is_los": false,
+            "is_kendaraan": false
+          },
+        if (formKey.currentState!.value['agunan_kendaraan'] == true)
+          {
+            "kode_agunan": 3,
+            "jenis_agunan": "Kendaraan",
+            "is_tanah": false,
+            "is_los": false,
+            "is_kendaraan": true
+          },
+        if (formKey.currentState!.value['agunan_peralatan'] == true)
+          {
+            "kode_agunan": 4,
+            "jenis_agunan": "Mesin dan Peralatan",
+            "is_tanah": false,
+            "is_los": false,
+            "is_kendaraan": false
+          },
+        if (formKey.currentState!.value['agunan_cash'] == true)
+          {
+            "kode_agunan": 5,
+            "jenis_agunan": "Cash Collateral",
+            "is_tanah": false,
+            "is_los": false,
+            "is_kendaraan": false
+          },
+        if (formKey.currentState!.value['agunan_los'] == true)
+          {
+            "kode_agunan": 6,
+            "jenis_agunan": "Kios Pasar",
+            "is_tanah": false,
+            "is_los": true,
+            "is_kendaraan": false
+          },
+        if (formKey.currentState!.value['agunan_lainnya'] == true)
+          {
+            "kode_agunan": 7,
+            "jenis_agunan": "Lainnya",
+            "is_tanah": false,
+            "is_los": false,
+            "is_kendaraan": false
+          },
+      ]
     };
     try {
       isAgunanInputProcessing.value = true;
@@ -98,9 +155,9 @@ class AgunanPilihController extends GetxController {
         isAgunanInputProcessing.value = false;
         debiturController.fetchAgunan(data);
         debiturController.fetchOneDebitur(data);
-        Future.delayed(const Duration(seconds: 1), () {
-          patchProgressBar(data);
-        });
+        // Future.delayed(const Duration(seconds: 1), () {
+        //   patchProgressBar(data);
+        // });
         Get.snackbar(
           'Sukses',
           'Agunan berhasil ditambahkan',

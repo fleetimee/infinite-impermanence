@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,8 +10,6 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
-import 'package:akm/app/models/agunan/agunan_input.model.dart';
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
 import '../controllers/agunan_pilih_controller.dart';
 
@@ -21,6 +20,12 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
   final keuanganController = Get.put(InputKeuanganController());
 
   final data = Get.arguments;
+
+  TextStyle checkboxStyle = const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -155,163 +160,315 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   const SizedBox(
                     height: 12.0,
                   ),
-                  FormBuilderCheckboxGroup<Map<String, dynamic>>(
-                    // enabled some of the options
-                    enabled: int.parse(data.inputKeuangan.kreditDiusulkan) >
-                            100000000
-                        ? true
-                        : false,
-                    wrapDirection: Axis.vertical,
-                    checkColor: secondaryColor,
-                    activeColor: primaryColor,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
-                        ),
-                      ),
-                    ),
-                    name: 'languages',
-                    onChanged: _onChanged,
-
-                    options: [
-                      FormBuilderFieldOption(
-                        key: const Key('key_tanah'),
-                        value: Bulk(
-                          kodeAgunan: 1,
-                          jenisAgunan: 'Tanah',
-                          isTanah: true,
-                          isKendaraan: false,
-                          isLos: false,
-                        ).toJson(),
-                        child: const Text('Tanah'),
-                      ),
-                      FormBuilderFieldOption(
-                        key: const Key('key_tanah_bangunan'),
-                        value: Bulk(
-                          kodeAgunan: 2,
-                          jenisAgunan: 'Tanah dan Bangunan',
-                          isTanah: true,
-                          isKendaraan: false,
-                          isLos: false,
-                        ).toJson(),
-                        child: const Text('Tanah dan Bangunan'),
-                      ),
-                      FormBuilderFieldOption(
-                        key: const Key('key_kendaraan'),
-                        value: Bulk(
-                          kodeAgunan: 3,
-                          jenisAgunan: 'Kendaraan',
-                          isTanah: false,
-                          isKendaraan: true,
-                          isLos: false,
-                        ).toJson(),
-                        child: const Text('Kendaraan'),
-                      ),
-                      FormBuilderFieldOption(
-                        key: const Key('key_peralatan'),
-                        value: Bulk(
-                          kodeAgunan: 4,
-                          jenisAgunan: 'Mesin dan Peralatan',
-                          isTanah: false,
-                          isKendaraan: false,
-                          isLos: false,
-                        ).toJson(),
-                        child: const Text('Mesin dan Peralatan'),
-                      ),
-                      FormBuilderFieldOption(
-                        key: const Key('key_cash'),
-                        value: Bulk(
-                          kodeAgunan: 5,
-                          jenisAgunan: 'Cash Collateral',
-                          isTanah: false,
-                          isKendaraan: false,
-                          isLos: false,
-                        ).toJson(),
-                        child: const Text('Cash Collateral'),
-                      ),
-                      FormBuilderFieldOption(
-                        key: const Key('key_los'),
-                        value: Bulk(
-                          kodeAgunan: 6,
-                          jenisAgunan: 'Kios Pasar',
-                          isTanah: false,
-                          isKendaraan: false,
-                          isLos: true,
-                        ).toJson(),
-                        child: const Text('Kios Pasar'),
-                      ),
-                    ],
-                    separator: const VerticalDivider(
-                      width: 10,
-                      thickness: 5,
-                      color: Colors.red,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 30.0,
-                  ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Jenis agunan untuk plafon <= 100 juta : ',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_tanah',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.SUCCESS,
+                          ),
+                          title: Text(
+                            'Tanah',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
                         ),
                       ),
-                      int.parse(data.inputKeuangan.kreditDiusulkan) <= 100000000
-                          ? const GFButton(
-                              onPressed: null,
-                              text: 'ENABLED',
-                              color: Colors.green,
-                            )
-                          : GFButton(
-                              onPressed: () {},
-                              text: 'INADVISABLE',
-                              color: GFColors.DANGER,
-                            ),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_tanah_bangunan',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.DANGER,
+                          ),
+                          title: Text(
+                            'Tanah dan Bangunan',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(
                     height: 12.0,
                   ),
-                  FormBuilderCheckboxGroup<Map<String, dynamic>>(
-                    // enabled some of the options
-                    wrapDirection: Axis.vertical,
-                    checkColor: secondaryColor,
-                    activeColor: primaryColor,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(8),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_peralatan',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.ALT,
+                          ),
+                          title: Text(
+                            'Mesin dan Peralatan',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
                         ),
                       ),
-                    ),
-                    name: 'languages',
-                    onChanged: _onChanged,
-                    options: [
-                      FormBuilderFieldOption(
-                        key: const Key('key_lainnya'),
-                        value: Bulk(
-                          kodeAgunan: 7,
-                          jenisAgunan: 'Lainnya',
-                          isTanah: false,
-                          isKendaraan: false,
-                          isLos: false,
-                        ).toJson(),
-                        child: const Text('Lainnya'),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_cash',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.FOCUS,
+                          ),
+                          title: Text(
+                            'Cash Collateral',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
+                        ),
                       ),
                     ],
-                    separator: const VerticalDivider(
-                      width: 10,
-                      thickness: 5,
-                      color: Colors.red,
-                    ),
                   ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_los',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.INFO,
+                          ),
+                          title: Text(
+                            'Kios Pasar / Los',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_lainnya',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.WARNING,
+                          ),
+                          title: Text(
+                            'Lainnya',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: FormBuilderCheckbox(
+                          name: 'agunan_kendaraan',
+                          activeColor: primaryColor,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            filled: true,
+                            fillColor: GFColors.SECONDARY,
+                          ),
+                          title: Text(
+                            'Kendaraan',
+                            style: checkboxStyle,
+                          ),
+                          initialValue: false,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 12.0,
+                      ),
+                      Expanded(child: Container())
+                    ],
+                  ),
+
+                  // FormBuilderCheckboxGroup<Map<String, dynamic>>(
+                  //   // enabled some of the options
+                  //   enabled: int.parse(data.inputKeuangan.kreditDiusulkan) >
+                  //           100000000
+                  //       ? true
+                  //       : false,
+                  //   wrapDirection: Axis.vertical,
+                  //   checkColor: secondaryColor,
+                  //   activeColor: primaryColor,
+                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  //   decoration: const InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.all(
+                  //         Radius.circular(8),
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   name: 'languages',
+                  //   onChanged: _onChanged,
+
+                  //   options: [
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_tanah'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 1,
+                  //         jenisAgunan: 'Tanah',
+                  //         isTanah: true,
+                  //         isKendaraan: false,
+                  //         isLos: false,
+                  //       ).toJson(),
+                  //       child: const Text('Tanah'),
+                  //     ),
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_tanah_bangunan'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 2,
+                  //         jenisAgunan: 'Tanah dan Bangunan',
+                  //         isTanah: true,
+                  //         isKendaraan: false,
+                  //         isLos: false,
+                  //       ).toJson(),
+                  //       child: const Text('Tanah dan Bangunan'),
+                  //     ),
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_kendaraan'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 3,
+                  //         jenisAgunan: 'Kendaraan',
+                  //         isTanah: false,
+                  //         isKendaraan: true,
+                  //         isLos: false,
+                  //       ).toJson(),
+                  //       child: const Text('Kendaraan'),
+                  //     ),
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_peralatan'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 4,
+                  //         jenisAgunan: 'Mesin dan Peralatan',
+                  //         isTanah: false,
+                  //         isKendaraan: false,
+                  //         isLos: false,
+                  //       ).toJson(),
+                  //       child: const Text('Mesin dan Peralatan'),
+                  //     ),
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_cash'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 5,
+                  //         jenisAgunan: 'Cash Collateral',
+                  //         isTanah: false,
+                  //         isKendaraan: false,
+                  //         isLos: false,
+                  //       ).toJson(),
+                  //       child: const Text('Cash Collateral'),
+                  //     ),
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_los'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 6,
+                  //         jenisAgunan: 'Kios Pasar',
+                  //         isTanah: false,
+                  //         isKendaraan: false,
+                  //         isLos: true,
+                  //       ).toJson(),
+                  //       child: const Text('Kios Pasar'),
+                  //     ),
+                  //   ],
+                  //   separator: const VerticalDivider(
+                  //     width: 10,
+                  //     thickness: 5,
+                  //     color: Colors.red,
+                  //   ),
+                  // ),
+                  const SizedBox(
+                    height: 30.0,
+                  ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     const Text(
+                  //       'Jenis agunan untuk plafon <= 100 juta : ',
+                  //       style: TextStyle(
+                  //         fontWeight: FontWeight.w500,
+                  //         fontSize: 16,
+                  //       ),
+                  //     ),
+                  //     int.parse(data.inputKeuangan.kreditDiusulkan) <=
+                  //             100000000
+                  //         ? const GFButton(
+                  //             onPressed: null,
+                  //             text: 'ENABLED',
+                  //             color: Colors.green,
+                  //           )
+                  //         : GFButton(
+                  //             onPressed: () {},
+                  //             text: 'INADVISABLE',
+                  //             color: GFColors.DANGER,
+                  //           ),
+                  //   ],
+                  // ),
+                  const SizedBox(
+                    height: 12.0,
+                  ),
+                  // FormBuilderCheckboxGroup<Map<String, dynamic>>(
+                  //   // enabled some of the options
+                  //   wrapDirection: Axis.vertical,
+                  //   checkColor: secondaryColor,
+                  //   activeColor: primaryColor,
+                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                  //   decoration: const InputDecoration(
+                  //     border: OutlineInputBorder(
+                  //       borderRadius: BorderRadius.all(
+                  //         Radius.circular(8),
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   name: 'languages',
+                  //   onChanged: _onChanged,
+                  //   options: [
+                  //     FormBuilderFieldOption(
+                  //       key: const Key('key_lainnya'),
+                  //       value: Bulk(
+                  //         kodeAgunan: 7,
+                  //         jenisAgunan: 'Lainnya',
+                  //         isTanah: false,
+                  //         isKendaraan: false,
+                  //         isLos: false,
+                  //       ).toJson(),
+                  //       child: const Text('Lainnya'),
+                  //     ),
+                  //   ],
+                  //   separator: const VerticalDivider(
+                  //     width: 10,
+                  //     thickness: 5,
+                  //     color: Colors.red,
+                  //   ),
+                  // ),
                 ],
               ),
               Row(

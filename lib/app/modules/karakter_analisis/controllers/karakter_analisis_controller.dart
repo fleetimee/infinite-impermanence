@@ -78,6 +78,20 @@ class KarakterAnalisisController extends GetxController {
     }
   }
 
+  String umurDeskripsi =
+      "Ini merupakan umur debitur yang diambil dari saat input awal jika ingin mengedit ini silahkan edit di panel debitur";
+  String pendidkanDeskripsi =
+      "Pendidikan terakhir debitur, diambil dari panel debitur";
+  String lamanyaBerusahaDeskripsi =
+      "Berapa lama debitur ini membuka usahanya, diambil dari panel debitur";
+  String uletDalamBisnisDeskripsi = "Seberapa ulet debitur dalam berbisnis ?";
+  String kakuFleksibelDeskripsi =
+      "Seberapa kaku debitur dalam menentukan harga, apakah debitur ini fleksibel dalam menentukan harga ?";
+  String inovatifKreatifDeskripsi =
+      "Seberapa inovatif debitur dalam berbisnis ?";
+  String jujurDeskripsi =
+      "Seberapa jujur debitur dalam berbisnis, apakah debitur ini jujur dalam berbisnis ?";
+
   final isAnalisaKarakterProcessing = false.obs;
   final debiturController = Get.put(InsightDebiturController());
 

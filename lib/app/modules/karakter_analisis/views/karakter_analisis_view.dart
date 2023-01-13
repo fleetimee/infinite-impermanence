@@ -143,6 +143,17 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           ),
                         ),
                       ),
+                      Text(
+                        controller.umurDeskripsi,
+                        style: Theme.of(context).textTheme.caption?.merge(
+                              const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       FormBuilderTextField(
                         enabled: false,
                         name: 'nilai_umur',
@@ -156,10 +167,18 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 16,
+                      ),
+                      Text(
+                        controller.pendidkanDeskripsi,
+                        style: Theme.of(context).textTheme.caption?.merge(
+                              const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 16,
                       ),
                       FormBuilderDropdown(
                         enabled: false,
@@ -186,10 +205,16 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                             .toList(),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 16,
                       ),
+                      Text(controller.lamanyaBerusahaDeskripsi,
+                          style: Theme.of(context).textTheme.caption?.merge(
+                                const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )),
                       const SizedBox(
-                        height: 20,
+                        height: 16,
                       ),
                       FormBuilderTextField(
                         name: 'lamanya_berusaha',
@@ -212,8 +237,14 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 16,
                       ),
+                      Text(controller.uletDalamBisnisDeskripsi,
+                          style: Theme.of(context).textTheme.caption?.merge(
+                                const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )),
                       const SizedBox(
                         height: 20,
                       ),
@@ -260,6 +291,18 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           border: InputBorder.none,
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(controller.kakuFleksibelDeskripsi,
+                          style: Theme.of(context).textTheme.caption?.merge(
+                                const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       FormBuilderSlider(
                         divisions: 19,
                         initialValue: 0,
@@ -304,6 +347,18 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                           border: InputBorder.none,
                         ),
                       ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(controller.inovatifKreatifDeskripsi,
+                          style: Theme.of(context).textTheme.caption?.merge(
+                                const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )),
+                      const SizedBox(
+                        height: 16,
+                      ),
                       FormBuilderSlider(
                         divisions: 19,
                         initialValue: 0,
@@ -347,6 +402,18 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         decoration: const InputDecoration(
                           border: InputBorder.none,
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Text(controller.jujurDeskripsi,
+                          style: Theme.of(context).textTheme.caption?.merge(
+                                const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              )),
+                      const SizedBox(
+                        height: 16,
                       ),
                       FormBuilderSlider(
                         divisions: 19,

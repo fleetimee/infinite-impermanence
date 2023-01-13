@@ -65,6 +65,18 @@ class AsuransiView extends GetView<AsuransiController> {
                                   600.ms) // runs after the above w/new duration
                       // inherits the delay & duration from move,
                       ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    controller.namaPerusahaanDeskripsi,
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(fontSize: 14),
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
                   FormBuilderTextField(
                       name: 'nama_perusahaan',
                       validator: FormBuilderValidators.required(),
@@ -78,6 +90,15 @@ class AsuransiView extends GetView<AsuransiController> {
                       controller: controller.namaPerusahaan),
                   const SizedBox(
                     height: 20.0,
+                  ),
+                  Text(
+                    controller.premiDeskripsi,
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(fontSize: 14),
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 16.0,
                   ),
                   FormBuilderTextField(
                       name: 'premi',
@@ -100,6 +121,15 @@ class AsuransiView extends GetView<AsuransiController> {
                       controller: controller.premi),
                   const SizedBox(
                     height: 20.0,
+                  ),
+                  Text(
+                    controller.plafonKreditDeskripsi,
+                    style: Theme.of(context).textTheme.caption?.merge(
+                          const TextStyle(fontSize: 14),
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 16.0,
                   ),
                   FormBuilderTextField(
                     readOnly: true,

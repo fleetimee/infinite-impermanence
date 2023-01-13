@@ -73,6 +73,21 @@ class EditUsahaAnalisisView extends GetView<UsahaAnalisisController> {
                                   600.ms) // runs after the above w/new duration
                       // inherits the delay & duration from move,
                       ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(
+                    controller.jenisUsahaDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(
+                          fontSize: 14,
+                        )),
+                  ),
+                  const SizedBox(
+                    height: 20.0,
+                  ),
                   FormBuilderTextField(
                     name: 'jenis_usaha',
                     enabled: false,

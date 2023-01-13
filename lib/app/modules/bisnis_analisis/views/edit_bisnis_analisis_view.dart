@@ -78,6 +78,16 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         ),
                       ),
                       const SizedBox(
+                        height: 25,
+                      ),
+                      Text(
+                        controller.omzetDeskripsi,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.merge(const TextStyle(fontSize: 14)),
+                      ),
+                      const SizedBox(
                         height: 16,
                       ),
                       FormBuilderDropdown(
@@ -110,7 +120,17 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                       ),
                       keteranganOmzet(),
                       const SizedBox(
-                        height: 8,
+                        height: 20,
+                      ),
+                      Text(
+                        controller.hargaBersaingDeskripsi,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.merge(const TextStyle(fontSize: 14)),
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                       FormBuilderDropdown(
                         name: 'nilai_harga_bersaing',
@@ -145,7 +165,17 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         () => keteranganHargaBersaing(),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 25,
+                      ),
+                      Text(
+                        controller.persainganPasarDeskripsi,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.merge(const TextStyle(fontSize: 14)),
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                       FormBuilderDropdown(
                         onChanged: (int? value) {
@@ -180,7 +210,17 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         () => keteranganPersainganPasar(),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 25,
+                      ),
+                      Text(
+                        controller.lokasiUsaha,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.merge(const TextStyle(fontSize: 14)),
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                       FormBuilderDropdown(
                         onChanged: (int? value) {
@@ -215,7 +255,17 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         () => lokasiPasar(),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 25,
+                      ),
+                      Text(
+                        controller.kapasitasTerpasangDeskripsi,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.merge(const TextStyle(fontSize: 14)),
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                       FormBuilderDropdown(
                         onChanged: (int? value) {
@@ -251,7 +301,17 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         () => kapasitasTerpasan(),
                       ),
                       const SizedBox(
-                        height: 20,
+                        height: 25,
+                      ),
+                      Text(
+                        controller.kualitasProdukDeskripsi,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            ?.merge(const TextStyle(fontSize: 14)),
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                       FormBuilderDropdown(
                         onChanged: (int? value) {

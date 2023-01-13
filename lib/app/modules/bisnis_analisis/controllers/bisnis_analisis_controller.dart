@@ -80,6 +80,18 @@ class BisnisAnalisisController extends GetxController {
     }
   }
 
+  String omzetDeskripsi = 'Berapa omzet penjualan per bulan?';
+  String hargaBersaingDeskripsi =
+      'Apakah harga dagangan bersaing dengan pedagang lain?';
+  String persainganPasarDeskripsi =
+      'Bagaimana dengan persaingan pasar? Apakah ketat atau biasa saja?';
+  String lokasiUsaha =
+      'Apakah lokasi usaha / berdagang berada di tempat yang strategis?';
+  String kapasitasTerpasangDeskripsi =
+      'Apakah kapasitas terpasang sudah sesuai dengan kebutuhan?';
+  String kualitasProdukDeskripsi =
+      'Bagaimana dengan kualitas produk dagangan? Apakah sudah sesuai dengan standar?';
+
   final formKey = GlobalKey<FormBuilderState>();
 
   final isAnalisaBisnisProcessing = false.obs;

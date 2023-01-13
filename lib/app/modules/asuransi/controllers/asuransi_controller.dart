@@ -167,6 +167,15 @@ class AsuransiController extends GetxController {
     jumlahAsuransi.text = result.toStringAsFixed(0);
   }
 
+  String namaPerusahaanDeskripsi =
+      'Tuliskan nama perusahaan asuransi yang akan digunakan, contoh: ASKRINDO, JAMKRINDO dll, inputtan ini akan dicetak ke dalam usulan dan putusan';
+  String premiDeskripsi =
+      "Persen premi yang digunakan untuk menghitung jumlah asuransi, contoh: 0.5% = 0.5, 1% = 1, 1.5% = 1.5 dll, inputtan ini akan dicetak ke dalam usulan dan putusan";
+  String plafonKreditDeskripsi =
+      "Nilai ini berasal dari input keuangan yang sebelumnnya sudah diinputkan";
+  String hasil =
+      "Hasil dari perhitungan premi dan plafon kredit, inputtan ini akan dicetak ke dalam usulan dan putusan";
+
   void clearForm() {
     premi.clear();
     plafonKredit.clear();

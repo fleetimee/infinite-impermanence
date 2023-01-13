@@ -57,7 +57,7 @@ class ListSyaratLainnyaController extends GetxController {
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',
-          snackPosition: SnackPosition.TOP,
+          snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
@@ -89,7 +89,7 @@ class ListSyaratLainnyaController extends GetxController {
         Get.snackbar(
           'Success',
           'Data berhasil dirubah',
-          snackPosition: SnackPosition.TOP,
+          snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );
@@ -115,7 +115,7 @@ class ListSyaratLainnyaController extends GetxController {
         Get.snackbar(
           'Success',
           'Data berhasil dihapus',
-          snackPosition: SnackPosition.TOP,
+          snackPosition: SnackPosition.BOTTOM,
           backgroundColor: Colors.green,
           colorText: Colors.white,
         );

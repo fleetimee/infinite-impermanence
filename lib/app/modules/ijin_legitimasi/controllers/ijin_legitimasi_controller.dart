@@ -211,6 +211,11 @@ class IjinLegitimasiController extends GetxController {
     }
   }
 
+  String jenisIjinKeterangan =
+      'Tuliskan jenis ijin yang debitur miliki seperti (Surat Keterangan Usaha, BPKB), Inputan ini akan tercetak dalam lembar print inputtan';
+  String keteranganDeskripsi =
+      'Isi keterangan surat ijin dengan jelas dan lengkap seperti nomer surat keterangan usaha dan sebagainya, Inputan ini akan tercetak dalam lembar print inputtan';
+
   void clearForm() {
     jenisIjinLegitimasi.clear();
     keteranganIjinLegitimasi.clear();

@@ -110,6 +110,16 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     ),
                   ),
                   const SizedBox(
+                    height: 25,
+                  ),
+                  Text(
+                    controller.omzetDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
                     height: 16,
                   ),
                   FormBuilderDropdown(
@@ -133,6 +143,16 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   ),
                   const SizedBox(
                     height: 20,
+                  ),
+                  Text(
+                    controller.hargaBersaingDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
+                    height: 16,
                   ),
                   FormBuilderDropdown(
                     name: 'nilai_harga_bersaing',
@@ -160,6 +180,16 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Text(
+                    controller.persainganPasarDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   FormBuilderDropdown(
                     decoration: const InputDecoration(
                       labelText: 'Persaingan Pasar',
@@ -181,6 +211,16 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   ),
                   const SizedBox(
                     height: 20,
+                  ),
+                  Text(
+                    controller.lokasiUsaha,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
+                    height: 16,
                   ),
                   FormBuilderDropdown(
                     initialValue: data.analisaBisnis.nilaiLokasiUsaha,
@@ -204,6 +244,16 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Text(
+                    controller.kapasitasTerpasangDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   FormBuilderDropdown(
                     initialValue: data.analisaBisnis.nilaiProduktivitas,
                     enabled: false,
@@ -226,6 +276,16 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                   const SizedBox(
                     height: 20,
                   ),
+                  Text(
+                    controller.kualitasProdukDeskripsi,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption
+                        ?.merge(const TextStyle(fontSize: 14)),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   FormBuilderDropdown(
                     enabled: false,
                     initialValue: data.analisaBisnis.nilaiKualitas,
@@ -246,7 +306,7 @@ class LihatBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                     name: 'nilai_kualitas',
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   FormBuilderTextField(
                     controller: controller.deskripsi = TextEditingController(

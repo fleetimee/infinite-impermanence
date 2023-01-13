@@ -84,21 +84,6 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
               expandedHeight: 300,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
-                // background: FutureBuilder(
-                //   future: controller.img,
-                //   builder: (context, AsyncSnapshot snapshot) {
-                //     if (snapshot.hasData) {
-                //       return FancyShimmerImage(
-                //         imageUrl: snapshot.data,
-                //         boxFit: BoxFit.cover,
-                //       );
-                //     } else {
-                //       return const Center(
-                //         child: CircularProgressIndicator(),
-                //       );
-                //     }
-                //   },
-                // ),
                 background: Image.asset(
                   'assets/images/home/copyright.jpg',
                   fit: BoxFit.cover,

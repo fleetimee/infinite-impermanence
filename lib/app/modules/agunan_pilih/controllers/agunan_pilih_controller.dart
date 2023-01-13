@@ -91,7 +91,9 @@ class AgunanPilihController extends GetxController {
       // 'bulk': formKey.currentState!.value['languages'],
 
       'bulk': [
-        if (formKey.currentState!.value['agunan_tanah'] == true)
+        if (formKey.currentState!.value['agunan_tanah'] == true &&
+            // key: 'agunan_tanah' is enabled
+            formKey.currentState!.fields['agunan_tanah']?.enabled == true)
           {
             "kode_agunan": 1,
             "jenis_agunan": "Tanah",
@@ -99,7 +101,9 @@ class AgunanPilihController extends GetxController {
             "is_los": false,
             "is_kendaraan": false
           },
-        if (formKey.currentState!.value['agunan_tanah_bangunan'] == true)
+        if (formKey.currentState!.value['agunan_tanah_bangunan'] == true &&
+            formKey.currentState!.fields['agunan_tanah_bangunan']?.enabled ==
+                true)
           {
             "kode_agunan": 2,
             "jenis_agunan": "Tanah dan Bangunan",
@@ -115,7 +119,8 @@ class AgunanPilihController extends GetxController {
             "is_los": false,
             "is_kendaraan": true
           },
-        if (formKey.currentState!.value['agunan_peralatan'] == true)
+        if (formKey.currentState!.value['agunan_peralatan'] == true &&
+            formKey.currentState!.fields['agunan_peralatan']?.enabled == true)
           {
             "kode_agunan": 4,
             "jenis_agunan": "Mesin dan Peralatan",
@@ -155,9 +160,6 @@ class AgunanPilihController extends GetxController {
         isAgunanInputProcessing.value = false;
         debiturController.fetchAgunan(data);
         debiturController.fetchOneDebitur(data);
-        // Future.delayed(const Duration(seconds: 1), () {
-        //   patchProgressBar(data);
-        // });
         Get.snackbar(
           'Sukses',
           'Agunan berhasil ditambahkan',
@@ -179,5 +181,41 @@ class AgunanPilihController extends GetxController {
       isAgunanInputProcessing.value = false;
       Get.snackbar('Error', e.toString());
     }
+  }
+
+  void deleteFirstAgunan(int agunanId, String formName) {
+    try {
+      isAgunanInputProcessing(true);
+      AgunanPilihanProvider().purgeFirstAgunanPilihan(data, agunanId).then(
+          (resp) {
+        isAgunanInputProcessing(false);
+        debiturController.fetchAgunan(data);
+        debiturController.fetchOneDebitur(data);
+        clearForm(formName);
+        Get.snackbar(
+          'Sukses',
+          'Berhasil dihapus',
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }, onError: (e) {
+        isAgunanInputProcessing(false);
+        Get.snackbar(
+          'Error',
+          e.toString(),
+          snackPosition: SnackPosition.TOP,
+          backgroundColor: Colors.red,
+          colorText: Colors.white,
+        );
+      });
+    } catch (e) {
+      isAgunanInputProcessing(false);
+      Get.snackbar('Error', e.toString());
+    }
+  }
+
+  void clearForm(String formName) {
+    formKey.currentState!.fields[formName]?.reset();
   }
 }

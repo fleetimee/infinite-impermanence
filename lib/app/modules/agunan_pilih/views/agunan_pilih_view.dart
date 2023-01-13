@@ -1,16 +1,21 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/insight_debitur/controllers/insight_debitur_controller.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../controllers/agunan_pilih_controller.dart';
 
 class AgunanPilihView extends GetView<AgunanPilihController> {
@@ -26,6 +31,8 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
     fontWeight: FontWeight.bold,
     color: Colors.white,
   );
+
+  final debiturCtrl = Get.put(InsightDebiturController());
 
   @override
   Widget build(BuildContext context) {
@@ -163,38 +170,236 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   Row(
                     children: [
                       Expanded(
-                        child: FormBuilderCheckbox(
-                          name: 'agunan_tanah',
-                          activeColor: primaryColor,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            fillColor: GFColors.SUCCESS,
+                        child: Slidable(
+                          enabled: controller.debiturController.insightDebitur
+                                      .value.agunan
+                                      ?.where(
+                                          (element) => element.kodeAgunan == 1)
+                                      .isEmpty ==
+                                  true
+                              ? false
+                              : true,
+                          endActionPane: ActionPane(
+                            motion: const DrawerMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(20),
+                                padding: const EdgeInsets.all(10),
+                                spacing: 10,
+                                onPressed: ((context) => {
+                                      AwesomeDialog(
+                                              context: Get.context!,
+                                              dialogType: DialogType.question,
+                                              animType: AnimType.bottomSlide,
+                                              dialogBackgroundColor:
+                                                  primaryColor,
+                                              titleTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              descTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              title: 'Konfirmasi',
+                                              bodyHeaderDistance: 25,
+                                              desc:
+                                                  'Apakah yakin untuk menghapus item ini ?',
+                                              btnOkOnPress: () {
+                                                controller.deleteFirstAgunan(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere((element) =>
+                                                            element
+                                                                .kodeAgunan ==
+                                                            1)
+                                                        .id!,
+                                                    'agunan_tanah');
+                                              },
+                                              btnOkText: 'Oke sip',
+                                              btnCancelText: 'Affa iyh',
+                                              btnCancelOnPress: () {})
+                                          .show()
+                                    }),
+                                backgroundColor: GFColors.DANGER,
+                                foregroundColor: Colors.white,
+                                icon: FontAwesomeIcons.trash,
+                                label: 'Hapus',
+                              ),
+                            ],
                           ),
-                          title: Text(
-                            'Tanah',
-                            style: checkboxStyle,
-                          ),
-                          initialValue: false,
+                          child: Obx(() => controller
+                                  .isAgunanInputProcessing.value
+                              ? const Center(child: CircularProgressIndicator())
+                              : FormBuilderCheckbox(
+                                  name: 'agunan_tanah',
+                                  enabled: controller.debiturController
+                                              .insightDebitur.value.agunan
+                                              ?.where((element) =>
+                                                  element.kodeAgunan == 1)
+                                              .isEmpty ==
+                                          true
+                                      ? true
+                                      : false,
+                                  activeColor: primaryColor,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    filled: true,
+                                    fillColor: GFColors.SUCCESS,
+                                  ),
+                                  title: Text(
+                                    'Tanah',
+                                    style: checkboxStyle,
+                                  ),
+                                  initialValue: controller.debiturController
+                                              .insightDebitur.value.agunan
+                                              ?.where((element) =>
+                                                  element.kodeAgunan == 1)
+                                              .isEmpty ==
+                                          true
+                                      ? false
+                                      : controller.debiturController
+                                                  .insightDebitur.value.agunan
+                                                  ?.contains(
+                                                controller
+                                                    .debiturController
+                                                    .insightDebitur
+                                                    .value
+                                                    .agunan!
+                                                    .firstWhere(
+                                                  (element) =>
+                                                      element.kodeAgunan == 1,
+                                                ),
+                                              ) ==
+                                              true
+                                          ? true
+                                          : false,
+                                )),
                         ),
                       ),
                       const SizedBox(
                         width: 12.0,
                       ),
                       Expanded(
-                        child: FormBuilderCheckbox(
-                          name: 'agunan_tanah_bangunan',
-                          activeColor: primaryColor,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            fillColor: GFColors.DANGER,
+                        child: Slidable(
+                          enabled: controller.debiturController.insightDebitur
+                                      .value.agunan
+                                      ?.where(
+                                          (element) => element.kodeAgunan == 2)
+                                      .isEmpty ==
+                                  true
+                              ? false
+                              : true,
+                          startActionPane: ActionPane(
+                            motion: const DrawerMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(20),
+                                padding: const EdgeInsets.all(10),
+                                spacing: 10,
+                                onPressed: ((context) => {
+                                      AwesomeDialog(
+                                              context: Get.context!,
+                                              dialogType: DialogType.question,
+                                              animType: AnimType.bottomSlide,
+                                              dialogBackgroundColor:
+                                                  primaryColor,
+                                              titleTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              descTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              title: 'Konfirmasi',
+                                              bodyHeaderDistance: 25,
+                                              desc:
+                                                  'Apakah yakin untuk menghapus item ini ?',
+                                              btnOkOnPress: () {
+                                                controller.deleteFirstAgunan(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere((element) =>
+                                                            element
+                                                                .kodeAgunan ==
+                                                            2)
+                                                        .id!,
+                                                    'agunan_tanah');
+                                              },
+                                              btnOkText: 'Oke sip',
+                                              btnCancelText: 'Affa iyh',
+                                              btnCancelOnPress: () {})
+                                          .show()
+                                    }),
+                                backgroundColor: GFColors.DANGER,
+                                foregroundColor: Colors.white,
+                                icon: FontAwesomeIcons.trash,
+                                label: 'Hapus',
+                              ),
+                            ],
                           ),
-                          title: Text(
-                            'Tanah dan Bangunan',
-                            style: checkboxStyle,
-                          ),
-                          initialValue: false,
+                          child: Obx(() => controller
+                                  .isAgunanInputProcessing.value
+                              ? const Center(child: CircularProgressIndicator())
+                              : FormBuilderCheckbox(
+                                  name: 'agunan_tanah_bangunan',
+                                  activeColor: primaryColor,
+                                  enabled: controller.debiturController
+                                              .insightDebitur.value.agunan
+                                              ?.where((element) =>
+                                                  element.kodeAgunan == 2)
+                                              .isEmpty ==
+                                          true
+                                      ? true
+                                      : false,
+                                  decoration: const InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    filled: true,
+                                    fillColor: GFColors.DANGER,
+                                  ),
+                                  title: Text(
+                                    'Tanah dan Bangunan',
+                                    style: checkboxStyle,
+                                  ),
+                                  initialValue: controller.debiturController
+                                              .insightDebitur.value.agunan
+                                              ?.where((element) =>
+                                                  element.kodeAgunan == 2)
+                                              .isEmpty ==
+                                          true
+                                      ? false
+                                      : controller.debiturController
+                                                  .insightDebitur.value.agunan
+                                                  ?.contains(
+                                                controller
+                                                    .debiturController
+                                                    .insightDebitur
+                                                    .value
+                                                    .agunan!
+                                                    .firstWhere(
+                                                  (element) =>
+                                                      element.kodeAgunan == 2,
+                                                ),
+                                              ) ==
+                                              true
+                                          ? true
+                                          : false,
+                                )),
                         ),
                       ),
                     ],
@@ -205,19 +410,120 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   Row(
                     children: [
                       Expanded(
-                        child: FormBuilderCheckbox(
-                          name: 'agunan_peralatan',
-                          activeColor: primaryColor,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            fillColor: GFColors.ALT,
+                        child: Slidable(
+                          enabled: controller.debiturController.insightDebitur
+                                      .value.agunan
+                                      ?.where(
+                                          (element) => element.kodeAgunan == 4)
+                                      .isEmpty ==
+                                  true
+                              ? false
+                              : true,
+                          endActionPane: ActionPane(
+                            motion: const DrawerMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(20),
+                                padding: const EdgeInsets.all(10),
+                                spacing: 10,
+                                onPressed: ((context) => {
+                                      AwesomeDialog(
+                                              context: Get.context!,
+                                              dialogType: DialogType.question,
+                                              animType: AnimType.bottomSlide,
+                                              dialogBackgroundColor:
+                                                  primaryColor,
+                                              titleTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              descTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              title: 'Konfirmasi',
+                                              bodyHeaderDistance: 25,
+                                              desc:
+                                                  'Apakah yakin untuk menghapus item ini ?',
+                                              btnOkOnPress: () {
+                                                controller.deleteFirstAgunan(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere((element) =>
+                                                            element
+                                                                .kodeAgunan ==
+                                                            4)
+                                                        .id!,
+                                                    'agunan_peralatan');
+                                              },
+                                              btnOkText: 'Oke sip',
+                                              btnCancelText: 'Affa iyh',
+                                              btnCancelOnPress: () {})
+                                          .show()
+                                    }),
+                                backgroundColor: GFColors.DANGER,
+                                foregroundColor: Colors.white,
+                                icon: FontAwesomeIcons.trash,
+                                label: 'Hapus',
+                              ),
+                            ],
                           ),
-                          title: Text(
-                            'Mesin dan Peralatan',
-                            style: checkboxStyle,
+                          child: Obx(
+                            () => controller.isAgunanInputProcessing.value
+                                ? const Center(
+                                    child: CircularProgressIndicator())
+                                : FormBuilderCheckbox(
+                                    name: 'agunan_peralatan',
+                                    enabled: controller.debiturController
+                                                .insightDebitur.value.agunan
+                                                ?.where((element) =>
+                                                    element.kodeAgunan == 4)
+                                                .isEmpty ==
+                                            true
+                                        ? true
+                                        : false,
+                                    activeColor: primaryColor,
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      filled: true,
+                                      fillColor: GFColors.ALT,
+                                    ),
+                                    title: Text(
+                                      'Mesin dan Peralatan',
+                                      style: checkboxStyle,
+                                    ),
+                                    initialValue: controller.debiturController
+                                                .insightDebitur.value.agunan
+                                                ?.where((element) =>
+                                                    element.kodeAgunan == 4)
+                                                .isEmpty ==
+                                            true
+                                        ? false
+                                        : controller.debiturController
+                                                    .insightDebitur.value.agunan
+                                                    ?.contains(
+                                                  controller
+                                                      .debiturController
+                                                      .insightDebitur
+                                                      .value
+                                                      .agunan!
+                                                      .firstWhere(
+                                                    (element) =>
+                                                        element.kodeAgunan == 4,
+                                                  ),
+                                                ) ==
+                                                true
+                                            ? true
+                                            : false,
+                                  ),
                           ),
-                          initialValue: false,
                         ),
                       ),
                       const SizedBox(
@@ -310,165 +616,12 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                       Expanded(child: Container())
                     ],
                   ),
-
-                  // FormBuilderCheckboxGroup<Map<String, dynamic>>(
-                  //   // enabled some of the options
-                  //   enabled: int.parse(data.inputKeuangan.kreditDiusulkan) >
-                  //           100000000
-                  //       ? true
-                  //       : false,
-                  //   wrapDirection: Axis.vertical,
-                  //   checkColor: secondaryColor,
-                  //   activeColor: primaryColor,
-                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  //   decoration: const InputDecoration(
-                  //     border: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.all(
-                  //         Radius.circular(8),
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   name: 'languages',
-                  //   onChanged: _onChanged,
-
-                  //   options: [
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_tanah'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 1,
-                  //         jenisAgunan: 'Tanah',
-                  //         isTanah: true,
-                  //         isKendaraan: false,
-                  //         isLos: false,
-                  //       ).toJson(),
-                  //       child: const Text('Tanah'),
-                  //     ),
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_tanah_bangunan'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 2,
-                  //         jenisAgunan: 'Tanah dan Bangunan',
-                  //         isTanah: true,
-                  //         isKendaraan: false,
-                  //         isLos: false,
-                  //       ).toJson(),
-                  //       child: const Text('Tanah dan Bangunan'),
-                  //     ),
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_kendaraan'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 3,
-                  //         jenisAgunan: 'Kendaraan',
-                  //         isTanah: false,
-                  //         isKendaraan: true,
-                  //         isLos: false,
-                  //       ).toJson(),
-                  //       child: const Text('Kendaraan'),
-                  //     ),
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_peralatan'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 4,
-                  //         jenisAgunan: 'Mesin dan Peralatan',
-                  //         isTanah: false,
-                  //         isKendaraan: false,
-                  //         isLos: false,
-                  //       ).toJson(),
-                  //       child: const Text('Mesin dan Peralatan'),
-                  //     ),
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_cash'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 5,
-                  //         jenisAgunan: 'Cash Collateral',
-                  //         isTanah: false,
-                  //         isKendaraan: false,
-                  //         isLos: false,
-                  //       ).toJson(),
-                  //       child: const Text('Cash Collateral'),
-                  //     ),
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_los'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 6,
-                  //         jenisAgunan: 'Kios Pasar',
-                  //         isTanah: false,
-                  //         isKendaraan: false,
-                  //         isLos: true,
-                  //       ).toJson(),
-                  //       child: const Text('Kios Pasar'),
-                  //     ),
-                  //   ],
-                  //   separator: const VerticalDivider(
-                  //     width: 10,
-                  //     thickness: 5,
-                  //     color: Colors.red,
-                  //   ),
-                  // ),
                   const SizedBox(
                     height: 30.0,
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     const Text(
-                  //       'Jenis agunan untuk plafon <= 100 juta : ',
-                  //       style: TextStyle(
-                  //         fontWeight: FontWeight.w500,
-                  //         fontSize: 16,
-                  //       ),
-                  //     ),
-                  //     int.parse(data.inputKeuangan.kreditDiusulkan) <=
-                  //             100000000
-                  //         ? const GFButton(
-                  //             onPressed: null,
-                  //             text: 'ENABLED',
-                  //             color: Colors.green,
-                  //           )
-                  //         : GFButton(
-                  //             onPressed: () {},
-                  //             text: 'INADVISABLE',
-                  //             color: GFColors.DANGER,
-                  //           ),
-                  //   ],
-                  // ),
                   const SizedBox(
                     height: 12.0,
                   ),
-                  // FormBuilderCheckboxGroup<Map<String, dynamic>>(
-                  //   // enabled some of the options
-                  //   wrapDirection: Axis.vertical,
-                  //   checkColor: secondaryColor,
-                  //   activeColor: primaryColor,
-                  //   autovalidateMode: AutovalidateMode.onUserInteraction,
-                  //   decoration: const InputDecoration(
-                  //     border: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.all(
-                  //         Radius.circular(8),
-                  //       ),
-                  //     ),
-                  //   ),
-                  //   name: 'languages',
-                  //   onChanged: _onChanged,
-                  //   options: [
-                  //     FormBuilderFieldOption(
-                  //       key: const Key('key_lainnya'),
-                  //       value: Bulk(
-                  //         kodeAgunan: 7,
-                  //         jenisAgunan: 'Lainnya',
-                  //         isTanah: false,
-                  //         isKendaraan: false,
-                  //         isLos: false,
-                  //       ).toJson(),
-                  //       child: const Text('Lainnya'),
-                  //     ),
-                  //   ],
-                  //   separator: const VerticalDivider(
-                  //     width: 10,
-                  //     thickness: 5,
-                  //     color: Colors.red,
-                  //   ),
-                  // ),
                 ],
               ),
               Row(
@@ -481,7 +634,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                             false) {
                           controller.saveMultipleAgunan();
                           // controller.patchProgressBar(data.id);
-                          Get.back();
+                          // Get.back();
                           debugPrint(controller.formKey.currentState?.value
                               .toString());
                         } else {

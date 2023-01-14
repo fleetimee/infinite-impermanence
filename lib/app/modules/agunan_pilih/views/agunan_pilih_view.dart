@@ -773,19 +773,124 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                         width: 12.0,
                       ),
                       Expanded(
-                        child: FormBuilderCheckbox(
-                          name: 'agunan_lainnya',
-                          activeColor: primaryColor,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            fillColor: GFColors.WARNING,
+                        child: Slidable(
+                          enabled: controller.debiturController.insightDebitur
+                                      .value.agunan
+                                      ?.where(
+                                          (element) => element.kodeAgunan == 7)
+                                      .isEmpty ==
+                                  true
+                              ? false
+                              : true,
+                          startActionPane: ActionPane(
+                            motion: const DrawerMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(20),
+                                padding: const EdgeInsets.all(10),
+                                spacing: 10,
+                                onPressed: ((context) => {
+                                      AwesomeDialog(
+                                              context: Get.context!,
+                                              dialogType: DialogType.question,
+                                              animType: AnimType.bottomSlide,
+                                              dialogBackgroundColor:
+                                                  primaryColor,
+                                              titleTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              descTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              title: 'Konfirmasi',
+                                              bodyHeaderDistance: 25,
+                                              desc:
+                                                  'Apakah yakin untuk menghapus item ini ?',
+                                              btnOkOnPress: () {
+                                                controller.deleteFirstAgunan(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere((element) =>
+                                                            element
+                                                                .kodeAgunan ==
+                                                            7)
+                                                        .id!,
+                                                    'agunan_lainnya');
+                                              },
+                                              btnOkText: 'Oke sip',
+                                              btnCancelText: 'Affa iyh',
+                                              btnCancelOnPress: () {})
+                                          .show()
+                                    }),
+                                backgroundColor: GFColors.DANGER,
+                                foregroundColor: Colors.white,
+                                icon: FontAwesomeIcons.trash,
+                                label: 'Hapus',
+                              ),
+                            ],
                           ),
-                          title: Text(
-                            'Lainnya',
-                            style: checkboxStyle,
-                          ),
-                          initialValue: false,
+                          child:
+                              Obx(() => controller.isAgunanInputProcessing.value
+                                  ? const Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : FormBuilderCheckbox(
+                                      name: 'agunan_lainnya',
+                                      enabled: controller.debiturController
+                                                  .insightDebitur.value.agunan
+                                                  ?.where((element) =>
+                                                      element.kodeAgunan == 7)
+                                                  .isEmpty ==
+                                              true
+                                          ? true
+                                          : false,
+                                      activeColor: primaryColor,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        filled: true,
+                                        fillColor: GFColors.WARNING,
+                                      ),
+                                      title: Text(
+                                        'Lainnya',
+                                        style: checkboxStyle,
+                                      ),
+                                      initialValue: controller.debiturController
+                                                  .insightDebitur.value.agunan
+                                                  ?.where((element) =>
+                                                      element.kodeAgunan == 7)
+                                                  .isEmpty ==
+                                              true
+                                          ? false
+                                          : controller
+                                                      .debiturController
+                                                      .insightDebitur
+                                                      .value
+                                                      .agunan
+                                                      ?.contains(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere(
+                                                      (element) =>
+                                                          element.kodeAgunan ==
+                                                          7,
+                                                    ),
+                                                  ) ==
+                                                  true
+                                              ? true
+                                              : false,
+                                    )),
                         ),
                       ),
                     ],

@@ -649,19 +649,124 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   Row(
                     children: [
                       Expanded(
-                        child: FormBuilderCheckbox(
-                          name: 'agunan_los',
-                          activeColor: primaryColor,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            filled: true,
-                            fillColor: GFColors.INFO,
+                        child: Slidable(
+                          enabled: controller.debiturController.insightDebitur
+                                      .value.agunan
+                                      ?.where(
+                                          (element) => element.kodeAgunan == 6)
+                                      .isEmpty ==
+                                  true
+                              ? false
+                              : true,
+                          endActionPane: ActionPane(
+                            motion: const DrawerMotion(),
+                            children: [
+                              SlidableAction(
+                                borderRadius: BorderRadius.circular(20),
+                                padding: const EdgeInsets.all(10),
+                                spacing: 10,
+                                onPressed: ((context) => {
+                                      AwesomeDialog(
+                                              context: Get.context!,
+                                              dialogType: DialogType.question,
+                                              animType: AnimType.bottomSlide,
+                                              dialogBackgroundColor:
+                                                  primaryColor,
+                                              titleTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                              descTextStyle:
+                                                  GoogleFonts.poppins(
+                                                color: secondaryColor,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                              title: 'Konfirmasi',
+                                              bodyHeaderDistance: 25,
+                                              desc:
+                                                  'Apakah yakin untuk menghapus item ini ?',
+                                              btnOkOnPress: () {
+                                                controller.deleteFirstAgunan(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere((element) =>
+                                                            element
+                                                                .kodeAgunan ==
+                                                            6)
+                                                        .id!,
+                                                    'agunan_los');
+                                              },
+                                              btnOkText: 'Oke sip',
+                                              btnCancelText: 'Affa iyh',
+                                              btnCancelOnPress: () {})
+                                          .show()
+                                    }),
+                                backgroundColor: GFColors.DANGER,
+                                foregroundColor: Colors.white,
+                                icon: FontAwesomeIcons.trash,
+                                label: 'Hapus',
+                              ),
+                            ],
                           ),
-                          title: Text(
-                            'Kios Pasar / Los',
-                            style: checkboxStyle,
-                          ),
-                          initialValue: false,
+                          child:
+                              Obx(() => controller.isAgunanInputProcessing.value
+                                  ? const Center(
+                                      child: CircularProgressIndicator(),
+                                    )
+                                  : FormBuilderCheckbox(
+                                      name: 'agunan_los',
+                                      enabled: controller.debiturController
+                                                  .insightDebitur.value.agunan
+                                                  ?.where((element) =>
+                                                      element.kodeAgunan == 6)
+                                                  .isEmpty ==
+                                              true
+                                          ? true
+                                          : false,
+                                      activeColor: primaryColor,
+                                      decoration: const InputDecoration(
+                                        border: OutlineInputBorder(),
+                                        filled: true,
+                                        fillColor: GFColors.INFO,
+                                      ),
+                                      title: Text(
+                                        'Kios Pasar / Los',
+                                        style: checkboxStyle,
+                                      ),
+                                      initialValue: controller.debiturController
+                                                  .insightDebitur.value.agunan
+                                                  ?.where((element) =>
+                                                      element.kodeAgunan == 6)
+                                                  .isEmpty ==
+                                              true
+                                          ? false
+                                          : controller
+                                                      .debiturController
+                                                      .insightDebitur
+                                                      .value
+                                                      .agunan
+                                                      ?.contains(
+                                                    controller
+                                                        .debiturController
+                                                        .insightDebitur
+                                                        .value
+                                                        .agunan!
+                                                        .firstWhere(
+                                                      (element) =>
+                                                          element.kodeAgunan ==
+                                                          6,
+                                                    ),
+                                                  ) ==
+                                                  true
+                                              ? true
+                                              : false,
+                                    )),
                         ),
                       ),
                       const SizedBox(

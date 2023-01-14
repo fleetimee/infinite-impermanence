@@ -87,38 +87,21 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                             ),
                             Animate(
-                                child: const GFCard(
-                              boxFit: BoxFit.cover,
-                              titlePosition: GFPosition.start,
-                              showOverlayImage: true,
-                              imageOverlay: AssetImage(
-                                'assets/images/home/bannerr.jpg',
-                              ),
-                              title: GFListTile(
-                                title: Text(
-                                  '',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 47,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              content: Text(
-                                '',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
+                                child: SizedBox(
+                              height: 170,
+                              child: Center(
+                                child: Image.asset(
+                                  'assets/images/home/bannerr.png',
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.center,
+                                  height: 200,
+                                )
                                     .animate()
                                     .fadeIn() // uses `Animate.defaultDuration`
                                     .scale() // inherits duration from fadeIn
-                                    .move(
-                                        delay: 300.ms,
-                                        duration: 600
-                                            .ms) // runs after the above w/new duration
+                                    .move(delay: 300.ms, duration: 600.ms),
+                              ),
+                            ) // runs after the above w/new duration
                                 // inherits the delay & duration from move,
                                 ),
                             Visibility(
@@ -434,38 +417,21 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                             ),
                             Animate(
-                                child: const GFCard(
-                              boxFit: BoxFit.cover,
-                              titlePosition: GFPosition.start,
-                              showOverlayImage: true,
-                              imageOverlay: AssetImage(
-                                'assets/images/home/bannerr.jpg',
-                              ),
-                              title: GFListTile(
-                                title: Text(
-                                  '',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 47,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              content: Text(
-                                '',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
+                                child: SizedBox(
+                              height: 170,
+                              child: Center(
+                                child: Image.asset(
+                                  'assets/images/home/bannerr.png',
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.center,
+                                  height: 200,
+                                )
                                     .animate()
                                     .fadeIn() // uses `Animate.defaultDuration`
                                     .scale() // inherits duration from fadeIn
-                                    .move(
-                                        delay: 300.ms,
-                                        duration: 600
-                                            .ms) // runs after the above w/new duration
+                                    .move(delay: 300.ms, duration: 600.ms),
+                              ),
+                            ) // runs after the above w/new duration
                                 // inherits the delay & duration from move,
                                 ),
                             const SizedBox(
@@ -774,38 +740,21 @@ class InputKeuanganView extends GetView<InputKeuanganController> {
                                 ),
                               ),
                               Animate(
-                                  child: const GFCard(
-                                boxFit: BoxFit.cover,
-                                titlePosition: GFPosition.start,
-                                showOverlayImage: true,
-                                imageOverlay: AssetImage(
-                                  'assets/images/home/bannerr.jpg',
-                                ),
-                                title: GFListTile(
-                                  title: Text(
-                                    '',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 47,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                                content: Text(
-                                  '',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )
+                                  child: SizedBox(
+                                height: 170,
+                                child: Center(
+                                  child: Image.asset(
+                                    'assets/images/home/bannerr.png',
+                                    fit: BoxFit.cover,
+                                    alignment: Alignment.center,
+                                    height: 200,
+                                  )
                                       .animate()
                                       .fadeIn() // uses `Animate.defaultDuration`
                                       .scale() // inherits duration from fadeIn
-                                      .move(
-                                          delay: 300.ms,
-                                          duration: 600
-                                              .ms) // runs after the above w/new duration
+                                      .move(delay: 300.ms, duration: 600.ms),
+                                ),
+                              ) // runs after the above w/new duration
                                   // inherits the delay & duration from move,
                                   ),
                               const SizedBox(

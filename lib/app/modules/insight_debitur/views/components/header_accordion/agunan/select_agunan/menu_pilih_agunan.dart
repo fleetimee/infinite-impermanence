@@ -315,7 +315,7 @@ class ViewButton extends StatelessWidget {
                   arguments: controller.insightDebitur.value);
             },
             child: const Text(
-              "Input",
+              "Update",
               style: TextStyle(
                 color: secondaryColor,
                 fontSize: 20,

@@ -111,7 +111,8 @@ class AgunanPilihController extends GetxController {
             "is_los": false,
             "is_kendaraan": false
           },
-        if (formKey.currentState!.value['agunan_kendaraan'] == true)
+        if (formKey.currentState!.value['agunan_kendaraan'] == true &&
+            formKey.currentState!.fields['agunan_kendaraan']?.enabled == true)
           {
             "kode_agunan": 3,
             "jenis_agunan": "Kendaraan",

@@ -128,7 +128,8 @@ class AgunanPilihController extends GetxController {
             "is_los": false,
             "is_kendaraan": false
           },
-        if (formKey.currentState!.value['agunan_cash'] == true)
+        if (formKey.currentState!.value['agunan_cash'] == true &&
+            formKey.currentState!.fields['agunan_cash']?.enabled == true)
           {
             "kode_agunan": 5,
             "jenis_agunan": "Cash Collateral",
@@ -136,7 +137,8 @@ class AgunanPilihController extends GetxController {
             "is_los": false,
             "is_kendaraan": false
           },
-        if (formKey.currentState!.value['agunan_los'] == true)
+        if (formKey.currentState!.value['agunan_los'] == true &&
+            formKey.currentState!.fields['agunan_los']?.enabled == true)
           {
             "kode_agunan": 6,
             "jenis_agunan": "Kios Pasar",
@@ -144,7 +146,8 @@ class AgunanPilihController extends GetxController {
             "is_los": true,
             "is_kendaraan": false
           },
-        if (formKey.currentState!.value['agunan_lainnya'] == true)
+        if (formKey.currentState!.value['agunan_lainnya'] == true &&
+            formKey.currentState!.fields['agunan_lainnya']?.enabled == true)
           {
             "kode_agunan": 7,
             "jenis_agunan": "Lainnya",

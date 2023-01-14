@@ -633,8 +633,6 @@ class DebiturEditView extends GetView<DebiturRealController> {
                     validator: FormBuilderValidators.compose([
                       FormBuilderValidators.required(),
                       FormBuilderValidators.numeric(),
-                      FormBuilderValidators.min(1,
-                          errorText: 'Jumlah tanggungan minimal 1 orang'),
                       FormBuilderValidators.max(99,
                           errorText: 'Jumlah tanggungan maksimal 99 orang'),
                       FormBuilderValidators.maxLength(2,

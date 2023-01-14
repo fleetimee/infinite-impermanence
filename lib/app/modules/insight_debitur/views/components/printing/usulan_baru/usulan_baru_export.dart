@@ -154,20 +154,14 @@ Future<Uint8List> makeUsulanBaruPdf(DebiturInsight debtor) async {
                         TableRow(
                           children: [
                             textUmur('Tgl rapat komite kredit'),
-                            textUmurR('March 2022')
+                            textUmurR('')
                           ],
                         ),
                         TableRow(
-                          children: [
-                            textUmur('Nomor MKK'),
-                            textUmurR('MKK/2021/03/01')
-                          ],
+                          children: [textUmur('Nomor MKK'), textUmurR('')],
                         ),
                         TableRow(
-                          children: [
-                            textUmur('No SKPK'),
-                            textUmurR('SKPK/2021/03/01')
-                          ],
+                          children: [textUmur('No SKPK'), textUmurR('')],
                         ),
                       ],
                     ),

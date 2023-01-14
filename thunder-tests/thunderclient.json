@@ -1177,11 +1177,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Patch Progress",
-    "url": "{{baseUrl}}api/v1/debiturs/39",
+    "url": "{{baseUrl}}api/v1/debiturs/41",
     "method": "PATCH",
     "sortNum": 800000,
     "created": "2022-12-02T12:49:21.490Z",
-    "modified": "2023-01-13T09:17:38.014Z",
+    "modified": "2023-01-14T14:15:11.047Z",
     "headers": [],
     "params": [],
     "body": {

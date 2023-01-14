@@ -909,28 +909,44 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                     null &&
                                 controller
                                     .insightDebitur.value.syaratLain!.isNotEmpty &&
-                                controller.insightDebitur.value.asuransi !=
+                                controller
+                                        .insightDebitur.value.asuransi !=
                                     null &&
                                 controller
                                         .insightDebitur.value.ijinLegitimasi !=
                                     null &&
                                 controller
-                                    .insightDebitur.value.upload!.isNotEmpty
+                                    .insightDebitur.value.upload!.isNotEmpty &&
+                                controller.insightDebitur.value.progress ==
+                                    '1.0'
                             ? Container(
                                 padding: const EdgeInsets.symmetric(
                                   horizontal: 25,
                                 ),
                                 child: GFButton(
-                                    onPressed: () {
-                                      Get.toNamed(
-                                        Routes.PENGAJUAN_SUBMIT_ANALIS,
-                                        arguments:
-                                            controller.insightDebitur.value,
-                                      );
-                                    },
+                                    onPressed: controller.insightDebitur.value
+                                            .pengajuan!.isNotEmpty
+                                        ? () {
+                                            Get.toNamed(
+                                              Routes.PENGAJUAN_DETAIL,
+                                              arguments: controller
+                                                  .insightDebitur
+                                                  .value
+                                                  .pengajuan
+                                                  ?.first
+                                                  .id,
+                                            );
+                                          }
+                                        : () {
+                                            Get.toNamed(
+                                              Routes.PENGAJUAN_SUBMIT_ANALIS,
+                                              arguments: controller
+                                                  .insightDebitur.value,
+                                            );
+                                          },
                                     text: controller.insightDebitur.value
                                             .pengajuan!.isNotEmpty
-                                        ? 'Kirim Pengajuan (lagi ?)'
+                                        ? 'Sudah Kirim Pengajuan'
                                         : 'Kirim Pengajuan',
                                     textStyle: const TextStyle(
                                       color: Colors.white,
@@ -1080,12 +1096,22 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                     style: BorderStyle.solid,
                                   ),
                                   children: [
-                                    TableRow(children: [
-                                      paddedText('No. Debitur'),
-                                      paddedText(controller
-                                          .insightDebitur.value.noDebitur
-                                          .toString()),
-                                    ]),
+                                    TableRow(
+                                      children: [
+                                        paddedText('ID'),
+                                        paddedText(controller
+                                            .insightDebitur.value.id
+                                            .toString()),
+                                      ],
+                                    ),
+                                    TableRow(
+                                      children: [
+                                        paddedText('No. Debitur'),
+                                        paddedText(controller
+                                            .insightDebitur.value.noDebitur
+                                            .toString()),
+                                      ],
+                                    ),
                                     TableRow(
                                       children: [
                                         paddedText('Peminjam 1'),

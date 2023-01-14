@@ -18,10 +18,10 @@ import 'package:akm/app/modules/input_keuangan/controllers/input_keuangan_contro
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/agunan_pilih_controller.dart';
 
+// ignore: must_be_immutable
 class AgunanPilihView extends GetView<AgunanPilihController> {
   AgunanPilihView({Key? key}) : super(key: key);
 
-  void _onChanged(dynamic val) => debugPrint(val.toString());
   final keuanganController = Get.put(InputKeuanganController());
 
   final data = Get.arguments;
@@ -105,22 +105,6 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                   const SizedBox(
                     height: 30,
                   ),
-                  // Text(
-                  //   int.parse(data.inputKeuangan.kreditDiusulkan) >
-                  //           100000000
-                  //       ? 'ENABLED'
-                  //       : 'DISABLED',
-                  //   style: const TextStyle(fontWeight: FontWeight.bold),
-                  // ),
-                  //  int.parse(data.inputKeuangan.kreditDiusulkan) > 100000000 ? GFBadge(
-                  //   color: Colors.green,
-                  //   child: const Text(
-                  //     'ENABLED',
-                  //     style: TextStyle(
-                  //       color: Colors.white,
-                  //       fontWeight: FontWeight.bold,
-                  //     ),
-                  //   )
                   int.parse(data.inputKeuangan.kreditDiusulkan) > 100000000
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

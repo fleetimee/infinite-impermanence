@@ -71,6 +71,7 @@ class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Animate(
                     child: SizedBox(
@@ -90,23 +91,67 @@ class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
                 ) // runs after the above w/new duration
                     // inherits the delay & duration from move,
                     ),
-
                 const SizedBox(
                   height: 20.0,
                 ),
-                // FormBuilderTextField(
-                //   name: 'crr_jenis_usaha',
-                //   enabled: false,
-                //   controller: controller.crrJenisUsaha =
-                //       TextEditingController(
-                //     text: data.analisaJenisUsaha.totalCrrUsaha.toString(),
-                //   ),
-                //   decoration: const InputDecoration(
-                //       labelText: 'CRR Jenis Usaha',
-                //       border: OutlineInputBorder()),
-                // ),
+                Text(
+                  'Harap dibaca terlebih dahulu 💀',
+                  style: Theme.of(context).textTheme.headline6?.merge(
+                        const TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25),
+                      ),
+                ),
                 const SizedBox(
-                  height: 20.0,
+                  height: 10.0,
+                ),
+                SizedBox(
+                  height: 500,
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    child: ListView(
+                      shrinkWrap: true,
+                      children: const [
+                        GFListTile(
+                          avatar: Text('1. '),
+                          titleText:
+                              'Sebelum melakukan analisa agunan, harap pastikan bahwa data agunan yang ada sudah benar dan lengkap.',
+                          icon: Icon(Icons.info_outline),
+                        ),
+                        GFListTile(
+                          avatar: Text('2. '),
+                          titleText:
+                              'Jika data agunan belum lengkap, harap segera menghubungi pihak terkait untuk memperbaiki data agunan.',
+                          icon: Icon(Icons.info_outline),
+                        ),
+                        GFListTile(
+                          avatar: Text('3. '),
+                          titleText:
+                              'Jika data agunan sudah lengkap, harap segera melakukan analisa agunan.',
+                          icon: Icon(Icons.info_outline),
+                        ),
+                        GFListTile(
+                          avatar: Text('4. '),
+                          titleText:
+                              'Jika ada data agunan yang salah atau ada yang mau ditambahkan, kalau sudah analisa agunan sebelumnnya silahkan hapus terlebih dahulu kemudian hitung ulang kembali untuk mendapatkan hasil yang terupdate',
+                          icon: Icon(Icons.info_outline),
+                        ),
+                        GFListTile(
+                          avatar: Text('5. '),
+                          titleText:
+                              'Jika ada data agunan tapi nilai agunan nya 0 saat menghitung, silahkan kembali ke panel debitur dan ulangi langkah perhitungan',
+                          icon: Icon(Icons.info_outline),
+                        ),
+                        GFListTile(
+                          avatar: Text('6. '),
+                          titleText:
+                              'Untuk menghitung analisa agunan dibutuhkan sekitar 7 detik, harap bersabar menunggu hingga proses selesai',
+                          icon: Icon(Icons.info_outline),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),

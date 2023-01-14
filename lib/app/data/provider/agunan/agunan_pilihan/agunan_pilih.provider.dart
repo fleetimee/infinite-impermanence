@@ -39,4 +39,24 @@ class AgunanPilihanProvider {
       return Future.error(e);
     }
   }
+
+  Future<void> purgeFirstAgunanPilihan(id, agunanId) async {
+    try {
+      final response = await httpClient.delete(
+        Uri.parse('${baseUrl}debiturs/$id/agunan/$agunanId/'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+      );
+      debugPrint(response.body);
+      if (response.statusCode == 200) {
+        return;
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      return Future.error(e);
+    }
+  }
 }

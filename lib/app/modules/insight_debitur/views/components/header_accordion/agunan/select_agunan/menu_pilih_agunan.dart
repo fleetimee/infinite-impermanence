@@ -211,21 +211,6 @@ class ViewButton extends StatelessWidget {
                                 itemCount: controller
                                     .insightDebitur.value.agunan!.length,
                                 itemBuilder: (context, index) {
-                                  // return ListTile(
-                                  //   title: Text(controller
-                                  //       .insightDebitur
-                                  //       .value
-                                  //       .agunan![
-                                  //           index]
-                                  //       .jenisAgunan!),
-                                  //   subtitle: Text(controller
-                                  //       .insightDebitur
-                                  //       .value
-                                  //       .agunan![
-                                  //           index]
-                                  //       .kodeAgunan
-                                  //       .toString()),
-                                  // );
                                   return GFListTile(
                                     avatar: GFAvatar(
                                       backgroundColor: primaryColor,
@@ -317,6 +302,28 @@ class ViewButton extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blueGrey,
+            ),
+            onPressed: () {
+              Get.toNamed(Routes.AGUNAN_PILIH,
+                  arguments: controller.insightDebitur.value);
+            },
+            child: const Text(
+              "Update",
+              style: TextStyle(
+                color: secondaryColor,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        )
       ],
     );
   }

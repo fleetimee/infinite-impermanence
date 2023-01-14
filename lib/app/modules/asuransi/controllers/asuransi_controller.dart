@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/service/debtor_service.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -33,6 +34,68 @@ class AsuransiController extends GetxController {
     precision: 0,
   );
 
+  void patchProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) +
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
+  void purgeProgressBar(int id) {
+    final body = {
+      'progress': double.parse(
+              debiturController.insightDebitur.value.progress.toString()) -
+          0.1,
+    };
+
+    try {
+      debiturController.isDataLoading(true);
+      DebtorService().patchProgressBar(body, id).then((resp) {
+        debiturController.isDataLoading(false);
+        debiturController.fetchOneDebitur(id);
+      }, onError: (err) {
+        debiturController.isDataLoading(false);
+        Get.snackbar(
+          'Error',
+          err.toString(),
+          backgroundColor: Colors.red,
+          colorText: secondaryColor,
+        );
+      });
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        backgroundColor: Colors.red,
+        colorText: secondaryColor,
+      );
+    }
+  }
+
   void saveAsuransi(id) {
     final body = {
       'nama_perusahaan': namaPerusahaan.text,
@@ -45,6 +108,8 @@ class AsuransiController extends GetxController {
       AsuransiProvider().deployAsuransi(id, body).then((resp) {
         isAsuransiProcessing(false);
         debiturController.fetchOneDebitur(id);
+        patchProgressBar(id);
+
         clearForm();
         Get.snackbar(
           'Success',
@@ -117,6 +182,7 @@ class AsuransiController extends GetxController {
         isAsuransiProcessing(false);
         debiturController.fetchOneDebitur(id);
         clearForm();
+        purgeProgressBar(id);
         AwesomeDialog(
           context: Get.context!,
           dialogType: DialogType.success,

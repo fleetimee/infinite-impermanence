@@ -95,6 +95,7 @@ class InsightDebiturController extends GetxController
       isAgunanLoading(true);
       InsightDebiturProvider().fetchAgunan(debiturId).then((resp) {
         isAgunanLoading(false);
+        listAgunan.clear();
         listAgunan.addAll(resp);
       }, onError: (err) {
         isAgunanLoading(false);

@@ -4,13 +4,9 @@ import 'package:flutter/material.dart';
 // 📦 Package imports:
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/components/card/gf_card.dart';
-import 'package:getwidget/components/list_tile/gf_list_tile.dart';
-import 'package:getwidget/position/gf_position.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/agunan_pilih/controllers/agunan_pilih_controller.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_cash/list_tile_cash_form.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/header_accordion/agunan/form_agunan/agunan_kendaraan/list_tile_kendaraan_form.dart';
@@ -44,32 +40,31 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const GFCard(
-            boxFit: BoxFit.cover,
-            titlePosition: GFPosition.start,
-            showOverlayImage: true,
-            imageOverlay: AssetImage(
-              'assets/images/home/bi_fast.png',
+          const SizedBox(
+            height: 20,
+          ),
+          Animate(
+              child: SizedBox(
+            height: 200,
+            child: Center(
+              child: Image.asset(
+                'assets/images/home/bannerr.png',
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+                height: 200,
+              )
+                  .animate()
+                  .fadeIn() // uses `Animate.defaultDuration`
+                  .scale() // inherits duration from fadeIn
+                  .move(delay: 300.ms, duration: 600.ms),
             ),
-            title: GFListTile(
-              title: Text(
-                '',
-                style: TextStyle(
-                  color: secondaryColor,
-                  fontSize: 47,
-                  fontWeight: FontWeight.bold,
-                ),
+          ) // runs after the above w/new duration
+              // inherits the delay & duration from move,
               ),
-            ),
-            content: Text(
-              "",
-              style: TextStyle(
-                color: secondaryColor,
-                fontSize: 28,
-                fontWeight: FontWeight.w400,
-              ),
-            ),
+          const SizedBox(
+            height: 20,
           ),
           Expanded(
             child: ListView(
@@ -138,8 +133,8 @@ class AgunanFormOnboardingView extends GetView<AgunanFormOnboardingController> {
                   }
                 }),
               ]
-                  .animate(interval: 300.ms)
-                  .fadeIn(duration: 600.ms, delay: 900.ms)
+                  .animate(interval: 100.ms)
+                  .fadeIn(duration: 200.ms, delay: 400.ms)
                   .shimmer(blendMode: BlendMode.srcOver, color: Colors.white12)
                   .move(begin: const Offset(-16, 0), curve: Curves.easeOutQuad),
             ),

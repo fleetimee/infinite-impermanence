@@ -8,7 +8,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // 🌎 Project imports:
@@ -77,29 +76,21 @@ class LihatAsuransiView extends GetView<AsuransiController> {
               Column(
                 children: [
                   Animate(
-                      child: const GFCard(
-                    boxFit: BoxFit.cover,
-                    titlePosition: GFPosition.start,
-                    showOverlayImage: true,
-                    imageOverlay: AssetImage('assets/images/home/bi_fast.png'),
-                    title: GFListTile(
-                      title: Text(
-                        '',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 47,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  )
+                      child: SizedBox(
+                    height: 200,
+                    child: Center(
+                      child: Image.asset(
+                        'assets/images/home/bannerr.png',
+                        fit: BoxFit.cover,
+                        alignment: Alignment.center,
+                        height: 200,
+                      )
                           .animate()
                           .fadeIn() // uses `Animate.defaultDuration`
                           .scale() // inherits duration from fadeIn
-                          .move(
-                              delay: 300.ms,
-                              duration:
-                                  600.ms) // runs after the above w/new duration
+                          .move(delay: 300.ms, duration: 600.ms),
+                    ),
+                  ) // runs after the above w/new duration
                       // inherits the delay & duration from move,
                       ),
                   const SizedBox(

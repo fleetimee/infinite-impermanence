@@ -109,11 +109,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "bc3a3cb6-18b9-485c-9b61-18a055231b82",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/28/agunan/",
+    "url": "{{baseUrl}}api/v1/debiturs/39/agunan/",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-12-02T12:49:21.434Z",
-    "modified": "2022-12-31T10:19:07.904Z",
+    "modified": "2023-01-13T08:09:22.315Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -161,11 +161,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Get",
-    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=1&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
+    "url": "{{baseUrl}}api/v1/debiturs/?limit=15&page=2&fields=peminjam1,bidang_usaha,jenis_usaha,tgl_sekarang,umur,ktp1,progress,userId&sort=id,ASC&join=inputKeuangan||kredit_diusulkan,digunakan_untuk",
     "method": "GET",
     "sortNum": 140000,
     "created": "2022-12-02T12:49:21.437Z",
-    "modified": "2022-12-09T01:46:37.820Z",
+    "modified": "2023-01-13T08:09:01.129Z",
     "headers": [],
     "params": [
       {
@@ -175,7 +175,7 @@
       },
       {
         "name": "page",
-        "value": "1",
+        "value": "2",
         "isPath": false
       },
       {
@@ -996,11 +996,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "bc3a3cb6-18b9-485c-9b61-18a055231b82",
     "name": "Delete",
-    "url": "{{baseUrl}}api/v1/debiturs/1/agunan/1",
+    "url": "{{baseUrl}}api/v1/debiturs/39/agunan/93",
     "method": "DELETE",
     "sortNum": 680000,
     "created": "2022-12-02T12:49:21.478Z",
-    "modified": "2022-12-02T12:49:21.478Z",
+    "modified": "2023-01-14T05:22:19.652Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -1177,11 +1177,11 @@
     "colId": "88488ef4-ac34-4f75-a2b7-60519b187bc4",
     "containerId": "97c566c9-7112-4d56-989a-b7f6548835d0",
     "name": "Patch Progress",
-    "url": "{{baseUrl}}api/v1/debiturs/5",
+    "url": "{{baseUrl}}api/v1/debiturs/41",
     "method": "PATCH",
     "sortNum": 800000,
     "created": "2022-12-02T12:49:21.490Z",
-    "modified": "2022-12-02T12:49:21.490Z",
+    "modified": "2023-01-14T14:15:11.047Z",
     "headers": [],
     "params": [],
     "body": {

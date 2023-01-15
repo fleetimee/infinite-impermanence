@@ -1,5 +1,5 @@
 name: akm
-version: 1.1.6+24
+version: 1.1.7+25
 publish_to: none
 description: Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS.
 environment:
@@ -28,13 +28,13 @@ dependencies:
       url: https://github.com/yuvaraja2303/finance/
       ref: patch-1
   firebase_analytics: ^10.1.0
-  firebase_auth: ^4.2.4
+  firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
-  firebase_crashlytics: ^3.0.9
+  firebase_crashlytics: ^3.0.10
   firebase_messaging: ^14.2.1
   flutter:
     sdk: flutter
-  flutter_animate: ^2.0.1
+  flutter_animate: ^2.1.0
   flutter_cached_pdfview:
     git:
       url: https://github.com/ewilliams-zoot/flutter_cached_pdfview/
@@ -68,7 +68,7 @@ dependencies:
   get: 4.6.5
   getwidget: ^3.0.1
   google_fonts: ^3.0.1
-  google_sign_in: ^5.4.2
+  google_sign_in: ^5.4.3
   http: ^0.13.5
   image_picker: ^0.8.6
   in_app_update: ^4.0.1
@@ -78,7 +78,7 @@ dependencies:
       url: https://github.com/Pyozer/introduction_screen
       ref: master
   latlong2: ^0.8.1
-  lottie: ^2.1.0
+  lottie: ^2.2.0
   map_launcher: ^2.4.0
   modal_bottom_sheet: ^2.1.2
   ntp: ^2.0.0
@@ -97,7 +97,7 @@ dependencies:
   scaffold_gradient_background: ^1.0.3+1
   settings_ui: ^2.0.2
   share_plus: ^6.3.0
-  shared_preferences: ^2.0.15
+  shared_preferences: ^2.0.16
   terbilang_id: ^0.1.0
   timeline_tile: ^2.0.0
   url_launcher: ^6.1.7
@@ -106,7 +106,7 @@ dependencies:
 
 dev_dependencies:
   change_app_package_name: ^1.1.0
-  dart_code_metrics: ^5.3.0
+  dart_code_metrics: ^5.4.0
   dependency_validator: ^3.2.2
   flutter_launcher_icons: ^0.11.0
   flutter_lints: 2.0.1

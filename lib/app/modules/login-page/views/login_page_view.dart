@@ -356,7 +356,7 @@ class LoginPageView extends GetView<LoginPageController> {
                                 ],
                               ),
                               const SizedBox(
-                                height: 240,
+                                height: 220,
                               ),
                               Container(
                                 padding: const EdgeInsets.all(20),
@@ -406,24 +406,42 @@ class LoginPageView extends GetView<LoginPageController> {
                                     const SizedBox(
                                       height: 15,
                                     ),
-                                    Text(
-                                      'Crafted with ❤️ in Yogyakarta',
-                                      style: TextStyle(
-                                        color: GFColors.LIGHT,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w800,
-                                        // add custom google font
-                                        fontFamily:
-                                            GoogleFonts.montserrat().fontFamily,
-                                      ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/home/ojk.png',
+                                              height: 40,
+                                            ),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Image.asset(
+                                              'assets/images/home/lps.png',
+                                              height: 40,
+                                            ),
+                                          ],
+                                        ),
+                                        Image.asset(
+                                          'assets/images/home/call-center.png',
+                                          height: 40,
+                                        ),
+                                      ],
                                     ),
-
-                                    // const SizedBox(
-                                    //   height: 10,
+                                    // Text(
+                                    //   'Crafted with ❤️ in Yogyakarta',
+                                    //   style: TextStyle(
+                                    //     color: GFColors.LIGHT,
+                                    //     fontSize: 14,
+                                    //     fontWeight: FontWeight.w800,
+                                    //     // add custom google font
+                                    //     fontFamily:
+                                    //         GoogleFonts.montserrat().fontFamily,
+                                    //   ),
                                     // ),
-                                    // divider with text in between
-                                    // Get shared preferences instance
-
                                     Visibility(
                                       visible: false,
                                       child: Obx(

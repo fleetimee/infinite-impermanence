@@ -22,7 +22,7 @@ jobs:
 
       # Menyiapkan Flutter dengan menggunakan channel stable
       - name: Setup Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.3.10"
           channel: "stable"

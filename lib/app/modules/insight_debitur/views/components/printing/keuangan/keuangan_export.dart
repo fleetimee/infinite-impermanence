@@ -100,8 +100,9 @@ Future<Uint8List> makeAnalisaKeuanganPdf(DebiturInsight debtor) async {
                   decimalSeparator: '',
                   thousandSeparator: '.',
                   precision: 0,
-                  initialValue: double.parse(
-                      debtor.analisaKeuangan!.totalAset.toString()),
+                  initialValue: (double.parse(
+                          debtor.inputRugiLaba!.sumAktiva!) -
+                      double.parse(debtor.inputRugiLaba!.tanahDanBangunan!)),
                 ).text),
                 Spacer(
                   flex: 8,

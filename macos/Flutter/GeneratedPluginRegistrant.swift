@@ -13,7 +13,7 @@ import firebase_crashlytics
 import firebase_messaging
 import flutter_local_notifications
 import geolocator_apple
-import path_provider_macos
+import path_provider_foundation
 import printing
 import share_plus
 import shared_preferences_foundation

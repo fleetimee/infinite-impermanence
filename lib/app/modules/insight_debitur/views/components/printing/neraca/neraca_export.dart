@@ -422,7 +422,7 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                           leftSymbol: 'Rp. ',
                           precision: 0,
                           initialValue: double.parse(
-                              debtor.inputNeraca!.hutangBank.toString()),
+                              debtor.inputNeraca!.pinjamanLain.toString()),
                         ).text),
                       ],
                     ),
@@ -444,6 +444,67 @@ Future<Uint8List> makeNeracaPdf(DebiturInsight debtor) async {
                     TableRow(
                       children: [
                         textUmur('6.'),
+                        textUmurBoldLeft('Hutang Lainnya'),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur(''),
+                        textUmur(
+                            'Perkiraan ini menunjukkan jumlah hutang lainnya, sebagai berikut :'),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Table(
+                  border: // border all
+                      TableBorder.all(color: PdfColors.black, width: 0.5),
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.75),
+                    1: const FlexColumnWidth(0.25),
+                  },
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        Center(child: textUmur('Keterangan')),
+                        textUmurR(DateFormat('dd/MM/yyyy').format(
+                            DateTime.parse(
+                                debtor.inputNeraca!.tanggalInput.toString()))),
+                      ],
+                    ),
+                    TableRow(
+                      children: [
+                        textUmur('Jumlah'),
+                        textUmur(MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputNeraca!.hutangBank.toString()),
+                        ).text),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Table(
+                  columnWidths: {
+                    0: const FlexColumnWidth(0.04),
+                    1: const FlexColumnWidth(0.96),
+                  },
+                  tableWidth: TableWidth.min,
+                  children: [
+                    TableRow(
+                      children: [
+                        textUmur('7.'),
                         textUmurBoldLeft('Aktiva Tetap'),
                       ],
                     ),

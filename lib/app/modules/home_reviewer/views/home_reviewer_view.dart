@@ -591,6 +591,7 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
 
                             Get.offAllNamed(Routes.GATE);
                           } else {
+                            // ignore: use_build_context_synchronously
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.infoReverse,

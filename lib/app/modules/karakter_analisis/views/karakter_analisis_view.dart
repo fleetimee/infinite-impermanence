@@ -145,7 +145,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                       Text(
                         controller.umurDeskripsi,
-                        style: Theme.of(context).textTheme.caption?.merge(
+                        style: Theme.of(context).textTheme.bodySmall?.merge(
                               const TextStyle(
                                 fontSize: 14,
                               ),
@@ -171,7 +171,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                       ),
                       Text(
                         controller.pendidkanDeskripsi,
-                        style: Theme.of(context).textTheme.caption?.merge(
+                        style: Theme.of(context).textTheme.bodySmall?.merge(
                               const TextStyle(
                                 fontSize: 14,
                               ),
@@ -208,7 +208,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         height: 16,
                       ),
                       Text(controller.lamanyaBerusahaDeskripsi,
-                          style: Theme.of(context).textTheme.caption?.merge(
+                          style: Theme.of(context).textTheme.bodySmall?.merge(
                                 const TextStyle(
                                   fontSize: 14,
                                 ),
@@ -240,7 +240,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         height: 16,
                       ),
                       Text(controller.uletDalamBisnisDeskripsi,
-                          style: Theme.of(context).textTheme.caption?.merge(
+                          style: Theme.of(context).textTheme.bodySmall?.merge(
                                 const TextStyle(
                                   fontSize: 14,
                                 ),
@@ -295,7 +295,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         height: 20,
                       ),
                       Text(controller.kakuFleksibelDeskripsi,
-                          style: Theme.of(context).textTheme.caption?.merge(
+                          style: Theme.of(context).textTheme.bodySmall?.merge(
                                 const TextStyle(
                                   fontSize: 14,
                                 ),
@@ -351,7 +351,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         height: 20,
                       ),
                       Text(controller.inovatifKreatifDeskripsi,
-                          style: Theme.of(context).textTheme.caption?.merge(
+                          style: Theme.of(context).textTheme.bodySmall?.merge(
                                 const TextStyle(
                                   fontSize: 14,
                                 ),
@@ -407,7 +407,7 @@ class KarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         height: 20,
                       ),
                       Text(controller.jujurDeskripsi,
-                          style: Theme.of(context).textTheme.caption?.merge(
+                          style: Theme.of(context).textTheme.bodySmall?.merge(
                                 const TextStyle(
                                   fontSize: 14,
                                 ),

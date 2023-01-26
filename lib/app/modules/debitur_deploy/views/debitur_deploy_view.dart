@@ -61,7 +61,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   const SizedBox(height: 5),
                   Text(
                     'Detail untuk peminjam pertama (wajib diisi)',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
@@ -168,7 +168,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   const SizedBox(height: 5),
                   Text(
                     'Detail untuk peminjam kedua (opsional)',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
@@ -316,7 +316,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   const SizedBox(height: 5),
                   Text(
                     'Diisi dengan nama pemilik agunan (bisa dikosongkan)',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
@@ -373,7 +373,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   const SizedBox(height: 5),
                   Text(
                     'Alamat 2 sampai 4 bisa dikosongkan',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,
@@ -471,7 +471,7 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
                   const SizedBox(height: 5),
                   Text(
                     'NPWP jika tidak ada, bisa dikosongkan',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             color: Colors.grey,
                             fontSize: 15,

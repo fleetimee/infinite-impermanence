@@ -65,7 +65,7 @@ class EditUsahaAnalisisView extends GetView<UsahaAnalisisController> {
                     controller.jenisUsahaDeskripsi,
                     style: Theme.of(context)
                         .textTheme
-                        .caption
+                        .bodySmall
                         ?.merge(const TextStyle(
                           fontSize: 14,
                         )),

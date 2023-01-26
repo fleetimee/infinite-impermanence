@@ -67,7 +67,7 @@ jobs:
 
       # Step ini digunakan untuk menyimpan appbundle ke artifacts yang nantinya akan diteruskan ke step 2
       - name: Save APPBUNDLE to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: APPBUNDLE
           path: build/app/outputs/bundle/release/app-release.aab

@@ -478,6 +478,56 @@ class HomePengutusView extends GetView<HomePengutusController> {
                           }),
                         ),
                       ),
+                      // Builder(
+                      //   builder: (context) {
+                      //     final List<Map> chartData = [
+                      //       {
+                      //         "year": "Jan",
+                      //         "sales": 40,
+                      //       },
+                      //       {
+                      //         "year": "Feb",
+                      //         "sales": 90,
+                      //       },
+                      //       {
+                      //         "year": "Mar",
+                      //         "sales": 30,
+                      //       },
+                      //       {
+                      //         "year": "Apr",
+                      //         "sales": 80,
+                      //       },
+                      //       {
+                      //         "year": "May",
+                      //         "sales": 90,
+                      //       }
+                      //     ];
+
+                      //     return Container(
+                      //       color: Theme.of(context).cardColor,
+                      //       padding: const EdgeInsets.all(12.0),
+                      //       child: SfCircularChart(
+                      //         backgroundColor: Colors.pink,
+                      //         borderColor: Colors.pink,
+                      //         title: ChartTitle(
+                      //             text: 'Pemutusan Pending',
+                      //             textStyle: const TextStyle(
+                      //                 color: Colors.white, fontSize: 20)),
+                      //         legend: Legend(isVisible: true),
+                      //         series: <CircularSeries>[
+                      //           PieSeries<Map, String>(
+                      //             dataSource: chartData,
+                      //             dataLabelSettings: const DataLabelSettings(
+                      //               isVisible: true,
+                      //             ),
+                      //             xValueMapper: (Map data, _) => data["year"],
+                      //             yValueMapper: (Map data, _) => data["sales"],
+                      //           )
+                      //         ],
+                      //       ),
+                      //     );
+                      //   },
+                      // ),
                     ],
                   ),
                 ),

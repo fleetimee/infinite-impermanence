@@ -30,11 +30,11 @@ dependencies:
   firebase_analytics: ^10.1.0
   firebase_auth: ^4.2.5
   firebase_core: ^2.4.1
-  firebase_crashlytics: ^3.0.10
+  firebase_crashlytics: ^3.0.11
   firebase_messaging: ^14.2.1
   flutter:
     sdk: flutter
-  flutter_animate: ^2.1.0
+  flutter_animate: ^3.1.0
   flutter_cached_pdfview:
     git:
       url: https://github.com/ewilliams-zoot/flutter_cached_pdfview/
@@ -67,10 +67,10 @@ dependencies:
   geolocator: ^9.0.2
   get: 4.6.5
   getwidget: ^3.0.1
-  google_fonts: ^3.0.1
-  google_sign_in: ^5.4.3
+  google_fonts: ^4.0.1
+  google_sign_in: ^5.4.4
   http: ^0.13.5
-  image_picker: ^0.8.6
+  image_picker: ^0.8.6+1
   in_app_update: ^4.0.1
   intl: ^0.18.0
   introduction_screen:
@@ -97,10 +97,11 @@ dependencies:
   scaffold_gradient_background: ^1.0.3+1
   settings_ui: ^2.0.2
   share_plus: ^6.3.0
-  shared_preferences: ^2.0.16
+  shared_preferences: ^2.0.17
+  syncfusion_flutter_charts: ^20.4.44
   terbilang_id: ^0.1.0
   timeline_tile: ^2.0.0
-  url_launcher: ^6.1.7
+  url_launcher: ^6.1.8
   vector_math: null
   wave: ^0.2.2
 

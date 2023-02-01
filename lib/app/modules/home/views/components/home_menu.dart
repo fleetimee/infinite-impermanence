@@ -145,7 +145,12 @@ class HomeMenu extends StatelessWidget {
                 },
                 {
                   'id': 5,
-                  'category_name': 'Tentang BPD DIY',
+                  'category_name': 'Instagram BPD DIY',
+                  'route': 'Routes.ADD_DEBITUR'
+                },
+                {
+                  'id': 6,
+                  'category_name': 'Crypto',
                   'route': 'Routes.ADD_DEBITUR'
                 }
               ];

@@ -23,6 +23,10 @@ dependencies:
   double_back_to_close_app: ^2.1.0
   extended_masked_text: ^2.3.1
   faker_dart: ^0.1.11
+  flag:
+    git:
+      url: https://github.com/fleetimee/flag_flutter
+      ref: stable
   finance:
     git:
       url: https://github.com/yuvaraja2303/finance/

@@ -311,6 +311,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.0.5"
+  enum_to_string:
+    dependency: transitive
+    description:
+      name: enum_to_string
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.1"
   extended_masked_text:
     dependency: "direct main"
     description:
@@ -460,6 +467,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.2.11"
+  flag:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: stable
+      resolved-ref: "00d3ee07debae63c71ff4e5a05f3a7a9856c1542"
+      url: "https://github.com/fleetimee/flag_flutter"
+    source: git
+    version: "6.0.0"
   flutter:
     dependency: "direct main"
     description: flutter

@@ -1,23 +1,34 @@
+import 'package:akm/app/data/provider/youtube-feeds/youtube-feeds.provider.dart';
 import 'package:get/get.dart';
+import 'package:webfeed/webfeed.dart';
 
 class YoutubeFeedController extends GetxController {
-  //TODO: Implement YoutubeFeedController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    getVideos();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
+  var videos = List<RssItem>.empty(growable: true).obs;
+  var isDataLoading = true.obs;
 
-  @override
-  void onClose() {
-    super.onClose();
+  void getVideos() async {
+    try {
+      isDataLoading(true);
+      VideoProvider().fetchVideo().then(
+        (resp) {
+          isDataLoading(false);
+          // as rss item add to list
+          videos.addAll(resp.items ?? []);
+        },
+        onError: (err) {
+          isDataLoading(false);
+          Get.snackbar('Error', err.toString());
+        },
+      );
+    } catch (e) {
+      isDataLoading(false);
+      Get.snackbar('Error', e.toString());
+    }
   }
-
-  void increment() => count.value++;
 }

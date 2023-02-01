@@ -2,13 +2,13 @@ import 'package:http/http.dart' as http;
 
 import 'package:webfeed/webfeed.dart';
 
-class RssProvider {
+class VideoProvider {
   final httpClient = http.Client();
 
-  Future<RssFeed> fetchRss() async {
+  Future<RssFeed> fetchVideo() async {
     try {
       final response = await httpClient.get(
-        Uri.parse('https://www.bpddiy.co.id/index.php?page=rss&mode=berita'),
+        Uri.parse('https://rss.app/feeds/ihntzKHbJr3VqCAn.xml'),
       );
       if (response.statusCode == 200) {
         var channel = RssFeed.parse(response.body);

@@ -13,11 +13,44 @@ class KursView extends GetView<KursController> {
         title: const Text('KursView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'KursView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Center(
+            child: Text(
+              'KursView is working',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Obx(
+            () => controller.isDataLoading.value
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount:
+                          // ignore index 0
+                          controller.kursList.length - 1,
+                      itemBuilder: (context, index) {
+                        // ignore index 0
+                        index += 1;
+
+                        return ListTile(
+                          title: Text(
+                            controller.kursList[index].mataUang ?? '',
+                          ),
+                          subtitle: Text(
+                            controller
+                                    .kursList[index].bankNotes?.bankNotesBeli ??
+                                '',
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+          ),
+        ],
       ),
     );
   }

@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:webfeed/webfeed.dart';
 
 class RssFeedController extends GetxController {
-  //TODO: Implement RssFeedController
-
   @override
   void onInit() {
     super.onInit();
@@ -13,8 +11,6 @@ class RssFeedController extends GetxController {
 
   List rss = List<RssItem>.empty(growable: true).obs;
   var isDataLoading = true.obs;
-
-  final count = 0.obs;
 
   void getRss() async {
     try {

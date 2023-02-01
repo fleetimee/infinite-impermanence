@@ -421,33 +421,40 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                                           trailing: const Icon(
                                               Icons.arrow_forward_ios),
                                           onTap: () {
-                                            Get.dialog(AlertDialog(
-                                              title: const Text(
-                                                'Detail Review',
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                                            Get.dialog(
+                                              AlertDialog(
+                                                title: const Text(
+                                                  'Detail Review',
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
+                                                content: const Text(
+                                                    'Apa yang ingin anda lakukan terhadap review ini?',
+                                                    style: TextStyle(
+                                                        fontSize: 15)),
+                                                actions: [
+                                                  GFButton(
+                                                    fullWidthButton: true,
+                                                    size: GFSize.LARGE,
+                                                    shape: GFButtonShape.pills,
+                                                    color: GFColors.SUCCESS,
+                                                    onPressed: () {
+                                                      Get.back();
+                                                      Get.toNamed(
+                                                          Routes
+                                                              .PENGAJUAN_DETAIL,
+                                                          arguments: controller
+                                                              .listMyCompletedReview[
+                                                                  index]
+                                                              .id!);
+                                                    },
+                                                    text: 'Lihat Progress',
+                                                  )
+                                                ],
                                               ),
-                                              content: const Text(
-                                                  'Apa yang ingin anda lakukan terhadap review ini?',
-                                                  style:
-                                                      TextStyle(fontSize: 15)),
-                                              actions: [
-                                                GFButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                    Get.toNamed(
-                                                        Routes.PENGAJUAN_DETAIL,
-                                                        arguments: controller
-                                                            .listMyCompletedReview[
-                                                                index]
-                                                            .id!);
-                                                  },
-                                                  text: 'Lihat Progress',
-                                                )
-                                              ],
-                                            ));
+                                            );
                                           },
                                         );
                                       },

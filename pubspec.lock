@@ -1732,6 +1732,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.2"
+  webfeed:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: "2464333d8f2fb7a8f33435cafc9eb068cc3ba626"
+      url: "https://github.com/arhamcode/webfeed"
+    source: git
+    version: "0.7.0"
   webview_flutter:
     dependency: transitive
     description:

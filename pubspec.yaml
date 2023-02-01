@@ -104,6 +104,10 @@ dependencies:
   url_launcher: ^6.1.8
   vector_math: null
   wave: ^0.2.2
+  webfeed: 
+    git:
+      url: https://github.com/arhamcode/webfeed
+      ref: master
 
 dev_dependencies:
   change_app_package_name: ^1.1.0

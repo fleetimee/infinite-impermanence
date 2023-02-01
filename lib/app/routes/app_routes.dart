@@ -94,6 +94,9 @@ abstract class Routes {
   static const REVIEWER_PRINT = _Paths.REVIEWER_PRINT;
   static const PENGUTUS_PRINT = _Paths.PENGUTUS_PRINT;
   static const PENGAJUAN_PRINTING = _Paths.PENGAJUAN_PRINTING;
+  static const RSS_FEED = _Paths.RSS_FEED;
+  static const YOUTUBE_FEED = _Paths.YOUTUBE_FEED;
+  static const KURS = _Paths.KURS;
 }
 
 abstract class _Paths {
@@ -186,4 +189,7 @@ abstract class _Paths {
   static const REVIEWER_PRINT = '/reviewer-print';
   static const PENGUTUS_PRINT = '/pengutus-print';
   static const PENGAJUAN_PRINTING = '/pengajuan-printing';
+  static const RSS_FEED = '/rss-feed';
+  static const YOUTUBE_FEED = '/youtube-feed';
+  static const KURS = '/kurs';
 }

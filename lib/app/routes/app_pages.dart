@@ -17,6 +17,8 @@ import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/edit_bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view.dart';
+import '../modules/crypto/bindings/crypto_binding.dart';
+import '../modules/crypto/views/crypto_view.dart';
 import '../modules/debitur_deploy/bindings/debitur_deploy_binding.dart';
 import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
@@ -60,6 +62,8 @@ import '../modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba
 import '../modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/insight_debitur/views/insight_debitur_view.dart';
+import '../modules/instagram_feed/bindings/instagram_feed_binding.dart';
+import '../modules/instagram_feed/views/instagram_feed_view.dart';
 import '../modules/intro-screen/bindings/intro_screen_binding.dart';
 import '../modules/intro-screen/views/intro_screen_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
@@ -70,6 +74,8 @@ import '../modules/keuangan_analisis/bindings/keuangan_analisis_binding.dart';
 import '../modules/keuangan_analisis/views/edit_keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/keuangan_analisis_view.dart';
 import '../modules/keuangan_analisis/views/lihat_keuangan_analisis_view.dart';
+import '../modules/kurs/bindings/kurs_binding.dart';
+import '../modules/kurs/views/kurs_view.dart';
 import '../modules/list_agunan_cash/bindings/list_agunan_cash_binding.dart';
 import '../modules/list_agunan_cash/views/list_agunan_cash_view.dart';
 import '../modules/list_agunan_kendaraan/bindings/list_agunan_kendaraan_binding.dart';
@@ -109,6 +115,8 @@ import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
 import '../modules/reviewer_submit/bindings/reviewer_submit_binding.dart';
 import '../modules/reviewer_submit/views/reviewer_submit_view.dart';
+import '../modules/rss_feed/bindings/rss_feed_binding.dart';
+import '../modules/rss_feed/views/rss_feed_view.dart';
 import '../modules/rugi_laba/bindings/rugi_laba_binding.dart';
 import '../modules/rugi_laba/views/edit_rugi_laba_view.dart';
 import '../modules/rugi_laba/views/rugi_laba_view.dart';
@@ -123,6 +131,8 @@ import '../modules/usaha_analisis/bindings/usaha_analisis_binding.dart';
 import '../modules/usaha_analisis/views/edit_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
+import '../modules/youtube_feed/bindings/youtube_feed_binding.dart';
+import '../modules/youtube_feed/views/youtube_feed_view.dart';
 
 // 📦 Package imports:
 
@@ -517,6 +527,31 @@ class AppPages {
       name: _Paths.PENGAJUAN_PRINTING,
       page: () => PengajuanPrintingView(),
       binding: PengajuanPrintingBinding(),
+    ),
+    GetPage(
+      name: _Paths.RSS_FEED,
+      page: () => const RssFeedView(),
+      binding: RssFeedBinding(),
+    ),
+    GetPage(
+      name: _Paths.YOUTUBE_FEED,
+      page: () => const YoutubeFeedView(),
+      binding: YoutubeFeedBinding(),
+    ),
+    GetPage(
+      name: _Paths.KURS,
+      page: () => const KursView(),
+      binding: KursBinding(),
+    ),
+    GetPage(
+      name: _Paths.INSTAGRAM_FEED,
+      page: () => const InstagramFeedView(),
+      binding: InstagramFeedBinding(),
+    ),
+    GetPage(
+      name: _Paths.CRYPTO,
+      page: () => const CryptoView(),
+      binding: CryptoBinding(),
     ),
   ];
 }

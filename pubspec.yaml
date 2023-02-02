@@ -23,6 +23,10 @@ dependencies:
   double_back_to_close_app: ^2.1.0
   extended_masked_text: ^2.3.1
   faker_dart: ^0.1.11
+  flag:
+    git:
+      url: https://github.com/fleetimee/flag_flutter
+      ref: stable
   finance:
     git:
       url: https://github.com/yuvaraja2303/finance/
@@ -104,6 +108,10 @@ dependencies:
   url_launcher: ^6.1.8
   vector_math: null
   wave: ^0.2.2
+  webfeed: 
+    git:
+      url: https://github.com/arhamcode/webfeed
+      ref: master
 
 dev_dependencies:
   change_app_package_name: ^1.1.0

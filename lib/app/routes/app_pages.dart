@@ -17,6 +17,8 @@ import '../modules/bisnis_analisis/bindings/bisnis_analisis_binding.dart';
 import '../modules/bisnis_analisis/views/bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/edit_bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view.dart';
+import '../modules/crypto/bindings/crypto_binding.dart';
+import '../modules/crypto/views/crypto_view.dart';
 import '../modules/debitur_deploy/bindings/debitur_deploy_binding.dart';
 import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
@@ -60,6 +62,8 @@ import '../modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba
 import '../modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/insight_debitur/views/insight_debitur_view.dart';
+import '../modules/instagram_feed/bindings/instagram_feed_binding.dart';
+import '../modules/instagram_feed/views/instagram_feed_view.dart';
 import '../modules/intro-screen/bindings/intro_screen_binding.dart';
 import '../modules/intro-screen/views/intro_screen_view.dart';
 import '../modules/karakter_analisis/bindings/karakter_analisis_binding.dart';
@@ -538,6 +542,16 @@ class AppPages {
       name: _Paths.KURS,
       page: () => const KursView(),
       binding: KursBinding(),
+    ),
+    GetPage(
+      name: _Paths.INSTAGRAM_FEED,
+      page: () => const InstagramFeedView(),
+      binding: InstagramFeedBinding(),
+    ),
+    GetPage(
+      name: _Paths.CRYPTO,
+      page: () => const CryptoView(),
+      binding: CryptoBinding(),
     ),
   ];
 }

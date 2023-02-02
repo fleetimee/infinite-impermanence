@@ -1,26 +1,25 @@
-import 'package:akm/app/data/provider/kurs/kurs.provider.dart';
-import 'package:akm/app/models/kurs/kurs.model.dart';
+import 'package:akm/app/data/provider/instagram-feed/instagram-feed.provider.dart';
 import 'package:get/get.dart';
+import 'package:webfeed/webfeed.dart';
 
-class KursController extends GetxController {
+class InstagramFeedController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getKurs();
+    getInstagram();
   }
 
-  var kursList = List<Kurs>.empty(growable: true).obs;
+  var instagram = List<RssItem>.empty(growable: true).obs;
   var isDataLoading = true.obs;
 
-  void getKurs() async {
+  void getInstagram() async {
     try {
       isDataLoading(true);
-      KursProvider().fetchKurs().then(
+      InstagramProvider().fetchInstagram().then(
         (resp) {
           isDataLoading(false);
           // as rss item add to list
-          kursList.clear();
-          kursList.addAll(resp);
+          instagram.addAll(resp.items ?? []);
         },
         onError: (err) {
           isDataLoading(false);

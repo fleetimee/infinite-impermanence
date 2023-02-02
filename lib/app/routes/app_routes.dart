@@ -97,6 +97,8 @@ abstract class Routes {
   static const RSS_FEED = _Paths.RSS_FEED;
   static const YOUTUBE_FEED = _Paths.YOUTUBE_FEED;
   static const KURS = _Paths.KURS;
+  static const INSTAGRAM_FEED = _Paths.INSTAGRAM_FEED;
+  static const CRYPTO = _Paths.CRYPTO;
 }
 
 abstract class _Paths {
@@ -192,4 +194,6 @@ abstract class _Paths {
   static const RSS_FEED = '/rss-feed';
   static const YOUTUBE_FEED = '/youtube-feed';
   static const KURS = '/kurs';
+  static const INSTAGRAM_FEED = '/instagram-feed';
+  static const CRYPTO = '/crypto';
 }

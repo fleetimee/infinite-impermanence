@@ -1,12 +1,26 @@
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../controllers/youtube_feed_controller.dart';
 
 class YoutubeFeedView extends GetView<YoutubeFeedController> {
   const YoutubeFeedView({Key? key}) : super(key: key);
+
+  Future<void> launchURL(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +34,7 @@ class YoutubeFeedView extends GetView<YoutubeFeedController> {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'From Youtube',
+              'Latest Videos',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -30,7 +44,9 @@ class YoutubeFeedView extends GetView<YoutubeFeedController> {
           const SizedBox(height: 10),
           Obx(
             () => controller.isDataLoading.value
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
                 : Expanded(
                     child: ListView.builder(
                       itemCount: controller.videos.length,
@@ -85,7 +101,7 @@ class YoutubeFeedView extends GetView<YoutubeFeedController> {
                                       Text(
                                         controller.videos[index].title!,
                                         style: const TextStyle(
-                                          fontSize: 12.0,
+                                          fontSize: 18.0,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
@@ -113,16 +129,21 @@ class YoutubeFeedView extends GetView<YoutubeFeedController> {
                                               style: TextStyle(
                                                 fontSize: 12.0,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.orange,
+                                                color: primaryColor,
                                               ),
                                             ),
                                           ),
-                                          const Text(
-                                            "Watch on Youtube",
-                                            style: TextStyle(
-                                              fontSize: 10.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.orange,
+                                          GFButton(
+                                            onPressed: () {
+                                              launchURL(Uri.parse(controller
+                                                  .videos[index].link!));
+                                            },
+                                            shape: GFButtonShape.pills,
+                                            text: "Watch on Youtube",
+                                            color: Colors.red,
+                                            icon: const FaIcon(
+                                              FontAwesomeIcons.youtube,
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ],

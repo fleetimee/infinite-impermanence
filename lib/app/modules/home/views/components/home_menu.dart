@@ -1,9 +1,6 @@
 // 🐦 Flutter imports:
-// ignore_for_file: unused_import
 
 import 'package:akm/app/common/style.dart';
-import 'package:akm/app/modules/simulasi_tetap/views/simulasi_tetap_view.dart';
-// ignore: unused_import
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -146,12 +143,12 @@ class HomeMenu extends StatelessWidget {
                 {
                   'id': 5,
                   'category_name': 'Instagram BPD DIY',
-                  'route': 'Routes.ADD_DEBITUR'
+                  'route': Routes.INSTAGRAM_FEED
                 },
                 {
                   'id': 6,
                   'category_name': 'Crypto',
-                  'route': 'Routes.ADD_DEBITUR'
+                  'route': Routes.CRYPTO,
                 }
               ];
               return Wrap(
@@ -197,6 +194,156 @@ class HomeMenu extends StatelessWidget {
               );
             },
           ),
+          const SizedBox(
+            height: 25,
+          ),
+          Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      color: primaryColor,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Terinput",
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: secondaryColor,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6.0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Obx(() => controller
+                                              .isMyInputProcessing.value
+                                          ? const SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          : Text(
+                                              controller.listMyInput.length
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                fontSize: 20.0,
+                                                color: secondaryColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: const BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(
+                                    8.0,
+                                  ),
+                                ),
+                              ),
+                              child: const Icon(
+                                Icons.people,
+                                size: 24.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                    child: Card(
+                      color: primaryColor,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Diajukan",
+                                    style: TextStyle(
+                                      fontSize: 15.0,
+                                      color: secondaryColor,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6.0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Obx(() => controller
+                                              .isMySubmissionProcessing.value
+                                          ? const SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child: CircularProgressIndicator(
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          : Text(
+                                              controller.listMySubmission.length
+                                                  .toString(),
+                                              style: const TextStyle(
+                                                fontSize: 20.0,
+                                                color: secondaryColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            )),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: const BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(
+                                    8.0,
+                                  ),
+                                ),
+                              ),
+                              child: const Icon(
+                                Icons.send,
+                                size: 24.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          )
         ],
       ),
     );

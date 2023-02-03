@@ -72,8 +72,8 @@ class PengajuanSubmitAnalisController extends GetxController {
         homeCtrl.getMySubmission();
         insightCtrl.fetchOneDebitur(data.id!);
         resetForm();
-        Get.back();
-        Get.back();
+        Navigator.pop(Get.context!);
+        Navigator.pop(Get.context!);
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

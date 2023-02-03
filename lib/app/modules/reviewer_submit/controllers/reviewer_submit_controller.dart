@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/reviewer_pending_list/controllers/reviewer_pending_list_controller.dart';
 import 'package:akm/app/widget/send_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,6 @@ import 'package:akm/app/data/provider/debitur/detail_debitur.provider.dart';
 import 'package:akm/app/data/provider/pengajuan/pengajuan_submit_reviewer.provider.dart';
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/models/pengajuan/pengajuan_detail.model.dart';
-import 'package:akm/app/modules/home_reviewer/controllers/home_reviewer_controller.dart';
 
 class ReviewerSubmitController extends GetxController {
   PengajuanDetail pengajuan = Get.arguments;
@@ -29,13 +29,13 @@ class ReviewerSubmitController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     fetchDebiturDetails();
+    super.onInit();
   }
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       getRating();
     });
 
@@ -44,7 +44,8 @@ class ReviewerSubmitController extends GetxController {
 
   var bahasanReviewer = List.empty(growable: true);
 
-  var homeReviewCtrl = Get.put(HomeReviewerController());
+  var pendingCtrl = Get.put(ReviewerPendingListController());
+  // var completedCtrl = Get.put(ReviewerCompletedListController());
 
   var isKeuanganPressed = false.obs;
   var keuanganValue = false.obs;
@@ -203,12 +204,12 @@ class ReviewerSubmitController extends GetxController {
           .submitPengajuanAnalis(pengajuan.id!, body)
           .then((resp) {
         isSubmitLoading(false);
-        homeReviewCtrl.getMyPendingReview();
-        homeReviewCtrl.getMyCompletedReview();
+        pendingCtrl.getMyPendingReview();
+        // completedCtrl.getMyCompletedReview();
         resetForm();
-        Get.back();
-        Get.back();
-        Get.back();
+        Navigator.pop(Get.context!);
+        Navigator.pop(Get.context!);
+
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

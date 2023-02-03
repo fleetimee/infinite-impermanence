@@ -27,6 +27,9 @@ class ReviewerCompletedListController extends GetxController {
                 element.status == 'DONE')
             .toList();
 
+        // sort desc by tglReview
+        finalList?.sort((a, b) => b.tglReview!.compareTo(a.tglReview!));
+
         listMyCompletedReview.clear();
         listMyCompletedReview = finalList ?? [];
       }, onError: (err) {

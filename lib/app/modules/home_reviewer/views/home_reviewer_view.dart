@@ -421,7 +421,8 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.REVIEWER_PENDING_LIST);
+                              Get.toNamed(Routes.REVIEWER_PENDING_LIST,
+                                  arguments: controller.uid);
                             },
                             child: Card(
                               child: Padding(

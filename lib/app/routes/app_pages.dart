@@ -113,6 +113,12 @@ import '../modules/pengutus_submit/bindings/pengutus_submit_binding.dart';
 import '../modules/pengutus_submit/views/pengutus_submit_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
 import '../modules/porsekot_table/views/porsekot_table_view.dart';
+import '../modules/reviewer_completed_list/bindings/reviewer_completed_list_binding.dart';
+import '../modules/reviewer_completed_list/views/reviewer_completed_list_view.dart';
+import '../modules/reviewer_pending_list/bindings/reviewer_pending_list_binding.dart';
+import '../modules/reviewer_pending_list/views/reviewer_pending_list_view.dart';
+import '../modules/reviewer_stats/bindings/reviewer_stats_binding.dart';
+import '../modules/reviewer_stats/views/reviewer_stats_view.dart';
 import '../modules/reviewer_submit/bindings/reviewer_submit_binding.dart';
 import '../modules/reviewer_submit/views/reviewer_submit_view.dart';
 import '../modules/rss_feed/bindings/rss_feed_binding.dart';
@@ -552,6 +558,21 @@ class AppPages {
       name: _Paths.CRYPTO,
       page: () => const CryptoView(),
       binding: CryptoBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVIEWER_PENDING_LIST,
+      page: () => const ReviewerPendingListView(),
+      binding: ReviewerPendingListBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVIEWER_COMPLETED_LIST,
+      page: () => const ReviewerCompletedListView(),
+      binding: ReviewerCompletedListBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVIEWER_STATS,
+      page: () => const ReviewerStatsView(),
+      binding: ReviewerStatsBinding(),
     ),
   ];
 }

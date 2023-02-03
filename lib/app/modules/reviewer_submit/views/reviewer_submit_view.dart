@@ -1135,19 +1135,31 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             controller.formKey.currentState!.value.toString());
                         Get.dialog(
                           AlertDialog(
-                            title: const Text('Submit'),
-                            content: Text(
+                            title: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            content: const Text(
                               'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?',
-                              style: Theme.of(context).textTheme.bodyText2,
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
                             actions: [
-                              TextButton(
+                              GFButton(
+                                color: GFColors.DANGER,
+                                size: GFSize.LARGE,
                                 onPressed: () {
-                                  Get.back();
+                                  Navigator.pop(context);
                                 },
                                 child: const Text('Tidak'),
                               ),
-                              TextButton(
+                              GFButton(
+                                color: GFColors.SUCCESS,
+                                size: GFSize.LARGE,
                                 onPressed: () {
                                   var list =
                                       controller.formKey.currentState!.value;
@@ -1187,6 +1199,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
 
                                   debugPrint(listFinal.toString());
 
+                                  Navigator.pop(context);
                                   controller.saveReview();
                                 },
                                 child: const Text('Ya'),

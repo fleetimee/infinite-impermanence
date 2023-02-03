@@ -8,6 +8,7 @@ import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
@@ -246,229 +247,469 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const GFTypography(
-                            text: 'Pending',
-                            icon: Icon(
-                              Icons.pending,
-                              color: GFColors.DANGER,
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  FontAwesomeIcons.check,
+                                  color: GFColors.SUCCESS,
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(() => SizedBox(
+                                      width: 400,
+                                      child: Text(
+                                        'Running on ${homeCtrl.brandName} ${homeCtrl.productName} ',
+                                        style: const TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    )),
+                              ],
                             ),
-                            fontWeight: FontWeight.bold,
-                            type: GFTypographyType.typo1,
-                            textColor: primaryColor,
-                            dividerColor: primaryColor,
-                            showDivider: false,
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
-                          SizedBox(
-                            height: 350,
-                            child: Card(child: Obx(() {
-                              if (controller
-                                  .isMyPendingReviewProcessing.value) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              } else {
-                                if (controller.listMyPendingReview.isNotEmpty) {
-                                  return RefreshIndicator(
-                                    onRefresh: () {
-                                      return controller.refreshReview();
-                                    },
-                                    child: ListView.builder(
-                                      itemCount:
-                                          controller.listMyPendingReview.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          leading: const Icon(
-                                            Icons.book,
-                                            color: Colors.red,
-                                          ),
-                                          title: Text(
-                                            controller
-                                                .listMyPendingReview[index]
-                                                .debitur
-                                                .peminjam1!,
-                                          ),
-                                          trailing: const Icon(
-                                              Icons.arrow_forward_ios),
-                                          onTap: () {
-                                            Get.dialog(AlertDialog(
-                                              title: const Text(
-                                                'Detail Review',
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                              content: const Text(
-                                                  'Apa yang ingin anda lakukan terhadap review ini?',
-                                                  style:
-                                                      TextStyle(fontSize: 15)),
-                                              actions: [
-                                                GFButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                    Get.toNamed(
-                                                        Routes.REVIEWER_SUBMIT,
-                                                        arguments: controller
-                                                                .listMyPendingReview[
-                                                            index]);
-                                                  },
-                                                  text: 'Review',
-                                                ),
-                                                GFButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                    Get.toNamed(
-                                                        Routes.PENGAJUAN_DETAIL,
-                                                        arguments: controller
-                                                            .listMyPendingReview[
-                                                                index]
-                                                            .id!);
-                                                  },
-                                                  text: 'Lihat Progress',
-                                                )
-                                              ],
-                                            ));
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  );
-                                } else {
-                                  return RefreshIndicator(
-                                    onRefresh: () {
-                                      return controller.refreshReview();
-                                    },
-                                    child: Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Text(
-                                            'Belum ada review yang pending',
-                                            style: TextStyle(fontSize: 20),
-                                          ),
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
-                                          TextButton(
-                                            onPressed: () {
-                                              controller.refreshReview();
-                                            },
-                                            child: const Text(
-                                              'Refresh',
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.blue,
-                                              ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              children: [
+                                Obx(() =>
+                                    homeCtrl.address.value == 'Getting address'
+                                        ? const SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              color: Colors.black,
                                             ),
                                           )
+                                        : const Icon(
+                                            FontAwesomeIcons.locationDot,
+                                            color: GFColors.DANGER,
+                                          )),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(() =>
+                                    homeCtrl.address.value == 'Getting address'
+                                        ? SizedBox(
+                                            child: Row(
+                                              children: const [
+                                                Text(
+                                                  'Getting address',
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 20,
+                                                ),
+                                                // IconButton(
+                                                //   onPressed: () {
+                                                //     homeCtrl.getLocation();
+                                                //   },
+                                                //   icon: const Icon(
+                                                //     FontAwesomeIcons.sync,
+                                                //     color: Colors.white,
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            width: 400,
+                                            child: Text(
+                                              'You are at ${homeCtrl.address}',
+                                              style: const TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                          )),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          LayoutBuilder(
+                            builder: (context, constraint) {
+                              List items = [
+                                {
+                                  'id': 1,
+                                  'category_name': 'Berita Terbaru',
+                                  'route': Routes.RSS_FEED
+                                },
+                                {
+                                  'id': 2,
+                                  'category_name': 'Kurs Hari Ini',
+                                  'route': Routes.KURS
+                                },
+                                {
+                                  'id': 3,
+                                  'category_name': 'Video BPD DIY',
+                                  'route': Routes.YOUTUBE_FEED
+                                },
+                                {
+                                  'id': 4,
+                                  'category_name': 'Panduan Penggunaan',
+                                  'route': 'Routes.ADD_DEBITUR'
+                                },
+                                {
+                                  'id': 5,
+                                  'category_name': 'Instagram BPD DIY',
+                                  'route': Routes.INSTAGRAM_FEED
+                                },
+                                {
+                                  'id': 6,
+                                  'category_name': 'Crypto',
+                                  'route': Routes.CRYPTO,
+                                }
+                              ];
+                              return Wrap(
+                                children: List.generate(
+                                  items.length,
+                                  (index) {
+                                    var item = items[index];
+                                    return InkWell(
+                                      onTap: () {
+                                        // navigate to route
+                                        Get.toNamed(item["route"]);
+                                      },
+                                      child: SizedBox(
+                                        height: 50,
+                                        child: Card(
+                                          color: primaryColor,
+                                          elevation: 5,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                              vertical: 4.0,
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  item["category_name"],
+                                                  style: const TextStyle(
+                                                    fontSize: 15.0,
+                                                    color: secondaryColor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.REVIEWER_PENDING_LIST,
+                                  arguments: controller.uid);
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216493054-ff62cc81-a6f5-4360-a468-f70f6b81272d.jpg",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Pengajuan Pending",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Nilai pengajuan yang dikirimkan oleh Analis",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ),
-                                  );
-                                }
-                              }
-                            })),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          const GFTypography(
-                            text: 'Completed',
-                            icon: Icon(
-                              Icons.check_circle,
-                              color: GFColors.SUCCESS,
+                                  ],
+                                ),
+                              ),
                             ),
-                            fontWeight: FontWeight.bold,
-                            type: GFTypographyType.typo1,
-                            textColor: primaryColor,
-                            dividerColor: primaryColor,
-                            showDivider: false,
                           ),
                           const SizedBox(
-                            height: 5,
+                            height: 10,
                           ),
-                          SizedBox(
-                            height: 350,
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.REVIEWER_COMPLETED_LIST,
+                                  arguments: controller.uid);
+                            },
                             child: Card(
-                              child: Obx(() {
-                                if (controller
-                                    .isMyCompletedReviewProcessing.value) {
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                } else {
-                                  if (controller
-                                      .listMyCompletedReview.isNotEmpty) {
-                                    return ListView.builder(
-                                      itemCount: controller
-                                          .listMyCompletedReview.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          leading: const Icon(
-                                            Icons.book,
-                                            color: Colors.green,
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216493335-b2e6e08d-fd1e-4426-88e3-775d642bcef4.jpg",
                                           ),
-                                          title: Text(
-                                            controller
-                                                .listMyCompletedReview[index]
-                                                .debitur
-                                                .peminjam1!,
-                                          ),
-                                          trailing: const Icon(
-                                              Icons.arrow_forward_ios),
-                                          onTap: () {
-                                            Get.dialog(
-                                              AlertDialog(
-                                                title: const Text(
-                                                  'Detail Review',
-                                                  style: TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                ),
-                                                content: const Text(
-                                                    'Apa yang ingin anda lakukan terhadap review ini?',
-                                                    style: TextStyle(
-                                                        fontSize: 15)),
-                                                actions: [
-                                                  GFButton(
-                                                    fullWidthButton: true,
-                                                    size: GFSize.LARGE,
-                                                    shape: GFButtonShape.pills,
-                                                    color: GFColors.SUCCESS,
-                                                    onPressed: () {
-                                                      Get.back();
-                                                      Get.toNamed(
-                                                          Routes
-                                                              .PENGAJUAN_DETAIL,
-                                                          arguments: controller
-                                                              .listMyCompletedReview[
-                                                                  index]
-                                                              .id!);
-                                                    },
-                                                    text: 'Lihat Progress',
-                                                  )
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    );
-                                  } else {
-                                    return const Center(
-                                      child: Text(
-                                        'Belum ada review yang selesai',
-                                        style: TextStyle(fontSize: 20),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
                                       ),
-                                    );
-                                  }
-                                }
-                              }),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Sudah Direview",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Pengajuan yang sudah di review",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.REVIEWER_STATS);
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216333023-cf90e721-d1f7-42dd-b084-cfb2b3e96fdf.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Statistik & Data",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Statistik dan data mengenai akunmu",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ],

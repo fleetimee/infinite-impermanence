@@ -156,6 +156,7 @@ class Roi {
       };
 }
 
+// ignore: constant_identifier_names
 enum Currency { BTC, USD, ETH }
 
 final currencyValues =

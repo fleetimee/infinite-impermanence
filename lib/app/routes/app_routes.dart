@@ -99,6 +99,9 @@ abstract class Routes {
   static const KURS = _Paths.KURS;
   static const INSTAGRAM_FEED = _Paths.INSTAGRAM_FEED;
   static const CRYPTO = _Paths.CRYPTO;
+  static const REVIEWER_PENDING_LIST = _Paths.REVIEWER_PENDING_LIST;
+  static const REVIEWER_COMPLETED_LIST = _Paths.REVIEWER_COMPLETED_LIST;
+  static const REVIEWER_STATS = _Paths.REVIEWER_STATS;
 }
 
 abstract class _Paths {
@@ -196,4 +199,7 @@ abstract class _Paths {
   static const KURS = '/kurs';
   static const INSTAGRAM_FEED = '/instagram-feed';
   static const CRYPTO = '/crypto';
+  static const REVIEWER_PENDING_LIST = '/reviewer-pending-list';
+  static const REVIEWER_COMPLETED_LIST = '/reviewer-completed-list';
+  static const REVIEWER_STATS = '/reviewer-stats';
 }

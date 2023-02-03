@@ -12,17 +12,18 @@ jobs:
     name: Build Artifacts and Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       # Menyiapkan Java
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v2
         with:
-          java-version: "12.x"
+          distribution: 'microsoft'
+          java-version: '11'
 
       # Menyiapkan Flutter dengan menggunakan channel stable
       - name: Setup Flutter
-        uses: subosito/flutter-action@v1
+        uses: subosito/flutter-action@v2
         with:
           flutter-version: "3.3.10"
           channel: "stable"
@@ -67,7 +68,7 @@ jobs:
 
       # Step ini digunakan untuk menyimpan appbundle ke artifacts yang nantinya akan diteruskan ke step 2
       - name: Save APPBUNDLE to Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: APPBUNDLE
           path: build/app/outputs/bundle/release/app-release.aab
@@ -80,7 +81,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Get APPBUNDLE from Artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: APPBUNDLE
       - name: Release APPBUNDLE to internal track

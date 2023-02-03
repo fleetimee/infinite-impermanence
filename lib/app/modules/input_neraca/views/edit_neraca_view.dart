@@ -49,7 +49,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Penjelasan mengenai pos neraca adalah menunjukkan besarnya pos neraca posisi :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -110,7 +110,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah kas dan saldo simpanan di bank (isi 0 jika tidak ada), sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -234,7 +234,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah piutang (isi 0 jika tidak ada), sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -309,7 +309,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah persediaan bahan baku, barang dagangan yang berhubungan usaha (isi 0 jika tidak ada),  sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -367,7 +367,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah hutang usaha, sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -425,7 +425,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah hutang bank lain (bisa bank atau platform pinjaman online seperti SPinjam, SPaylater dan sejenisnya (isi 0 di kedua field jika tidak ada), sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -510,7 +510,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah hutang lainnya (isi 0 jika tidak ada), sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),
@@ -568,7 +568,7 @@ class EditNeracaView extends GetView<InputNeracaController> {
                       'Perkiraan ini menunjukkan jumlah nilai buku aktiva yang dimiliki (isi 0 jika tidak ada), sebagai berikut :',
                       style: Theme.of(context)
                           .textTheme
-                          .caption
+                          .bodySmall
                           ?.merge(const TextStyle(
                             fontSize: 16,
                           )),

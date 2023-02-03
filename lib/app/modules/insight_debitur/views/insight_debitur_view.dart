@@ -180,7 +180,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                         .insightDebitur.value.tglSekarang
                                         .toString()),
                                   )}',
-                                  style: Theme.of(context).textTheme.subtitle1,
+                                  style: Theme.of(context).textTheme.titleMedium,
                                 ),
                         ),
                         Row(

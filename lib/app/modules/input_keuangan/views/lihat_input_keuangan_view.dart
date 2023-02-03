@@ -189,7 +189,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               Text(
                                 controller.deskripsiKredit,
                                 style:
-                                    Theme.of(context).textTheme.caption?.merge(
+                                    Theme.of(context).textTheme.bodySmall?.merge(
                                           const TextStyle(
                                             fontSize: 14,
                                           ),
@@ -267,7 +267,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               Text(
                                 controller.bungaDeskripsi,
                                 style:
-                                    Theme.of(context).textTheme.caption?.merge(
+                                    Theme.of(context).textTheme.bodySmall?.merge(
                                           const TextStyle(
                                             fontSize: 14,
                                           ),
@@ -388,7 +388,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                                 controller.digunakan,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .caption
+                                    .bodySmall
                                     ?.merge(const TextStyle(fontSize: 14)),
                               ),
                               const SizedBox(
@@ -427,7 +427,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               Text(controller.totalAngsuranDeskripsi,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .caption
+                                      .bodySmall
                                       ?.merge(const TextStyle(fontSize: 14))),
                               const SizedBox(
                                 height: 16.0,
@@ -557,7 +557,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             Text(controller.keuanganKini,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .caption
+                                    .bodySmall
                                     ?.merge(const TextStyle(fontSize: 14))),
                             const SizedBox(
                               height: 16.0,
@@ -716,7 +716,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                             Text(controller.asumsi,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .caption
+                                    .bodySmall
                                     ?.merge(const TextStyle(fontSize: 14))),
                             const SizedBox(
                               height: 16.0,
@@ -885,7 +885,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               Text(
                                 controller.interestTop,
                                 style:
-                                    Theme.of(context).textTheme.caption?.merge(
+                                    Theme.of(context).textTheme.bodySmall?.merge(
                                           const TextStyle(
                                             fontSize: 14.0,
                                           ),
@@ -939,7 +939,7 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               Text(controller.tradeCycleDesc,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .caption
+                                      .bodySmall
                                       ?.merge(const TextStyle(
                                         fontSize: 14.0,
                                       ))),

@@ -62,7 +62,7 @@ class EditAsuransiView extends GetView<AsuransiController> {
                   ),
                   Text(
                     controller.namaPerusahaanDeskripsi,
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(fontSize: 14),
                         ),
                   ),
@@ -88,7 +88,7 @@ class EditAsuransiView extends GetView<AsuransiController> {
                   ),
                   Text(
                     controller.premiDeskripsi,
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(fontSize: 14),
                         ),
                   ),
@@ -115,7 +115,7 @@ class EditAsuransiView extends GetView<AsuransiController> {
                   ),
                   Text(
                     controller.plafonKreditDeskripsi,
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(fontSize: 14),
                         ),
                   ),

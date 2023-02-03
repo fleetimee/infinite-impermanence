@@ -196,7 +196,7 @@ class KursView extends GetView<KursController> {
                                                                                                         )
                                                                                                       : const SizedBox(),
                                   title: Text(mataUangList ?? '',
-                                      style: Get.textTheme.headline6),
+                                      style: Get.textTheme.titleLarge),
                                   subTitle: Column(
                                     children: [
                                       Row(
@@ -228,14 +228,14 @@ class KursView extends GetView<KursController> {
                                             controller.kursList[index].eRate
                                                     ?.eRateBeli ??
                                                 '',
-                                            style: Get.textTheme.headline6,
+                                            style: Get.textTheme.titleLarge,
                                           ),
                                           const SizedBox(width: 10),
                                           Text(
                                             controller.kursList[index].eRate
                                                     ?.eRateJual ??
                                                 '',
-                                            style: Get.textTheme.headline6,
+                                            style: Get.textTheme.titleLarge,
                                           ),
                                         ],
                                       ),
@@ -384,7 +384,7 @@ class KursView extends GetView<KursController> {
                                                                                                         )
                                                                                                       : const SizedBox(),
                                   title: Text(mataUangList ?? '',
-                                      style: Get.textTheme.headline6),
+                                      style: Get.textTheme.titleLarge),
                                   subTitle: Column(
                                     children: [
                                       Row(
@@ -416,14 +416,14 @@ class KursView extends GetView<KursController> {
                                             controller.kursList[index].ttCounter
                                                     ?.ttCounterBeli ??
                                                 '',
-                                            style: Get.textTheme.headline6,
+                                            style: Get.textTheme.titleLarge,
                                           ),
                                           const SizedBox(width: 10),
                                           Text(
                                             controller.kursList[index].ttCounter
                                                     ?.ttCounterJual ??
                                                 '',
-                                            style: Get.textTheme.headline6,
+                                            style: Get.textTheme.titleLarge,
                                           ),
                                         ],
                                       ),
@@ -572,7 +572,7 @@ class KursView extends GetView<KursController> {
                                                                                                         )
                                                                                                       : const SizedBox(),
                                   title: Text(mataUangList ?? '',
-                                      style: Get.textTheme.headline6),
+                                      style: Get.textTheme.titleLarge),
                                   subTitle: Column(
                                     children: [
                                       Row(
@@ -604,14 +604,14 @@ class KursView extends GetView<KursController> {
                                             controller.kursList[index].bankNotes
                                                     ?.bankNotesBeli ??
                                                 '',
-                                            style: Get.textTheme.headline6,
+                                            style: Get.textTheme.titleLarge,
                                           ),
                                           const SizedBox(width: 10),
                                           Text(
                                             controller.kursList[index].bankNotes
                                                     ?.bankNotesJual ??
                                                 '',
-                                            style: Get.textTheme.headline6,
+                                            style: Get.textTheme.titleLarge,
                                           ),
                                         ],
                                       ),

@@ -34,9 +34,9 @@ class NetworkStatusService extends GetxService {
   void _validateSession() {
     // Get.offNamedUntil(
     //     Routes.HOME, (_) => false); //Here redirecting to home page
-    Navigator.pop(Get.context!);
+    // Navigator.pop(Get.context!);
     // if context is null then it will throw an error
-
+    Get.back();
     if (Get.context != null) {
       Get.snackbar(
         'Internet Connected',

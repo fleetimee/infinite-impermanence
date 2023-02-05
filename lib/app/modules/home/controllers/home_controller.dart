@@ -208,6 +208,7 @@ class HomeController extends GetxController {
   var latitude = 'Getting latitude'.obs;
   var longtitude = 'Getting longtitude'.obs;
   var address = 'Getting address'.obs;
+  var fullAddress = '...'.obs;
 
   // StreamSubscriptioon for location
   late StreamSubscription<Position> streamSubscription;
@@ -310,6 +311,8 @@ class HomeController extends GetxController {
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemark[0];
     address.value = '${place.locality}, ${place.administrativeArea}';
+    fullAddress.value =
+        '${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}';
   }
 
   // Link google account

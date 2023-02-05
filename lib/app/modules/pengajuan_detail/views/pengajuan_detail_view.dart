@@ -275,7 +275,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                           'Ini adalah detail pengajuan  ${controller.pengajuanDetail.value.id}, disini berisikan data lengkap dari data debitur yang diajuakan, penilaian reviewer sampai penilaian pemutus.',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .caption
+                                              .bodySmall
                                               ?.merge(
                                                 const TextStyle(
                                                   fontSize: 16,
@@ -513,7 +513,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                     '${index + 1}. ${controller.pengajuanDetail.value.bahasanAnalis?[index]}',
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .caption
+                                                        .bodySmall
                                                         ?.merge(
                                                           const TextStyle(
                                                             fontSize: 16,
@@ -612,7 +612,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                               style: Theme.of(
                                                                       context)
                                                                   .textTheme
-                                                                  .caption
+                                                                  .bodySmall
                                                                   ?.merge(
                                                                     const TextStyle(
                                                                       fontSize:
@@ -796,7 +796,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                               style: Theme.of(
                                                                       context)
                                                                   .textTheme
-                                                                  .caption
+                                                                  .bodySmall
                                                                   ?.merge(
                                                                     const TextStyle(
                                                                       fontSize:

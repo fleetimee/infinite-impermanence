@@ -111,7 +111,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       controller.isProcessing.value
                           ? 'Loading...'
                           : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis ${controller.pengajuan.user?[1].displayName ?? '-'}',
-                      style: Theme.of(context).textTheme.caption?.merge(
+                      style: Theme.of(context).textTheme.bodySmall?.merge(
                             const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
@@ -122,7 +122,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   const SizedBox(height: 20),
                   Text(
                     'Tanggal Review :',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   const SizedBox(height: 20),
                   Text(
                     'Ditujukan Kepada :',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -183,7 +183,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   const SizedBox(height: 20),
                   Text(
                     'Berikut adalah detail pengajuan yang diajukan :',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -229,7 +229,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
-                              style: Theme.of(context).textTheme.caption?.merge(
+                              style: Theme.of(context).textTheme.bodySmall?.merge(
                                     const TextStyle(
                                       fontSize: 14,
                                     ),
@@ -250,7 +250,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                               .insightDebitur.value.peminjam1!,
                                       style: Theme.of(context)
                                           .textTheme
-                                          .caption
+                                          .bodySmall
                                           ?.merge(
                                             const TextStyle(
                                               fontSize: 20,
@@ -265,7 +265,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                           'Rating',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .caption
+                                              .bodySmall
                                               ?.merge(
                                                 const TextStyle(
                                                   fontSize: 16,
@@ -281,7 +281,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                               : ': ${controller.rating.value} - ${controller.keterangan.value}',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .caption
+                                              .bodySmall
                                               ?.merge(
                                                 const TextStyle(
                                                   fontSize: 16,
@@ -298,7 +298,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                           'Score ',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .caption
+                                              .bodySmall
                                               ?.merge(
                                                 const TextStyle(
                                                   fontSize: 16,
@@ -314,7 +314,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                               : ': ${controller.totalCrr.value}',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .caption
+                                              .bodySmall
                                               ?.merge(
                                                 const TextStyle(
                                                   fontSize: 16,
@@ -969,7 +969,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini adalah tanggapan analis terhadap pengajuan ini',
-                              style: Theme.of(context).textTheme.caption?.merge(
+                              style: Theme.of(context).textTheme.bodySmall?.merge(
                                     const TextStyle(
                                       fontSize: 14,
                                     ),
@@ -989,7 +989,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                     '${index + 1}. ${controller.pengajuan.bahasanAnalis?[index]}',
                                     style: Theme.of(context)
                                         .textTheme
-                                        .caption
+                                        .bodySmall
                                         ?.merge(
                                           const TextStyle(
                                             fontSize: 16,
@@ -1018,7 +1018,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                   const SizedBox(height: 20),
                   Text(
                     'Untuk beberapa parameter dibawah ini hanya untuk tambahan saja dan tidak masuk kedalam penilaian :',
-                    style: Theme.of(context).textTheme.caption?.merge(
+                    style: Theme.of(context).textTheme.bodySmall?.merge(
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -1043,7 +1043,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
-                              style: Theme.of(context).textTheme.caption?.merge(
+                              style: Theme.of(context).textTheme.bodySmall?.merge(
                                     const TextStyle(
                                       fontSize: 14,
                                     ),
@@ -1279,7 +1279,7 @@ class AgunanCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Ini merupakan rekapan agunan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.caption?.merge(
+                style: Theme.of(context).textTheme.bodySmall?.merge(
                       const TextStyle(
                         fontSize: 14,
                       ),
@@ -1315,7 +1315,7 @@ class AgunanCard extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Apakah bisnis debitur ini layak?',
                   floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.caption!.merge(
+                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
                         const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1392,7 +1392,7 @@ class UsahaCard extends StatelessWidget {
               ),
               Text(
                 'Ini merupakan rekapan jenis usaha debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.caption?.merge(
+                style: Theme.of(context).textTheme.bodySmall?.merge(
                       const TextStyle(
                         fontSize: 14,
                       ),
@@ -1428,7 +1428,7 @@ class UsahaCard extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Apakah jenis usaha debitur ini layak?',
                   floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.caption!.merge(
+                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
                         const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1504,7 +1504,7 @@ class BisnisCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Ini merupakan rekapan bisnis debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.caption?.merge(
+                style: Theme.of(context).textTheme.bodySmall?.merge(
                       const TextStyle(
                         fontSize: 14,
                       ),
@@ -1542,7 +1542,7 @@ class BisnisCard extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Apakah bisnis debitur ini layak?',
                   floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.caption!.merge(
+                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
                         const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1618,7 +1618,7 @@ class KarakterCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Ini merupakan rekapan karakter debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.caption?.merge(
+                style: Theme.of(context).textTheme.bodySmall?.merge(
                       const TextStyle(
                         fontSize: 14,
                       ),
@@ -1647,7 +1647,7 @@ class KarakterCard extends StatelessWidget {
                 wrapAlignment: WrapAlignment.center,
                 decoration: InputDecoration(
                   floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.caption!.merge(
+                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
                         const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
@@ -1727,7 +1727,7 @@ class KeuanganCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Ini merupakan rekapan keuangan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.caption?.merge(
+                style: Theme.of(context).textTheme.bodySmall?.merge(
                       const TextStyle(
                         fontSize: 14,
                       ),
@@ -1796,7 +1796,7 @@ class KeuanganCard extends StatelessWidget {
                   decoration: InputDecoration(
                     labelText: 'Apakah keuangan debitur ini layak?',
                     floatingLabelAlignment: FloatingLabelAlignment.center,
-                    labelStyle: Theme.of(context).textTheme.caption!.merge(
+                    labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
                           const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -1872,7 +1872,7 @@ class GalleryCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Ini merupakan sekumpulan dokumen penunjang seperti foto dan dokumen lainnya yang sudah diunggah oleh tim analis',
-                style: Theme.of(context).textTheme.caption?.merge(
+                style: Theme.of(context).textTheme.bodySmall?.merge(
                       const TextStyle(
                         fontSize: 14,
                       ),

@@ -1,5 +1,5 @@
 name: akm
-version: 1.1.10+28
+version: 1.1.11+29
 publish_to: none
 description: Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS.
 environment:
@@ -10,14 +10,14 @@ dependencies:
   awesome_dialog: ^3.0.2
   bottom_bar_matu: ^1.3.0
   cached_network_image: ^3.2.3
-  collection: 1.16.0
+  collection: 1.17.0
   cupertino_icons: ^1.0.5
   currency_text_input_formatter: ^2.1.8
   data_connection_checker:
     git:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
-  data_table_2: ^2.3.10
+  data_table_2: ^2.3.11
   device_info_plus: ^8.0.0
   dio: ^4.0.6
   double_back_to_close_app: ^2.1.0
@@ -51,8 +51,8 @@ dependencies:
     sdk: flutter
   flutter_map: ^3.1.0
   flutter_map_marker_popup: ^4.0.0
-  flutter_markdown: ^0.6.13
-  flutter_native_splash: ^2.2.16
+  flutter_markdown: ^0.6.13+1
+  flutter_native_splash: ^2.2.17
   flutter_slidable: ^2.0.0
   flutter_staggered_grid_view: ^0.6.2
   flutter_styled_toast: ^2.1.3
@@ -71,11 +71,14 @@ dependencies:
   geolocator: ^9.0.2
   get: 4.6.5
   getwidget: ^3.0.1
-  google_fonts: ^4.0.1
+  google_fonts: ^4.0.3
   google_sign_in: ^5.4.4
   http: ^0.13.5
   image_picker: ^0.8.6+1
-  in_app_update: ^4.0.1
+  in_app_update:
+    git:
+      url: https://github.com/fleoparra/flutter_in_app_update
+      ref: master
   intl: ^0.18.0
   introduction_screen:
     git:
@@ -84,15 +87,19 @@ dependencies:
   latlong2: ^0.8.1
   lottie: ^2.2.0
   map_launcher: ^2.4.0
-  modal_bottom_sheet: ^2.1.2
+  modal_bottom_sheet:
+    git:
+      url: https://github.com/jamesblasco/modal_bottom_sheet
+      path: modal_bottom_sheet
+      ref: main
   ntp: ^2.0.0
   numerus: ^2.0.0
   open_filex: ^4.3.2
   open_street_map_search_and_pick: ^0.0.15
-  path_provider: ^2.0.11
-  pdf: ^3.8.4
+  path_provider: ^2.0.12
+  pdf: ^3.9.0
   photo_view: ^0.14.0
-  printing: ^5.9.3
+  printing: ^5.10.1
   responsive_framework:
     git:
       url: https://github.com/Codelessly/ResponsiveFramework
@@ -102,7 +109,7 @@ dependencies:
   settings_ui: ^2.0.2
   share_plus: ^6.3.0
   shared_preferences: ^2.0.17
-  syncfusion_flutter_charts: ^20.4.44
+  syncfusion_flutter_charts: ^20.4.48
   terbilang_id: ^0.1.0
   timeline_tile: ^2.0.0
   url_launcher: ^6.1.8
@@ -115,9 +122,12 @@ dependencies:
 
 dev_dependencies:
   change_app_package_name: ^1.1.0
-  dart_code_metrics: ^5.4.0
+  dart_code_metrics: ^5.5.1
   dependency_validator: ^3.2.2
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons:
+    git:
+      url: https://github.com/carloshpb/flutter_launcher_icons
+      ref: upgrade-image-4.0.10
   flutter_lints: 2.0.1
   import_sorter: ^4.6.0
 
@@ -160,3 +170,11 @@ flutter_native_splash:
 dependency_overrides:
   intl: ^0.18.0
   markdown: ^6.0.1
+  flutter_chips_input:
+    git:
+      url: https://github.com/danvick/flutter_chips_input
+      ref: flutter_37
+  signature: 
+    git:
+      url: https://github.com/larsziemert/signature/
+      ref: update_image_4

@@ -1676,6 +1676,7 @@ class HomeView extends GetView<HomeController> {
 
                             Get.offAllNamed(Routes.GATE);
                           } else {
+                            // ignore: use_build_context_synchronously
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.infoReverse,

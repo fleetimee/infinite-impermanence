@@ -64,7 +64,7 @@ class IjinLegitimasiView extends GetView<IjinLegitimasiController> {
                     controller.jenisIjinKeterangan,
                     style: Theme.of(context)
                         .textTheme
-                        .caption
+                        .bodySmall
                         ?.merge(const TextStyle(fontSize: 14)),
                   ),
                   const SizedBox(
@@ -91,7 +91,7 @@ class IjinLegitimasiView extends GetView<IjinLegitimasiController> {
                     controller.keteranganDeskripsi,
                     style: Theme.of(context)
                         .textTheme
-                        .caption
+                        .bodySmall
                         ?.merge(const TextStyle(fontSize: 14)),
                   ),
                   const SizedBox(

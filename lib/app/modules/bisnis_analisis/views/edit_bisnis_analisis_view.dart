@@ -84,7 +84,7 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         controller.omzetDeskripsi,
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .bodySmall
                             ?.merge(const TextStyle(fontSize: 14)),
                       ),
                       const SizedBox(
@@ -126,7 +126,7 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         controller.hargaBersaingDeskripsi,
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .bodySmall
                             ?.merge(const TextStyle(fontSize: 14)),
                       ),
                       const SizedBox(
@@ -171,7 +171,7 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         controller.persainganPasarDeskripsi,
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .bodySmall
                             ?.merge(const TextStyle(fontSize: 14)),
                       ),
                       const SizedBox(
@@ -216,7 +216,7 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         controller.lokasiUsaha,
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .bodySmall
                             ?.merge(const TextStyle(fontSize: 14)),
                       ),
                       const SizedBox(
@@ -261,7 +261,7 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         controller.kapasitasTerpasangDeskripsi,
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .bodySmall
                             ?.merge(const TextStyle(fontSize: 14)),
                       ),
                       const SizedBox(
@@ -307,7 +307,7 @@ class EditBisnisAnalisisView extends GetView<BisnisAnalisisController> {
                         controller.kualitasProdukDeskripsi,
                         style: Theme.of(context)
                             .textTheme
-                            .caption
+                            .bodySmall
                             ?.merge(const TextStyle(fontSize: 14)),
                       ),
                       const SizedBox(

@@ -62,7 +62,7 @@ class AgunanAnalisisView extends GetView<AgunanAnalisisController> {
                   ),
                   Text(
                     'Harap dibaca terlebih dahulu 💀',
-                    style: Theme.of(context).textTheme.headline6?.merge(
+                    style: Theme.of(context).textTheme.titleLarge?.merge(
                           const TextStyle(
                               color: Colors.red,
                               fontWeight: FontWeight.bold,

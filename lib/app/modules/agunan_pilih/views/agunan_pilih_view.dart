@@ -113,7 +113,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                               'Berikut adalah jenis agunan yang tersedia untuk plafond diatas Rp. 100.000.000',
                               style: Theme.of(context)
                                   .textTheme
-                                  .caption
+                                  .bodySmall
                                   ?.merge(const TextStyle(fontSize: 14)),
                             ),
                             const SizedBox(
@@ -1429,7 +1429,7 @@ class AgunanPilihView extends GetView<AgunanPilihController> {
                               'Berikut adalah jenis agunan yang tersedia untuk plafond dibawah atau sama dengan Rp. 100.000.000',
                               style: Theme.of(context)
                                   .textTheme
-                                  .caption
+                                  .bodySmall
                                   ?.merge(const TextStyle(fontSize: 14)),
                             ),
                             const SizedBox(

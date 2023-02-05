@@ -8,9 +8,11 @@ import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -619,7 +621,8 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.REVIEWER_STATS);
+                              Get.toNamed(Routes.REVIEWER_STATS,
+                                  arguments: controller.uid);
                             },
                             child: Card(
                               child: Padding(
@@ -700,6 +703,125 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
                                           ),
                                           const Text(
                                             "Statistik dan data mengenai akunmu",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InkWell(
+                            onTap: () => AwesomeDialog(
+                              context: Get.context!,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.bottomSlide,
+                              title: 'Keluar ?',
+                              desc: 'Apakah anda yakin ingin keluar ?',
+                              dialogBackgroundColor: primaryColor,
+                              titleTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              descTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              btnOkOnPress: () {
+                                SystemNavigator.pop();
+                              },
+                              btnCancelText: 'Tidak',
+                              btnOkText: 'Ya',
+                              btnCancelOnPress: () => Get.back(),
+                            ).show(),
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216748185-fc00e958-0840-46c0-aad6-da330e202f17.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Keluar",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Keluar dari aplikasi",
                                             style: TextStyle(
                                               fontSize: 15.0,
                                             ),
@@ -839,6 +961,7 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
 
                             Get.offAllNamed(Routes.GATE);
                           } else {
+                            // ignore: use_build_context_synchronously
                             AwesomeDialog(
                               context: context,
                               dialogType: DialogType.infoReverse,

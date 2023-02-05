@@ -28,12 +28,6 @@ class InstagramFeedView extends GetView<InstagramFeedController> {
                       ),
                       itemCount: controller.instagram.length,
                       itemBuilder: (context, index) {
-                        String html = controller.instagram[index].description!;
-
-                        RegExp regex = RegExp(r'<.*?>');
-
-                        String content = html.replaceAll(regex, '');
-
                         return Container(
                           height: 600,
                           margin: const EdgeInsets.all(8.0),

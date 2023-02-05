@@ -1151,10 +1151,11 @@ packages:
   in_app_update:
     dependency: "direct main"
     description:
-      name: in_app_update
-      sha256: "0be3b79405409d77999b57075322ae4703af7871d83529b5b52c246ada9861fe"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: adb4b9dedf3b96de9fb445633aff1ef8b146ff9c
+      url: "https://github.com/fleoparra/flutter_in_app_update"
+    source: git
     version: "4.0.1"
   intl:
     dependency: "direct main"

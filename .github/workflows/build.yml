@@ -25,7 +25,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.3.10"
+          flutter-version: "3.7.1"
           channel: "stable"
 
       # Decode file KEYSTORE_JKS_PROD yang berbentuk base64 dan mengubahnya menjadi keystore.jks

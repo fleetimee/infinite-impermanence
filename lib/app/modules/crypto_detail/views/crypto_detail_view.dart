@@ -98,7 +98,7 @@ class CryptoDetailView extends GetView<CryptoDetailController> {
                         color: Colors.orange,
                       ),
                       const Text(
-                        "(4.8)",
+                        "",
                         style: TextStyle(
                           fontSize: 12.0,
                         ),

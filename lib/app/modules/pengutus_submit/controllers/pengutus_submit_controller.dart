@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/pengutus_pending_list/controllers/pengutus_pending_list_controller.dart';
 import 'package:akm/app/widget/send_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +18,13 @@ import 'package:akm/app/modules/home_pengutus/controllers/home_pengutus_controll
 class PengutusSubmitController extends GetxController {
   @override
   void onInit() {
-    super.onInit();
     fetchDebiturDetails();
+    super.onInit();
   }
 
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 5), () {
       getRating();
     });
 
@@ -38,6 +39,8 @@ class PengutusSubmitController extends GetxController {
   var rating = ''.obs;
   var keterangan = ''.obs;
   var totalCrr = ''.obs;
+
+  var pendingCtrl = Get.put(PengutusPendingListController());
 
   final formKey = GlobalKey<FormBuilderState>();
 
@@ -192,13 +195,10 @@ class PengutusSubmitController extends GetxController {
           .submitPengajuanPemutus(pengajuan.id!, body)
           .then((resp) {
         isSubmitLoading(false);
-        // homeCtrl.getMyPendingPemutusan();
-        // homeCtrl.getMyCompletedPutusan();
-
+        pendingCtrl.getMyPendingPemutusan();
         resetForm();
-        Get.back();
-        Get.back();
-        Get.back();
+        Navigator.pop(Get.context!);
+        Navigator.pop(Get.context!);
         Get.snackbar(
           'Success',
           'Data berhasil disimpan',

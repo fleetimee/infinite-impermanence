@@ -178,11 +178,12 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             const SizedBox(height: 10),
                             Obx(
@@ -918,11 +919,12 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini adalah tanggapan analis terhadap pengajuan ini',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             ListView.builder(
                               shrinkWrap: true,
@@ -971,11 +973,12 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini adalah tanggapan reviewer terhadap pengajuan ini',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             ListView.builder(
                               shrinkWrap: true,
@@ -1047,11 +1050,12 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini merupakan catatan pemutus untuk debitur ini',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             const SizedBox(height: 10),
                             Row(
@@ -1147,11 +1151,12 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Decision time, TERIMA / TOLAK ?',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             const SizedBox(height: 10),
                             FormBuilderDropdown(
@@ -1186,19 +1191,29 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                             controller.formKey.currentState!.value.toString());
                         Get.dialog(
                           AlertDialog(
-                            title: const Text('Submit'),
+                            title: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             content: Text(
                               'Tolong double check data yang telah diinputkan, apakah sudah benar ?',
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             actions: [
-                              TextButton(
+                              GFButton(
+                                color: GFColors.DANGER,
+                                size: GFSize.LARGE,
                                 onPressed: () {
-                                  Get.back();
+                                  Navigator.pop(context);
                                 },
                                 child: const Text('Tidak'),
                               ),
-                              TextButton(
+                              GFButton(
+                                color: GFColors.SUCCESS,
+                                size: GFSize.LARGE,
                                 onPressed: () {
                                   var list =
                                       controller.formKey.currentState!.value;
@@ -1238,6 +1253,8 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                                   var listFinal = controller.bahasanPemutus;
 
                                   debugPrint(listFinal.toString());
+
+                                  Navigator.pop(context);
 
                                   controller.savePutusan();
                                 },

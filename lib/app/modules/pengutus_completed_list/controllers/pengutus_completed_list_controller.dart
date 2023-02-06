@@ -13,6 +13,8 @@ class PengutusCompletedListController extends GetxController {
 
   var isMyCompletedPemutusanProcessing = false.obs;
   List listMyCompletedPemutusan = <Pengajuan>[].obs;
+  List listMyCompletedPemutusanFilteredByAccepatance = <Pengajuan>[].obs;
+  List listMyCompletedPemutusanFilteredByRejection = <Pengajuan>[].obs;
 
   void getMyCompletedPutusan() async {
     try {
@@ -24,11 +26,25 @@ class PengutusCompletedListController extends GetxController {
                 element.status == 'DONE' || element.status == 'REJECTED')
             .toList();
 
+        final finalListAccepted = resp.pengajuan?.where((element) {
+          return element.status == 'DONE';
+        }).toList();
+
+        final finalListRejected = resp.pengajuan?.where((element) {
+          return element.status == 'REJECTED';
+        }).toList();
+
         // sort desc by tglPutusan
         finalList?.sort((a, b) => b.tglPemutusan!.compareTo(a.tglPemutusan!));
 
         listMyCompletedPemutusan.clear();
         listMyCompletedPemutusan = finalList ?? [];
+
+        listMyCompletedPemutusanFilteredByAccepatance.clear();
+        listMyCompletedPemutusanFilteredByAccepatance = finalListAccepted ?? [];
+
+        listMyCompletedPemutusanFilteredByRejection.clear();
+        listMyCompletedPemutusanFilteredByRejection = finalListRejected ?? [];
       }, onError: (err) {
         isMyCompletedPemutusanProcessing(false);
         Get.snackbar('Error', err.toString());

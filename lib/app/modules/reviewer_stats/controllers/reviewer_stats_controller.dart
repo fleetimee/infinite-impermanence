@@ -6,10 +6,6 @@ import 'package:get/get.dart';
 class ReviewerStatsController extends GetxController {
   var uid = Get.arguments;
 
-  final count = 0.obs;
-
-  void increment() => count.value++;
-
   var homeController = Get.put(HomeController());
   var pendingController = Get.put(ReviewerPendingListController());
   var completedController = Get.put(ReviewerCompletedListController());

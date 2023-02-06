@@ -304,7 +304,7 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                                 Text(
                                                   'Getting address',
                                                   style: TextStyle(
-                                                    color: Colors.black,
+                                                    color: Colors.white,
                                                     fontSize: 20,
                                                   ),
                                                 ),

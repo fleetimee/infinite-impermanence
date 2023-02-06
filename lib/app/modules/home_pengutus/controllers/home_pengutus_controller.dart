@@ -9,8 +9,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/data/provider/user/pengajuan_debitur.provider.dart';
-import 'package:akm/app/models/user/user_pengajuan.model.dart';
 
 class HomePengutusController extends GetxController {
   @override
@@ -22,8 +20,8 @@ class HomePengutusController extends GetxController {
   @override
   void onReady() {
     Future.delayed(Duration.zero, () {
-      getMyPendingPemutusan();
-      getMyCompletedPutusan();
+      // getMyPendingPemutusan();
+      // getMyCompletedPutusan();
     });
     super.onReady();
   }
@@ -37,57 +35,30 @@ class HomePengutusController extends GetxController {
     uid.value = prefs.getString('id') ?? '';
   }
 
-  var isMyPendingPemutusanProcessing = false.obs;
-  var isMyCompletedPemutusanProcessing = false.obs;
-  List listMyPendingPemutusan = <Pengajuan>[].obs;
-  List listMyCompletedPemutusan = <Pengajuan>[].obs;
+  // var isMyCompletedPemutusanProcessing = false.obs;
+  // List listMyCompletedPemutusan = <Pengajuan>[].obs;
 
-  void getMyPendingPemutusan() async {
-    try {
-      isMyPendingPemutusanProcessing(true);
-      MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
-        isMyPendingPemutusanProcessing(false);
-        final finalList = resp.pengajuan
-            ?.where((element) => element.status == 'REVIEWED')
-            .toList();
+  // void getMyCompletedPutusan() async {
+  //   try {
+  //     isMyCompletedPemutusanProcessing(true);
+  //     MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
+  //       isMyCompletedPemutusanProcessing(false);
+  //       final finalList = resp.pengajuan
+  //           ?.where((element) =>
+  //               element.status == 'DONE' || element.status == 'REJECTED')
+  //           .toList();
 
-        listMyPendingPemutusan.clear();
-        listMyPendingPemutusan = finalList ?? [];
-      }, onError: (err) {
-        isMyPendingPemutusanProcessing(false);
-        Get.snackbar('Error', err.toString());
-      });
-    } catch (e) {
-      isMyPendingPemutusanProcessing(false);
-      Get.snackbar('Error', e.toString());
-    }
-  }
-
-  void getMyCompletedPutusan() async {
-    try {
-      isMyCompletedPemutusanProcessing(true);
-      MySubmissionProvider().fetchMyReview(uid.value).then((resp) {
-        isMyCompletedPemutusanProcessing(false);
-        final finalList = resp.pengajuan
-            ?.where((element) =>
-                element.status == 'DONE' || element.status == 'REJECTED')
-            .toList();
-
-        listMyCompletedPemutusan.clear();
-        listMyCompletedPemutusan = finalList ?? [];
-      }, onError: (err) {
-        isMyCompletedPemutusanProcessing(false);
-        Get.snackbar('Error', err.toString());
-      });
-    } catch (e) {
-      isMyCompletedPemutusanProcessing(false);
-      Get.snackbar('Error', e.toString());
-    }
-  }
-
-  Future<void> refreshPemutusan() async {
-    getMyPendingPemutusan();
-  }
+  //       listMyCompletedPemutusan.clear();
+  //       listMyCompletedPemutusan = finalList ?? [];
+  //     }, onError: (err) {
+  //       isMyCompletedPemutusanProcessing(false);
+  //       Get.snackbar('Error', err.toString());
+  //     });
+  //   } catch (e) {
+  //     isMyCompletedPemutusanProcessing(false);
+  //     Get.snackbar('Error', e.toString());
+  //   }
+  // }
 
   void logout() {
     AwesomeDialog(

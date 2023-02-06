@@ -192,8 +192,8 @@ class PengutusSubmitController extends GetxController {
           .submitPengajuanPemutus(pengajuan.id!, body)
           .then((resp) {
         isSubmitLoading(false);
-        homeCtrl.getMyPendingPemutusan();
-        homeCtrl.getMyCompletedPutusan();
+        // homeCtrl.getMyPendingPemutusan();
+        // homeCtrl.getMyCompletedPutusan();
 
         resetForm();
         Get.back();

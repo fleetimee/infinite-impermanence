@@ -103,6 +103,9 @@ abstract class Routes {
   static const REVIEWER_COMPLETED_LIST = _Paths.REVIEWER_COMPLETED_LIST;
   static const REVIEWER_STATS = _Paths.REVIEWER_STATS;
   static const CRYPTO_DETAIL = _Paths.CRYPTO_DETAIL;
+  static const PENGUTUS_COMPLETED_LIST = _Paths.PENGUTUS_COMPLETED_LIST;
+  static const PENGUTUS_PENDING_LIST = _Paths.PENGUTUS_PENDING_LIST;
+  static const PENGUTUS_PENDING_STATS = _Paths.PENGUTUS_PENDING_STATS;
 }
 
 abstract class _Paths {
@@ -204,4 +207,7 @@ abstract class _Paths {
   static const REVIEWER_COMPLETED_LIST = '/reviewer-completed-list';
   static const REVIEWER_STATS = '/reviewer-stats';
   static const CRYPTO_DETAIL = '/crypto-detail';
+  static const PENGUTUS_COMPLETED_LIST = '/pengutus-completed-list';
+  static const PENGUTUS_PENDING_LIST = '/pengutus-pending-list';
+  static const PENGUTUS_PENDING_STATS = '/pengutus-pending-stats';
 }

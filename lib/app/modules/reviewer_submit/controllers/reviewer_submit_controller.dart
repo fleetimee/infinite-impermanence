@@ -205,7 +205,6 @@ class ReviewerSubmitController extends GetxController {
           .then((resp) {
         isSubmitLoading(false);
         pendingCtrl.getMyPendingReview();
-        // completedCtrl.getMyCompletedReview();
         resetForm();
         Navigator.pop(Get.context!);
         Navigator.pop(Get.context!);

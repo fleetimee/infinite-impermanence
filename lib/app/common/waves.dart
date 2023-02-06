@@ -12,6 +12,11 @@ class WavesSettings {
     blue300,
   ];
 
+  static const waveColorsPink = [
+    Colors.pink,
+    Colors.pinkAccent,
+  ];
+
   static const waveDurations = [
     5000,
     4000,

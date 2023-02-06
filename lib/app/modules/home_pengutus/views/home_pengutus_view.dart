@@ -8,8 +8,11 @@ import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -148,7 +151,7 @@ class HomePengutusView extends GetView<HomePengutusController> {
                             height: 90,
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: primaryColor,
+                              color: Colors.pink[800],
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
@@ -156,7 +159,7 @@ class HomePengutusView extends GetView<HomePengutusController> {
                             height: 80,
                             child: WaveWidget(
                               config: CustomConfig(
-                                colors: WavesSettings.waveColors,
+                                colors: WavesSettings.waveColorsPink,
                                 heightPercentages:
                                     WavesSettings.waveHeightPercentages,
                                 durations: WavesSettings.waveDurations,
@@ -173,32 +176,6 @@ class HomePengutusView extends GetView<HomePengutusController> {
                             ),
                             child: Row(
                               children: [
-                                // FutureBuilder(
-                                //   future: controller.img,
-                                //   builder: (context, snapshot) {
-                                //     if (snapshot.connectionState == ConnectionState.waiting) {
-                                //       return const Shimmer(
-                                //         gradient: LinearGradient(
-                                //           colors: [
-                                //             Colors.white,
-                                //             Colors.grey,
-                                //           ],
-                                //         ),
-                                //         child: CircleAvatar(
-                                //           radius: 30,
-                                //           backgroundColor: Colors.white,
-                                //         ),
-                                //       );
-                                //     } else {
-                                //       return CircleAvatar(
-                                //         radius: 30,
-                                //         backgroundImage: NetworkImage(
-                                //           snapshot.data.toString(),
-                                //         ),
-                                //       );
-                                //     }
-                                //   },
-                                // ),
                                 Obx(() => CircleAvatar(
                                       radius: 30,
                                       child: CachedNetworkImage(
@@ -269,265 +246,596 @@ class HomePengutusView extends GetView<HomePengutusController> {
                       const SizedBox(
                         height: 20,
                       ),
-                      const GFTypography(
-                        text: 'Pending',
-                        icon: Icon(
-                          Icons.pending,
-                          color: GFColors.LIGHT,
-                        ),
-                        fontWeight: FontWeight.bold,
-                        type: GFTypographyType.typo1,
-                        textColor: secondaryColor,
-                        dividerColor: primaryColor,
-                        showDivider: false,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        height: 350,
-                        color: Colors.pink[200],
-                        child: Card(
-                            color: Colors.pink[100],
-                            child: Obx(() {
-                              if (controller
-                                  .isMyPendingPemutusanProcessing.value) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              } else {
-                                if (controller
-                                    .listMyPendingPemutusan.isNotEmpty) {
-                                  return RefreshIndicator(
-                                    onRefresh: () {
-                                      return controller.refreshPemutusan();
-                                    },
-                                    child: ListView.builder(
-                                      itemCount: controller
-                                          .listMyPendingPemutusan.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          leading: const Icon(
-                                            Icons.book,
-                                            color: Colors.red,
-                                          ),
-                                          title: Text(
-                                            controller
-                                                .listMyPendingPemutusan[index]
-                                                .debitur
-                                                .peminjam1!,
-                                          ),
-                                          trailing: const Icon(
-                                              Icons.arrow_forward_ios),
-                                          onTap: () {
-                                            Get.dialog(AlertDialog(
-                                              title: const Text(
-                                                'Detail Review',
-                                                style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              children: [
+                                const Icon(
+                                  FontAwesomeIcons.check,
+                                  color: GFColors.SUCCESS,
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(() => SizedBox(
+                                      width: 400,
+                                      child: Text(
+                                        'Running on ${homeCtrl.brandName} ${homeCtrl.productName} ',
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    )),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              children: [
+                                Obx(() =>
+                                    homeCtrl.address.value == 'Getting address'
+                                        ? const SizedBox(
+                                            height: 20,
+                                            width: 20,
+                                            child: CircularProgressIndicator(
+                                              color: Colors.white,
+                                            ),
+                                          )
+                                        : const Icon(
+                                            FontAwesomeIcons.locationDot,
+                                            color: GFColors.DANGER,
+                                          )),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(() =>
+                                    homeCtrl.address.value == 'Getting address'
+                                        ? SizedBox(
+                                            child: Row(
+                                              children: const [
+                                                Text(
+                                                  'Getting address',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 20,
+                                                  ),
                                                 ),
+                                                SizedBox(
+                                                  width: 20,
+                                                ),
+                                                // IconButton(
+                                                //   onPressed: () {
+                                                //     homeCtrl.getLocation();
+                                                //   },
+                                                //   icon: const Icon(
+                                                //     FontAwesomeIcons.sync,
+                                                //     color: Colors.white,
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            width: 400,
+                                            child: Text(
+                                              'You are at ${homeCtrl.address}',
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20,
                                               ),
-                                              content: const Text(
-                                                  'Apa yang ingin anda lakukan terhadap review ini?',
-                                                  style:
-                                                      TextStyle(fontSize: 15)),
-                                              actions: [
-                                                GFButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                    // Get.toNamed(
-                                                    //     Routes.REVIEWER_SUBMIT,
-                                                    //     arguments: controller
-                                                    //             .listMyPendingReview[
-                                                    //         index]
-                                                    //         );
-                                                    Get.toNamed(
-                                                        Routes.PENGUTUS_SUBMIT,
-                                                        arguments: controller
-                                                                .listMyPendingPemutusan[
-                                                            index]);
-                                                  },
-                                                  text: 'Review',
-                                                ),
-                                                GFButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                    // Get.toNamed(
-                                                    //     Routes.PENGAJUAN_DETAIL,
-                                                    //     arguments: controller
-                                                    //         .listMyPendingReview[
-                                                    //             index]
-                                                    //         .id!);
-                                                    Get.toNamed(
-                                                        Routes.PENGAJUAN_DETAIL,
-                                                        arguments: controller
-                                                            .listMyPendingPemutusan[
-                                                                index]
-                                                            .id!);
-                                                  },
-                                                  text: 'Lihat Progress',
+                                            ),
+                                          )),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          LayoutBuilder(
+                            builder: (context, constraint) {
+                              List items = [
+                                {
+                                  'id': 1,
+                                  'category_name': 'Berita Terbaru',
+                                  'route': Routes.RSS_FEED
+                                },
+                                {
+                                  'id': 2,
+                                  'category_name': 'Kurs Hari Ini',
+                                  'route': Routes.KURS
+                                },
+                                {
+                                  'id': 3,
+                                  'category_name': 'Video BPD DIY',
+                                  'route': Routes.YOUTUBE_FEED
+                                },
+                                {
+                                  'id': 4,
+                                  'category_name': 'Panduan Penggunaan',
+                                  'route': 'Routes.ADD_DEBITUR'
+                                },
+                                {
+                                  'id': 5,
+                                  'category_name': 'Instagram BPD DIY',
+                                  'route': Routes.INSTAGRAM_FEED
+                                },
+                                {
+                                  'id': 6,
+                                  'category_name': 'Crypto',
+                                  'route': Routes.CRYPTO,
+                                }
+                              ];
+                              return Wrap(
+                                children: List.generate(
+                                  items.length,
+                                  (index) {
+                                    var item = items[index];
+                                    return InkWell(
+                                      onTap: () {
+                                        // navigate to route
+                                        Get.toNamed(item["route"]);
+                                      },
+                                      child: SizedBox(
+                                        height: 50,
+                                        child: Card(
+                                          color: Colors.pinkAccent,
+                                          elevation: 5,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                              vertical: 4.0,
+                                            ),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  item["category_name"],
+                                                  style: const TextStyle(
+                                                    fontSize: 15.0,
+                                                    color: secondaryColor,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 )
                                               ],
-                                            ));
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  );
-                                } else {
-                                  return const Center(
-                                    child: Text(
-                                      'Belum ada pemutusan yang pending',
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                  );
-                                }
-                              }
-                            })),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const GFTypography(
-                        text: 'Completed',
-                        icon: Icon(
-                          Icons.check_circle,
-                          color: GFColors.LIGHT,
-                        ),
-                        fontWeight: FontWeight.bold,
-                        type: GFTypographyType.typo1,
-                        textColor: secondaryColor,
-                        dividerColor: primaryColor,
-                        showDivider: false,
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Container(
-                        height: 350,
-                        color: Colors.pink[200],
-                        child: Card(
-                          color: Colors.pink[100],
-                          child: Obx(() {
-                            if (controller
-                                .isMyCompletedPemutusanProcessing.value) {
-                              return const Center(
-                                child: CircularProgressIndicator(),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
                               );
-                            } else {
-                              if (controller
-                                  .listMyCompletedPemutusan.isNotEmpty) {
-                                return ListView.builder(
-                                  itemCount: controller
-                                      .listMyCompletedPemutusan.length,
-                                  itemBuilder: (context, index) {
-                                    return ListTile(
-                                      leading: const Icon(
-                                        Icons.book,
-                                        color: Colors.green,
+                            },
+                          ),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PENGUTUS_PENDING_LIST,
+                                  arguments: controller.uid);
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216906376-e42e3958-3331-44fe-900c-13028883fd5d.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
                                       ),
-                                      title: Text(
-                                        controller
-                                            .listMyCompletedPemutusan[index]
-                                            .debitur
-                                            .peminjam1!,
-                                      ),
-                                      trailing:
-                                          const Icon(Icons.arrow_forward_ios),
-                                      onTap: () {
-                                        Get.dialog(AlertDialog(
-                                          title: const Text(
-                                            'Detail Review',
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Pemutusan Pending",
                                             style: TextStyle(
-                                              fontSize: 20,
+                                              fontSize: 20.0,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
-                                          content: const Text(
-                                              'Apa yang ingin anda lakukan terhadap review ini?',
-                                              style: TextStyle(fontSize: 15)),
-                                          actions: [
-                                            GFButton(
-                                              onPressed: () {
-                                                Get.back();
-                                                Get.toNamed(
-                                                    Routes.PENGAJUAN_DETAIL,
-                                                    arguments: controller
-                                                        .listMyCompletedPemutusan[
-                                                            index]
-                                                        .id!);
-                                              },
-                                              text: 'Lihat Progress',
-                                            )
-                                          ],
-                                        ));
-                                      },
-                                    );
-                                  },
-                                );
-                              } else {
-                                return const Center(
-                                  child: Text(
-                                    'Belum ada pemutusan yang selesai',
-                                    style: TextStyle(fontSize: 20),
-                                  ),
-                                );
-                              }
-                            }
-                          }),
-                        ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Putus pengajuan yang dikirimkan oleh Reviewer",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PENGUTUS_COMPLETED_LIST,
+                                  arguments: controller.uid);
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216907218-6094cd37-6702-488d-bea0-aad7f17fb028.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Sudah Diputuskan",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Pengajuan yang sudah di review",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.PENGUTUS_PENDING_STATS,
+                                  arguments: controller.uid);
+                            },
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216907763-18a75427-4d22-436b-9e9a-f1adbc9c90d8.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Statistik & Data",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Statistik dan data mengenai akunmu",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          InkWell(
+                            onTap: () => AwesomeDialog(
+                              context: Get.context!,
+                              dialogType: DialogType.infoReverse,
+                              animType: AnimType.bottomSlide,
+                              title: 'Keluar ?',
+                              desc: 'Apakah anda yakin ingin keluar ?',
+                              dialogBackgroundColor: primaryColor,
+                              titleTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              descTextStyle: GoogleFonts.poppins(
+                                color: secondaryColor,
+                                fontSize: 20,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              btnOkOnPress: () {
+                                SystemNavigator.pop();
+                              },
+                              btnCancelText: 'Tidak',
+                              btnOkText: 'Ya',
+                              btnCancelOnPress: () => Get.back(),
+                            ).show(),
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: 90,
+                                      height: 90,
+                                      margin:
+                                          const EdgeInsets.only(right: 10.0),
+                                      decoration: BoxDecoration(
+                                        image: const DecorationImage(
+                                          image: NetworkImage(
+                                            "https://user-images.githubusercontent.com/45744788/216907931-74a6dc3d-76e1-436a-b32e-f0862514c59b.png",
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(16.0),
+                                        ),
+                                        color: Colors.blue[400],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            "Keluar",
+                                            style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              const Text(
+                                                "Difficulty",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              const Icon(
+                                                Icons.circle,
+                                                size: 4.0,
+                                              ),
+                                              const SizedBox(
+                                                width: 4.0,
+                                              ),
+                                              Icon(
+                                                Icons.star,
+                                                color: Colors.orange[400],
+                                                size: 16.0,
+                                              ),
+                                              const Text(
+                                                "Easy",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 6.0,
+                                          ),
+                                          const Text(
+                                            "Keluar dari aplikasi",
+                                            style: TextStyle(
+                                              fontSize: 15.0,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                      // Builder(
-                      //   builder: (context) {
-                      //     final List<Map> chartData = [
-                      //       {
-                      //         "year": "Jan",
-                      //         "sales": 40,
-                      //       },
-                      //       {
-                      //         "year": "Feb",
-                      //         "sales": 90,
-                      //       },
-                      //       {
-                      //         "year": "Mar",
-                      //         "sales": 30,
-                      //       },
-                      //       {
-                      //         "year": "Apr",
-                      //         "sales": 80,
-                      //       },
-                      //       {
-                      //         "year": "May",
-                      //         "sales": 90,
-                      //       }
-                      //     ];
-
-                      //     return Container(
-                      //       color: Theme.of(context).cardColor,
-                      //       padding: const EdgeInsets.all(12.0),
-                      //       child: SfCircularChart(
-                      //         backgroundColor: Colors.pink,
-                      //         borderColor: Colors.pink,
-                      //         title: ChartTitle(
-                      //             text: 'Pemutusan Pending',
-                      //             textStyle: const TextStyle(
-                      //                 color: Colors.white, fontSize: 20)),
-                      //         legend: Legend(isVisible: true),
-                      //         series: <CircularSeries>[
-                      //           PieSeries<Map, String>(
-                      //             dataSource: chartData,
-                      //             dataLabelSettings: const DataLabelSettings(
-                      //               isVisible: true,
-                      //             ),
-                      //             xValueMapper: (Map data, _) => data["year"],
-                      //             yValueMapper: (Map data, _) => data["sales"],
-                      //           )
-                      //         ],
-                      //       ),
-                      //     );
-                      //   },
-                      // ),
                     ],
                   ),
                 ),

@@ -111,6 +111,12 @@ import '../modules/pengajuan_printing/bindings/pengajuan_printing_binding.dart';
 import '../modules/pengajuan_printing/views/pengajuan_printing_view.dart';
 import '../modules/pengajuan_submit_analis/bindings/pengajuan_submit_analis_binding.dart';
 import '../modules/pengajuan_submit_analis/views/pengajuan_submit_analis_view.dart';
+import '../modules/pengutus_completed_list/bindings/pengutus_completed_list_binding.dart';
+import '../modules/pengutus_completed_list/views/pengutus_completed_list_view.dart';
+import '../modules/pengutus_pending_list/bindings/pengutus_pending_list_binding.dart';
+import '../modules/pengutus_pending_list/views/pengutus_pending_list_view.dart';
+import '../modules/pengutus_pending_stats/bindings/pengutus_pending_stats_binding.dart';
+import '../modules/pengutus_pending_stats/views/pengutus_pending_stats_view.dart';
 import '../modules/pengutus_submit/bindings/pengutus_submit_binding.dart';
 import '../modules/pengutus_submit/views/pengutus_submit_view.dart';
 import '../modules/porsekot_table/bindings/porsekot_table_binding.dart';
@@ -580,6 +586,21 @@ class AppPages {
       name: _Paths.CRYPTO_DETAIL,
       page: () => const CryptoDetailView(),
       binding: CryptoDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGUTUS_COMPLETED_LIST,
+      page: () => const PengutusCompletedListView(),
+      binding: PengutusCompletedListBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGUTUS_PENDING_LIST,
+      page: () => const PengutusPendingListView(),
+      binding: PengutusPendingListBinding(),
+    ),
+    GetPage(
+      name: _Paths.PENGUTUS_PENDING_STATS,
+      page: () => const PengutusPendingStatsView(),
+      binding: PengutusPendingStatsBinding(),
     ),
   ];
 }

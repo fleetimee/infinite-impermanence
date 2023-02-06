@@ -312,7 +312,7 @@ class HomeController extends GetxController {
     Placemark place = placemark[0];
     address.value = '${place.locality}, ${place.administrativeArea}';
     fullAddress.value =
-        '${place.name}, ${place.locality}, ${place.administrativeArea}, ${place.country}';
+        '${place.street}, ${place.thoroughfare}, ${place.name}, ${place.locality}, ${place.subLocality} ${place.administrativeArea}, ${place.subAdministrativeArea} ${place.country}';
   }
 
   // Link google account

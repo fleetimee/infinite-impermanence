@@ -19,6 +19,8 @@ import '../modules/bisnis_analisis/views/edit_bisnis_analisis_view.dart';
 import '../modules/bisnis_analisis/views/lihat_bisnis_analisis_view.dart';
 import '../modules/crypto/bindings/crypto_binding.dart';
 import '../modules/crypto/views/crypto_view.dart';
+import '../modules/crypto_detail/bindings/crypto_detail_binding.dart';
+import '../modules/crypto_detail/views/crypto_detail_view.dart';
 import '../modules/debitur_deploy/bindings/debitur_deploy_binding.dart';
 import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
@@ -573,6 +575,11 @@ class AppPages {
       name: _Paths.REVIEWER_STATS,
       page: () => const ReviewerStatsView(),
       binding: ReviewerStatsBinding(),
+    ),
+    GetPage(
+      name: _Paths.CRYPTO_DETAIL,
+      page: () => const CryptoDetailView(),
+      binding: CryptoDetailBinding(),
     ),
   ];
 }

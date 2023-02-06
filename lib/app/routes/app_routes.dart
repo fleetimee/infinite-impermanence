@@ -102,6 +102,7 @@ abstract class Routes {
   static const REVIEWER_PENDING_LIST = _Paths.REVIEWER_PENDING_LIST;
   static const REVIEWER_COMPLETED_LIST = _Paths.REVIEWER_COMPLETED_LIST;
   static const REVIEWER_STATS = _Paths.REVIEWER_STATS;
+  static const CRYPTO_DETAIL = _Paths.CRYPTO_DETAIL;
 }
 
 abstract class _Paths {
@@ -202,4 +203,5 @@ abstract class _Paths {
   static const REVIEWER_PENDING_LIST = '/reviewer-pending-list';
   static const REVIEWER_COMPLETED_LIST = '/reviewer-completed-list';
   static const REVIEWER_STATS = '/reviewer-stats';
+  static const CRYPTO_DETAIL = '/crypto-detail';
 }

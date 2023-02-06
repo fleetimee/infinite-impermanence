@@ -1,3 +1,4 @@
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
@@ -28,54 +29,68 @@ class CryptoView extends GetView<CryptoController> {
                     child: ListView.builder(
                       itemCount: controller.crypto.length,
                       itemBuilder: (context, index) {
-                        return GFCard(
-                          margin: const EdgeInsets.all(8),
-                          content: GFListTile(
-                            avatar: Row(
-                              children: [
-                                Text(
-                                  '#${index + 1}',
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 20),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                GFAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  child: CachedNetworkImage(
-                                    imageUrl: controller.crypto[index].image!,
-                                    imageBuilder: (context, imageProvider) =>
-                                        Container(
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: imageProvider,
-                                          fit: BoxFit.cover,
+                        return InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.CRYPTO_DETAIL,
+                                arguments: controller.crypto[index].id);
+                          },
+                          child: GFCard(
+                            margin: const EdgeInsets.all(8),
+                            content: GFListTile(
+                              avatar: Row(
+                                children: [
+                                  Text(
+                                    '#${index + 1}',
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 20),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  GFAvatar(
+                                    backgroundColor: Colors.transparent,
+                                    child: CachedNetworkImage(
+                                      imageUrl: controller.crypto[index].image!,
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
+                                        decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                            image: imageProvider,
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                       ),
+                                      placeholder: (context, url) =>
+                                          const CircularProgressIndicator(),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
                                     ),
-                                    placeholder: (context, url) =>
-                                        const CircularProgressIndicator(),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
+                                    // backgroundImage: NetworkImage(
+                                    //   controller.crypto[index].image!,
+                                    // ),
                                   ),
-                                  // backgroundImage: NetworkImage(
-                                  //   controller.crypto[index].image!,
-                                  // ),
-                                ),
-                              ],
-                            ),
-                            titleText: controller.crypto[index].name,
-                            icon: Text(
-                              '\$${controller.crypto[index].currentPrice}',
-                              style: TextStyle(
-                                  color: controller.crypto[index]
-                                              .priceChangePercentage24H! >
-                                          0
-                                      ? Colors.green
-                                      : Colors.red,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
+                                ],
+                              ),
+                              titleText: controller.crypto[index].name,
+                              icon: Row(
+                                children: [
+                                  Text(
+                                    '\$${controller.crypto[index].currentPrice}',
+                                    style: TextStyle(
+                                        color: controller.crypto[index]
+                                                    .priceChangePercentage24H! >
+                                                0
+                                            ? Colors.green
+                                            : Colors.red,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  const Icon(Icons.arrow_forward_ios_outlined)
+                                ],
+                              ),
                             ),
                           ),
                         );

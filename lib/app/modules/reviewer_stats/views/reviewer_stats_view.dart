@@ -83,17 +83,17 @@ class ReviewerStatsView extends GetView<ReviewerStatsController> {
                         Obx(
                           () => controller.pendingController
                                   .isMyPendingReviewProcessing.value
-                              ? controller.pendingController.listMyPendingReview
+                              ? const LinearProgressIndicator(
+                                  value: 0.0,
+                                )
+                              : controller.pendingController.listMyPendingReview
                                       .isNotEmpty
                                   ? const LinearProgressIndicator(
-                                      value: 1.0,
-                                    )
-                                  : const LinearProgressIndicator(
                                       value: 0.0,
                                     )
-                              : const LinearProgressIndicator(
-                                  value: 0.0,
-                                ),
+                                  : const LinearProgressIndicator(
+                                      value: 1.0,
+                                    ),
                         ),
                         const SizedBox(
                           height: 4.0,
@@ -102,7 +102,7 @@ class ReviewerStatsView extends GetView<ReviewerStatsController> {
                           () => controller.pendingController
                                   .isMyPendingReviewProcessing.value
                               ? const Text(
-                                  "Loading...",
+                                  "...",
                                   style: TextStyle(
                                     fontSize: 12.0,
                                   ),

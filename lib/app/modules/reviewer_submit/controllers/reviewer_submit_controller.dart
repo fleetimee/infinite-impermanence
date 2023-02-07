@@ -33,15 +33,6 @@ class ReviewerSubmitController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    Future.delayed(const Duration(seconds: 5), () {
-      getRating();
-    });
-
-    super.onReady();
-  }
-
   var bahasanReviewer = List.empty(growable: true);
 
   var pendingCtrl = Get.put(ReviewerPendingListController());
@@ -138,6 +129,7 @@ class ReviewerSubmitController extends GetxController {
           (resp) {
         isProcessing(false);
         insightDebitur.value = resp;
+        getRating();
       }, onError: (err) {
         isProcessing(false);
         Get.snackbar('Error', err.toString());

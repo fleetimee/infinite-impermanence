@@ -26,6 +26,8 @@ import '../modules/debitur_deploy/views/debitur_deploy_view.dart';
 import '../modules/debitur_real/bindings/debitur_real_binding.dart';
 import '../modules/debitur_real/views/debitur_edit_view.dart';
 import '../modules/debitur_real/views/debitur_onboarding_view.dart';
+import '../modules/detail_agunan/bindings/detail_agunan_binding.dart';
+import '../modules/detail_agunan/views/detail_agunan_view.dart';
 import '../modules/gallery_file/bindings/gallery_file_binding.dart';
 import '../modules/gallery_file/views/gallery_file_view.dart';
 import '../modules/gallery_image/bindings/gallery_image_binding.dart';
@@ -601,6 +603,11 @@ class AppPages {
       name: _Paths.PENGUTUS_PENDING_STATS,
       page: () => const PengutusPendingStatsView(),
       binding: PengutusPendingStatsBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_AGUNAN,
+      page: () => const DetailAgunanView(),
+      binding: DetailAgunanBinding(),
     ),
   ];
 }

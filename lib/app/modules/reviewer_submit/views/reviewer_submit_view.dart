@@ -229,11 +229,12 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             const SizedBox(height: 10),
                             Obx(
@@ -969,11 +970,12 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini adalah tanggapan analis terhadap pengajuan ini',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             ListView.builder(
                               shrinkWrap: true,
@@ -1043,11 +1045,12 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                             const SizedBox(height: 10),
                             Text(
                               'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
-                              style: Theme.of(context).textTheme.bodySmall?.merge(
-                                    const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
+                              style:
+                                  Theme.of(context).textTheme.bodySmall?.merge(
+                                        const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
                             ),
                             const SizedBox(height: 10),
                             Row(
@@ -1295,7 +1298,26 @@ class AgunanCard extends StatelessWidget {
                 },
                 color: primaryColor,
                 shape: GFButtonShape.pills,
-                text: 'Lihat Summary Agunan',
+                text: 'Lihat Analisa Agunan',
+                icon: const Icon(
+                  Icons.summarize,
+                  size: 18,
+                  color: secondaryColor,
+                ),
+                fullWidthButton: true,
+                size: GFSize.LARGE,
+              ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              GFButton(
+                onPressed: () {
+                  Get.toNamed(Routes.DETAIL_AGUNAN,
+                      arguments: controller.insightDebitur.value);
+                },
+                color: primaryColor,
+                shape: GFButtonShape.pills,
+                text: 'Lihat Detail Agunan',
                 icon: const Icon(
                   Icons.summarize,
                   size: 18,

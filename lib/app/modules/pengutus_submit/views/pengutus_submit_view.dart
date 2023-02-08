@@ -1360,6 +1360,25 @@ class AgunanCard extends StatelessWidget {
                 fullWidthButton: true,
                 size: GFSize.LARGE,
               ),
+              const SizedBox(
+                height: 10.0,
+              ),
+              GFButton(
+                onPressed: () {
+                  Get.toNamed(Routes.DETAIL_AGUNAN,
+                      arguments: controller.insightDebitur.value);
+                },
+                color: Colors.pink,
+                shape: GFButtonShape.pills,
+                text: 'Lihat Detail Agunan',
+                icon: const Icon(
+                  Icons.summarize,
+                  size: 18,
+                  color: secondaryColor,
+                ),
+                fullWidthButton: true,
+                size: GFSize.LARGE,
+              ),
               const SizedBox(height: 10),
               FormBuilderRadioGroup(
                 name: 'agunan',

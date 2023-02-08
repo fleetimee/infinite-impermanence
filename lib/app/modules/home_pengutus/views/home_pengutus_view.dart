@@ -603,7 +603,7 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                             height: 6.0,
                                           ),
                                           const Text(
-                                            "Pengajuan yang sudah di review",
+                                            "Pengajuan yang sudah di putuskan",
                                             style: TextStyle(
                                               fontSize: 15.0,
                                             ),

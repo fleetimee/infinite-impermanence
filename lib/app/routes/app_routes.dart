@@ -106,6 +106,7 @@ abstract class Routes {
   static const PENGUTUS_COMPLETED_LIST = _Paths.PENGUTUS_COMPLETED_LIST;
   static const PENGUTUS_PENDING_LIST = _Paths.PENGUTUS_PENDING_LIST;
   static const PENGUTUS_PENDING_STATS = _Paths.PENGUTUS_PENDING_STATS;
+  static const DETAIL_AGUNAN = _Paths.DETAIL_AGUNAN;
 }
 
 abstract class _Paths {
@@ -210,4 +211,5 @@ abstract class _Paths {
   static const PENGUTUS_COMPLETED_LIST = '/pengutus-completed-list';
   static const PENGUTUS_PENDING_LIST = '/pengutus-pending-list';
   static const PENGUTUS_PENDING_STATS = '/pengutus-pending-stats';
+  static const DETAIL_AGUNAN = '/detail-agunan';
 }

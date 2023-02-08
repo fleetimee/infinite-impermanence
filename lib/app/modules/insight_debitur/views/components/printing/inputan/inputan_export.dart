@@ -208,21 +208,6 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
 
   pdf.addPage(
     MultiPage(
-      // pageTheme: PageTheme(
-      //   buildForeground: (context) {
-      //     return FullPage(
-      //       ignoreMargins: true,
-      //       child: Watermark.text(
-      //         'fleetime',
-      //         style: TextStyle(
-      //           color: PdfColors.grey,
-      //           fontSize: 100,
-      //           fontWeight: FontWeight.bold,
-      //         ),
-      //       ),
-      //     );
-      //   },
-      // ),
       footer: (context) => Container(
         alignment: Alignment.centerRight,
         margin: const EdgeInsets.only(top: 1.0 * PdfPageFormat.cm),

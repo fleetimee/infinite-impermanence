@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../controllers/detail_agunan_controller.dart';
 
@@ -76,6 +77,624 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Statistik Agunan",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Card(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Total Nilai Agunan",
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 6.0,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    MoneyMaskedTextController(
+                                      decimalSeparator: ',',
+                                      thousandSeparator: '.',
+                                      precision: 0,
+                                      leftSymbol: 'Rp. ',
+                                      initialValue: double.parse(controller
+                                          .args.analisaAgunan!.totalAgunan
+                                          .toString()),
+                                    ).text,
+                                    style: const TextStyle(
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10.0),
+                          decoration: const BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                8.0,
+                              ),
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.wallet,
+                            size: 24.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Tanah",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formAgunanTanah != null
+                                            ? Text(
+                                                formAgunanTanah.length
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                '0',
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.home,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Tanah dan Bangunan",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formAgunanTanah != null
+                                            ? Text(
+                                                formAgunanTanahBangunan!.length
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.pink,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.landslide,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Kendaran",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formKendaraan != null
+                                            ? Text(
+                                                formKendaraan.length.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.indigo,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.motorcycle,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Peralatan",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formPeralatan != null
+                                            ? Text(
+                                                formPeralatan.length.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.teal,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.build,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Cash Collateral",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formCash != null
+                                            ? Text(
+                                                formCash.length.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.lightGreen,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.account_balance_wallet,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Los / Kios Pasar",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formLos != null
+                                            ? Text(
+                                                formLos.length.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.storefront,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Card(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Lainnya",
+                                      style: TextStyle(
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 6.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        formLainnya != null
+                                            ? Text(
+                                                formLainnya.length.toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                            : const Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  fontSize: 20.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.all(10.0),
+                                decoration: const BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(
+                                      8.0,
+                                    ),
+                                  ),
+                                ),
+                                child: const Icon(
+                                  Icons.corporate_fare,
+                                  size: 24.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(),
+                    ),
+                  ],
+                ),
+                Builder(
+                  builder: (context) {
+                    final List<Map> chartData = [
+                      {
+                        "status": "Tanah",
+                        "value": formAgunanTanah == null
+                            ? 0
+                            : formAgunanTanah.length,
+                      },
+                      {
+                        "status": "Tanah dan Bangunan",
+                        "value": formAgunanTanahBangunan == null
+                            ? 0
+                            : formAgunanTanahBangunan.length,
+                      },
+                      {
+                        "status": "Kendaraan",
+                        "value":
+                            formKendaraan == null ? 0 : formKendaraan.length,
+                      },
+                      {
+                        "status": "Peralatan",
+                        "value":
+                            formPeralatan == null ? 0 : formPeralatan.length,
+                      },
+                      {
+                        "status": "Cash Collateral",
+                        "value": formCash == null ? 0 : formCash.length,
+                      },
+                      {
+                        "status": "Los / Kios Pasar",
+                        "value": formLos == null ? 0 : formLos.length,
+                      },
+                      {
+                        "status": "Lainnya",
+                        "value": formLainnya == null ? 0 : formLainnya.length,
+                      },
+                    ];
+                    return Container(
+                      color: Theme.of(context).cardColor,
+                      padding: const EdgeInsets.all(12.0),
+                      child: SfCircularChart(
+                        title: ChartTitle(text: 'Jumlah Agunan'),
+                        legend: Legend(isVisible: true),
+                        backgroundColor: Colors.transparent,
+                        series: <CircularSeries>[
+                          PieSeries<Map, String>(
+                            dataSource: chartData,
+                            enableTooltip: true,
+                            dataLabelSettings: const DataLabelSettings(
+                              isVisible: true,
+                              showZeroValue: false,
+                              textStyle: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              borderColor: Colors.transparent,
+                            ),
+                            xValueMapper: (Map data, _) => data["status"],
+                            yValueMapper: (Map data, _) => data["value"],
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Detail Agunan",
+                    style: TextStyle(
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
                 formAgunanTanah != null
                     ? Column(
                         children: [

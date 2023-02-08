@@ -22,15 +22,6 @@ class PengutusSubmitController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    Future.delayed(const Duration(seconds: 5), () {
-      getRating();
-    });
-
-    super.onReady();
-  }
-
   PengajuanDetail pengajuan = Get.arguments;
 
   var isProcessing = false.obs;
@@ -141,6 +132,7 @@ class PengutusSubmitController extends GetxController {
           (resp) {
         isProcessing(false);
         insightDebitur.value = resp;
+        getRating();
       }, onError: (err) {
         isProcessing(false);
         Get.snackbar('Error', err.toString());

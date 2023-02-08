@@ -93,7 +93,7 @@ class PengajuanSubmitAnalisView
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pengajuan Analis > Reviewer'),
+        title: const Text('Submit Pengajuan'),
       ),
       body: SingleChildScrollView(
         child: FormBuilder(
@@ -107,12 +107,59 @@ class PengajuanSubmitAnalisView
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GFTypography(
-                      text: 'Submit Pengajuan ${data.peminjam1}',
-                      type: GFTypographyType.typo1,
-                      backgroundImage: const NetworkImage(
-                          'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg'),
-                      textColor: Colors.white,
+                    Card(
+                      color: Colors.redAccent[100],
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Submit Pengajuan",
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 6.0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        data.peminjam1!,
+                                        style: const TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                color: Colors.redAccent[400],
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(
+                                    8.0,
+                                  ),
+                                ),
+                              ),
+                              child: const Icon(
+                                Icons.send,
+                                size: 24.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 16),
                     const Text(

@@ -110,7 +110,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                 children: [
                                   Text(
                                     MoneyMaskedTextController(
-                                      decimalSeparator: ',',
+                                      decimalSeparator: '',
                                       thousandSeparator: '.',
                                       precision: 0,
                                       leftSymbol: 'Rp. ',
@@ -1989,7 +1989,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                               height: 10.0,
                                             ),
                                             Text(
-                                              "${formPeralatan![index].deskripsiPanjang}",
+                                              "${formCash[index].deskripsiPanjang}",
                                               style: const TextStyle(
                                                 fontSize: 12.0,
                                                 fontWeight: FontWeight.bold,

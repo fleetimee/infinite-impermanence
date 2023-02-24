@@ -367,11 +367,6 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                   'category_name': 'Instagram BPD DIY',
                                   'route': Routes.INSTAGRAM_FEED
                                 },
-                                {
-                                  'id': 6,
-                                  'category_name': 'Crypto',
-                                  'route': Routes.CRYPTO,
-                                }
                               ];
                               return Wrap(
                                 children: List.generate(

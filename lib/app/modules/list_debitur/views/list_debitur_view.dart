@@ -1407,12 +1407,12 @@ class BpdDiyLoader extends StatelessWidget {
           child: ClipOval(
               child: const Image(
             image: AssetImage(
-              'assets/images/home/logo.png',
+              'assets/images/home/bpdlogoo.png',
             ),
             height: 250,
           )
                   .animate(onPlay: (controller) => controller.repeat())
-                  .shimmer(duration: 1200.ms, color: secondaryColor)
+                  .shimmer(duration: 1200.ms, color: primaryColor)
                   .animate() // this wraps the previous Animate in another Animate
                   .fadeIn(duration: 1200.ms, curve: Curves.easeOutQuad)
                   .slide()),

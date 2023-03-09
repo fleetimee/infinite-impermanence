@@ -180,7 +180,8 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                         .insightDebitur.value.tglSekarang
                                         .toString()),
                                   )}',
-                                  style: Theme.of(context).textTheme.titleMedium,
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium,
                                 ),
                         ),
                         Row(
@@ -242,7 +243,6 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                   backgroundColor: secondaryColor,
                                   context: context,
                                   builder: (context) => SizedBox(
-                                    height: 650,
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -282,15 +282,15 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                             children: [
                                               Obx(
                                                 () {
-                                                  if (neracaController
-                                                      .isNeracaProcessing
+                                                  if (analisaKeuanganController
+                                                      .isAnalisaKeuanganProcessing
                                                       .value) {
                                                     return const Center(
                                                       child:
                                                           CircularProgressIndicator(),
                                                     );
                                                   } else {
-                                                    return PrintNeraca();
+                                                    return PrintInput();
                                                   }
                                                 },
                                               ),
@@ -310,57 +310,15 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                               ),
                                               Obx(
                                                 () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
+                                                  if (neracaController
+                                                      .isNeracaProcessing
                                                       .value) {
                                                     return const Center(
                                                       child:
                                                           CircularProgressIndicator(),
                                                     );
                                                   } else {
-                                                    return PrintInput();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(
-                                                () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return PrintPutusan();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(
-                                                () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return PrintUsulan();
-                                                  }
-                                                },
-                                              ),
-                                              Obx(
-                                                () {
-                                                  if (analisaKeuanganController
-                                                      .isAnalisaKeuanganProcessing
-                                                      .value) {
-                                                    return const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    );
-                                                  } else {
-                                                    return PrintUsulanBaru();
+                                                    return PrintNeraca();
                                                   }
                                                 },
                                               ),
@@ -432,6 +390,48 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                               ),
                                               ModelPrint(
                                                   controller: controller),
+                                              Obx(
+                                                () {
+                                                  if (analisaKeuanganController
+                                                      .isAnalisaKeuanganProcessing
+                                                      .value) {
+                                                    return const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    );
+                                                  } else {
+                                                    return PrintUsulanBaru();
+                                                  }
+                                                },
+                                              ),
+                                              Obx(
+                                                () {
+                                                  if (analisaKeuanganController
+                                                      .isAnalisaKeuanganProcessing
+                                                      .value) {
+                                                    return const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    );
+                                                  } else {
+                                                    return PrintUsulan();
+                                                  }
+                                                },
+                                              ),
+                                              Obx(
+                                                () {
+                                                  if (analisaKeuanganController
+                                                      .isAnalisaKeuanganProcessing
+                                                      .value) {
+                                                    return const Center(
+                                                      child:
+                                                          CircularProgressIndicator(),
+                                                    );
+                                                  } else {
+                                                    return PrintPutusan();
+                                                  }
+                                                },
+                                              ),
                                             ],
                                           ),
                                         ),

@@ -117,7 +117,8 @@ class PengajuanPrintingView extends GetView<PengajuanPrintingController> {
                                   child: Icon(Icons.drafts),
                                 ),
                                 title: const Text("Cetak"),
-                                subtitle: const Text("Draft Usulan"),
+                                subtitle: const Text(
+                                    "Memorandum Pengususulan Komite Kredit"),
                                 trailing: IconButton(
                                   onPressed: () {
                                     Get.toNamed(Routes.USULAN_PRINT,
@@ -137,7 +138,8 @@ class PengajuanPrintingView extends GetView<PengajuanPrintingController> {
                                   child: Icon(Icons.library_add),
                                 ),
                                 title: const Text("Cetak"),
-                                subtitle: const Text("Draft Usulan Baru"),
+                                subtitle:
+                                    const Text("Memorandum Pengusulan Kredit"),
                                 trailing: IconButton(
                                   onPressed: () {
                                     Get.toNamed(Routes.USULAN_BARU_PRINT,
@@ -157,7 +159,7 @@ class PengajuanPrintingView extends GetView<PengajuanPrintingController> {
                                   child: Icon(Icons.gavel),
                                 ),
                                 title: const Text("Cetak"),
-                                subtitle: const Text(" Draft Putusan"),
+                                subtitle: const Text(" Putusan Kredit"),
                                 trailing: IconButton(
                                   onPressed: () {
                                     Get.toNamed(Routes.PUTUSAN_PRINT,

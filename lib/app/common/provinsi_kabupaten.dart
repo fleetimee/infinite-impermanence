@@ -473,3 +473,27 @@ const allProvinsi = [
   "Yogyakarta",
   "-"
 ];
+
+const premiList = [
+  "SUPER MIKRO 1 THN | 2.00%",
+  "SUPER MIKRO 2 THN | 3.03%",
+  "SUPER MIKRO 3 THN | 4.08%",
+  "SUPER MIKRO 4 THN | 5.15%",
+  "SUPER MIKRO 5 THN | 6.24%",
+  "SUPER MIKRO 6 THN | 7.96%",
+  "SUPER MIKRO 7 THN | 7.82%",
+  "MIKRO 1 THN | 1.75%",
+  "MIKRO 2 THN | 2.53%",
+  "MIKRO 3 THN | 3.34%",
+  "MIKRO 4 THN | 4.17%",
+  "MIKRO 5 THN | 5.02%",
+  "MIKRO 6 THN | 5.90%",
+  "MIKRO 7 THN | 6.80%",
+  "KECIL 1 THN | 1.50%",
+  "KECIL 2 THN | 2.28%",
+  "KECIL 3 THN | 3.00%",
+  "KECIL 4 THN | 3.92%",
+  "KECIL 5 THN | 4.71%",
+  "KECIL 6 THN | 5.64%",
+  "KECIL 7 THN | 6.54%",
+];

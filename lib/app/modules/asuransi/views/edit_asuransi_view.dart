@@ -21,6 +21,7 @@ class EditAsuransiView extends GetView<AsuransiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Edit Premi & Asuransi'),
         centerTitle: true,

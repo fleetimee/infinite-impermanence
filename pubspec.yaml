@@ -1,5 +1,5 @@
 name: akm
-version: 1.1.15+33
+version: 1.1.16+34
 publish_to: none
 description: Mobile app untuk Analisis Kredit Mikro built with Flutter and NodeJS.
 environment:
@@ -115,7 +115,7 @@ dependencies:
   url_launcher: ^6.1.8
   vector_math: null
   wave: ^0.2.2
-  webfeed: 
+  webfeed:
     git:
       url: https://github.com/arhamcode/webfeed
       ref: master
@@ -174,7 +174,7 @@ dependency_overrides:
     git:
       url: https://github.com/danvick/flutter_chips_input
       ref: flutter_37
-  signature: 
+  signature:
     git:
       url: https://github.com/larsziemert/signature/
       ref: update_image_4

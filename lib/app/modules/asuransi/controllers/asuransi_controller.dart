@@ -99,7 +99,8 @@ class AsuransiController extends GetxController {
   void saveAsuransi(id) {
     final body = {
       'nama_perusahaan': namaPerusahaan.text,
-      'premi': premi.text,
+      'premi':
+          double.parse(premi.text.split("|")[1].replaceAll("%", "").trim()),
       'total_asuransi': jumlahAsuransi.text.replaceAll('.', '')
     };
 
@@ -140,7 +141,7 @@ class AsuransiController extends GetxController {
   void editAsuransi(id, idAsuransi) {
     final body = {
       'nama_perusahaan': namaPerusahaan.text,
-      'premi': premi.text,
+      'premi': premi.text.split("|")[1].replaceAll("%", "").trim(),
       'total_asuransi': jumlahAsuransi.text.replaceAll('.', '')
     };
     try {
@@ -225,7 +226,12 @@ class AsuransiController extends GetxController {
   }
 
   void hitungJumlahAsuransi() {
-    final parsePremi = (double.parse(premi.text) / 100);
+    // final parsePremi = (double.parse(premi.text) / 100);
+
+    final parsePremi =
+        (double.parse(premi.text.split("|")[1].replaceAll("%", "").trim()) /
+            100.0);
+
     final parsePlafon = double.parse(plafonKredit.text.replaceAll('.', ''));
 
     final result = parsePlafon * parsePremi;

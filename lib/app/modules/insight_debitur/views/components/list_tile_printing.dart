@@ -134,7 +134,7 @@ class PrintUsulanBaru extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Surat Usulan Baru',
+        'Memorandum Pengusulan Kredit',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -148,7 +148,7 @@ class PrintUsulanBaru extends StatelessWidget {
           color: secondaryColor,
         ),
       ),
-      subTitleText: 'Print Usulan Baru',
+      subTitleText: 'Print Memorandum Pengusulan Kredit',
       icon: controller.insightDebitur.value.analisaKeuangan != null &&
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&
@@ -298,7 +298,7 @@ class PrintPutusan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Surat Putusan',
+        'Putusan Kredit',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -312,7 +312,7 @@ class PrintPutusan extends StatelessWidget {
           color: secondaryColor,
         ),
       ),
-      subTitleText: 'Print surat putusan',
+      subTitleText: 'Print putusan kredit',
       icon: controller.insightDebitur.value.analisaKeuangan != null &&
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&
@@ -357,7 +357,7 @@ class PrintUsulan extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
       title: const Text(
-        'Surat Usulan',
+        'Memorandum Pengusulan Komite Kredit',
         style: TextStyle(
           color: primaryColor,
           fontSize: 25,
@@ -371,7 +371,7 @@ class PrintUsulan extends StatelessWidget {
           color: secondaryColor,
         ),
       ),
-      subTitleText: 'Print surat usulan',
+      subTitleText: 'Print Memorandum Pengusulan Komite Kredit',
       icon: controller.insightDebitur.value.analisaKeuangan != null &&
               controller.insightDebitur.value.analisaAgunan != null &&
               controller.insightDebitur.value.analisaBisnis != null &&

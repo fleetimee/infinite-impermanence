@@ -101,6 +101,8 @@ class KeuanganAnalisisController extends GetxController
 
   final data = Get.arguments;
 
+  final xyz = Get.arguments;
+
   final isAnalisaKeuanganProcessing = false.obs;
 
   // ! FormKey
@@ -682,6 +684,10 @@ class KeuanganAnalisisController extends GetxController
           double.parse(kreditYangDiminta.text.replaceAll('.', ''));
       final parsePinjamanMaksimal =
           double.parse(pinjamanMaksimal.text.replaceAll('.', ''));
+      final parseKebutuhanKredit =
+          double.parse(kebutuhanKredit.text.replaceAll('.', ''));
+      final parsePlafonKredit =
+          double.parse(Get.arguments.inputKeuangan.kreditDiusulkan);
 
       isVerificationButtonPressed.value = true;
 
@@ -693,6 +699,31 @@ class KeuanganAnalisisController extends GetxController
           animType: AnimType.bottomSlide,
           title: 'Error',
           desc: 'Kredit yang diminta melebihi pinjaman maksimal',
+          dialogBackgroundColor: primaryColor,
+          titleTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+          ),
+          descTextStyle: GoogleFonts.poppins(
+            color: secondaryColor,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+          btnOkText: 'Edit Kredit',
+          btnOkOnPress: () {
+            Get.back();
+          },
+        ).show();
+      } else if (parsePlafonKredit > parseKebutuhanKredit) {
+        isKreditPassed.value = false;
+
+        AwesomeDialog(
+          context: Get.context!,
+          dialogType: DialogType.error,
+          animType: AnimType.bottomSlide,
+          title: 'Error',
+          desc: 'Kredit yang diminta melebihi kebutuhan kredit',
           dialogBackgroundColor: primaryColor,
           titleTextStyle: GoogleFonts.poppins(
             color: secondaryColor,
@@ -724,7 +755,7 @@ class KeuanganAnalisisController extends GetxController
             fontSize: 20,
             fontWeight: FontWeight.w400,
           ),
-          desc: 'Kredit yang diminta tidak melebihi pinjaman maksimal',
+          desc: 'Verifikasi Kredit Berhasil',
           btnOkOnPress: () {},
         ).show();
       }
@@ -779,10 +810,10 @@ class KeuanganAnalisisController extends GetxController
     final parseDscFixed = double.parse(dscFixed.text);
     final parseIsKreditPassed = isKreditPassed.value;
 
-    if (parseDscYad >= 3.0) {
-      crr.text = '95.0';
-    } else if (parseIsKreditPassed == false) {
+    if (parseIsKreditPassed == false) {
       crr.text = '0';
+    } else if (parseDscYad >= 3.0) {
+      crr.text = '95.0';
     } else if (parseDscYad < parseDscFixed) {
       crr.text = '0';
     } else {

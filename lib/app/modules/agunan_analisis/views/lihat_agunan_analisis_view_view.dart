@@ -250,7 +250,7 @@ class LihatAgunanAnalisisViewView extends GetView<AgunanAnalisisController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const Text(
-                                'Total Agunan',
+                                'Total Agunan (Liquidasi)',
                                 style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 18,

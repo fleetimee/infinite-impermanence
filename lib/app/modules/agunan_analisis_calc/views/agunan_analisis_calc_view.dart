@@ -84,7 +84,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                       controller
                                                           .listAgunanTanahAnalisis[
                                                               index]
-                                                          .nilaiPasar
+                                                          .nilaiLiquidasi
                                                           .toString()),
                                                   thousandSeparator: '.',
                                                   decimalSeparator: '',
@@ -134,7 +134,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                                   element) =>
                                                               previousValue +
                                                               int.parse(element
-                                                                  .nilaiPasar
+                                                                  .nilaiLiquidasi
                                                                   .toString()))
                                                       .toString()),
                                                   thousandSeparator: '.',
@@ -209,7 +209,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                       controller
                                                           .listAgunanTanahBangunanAnalisis[
                                                               index]
-                                                          .nilaiPasar
+                                                          .nilaiLiquidasi
                                                           .toString()),
                                                   thousandSeparator: '.',
                                                   decimalSeparator: '',
@@ -260,7 +260,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                                   element) =>
                                                               previousValue +
                                                               int.parse(element
-                                                                  .nilaiPasar
+                                                                  .nilaiLiquidasi
                                                                   .toString()))
                                                       .toString()),
                                                   thousandSeparator: '.',
@@ -334,7 +334,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                       controller
                                                           .listAgunanKendaraanAnalisis[
                                                               index]
-                                                          .nilaiPasar
+                                                          .nilaiLiquidasi
                                                           .toString()),
                                                   thousandSeparator: '.',
                                                   decimalSeparator: '',
@@ -384,7 +384,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                                   element) =>
                                                               previousValue +
                                                               int.parse(element
-                                                                  .nilaiPasar
+                                                                  .nilaiLiquidasi
                                                                   .toString()))
                                                       .toString()),
                                                   thousandSeparator: '.',
@@ -458,7 +458,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                       controller
                                                           .listAgunanPeralatanAnalisis[
                                                               index]
-                                                          .nilaiPasar
+                                                          .nilaiLiquidasi
                                                           .toString()),
                                                   thousandSeparator: '.',
                                                   decimalSeparator: '',
@@ -508,7 +508,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                                   element) =>
                                                               previousValue +
                                                               int.parse(element
-                                                                  .nilaiPasar
+                                                                  .nilaiLiquidasi
                                                                   .toString()))
                                                       .toString()),
                                                   thousandSeparator: '.',
@@ -581,7 +581,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                       controller
                                                           .listAgunanCashAnalisis[
                                                               index]
-                                                          .nilaiPasar
+                                                          .nilaiLiquidasi
                                                           .toString()),
                                                   thousandSeparator: '.',
                                                   decimalSeparator: '',
@@ -631,7 +631,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                                   element) =>
                                                               previousValue +
                                                               int.parse(element
-                                                                  .nilaiPasar
+                                                                  .nilaiLiquidasi
                                                                   .toString()))
                                                       .toString()),
                                                   thousandSeparator: '.',
@@ -704,7 +704,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                       controller
                                                           .listAgunanLosAnalisis[
                                                               index]
-                                                          .nilaiPasar
+                                                          .nilaiLiquidasi
                                                           .toString()),
                                                   thousandSeparator: '.',
                                                   decimalSeparator: '',
@@ -754,7 +754,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                                   element) =>
                                                               previousValue +
                                                               int.parse(element
-                                                                  .nilaiPasar
+                                                                  .nilaiLiquidasi
                                                                   .toString()))
                                                       .toString()),
                                                   thousandSeparator: '.',
@@ -1106,7 +1106,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 const Text(
-                                                  'Total Agunan',
+                                                  'Total Agunan (Liquidasi)',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18,

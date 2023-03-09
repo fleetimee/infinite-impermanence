@@ -1,10 +1,12 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
@@ -21,6 +23,7 @@ class AsuransiView extends GetView<AsuransiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Premi & Asuransi'),
         centerTitle: true,
@@ -92,25 +95,35 @@ class AsuransiView extends GetView<AsuransiController> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  FormBuilderTextField(
-                      name: 'premi',
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                        FormBuilderValidators.numeric(),
-                        FormBuilderValidators.max(100),
-                        FormBuilderValidators.min(0),
-                      ]),
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      textAlign: TextAlign.right,
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.money),
-                        labelText: 'Premi',
-                        suffixText: '%',
-                        border: OutlineInputBorder(),
-                        hintText: '3.14 (Decimal memakai Titik)',
+                  FormBuilderSearchableDropdown<String>(
+                    name: 'hehe',
+                    onChanged: (value) {
+                      controller.premi.text = value!;
+                    },
+                    onSaved: (value) {
+                      controller.premi.text = value!;
+                    },
+                    validator: FormBuilderValidators.required(),
+                    items: premiList,
+                    popupProps: const PopupProps.menu(showSearchBox: true),
+                    dropdownSearchDecoration: const InputDecoration(
+                      hintText: 'Search',
+                      labelText: 'Search',
+                    ),
+                    filterFn: (provinsi, filter) =>
+                        provinsi.toLowerCase().contains(filter.toLowerCase()),
+                    decoration: const InputDecoration(
+                      labelText: 'Premi',
+                      labelStyle: TextStyle(fontSize: 18),
+                      hintText: 'Pilih Premi',
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: primaryColor),
                       ),
-                      controller: controller.premi),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),

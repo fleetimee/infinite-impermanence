@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/insight_debitur/views/components/printing/slik/slik_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
@@ -538,6 +539,10 @@ class AppPages {
     GetPage(
       name: _Paths.PENGUTUS_PRINT,
       page: () => PemutusPreview(),
+    ),
+    GetPage(
+      name: _Paths.SLIK_PRINTING,
+      page: () => SlikPreview(),
     ),
     GetPage(
       name: _Paths.PENGAJUAN_PRINTING,

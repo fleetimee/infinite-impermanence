@@ -112,7 +112,7 @@ Future<Uint8List> makeSlikPdf(DebiturInsight debtor) async {
                       textKolomAtas('Tempat / Tanggal Lahir'),
                       textKolomAtas(':'),
                       textKolomAtas(
-                          '${debtor.tempatLahir}, ${DateFormat('dd/MM/yyyy').format(DateTime.parse(debtor.tanggalLahir.toString()))}'),
+                          '${debtor.tempatLahir}, ${DateFormat('dd MMMM yyyy').format(DateTime.parse(debtor.tanggalLahir.toString()))}'),
                     ],
                   ),
                   TableRow(

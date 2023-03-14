@@ -2287,7 +2287,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -2342,7 +2342,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -2534,7 +2534,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -2589,7 +2589,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -2866,7 +2866,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -3012,7 +3012,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -3131,7 +3131,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',
@@ -3378,7 +3378,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                               color: PdfColors.grey,
                             ),
                             children: [
-                              textUmurBoldLeft('Nilai Liquidasi'),
+                              textUmurBoldLeft('Nilai Likuidasi'),
                               textUmur(':'),
                               textUmurBoldLeft(MoneyMaskedTextController(
                                 decimalSeparator: '',

@@ -1130,7 +1130,7 @@ class FormUpdateAgunanKios extends StatelessWidget {
               onPressed: () {
                 controller.hitungNilaiLiquidasiEdit();
               },
-              text: 'Hitung Nilai Liquidasi',
+              text: 'Hitung Nilai Likuidasi',
               elevation: 10,
               color: primaryColor,
             ),
@@ -1820,7 +1820,7 @@ class FormInputAgunanLos extends StatelessWidget {
                   );
                 }
               },
-              text: 'Hitung Nilai Liquidasi',
+              text: 'Hitung Nilai Likuidasi',
               elevation: 10,
               color: primaryColor,
             ),

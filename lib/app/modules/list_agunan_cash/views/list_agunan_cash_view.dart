@@ -248,7 +248,7 @@ class ListAgunanCashView extends GetView<ListAgunanCashController> {
                                 ),
                                 TableRow(
                                   children: [
-                                    paddedTextTanah('Nilai Liquidasi'),
+                                    paddedTextTanah('Nilai Likuidasi'),
                                     paddedTextTanah(':'),
                                     paddedTextTanah(
                                       'Rp. ${MoneyMaskedTextController(
@@ -571,7 +571,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                         )),
                 decoration: const InputDecoration(
                   prefixText: 'Rp. ',
-                  labelText: 'Nilai Liquidasi',
+                  labelText: 'Nilai Likuidasi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
@@ -647,7 +647,7 @@ class FormUpdateAgunanCash extends StatelessWidget {
                       );
                     }
                   },
-                  text: 'Hitung Nilai Liquidasi',
+                  text: 'Hitung Nilai Likuidasi',
                   elevation: 10,
                   color: primaryColor,
                 ),
@@ -800,7 +800,7 @@ class FormInputAgunanCash extends StatelessWidget {
                 controller: controller.nilaiLiquidasi,
                 decoration: const InputDecoration(
                   prefixText: 'Rp. ',
-                  labelText: 'Nilai Liquidasi',
+                  labelText: 'Nilai Likuidasi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
@@ -868,7 +868,7 @@ class FormInputAgunanCash extends StatelessWidget {
                       );
                     }
                   },
-                  text: 'Hitung Nilai Liquidasi',
+                  text: 'Hitung Nilai Likuidasi',
                   elevation: 10,
                   color: primaryColor,
                 ),

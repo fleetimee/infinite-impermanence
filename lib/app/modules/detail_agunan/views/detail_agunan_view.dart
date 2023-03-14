@@ -900,7 +900,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     TableRow(
                                                       children: [
                                                         paddedTextTanah(
-                                                            'Nilai Liquidasi'),
+                                                            'Nilai Likuidasi'),
                                                         paddedTextTanah(':'),
                                                         paddedTextTanah(
                                                           'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(formAgunanTanah[index].nilaiLiquidasi.toString())).text}',
@@ -1230,7 +1230,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     TableRow(
                                                       children: [
                                                         paddedTextTanah(
-                                                            'Nilai Liquidasi Tanah'),
+                                                            'Nilai Likuidasi Tanah'),
                                                         paddedTextTanah(':'),
                                                         paddedTextTanah(
                                                             'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(formAgunanTanahBangunan[index].nilaiLiquidasiTanah.toString())).text}'),
@@ -1248,7 +1248,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     TableRow(
                                                       children: [
                                                         paddedTextTanah(
-                                                            'Nilai Liquidasi Bangunan'),
+                                                            'Nilai Likuidasi Bangunan'),
                                                         paddedTextTanah(':'),
                                                         paddedTextTanah(
                                                             'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(formAgunanTanahBangunan[index].nilaiLiquidasiBangunan.toString())).text}'),
@@ -1273,7 +1273,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     TableRow(
                                                       children: [
                                                         paddedTextTanah(
-                                                            'Total Nilai Liquidasi'),
+                                                            'Total Nilai Likuidasi'),
                                                         paddedTextTanah(':'),
                                                         paddedTextTanah(
                                                           'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(formAgunanTanahBangunan[index].nilaiLiquidasi.toString())).text}',
@@ -1860,7 +1860,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     TableRow(
                                                       children: [
                                                         paddedTextTanah(
-                                                            'Nilai Liquidasi'),
+                                                            'Nilai Likuidasi'),
                                                         paddedTextTanah(':'),
                                                         paddedTextTanah(
                                                           'Rp. ${MoneyMaskedTextController(
@@ -2041,7 +2041,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     TableRow(
                                                       children: [
                                                         paddedTextTanah(
-                                                            'Nilai Liquidasi'),
+                                                            'Nilai Likuidasi'),
                                                         paddedTextTanah(':'),
                                                         paddedTextTanah(
                                                           'Rp. ${MoneyMaskedTextController(
@@ -2678,7 +2678,7 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                                     ),
                                                     // TableRow(
                                                     //   children: [
-                                                    //     paddedTextTanah('Nilai Liquidasi'),
+                                                    //     paddedTextTanah('Nilai Likuidasi'),
                                                     //     paddedTextTanah(':'),
                                                     //     paddedTextTanah(
                                                     //       'Rp. ${MoneyMaskedTextController(

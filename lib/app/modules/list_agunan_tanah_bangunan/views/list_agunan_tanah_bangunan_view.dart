@@ -380,7 +380,7 @@ class ListAgunanTanahBangunanView
                               ),
                               TableRow(
                                 children: [
-                                  paddedTextTanah('Nilai Liquidasi Tanah'),
+                                  paddedTextTanah('Nilai Likuidasi Tanah'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
                                       'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiLiquidasiTanah.toString())).text}'),
@@ -396,7 +396,7 @@ class ListAgunanTanahBangunanView
                               ),
                               TableRow(
                                 children: [
-                                  paddedTextTanah('Nilai Liquidasi Bangunan'),
+                                  paddedTextTanah('Nilai Likuidasi Bangunan'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
                                       'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiLiquidasiBangunan.toString())).text}'),
@@ -419,7 +419,7 @@ class ListAgunanTanahBangunanView
                               ),
                               TableRow(
                                 children: [
-                                  paddedTextTanah('Total Nilai Liquidasi'),
+                                  paddedTextTanah('Total Nilai Likuidasi'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
                                     'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanahBangunan[index].nilaiLiquidasi.toString())).text}',
@@ -843,7 +843,7 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
                     decimalSeparator: '',
                     precision: 0),
             decoration: const InputDecoration(
-              labelText: 'Nilai Liquidasi Tanah',
+              labelText: 'Nilai Likuidasi Tanah',
               prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -929,7 +929,7 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
                     decimalSeparator: '',
                     precision: 0),
             decoration: const InputDecoration(
-              labelText: 'Nilai Liquidasi Bangunan',
+              labelText: 'Nilai Likuidasi Bangunan',
               prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1043,7 +1043,7 @@ class FormUpdateAgunanTanahBangunan extends StatelessWidget {
                   );
                 }
               },
-              text: 'Hitung Nilai Liquidasi',
+              text: 'Hitung Nilai Likuidasi',
               elevation: 10,
               color: primaryColor,
             ),
@@ -1463,7 +1463,7 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
             controller: controller.nilaiLiquidasiTanah,
             decoration: const InputDecoration(
               prefixText: 'Rp. ',
-              labelText: 'Nilai Liquidasi Tanah',
+              labelText: 'Nilai Likuidasi Tanah',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(8),
@@ -1542,7 +1542,7 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
             readOnly: true,
             controller: controller.nilaiLiquidasiBangunan,
             decoration: const InputDecoration(
-              labelText: 'Nilai Liquidasi Bangunan',
+              labelText: 'Nilai Likuidasi Bangunan',
               prefixText: 'Rp. ',
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(
@@ -1645,7 +1645,7 @@ class FormInputAgunanTanahBangunan extends StatelessWidget {
                   );
                 }
               },
-              text: 'Hitung Nilai Liquidasi',
+              text: 'Hitung Nilai Likuidasi',
               elevation: 10,
               color: primaryColor,
             ),

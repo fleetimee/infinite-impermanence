@@ -197,11 +197,10 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                             ? textUmurBoldLeft('')
                             : debtor.pengajuan![0].user!.isEmpty
                                 ? textUmurBoldLeft('')
-                                : debtor.pengajuan![0].user![0].displayName ==
-                                        null
+                                : debtor.pengajuan![0].user!.length != 3
                                     ? textUmurBoldLeft('')
-                                    : textUmurBoldLeft(
-                                        '${debtor.pengajuan![0].user![0].displayName}'),
+                                    : textUmurBoldLeft(debtor
+                                        .pengajuan![0].user![2].displayName!),
                       ],
                     ),
                     TableRow(
@@ -212,10 +211,11 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                             ? textUmurBoldLeft('')
                             : debtor.pengajuan![0].user!.isEmpty
                                 ? textUmurBoldLeft('')
-                                : debtor.pengajuan![0].user!.length != 3
+                                : debtor.pengajuan![0].user![0].displayName ==
+                                        null
                                     ? textUmurBoldLeft('')
-                                    : textUmurBoldLeft(debtor
-                                        .pengajuan![0].user![2].displayName!),
+                                    : textUmurBoldLeft(
+                                        '${debtor.pengajuan![0].user![0].displayName}'),
                       ],
                     ),
                     TableRow(

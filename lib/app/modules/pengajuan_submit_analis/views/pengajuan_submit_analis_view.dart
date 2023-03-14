@@ -227,7 +227,7 @@ class PengajuanSubmitAnalisView
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         const Text(
-                          'Bahasan Analis',
+                          'Tanggapan Analis',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -280,7 +280,7 @@ class PengajuanSubmitAnalisView
                             ),
                             Center(
                               child: Text(
-                                'Tambahkan Bahasan Analis',
+                                'Tambahkan Tanggapan Analis',
                                 style: TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.w400,

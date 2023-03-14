@@ -30,6 +30,7 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
           child: FormBuilderTextField(
             name: 'name$num',
             maxLines: 3,
+            textInputAction: TextInputAction.next,
             onChanged: (value) {
               debugPrint('value: $value');
             },
@@ -127,6 +128,9 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                           InputBorder.none,
                     ),
                     validator: FormBuilderValidators.required(),
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now(),
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -1043,7 +1047,7 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const GFTypography(
-                              text: 'Bahasan Pemutus',
+                              text: 'Tanggapan Pemutus',
                               type: GFTypographyType.typo3,
                               showDivider: false,
                             ),
@@ -1105,7 +1109,7 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                                   children: const [
                                     Center(
                                       child: Text(
-                                        'Tambahkan Bahasan Pemutus',
+                                        'Tambahkan Tanggapan Pemutus',
                                         style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.w400,

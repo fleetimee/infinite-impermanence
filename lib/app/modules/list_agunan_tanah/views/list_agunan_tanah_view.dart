@@ -364,7 +364,7 @@ class ListAgunanTanahView extends GetView<ListAgunanTanahController> {
                               ),
                               TableRow(
                                 children: [
-                                  paddedTextTanah('Nilai Liquidasi'),
+                                  paddedTextTanah('Nilai Likuidasi'),
                                   paddedTextTanah(':'),
                                   paddedTextTanah(
                                     'Rp. ${MoneyMaskedTextController(thousandSeparator: '.', decimalSeparator: '', precision: 0, initialValue: double.parse(controller.listAgunanTanah[index].nilaiLiquidasi.toString())).text}',
@@ -815,7 +815,7 @@ class FormUpdateAgunanTanah extends StatelessWidget {
                   );
                 }
               },
-              text: 'Hitung Nilai Liquidasi',
+              text: 'Hitung Nilai Likuidasi',
               elevation: 10,
               color: primaryColor,
             ),
@@ -1283,7 +1283,7 @@ class FormInputAgunanTanah extends StatelessWidget {
                   );
                 }
               },
-              text: 'Hitung Nilai Liquidasi',
+              text: 'Hitung Nilai Likuidasi',
               elevation: 10,
               color: primaryColor,
             ),

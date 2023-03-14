@@ -1106,7 +1106,7 @@ class AgunanAnalisisCalcView extends GetView<AgunanAnalisisCalcController> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 const Text(
-                                                  'Total Agunan (Liquidasi)',
+                                                  'Total Agunan (Likuidasi)',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 18,

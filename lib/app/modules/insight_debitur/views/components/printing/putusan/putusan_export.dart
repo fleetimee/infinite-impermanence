@@ -536,7 +536,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                             ),
                             children: [
                               textDeskripsiNoBold(''),
-                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold('Nilai Likuidasi'),
                               textDeskripsiNoBold(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
@@ -662,7 +662,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                             ),
                             children: [
                               textDeskripsiNoBold(''),
-                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold('Nilai Likuidasi'),
                               textDeskripsiNoBold(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
@@ -788,7 +788,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                             ),
                             children: [
                               textDeskripsiNoBold(''),
-                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold('Nilai Likuidasi'),
                               textDeskripsiNoBold(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
@@ -890,7 +890,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                             ),
                             children: [
                               textDeskripsiNoBold(''),
-                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold('Nilai Likuidasi'),
                               textDeskripsiNoBold(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
@@ -991,7 +991,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                             ),
                             children: [
                               textDeskripsiNoBold(''),
-                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold('Nilai Likuidasi'),
                               textDeskripsiNoBold(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',
@@ -1127,7 +1127,7 @@ Future<Uint8List> makePutusanPdf(DebiturInsight debtor) async {
                             ),
                             children: [
                               textDeskripsiNoBold(''),
-                              textDeskripsiNoBold('Nilai Liquidasi'),
+                              textDeskripsiNoBold('Nilai Likuidasi'),
                               textDeskripsiNoBold(MoneyMaskedTextController(
                                 decimalSeparator: '',
                                 thousandSeparator: '.',

@@ -181,7 +181,7 @@ class LihatRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(height: 16),
                 Center(
                   child: Text(
-                    'Per tanggal : ${DateFormat('dd MMMM yyyy').format(data.inputNeraca.tanggalInput)}',
+                    'Per tanggal : ${DateFormat('dd MMMM yyyy').format(DateTime(data.inputNeraca.tanggalInput.year, data.inputNeraca.tanggalInput.month, 1).subtract(const Duration(days: 1)))}',
                     style: subtitle2,
                   ),
                 ),

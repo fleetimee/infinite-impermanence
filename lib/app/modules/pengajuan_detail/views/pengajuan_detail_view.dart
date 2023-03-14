@@ -465,7 +465,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                           children: [
                                             const Expanded(
                                               child: GFTypography(
-                                                text: 'Bahasan Analis',
+                                                text: 'Tanggapan Analis',
                                                 type: GFTypographyType.typo2,
                                               ),
                                             ),
@@ -485,7 +485,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                   Icons.print,
                                                   color: GFColors.WHITE,
                                                 ),
-                                                text: 'Print Bahasan Analis',
+                                                text: 'Print Tanggapan Analis',
                                                 color: GFColors.DARK,
                                                 shape: GFButtonShape.pills,
                                                 size: GFSize.LARGE,
@@ -548,7 +548,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                           const Expanded(
                                                             child: GFTypography(
                                                               text:
-                                                                  'Bahasan Reviewer',
+                                                                  'Tanggapan Reviewer',
                                                               type:
                                                                   GFTypographyType
                                                                       .typo2,
@@ -573,7 +573,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                                     .WHITE,
                                                               ),
                                                               text:
-                                                                  'Print Bahasan Reviewer',
+                                                                  'Print Tanggapan Reviewer',
                                                               color:
                                                                   GFColors.DARK,
                                                               shape:
@@ -732,7 +732,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                           const Expanded(
                                                             child: GFTypography(
                                                               text:
-                                                                  'Bahasan Pemutus',
+                                                                  'Tanggapan Pemutus',
                                                               type:
                                                                   GFTypographyType
                                                                       .typo2,
@@ -757,7 +757,7 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
                                                                     .WHITE,
                                                               ),
                                                               text:
-                                                                  'Print Bahasan Pemutus',
+                                                                  'Print Tanggapan Pemutus',
                                                               color:
                                                                   GFColors.DARK,
                                                               shape:

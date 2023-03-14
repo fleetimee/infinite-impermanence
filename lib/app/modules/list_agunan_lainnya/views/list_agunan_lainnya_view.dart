@@ -236,7 +236,7 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
                                 ),
                                 // TableRow(
                                 //   children: [
-                                //     paddedTextTanah('Nilai Liquidasi'),
+                                //     paddedTextTanah('Nilai Likuidasi'),
                                 //     paddedTextTanah(':'),
                                 //     paddedTextTanah(
                                 //       'Rp. ${MoneyMaskedTextController(

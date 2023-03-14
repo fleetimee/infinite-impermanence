@@ -251,7 +251,7 @@ class ListAgunanPeralatanView extends GetView<ListAgunanPeralatanController> {
                                 ),
                                 TableRow(
                                   children: [
-                                    paddedTextTanah('Nilai Liquidasi'),
+                                    paddedTextTanah('Nilai Likuidasi'),
                                     paddedTextTanah(':'),
                                     paddedTextTanah(
                                       'Rp. ${MoneyMaskedTextController(
@@ -534,7 +534,7 @@ class FormUpdateAgunanPeralatan extends StatelessWidget {
                         )),
                 decoration: const InputDecoration(
                   prefixText: 'Rp. ',
-                  labelText: 'Nilai Liquidasi',
+                  labelText: 'Nilai Likuidasi',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
                       Radius.circular(8),
@@ -608,7 +608,7 @@ class FormUpdateAgunanPeralatan extends StatelessWidget {
                       );
                     }
                   },
-                  text: 'Hitung Nilai Liquidasi',
+                  text: 'Hitung Nilai Likuidasi',
                   elevation: 10,
                   color: primaryColor,
                 ),
@@ -799,7 +799,7 @@ class FormInputAgunanPeralatan extends StatelessWidget {
                 readOnly: true,
                 controller: controller.nilaiLiquidasi,
                 decoration: const InputDecoration(
-                  labelText: 'Nilai Liquidasi',
+                  labelText: 'Nilai Likuidasi',
                   prefixText: 'Rp. ',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(
@@ -868,7 +868,7 @@ class FormInputAgunanPeralatan extends StatelessWidget {
                       );
                     }
                   },
-                  text: 'Hitung Nilai Liquidasi',
+                  text: 'Hitung Nilai Likuidasi',
                   elevation: 10,
                   color: primaryColor,
                 ),

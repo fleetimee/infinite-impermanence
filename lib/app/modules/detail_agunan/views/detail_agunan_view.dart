@@ -237,9 +237,9 @@ class DetailAgunanView extends GetView<DetailAgunanController> {
                                     ),
                                     Row(
                                       children: [
-                                        formAgunanTanah != null
+                                        formAgunanTanahBangunan != null
                                             ? Text(
-                                                formAgunanTanahBangunan!.length
+                                                formAgunanTanahBangunan.length
                                                     .toString(),
                                                 style: const TextStyle(
                                                   fontSize: 20.0,

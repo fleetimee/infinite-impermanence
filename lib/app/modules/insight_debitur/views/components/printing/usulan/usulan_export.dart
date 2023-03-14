@@ -193,14 +193,29 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                       children: [
                         textUmur('Kepada'),
                         textUmurR(':'),
-                        textUmurBoldLeft('Adi Nugraha'),
+                        debtor.pengajuan!.isEmpty
+                            ? textUmurBoldLeft('')
+                            : debtor.pengajuan![0].user!.isEmpty
+                                ? textUmurBoldLeft('')
+                                : debtor.pengajuan![0].user!.length != 3
+                                    ? textUmurBoldLeft('')
+                                    : textUmurBoldLeft(debtor
+                                        .pengajuan![0].user![2].displayName!),
                       ],
                     ),
                     TableRow(
                       children: [
                         textUmur('Dari'),
                         textUmurR(':'),
-                        textUmurBoldLeft('Sumaryanto'),
+                        debtor.pengajuan!.isEmpty
+                            ? textUmurBoldLeft('')
+                            : debtor.pengajuan![0].user!.isEmpty
+                                ? textUmurBoldLeft('')
+                                : debtor.pengajuan![0].user![0].displayName ==
+                                        null
+                                    ? textUmurBoldLeft('')
+                                    : textUmurBoldLeft(
+                                        '${debtor.pengajuan![0].user![0].displayName}'),
                       ],
                     ),
                     TableRow(
@@ -359,16 +374,16 @@ Future<Uint8List> makeUsulanPdf(DebiturInsight debtor) async {
                         textUmur(''),
                         textUmurR(''),
                         textUmur('Angsuran'),
-                        // textUmurBoldLeft(': ${MoneyMaskedTextController(
-                        //   decimalSeparator: '',
-                        //   thousandSeparator: '.',
-                        //   leftSymbol: 'Rp. ',
-                        //   precision: 0,
-                        //   initialValue: double.parse(
-                        //       debtor.inputKeuangan!.angsuranRp.toString()),
-                        // ).text}'),
-                        textUmurBoldLeft(
-                            ': Sesuai skedul angsuran yang terlampir'),
+                        textUmurBoldLeft(': ${MoneyMaskedTextController(
+                          decimalSeparator: '',
+                          thousandSeparator: '.',
+                          leftSymbol: 'Rp. ',
+                          precision: 0,
+                          initialValue: double.parse(
+                              debtor.inputKeuangan!.angsuranRp.toString()),
+                        ).text}'),
+                        // textUmurBoldLeft(
+                        //     ': Sesuai skedul angsuran yang terlampir'),
                         textUmurBold('')
                       ],
                     ),

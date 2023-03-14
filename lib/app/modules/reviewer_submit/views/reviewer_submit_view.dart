@@ -68,6 +68,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: FormBuilderTextField(
             name: 'name$num',
+            textInputAction: TextInputAction.next,
             maxLines: 3,
             onChanged: (value) {
               debugPrint('value: $value');
@@ -143,6 +144,9 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                           InputBorder.none,
                     ),
                     validator: FormBuilderValidators.required(),
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime.now(),
+                    lastDate: DateTime.now(),
                   ),
                   const SizedBox(height: 20),
                   Text(
@@ -1038,7 +1042,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                         child: Column(
                           children: [
                             const GFTypography(
-                              text: 'Bahasan Reviewer',
+                              text: 'Tanggapan Reviewer',
                               type: GFTypographyType.typo3,
                               showDivider: false,
                             ),
@@ -1100,7 +1104,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                   children: const [
                                     Center(
                                       child: Text(
-                                        'Tambahkan Bahasan Reviewer',
+                                        'Tambahkan Tanggapan Reviewer',
                                         style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.w400,

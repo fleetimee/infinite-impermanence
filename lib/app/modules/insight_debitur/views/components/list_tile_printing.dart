@@ -668,7 +668,7 @@ class SlikPrint extends StatelessWidget {
   Widget build(BuildContext context) {
     return GFListTile(
         title: const Text(
-          'SLIK',
+          'Pernyataan SLIK',
           style: TextStyle(
             color: primaryColor,
             fontSize: 25,
@@ -682,10 +682,48 @@ class SlikPrint extends StatelessWidget {
             color: secondaryColor,
           ),
         ),
-        subTitleText: 'Print Sistem Layanan Informasi Keuangan',
+        subTitleText: 'Print Pernyaataan SLIK',
         icon: GFButton(
           onPressed: () {
             Get.toNamed(Routes.SLIK_PRINTING,
+                arguments: controller.insightDebitur.value);
+          },
+          text: "READY",
+          buttonBoxShadow: true,
+          color: GFColors.SUCCESS,
+        ));
+  }
+}
+
+class SpkkPrint extends StatelessWidget {
+  SpkkPrint({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GFListTile(
+        title: const Text(
+          'SPKK',
+          style: TextStyle(
+            color: primaryColor,
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        avatar: const GFAvatar(
+          backgroundColor: primaryColor,
+          child: Icon(
+            FontAwesomeIcons.medium,
+            color: secondaryColor,
+          ),
+        ),
+        subTitleText: 'Print SPKK',
+        icon: GFButton(
+          onPressed: () {
+            Get.toNamed(Routes.SPKK_PRINTING,
                 arguments: controller.insightDebitur.value);
           },
           text: "READY",

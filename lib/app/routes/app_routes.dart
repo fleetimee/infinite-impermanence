@@ -95,6 +95,7 @@ abstract class Routes {
   static const PENGUTUS_PRINT = _Paths.PENGUTUS_PRINT;
   static const PENGAJUAN_PRINTING = _Paths.PENGAJUAN_PRINTING;
   static const SLIK_PRINTING = _Paths.SLIK_PRINTING;
+  static const SPKK_PRINTING = _Paths.SPKK_PRINTING;
   static const RSS_FEED = _Paths.RSS_FEED;
   static const YOUTUBE_FEED = _Paths.YOUTUBE_FEED;
   static const KURS = _Paths.KURS;
@@ -214,4 +215,5 @@ abstract class _Paths {
   static const PENGUTUS_PENDING_STATS = '/pengutus-pending-stats';
   static const DETAIL_AGUNAN = '/detail-agunan';
   static const SLIK_PRINTING = '/slik-print';
+  static const SPKK_PRINTING = '/spkk-print';
 }

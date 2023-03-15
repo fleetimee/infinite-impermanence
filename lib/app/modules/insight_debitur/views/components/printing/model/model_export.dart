@@ -1,6 +1,4 @@
 // 🐦 Flutter imports:
-
-// 🐦 Flutter imports:
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
@@ -9,10 +7,6 @@ import 'package:pdf/widgets.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
-
-// 🌎 Project imports:
-
-// 📦 Package imports:
 
 Future<Uint8List> makeModelPdf(DebiturInsight debtor) async {
   var myTheme = ThemeData.withFont(

@@ -294,6 +294,7 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                                                   }
                                                 },
                                               ),
+                                              SlikPrint(),
                                               Obx(
                                                 () {
                                                   if (rugiLabaController

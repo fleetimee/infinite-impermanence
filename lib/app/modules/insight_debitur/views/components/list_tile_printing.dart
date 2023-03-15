@@ -656,3 +656,41 @@ class JenisUsahaPrint extends StatelessWidget {
     );
   }
 }
+
+class SlikPrint extends StatelessWidget {
+  SlikPrint({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GFListTile(
+        title: const Text(
+          'SLIK',
+          style: TextStyle(
+            color: primaryColor,
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        avatar: const GFAvatar(
+          backgroundColor: primaryColor,
+          child: Icon(
+            FontAwesomeIcons.squarespace,
+            color: secondaryColor,
+          ),
+        ),
+        subTitleText: 'Print Sistem Layanan Informasi Keuangan',
+        icon: GFButton(
+          onPressed: () {
+            Get.toNamed(Routes.SLIK_PRINTING,
+                arguments: controller.insightDebitur.value);
+          },
+          text: "READY",
+          buttonBoxShadow: true,
+          color: GFColors.SUCCESS,
+        ));
+  }
+}

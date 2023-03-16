@@ -732,3 +732,41 @@ class SpkkPrint extends StatelessWidget {
         ));
   }
 }
+
+class PkPrint extends StatelessWidget {
+  PkPrint({
+    Key? key,
+  }) : super(key: key);
+
+  final controller = Get.put(InsightDebiturController());
+
+  @override
+  Widget build(BuildContext context) {
+    return GFListTile(
+        title: const Text(
+          'Perjanjian Kredit',
+          style: TextStyle(
+            color: primaryColor,
+            fontSize: 25,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        avatar: const GFAvatar(
+          backgroundColor: primaryColor,
+          child: Icon(
+            FontAwesomeIcons.github,
+            color: secondaryColor,
+          ),
+        ),
+        subTitleText: 'Print Perjanjian Kredit',
+        icon: GFButton(
+          onPressed: () {
+            Get.toNamed(Routes.PK_PRINTING,
+                arguments: controller.insightDebitur.value);
+          },
+          text: "READY",
+          buttonBoxShadow: true,
+          color: GFColors.SUCCESS,
+        ));
+  }
+}

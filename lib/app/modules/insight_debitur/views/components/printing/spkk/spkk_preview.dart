@@ -17,7 +17,7 @@ class SpkkPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Print Spkk: ${data.peminjam1}'),
+        title: Text('Print SPKK: ${data.peminjam1}'),
         centerTitle: true,
       ),
       body: Theme(

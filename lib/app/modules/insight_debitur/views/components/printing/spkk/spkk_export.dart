@@ -2,6 +2,7 @@
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 // 📦 Package imports:
 import 'package:pdf/pdf.dart';
@@ -83,14 +84,6 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
   var formCash = agunanCash.formCash;
   var formLos = agunanLos.formLos;
   var formLainnya = agunanLainnya.formLainnya;
-
-  var totalLength = (formAgunanTanah?.length ?? 0) +
-      (formAgunanTanahBangunan?.length ?? 0) +
-      (formKendaraan?.length ?? 0) +
-      (formPeralatan?.length ?? 0) +
-      (formCash?.length ?? 0) +
-      (formLos?.length ?? 0) +
-      (formLainnya?.length ?? 0);
 
   pdf.addPage(
     MultiPage(
@@ -187,7 +180,7 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
               ),
             ),
             textGeneral(
-              '           Dengan ini kami beritahukan bahwa PT. Bank Pembangunan Daerah  Daerah Istimewa Yogyakarta dapat menyetujui permohonan kredit ${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000 ? 'KUR Mikro' : 'KUR Kecil'} yang tercantum dalam surat permohonan kredit Saudara tanggal  07 Januari 2023  dengan ketentuan dan syarat sebagai berikut :',
+              '           Dengan ini kami beritahukan bahwa PT. Bank Pembangunan Daerah  Daerah Istimewa Yogyakarta dapat menyetujui permohonan kredit ${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000 ? 'KUR Mikro' : 'KUR Kecil'} yang tercantum dalam surat permohonan kredit Saudara tanggal  ${DateFormat('dd MMMM yyyy').format(DateTime.parse(debtor.tglSekarang.toString()))}  dengan ketentuan dan syarat sebagai berikut :',
             ),
             Padding(
               padding: const EdgeInsets.only(left: 40),

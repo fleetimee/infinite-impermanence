@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
@@ -156,13 +157,26 @@ class LoginPageController extends GetxController {
         // Check user custom claims
         final claims = await auth.currentUser!.getIdTokenResult();
 
+        final prefs = await SharedPreferences.getInstance();
+
+        final officeJsonString = prefs.getString('office');
+
+        // parse office json string to office object
+        final office =
+            officeJsonString != null ? jsonDecode(officeJsonString) : {};
+
         // If user is analis then route to analis page
         if (claims.claims!['analis'] == true &&
             claims.claims!['admin'] == false &&
             claims.claims!['reviewer'] == false &&
             claims.claims!['pengutus'] == false) {
           debugPrint('User is signed in! and is analis only');
-          Get.offAllNamed(Routes.HOME);
+          if (office.isNotEmpty) {
+            Get.offAllNamed(Routes.HOME);
+          } else {
+            debugPrint('User is signed in! but office is null');
+            Get.offAllNamed(Routes.OFFICE_SELECTION);
+          }
           // if user is reviewer then route to reviewer page
         } else if (claims.claims!['reviewer'] == true &&
             claims.claims!['admin'] == false &&
@@ -180,10 +194,23 @@ class LoginPageController extends GetxController {
         } else {
           // check shared preferences if user already login
           final prefs = await SharedPreferences.getInstance();
+
+          final officeJsonString = prefs.getString('office');
+
+          // parse office json string to office object
+          final office =
+              officeJsonString != null ? jsonDecode(officeJsonString) : {};
+
           // if user already login then route to dashboard page
           if (prefs.getString('role') == 'analis') {
             debugPrint('User is signed in! and already choose analis role');
-            Get.offAllNamed(Routes.HOME);
+            // Check if user already choose office from localStorage
+            if (office.isNotEmpty) {
+              Get.offAllNamed(Routes.HOME);
+            } else {
+              debugPrint('User is signed in! but office is null');
+              Get.offAllNamed(Routes.OFFICE_SELECTION);
+            }
           } else if (prefs.getString('role') == 'reviewer') {
             debugPrint('User is signed in! and already choose reviewer role');
             Get.offAllNamed(Routes.HOME_REVIEWER);

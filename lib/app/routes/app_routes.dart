@@ -110,6 +110,7 @@ abstract class Routes {
   static const PENGUTUS_PENDING_LIST = _Paths.PENGUTUS_PENDING_LIST;
   static const PENGUTUS_PENDING_STATS = _Paths.PENGUTUS_PENDING_STATS;
   static const DETAIL_AGUNAN = _Paths.DETAIL_AGUNAN;
+  static const OFFICE_SELECTION = _Paths.OFFICE_SELECTION;
 }
 
 abstract class _Paths {
@@ -218,4 +219,5 @@ abstract class _Paths {
   static const SLIK_PRINTING = '/slik-print';
   static const SPKK_PRINTING = '/spkk-print';
   static const PK_PRINTING = '/pk-print';
+  static const OFFICE_SELECTION = '/office-selection';
 }

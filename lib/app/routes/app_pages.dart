@@ -1,6 +1,3 @@
-import 'package:akm/app/modules/insight_debitur/views/components/printing/pk/pk_preview.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/slik/slik_preview.dart';
-import 'package:akm/app/modules/insight_debitur/views/components/printing/spkk/spkk_preview.dart';
 import 'package:get/get.dart';
 
 import '../modules/agunan_analisis/bindings/agunan_analisis_binding.dart';
@@ -64,8 +61,11 @@ import '../modules/insight_debitur/views/components/printing/karakter/karakter_p
 import '../modules/insight_debitur/views/components/printing/keuangan/keuangan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/model/model_preview.dart';
 import '../modules/insight_debitur/views/components/printing/neraca/neraca_preview.dart';
+import '../modules/insight_debitur/views/components/printing/pk/pk_preview.dart';
 import '../modules/insight_debitur/views/components/printing/putusan/putusan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/rugi_laba/rugi_laba_preview.dart';
+import '../modules/insight_debitur/views/components/printing/slik/slik_preview.dart';
+import '../modules/insight_debitur/views/components/printing/spkk/spkk_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan/usulan_preview.dart';
 import '../modules/insight_debitur/views/components/printing/usulan_baru/usulan_baru_preview.dart';
 import '../modules/insight_debitur/views/insight_debitur_view.dart';
@@ -107,6 +107,8 @@ import '../modules/media/bindings/media_binding.dart';
 import '../modules/media/views/media_view.dart';
 import '../modules/media_docs/bindings/media_docs_binding.dart';
 import '../modules/media_docs/views/media_docs_view.dart';
+import '../modules/office-selection/bindings/office_selection_binding.dart';
+import '../modules/office-selection/views/office_selection_view.dart';
 import '../modules/pengajuan_detail/bindings/pengajuan_detail_binding.dart';
 import '../modules/pengajuan_detail/views/components/printing/tanggapan_analis/analis_preview.dart';
 import '../modules/pengajuan_detail/views/components/printing/tanggapan_pemutus/pemutus_preview.dart';
@@ -617,6 +619,11 @@ class AppPages {
       name: _Paths.DETAIL_AGUNAN,
       page: () => const DetailAgunanView(),
       binding: DetailAgunanBinding(),
+    ),
+    GetPage(
+      name: _Paths.OFFICE_SELECTION,
+      page: () => OfficeSelectionView(),
+      binding: OfficeSelectionBinding(),
     ),
   ];
 }

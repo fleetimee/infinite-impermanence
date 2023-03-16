@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/insight_debitur/views/components/printing/pk/pk_preview.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/slik/slik_preview.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/spkk/spkk_preview.dart';
 import 'package:get/get.dart';
@@ -151,12 +152,6 @@ import '../modules/usaha_analisis/views/lihat_usaha_analisis_view.dart';
 import '../modules/usaha_analisis/views/usaha_analisis_view.dart';
 import '../modules/youtube_feed/bindings/youtube_feed_binding.dart';
 import '../modules/youtube_feed/views/youtube_feed_view.dart';
-
-// 📦 Package imports:
-
-// 🌎 Project imports:
-
-// ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
 
@@ -548,6 +543,10 @@ class AppPages {
     GetPage(
       name: _Paths.SPKK_PRINTING,
       page: () => SpkkPreview(),
+    ),
+    GetPage(
+      name: _Paths.PK_PRINTING,
+      page: () => PkPreview(),
     ),
     GetPage(
       name: _Paths.PENGAJUAN_PRINTING,

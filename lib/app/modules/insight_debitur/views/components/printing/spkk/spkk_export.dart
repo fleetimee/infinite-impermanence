@@ -34,6 +34,64 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
           .buffer
           .asUint8List());
 
+  // Get list of syarat lain
+  var syaratList = debtor.syaratLain;
+
+  // Get list of agunan
+  var agunanList = debtor.agunan;
+
+  Agunan agunanTanah = agunanList!.any((element) => element.kodeAgunan == 1)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 1))
+      : Agunan();
+
+  Agunan agunanTanahBangunan =
+      agunanList.any((element) => element.kodeAgunan == 2)
+          ? agunanList.elementAt(
+              agunanList.indexWhere((element) => element.kodeAgunan == 2))
+          : Agunan();
+
+  Agunan agunanKendaraan = agunanList.any((element) => element.kodeAgunan == 3)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 3))
+      : Agunan();
+
+  Agunan agunanPeralatan = agunanList.any((element) => element.kodeAgunan == 4)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 4))
+      : Agunan();
+
+  Agunan agunanCash = agunanList.any((element) => element.kodeAgunan == 5)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 5))
+      : Agunan();
+
+  Agunan agunanLos = agunanList.any((element) => element.kodeAgunan == 6)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 6))
+      : Agunan();
+
+  Agunan agunanLainnya = agunanList.any((element) => element.kodeAgunan == 7)
+      ? agunanList.elementAt(
+          agunanList.indexWhere((element) => element.kodeAgunan == 7))
+      : Agunan();
+
+  var formAgunanTanah = agunanTanah.formTanah;
+  var formAgunanTanahBangunan = agunanTanahBangunan.formTanahBangunan;
+  var formKendaraan = agunanKendaraan.formKendaraan;
+  var formPeralatan = agunanPeralatan.formPeralatan;
+  var formCash = agunanCash.formCash;
+  var formLos = agunanLos.formLos;
+  var formLainnya = agunanLainnya.formLainnya;
+
+  var totalLength = (formAgunanTanah?.length ?? 0) +
+      (formAgunanTanahBangunan?.length ?? 0) +
+      (formKendaraan?.length ?? 0) +
+      (formPeralatan?.length ?? 0) +
+      (formCash?.length ?? 0) +
+      (formLos?.length ?? 0) +
+      (formLainnya?.length ?? 0);
+
   pdf.addPage(
     MultiPage(
       footer: (context) => Container(
@@ -129,7 +187,7 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
               ),
             ),
             textGeneral(
-              '           Dengan ini kami beritahukan bahwa PT. Bank Pembangunan Daerah  Daerah Istimewa Yogyakarta dapat menyetujui permohonan kredit Kur Mikro yang tercantum dalam surat permohonan kredit Saudara tanggal  07 Januari 2023  dengan ketentuan dan syarat sebagai berikut :',
+              '           Dengan ini kami beritahukan bahwa PT. Bank Pembangunan Daerah  Daerah Istimewa Yogyakarta dapat menyetujui permohonan kredit ${double.parse(debtor.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000 ? 'KUR Mikro' : 'KUR Kecil'} yang tercantum dalam surat permohonan kredit Saudara tanggal  07 Januari 2023  dengan ketentuan dan syarat sebagai berikut :',
             ),
             Padding(
               padding: const EdgeInsets.only(left: 40),
@@ -256,29 +314,270 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
                       textKolomAtas('11.'),
                       textKolomAtas('Jaminan Kredit'),
                       textKolomAtas(':'),
-                      textKolomAtas('1. Placeholdr'),
+                      textKolomAtas(''),
                     ],
                   ),
-                  TableRow(
-                    children: [
-                      textKolomAtas(''),
-                      textKolomAtas(''),
-                      textKolomAtas(''),
-                      textKolomAtas('2. Placeholdr'),
-                    ],
-                  ),
+                ],
+              ),
+            ),
+            formAgunanTanah != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan Tanah'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formAgunanTanah.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. ${formAgunanTanah[index].deskripsiPendek}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            formAgunanTanahBangunan != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan Tanah dan Bangunan'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formAgunanTanahBangunan.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. ${formAgunanTanahBangunan[index].deskripsiPendek}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            formKendaraan != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan Kendaraan'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formKendaraan.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. ${formKendaraan[index].jenis} Merk ${formKendaraan[index].merk}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            formPeralatan != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan Peralatan'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formPeralatan.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. ${formPeralatan[index].deskripsiPanjang}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            formCash != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan Cash'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formCash.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. ${formCash[index].deskripsiPanjang}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            formLos != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan LOS'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formLos.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. ${formLos[index].deskripsiPendek}'),
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            formLainnya != null
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Table(
+                      columnWidths: {
+                        0: const FlexColumnWidth(0.05),
+                        1: const FlexColumnWidth(0.95),
+                      },
+                      children: [
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            textKolomAtas('  - Agunan Lainnya'),
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                              itemCount: formLainnya.length,
+                              itemBuilder: (context, index) => Align(
+                                alignment: Alignment.centerLeft,
+                                child: textKolomAtas(
+                                    '       ${index + 1}. Usaha yang dibiayai'),
+                              ),
+                            )
+                          ],
+                        ),
+                        TableRow(
+                          children: [
+                            textKolomAtas(''),
+                            ListView.builder(
+                                itemCount: formLainnya.length,
+                                itemBuilder: (context, index) => Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: textKolomAtas(
+                                          '  - Asuransi Penjaminan Kredit via ${formLainnya[index].namaAsuransiPenjamin}'),
+                                    ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
+            Padding(
+              padding: const EdgeInsets.only(left: 40),
+              child: Table(
+                columnWidths: {
+                  0: const FlexColumnWidth(0.05),
+                  1: const FlexColumnWidth(0.30),
+                  2: const FlexColumnWidth(0.02),
+                  3: const FlexColumnWidth(0.63),
+                },
+                children: [
                   TableRow(
                     children: [
                       textKolomAtas('12.'),
                       textKolomAtas('Pengikatan Jaminan'),
                       textKolomAtas(':'),
-                      textKolomAtas('Placheholder'),
+                      textKolomAtas(''),
                     ],
                   ),
                   TableRow(
                     children: [
                       textKolomAtas('13.'),
-                      textKolomAtas('Syarat-syarat penandatanganan kredit '),
+                      textKolomAtas('Syarat-syarat penandatanganan kredit'),
                       textKolomAtas(':'),
                       textKolomAtas(''),
                     ],
@@ -359,7 +658,7 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 40),
+              padding: const EdgeInsets.only(left: 20),
               child: Table(columnWidths: {
                 0: const FlexColumnWidth(0.05),
                 1: const FlexColumnWidth(0.95),
@@ -367,29 +666,55 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
                 TableRow(
                   children: [
                     textKolomAtas(''),
-                    textKolomAtas(
-                        'a. Telah menandatangani Perjanjian Kredit dan Akta Pengikatan J'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    textKolomAtas(''),
-                    textKolomAtas('b. Telah menandatangani Perjanjian Kredit'),
-                  ],
-                ),
-                TableRow(
-                  children: [
-                    textKolomAtas(''),
-                    textKolomAtas(
-                        'c. Telah menandatangani Perjanjian Kredit d'),
+                    ListView.builder(
+                        itemCount: syaratList!.length,
+                        itemBuilder: (context, index) => Align(
+                              alignment: Alignment.centerLeft,
+                              child: textKolomAtas(
+                                  '       ${String.fromCharCode(index + 97)}. ${syaratList[index].keterangan}'),
+                            )),
                   ],
                 ),
               ]),
             ),
+            Container(height: 10),
             textGeneral(
                 'Persetujuan dengan ketentuan-ketentuan tersebut akan dituangkan dalam Perjanjian Kredit yang ditandatangani bersama antara Bank dengan Saudara.'),
             textGeneral(
                 'Demikian surat pernyataan persetujuan ini dibuat dengan sebenarnya dan dapat dipergunakan sebagaimana mestinya.'),
+            Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text('DEBITUR', style: const TextStyle(fontSize: 11)),
+                        Container(height: 125),
+                        Text(
+                          '( ${debtor.peminjam1} )    ${debtor.peminjam2 == null || debtor.peminjam2 == '' ? '' : (debtor.peminjam2)}',
+                          style: const TextStyle(fontSize: 11),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        Text(
+                          'PT. BANK PEMBANGUNAN DAERAH\nDAERAH ISTIMEWA YOGYAKARTA\nKANTOR CABANG PEMBANTU PRAWIROTAMAN',
+                          style: const TextStyle(fontSize: 11),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 100),
+                        Text(
+                          '( Adi Nugraha )',
+                          style: const TextStyle(fontSize: 11),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  ],
+                ))
           ],
         ),
       ],

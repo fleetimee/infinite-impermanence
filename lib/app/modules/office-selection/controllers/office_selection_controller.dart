@@ -4,4 +4,8 @@ import 'package:get/get.dart';
 
 class OfficeSelectionController extends GetxController {
   final formKey = GlobalKey<FormBuilderState>();
+
+  var cabangUtama = '';
+
+  var cabangPembantu = '';
 }

@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 
 // 📦 Package imports:
@@ -10,6 +12,7 @@ import 'package:pdf/widgets.dart';
 // 🌎 Project imports:
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/print_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
   var myTheme = ThemeData.withFont(
@@ -31,6 +34,19 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
     pageMode: PdfPageMode.fullscreen,
     version: PdfVersion.pdf_1_5,
   );
+
+  var mainBranch = '...';
+
+  // Get mainBranch from local storage
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  // Get mainBranch from local storage
+  final officeJsonString = prefs.getString('office');
+
+  // parse into object
+  final office = json.decode(officeJsonString!);
+
+  mainBranch = office['cabang_utama'];
 
   // variable for string omzet penjualan
   var omzetPenjualan = '';
@@ -2111,7 +2127,7 @@ Future<Uint8List> makeInputPdf(DebiturInsight debtor) async {
                     textUmur(''),
                     textUmur('Cabang'),
                     textUmur(':'),
-                    textUmur(''),
+                    mainBranch == '...' ? textUmur('') : textUmur(mainBranch),
                     textUmur(''),
                   ],
                 ),

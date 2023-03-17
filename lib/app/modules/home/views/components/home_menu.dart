@@ -115,6 +115,60 @@ class HomeMenu extends StatelessWidget {
             ),
           ),
           const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Obx(() => controller.mainBranch.value == '...' &&
+                        controller.helperBranch.value == '...'
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Icon(
+                        FontAwesomeIcons.building,
+                        color: GFColors.INFO,
+                      )),
+                const SizedBox(
+                  width: 8,
+                ),
+                Obx(() => controller.mainBranch.value == '...' &&
+                        controller.helperBranch.value == '...'
+                    ? SizedBox(
+                        child: Row(
+                          children: const [
+                            Text(
+                              '...',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                          ],
+                        ),
+                      )
+                    : SizedBox(
+                        width: 400,
+                        child: Text(
+                          '${controller.mainBranch} / ${controller.helperBranch}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      )),
+              ],
+            ),
+          ),
+          const SizedBox(
             height: 25,
           ),
           LayoutBuilder(

@@ -311,15 +311,6 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                                 SizedBox(
                                                   width: 20,
                                                 ),
-                                                // IconButton(
-                                                //   onPressed: () {
-                                                //     homeCtrl.getLocation();
-                                                //   },
-                                                //   icon: const Icon(
-                                                //     FontAwesomeIcons.sync,
-                                                //     color: Colors.white,
-                                                //   ),
-                                                // ),
                                               ],
                                             ),
                                           )
@@ -333,6 +324,63 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                               ),
                                             ),
                                           )),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              children: [
+                                Obx(() => homeCtrl.mainBranch.value == '...' &&
+                                        homeCtrl.helperBranch.value == '...'
+                                    ? const SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    : const Icon(
+                                        FontAwesomeIcons.building,
+                                        color: GFColors.INFO,
+                                      )),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(() => homeCtrl.mainBranch.value == '...' &&
+                                        homeCtrl.helperBranch.value == '...'
+                                    ? SizedBox(
+                                        child: Row(
+                                          children: const [
+                                            Text(
+                                              '...',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 20,
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    : SizedBox(
+                                        width: 400,
+                                        child: Text(
+                                          '${homeCtrl.mainBranch} / ${homeCtrl.helperBranch}',
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 20,
+                                          ),
+                                        ),
+                                      )),
                               ],
                             ),
                           ),

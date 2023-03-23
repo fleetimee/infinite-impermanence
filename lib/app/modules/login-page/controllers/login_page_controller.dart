@@ -183,14 +183,24 @@ class LoginPageController extends GetxController {
             claims.claims!['analis'] == false &&
             claims.claims!['pengutus'] == false) {
           debugPrint('User is signed in! and is reviewer only');
-          Get.offAllNamed(Routes.HOME_REVIEWER);
+          if (office.isNotEmpty) {
+            Get.offAllNamed(Routes.HOME_REVIEWER);
+          } else {
+            debugPrint('User is signed in! but office is null');
+            Get.offAllNamed(Routes.OFFICE_SELECTION);
+          }
         } // if user is pengutus then route to pengutus page
         else if (claims.claims!['pengutus'] == true &&
             claims.claims!['admin'] == false &&
             claims.claims!['analis'] == false &&
             claims.claims!['reviewer'] == false) {
           debugPrint('User is signed in! and is pengutus only');
-          Get.offAllNamed(Routes.HOME_PENGUTUS);
+          if (office.isNotEmpty) {
+            Get.offAllNamed(Routes.HOME_PENGUTUS);
+          } else {
+            debugPrint('User is signed in! but office is null');
+            Get.offAllNamed(Routes.OFFICE_SELECTION);
+          }
         } else {
           // check shared preferences if user already login
           final prefs = await SharedPreferences.getInstance();

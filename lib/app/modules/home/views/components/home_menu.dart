@@ -75,42 +75,35 @@ class HomeMenu extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                Obx(() => controller.address.value == 'Getting address'
-                    ? SizedBox(
-                        child: Row(
-                          children: const [
-                            Text(
-                              'Getting address',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
+                Obx(
+                  () => controller.address.value == 'Getting address'
+                      ? SizedBox(
+                          child: Row(
+                            children: const [
+                              Text(
+                                'Getting address',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
                               ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          ),
+                        )
+                      : SizedBox(
+                          width: 400,
+                          child: Text(
+                            'You are at ${controller.address}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
                             ),
-                            SizedBox(
-                              width: 20,
-                            ),
-                            // IconButton(
-                            //   onPressed: () {
-                            //     controller.getLocation();
-                            //   },
-                            //   icon: const Icon(
-                            //     FontAwesomeIcons.sync,
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
-                          ],
-                        ),
-                      )
-                    : SizedBox(
-                        width: 400,
-                        child: Text(
-                          'You are at ${controller.address}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
                           ),
                         ),
-                      )),
+                ),
               ],
             ),
           ),

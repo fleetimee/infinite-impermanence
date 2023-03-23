@@ -1,7 +1,4 @@
 // 🐦 Flutter imports:
-// ignore_for_file: must_be_immutable, prefer_is_empty
-
-// 🐦 Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

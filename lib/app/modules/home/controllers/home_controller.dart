@@ -1,5 +1,6 @@
 // 🎯 Dart imports:
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 // 🐦 Flutter imports:
@@ -39,6 +40,8 @@ class HomeController extends GetxController {
 
     // Check if already linked to google account
     checkIfLinked();
+
+    getOfficeBranch();
 
     // Get hardware info
     if (Platform.isAndroid) {
@@ -113,6 +116,16 @@ class HomeController extends GetxController {
         idUntukFetchInput.value = prefs.getString('id')!;
       });
     }
+  }
+
+  void getOfficeBranch() async {
+    SharedPreferences.getInstance().then((prefs) {
+      final officeJsonString = prefs.getString('office');
+      final office = json.decode(officeJsonString!);
+
+      mainBranch.value = office['cabang_utama'];
+      helperBranch.value = office['cabang_pembantu'];
+    });
   }
 
   // Check if user is already linked to google account
@@ -209,6 +222,10 @@ class HomeController extends GetxController {
   var longtitude = 'Getting longtitude'.obs;
   var address = 'Getting address'.obs;
   var fullAddress = '...'.obs;
+
+  // Variables for office branch
+  var mainBranch = '....'.obs;
+  var helperBranch = '....'.obs;
 
   // StreamSubscriptioon for location
   late StreamSubscription<Position> streamSubscription;

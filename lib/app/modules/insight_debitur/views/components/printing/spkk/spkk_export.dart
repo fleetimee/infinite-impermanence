@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'dart:convert';
+
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +9,7 @@ import 'package:intl/intl.dart';
 // 📦 Package imports:
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:terbilang_id/terbilang_id.dart';
 
 Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
@@ -29,6 +32,19 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
     pageMode: PdfPageMode.fullscreen,
     version: PdfVersion.pdf_1_5,
   );
+
+  var helperBranch = '...';
+
+  // Get mainBranch from local storage
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+
+  // Get mainBranch from local storage
+  final officeJsonString = prefs.getString('office');
+
+  // parse into object
+  final office = json.decode(officeJsonString!);
+
+  helperBranch = office['cabang_pembantu'];
 
   final imageLogo = MemoryImage(
       (await rootBundle.load('assets/images/pdf/logo.png'))
@@ -676,38 +692,39 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
             textGeneral(
                 'Demikian surat pernyataan persetujuan ini dibuat dengan sebenarnya dan dapat dipergunakan sebagaimana mestinya.'),
             Padding(
-                padding: const EdgeInsets.all(20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text('DEBITUR', style: const TextStyle(fontSize: 11)),
-                        Container(height: 125),
-                        Text(
-                          '( ${debtor.peminjam1} )    ${debtor.peminjam2 == null || debtor.peminjam2 == '' ? '' : (debtor.peminjam2)}',
-                          style: const TextStyle(fontSize: 11),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          'PT. BANK PEMBANGUNAN DAERAH\nDAERAH ISTIMEWA YOGYAKARTA\nKANTOR CABANG PEMBANTU PRAWIROTAMAN',
-                          style: const TextStyle(fontSize: 11),
-                          textAlign: TextAlign.center,
-                        ),
-                        SizedBox(height: 100),
-                        Text(
-                          '( Adi Nugraha )',
-                          style: const TextStyle(fontSize: 11),
-                          textAlign: TextAlign.center,
-                        ),
-                      ],
-                    ),
-                  ],
-                ))
+              padding: const EdgeInsets.all(20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: [
+                      Text('DEBITUR', style: const TextStyle(fontSize: 11)),
+                      Container(height: 125),
+                      Text(
+                        '( ${debtor.peminjam1} )    ${debtor.peminjam2 == null || debtor.peminjam2 == '' ? '' : (debtor.peminjam2)}',
+                        style: const TextStyle(fontSize: 11),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        'PT. BANK PEMBANGUNAN DAERAH\nDAERAH ISTIMEWA YOGYAKARTA\n$helperBranch',
+                        style: const TextStyle(fontSize: 11),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 100),
+                      Text(
+                        '( Adi Nugraha )',
+                        style: const TextStyle(fontSize: 11),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ],

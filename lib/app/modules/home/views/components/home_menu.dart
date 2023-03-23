@@ -75,12 +75,68 @@ class HomeMenu extends StatelessWidget {
                 const SizedBox(
                   width: 8,
                 ),
-                Obx(() => controller.address.value == 'Getting address'
+                Obx(
+                  () => controller.address.value == 'Getting address'
+                      ? SizedBox(
+                          child: Row(
+                            children: const [
+                              Text(
+                                'Getting address',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                            ],
+                          ),
+                        )
+                      : SizedBox(
+                          width: 400,
+                          child: Text(
+                            'You are at ${controller.address}',
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Obx(() => controller.mainBranch.value == '...' &&
+                        controller.helperBranch.value == '...'
+                    ? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : const Icon(
+                        FontAwesomeIcons.building,
+                        color: GFColors.INFO,
+                      )),
+                const SizedBox(
+                  width: 8,
+                ),
+                Obx(() => controller.mainBranch.value == '...' &&
+                        controller.helperBranch.value == '...'
                     ? SizedBox(
                         child: Row(
                           children: const [
                             Text(
-                              'Getting address',
+                              '...',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
@@ -89,22 +145,13 @@ class HomeMenu extends StatelessWidget {
                             SizedBox(
                               width: 20,
                             ),
-                            // IconButton(
-                            //   onPressed: () {
-                            //     controller.getLocation();
-                            //   },
-                            //   icon: const Icon(
-                            //     FontAwesomeIcons.sync,
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
                           ],
                         ),
                       )
                     : SizedBox(
                         width: 400,
                         child: Text(
-                          'You are at ${controller.address}',
+                          '${controller.mainBranch} / ${controller.helperBranch}',
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 20,

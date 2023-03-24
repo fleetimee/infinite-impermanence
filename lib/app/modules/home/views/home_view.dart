@@ -1,5 +1,10 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
+import 'package:akm/app/modules/home/models/menu_grid.dart';
 import 'package:akm/app/modules/home/views/components/change_office/change_office.dart';
+import 'package:akm/app/modules/home/views/components/home_menu.dart';
+import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,10 +35,6 @@ import 'package:akm/app/modules/home/views/components/password/password.dart';
 import 'package:akm/app/modules/home/views/components/profile/profile.dart';
 import 'package:akm/app/modules/home/views/components/refresh_token/refresh_token.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
-import '../../../common/style.dart';
-import '../../../routes/app_pages.dart';
-import '../controllers/home_controller.dart';
-import 'components/home_menu.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
@@ -153,7 +154,70 @@ class HomeView extends GetView<HomeController> {
                   sliver: HomeMenu(),
                 ),
                 SliverToBoxAdapter(
-                  child: listViewMenu(context),
+                  child: SizedBox(
+                    height: 400,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: GridView.builder(
+                        itemCount: menuGridList.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          childAspectRatio: 0.8,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 16,
+                        ),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Expanded(
+                                child: InkWell(
+                                  onTap: () => menuGridList[index].onTap(),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Card(
+                                      color: primaryColor,
+                                      elevation: 10,
+                                      child: Container(
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                          color: primaryColor,
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Center(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SvgPicture.asset(
+                                                menuGridList[index].menuIcon,
+                                                height: 50,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                menuGridList[index].menuName,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: secondaryColor,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ),
                 )
               ],
             ),
@@ -1067,7 +1131,9 @@ class HomeView extends GetView<HomeController> {
               description: const Text('Change / set your password'),
               onPressed: ((context) {
                 showMaterialModalBottomSheet(
-                    context: context, builder: (context) => SetPassword());
+                  context: context,
+                  builder: (context) => SetPassword(),
+                );
               }),
               leading: const Icon(Icons.lock_outline_rounded),
             ),
@@ -1077,10 +1143,6 @@ class HomeView extends GetView<HomeController> {
               title: const Text('Refresh Token'),
               description: const Text('Reauthenticate your account'),
               onPressed: (((context) async {
-                // final prefs = await SharedPreferences.getInstance();
-
-                // await prefs.clear();
-                // controller.logout();
                 showMaterialModalBottomSheet(
                   backgroundColor: secondaryColor,
                   context: context,

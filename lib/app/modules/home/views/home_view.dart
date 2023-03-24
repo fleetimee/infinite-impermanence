@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/home/views/components/change_office/change_office.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -1628,13 +1629,16 @@ class HomeView extends GetView<HomeController> {
                     title: const Text('Common'),
                     tiles: <SettingsTile>[
                       SettingsTile.navigation(
-                        leading: const Icon(Icons.info_outline),
-                        title: const Text('About'),
+                        title: const Text('Change Office'),
+                        leading: const Icon(Icons.location_city),
                         description:
-                            const Text('Show information about this app'),
-                        onPressed: ((context) {
-                          showAboutPag(context);
-                        }),
+                            const Text('Change your office for printing'),
+                        onPressed: (context) {
+                          showMaterialModalBottomSheet(
+                            context: context,
+                            builder: (context) => ChangeOffice(),
+                          );
+                        },
                       ),
                       SettingsTile.navigation(
                         title: const Text('Tutorial'),
@@ -1685,6 +1689,15 @@ class HomeView extends GetView<HomeController> {
                           }
                         }),
                         leading: const Icon(Icons.switch_account_outlined),
+                      ),
+                      SettingsTile.navigation(
+                        leading: const Icon(Icons.info_outline),
+                        title: const Text('About'),
+                        description:
+                            const Text('Show information about this app'),
+                        onPressed: ((context) {
+                          showAboutPag(context);
+                        }),
                       ),
                       SettingsTile.navigation(
                         // logoute

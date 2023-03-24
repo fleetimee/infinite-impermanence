@@ -58,7 +58,7 @@ class OfficeSelectionView extends GetView<OfficeSelectionController> {
             PageViewModel(
               title: 'Pilih Cabang utama dan Cabang Pembantu',
               footer: const Text(
-                  'Hint: Gunakan email yang sama dengan yang diberikan oleh admin'),
+                  'Hint: Pilih cabang utama dan cabang pembantu yang berdekatan'),
               bodyWidget: Column(
                 children: [
                   const Align(

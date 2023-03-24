@@ -139,6 +139,7 @@ flutter:
     - assets/images/home/
     - assets/images/splash_screen/
     - assets/images/pdf/
+    - assets/images/menu_grid/
     - assets/fonts/times-new-roman.ttf
     - assets/fonts/times-new-roman-bold.ttf
     - assets/fonts/times-new-roman-italic.ttf

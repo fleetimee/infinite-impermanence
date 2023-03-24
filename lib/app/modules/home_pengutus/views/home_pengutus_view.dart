@@ -361,7 +361,7 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                             Text(
                                               '...',
                                               style: TextStyle(
-                                                color: Colors.black,
+                                                color: Colors.white,
                                                 fontSize: 20,
                                               ),
                                             ),
@@ -376,90 +376,13 @@ class HomePengutusView extends GetView<HomePengutusController> {
                                         child: Text(
                                           '${homeCtrl.mainBranch} / ${homeCtrl.helperBranch}',
                                           style: const TextStyle(
-                                            color: Colors.black,
+                                            color: Colors.white,
                                             fontSize: 20,
                                           ),
                                         ),
                                       )),
                               ],
                             ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          LayoutBuilder(
-                            builder: (context, constraint) {
-                              List items = [
-                                {
-                                  'id': 1,
-                                  'category_name': 'Berita Terbaru',
-                                  'route': Routes.RSS_FEED
-                                },
-                                {
-                                  'id': 2,
-                                  'category_name': 'Kurs Hari Ini',
-                                  'route': Routes.KURS
-                                },
-                                {
-                                  'id': 3,
-                                  'category_name': 'Video BPD DIY',
-                                  'route': Routes.YOUTUBE_FEED
-                                },
-                                {
-                                  'id': 4,
-                                  'category_name': 'Panduan Penggunaan',
-                                  'route': 'Routes.ADD_DEBITUR'
-                                },
-                                {
-                                  'id': 5,
-                                  'category_name': 'Instagram BPD DIY',
-                                  'route': Routes.INSTAGRAM_FEED
-                                },
-                              ];
-                              return Wrap(
-                                children: List.generate(
-                                  items.length,
-                                  (index) {
-                                    var item = items[index];
-                                    return InkWell(
-                                      onTap: () {
-                                        // navigate to route
-                                        Get.toNamed(item["route"]);
-                                      },
-                                      child: SizedBox(
-                                        height: 50,
-                                        child: Card(
-                                          color: Colors.pinkAccent,
-                                          elevation: 5,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 12.0,
-                                              vertical: 4.0,
-                                            ),
-                                            child: Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  item["category_name"],
-                                                  style: const TextStyle(
-                                                    fontSize: 15.0,
-                                                    color: secondaryColor,
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
-                            },
                           ),
                           const SizedBox(
                             height: 30,

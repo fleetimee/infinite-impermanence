@@ -1,3 +1,4 @@
+import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_deploy/controllers/debitur_deploy_controller.dart';
@@ -31,6 +32,15 @@ class DebiturDeployCreateForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Visibility(
+            visible: false,
+            child: FormBuilderTextField(
+              name: 'id',
+              readOnly: true,
+              controller: controller.penginput.value =
+                  TextEditingController(text: auth.currentUser!.uid),
+            ),
+          ),
           const DebiturTitleTextLabel(
             text: 'Peminjam Pertama',
           ),

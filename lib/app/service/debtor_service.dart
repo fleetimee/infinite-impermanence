@@ -24,7 +24,7 @@ class DebtorService {
     try {
       final response = await httpClient.post(
         Uri.parse('${baseUrl}debiturs'),
-        body: jsonEncode(body),
+        body: body,
       );
       debugPrint('response: ${response.body}');
 

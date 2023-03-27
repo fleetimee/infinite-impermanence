@@ -1,32 +1,28 @@
-import 'package:akm/app/modules/debitur_real/controllers/debitur_real_controller.dart';
+import 'package:akm/app/modules/debitur_deploy/controllers/debitur_deploy_controller.dart';
 import 'package:akm/app/widget/bottomnavbar_button.dart';
 import 'package:akm/app/widget/dialog_box.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DebiturRealBottomNavBar extends StatelessWidget {
-  final DebiturRealController controller;
-  final dynamic data;
+class DebiturDeployBottomNavbar extends StatelessWidget {
+  final DebiturDeployController controller;
 
-  /// This is a bottom navigation bar for editing debitur
+  /// This is a bottom navigation bar for adding debitur
   /// It takes [controller] and [data] as required parameters
-  /// [controller] is the controller of the debitur module
-  /// [data] is the data of the debitur that will be edited
-  const DebiturRealBottomNavBar({
+  const DebiturDeployBottomNavbar({
     super.key,
     required this.controller,
-    this.data,
   });
 
   @override
   Widget build(BuildContext context) {
     return BottomNavBarButton(
-      text: 'Sunting',
+      text: 'Simpan',
+      icon: Icons.save,
       onPressed: () {
         if (controller.formKey.currentState?.saveAndValidate() ?? false) {
-          controller.editDebitur(data.id.toString());
-
+          controller.saveDebtor();
           Get.back();
         } else {
           debugPrint(controller.formKey.currentState?.value.toString());
@@ -38,13 +34,11 @@ class DebiturRealBottomNavBar extends StatelessWidget {
             dialogType: DialogType.warning,
             title: 'Warning',
             desc: 'Form masih ada yang kosong',
-            btnOkText: 'Sunting Kembali',
-            btnOkIcon: Icons.edit,
-            btnOkOnPress: () {},
+            btnCancelText: 'OK',
+            btnCancelOnPress: () {},
           ).show();
         }
       },
-      icon: Icons.edit,
     );
   }
 }

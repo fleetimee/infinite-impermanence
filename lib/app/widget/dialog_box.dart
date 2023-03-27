@@ -11,8 +11,10 @@ class ErrorDialog extends AwesomeDialog {
   final DialogType dialogType;
   final String title;
   final String desc;
-  final String btnOkText;
+  final String? btnOkText;
+  final String? btnCancelText;
   final IconData? btnOkIcon;
+  final IconData? btnCancelIcon;
   final void Function()? btnOkOnPress;
   final void Function()? btnCancelOnPress;
 
@@ -22,10 +24,12 @@ class ErrorDialog extends AwesomeDialog {
     required this.dialogType,
     required this.title,
     required this.desc,
-    required this.btnOkText,
+    this.btnOkText,
     this.btnOkIcon,
     this.btnOkOnPress,
     this.btnCancelOnPress,
+    this.btnCancelText,
+    this.btnCancelIcon,
   }) : super(
           context: context,
           animType: animType,
@@ -43,8 +47,12 @@ class ErrorDialog extends AwesomeDialog {
           ),
           desc: desc,
           btnOkText: btnOkText,
+          btnOkColor: blue300,
           btnOkIcon: btnOkIcon,
           btnOkOnPress: btnOkOnPress,
           btnCancelOnPress: btnCancelOnPress,
+          btnCancelText: btnCancelText,
+          btnCancelIcon: btnCancelIcon,
+          dialogBackgroundColor: primaryColor,
         );
 }

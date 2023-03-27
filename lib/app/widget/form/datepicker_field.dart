@@ -29,7 +29,7 @@ class FleetimeDatePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderDateTimePicker(
       name: name,
-      initialValue: initialValue ?? DateTime.now(),
+      initialValue: initialValue,
       onChanged: onChanged,
       errorFormatText: errorFormatText,
       errorInvalidText: errorInvalidText,

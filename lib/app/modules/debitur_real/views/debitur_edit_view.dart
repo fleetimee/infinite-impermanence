@@ -27,7 +27,7 @@ class DebiturEditView extends GetView<DebiturRealController> {
           ),
         ),
       ),
-      bottomNavigationBar: DebiturBottomNavBar(
+      bottomNavigationBar: DebiturRealBottomNavBar(
         controller: controller,
         data: data,
       ),

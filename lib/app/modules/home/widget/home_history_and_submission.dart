@@ -142,8 +142,40 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                     );
                   } else {
                     if (controller.listMySubmission.isNotEmpty) {
-                      return ListRiwayatPengajuan(
-                        controller: controller,
+                      return Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Total Pengajuan',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1.2,
+                                  ),
+                                ),
+                                Text(
+                                  '${controller.listMySubmission.length} Pengajuan',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1.2,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: ListRiwayatPengajuan(
+                              controller: controller,
+                            ),
+                          ),
+                        ],
                       );
                     } else {
                       return Align(
@@ -319,70 +351,11 @@ class ListRiwayatPengajuan extends StatelessWidget {
                     ),
                   ),
                   enableFeedback: true,
-                  title: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '${controller.listMySubmission[index].debitur.peminjam1}',
-                      ),
-                      const SizedBox(height: 5),
-                      Table(
-                        columnWidths: const {
-                          0: FlexColumnWidth(0.30),
-                          1: FlexColumnWidth(0.03),
-                          2: FlexColumnWidth(0.67),
-                        },
-                        children: [
-                          TableRow(
-                            children: [
-                              Text(
-                                'No Pengajuan',
-                                style: subtitleStyle,
-                              ),
-                              Text(
-                                ':',
-                                style: subtitleStyle,
-                              ),
-                              Text(
-                                '${controller.listMySubmission[index].id}',
-                                style: subtitleStyle,
-                              ),
-                            ],
-                          ),
-                          TableRow(
-                            children: [
-                              Text(
-                                'Tgl Pengajuan',
-                                style: subtitleStyle,
-                              ),
-                              Text(
-                                ':',
-                                style: subtitleStyle,
-                              ),
-                              Text(
-                                DateFormat('EEEE, dd MMMM yyyy', 'id_ID')
-                                    .format(controller
-                                        .listMySubmission[index].tglSubmit),
-                                style: subtitleStyle,
-                              ),
-                            ],
-                          ),
-                          TableRow(
-                            children: [
-                              Text(
-                                'Status',
-                                style: subtitleStyle,
-                              ),
-                              Text(
-                                '',
-                                style: subtitleStyle,
-                              ),
-                              buildChip(index),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                  title: TitlePengajuan(
+                    controller: controller,
+                    subtitleStyle: subtitleStyle,
+                    index: index,
+                    buildChip: buildChip,
                   ),
                   trailing: Column(
                     children: const [
@@ -411,6 +384,89 @@ class ListRiwayatPengajuan extends StatelessWidget {
   }
 }
 
+class TitlePengajuan extends StatelessWidget {
+  const TitlePengajuan({
+    super.key,
+    required this.controller,
+    required this.subtitleStyle,
+    required this.index,
+    required this.buildChip,
+  });
+
+  final HomeController controller;
+  final TextStyle subtitleStyle;
+  final int index;
+  final Widget Function(int) buildChip;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '${controller.listMySubmission[index].debitur.peminjam1}',
+        ),
+        const SizedBox(height: 5),
+        Table(
+          columnWidths: const {
+            0: FlexColumnWidth(0.30),
+            1: FlexColumnWidth(0.03),
+            2: FlexColumnWidth(0.67),
+          },
+          children: [
+            TableRow(
+              children: [
+                Text(
+                  'No Pengajuan',
+                  style: subtitleStyle,
+                ),
+                Text(
+                  ':',
+                  style: subtitleStyle,
+                ),
+                Text(
+                  '${controller.listMySubmission[index].id}',
+                  style: subtitleStyle,
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  'Tgl Pengajuan',
+                  style: subtitleStyle,
+                ),
+                Text(
+                  ':',
+                  style: subtitleStyle,
+                ),
+                Text(
+                  DateFormat('EEEE, dd MMMM yyyy', 'id_ID')
+                      .format(controller.listMySubmission[index].tglSubmit),
+                  style: subtitleStyle,
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Text(
+                  'Status',
+                  style: subtitleStyle,
+                ),
+                Text(
+                  '',
+                  style: subtitleStyle,
+                ),
+                buildChip(index),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class ListRiwayatInput extends StatelessWidget {
   const ListRiwayatInput({super.key, required this.controller});
 
@@ -422,102 +478,105 @@ class ListRiwayatInput extends StatelessWidget {
       onRefresh: () {
         return controller.refreshInputtan();
       },
-      child: ListView.builder(
-        controller: controller.scrollController,
-        itemCount: controller.listMyInput.length,
-        itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(8),
-            child: Card(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
-              ),
-              color: Colors.white,
-              elevation: 6,
-              child: ListTile(
+      child: Scrollbar(
+        child: ListView.builder(
+          controller: controller.scrollController,
+          itemCount: controller.listMyInput.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: const EdgeInsets.all(8),
+              child: Card(
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(30),
                   ),
                 ),
-                enableFeedback: true,
-                leading: RandomAvatar(
-                  '${controller.listMyInput[index].peminjam1}',
-                  fit: BoxFit.cover,
-                  height: 50,
-                  width: 50,
-                ),
-                title: Text('${controller.listMyInput[index].peminjam1}'),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 5.0,
+                color: Colors.white,
+                elevation: 6,
+                child: ListTile(
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
                     ),
-                    Text(
-                      'Progress: ${(double.parse(controller.listMyInput[index].progress!) * 100).toStringAsFixed(0)} %',
-                    ),
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                    SizedBox(
-                      height: 10,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: LinearProgressIndicator(
-                          value: double.parse(
-                              controller.listMyInput[index].progress!),
-                          backgroundColor: Colors.grey[300],
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            (double.parse(controller
-                                            .listMyInput[index].progress!) >=
-                                        0.1 &&
-                                    double.parse(controller
-                                            .listMyInput[index].progress!) <
-                                        0.6)
-                                ? Colors.red
-                                : (double.parse(controller.listMyInput[index]
-                                                .progress!) >=
-                                            0.6 &&
-                                        double.parse(controller
-                                                .listMyInput[index].progress!) <
-                                            1.0)
-                                    ? Colors.yellow
-                                    : Colors.green,
+                  ),
+                  enableFeedback: true,
+                  leading: RandomAvatar(
+                    '${controller.listMyInput[index].peminjam1}',
+                    fit: BoxFit.cover,
+                    height: 50,
+                    width: 50,
+                  ),
+                  title: Text('${controller.listMyInput[index].peminjam1}'),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        'Progress: ${(double.parse(controller.listMyInput[index].progress!) * 100).toStringAsFixed(0)} %',
+                      ),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      SizedBox(
+                        height: 10,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: LinearProgressIndicator(
+                            value: double.parse(
+                                controller.listMyInput[index].progress!),
+                            backgroundColor: Colors.grey[300],
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              (double.parse(controller
+                                              .listMyInput[index].progress!) >=
+                                          0.1 &&
+                                      double.parse(controller
+                                              .listMyInput[index].progress!) <
+                                          0.6)
+                                  ? Colors.red
+                                  : (double.parse(controller.listMyInput[index]
+                                                  .progress!) >=
+                                              0.6 &&
+                                          double.parse(controller
+                                                  .listMyInput[index]
+                                                  .progress!) <
+                                              1.0)
+                                      ? Colors.yellow
+                                      : Colors.green,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                    ],
+                  ),
+                  trailing: Column(
+                    children: [
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        DateFormat('dd/MM/yy')
+                            .format(controller.listMyInput[index].tglSekarang!)
+                            .toString(),
+                      ),
+                    ],
+                  ),
+                  splashColor: Colors.blueAccent,
+                  onTap: () {
+                    Get.toNamed(
+                      Routes.INSIGHT_DEBITUR,
+                      arguments: controller.listMyInput[index].id,
+                    );
+                  },
                 ),
-                trailing: Column(
-                  children: [
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      DateFormat('dd/MM/yy')
-                          .format(controller.listMyInput[index].tglSekarang!)
-                          .toString(),
-                    ),
-                  ],
-                ),
-                splashColor: Colors.blueAccent,
-                onTap: () {
-                  Get.toNamed(
-                    Routes.INSIGHT_DEBITUR,
-                    arguments: controller.listMyInput[index].id,
-                  );
-                },
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

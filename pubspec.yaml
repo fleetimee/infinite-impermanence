@@ -164,7 +164,7 @@ flutter_native_splash:
   branding: "assets/images/splash_screen/branding.png"
 
   android_12:
-    image: "assets/images/splash_screen/splash_icon12.png"
+    image: "assets/images/splash_screen/fleetime_splash.png"
     color: "#42a5f5"
     icon_background_color: "#0e44c2"
 

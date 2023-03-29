@@ -342,10 +342,10 @@ packages:
     dependency: "direct main"
     description:
       name: dio
-      sha256: "3e5c4a94d112540d0c9a6b7f3969832e1604eb8cde0f88d0808382f9f632100b"
+      sha256: f7c26ddb3a10ff033cf1bfbf2c668feb3472327f48385775f7cf25b104f8bfce
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.3"
+    version: "5.1.0"
   dots_indicator:
     dependency: transitive
     description:
@@ -731,10 +731,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_markdown
-      sha256: "818cf6c28377ba2c91ed283c96fd712e9c175dd2d2488eb7fc93b6afb9ad2e08"
+      sha256: "7b25c10de1fea883f3c4f9b8389506b54053cd00807beab69fd65c8653a2711f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.13+1"
+    version: "0.6.14"
   flutter_native_splash:
     dependency: "direct main"
     description:
@@ -808,10 +808,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_tex_js
-      sha256: "424f493b695541783159f340042463db36f2f6be630920db39f0695316ab2136"
+      sha256: "3a9afe230fbcedff11ee7864c6099541433cce41b8751977c46413c2bad9dcb0"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.17"
+    version: "2.0.0"
   flutter_tex_js_android:
     dependency: transitive
     description:
@@ -824,10 +824,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_tex_js_ios
-      sha256: "6f15aeb3bf3b253db1a7457d8d3167b440d2c97b8f3cb3bf1dfb3879ef3155ab"
+      sha256: f6a2c7bcc2615d253d5f751a7cfca64203dbf35e4100cab67fe201ac883ef4f8
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.7"
+    version: "2.0.0"
   flutter_tex_js_platform_interface:
     dependency: transitive
     description:
@@ -1102,10 +1102,10 @@ packages:
     dependency: "direct main"
     description:
       name: image_picker
-      sha256: "64b21d9f0e065f9ab0e4dde458076226c97382cc0c6949144cb874c62bf8e9f8"
+      sha256: cb25f04595a88450970dbe727243ba8cd21b6f7e0d7d1fc5b789fc6f52e95494
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.7"
+    version: "0.8.7+1"
   image_picker_android:
     dependency: transitive
     description:
@@ -1151,8 +1151,8 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: adb4b9dedf3b96de9fb445633aff1ef8b146ff9c
-      url: "https://github.com/fleoparra/flutter_in_app_update"
+      resolved-ref: "6cbeffaa033feb1d09a425789786123fa6ea2935"
+      url: "https://github.com/nikb7/flutter_in_app_update"
     source: git
     version: "4.0.1"
   intl:
@@ -1232,10 +1232,10 @@ packages:
     dependency: "direct main"
     description:
       name: lottie
-      sha256: "0cf78e7a3dd3431523a7debcf33ce4c41ecbfa113e2d10c24c3fe6667d55b556"
+      sha256: "14b489bf93af84727a07c87c73580a9413f9cbffa4ea2342f3f71447a674a3fb"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.1"
   map_launcher:
     dependency: "direct main"
     description:
@@ -1425,10 +1425,10 @@ packages:
     dependency: "direct main"
     description:
       name: pdf
-      sha256: "6cd57e8e6d052bd1078f18e0dc7cd6701fad6288231c1ce99d66ef5034d14e61"
+      sha256: "586d3debf5432e5377044754032cfa53ab45e9abf371d4865e9ad5019570e246"
       url: "https://pub.dev"
     source: hosted
-    version: "3.9.0"
+    version: "3.10.1"
   pedantic:
     dependency: transitive
     description:
@@ -1537,10 +1537,10 @@ packages:
     dependency: "direct main"
     description:
       name: printing
-      sha256: fe654363cd0114b50a0815b24e96957c7e9a60eb4e3b7ccfe71cf3f2b7114cb2
+      sha256: c5c19dd852e95aa140141df13fa304f079a20c4a14a66de5275a0f811240aeec
       url: "https://pub.dev"
     source: hosted
-    version: "5.10.1"
+    version: "5.10.3"
   process:
     dependency: transitive
     description:
@@ -1799,18 +1799,18 @@ packages:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_charts
-      sha256: "82c65db75af2c90ddf99cacfbb5dd5611edb575da45cb9fa10091bb7944d3f51"
+      sha256: "629e5db5dd144f52f46e4bd850c2e1d07408f3fd57dc10c5bcb6990df45d4a58"
       url: "https://pub.dev"
     source: hosted
-    version: "21.1.35"
+    version: "21.1.37"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "6c704aa944ae5dfc4ae7c473d52eba551acfa39fff277bae3cb355cdb2457f76"
+      sha256: f23067e46b781d488abf8e22e5608ca9972b49562e95f9e46cb6134e968f721b
       url: "https://pub.dev"
     source: hosted
-    version: "21.1.35"
+    version: "21.1.37"
   synchronized:
     dependency: transitive
     description:

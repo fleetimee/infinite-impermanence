@@ -10,8 +10,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-
-// 🌎 Project imports:
+import 'package:random_avatar/random_avatar.dart';
 
 class HomeHistoryAndSubmission extends StatelessWidget {
   final HomeController controller;
@@ -32,12 +31,12 @@ class HomeHistoryAndSubmission extends StatelessWidget {
             indicatorColor: Colors.white,
             tabs: [
               Tab(
-                text: 'History',
+                text: 'Riwayat Penginputan',
                 icon: Icon(Icons.history),
               ),
               Tab(
                 icon: Icon(Icons.subject_outlined),
-                text: 'Submissions',
+                text: 'Riwayat Pengajuan',
               ),
             ],
           ),
@@ -52,129 +51,8 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                     );
                   } else {
                     if (controller.listMyInput.isNotEmpty) {
-                      return RefreshIndicator(
-                        onRefresh: () {
-                          return controller.refreshInputtan();
-                        },
-                        child: ListView.builder(
-                          controller: controller.scrollController,
-                          itemCount: controller.listMyInput.length,
-                          itemBuilder: (context, index) {
-                            bool isSameDate = true;
-                            final dateString =
-                                controller.listMyInput[index].tglSekarang;
-
-                            if (index == 0) {
-                              isSameDate = false;
-                            } else {
-                              final prevDateString = controller
-                                  .listMyInput[index - 1].tglSekarang
-                                  ?.toIso8601String();
-                              final DateTime prevDate =
-                                  DateTime.parse(prevDateString!);
-                              isSameDate =
-                                  dateString!.isAtSameMomentAs(prevDate);
-                            }
-                            if (index == 0 || !(isSameDate)) {
-                              return Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    DateFormat('EEEE, dd MMMM yyyy')
-                                        .format(dateString!),
-                                    style: GoogleFonts.poppins(
-                                      color: Colors.white,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  GFCard(
-                                    border: Border.all(
-                                      color: Colors.black.withOpacity(0.1),
-                                    ),
-                                    padding: const EdgeInsets.all(10),
-                                    color: Colors.white.withOpacity(0.9),
-                                    elevation: 5,
-                                    titlePosition: GFPosition.start,
-                                    title: GFListTile(
-                                      avatar: const Icon(
-                                          FontAwesomeIcons.bookBookmark),
-                                      title: Text(
-                                        controller
-                                            .listMyInput[index].peminjam1!,
-                                        style: GoogleFonts.montserrat(
-                                          color: Colors.black87,
-                                          fontSize: 25,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      subTitle: Text(
-                                        controller
-                                            .listMyInput[index].bidangUsaha!,
-                                        style: GoogleFonts.montserrat(
-                                          color: Colors.black54,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      icon: GFButton(
-                                        onPressed: (() {
-                                          Get.toNamed(Routes.INSIGHT_DEBITUR,
-                                              arguments: controller
-                                                  .listMyInput[index].id);
-                                        }),
-                                        text: 'Detail',
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              );
-                            } else {
-                              return GFCard(
-                                border: Border.all(
-                                  color: Colors.black.withOpacity(0.1),
-                                ),
-                                padding: const EdgeInsets.all(10),
-                                color: Colors.white.withOpacity(0.9),
-                                elevation: 5,
-                                titlePosition: GFPosition.start,
-                                title: GFListTile(
-                                  avatar:
-                                      const Icon(FontAwesomeIcons.bookBookmark),
-                                  title: Text(
-                                    controller.listMyInput[index].peminjam1!,
-                                    style: GoogleFonts.montserrat(
-                                      color: Colors.black87,
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  subTitle: Text(
-                                    controller.listMyInput[index].bidangUsaha!,
-                                    style: GoogleFonts.montserrat(
-                                      color: Colors.black54,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  icon: GFButton(
-                                    onPressed: (() {
-                                      Get.toNamed(Routes.INSIGHT_DEBITUR,
-                                          arguments:
-                                              controller.listMyInput[index].id);
-                                    }),
-                                    text: 'Detail',
-                                  ),
-                                ),
-                              );
-                            }
-                          },
-                        ),
+                      return ListRiwayatInput(
+                        controller: controller,
                       );
                     } else {
                       return Align(
@@ -630,6 +508,125 @@ class HomeHistoryAndSubmission extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class ListRiwayatInput extends StatelessWidget {
+  const ListRiwayatInput({super.key, required this.controller});
+
+  final HomeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    /*
+    This code sorts a list called "listMyInput". It uses the "sort" method, which takes a comparison function as its parameter. 
+    The comparison function (a lambda expression) compares two elements "a" and "b" in the list based on their "peminjam1" property. The "!" symbol means that the "peminjam1" property is non-null, and it is assumed that both "a" and "b" have a non-null "peminjam1" property.
+    The comparison function returns -1 if "a.peminjam1" is less than "b.peminjam1", 0 if they are equal, and 1 if "a.peminjam1" is greater than "b.peminjam1". 
+    The "sort" method reorders the elements in "listMyInput" based on the ordering defined by the comparison function. When the method call returns, "listMyInput" contains the same elements as before, but they are sorted in ascending order based on their "peminjam1" property.
+    */
+
+    return RefreshIndicator(
+      onRefresh: () {
+        return controller.refreshInputtan();
+      },
+      child: ListView.builder(
+        controller: controller.scrollController,
+        itemCount: controller.listMyInput.length,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: const EdgeInsets.all(8),
+            child: Card(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(30),
+                ),
+              ),
+              color: Colors.white,
+              elevation: 6,
+              child: ListTile(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30),
+                  ),
+                ),
+                enableFeedback: true,
+                leading: RandomAvatar(
+                  '${controller.listMyInput[index].peminjam1}',
+                  fit: BoxFit.cover,
+                  height: 50,
+                  width: 50,
+                ),
+                title: Text('${controller.listMyInput[index].peminjam1}'),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      'Progress: ${(double.parse(controller.listMyInput[index].progress!) * 100).toStringAsFixed(0)} %',
+                    ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    SizedBox(
+                      height: 10,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: LinearProgressIndicator(
+                          value: double.parse(
+                              controller.listMyInput[index].progress!),
+                          backgroundColor: Colors.grey[300],
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            (double.parse(controller
+                                            .listMyInput[index].progress!) >=
+                                        0.1 &&
+                                    double.parse(controller
+                                            .listMyInput[index].progress!) <
+                                        0.6)
+                                ? Colors.red
+                                : (double.parse(controller.listMyInput[index]
+                                                .progress!) >=
+                                            0.6 &&
+                                        double.parse(controller
+                                                .listMyInput[index].progress!) <
+                                            1.0)
+                                    ? Colors.yellow
+                                    : Colors.green,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                  ],
+                ),
+                trailing: Column(
+                  children: [
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Text(
+                      DateFormat('dd/MM/yy')
+                          .format(controller.listMyInput[index].tglSekarang!)
+                          .toString(),
+                    ),
+                  ],
+                ),
+                splashColor: Colors.blueAccent,
+                onTap: () {
+                  Get.toNamed(
+                    Routes.INSIGHT_DEBITUR,
+                    arguments: controller.listMyInput[index].id,
+                  );
+                },
+              ),
+            ),
+          );
+        },
       ),
     );
   }

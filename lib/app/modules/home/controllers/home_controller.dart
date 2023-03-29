@@ -726,6 +726,9 @@ class HomeController extends GetxController {
           .fetchMyInputtedDebitur(page, sort, idUntukFetchInput.value)
           .then((resp) {
         isMyInputProcessing(false);
+        resp.sort((a, b) =>
+            a.peminjam1!.compareTo(b.peminjam1!)); // sort resp alphabetically
+
         listMyInput.clear();
         listMyInput.addAll(resp);
       }, onError: (error) {
@@ -781,6 +784,10 @@ class HomeController extends GetxController {
         listMySubmission.clear();
 
         listMySubmission = finalList ?? [];
+
+        listMySubmission.sort((a, b) => a.debitur.peminjam1
+            .toLowerCase()
+            .compareTo(b.debitur.peminjam1.toLowerCase()));
       }, onError: (error) {
         isMySubmissionProcessing(false);
         Get.snackbar('Error', error.toString());

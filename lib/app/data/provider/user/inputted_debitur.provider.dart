@@ -19,7 +19,7 @@ class DebiturInputtedByProvider {
     try {
       final response = await httpClient.get(
         Uri.parse(
-            '${baseUrl}debiturs?page=$page&limit=15&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=userId||\$eq||$userId'),
+            '${baseUrl}debiturs?page=$page&limit=999&sort=$sort&fields=$field&join=inputKeuangan||kredit_diusulkan,digunakan_untuk&filter=userId||\$eq||$userId'),
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',

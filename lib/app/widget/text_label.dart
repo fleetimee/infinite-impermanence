@@ -42,3 +42,26 @@ class DebiturTitleTextLabel extends StatelessWidget {
     );
   }
 }
+
+class DebiturSubtitleTextLabel extends StatelessWidget {
+  final String text;
+
+  const DebiturSubtitleTextLabel({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: Theme.of(context).textTheme.bodySmall?.merge(
+            const TextStyle(
+              color: Colors.grey,
+              fontSize: 15,
+            ),
+          ),
+      textAlign: TextAlign.left,
+    );
+  }
+}

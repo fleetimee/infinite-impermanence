@@ -153,7 +153,10 @@ flutter:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/icon/anya.png"
+  image_path: "assets/images/home/fleetime.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#0e44c2"
+  adaptive_icon_foreground: "assets/images/home/fleetime.png"
 
 flutter_native_splash:
   background_image: "assets/images/splash_screen/background.png"
@@ -161,7 +164,7 @@ flutter_native_splash:
   branding: "assets/images/splash_screen/branding.png"
 
   android_12:
-    image: "assets/images/splash_screen/splash_icon12.png"
+    image: "assets/images/splash_screen/fleetime_splash.png"
     color: "#42a5f5"
     icon_background_color: "#0e44c2"
 

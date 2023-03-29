@@ -3,22 +3,24 @@ import 'package:form_builder_extra_fields/form_builder_extra_fields.dart';
 
 class FleetimeSearchableDropdown extends StatelessWidget {
   final String name;
-  final String initialValue;
+  final String? initialValue;
   final void Function(String?)? onChanged;
   final void Function(String?)? onSaved;
   final List<String> items;
   final bool Function(String, String) filterFn;
   final FormFieldValidator<String>? validator;
+  final String? hintText;
 
   const FleetimeSearchableDropdown({
     Key? key,
-    required this.initialValue,
+    this.initialValue,
     required this.name,
     this.onChanged,
     this.onSaved,
     required this.items,
     required this.filterFn,
     this.validator,
+    this.hintText,
   }) : super(key: key);
 
   @override
@@ -36,8 +38,9 @@ class FleetimeSearchableDropdown extends StatelessWidget {
         fontSize: 16,
       ),
       decoration: InputDecoration(
-        labelStyle: const TextStyle(
-          fontSize: 18,
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          fontSize: 16,
         ),
         filled: true,
         fillColor: Colors.grey.shade400,

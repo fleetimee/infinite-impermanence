@@ -93,27 +93,23 @@ class HomeMainPage extends StatelessWidget {
                       Expanded(
                         child: InkWell(
                           onTap: () => menuGridList[index].onTap(),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Card(
-                              color: primaryColor,
-                              elevation: 10,
-                              child: Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: primaryColor,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        menuGridList[index].menuIcon,
-                                        height: 50,
-                                      ),
-                                    ],
-                                  ),
+                          child: Card(
+                            color: primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            elevation: 10,
+                            child: SizedBox(
+                              height: 50,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      menuGridList[index].menuIcon,
+                                      height: 50,
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),

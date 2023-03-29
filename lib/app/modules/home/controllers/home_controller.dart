@@ -784,6 +784,10 @@ class HomeController extends GetxController {
         listMySubmission.clear();
 
         listMySubmission = finalList ?? [];
+
+        listMySubmission.sort((a, b) => a.debitur.peminjam1
+            .toLowerCase()
+            .compareTo(b.debitur.peminjam1.toLowerCase()));
       }, onError: (error) {
         isMySubmissionProcessing(false);
         Get.snackbar('Error', error.toString());

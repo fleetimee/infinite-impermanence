@@ -520,13 +520,6 @@ class ListRiwayatInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*
-    This code sorts a list called "listMyInput". It uses the "sort" method, which takes a comparison function as its parameter. 
-    The comparison function (a lambda expression) compares two elements "a" and "b" in the list based on their "peminjam1" property. The "!" symbol means that the "peminjam1" property is non-null, and it is assumed that both "a" and "b" have a non-null "peminjam1" property.
-    The comparison function returns -1 if "a.peminjam1" is less than "b.peminjam1", 0 if they are equal, and 1 if "a.peminjam1" is greater than "b.peminjam1". 
-    The "sort" method reorders the elements in "listMyInput" based on the ordering defined by the comparison function. When the method call returns, "listMyInput" contains the same elements as before, but they are sorted in ascending order based on their "peminjam1" property.
-    */
-
     return RefreshIndicator(
       onRefresh: () {
         return controller.refreshInputtan();

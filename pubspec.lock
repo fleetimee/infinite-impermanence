@@ -362,14 +362,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.0.5"
-  enum_to_string:
-    dependency: transitive
-    description:
-      name: enum_to_string
-      sha256: bd9e83a33b754cb43a75b36a9af2a0b92a757bfd9847d2621ca0b1bed45f8e7a
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.1"
   extended_masked_text:
     dependency: "direct main"
     description:
@@ -539,15 +531,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.17"
-  flag:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: stable
-      resolved-ref: "00d3ee07debae63c71ff4e5a05f3a7a9856c1542"
-      url: "https://github.com/fleetimee/flag_flutter"
-    source: git
-    version: "6.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -804,10 +787,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_svg
-      sha256: "6ff9fa12892ae074092de2fa6a9938fb21dbabfdaa2ff57dc697ff912fc8d4b2"
+      sha256: "12006889e2987c549c4c1ec1a5ba4ec4b24d34d2469ee5f9476c926dcecff266"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.6"
+    version: "2.0.4"
   flutter_test:
     dependency: transitive
     description: flutter
@@ -1374,14 +1357,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.2"
-  path_drawing:
-    dependency: transitive
-    description:
-      name: path_drawing
-      sha256: bbb1934c0cbb03091af082a6389ca2080345291ef07a5fa6d6e078ba8682f977
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.1"
   path_parsing:
     dependency: transitive
     description:
@@ -1622,6 +1597,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  random_avatar:
+    dependency: "direct main"
+    description:
+      name: random_avatar
+      sha256: "1468b060ac4324fa4f6aeeced732079638d9b6a64838b705ecbe9f208bd1609b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.8"
   responsive_framework:
     dependency: "direct main"
     description:
@@ -1736,14 +1719,13 @@ packages:
     source: hosted
     version: "2.1.3"
   signature:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
-      path: "."
-      ref: update_image_4
-      resolved-ref: efc10e6b67ac232716291e650c598368bdf212ce
-      url: "https://github.com/larsziemert/signature/"
-    source: git
-    version: "5.3.0"
+      name: signature
+      sha256: "2c00ae3ca66877527ae872b45413a76e15203ddd752c81e277435399250b28c2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.3.2"
   simple_mustache:
     dependency: transitive
     description:
@@ -1981,6 +1963,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
+  vector_graphics:
+    dependency: transitive
+    description:
+      name: vector_graphics
+      sha256: "4cf8e60dbe4d3a693d37dff11255a172594c0793da542183cbfe7fe978ae4aaa"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
+  vector_graphics_codec:
+    dependency: transitive
+    description:
+      name: vector_graphics_codec
+      sha256: "278ad5f816f58b1967396d1f78ced470e3e58c9fe4b27010102c0a595c764468"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
+  vector_graphics_compiler:
+    dependency: transitive
+    description:
+      name: vector_graphics_compiler
+      sha256: "0bf61ad56e6fd6688a2865d3ceaea396bc6a0a90ea0d7ad5049b1b76c09d6163"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
   vector_math:
     dependency: "direct main"
     description:

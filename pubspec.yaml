@@ -135,6 +135,7 @@ flutter:
     - assets/images/search_section/
     - assets/images/splash_side/
     - assets/images/home/
+    - assets/images/home/main_page/
     - assets/images/splash_screen/
     - assets/images/pdf/
     - assets/images/menu_grid/

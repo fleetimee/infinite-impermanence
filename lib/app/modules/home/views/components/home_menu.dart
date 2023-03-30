@@ -170,6 +170,10 @@ class HomeMenu extends StatelessWidget {
                   Expanded(
                     child: Card(
                       color: primaryColor,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.all(20.0),
@@ -241,6 +245,10 @@ class HomeMenu extends StatelessWidget {
                   Expanded(
                     child: Card(
                       color: primaryColor,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         padding: const EdgeInsets.all(20.0),

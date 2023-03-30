@@ -92,6 +92,19 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                               margin: const EdgeInsets.all(10),
                               onDismissed: () {},
                             ),
+                            BootstrapAlert(
+                              visible: _showAlert,
+                              status: AlertStatus.warning,
+                              text:
+                                  'Untuk melihat detail debitur tap atau tekan pada card debitur yang diinginkan',
+                              isDismissible: true,
+                              leadingIcon: Icons.insert_comment_outlined,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              margin: const EdgeInsets.all(10),
+                              onDismissed: () {},
+                            ),
                             Expanded(
                               child: ListRiwayatInput(
                                 controller: controller,
@@ -192,6 +205,19 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                       if (controller.listMySubmission.isNotEmpty) {
                         return Column(
                           children: [
+                            BootstrapAlert(
+                              visible: _showAlert,
+                              status: AlertStatus.primary,
+                              text:
+                                  'Ini merupakan daftar riwayat pengajuan debitur yang telah anda lakukan yang diurutkan berdasarkan alpabet',
+                              isDismissible: true,
+                              leadingIcon: Icons.info_outline,
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                              margin: const EdgeInsets.all(10),
+                              onDismissed: () {},
+                            ),
                             Expanded(
                               child: ListRiwayatPengajuan(
                                 controller: controller,

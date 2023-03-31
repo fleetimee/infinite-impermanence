@@ -15,7 +15,7 @@ import 'package:get/get.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
-import 'package:akm/app/modules/home/views/components/profile/profile.dart';
+import 'package:akm/app/modules/home/widget/home_profile.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);

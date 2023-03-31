@@ -3,6 +3,7 @@ import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/list_debitur/views/list_debitur_view.dart';
 import 'package:akm/app/routes/app_pages.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -73,17 +74,16 @@ class NikSearchResult extends StatelessWidget {
                                   auth.currentUser?.uid
                               ? Get.toNamed(Routes.INSIGHT_DEBITUR,
                                   arguments: controller.listSearchNik[index].id)
-                              : AwesomeDialog(
-                                      context: context,
-                                      dialogType: DialogType.error,
-                                      animType: AnimType.bottomSlide,
-                                      title: 'Error',
-                                      desc:
-                                          'Anda tidak memiliki akses untuk melihat detail debitur ini',
-                                      btnOkOnPress: () {},
-                                      btnOkIcon: Icons.cancel,
-                                      btnOkColor: Colors.red)
-                                  .show();
+                              : ErrorDialog(
+                                  title: 'Error',
+                                  desc: 'Anda tidak memiliki akses ke data ini',
+                                  btnOkOnPress: () {
+                                    Get.back();
+                                  },
+                                  context: context,
+                                  animType: AnimType.topSlide,
+                                  dialogType: DialogType.error,
+                                );
                         },
                         leading: RandomAvatar(
                           controller.listSearchNik[index].peminjam1!,

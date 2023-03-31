@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:io';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -608,12 +609,12 @@ class HomeController extends GetxController {
         isSearchNikProcessing(false);
 
         if (resp.isEmpty) {
-          AwesomeDialog(
+          ErrorDialog(
             context: Get.context!,
-            dialogType: DialogType.info,
-            animType: AnimType.scale,
-            title: 'Info',
+            dialogType: DialogType.error,
+            title: 'Tidak ditemukan',
             desc: 'Tidak ada debitur dengan NIK $query',
+            animType: AnimType.scale,
             btnOkOnPress: () {},
           ).show();
         }
@@ -622,12 +623,12 @@ class HomeController extends GetxController {
         listSearchNik.addAll(resp);
       }, onError: (error) {
         isSearchNikProcessing(false);
-        AwesomeDialog(
+        ErrorDialog(
           context: Get.context!,
           dialogType: DialogType.error,
-          animType: AnimType.scale,
           title: 'Error',
-          desc: error.toString(),
+          desc: 'Terjadi kesalahan saat mencari NIK',
+          animType: AnimType.scale,
           btnOkOnPress: () {},
         ).show();
       });

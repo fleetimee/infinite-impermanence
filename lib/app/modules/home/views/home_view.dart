@@ -91,10 +91,14 @@ class HomeView extends GetView<HomeController> {
       bottomNavigationBar: BottomBarDoubleBullet(
         backgroundColor: primaryColor,
         color: Colors.white,
+        height: 60,
         items: [
           BottomBarItem(iconData: Icons.home),
           BottomBarItem(iconData: Icons.search),
-          BottomBarItem(iconData: Icons.notifications),
+          BottomBarItem(
+            iconData: Icons.ac_unit_outlined,
+            iconSize: 50,
+          ),
           BottomBarItem(iconData: Icons.person),
           BottomBarItem(iconData: Icons.settings),
         ],
@@ -107,7 +111,7 @@ class HomeView extends GetView<HomeController> {
 
             // duration: const Duration(milliseconds: 300),
             // no curve
-            curve: Curves.easeOutQuad,
+            curve: Curves.bounceIn,
           );
         },
       ),

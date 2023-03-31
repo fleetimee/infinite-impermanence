@@ -59,7 +59,7 @@ class StatWidget extends StatelessWidget {
           children: [
             Expanded(
               child: Card(
-                color: primaryColor,
+                color: Colors.blue[900]?.withOpacity(0.9),
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),
@@ -133,7 +133,7 @@ class StatWidget extends StatelessWidget {
             ),
             Expanded(
               child: Card(
-                color: primaryColor,
+                color: Colors.blue[900]?.withOpacity(0.9),
                 elevation: 5,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0),

@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +32,7 @@ class ListRiwayatInput extends StatelessWidget {
                     Radius.circular(30),
                   ),
                 ),
-                color: blue400,
+                color: Colors.blue[900]?.withOpacity(0.9),
                 elevation: 6,
                 child: ListTile(
                   shape: const RoundedRectangleBorder(

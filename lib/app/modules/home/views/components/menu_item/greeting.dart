@@ -28,8 +28,8 @@ class Greeting extends StatelessWidget {
           height: 90,
           width: double.infinity,
           decoration: BoxDecoration(
-            color: primaryColor,
-            borderRadius: BorderRadius.circular(10),
+            color: Colors.blue[900]?.withOpacity(0.9),
+            borderRadius: BorderRadius.circular(30),
           ),
         ),
         SizedBox(

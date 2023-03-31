@@ -94,7 +94,7 @@ class HomeMainPage extends StatelessWidget {
                         child: InkWell(
                           onTap: () => menuGridList[index].onTap(),
                           child: Card(
-                            color: primaryColor,
+                            color: Colors.blue[900]?.withOpacity(0.9),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),

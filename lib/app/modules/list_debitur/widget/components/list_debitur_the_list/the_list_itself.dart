@@ -1,8 +1,12 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/constant.dart';
 import 'package:akm/app/modules/list_debitur/controllers/list_debitur_controller.dart';
+import 'package:akm/app/routes/app_pages.dart';
+import 'package:akm/app/widget/dialog_box.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 // 📦 Package imports:
@@ -66,7 +70,19 @@ class ListAllDebitur extends StatelessWidget {
                   controller: controller,
                   index: index,
                 ),
-                onTap: () {},
+                onTap: () {
+                  controller.listDebitur[index].userId == auth.currentUser?.uid
+                      ? Get.toNamed(Routes.INSIGHT_DEBITUR,
+                          arguments: controller.listDebitur[index].id)
+                      : ErrorDialog(
+                          title: 'Error',
+                          context: context,
+                          animType: AnimType.bottomSlide,
+                          dialogType: DialogType.error,
+                          desc: 'Anda tidak memiliki akses ke data ini',
+                          btnOkOnPress: () {},
+                        ).show();
+                },
                 splashColor: Colors.blue[900]?.withOpacity(0.4),
               ),
             ),

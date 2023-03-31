@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +81,7 @@ class ListRiwayatPengajuan extends StatelessWidget {
                   ),
                 ),
                 elevation: 6,
-                color: blue400,
+                color: Colors.blue[900]?.withOpacity(0.9),
                 child: ListTile(
                   splashColor: Colors.blueAccent,
                   shape: const RoundedRectangleBorder(

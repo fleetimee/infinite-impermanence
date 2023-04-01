@@ -18,14 +18,14 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'microsoft'
-          java-version: '11'
+          distribution: "microsoft"
+          java-version: "11"
 
       # Menyiapkan Flutter dengan menggunakan channel stable
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: "3.7.1"
+          flutter-version: "3.7.9"
           channel: "stable"
 
       # Decode file KEYSTORE_JKS_PROD yang berbentuk base64 dan mengubahnya menjadi keystore.jks
@@ -47,6 +47,9 @@ jobs:
       #   run: |
       #     sed -i 's/99.99.99+99/'$GIT_TAG_NAME'/g' pubspec.yaml|
       #     echo "Tag used version:"$GIT_TAG_NAME
+
+      - name: Bump Fluter dependencies
+        run: flutter update-packages --force-upgrade
 
       # Step ini digunakan untuk menginstall dependency yang dibutuhkan
       - name: Pub Get Packages

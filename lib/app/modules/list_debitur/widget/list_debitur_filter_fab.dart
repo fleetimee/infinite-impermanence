@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/list_debitur/widget/components/list_debitur_filter_fab/label_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -37,8 +38,13 @@ class ListDebiturFilterFab extends StatelessWidget {
         showMaterialModalBottomSheet(
           context: context,
           builder: (context) {
-            return SafeArea(
-              child: Container(
+            return Scaffold(
+              resizeToAvoidBottomInset: false,
+              appBar: AppBar(
+                title: const Text('Filter'),
+                leading: const SizedBox.shrink(),
+              ),
+              body: Container(
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -50,17 +56,8 @@ class ListDebiturFilterFab extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Umur',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 10),
+                          const FilterLabel(text: 'Filter berdasarkan Umur'),
+                          const SizedBox(height: 16),
                           Obx(
                             () => Row(
                               children: [
@@ -98,14 +95,22 @@ class ListDebiturFilterFab extends StatelessWidget {
                                     ]),
                                     keyboardType: TextInputType.number,
                                     controller: controller.filterUmurInput,
-                                    decoration: const InputDecoration(
-                                      prefixIcon:
-                                          Icon(FontAwesomeIcons.odnoklassniki),
-                                      hintText: 'Filter berdasarkan Umur',
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(10),
-                                        ),
+                                    decoration: InputDecoration(
+                                      hintText: 'Masukkan umur',
+                                      filled: true,
+                                      suffixText: 'Tahun',
+                                      suffixStyle: const TextStyle(
+                                        fontSize: 16,
+                                      ),
+                                      fillColor: Colors.grey.shade400,
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                      ),
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.grey),
                                       ),
                                     ),
                                     enabled:
@@ -127,17 +132,9 @@ class ListDebiturFilterFab extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Domisili',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
+                          const SizedBox(height: 16),
+                          const FilterLabel(
+                              text: 'Filter berdasarkan Domisili'),
                           const SizedBox(height: 10),
                           Obx(
                             () => Row(
@@ -204,17 +201,10 @@ class ListDebiturFilterFab extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Tanggal',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
+                          const SizedBox(height: 16),
+                          const FilterLabel(
+                              text:
+                                  'Filter berdasarkan Jarak Tanggal Penginputan'),
                           const SizedBox(height: 10),
                           Obx(
                             () => Row(
@@ -280,17 +270,9 @@ class ListDebiturFilterFab extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Jenis Usaha',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
+                          const SizedBox(height: 16),
+                          const FilterLabel(
+                              text: 'Filter berdasarkan Jenis Usaha'),
                           const SizedBox(height: 10),
                           Obx(
                             () => Row(
@@ -358,17 +340,8 @@ class ListDebiturFilterFab extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(height: 10),
-                          const Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(
-                              'Plafond',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ),
+                          const SizedBox(height: 16),
+                          const FilterLabel(text: 'Filter berdasarkan Plafond'),
                           const SizedBox(height: 10),
                           Obx(
                             () => Column(

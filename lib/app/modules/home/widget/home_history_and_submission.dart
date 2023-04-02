@@ -1,8 +1,11 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/home/widget/components/home_history_and_submission.dart/empty_history_and_submission.dart';
 import 'package:akm/app/modules/home/widget/components/home_history_and_submission.dart/list_riwayat_input.dart';
 import 'package:akm/app/modules/home/widget/components/home_history_and_submission.dart/list_riwayat_pengajuan.dart';
+import 'package:akm/app/routes/app_pages.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:bootstrap_alert/bootstrap_alert.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
-class HomeHistoryAndSubmission extends StatelessWidget {
+class HomeHistoryAndSubmission extends StatefulWidget {
   final HomeController controller;
 
   const HomeHistoryAndSubmission({
@@ -18,13 +21,19 @@ class HomeHistoryAndSubmission extends StatelessWidget {
     required this.controller,
   });
 
+  @override
+  State<HomeHistoryAndSubmission> createState() =>
+      _HomeHistoryAndSubmissionState();
+}
+
+class _HomeHistoryAndSubmissionState extends State<HomeHistoryAndSubmission> {
   final bool _showAlert = true;
-  final int selectedIndex = 0;
+
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: selectedIndex,
       length: 2,
       child: ScaffoldGradientBackground(
         gradient: LinearGradient(
@@ -37,10 +46,15 @@ class HomeHistoryAndSubmission extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const TabBar(
-              physics: NeverScrollableScrollPhysics(),
+            TabBar(
+              onTap: (index) {
+                setState(() {
+                  selectedIndex = index;
+                });
+              },
+              physics: const NeverScrollableScrollPhysics(),
               indicatorColor: Colors.white,
-              tabs: [
+              tabs: const [
                 Tab(
                   text: 'Riwayat Penginputan',
                   icon: Icon(Icons.history),
@@ -56,12 +70,12 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
                   Obx(() {
-                    if (controller.isMyInputProcessing.value) {
+                    if (widget.controller.isMyInputProcessing.value) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
                     } else {
-                      if (controller.listMyInput.isNotEmpty) {
+                      if (widget.controller.listMyInput.isNotEmpty) {
                         return Column(
                           children: [
                             BootstrapAlert(
@@ -105,29 +119,29 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                             ),
                             Expanded(
                               child: ListRiwayatInput(
-                                controller: controller,
+                                controller: widget.controller,
                               ),
                             ),
                           ],
                         );
                       } else {
                         return EmptyHistoryAndSubmission(
-                          controller: controller,
+                          controller: widget.controller,
                           text: 'Belum ada riwayat penginputan',
                           onPressed: () {
-                            controller.refreshInputtan();
+                            widget.controller.refreshInputtan();
                           },
                         );
                       }
                     }
                   }),
                   Obx(() {
-                    if (controller.isMySubmissionProcessing.value) {
+                    if (widget.controller.isMySubmissionProcessing.value) {
                       return const Center(
                         child: CircularProgressIndicator(),
                       );
                     } else {
-                      if (controller.listMySubmission.isNotEmpty) {
+                      if (widget.controller.listMySubmission.isNotEmpty) {
                         return Column(
                           children: [
                             BootstrapAlert(
@@ -145,17 +159,17 @@ class HomeHistoryAndSubmission extends StatelessWidget {
                             ),
                             Expanded(
                               child: ListRiwayatPengajuan(
-                                controller: controller,
+                                controller: widget.controller,
                               ),
                             ),
                           ],
                         );
                       } else {
                         return EmptyHistoryAndSubmission(
-                          controller: controller,
+                          controller: widget.controller,
                           text: 'Belum ada riwayat pengajuan',
                           onPressed: () {
-                            controller.refreshPengajuan();
+                            widget.controller.refreshPengajuan();
                           },
                         );
                       }
@@ -167,13 +181,20 @@ class HomeHistoryAndSubmission extends StatelessWidget {
           ],
         ),
         floatingActionButton: selectedIndex == 0
-            ? FloatingActionButton(
-                onPressed: () {
-                  Get.toNamed('/home/input');
-                },
-                child: const Icon(Icons.add),
+            ? AvatarGlow(
+                endRadius: 50,
+                child: FloatingActionButton(
+                  backgroundColor: primaryColor,
+                  elevation: 10,
+                  onPressed: () {
+                    Get.toNamed(Routes.LIST_DEBITUR);
+                  },
+                  child: const Icon(
+                    Icons.search_outlined,
+                  ),
+                ),
               )
-            : null,
+            : const SizedBox.shrink(),
       ),
     );
   }

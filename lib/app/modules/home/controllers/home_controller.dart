@@ -187,6 +187,9 @@ class HomeController extends GetxController {
   // Controller for formKey
   final formKey = GlobalKey<FormBuilderState>();
 
+  // Index for tabbar
+  var selectedIndex = 0.obs;
+
   // Bunch of controllers for textfield
   var uid = TextEditingController();
   var setPassword = TextEditingController();

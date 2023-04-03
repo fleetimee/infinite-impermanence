@@ -418,7 +418,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                             AlignmentDirectional.bottomCenter,
                                         children: [
                                           Image.asset(
-                                            'assets/images/home/keuangan_slider.jpg',
+                                            'assets/images/home/keuangan_slider.png',
                                             fit: BoxFit.cover,
                                             height: 200.0,
                                             color:
@@ -507,7 +507,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                             AlignmentDirectional.bottomCenter,
                                         children: [
                                           Image.asset(
-                                            'assets/images/home/karakter_slider.jpg',
+                                            'assets/images/home/karakter_slider.png',
                                             fit: BoxFit.cover,
                                             height: 200.0,
                                             color:
@@ -596,7 +596,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                             AlignmentDirectional.bottomCenter,
                                         children: [
                                           Image.asset(
-                                            'assets/images/home/bisnis_slider.jpg',
+                                            'assets/images/home/bisnis_slider.png',
                                             fit: BoxFit.cover,
                                             height: 200.0,
                                             color:
@@ -687,7 +687,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                             AlignmentDirectional.bottomCenter,
                                         children: [
                                           Image.asset(
-                                            'assets/images/home/usaha_slider.jpg',
+                                            'assets/images/home/usaha_slider.png',
                                             fit: BoxFit.cover,
                                             height: 200.0,
                                             color:
@@ -778,7 +778,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                                             AlignmentDirectional.bottomCenter,
                                         children: [
                                           Image.asset(
-                                            'assets/images/home/agunan_slider.jpg',
+                                            'assets/images/home/agunan_slider.png',
                                             fit: BoxFit.cover,
                                             height: 200.0,
                                             color:

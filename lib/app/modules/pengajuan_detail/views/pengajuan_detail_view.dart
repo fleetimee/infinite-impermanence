@@ -12,7 +12,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 // 🌎 Project imports:
-import '../../insight_debitur/views/insight_debitur_view.dart';
+import '../../insight_debitur/widget/insight_debitur_detail_debitur.dart';
 import '../controllers/pengajuan_detail_controller.dart';
 
 class PengajuanDetailView extends GetView<PengajuanDetailController> {

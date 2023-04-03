@@ -1,5 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/insight_debitur/widget/insight_debitur_carousel.dart';
+import 'package:akm/app/modules/insight_debitur/widget/insight_debitur_content.dart';
+import 'package:akm/app/modules/insight_debitur/widget/insight_debitur_detail_debitur.dart';
 import 'package:akm/app/modules/insight_debitur/widget/insight_debitur_progress_bar.dart';
 import 'package:akm/app/modules/insight_debitur/widget/insight_debitur_submission_button.dart';
 import 'package:akm/app/modules/insight_debitur/widget/insight_debitur_top_section.dart';
@@ -111,12 +113,12 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
                   const SizedBox(
                     height: 5.0,
                   ),
-                  // InsightDebiturContent(
-                  //   controller: controller,
-                  // ),
-                  // InsighDebiturDetailDebitur(
-                  //   controller: controller,
-                  // ),
+                  InsightDebiturContent(
+                    controller: controller,
+                  ),
+                  InsighDebiturDetailDebitur(
+                    controller: controller,
+                  ),
                 ],
               ),
             ),

@@ -15,6 +15,8 @@ class FleetimeTextField extends StatelessWidget {
   final bool? alignLabelWithHint;
   final bool? readOnly;
   final String? suffixText;
+  final bool? enabled;
+  final void Function(String)? onSaved;
 
   const FleetimeTextField({
     Key? key,
@@ -31,6 +33,8 @@ class FleetimeTextField extends StatelessWidget {
     this.alignLabelWithHint,
     this.readOnly,
     this.suffixText,
+    this.enabled,
+    this.onSaved,
   }) : super(key: key);
 
   @override

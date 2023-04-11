@@ -140,9 +140,9 @@ class MyApp extends StatelessWidget {
         FormBuilderLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale('en'),
+        Locale('id'),
       ],
-      locale: const Locale('en'),
+      locale: const Locale('id'),
     );
   }
 }

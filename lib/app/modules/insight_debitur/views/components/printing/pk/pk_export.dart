@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
+import 'package:akm/app/modules/insight_debitur/views/components/printing/spkk/spkk_export.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
@@ -1408,6 +1409,171 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                   lineSpacing: 1.5,
                 ),
                 textAlign: TextAlign.justify,
+              ),
+            ),
+            Container(
+              height: 30,
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Pasal 15',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    height: 3,
+                  ),
+                  Text(
+                    'KOMUNIKASI',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 35),
+              child: Table(
+                columnWidths: {
+                  0: const FlexColumnWidth(0.05),
+                  1: const FlexColumnWidth(0.88),
+                  2: const FlexColumnWidth(0.07),
+                },
+                children: [
+                  TableRow(
+                    children: [
+                      textKolomAtas('1.'),
+                      textKolomAtas(
+                          'Semua komunikasi sehubungan Perjanjian Kredit ini akan dilakukan secara tertulis dapat melalui surat, email, telepon, atau faksimili dengan menggunakan alamat-alamat di bawah ini: '),
+                      textKolomAtasBold('')
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      textKolomAtas(''),
+                      textKolomAtas(
+                          'Dalam hal terjadi perubahan alamat sebagaimana tersebut di atas, perubahan tersebut harus diberitahukan secara tertulis kepada pihak lainnya dalam Perjanjian Kredit ini selambat-lambatnya 7 (tujuh) hari kerja sebelum perubahan alamat tersebut berlaku efektif. '),
+                      textKolomAtasBold('')
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      textKolomAtas(''),
+                      textKolomAtasBold('Untuk DEBITUR'),
+                      textKolomAtasBold('')
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      textKolomAtas(''),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.30),
+                          1: const FlexColumnWidth(0.05),
+                          2: const FlexColumnWidth(0.60),
+                          3: const FlexColumnWidth(0.05)
+                        },
+                        children: [
+                          TableRow(
+                            children: [
+                              textKolomAtas('Alamat Surat'),
+                              textKolomAtas(':'),
+                              textKolomBold(
+                                  'Kadipiro, RT. 005, RW. 000, Ngestiharjo, Kasihan,Bantul'),
+                              textKolomAtas(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textKolomAtas('Telepon/HP'),
+                              textKolomAtas(':'),
+                              textKolomBold(
+                                  '...................................................................................'),
+                              textKolomAtas(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textKolomAtas('Faksimili/Email'),
+                              textKolomAtas(':'),
+                              textKolomBold(
+                                  '...................................................................................'),
+                              textKolomAtas(''),
+                            ],
+                          )
+                        ],
+                      ),
+                      textKolomAtas(''),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      textKolomAtas(''),
+                      textKolomAtasBold('Untuk BANK'),
+                      textKolomAtasBold('')
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      textKolomAtas(''),
+                      Table(
+                        columnWidths: {
+                          0: const FlexColumnWidth(0.30),
+                          1: const FlexColumnWidth(0.05),
+                          2: const FlexColumnWidth(0.60),
+                          3: const FlexColumnWidth(0.05)
+                        },
+                        children: [
+                          TableRow(
+                            children: [
+                              textKolomAtas('Alamat Surat'),
+                              textKolomAtas(':'),
+                              textKolomBold(
+                                  'PT BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA CABANG PEMBANTU PRAWIROTAMAN Jalan Parangtritis no 55 Kota Yogyakarta'),
+                              textKolomAtas(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textKolomAtas('Telepon/HP'),
+                              textKolomAtas(':'),
+                              textKolomBold('0274 388088'),
+                              textKolomAtas(''),
+                            ],
+                          ),
+                          TableRow(
+                            children: [
+                              textKolomAtas('Faksimili/Email'),
+                              textKolomAtas(':'),
+                              textKolomBold('0274 589076'),
+                              textKolomAtas(''),
+                            ],
+                          )
+                        ],
+                      ),
+                      textKolomAtas(''),
+                    ],
+                  ),
+                  TableRow(
+                    children: [
+                      textKolomAtas('2.'),
+                      textKolomAtas(
+                          'Jika perubahan alamat tersebut tidak diberitahukan, maka surat menyurat atau pemberitahuan-pemberitahuan berdasarkan Perjanjian Kredit ini dianggap telah diberikan semestinya dengan cara sebagaimana diatur dalam ayat (1) pasal ini.'),
+                      textKolomAtasBold('')
+                    ],
+                  )
+                ],
               ),
             ),
             Container(

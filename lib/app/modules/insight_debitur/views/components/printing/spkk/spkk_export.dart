@@ -764,7 +764,7 @@ Widget textGeneral(
 
 Widget textKolomBold(
   final String text, {
-  final TextAlign align = TextAlign.left,
+  final TextAlign align = TextAlign.justify,
 }) =>
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1.1),

@@ -1,14 +1,16 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/models/debitur_model/insight_debitur.model.dart';
 import 'package:akm/app/modules/insight_debitur/views/components/printing/spkk/spkk_export.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 // 📦 Package imports:
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:terbilang_id/terbilang_id.dart';
 
-Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
+Future<Uint8List> makePkPdf(debtor) async {
   var myTheme = ThemeData.withFont(
     base: Font.ttf(await rootBundle.load('assets/fonts/times-new-roman.ttf')),
     bold: Font.ttf(
@@ -18,6 +20,9 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
     italic: Font.ttf(
         await rootBundle.load('assets/fonts/times-new-roman-italic.ttf')),
   );
+
+  final DebiturInsight debtorInsight = debtor[0];
+  final Map<dynamic, dynamic> formData = debtor[1] as Map<dynamic, dynamic>;
 
   final pdf = Document(
     theme: myTheme,
@@ -105,7 +110,7 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtasBold('I.'),
                       textKolomAtas(
-                          'PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA berkedudukan di Yogyakarta, beralamat di Jalan Tentara Pelajar No. 7 Yogyakarta, dalam hal ini diwakili oleh ADI NUGRAHA, Pemimpin Cabang Pembantu PT. Bank Pembangunan Daerah Daerah Istimewa Yogyakarta Cabang Pembantu Prawirotaman, selaku Penerima Kuasa Substitusi Nomor : 1415/OM 0005 tanggal 10 Agustus 2022 dari SUROSO, Pemimpin PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA CABANG SENOPATI yang dalam jabatannya tersebut bertindak untuk dan atas nama PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA, berdasarkan Surat Keputusan Direksi PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA Nomor 0160/KP 1006 tanggal 9 Agustus 2022 dan Surat Kuasa Direksi PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA Nomor 387/OM 0005 tanggal 09 Agustus 2022 untuk selanjutnya disebut BANK. '),
+                          'PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA berkedudukan di Yogyakarta, beralamat di Jalan Tentara Pelajar No. 7 Yogyakarta, dalam hal ini diwakili oleh ${formData['pemimpin_kantor']}, Pemimpin Cabang Pembantu PT. Bank Pembangunan Daerah Daerah Istimewa Yogyakarta ${debtor[2]}, selaku Penerima Kuasa Substitusi Nomor : ${formData['no_subtitusi']} dari ${formData['pemimpin_cabut']}, Pemimpin PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA ${debtor[3]} yang dalam jabatannya tersebut bertindak untuk dan atas nama PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA, berdasarkan Surat Keputusan Direksi PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA Nomor 0160/KP 1006 tanggal 9 Agustus 2022 dan Surat Kuasa Direksi PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA Nomor 387/OM 0005 tanggal 09 Agustus 2022 untuk selanjutnya disebut BANK. '),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -113,10 +118,34 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtasBold('II.'),
                       textKolomAtas(
-                          'Avita Yulianingsih pekerjaan Mengurus Rumah Tangga beralamat di Kadipiro, RT. 005, RW. 000, Ngestiharjo, Kasihan, Bantul, berdasarkan Kartu Tanda Penduduk Kabupaten Bantul nomor 3312125707930004, Raden Daniel Cahya Prawira pekerjaan Wiraswasta beralamat di Kadipiro, RT. 005, RW.000, Ngestiharjo, Kasihan, Bantul, berdasarkan Kartu Tanda Penduduk Kabupaten Bantul nomor 3404062307920008, Dalam perjanjian ini bertindak untuk dan atas nama diri sendiri selanjutnya disebut DEBITUR '),
+                          '${debtorInsight.peminjam1} pekerjaan ${debtorInsight.pekerjaan1} beralamat di ${debtorInsight.alamat1}, berdasarkan Kartu Tanda Penduduk ${debtorInsight.ktp1} nomor ${debtorInsight.noKtp1}, '),
                       textKolomAtasBold(''),
                     ],
                   ),
+                  debtorInsight.statusKeluarga == 'Kawin'
+                      ? TableRow(
+                          children: [
+                            textKolomAtasBold(''),
+                            textKolomAtas(
+                                '${debtorInsight.peminjam2} pekerjaan ${debtorInsight.pekerjaan2} beralamat di ${debtorInsight.alamat2}, berdasarkan Kartu Tanda Penduduk ${debtorInsight.ktp2} nomor ${debtorInsight.noKtp2}, '),
+                            textKolomAtasBold(''),
+                          ],
+                        )
+                      : TableRow(
+                          children: [
+                            textKolomAtasBold(''),
+                            textKolomAtas(''),
+                            textKolomAtasBold(''),
+                          ],
+                        ),
+                  TableRow(
+                    children: [
+                      textKolomAtasBold(''),
+                      textKolomAtas(
+                          'Dalam perjanjian ini bertindak untuk dan atas nama diri sendiri selanjutnya disebut DEBITUR'),
+                      textKolomAtas(''),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -171,7 +200,7 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                   'Berdasarkan keterangan-keterangan di atas, kedua belah pihak sepakat membuat dan menandatangani Perjanjian Kredit ini dengan ketentuan dan syarat-syarat sebagai berikut:'),
             ),
             Container(
-              height: 105,
+              height: 80,
             ),
             Align(
               alignment: Alignment.center,
@@ -490,7 +519,14 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtas('1.'),
                       textKolomAtas(
-                          'BANK memberikan kredit kepada DEBITUR dengan plafond kredit sebesar Rp. 50.000.000,00 (Lima puluh juta rupiah) dan diakui sebagai hutang DEBITUR kepada BANK.'),
+                          'BANK memberikan kredit kepada DEBITUR dengan plafond kredit sebesar ${MoneyMaskedTextController(
+                        initialValue: double.parse(
+                            debtorInsight.inputKeuangan!.kreditDiusulkan!),
+                        thousandSeparator: '.',
+                        decimalSeparator: '',
+                        precision: 0,
+                        leftSymbol: 'Rp ',
+                      ).text} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.kreditDiusulkan!))} Rupiah) dan diakui sebagai hutang DEBITUR kepada BANK.'),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -505,7 +541,7 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtas('3.'),
                       textKolomAtas(
-                          'Kredit diberikan oleh BANK kepada DEBITUR untuk tujuan Modal Kerja/Tambah Modal Usaha'),
+                          'Kredit diberikan oleh BANK kepada DEBITUR untuk tujuan ${debtorInsight.inputKeuangan!.digunakanUntuk}'),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -556,7 +592,7 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtas('1.'),
                       textKolomAtas(
-                          'Jangka waktu kredit selama 24 (Dua puluh empat) bulan, terhitung sejak tanggal penandatanganan  Perjanjian Kredit ini.'),
+                          'Jangka waktu kredit selama ${debtorInsight.inputKeuangan!.angsuran} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.angsuran.toString()))}) bulan, terhitung sejak tanggal penandatanganan  Perjanjian Kredit ini.'),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -615,7 +651,7 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtas('1.'),
                       textKolomAtas(
-                          'Suku bunga kredit ditetapkan sebesar 6 % (Enam persen)  pertahun yang dihitung dari saldo pokok kredit secara efektif/floating rate.'),
+                          'Suku bunga kredit ditetapkan sebesar ${debtorInsight.inputKeuangan!.bungaPerTahun} % (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.bungaPerTahun.toString()))} Persen)  pertahun yang dihitung dari saldo pokok kredit secara efektif/floating rate.'),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -1042,7 +1078,7 @@ Future<Uint8List> makePkPdf(DebiturInsight debtor) async {
                     children: [
                       textKolomAtas('1.'),
                       textKolomAtas(
-                          'Untuk menjamin dipenuhinya kewajiban Debitur kepada BANK, dilakukan penjaminan kredit oleh Askrindo.'),
+                          'Untuk menjamin dipenuhinya kewajiban Debitur kepada BANK, dilakukan penjaminan kredit oleh ${debtorInsight.asuransi?.namaPerusahaan}.'),
                       textKolomAtasBold(''),
                     ],
                   ),

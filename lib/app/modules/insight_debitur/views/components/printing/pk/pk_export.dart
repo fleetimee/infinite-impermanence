@@ -1525,8 +1525,7 @@ Future<Uint8List> makePkPdf(debtor) async {
                             children: [
                               textKolomAtas('Alamat Surat'),
                               textKolomAtas(':'),
-                              textKolomBold(
-                                  'Kadipiro, RT. 005, RW. 000, Ngestiharjo, Kasihan,Bantul'),
+                              textKolomBold('${debtorInsight.alamat1}'),
                               textKolomAtas(''),
                             ],
                           ),
@@ -1576,7 +1575,7 @@ Future<Uint8List> makePkPdf(debtor) async {
                               textKolomAtas('Alamat Surat'),
                               textKolomAtas(':'),
                               textKolomBold(
-                                  'PT BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA CABANG PEMBANTU PRAWIROTAMAN Jalan Parangtritis no 55 Kota Yogyakarta'),
+                                  'PT BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA ${debtor[2]} ${formData['alamat_kantor']}'),
                               textKolomAtas(''),
                             ],
                           ),
@@ -1584,7 +1583,7 @@ Future<Uint8List> makePkPdf(debtor) async {
                             children: [
                               textKolomAtas('Telepon/HP'),
                               textKolomAtas(':'),
-                              textKolomBold('0274 388088'),
+                              textKolomBold('${formData['telp_kantor']}'),
                               textKolomAtas(''),
                             ],
                           ),
@@ -1592,7 +1591,7 @@ Future<Uint8List> makePkPdf(debtor) async {
                             children: [
                               textKolomAtas('Faksimili/Email'),
                               textKolomAtas(':'),
-                              textKolomBold('0274 589076'),
+                              textKolomBold('${formData['fax_kantor']}'),
                               textKolomAtas(''),
                             ],
                           )

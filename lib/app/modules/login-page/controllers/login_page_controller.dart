@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/common/constant.dart';
@@ -245,8 +246,10 @@ class LoginPageController extends GetxController {
   final isPasswordVisible = false.obs;
   final pernahLogin = false.obs;
 
-  void login() {
+  void login(BuildContext context) {
     try {
+      context.loaderOverlay.show();
+
       isLoginProcessing(true);
 
       // Trigger http request
@@ -295,6 +298,10 @@ class LoginPageController extends GetxController {
 
         isLoginProcessing(false);
 
+        if (context.mounted) {
+          context.loaderOverlay.hide();
+        }
+
         Get.snackbar(
           'Success',
           'Login berhasil with ID Token: $displayName',
@@ -307,6 +314,7 @@ class LoginPageController extends GetxController {
         );
       }, onError: (e) {
         isLoginProcessing(false);
+        context.loaderOverlay.hide();
         Get.snackbar(
           'Error',
           e.toString(),
@@ -316,6 +324,7 @@ class LoginPageController extends GetxController {
       });
     } catch (e) {
       isLoginProcessing(false);
+      context.loaderOverlay.hide();
       Get.snackbar(
         'Error',
         e.toString(),

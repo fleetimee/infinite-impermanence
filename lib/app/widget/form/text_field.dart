@@ -3,7 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class FleetimeTextField extends StatelessWidget {
   final String name;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final String hintText;
   final TextStyle? labelStyle;
@@ -17,11 +17,12 @@ class FleetimeTextField extends StatelessWidget {
   final String? suffixText;
   final bool? enabled;
   final void Function(String)? onSaved;
+  final String? initialValue;
 
   const FleetimeTextField({
     Key? key,
     required this.name,
-    required this.controller,
+    this.controller,
     this.validator,
     required this.hintText,
     this.labelStyle,
@@ -35,6 +36,7 @@ class FleetimeTextField extends StatelessWidget {
     this.suffixText,
     this.enabled,
     this.onSaved,
+    this.initialValue,
   }) : super(key: key);
 
   @override
@@ -69,6 +71,7 @@ class FleetimeTextField extends StatelessWidget {
             ),
       ),
       maxLines: maxLines ?? 1,
+      initialValue: initialValue,
     );
   }
 }

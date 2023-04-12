@@ -15,9 +15,10 @@ class PkPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(data);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Print PK: ${data.peminjam1}'),
+        title: const Text('Print PK: '),
         centerTitle: true,
       ),
       body: Theme(
@@ -36,7 +37,7 @@ class PkPreview extends StatelessWidget {
             )
           },
           pdfFileName: // date
-              '${DateFormat('dd-MM-yy').format(DateTime.now())}_PK_${data.peminjam1}.pdf',
+              '${DateFormat('dd-MM-yy').format(DateTime.now())}_PK_.pdf',
           onShared: (context) {
             Get.snackbar(
               'Berhasil',

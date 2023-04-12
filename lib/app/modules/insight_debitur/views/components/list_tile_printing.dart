@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/insight_debitur/views/components/printing/pk/pk_input.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -761,8 +762,13 @@ class PkPrint extends StatelessWidget {
         subTitleText: 'Print Perjanjian Kredit',
         icon: GFButton(
           onPressed: () {
-            Get.toNamed(Routes.PK_PRINTING,
-                arguments: controller.insightDebitur.value);
+            // Get.toNamed(Routes.PK_PRINTING,
+            //     arguments: controller.insightDebitur.value);
+
+            Get.to(
+              () => const InputBeforePk(),
+              arguments: controller.insightDebitur.value,
+            );
           },
           text: "READY",
           buttonBoxShadow: true,

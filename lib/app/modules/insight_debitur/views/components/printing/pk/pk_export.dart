@@ -24,6 +24,24 @@ Future<Uint8List> makePkPdf(debtor) async {
   final DebiturInsight debtorInsight = debtor[0];
   final Map<dynamic, dynamic> formData = debtor[1] as Map<dynamic, dynamic>;
 
+  TextStyle normalStyle = const TextStyle(
+    fontSize: 11,
+    lineSpacing: 1.5,
+  );
+
+  TextStyle boldStyle = TextStyle(
+    fontSize: 11,
+    fontWeight: FontWeight.bold,
+    lineSpacing: 1.5,
+  );
+
+  TextStyle boldStyleItalic = TextStyle(
+    fontSize: 11,
+    fontWeight: FontWeight.bold,
+    fontStyle: FontStyle.italic,
+    lineSpacing: 1.5,
+  );
+
   final pdf = Document(
     theme: myTheme,
     title: 'Pk',
@@ -33,11 +51,6 @@ Future<Uint8List> makePkPdf(debtor) async {
     pageMode: PdfPageMode.fullscreen,
     version: PdfVersion.pdf_1_5,
   );
-
-  final imageLogo = MemoryImage(
-      (await rootBundle.load('assets/images/pdf/logo.png'))
-          .buffer
-          .asUint8List());
 
   pdf.addPage(
     MultiPage(
@@ -90,10 +103,37 @@ Future<Uint8List> makePkPdf(debtor) async {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 45),
-              child: Text(
-                '                 Pada hari ini ${DateFormat('EEEE', 'id_ID').format(DateTime.now())} tanggal ${DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now())}  bertempat di Yogyakarta kami yang bertandatangan dibawah ini masing-masing:       ',
-                style: const TextStyle(
-                  fontSize: 12,
+              // child: Text(
+              //   '                 Pada hari ini ${DateFormat('EEEE', 'id_ID').format(DateTime.now())} tanggal ${DateFormat('dd MMMM yyyy', 'id_ID').format(DateTime.now())}  bertempat di Yogyakarta kami yang bertandatangan dibawah ini masing-masing:       ',
+              //   style: const TextStyle(
+              //     fontSize: 11,
+              //     lineSpacing: 1.5,
+              //   ),
+              // ),
+              child: RichText(
+                text: TextSpan(
+                  style: normalStyle,
+                  children: [
+                    const TextSpan(
+                      text: '                 Pada hari ini ',
+                    ),
+                    TextSpan(
+                      text: DateFormat('EEEE', 'id_ID').format(DateTime.now()),
+                      style: boldStyle,
+                    ),
+                    const TextSpan(
+                      text: ' tanggal ',
+                    ),
+                    TextSpan(
+                      text: DateFormat('dd MMMM yyyy', 'id_ID')
+                          .format(DateTime.now()),
+                      style: boldStyle,
+                    ),
+                    const TextSpan(
+                      text:
+                          '  bertempat di Yogyakarta kami yang bertandatangan dibawah ini masing-masing:       ',
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -109,7 +149,7 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtasBold('I.'),
-                      textKolomAtas(
+                      textKolomAtasBank(
                           'PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA berkedudukan di Yogyakarta, beralamat di Jalan Tentara Pelajar No. 7 Yogyakarta, dalam hal ini diwakili oleh ${formData['pemimpin_kantor']}, Pemimpin Cabang Pembantu PT. Bank Pembangunan Daerah Daerah Istimewa Yogyakarta ${debtor[2]}, selaku Penerima Kuasa Substitusi Nomor : ${formData['no_subtitusi']} dari ${formData['pemimpin_cabut']}, Pemimpin PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA ${debtor[3]} yang dalam jabatannya tersebut bertindak untuk dan atas nama PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA, berdasarkan Surat Keputusan Direksi PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA Nomor 0160/KP 1006 tanggal 9 Agustus 2022 dan Surat Kuasa Direksi PT. BANK PEMBANGUNAN DAERAH DAERAH ISTIMEWA YOGYAKARTA Nomor 387/OM 0005 tanggal 09 Agustus 2022 untuk selanjutnya disebut BANK. '),
                       textKolomAtasBold(''),
                     ],
@@ -117,8 +157,55 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtasBold('II.'),
-                      textKolomAtas(
-                          '${debtorInsight.peminjam1} pekerjaan ${debtorInsight.pekerjaan1} beralamat di ${debtorInsight.alamat1}, berdasarkan Kartu Tanda Penduduk ${debtorInsight.ktp1} nomor ${debtorInsight.noKtp1}, '),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 2,
+                        ),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: '${debtorInsight.peminjam1}',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text: ' pekerjaan ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: '${debtorInsight.pekerjaan1}',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text: ' beralamat di ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: '${debtorInsight.alamat1}',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text: ', berdasarkan Kartu Tanda Penduduk ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: 'Kabupaten / Kota ${debtorInsight.ktp1}',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text: ' nomor ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: '${debtorInsight.noKtp1}',
+                                style: boldStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -126,8 +213,60 @@ Future<Uint8List> makePkPdf(debtor) async {
                       ? TableRow(
                           children: [
                             textKolomAtasBold(''),
-                            textKolomAtas(
-                                '${debtorInsight.peminjam2} pekerjaan ${debtorInsight.pekerjaan2} beralamat di ${debtorInsight.alamat2}, berdasarkan Kartu Tanda Penduduk ${debtorInsight.ktp2} nomor ${debtorInsight.noKtp2}, '),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 5,
+                                vertical: 2,
+                              ),
+                              child: RichText(
+                                textAlign: TextAlign.justify,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '${debtorInsight.peminjam2}',
+                                      style: boldStyle,
+                                    ),
+                                    TextSpan(
+                                      text: ' pekerjaan ',
+                                      style: normalStyle,
+                                    ),
+                                    TextSpan(
+                                      text: '${debtorInsight.pekerjaan2}',
+                                      style: boldStyle,
+                                    ),
+                                    const TextSpan(
+                                      text: ' beralamat di ',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        lineSpacing: 1.5,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '${debtorInsight.alamat2}',
+                                      style: boldStyle,
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          ', berdasarkan Kartu Tanda Penduduk ',
+                                      style: normalStyle,
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          'Kabupaten / Kota ${debtorInsight.ktp2}',
+                                      style: boldStyle,
+                                    ),
+                                    TextSpan(
+                                      text: ' nomor ',
+                                      style: normalStyle,
+                                    ),
+                                    TextSpan(
+                                      text: '${debtorInsight.noKtp2}',
+                                      style: boldStyle,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                             textKolomAtasBold(''),
                           ],
                         )
@@ -141,8 +280,30 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtasBold(''),
-                      textKolomAtas(
-                          'Dalam perjanjian ini bertindak untuk dan atas nama diri sendiri selanjutnya disebut DEBITUR'),
+                      // textKolomAtas(
+                      //     'Dalam perjanjian ini bertindak untuk dan atas nama diri sendiri selanjutnya disebut DEBITUR'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 5,
+                          vertical: 2,
+                        ),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    'Dalam perjanjian ini bertindak untuk dan atas nama diri sendiri selanjutnya disebut ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: 'DEBITUR',
+                                style: boldStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtas(''),
                     ],
                   )
@@ -518,30 +679,95 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtas('1.'),
-                      textKolomAtas(
-                          'BANK memberikan kredit kepada DEBITUR dengan plafond kredit sebesar ${MoneyMaskedTextController(
-                        initialValue: double.parse(
-                            debtorInsight.inputKeuangan!.kreditDiusulkan!),
-                        thousandSeparator: '.',
-                        decimalSeparator: '',
-                        precision: 0,
-                        leftSymbol: 'Rp ',
-                      ).text} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.kreditDiusulkan!))} Rupiah) dan diakui sebagai hutang DEBITUR kepada BANK.'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    'BANK memberikan kredit kepada DEBITUR dengan plafond kredit sebesar ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: MoneyMaskedTextController(
+                                  initialValue: double.parse(debtorInsight
+                                      .inputKeuangan!.kreditDiusulkan!),
+                                  thousandSeparator: '.',
+                                  decimalSeparator: '',
+                                  precision: 0,
+                                  leftSymbol: 'Rp ',
+                                ).text,
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    ' (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.kreditDiusulkan!))} Rupiah)',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    'dan diakui sebagai hutang DEBITUR kepada BANK.',
+                                style: normalStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
                   TableRow(
                     children: [
                       textKolomAtas('2.'),
-                      textKolomAtas('Sifat kredit adalah Non Revolving.'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Sifat kredit adalah',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: ' Non Revolving.',
+                                style: boldStyleItalic,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
                   TableRow(
                     children: [
                       textKolomAtas('3.'),
-                      textKolomAtas(
-                          'Kredit diberikan oleh BANK kepada DEBITUR untuk tujuan ${debtorInsight.inputKeuangan!.digunakanUntuk}'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    'Kredit diberikan oleh BANK kepada DEBITUR untuk tujuan ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    '${debtorInsight.inputKeuangan!.digunakanUntuk}',
+                                style: boldStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -591,8 +817,33 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtas('1.'),
-                      textKolomAtas(
-                          'Jangka waktu kredit selama ${debtorInsight.inputKeuangan!.angsuran} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.angsuran.toString()))}) bulan, terhitung sejak tanggal penandatanganan  Perjanjian Kredit ini.'),
+                      // textKolomAtas(
+                      //     'Jangka waktu kredit selama ${debtorInsight.inputKeuangan!.angsuran} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.angsuran.toString()))}) bulan, terhitung sejak tanggal penandatanganan  Perjanjian Kredit ini.'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Jangka waktu kredit selama ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    '${debtorInsight.inputKeuangan!.angsuran} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.angsuran.toString()))}) bulan',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    ', terhitung sejak tanggal tanggal penandatanganan Perjanjian Kredit ini.',
+                                style: normalStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -650,8 +901,31 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtas('1.'),
-                      textKolomAtas(
-                          'Suku bunga kredit ditetapkan sebesar ${debtorInsight.inputKeuangan!.bungaPerTahun} % (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.bungaPerTahun.toString()))} Persen)  pertahun yang dihitung dari saldo pokok kredit secara efektif/floating rate.'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text: 'Suku bunga kredit ditetapkan sebesar ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    '${debtorInsight.inputKeuangan!.bungaPerTahun} % (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.bungaPerTahun.toString()))} Persen)',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    ' pertahun yang dihitung dari saldo pokok kredit secara efektif/floating rate.',
+                                style: normalStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -986,8 +1260,63 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtas('1.'),
-                      textKolomAtas(
-                          'DEBITUR wajib membayar kembali kredit kepada BANK dengan cara angsuran pokok dan bunga diangsur setiap bulan dengan jumlah angsuran yang sama besarnya dalam 23 (Dua puluh tiga) kali angsuran sebesar Rp. 2.216.030,00 (Dua juta dua ratus enam belas ribu tiga puluh rupiah) dan 1 (Satu) kali angsuran sebesar Rp. 2.216.075,00 (Dua juta dua ratus enam belas ribu tujuh puluh lima rupiah),  yang untuk pertama kali dibayar pada bulan berikutnya setelah ditandatangani perjanjian kredit ini hingga lunas selambat-lambatnya pada tanggal 17 Februari 2025 dengan ketentuan apabila tanggal kewajiban pembayaran tersebut jatuh pada hari libur (bukan hari kerja BANK), maka tanggal kewajiban pembayaran dimaksud diberlakukan 1 (satu) hari kerja BANK sebelumnya.'),
+                      // textKolomAtas(
+                      //     'DEBITUR wajib membayar kembali kredit kepada BANK dengan cara angsuran pokok dan bunga diangsur setiap bulan dengan jumlah angsuran yang sama besarnya dalam 23 (Dua puluh tiga) kali angsuran sebesar Rp. 2.216.030,00 (Dua juta dua ratus enam belas ribu tiga puluh rupiah) dan 1 (Satu) kali angsuran sebesar Rp. 2.216.075,00 (Dua juta dua ratus enam belas ribu tujuh puluh lima rupiah),  yang untuk pertama kali dibayar pada bulan berikutnya setelah ditandatangani perjanjian kredit ini hingga lunas selambat-lambatnya pada tanggal 17 Februari 2025 dengan ketentuan apabila tanggal kewajiban pembayaran tersebut jatuh pada hari libur (bukan hari kerja BANK), maka tanggal kewajiban pembayaran dimaksud diberlakukan 1 (satu) hari kerja BANK sebelumnya.'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    'DEBITUR wajib membayar kembali kredit kepada BANK dengan cara angsuran pokok dan bunga diangsur setiap bulan dengan jumlah angsuran yang sama besarnya dalam ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    '${debtorInsight.inputKeuangan!.angsuran} (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.angsuran.toString()))})',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text: ' kali angsuran sebesar ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: MoneyMaskedTextController(
+                                  initialValue: double.parse(
+                                      debtorInsight.inputKeuangan!.angsuranRp!),
+                                  thousandSeparator: '.',
+                                  decimalSeparator: '',
+                                  precision: 0,
+                                  leftSymbol: 'Rp ',
+                                ).text,
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    ' (${Terbilang().terbilang(double.parse(debtorInsight.inputKeuangan!.angsuranRp.toString()))} Rupiah), ',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    'yang untuk pertama kali dibayar pada bulan berikutnya setelah ditandatangani perjanjian kredit ini hingga lunas selambat-lambatnya pada tanggal ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text: '...................................',
+                                style: boldStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    ' dengan ketentuan apabila tanggal kewajiban pembayaran tersebut jatuh pada hari libur (bukan hari kerja BANK), maka tanggal kewajiban pembayaran dimaksud diberlakukan 1 (satu) hari kerja BANK sebelumnya.',
+                                style: normalStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -1077,8 +1406,27 @@ Future<Uint8List> makePkPdf(debtor) async {
                   TableRow(
                     children: [
                       textKolomAtas('1.'),
-                      textKolomAtas(
-                          'Untuk menjamin dipenuhinya kewajiban Debitur kepada BANK, dilakukan penjaminan kredit oleh ${debtorInsight.asuransi?.namaPerusahaan}.'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 2),
+                        child: RichText(
+                          textAlign: TextAlign.justify,
+                          text: TextSpan(
+                            children: [
+                              TextSpan(
+                                text:
+                                    'ntuk menjamin dipenuhinya kewajiban Debitur kepada BANK, dilakukan penjaminan kredit oleh ',
+                                style: normalStyle,
+                              ),
+                              TextSpan(
+                                text:
+                                    '${debtorInsight.asuransi?.namaPerusahaan}.',
+                                style: boldStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                       textKolomAtasBold(''),
                     ],
                   ),
@@ -1773,6 +2121,93 @@ Future<Uint8List> makePkPdf(debtor) async {
                 textAlign: TextAlign.justify,
               ),
             ),
+            Container(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 45),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'DEBITUR',
+                            style: boldStyle,
+                          ),
+                          SizedBox(height: 100),
+                          Text(
+                            '( ${debtorInsight.peminjam1} )',
+                            style: normalStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'BANK',
+                            style: boldStyle,
+                          ),
+                          SizedBox(height: 100),
+                          Text(
+                            '( ${formData['pemimpin_kantor']} )',
+                            style: normalStyle,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 25.0,
+                  ),
+                  debtorInsight.peminjam2 != '' ||
+                          debtorInsight.peminjam2 != null
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '',
+                                  style: boldStyle,
+                                ),
+                                SizedBox(height: 100),
+                                Text(
+                                  '( ${debtorInsight.peminjam2} )',
+                                  style: normalStyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '',
+                                  style: boldStyle,
+                                ),
+                                SizedBox(height: 100),
+                                Text(
+                                  '',
+                                  style: normalStyle,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ],
+                            )
+                          ],
+                        )
+                      : Container(),
+                ],
+              ),
+            )
           ],
         ),
       ],
@@ -1797,6 +2232,49 @@ Widget textKolomAtas(
         ),
       ),
     );
+
+Widget textKolomAtasBank(
+  final String text, {
+  final TextAlign align = TextAlign.justify,
+}) {
+  final int lastBankIndex = text.lastIndexOf('BANK');
+  final String beforeBank = text.substring(0, lastBankIndex);
+  final String bank = text.substring(lastBankIndex, lastBankIndex + 4);
+  final String afterBank = text.substring(lastBankIndex + 4);
+
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+    child: RichText(
+      textAlign: align,
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: beforeBank,
+            style: const TextStyle(
+              fontSize: 11,
+              lineSpacing: 1.5,
+            ),
+          ),
+          TextSpan(
+            text: bank,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 11,
+              lineSpacing: 1.5,
+            ),
+          ),
+          TextSpan(
+            text: afterBank,
+            style: const TextStyle(
+              fontSize: 11,
+              lineSpacing: 1.5,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
 
 Widget textKolomAtasBold(
   final String text, {

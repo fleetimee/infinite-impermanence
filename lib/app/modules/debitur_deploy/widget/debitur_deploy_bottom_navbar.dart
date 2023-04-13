@@ -1,7 +1,6 @@
 import 'package:akm/app/modules/debitur_deploy/controllers/debitur_deploy_controller.dart';
 import 'package:akm/app/widget/bottomnavbar_button.dart';
 import 'package:akm/app/widget/dialog_box.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,8 +29,6 @@ class DebiturDeployBottomNavbar extends StatelessWidget {
 
           ErrorDialog(
             context: context,
-            animType: AnimType.bottomSlide,
-            dialogType: DialogType.warning,
             title: 'Warning',
             desc: 'Form masih ada yang kosong',
             btnCancelText: 'OK',

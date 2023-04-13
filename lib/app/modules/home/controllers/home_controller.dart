@@ -18,6 +18,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:intl/intl.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 🌎 Project imports:
@@ -142,12 +143,12 @@ class HomeController extends GetxController {
 
   // Logout firebase and google sign in
   void logout() {
-    AwesomeDialog(
+    PrompDialog(
       context: Get.context!,
-      dialogType: DialogType.question,
-      animType: AnimType.scale,
       title: 'Logout',
       desc: 'Are you sure want to logout?',
+      btnCancelText: 'NO',
+      btnOkText: 'YES',
       btnCancelOnPress: () {},
       btnOkOnPress: () async {
         final prefs = await SharedPreferences.getInstance();
@@ -605,19 +606,19 @@ class HomeController extends GetxController {
     }
   }
 
-  void searchNik(String query) {
+  void searchNik(String query, BuildContext context) {
     try {
+      context.loaderOverlay.show();
       isSearchNikProcessing(true);
       SearchNikProvider().searchNik(query).then((resp) {
         isSearchNikProcessing(false);
+        context.loaderOverlay.hide();
 
         if (resp.isEmpty) {
           ErrorDialog(
             context: Get.context!,
-            dialogType: DialogType.error,
             title: 'Tidak ditemukan',
             desc: 'Tidak ada debitur dengan NIK $query',
-            animType: AnimType.scale,
             btnOkOnPress: () {},
           ).show();
         }
@@ -626,17 +627,17 @@ class HomeController extends GetxController {
         listSearchNik.addAll(resp);
       }, onError: (error) {
         isSearchNikProcessing(false);
+        context.loaderOverlay.hide();
         ErrorDialog(
           context: Get.context!,
-          dialogType: DialogType.error,
           title: 'Error',
           desc: 'Terjadi kesalahan saat mencari NIK',
-          animType: AnimType.scale,
           btnOkOnPress: () {},
         ).show();
       });
     } catch (e) {
       isSearchNikProcessing(false);
+      context.loaderOverlay.hide();
       AwesomeDialog(
         context: Get.context!,
         dialogType: DialogType.error,

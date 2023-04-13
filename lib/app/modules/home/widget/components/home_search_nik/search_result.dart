@@ -7,7 +7,6 @@ import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -81,8 +80,6 @@ class NikSearchResult extends StatelessWidget {
                                     Get.back();
                                   },
                                   context: context,
-                                  animType: AnimType.topSlide,
-                                  dialogType: DialogType.error,
                                 );
                         },
                         leading: RandomAvatar(

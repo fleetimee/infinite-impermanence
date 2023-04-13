@@ -12,6 +12,7 @@ import 'package:bottom_bar_matu/bottom_bar_matu.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 
 // 🌎 Project imports:
@@ -64,9 +65,11 @@ class HomeView extends GetView<HomeController> {
             SafeArea(
               child: HomeMainPage(),
             ),
-            SafeArea(
-              child: HomeSearchNik(
-                controller: controller,
+            LoaderOverlay(
+              child: SafeArea(
+                child: HomeSearchNik(
+                  controller: controller,
+                ),
               ),
             ),
             SafeArea(
@@ -107,11 +110,11 @@ class HomeView extends GetView<HomeController> {
           controller.controller.animateToPage(
             index,
             // no duration
-            duration: const Duration(milliseconds: 300),
+            duration: const Duration(milliseconds: 200),
 
             // duration: const Duration(milliseconds: 300),
             // no curve
-            curve: Curves.bounceIn,
+            curve: Curves.fastLinearToSlowEaseIn,
           );
         },
       ),

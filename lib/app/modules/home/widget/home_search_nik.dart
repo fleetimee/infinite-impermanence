@@ -76,7 +76,10 @@ class HomeSearchNik extends StatelessWidget {
                           color: primaryColor,
                           shape: GFButtonShape.pills,
                           onPressed: () {
-                            controller.searchNik(controller.nik.text);
+                            controller.searchNik(
+                              controller.nik.text,
+                              context,
+                            );
                           },
                           size: GFSize.LARGE,
                           textStyle: const TextStyle(

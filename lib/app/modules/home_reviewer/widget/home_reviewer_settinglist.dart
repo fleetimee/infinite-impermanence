@@ -1,11 +1,11 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/home/views/components/change_office/change_office.dart';
 import 'package:akm/app/modules/home_reviewer/controllers/home_reviewer_controller.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:about/about.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -109,12 +109,10 @@ class ReviewerSettingList extends StatelessWidget {
                 onPressed: ((context) {
                   // Check if email already verified
                   if (auth.currentUser!.emailVerified) {
-                    AwesomeDialog(
+                    InfoDialog(
+                      title: 'Email already verified',
+                      desc: 'Your email address has already been verified.',
                       context: context,
-                      dialogType: DialogType.infoReverse,
-                      animType: AnimType.scale,
-                      title: 'Huh ?',
-                      desc: 'Email already verified',
                       btnOkOnPress: () {},
                     ).show();
                   } else {
@@ -215,14 +213,23 @@ class ReviewerSettingList extends StatelessWidget {
                     Get.offAllNamed(Routes.GATE);
                   } else {
                     // ignore: use_build_context_synchronously
-                    AwesomeDialog(
-                      context: context,
-                      dialogType: DialogType.infoReverse,
-                      animType: AnimType.scale,
-                      title: 'Huh ?',
-                      desc: 'You only have one role',
-                      btnOkOnPress: () {},
-                    ).show();
+                    // AwesomeDialog(
+                    //   context: context,
+                    //   dialogType: DialogType.infoReverse,
+                    //   animType: AnimType.scale,
+                    //   title: 'Huh ?',
+                    //   desc: 'You only have one role',
+                    //   btnOkOnPress: () {},
+                    // ).show();
+
+                    if (context.mounted) {
+                      InfoDialog(
+                        context: context,
+                        title: 'Huh ?',
+                        desc: 'You only have one role',
+                        btnOkOnPress: () {},
+                      ).show();
+                    }
                   }
                 }),
                 leading: const Icon(Icons.switch_account_outlined),

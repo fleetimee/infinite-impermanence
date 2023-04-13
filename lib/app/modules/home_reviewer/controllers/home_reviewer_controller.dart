@@ -1,8 +1,8 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -34,10 +34,8 @@ class HomeReviewerController extends GetxController {
   // }
 
   void logout() {
-    AwesomeDialog(
+    PrompDialog(
       context: Get.context!,
-      dialogType: DialogType.question,
-      animType: AnimType.scale,
       title: 'Logout',
       desc: 'Are you sure want to logout?',
       btnCancelOnPress: () {},

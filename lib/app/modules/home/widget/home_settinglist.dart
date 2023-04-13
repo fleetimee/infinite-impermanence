@@ -5,10 +5,10 @@ import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/home/models/menu_grid.dart';
 import 'package:akm/app/modules/home/views/components/change_office/change_office.dart';
 import 'package:akm/app/routes/app_pages.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:get/get.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:settings_ui/settings_ui.dart';
@@ -56,10 +56,8 @@ class HomeSettingList extends StatelessWidget {
               onPressed: ((context) {
                 // Check if email already verified
                 if (auth.currentUser!.emailVerified) {
-                  AwesomeDialog(
+                  InfoDialog(
                     context: context,
-                    dialogType: DialogType.infoReverse,
-                    animType: AnimType.scale,
                     title: 'Huh ?',
                     desc: 'Email already verified',
                     btnOkOnPress: () {},
@@ -159,15 +157,14 @@ class HomeSettingList extends StatelessWidget {
 
                   Get.offAllNamed(Routes.GATE);
                 } else {
-                  // ignore: use_build_context_synchronously
-                  AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.infoReverse,
-                    animType: AnimType.scale,
-                    title: 'Huh ?',
-                    desc: 'You only have one role',
-                    btnOkOnPress: () {},
-                  ).show();
+                  if (context.mounted) {
+                    InfoDialog(
+                      context: context,
+                      title: 'Huh ?',
+                      desc: 'You only have one role',
+                      btnOkOnPress: () {},
+                    ).show();
+                  }
                 }
               }),
               leading: const Icon(Icons.switch_account_outlined),

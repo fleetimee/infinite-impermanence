@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/home_reviewer/widget/home_reviewer_main_menu.dart';
+import 'package:akm/app/modules/home_reviewer/widget/home_reviewer_profile.dart';
 import 'package:akm/app/modules/home_reviewer/widget/home_reviewer_settinglist.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +49,13 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
               account: account,
               controller: controller,
             ),
+            SafeArea(
+              child: ReviewerProfile(
+                auth: FirebaseAuth.instance,
+                controller: controller,
+                homeCtrl: homeCtrl,
+              ),
+            ),
             ReviewerSettingList(
               controller: controller,
             ),
@@ -59,6 +67,7 @@ class HomeReviewerView extends GetView<HomeReviewerController> {
         color: secondaryColor,
         items: [
           BottomBarItem(iconData: Icons.home_filled),
+          BottomBarItem(iconData: Icons.person),
           BottomBarItem(iconData: Icons.settings),
         ],
         onSelect: (index) {

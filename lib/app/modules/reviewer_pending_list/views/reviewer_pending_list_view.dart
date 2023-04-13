@@ -14,21 +14,22 @@ class ReviewerPendingListView extends GetView<ReviewerPendingListController> {
       appBar: AppBar(
         title: const Text('Belum Direview'),
       ),
-      body: Obx(() => controller.isMyPendingReviewProcessing.value
-          ? const Align(
-              alignment: Alignment.center,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            )
-          : // check if listMyPendingReview is empty
-          controller.listMyPendingReview.isEmpty
-              ? EmptyPendingList(
-                  controller: controller,
-                )
-              : ReviewerPendingList(
-                  controller: controller,
-                )),
+      body: Obx(
+        () => controller.isMyPendingReviewProcessing.value
+            ? const Align(
+                alignment: Alignment.center,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : controller.listMyPendingReview.isEmpty
+                ? EmptyPendingList(
+                    controller: controller,
+                  )
+                : ReviewerPendingList(
+                    controller: controller,
+                  ),
+      ),
     );
   }
 }

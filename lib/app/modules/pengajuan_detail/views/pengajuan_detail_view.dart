@@ -3,6 +3,7 @@ import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_info_de
 import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_info_header.dart';
 import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_info_officer_card.dart';
 import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_timeline_view.dart';
+import 'package:akm/app/widget/bottomnavbar_button.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -44,6 +45,13 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
             controller: controller,
           ),
         ],
+      ),
+      bottomNavigationBar: BottomNavBarButton(
+        text: 'Detail',
+        icon: Icons.arrow_forward_ios,
+        onPressed: () {
+          // Get.toNamed('/pengajuan_detail/detail');
+        },
       ),
     );
   }

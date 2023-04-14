@@ -1,13 +1,13 @@
-import 'package:akm/app/modules/reviewer_pending_list/widget/components/reviewer_pending_list_available/list_pending.dart';
+import 'package:akm/app/modules/reviewer_completed_list/widget/components/reviewer_completed_list_available/reviewer_completed_list_view.dart';
 import 'package:bootstrap_alert/bootstrap_alert.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/reviewer_pending_list_controller.dart';
+import '../controllers/reviewer_completed_list_controller.dart';
 
-class ReviewerPendingList extends StatelessWidget {
-  final ReviewerPendingListController controller;
+class ReviewerCompletedList extends StatelessWidget {
+  final ReviewerCompletedListController controller;
 
-  const ReviewerPendingList({
+  const ReviewerCompletedList({
     super.key,
     required this.controller,
   });
@@ -19,7 +19,7 @@ class ReviewerPendingList extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Image.asset(
-            "assets/images/home/list_pending.png",
+            "assets/images/home/reviewer_completed.png",
             height: MediaQuery.of(context).size.height * 0.5,
             fit: BoxFit.contain,
           ),
@@ -40,7 +40,7 @@ class ReviewerPendingList extends StatelessWidget {
               onDismissed: () {},
             ),
             Expanded(
-              child: ListPendingPengajuanReviewer(
+              child: ListCompletedPengajuanReviewer(
                 controller: controller,
               ),
             ),

@@ -15,7 +15,6 @@ class PkPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(data);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Print PK: '),

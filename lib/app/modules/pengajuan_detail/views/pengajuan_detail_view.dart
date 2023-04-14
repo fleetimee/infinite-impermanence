@@ -1,4 +1,6 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_detail_button.dart';
 import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_info_debitur_card.dart';
 import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_info_header.dart';
 import 'package:akm/app/modules/pengajuan_detail/widget/pengajuan_detail_info_officer_card.dart';
@@ -8,6 +10,7 @@ import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:get/get.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 // 🌎 Project imports:
 import '../controllers/pengajuan_detail_controller.dart';
@@ -46,13 +49,23 @@ class PengajuanDetailView extends GetView<PengajuanDetailController> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavBarButton(
-        text: 'Detail',
-        icon: Icons.arrow_forward_ios,
-        onPressed: () {
-          // Get.toNamed('/pengajuan_detail/detail');
-        },
-      ),
+      bottomNavigationBar: Obx(() => BottomNavBarButton(
+            text: 'Detail',
+            icon: Icons.arrow_forward_ios,
+            onPressed: controller.isPenganjuanDetailLoading.value
+                ? null
+                : () {
+                    showMaterialModalBottomSheet(
+                      backgroundColor: secondaryColor,
+                      context: context,
+                      builder: (context) {
+                        return PengajuanDetailVeryDetailed(
+                          controller: controller,
+                        );
+                      },
+                    );
+                  },
+          )),
     );
   }
 }

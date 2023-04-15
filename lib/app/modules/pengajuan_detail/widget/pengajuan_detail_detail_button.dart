@@ -1,5 +1,4 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -11,46 +10,6 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 // 🌎 Project imports:
 import '../../insight_debitur/widget/insight_debitur_detail_debitur.dart';
 import '../controllers/pengajuan_detail_controller.dart';
-
-class DetailButton extends StatelessWidget {
-  const DetailButton({
-    super.key,
-    required this.controller,
-  });
-
-  final PengajuanDetailController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Obx(() => Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: GFButton(
-            onPressed: controller.isPenganjuanDetailLoading.value
-                ? null
-                : () {
-                    showMaterialModalBottomSheet(
-                      backgroundColor: secondaryColor,
-                      context: context,
-                      builder: (context) {
-                        return PengajuanDetailVeryDetailed(
-                            controller: controller);
-                      },
-                    );
-                  },
-            text: 'Detail',
-            textStyle: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-            elevation: 5,
-            fullWidthButton: true,
-            size: GFSize.LARGE,
-            color: GFColors.SUCCESS,
-            shape: GFButtonShape.pills,
-          ),
-        ));
-  }
-}
 
 class PengajuanDetailVeryDetailed extends StatelessWidget {
   const PengajuanDetailVeryDetailed({

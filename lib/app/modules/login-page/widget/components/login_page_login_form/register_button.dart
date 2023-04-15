@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -21,16 +22,33 @@ class RegisterButton extends StatelessWidget {
         onPressed: () {
           Get.dialog(
             AlertDialog(
-              title: const Text('Hubungi Admin'),
+              title: const Text(
+                'Hubungi Admin',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
               content: const Text(
                 'Silahkan hubungi admin untuk meminta mendaftar akun',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
               ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              backgroundColor: primaryColor,
               actions: [
                 GFButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    child: const Text('OK'))
+                  onPressed: () {
+                    Get.back();
+                  },
+                  size: GFSize.LARGE,
+                  shape: GFButtonShape.pills,
+                  child: const Text('OK'),
+                )
               ],
             ),
           );

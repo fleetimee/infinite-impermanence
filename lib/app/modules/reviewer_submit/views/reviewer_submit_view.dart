@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -94,1142 +95,391 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
     return Scaffold(
       backgroundColor: secondaryColor,
       body: SafeArea(
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: SingleChildScrollView(
-            child: FormBuilder(
-              key: controller.formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const GFTypography(
-                    text: 'Review Pengajuan',
-                    type: GFTypographyType.typo1,
-                  ),
-                  const SizedBox(height: 20),
-                  Obx(
-                    () => Text(
-                      controller.isProcessing.value
-                          ? 'Loading...'
-                          : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis ${controller.pengajuan.user?[1].displayName ?? '-'}',
+        child: Scrollbar(
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: SingleChildScrollView(
+              child: FormBuilder(
+                key: controller.formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const GFTypography(
+                      text: 'Review Pengajuan',
+                      type: GFTypographyType.typo1,
+                    ),
+                    const SizedBox(height: 20),
+                    Obx(
+                      () => Text(
+                        controller.isProcessing.value
+                            ? 'Loading...'
+                            : 'Pengajuan ini berisikan calon debitur dengan nama ${controller.insightDebitur.value.peminjam1}, dengan no pengajuan ${controller.pengajuan.id} yang diajukan pada tanggal ${formatDatetime(controller.pengajuan.tglSubmit!)} oleh analis ${controller.pengajuan.user?[1].displayName ?? '-'}',
+                        style: Theme.of(context).textTheme.bodySmall?.merge(
+                              const TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Tanggal Review :',
                       style: Theme.of(context).textTheme.bodySmall?.merge(
                             const TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Tanggal Review :',
-                    style: Theme.of(context).textTheme.bodySmall?.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                  ),
-                  const SizedBox(height: 20),
-                  FormBuilderDateTimePicker(
-                    name: 'tglReview',
-                    inputType: InputType.date,
-                    format: DateFormat('dd-MM-yyyy'),
-                    resetIcon: const Icon(Icons.clear),
-                    decoration: const InputDecoration(
-                      hintText: 'Pilih Tanggal Review',
-                      prefixIcon: Icon(Icons.date_range),
-                      suffixIcon: Icon(Icons.arrow_drop_down),
-                      border: // no border
-                          InputBorder.none,
+                    const SizedBox(height: 20),
+                    FormBuilderDateTimePicker(
+                      name: 'tglReview',
+                      inputType: InputType.date,
+                      format: DateFormat('dd-MM-yyyy'),
+                      resetIcon: const Icon(Icons.clear),
+                      decoration: const InputDecoration(
+                        hintText: 'Pilih Tanggal Review',
+                        prefixIcon: Icon(Icons.date_range),
+                        suffixIcon: Icon(Icons.arrow_drop_down),
+                        border: // no border
+                            InputBorder.none,
+                      ),
+                      validator: FormBuilderValidators.required(),
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime.now(),
+                      lastDate: DateTime.now(),
                     ),
-                    validator: FormBuilderValidators.required(),
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime.now(),
-                    lastDate: DateTime.now(),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Ditujukan Kepada :',
-                    style: Theme.of(context).textTheme.bodySmall?.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                  ),
-                  const SizedBox(height: 20),
-                  FormBuilderSearchableDropdown<String>(
-                    name: 'pemutus',
-                    popupProps: const PopupProps.menu(showSearchBox: true),
-                    asyncItems: (filter) {
-                      return _getItems();
-                    },
-                    clearButtonProps: const ClearButtonProps(
-                      icon: Icon(Icons.clear),
-                      color: Colors.red,
-                    ),
-                    itemAsString: (item) {
-                      // hide the uid from screen
-                      return item.split(':')[0];
-                    },
-                    onChanged: (value) {
-                      debugPrint('value: $value');
-                    },
-                    decoration: const InputDecoration(
-                      border: // no border
-                          InputBorder.none,
-                      prefixIcon: Icon(Icons.person),
-                      hintText: 'Pilih Pemutus',
-                    ),
-                    validator: FormBuilderValidators.required(),
-                  ),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Berikut adalah detail pengajuan yang diajukan :',
-                    style: Theme.of(context).textTheme.bodySmall?.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    color: Colors.grey[200],
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Expanded(
-                                  flex: 6,
-                                  child: GFTypography(
-                                    text: 'Hasil Inputan Debitur',
-                                    type: GFTypographyType.typo3,
-                                    showDivider: false,
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Obx(
-                                    () => Icon(
-                                      controller.isInputanRead.value == true
-                                          ? Icons.check_box
-                                          : Icons.close,
-                                      color:
-                                          controller.isInputanRead.value == true
-                                              ? Colors.green
-                                              : Colors.transparent,
-                                      size: 30,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                    const SizedBox(height: 20),
+                    Text(
+                      'Ditujukan Kepada :',
+                      style: Theme.of(context).textTheme.bodySmall?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
                             ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
-                              style:
-                                  Theme.of(context).textTheme.bodySmall?.merge(
-                                        const TextStyle(
-                                          fontSize: 14,
-                                        ),
+                          ),
+                    ),
+                    const SizedBox(height: 20),
+                    FormBuilderSearchableDropdown<String>(
+                      name: 'pemutus',
+                      popupProps: const PopupProps.menu(showSearchBox: true),
+                      asyncItems: (filter) {
+                        return _getItems();
+                      },
+                      clearButtonProps: const ClearButtonProps(
+                        icon: Icon(Icons.clear),
+                        color: Colors.red,
+                      ),
+                      itemAsString: (item) {
+                        // hide the uid from screen
+                        return item.split(':')[0];
+                      },
+                      onChanged: (value) {
+                        debugPrint('value: $value');
+                      },
+                      decoration: const InputDecoration(
+                        border: // no border
+                            InputBorder.none,
+                        prefixIcon: Icon(Icons.person),
+                        hintText: 'Pilih Pemutus',
+                      ),
+                      validator: FormBuilderValidators.required(),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Berikut adalah detail pengajuan yang diajukan :',
+                      style: Theme.of(context).textTheme.bodySmall?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                    ),
+                    const SizedBox(height: 20),
+                    ResultInputSection(
+                      controller: controller,
+                    ),
+                    const SizedBox(height: 20),
+                    Container(
+                      color: Colors.grey[200],
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const GFTypography(
+                                text: 'Tanggapan Analis',
+                                type: GFTypographyType.typo3,
+                                showDivider: false,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                'Ini adalah tanggapan analis terhadap pengajuan ini',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.merge(
+                                      const TextStyle(
+                                        fontSize: 14,
                                       ),
-                            ),
-                            const SizedBox(height: 10),
-                            Obx(
-                              () => Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      controller.isProcessing.value
-                                          ? 'Loading'
-                                          : controller
-                                              .insightDebitur.value.peminjam1!,
+                                    ),
+                              ),
+                              ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: controller
+                                        .pengajuan.bahasanAnalis?.length ??
+                                    0,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    padding:
+                                        const EdgeInsets.symmetric(vertical: 8),
+                                    child: Text(
+                                      '${index + 1}. ${controller.pengajuan.bahasanAnalis?[index]}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodySmall
                                           ?.merge(
                                             const TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                     ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Rating',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall
-                                              ?.merge(
-                                                const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: GFColors.SUCCESS,
-                                                ),
-                                              ),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          controller.isProcessing.value
-                                              ? 'Loading'
-                                              : ': ${controller.rating.value} - ${controller.keterangan.value}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall
-                                              ?.merge(
-                                                const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Score ',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall
-                                              ?.merge(
-                                                const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: GFColors.SUCCESS,
-                                                ),
-                                              ),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Text(
-                                          controller.isProcessing.value
-                                              ? 'Loading'
-                                              : ': ${controller.totalCrr.value}',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall
-                                              ?.merge(
-                                                const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 5),
-                                    Row(
-                                      children: [
-                                        const SizedBox(width: 5),
-                                        Obx(
-                                          () => controller.isProcessing.value
-                                              ? const Chip(
-                                                  label: Text('Loading...'))
-                                              : Chip(
-                                                  label: Text(controller
-                                                      .insightDebitur
-                                                      .value
-                                                      .jenisUsaha
-                                                      .toString())),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        Obx(
-                                          () => controller.isProcessing.value
-                                              ? const Chip(
-                                                  label: Text('Loading...'))
-                                              : controller.insightDebitur.value
-                                                          .inputRugiLaba ==
-                                                      null
-                                                  ? const SizedBox.shrink()
-                                                  : double.parse(controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .inputRugiLaba!
-                                                              .omzet
-                                                              .toString()) <=
-                                                          100000000
-                                                      ? const Chip(
-                                                          label: Text('Mikro'))
-                                                      : const Chip(
-                                                          label: Text('Kecil')),
-                                        ),
-                                        const SizedBox(width: 5),
-                                        const Chip(label: Text('Tetap')),
-                                        const SizedBox(width: 5),
-                                        Obx(
-                                          () => controller.isProcessing.value
-                                              ? const Chip(
-                                                  label: Text('Loading...'))
-                                              : controller.insightDebitur.value
-                                                          .inputKeuangan ==
-                                                      null
-                                                  ? const SizedBox.shrink()
-                                                  : double.parse(controller
-                                                                  .insightDebitur
-                                                                  .value
-                                                                  .inputKeuangan!
-                                                                  .kreditDiusulkan
-                                                                  .toString()) >
-                                                              0 &&
-                                                          double.parse(controller
-                                                                  .insightDebitur
-                                                                  .value
-                                                                  .inputKeuangan!
-                                                                  .kreditDiusulkan
-                                                                  .toString()) <=
-                                                              10000000
-                                                      ? const Chip(
-                                                          label: Text(
-                                                              'KUR Super Mikro'))
-                                                      : double.parse(controller.insightDebitur.value.inputKeuangan!.kreditDiusulkan.toString()) > 10000000 &&
-                                                              double.parse(controller.insightDebitur.value.inputKeuangan!.kreditDiusulkan.toString()) <= 100000000
-                                                          ? const Chip(label: Text('KUR Mikro'))
-                                                          : const Chip(label: Text('KUR Kecil')),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            GFItemsCarousel(
-                              rowCount: 3,
-                              children: [
-                                Container(
-                                  margin: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      child: Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/home/keuangan_slider.png',
-                                            fit: BoxFit.cover,
-                                            height: 200.0,
-                                            color:
-                                                Colors.black.withOpacity(0.6),
-                                            colorBlendMode: BlendMode.darken,
-                                          ),
-                                          Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              color:
-                                                  Colors.black.withOpacity(0.5),
-                                              child: const Text(
-                                                'Keuangan',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Colors.black54,
-                                                  Colors.transparent,
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Obx(
-                                              () => controller
-                                                      .isProcessing.value
-                                                  ? const Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: Colors.white,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaKeuangan ==
-                                                          null
-                                                      ? const Text(
-                                                          'N/A',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : Text(
-                                                          controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaKeuangan!
-                                                              .totalCrrKeuangan
-                                                              .toString(),
-                                                          style:
-                                                              const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      child: Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/home/karakter_slider.png',
-                                            fit: BoxFit.cover,
-                                            height: 200.0,
-                                            color:
-                                                Colors.black.withOpacity(0.6),
-                                            colorBlendMode: BlendMode.darken,
-                                          ),
-                                          Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              color:
-                                                  Colors.black.withOpacity(0.5),
-                                              child: const Text(
-                                                'Karakter',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Colors.black54,
-                                                  Colors.transparent,
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Obx(
-                                              () => controller
-                                                      .isProcessing.value
-                                                  ? const Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: Colors.white,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaKarakter ==
-                                                          null
-                                                      ? const Text(
-                                                          'N/A',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : Text(
-                                                          controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaKarakter!
-                                                              .totalCrrKarakter
-                                                              .toString(),
-                                                          style:
-                                                              const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      child: Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/home/bisnis_slider.png',
-                                            fit: BoxFit.cover,
-                                            height: 200.0,
-                                            color:
-                                                Colors.black.withOpacity(0.6),
-                                            colorBlendMode: BlendMode.darken,
-                                          ),
-                                          Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              color:
-                                                  Colors.black.withOpacity(0.5),
-                                              child: const Text(
-                                                'Bisnis',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Colors.black54,
-                                                  Colors.transparent,
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Obx(
-                                              () => controller
-                                                      .isProcessing.value
-                                                  ? const Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: Colors.white,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaBisnis ==
-                                                          null
-                                                      ? const Text(
-                                                          'N/A',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : Text(
-                                                          double.parse(controller
-                                                                  .insightDebitur
-                                                                  .value
-                                                                  .analisaBisnis!
-                                                                  .hasilCrrBisnis
-                                                                  .toString())
-                                                              .toStringAsFixed(
-                                                                  1),
-                                                          style:
-                                                              const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      child: Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/home/usaha_slider.png',
-                                            fit: BoxFit.cover,
-                                            height: 200.0,
-                                            color:
-                                                Colors.black.withOpacity(0.6),
-                                            colorBlendMode: BlendMode.darken,
-                                          ),
-                                          Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              color:
-                                                  Colors.black.withOpacity(0.5),
-                                              child: const Text(
-                                                'Jenis Usaha',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Colors.black54,
-                                                  Colors.transparent,
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Obx(
-                                              () => controller
-                                                      .isProcessing.value
-                                                  ? const Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: Colors.white,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaJenisUsaha ==
-                                                          null
-                                                      ? const Text(
-                                                          'N/A',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : Text(
-                                                          double.parse(controller
-                                                                  .insightDebitur
-                                                                  .value
-                                                                  .analisaJenisUsaha!
-                                                                  .totalCrrUsaha
-                                                                  .toString())
-                                                              .toStringAsFixed(
-                                                                  1),
-                                                          style:
-                                                              const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.all(8.0),
-                                  child: ClipRRect(
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(5.0)),
-                                      child: Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Image.asset(
-                                            'assets/images/home/agunan_slider.png',
-                                            fit: BoxFit.cover,
-                                            height: 200.0,
-                                            color:
-                                                Colors.black.withOpacity(0.6),
-                                            colorBlendMode: BlendMode.darken,
-                                          ),
-                                          Align(
-                                            alignment: Alignment.topCenter,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              color:
-                                                  Colors.black.withOpacity(0.5),
-                                              child: const Text(
-                                                'Agunan',
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Colors.black54,
-                                                  Colors.transparent,
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter,
-                                              ),
-                                            ),
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Obx(
-                                              () => controller
-                                                      .isProcessing.value
-                                                  ? const Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        color: Colors.white,
-                                                      ),
-                                                    )
-                                                  : controller
-                                                              .insightDebitur
-                                                              .value
-                                                              .analisaAgunan ==
-                                                          null
-                                                      ? const Text(
-                                                          'N/A',
-                                                          style: TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        )
-                                                      : Text(
-                                                          double.parse(controller
-                                                                  .insightDebitur
-                                                                  .value
-                                                                  .analisaAgunan!
-                                                                  .totalCrrAgunan
-                                                                  .toString())
-                                                              .toStringAsFixed(
-                                                                  1),
-                                                          style:
-                                                              const TextStyle(
-                                                            color: Colors.white,
-                                                            fontSize: 30.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                          ),
-                                                        ),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            GFButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.INPUT_PRINT,
-                                    arguments: controller.insightDebitur.value);
-                              },
-                              color: primaryColor,
-                              shape: GFButtonShape.pills,
-                              text: 'Lihat Hasil Inputan',
-                              icon: const Icon(
-                                Icons.summarize_outlined,
-                                size: 18,
-                                color: secondaryColor,
-                              ),
-                              fullWidthButton: true,
-                              size: GFSize.LARGE,
-                            ),
-                            const SizedBox(height: 10),
-                            GFButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.USULAN_PRINT,
-                                    arguments: controller.insightDebitur.value);
-                              },
-                              color: primaryColor,
-                              shape: GFButtonShape.pills,
-                              text: 'Lihat Draft Usulan',
-                              icon: const Icon(
-                                Icons.summarize_outlined,
-                                size: 18,
-                                color: secondaryColor,
-                              ),
-                              fullWidthButton: true,
-                              size: GFSize.LARGE,
-                            ),
-                            const SizedBox(height: 10),
-                            GFButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.USULAN_BARU_PRINT,
-                                    arguments: controller.insightDebitur.value);
-                              },
-                              color: primaryColor,
-                              shape: GFButtonShape.pills,
-                              text: 'Lihat Draft Usulan Baru',
-                              icon: const Icon(
-                                Icons.summarize_outlined,
-                                size: 18,
-                                color: secondaryColor,
-                              ),
-                              fullWidthButton: true,
-                              size: GFSize.LARGE,
-                            ),
-                            const SizedBox(height: 10),
-                            GFButton(
-                              onPressed: () {
-                                Get.toNamed(Routes.PUTUSAN_PRINT,
-                                    arguments: controller.insightDebitur.value);
-                              },
-                              color: primaryColor,
-                              shape: GFButtonShape.pills,
-                              text: 'Lihat Draft Putusan',
-                              icon: const Icon(
-                                Icons.summarize_outlined,
-                                size: 18,
-                                color: secondaryColor,
-                              ),
-                              fullWidthButton: true,
-                              size: GFSize.LARGE,
-                            ),
-                            const SizedBox(height: 10),
-                            FormBuilderCheckbox(
-                              name: 'inputan',
-                              onChanged: (value) {
-                                controller.isInputanRead.value = value!;
-                              },
-                              initialValue: controller.isInputanRead.value,
-                              title: RichText(
-                                text: const TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text:
-                                          'Saya sudah melihat inputan debitur',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              validator: FormBuilderValidators.equal(
-                                true,
-                                errorText: 'Saya sudah melihat inputan debitur',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  Container(
-                    color: Colors.grey[200],
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const GFTypography(
-                              text: 'Tanggapan Analis',
-                              type: GFTypographyType.typo3,
-                              showDivider: false,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Ini adalah tanggapan analis terhadap pengajuan ini',
-                              style:
-                                  Theme.of(context).textTheme.bodySmall?.merge(
-                                        const TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                            ),
-                            ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount:
-                                  controller.pengajuan.bahasanAnalis?.length ??
-                                      0,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 8),
-                                  child: Text(
-                                    '${index + 1}. ${controller.pengajuan.bahasanAnalis?[index]}',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.merge(
-                                          const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  KeuanganCard(controller: controller),
-                  const SizedBox(height: 20),
-                  KarakterCard(controller: controller),
-                  const SizedBox(height: 20),
-                  BisnisCard(controller: controller),
-                  const SizedBox(height: 20),
-                  UsahaCard(controller: controller),
-                  const SizedBox(height: 20),
-                  AgunanCard(controller: controller),
-                  const SizedBox(height: 20),
-                  Text(
-                    'Untuk beberapa parameter dibawah ini hanya untuk tambahan saja dan tidak masuk kedalam penilaian :',
-                    style: Theme.of(context).textTheme.bodySmall?.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                  ),
-                  const SizedBox(height: 20),
-                  GalleryCard(controller: controller),
-                  const SizedBox(height: 20),
-                  Container(
-                    color: Colors.grey[200],
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: [
-                            const GFTypography(
-                              text: 'Tanggapan Reviewer',
-                              type: GFTypographyType.typo3,
-                              showDivider: false,
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
-                              style:
-                                  Theme.of(context).textTheme.bodySmall?.merge(
-                                        const TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                            ),
-                            const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(''),
-                                Row(
-                                  children: [
-                                    GFIconButton(
-                                      shape: GFIconButtonShape.circle,
-                                      size: GFSize.SMALL,
-                                      color: GFColors.SUCCESS,
-                                      onPressed: () {
-                                        list.add(
-                                          // Get dynamic string from textfield
-                                          controller.formKey.currentState
-                                              ?.fields['name']?.value,
-                                        );
-                                      },
-                                      icon: const Icon(Icons.add),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    GFIconButton(
-                                      color: GFColors.DANGER,
-                                      size: GFSize.SMALL,
-                                      shape: GFIconButtonShape.circle,
-                                      onPressed: () {
-                                        list.removeLast();
-                                        controller.formKey.currentState
-                                            ?.removeInternalFieldValue(
-                                                'name${list.length}',
-                                                isSetState: true);
-                                        debugPrint('list: $list');
-                                      },
-                                      icon: const Icon(Icons.remove),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Obx(() {
-                              if (list.isEmpty) {
-                                return Column(
-                                  children: const [
-                                    Center(
-                                      child: Text(
-                                        'Tambahkan Tanggapan Reviewer',
-                                        style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 20),
-                                  ],
-                                );
-                              } else {
-                                return SizedBox(
-                                  height: 400,
-                                  child: Scrollbar(
-                                    child: ListView.builder(
-                                      itemCount: list.length,
-                                      itemBuilder: (context, index) {
-                                        return myWidget(index);
-                                      },
-                                    ),
-                                  ),
-                                );
-                              }
-                            })
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  GFButton(
-                    onPressed: () {
-                      if (controller.formKey.currentState!.saveAndValidate()) {
-                        // controller.submit();
-                        debugPrint(
-                            controller.formKey.currentState!.value.toString());
-                        Get.dialog(
-                          AlertDialog(
-                            title: const Text(
-                              'Submit',
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            content: const Text(
-                              'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?',
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                            actions: [
-                              GFButton(
-                                color: GFColors.DANGER,
-                                size: GFSize.LARGE,
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: const Text('Tidak'),
-                              ),
-                              GFButton(
-                                color: GFColors.SUCCESS,
-                                size: GFSize.LARGE,
-                                onPressed: () {
-                                  var list =
-                                      controller.formKey.currentState!.value;
-
-                                  // Transform map to list
-                                  var list2 = list.entries.toList();
-
-                                  // // remove MapEntry and key
-                                  list2.removeWhere(
-                                    (element) =>
-                                        element.key == 'pemutus' ||
-                                        element.key == 'tglReview' ||
-                                        element.key == 'inputan' ||
-                                        element.key == 'keuangan' ||
-                                        element.key == 'karakter' ||
-                                        element.key == 'bisnis' ||
-                                        element.key == 'usaha' ||
-                                        element.key == 'agunan' ||
-                                        element.key == 'berkas',
                                   );
-
-                                  // debugPrint('list2: $list2');
-
-                                  // Transform list2 to list of string
-                                  var list3 =
-                                      list2.map((e) => e.value).toList();
-
-                                  // list3.removeWhere((element) => element.k)
-
-                                  // transform list3 to string
-                                  list3 =
-                                      list3.map((e) => e.toString()).toList();
-
-                                  controller.bahasanReviewer = list3;
-
-                                  var listFinal = controller.bahasanReviewer;
-
-                                  debugPrint(listFinal.toString());
-
-                                  Navigator.pop(context);
-                                  controller.saveReview();
                                 },
-                                child: const Text('Ya'),
                               ),
                             ],
                           ),
-                        );
-                      } else {
-                        debugPrint('validation failed');
-                      }
-                    },
-                    text: 'Submit',
-                    shape: GFButtonShape.square,
-                    color: GFColors.SUCCESS,
-                    fullWidthButton: true,
-                    size: GFSize.LARGE,
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 20),
+                    KeuanganCard(controller: controller),
+                    const SizedBox(height: 20),
+                    KarakterCard(controller: controller),
+                    const SizedBox(height: 20),
+                    BisnisCard(controller: controller),
+                    const SizedBox(height: 20),
+                    UsahaCard(controller: controller),
+                    const SizedBox(height: 20),
+                    AgunanCard(controller: controller),
+                    const SizedBox(height: 20),
+                    Text(
+                      'Untuk beberapa parameter dibawah ini hanya untuk tambahan saja dan tidak masuk kedalam penilaian :',
+                      style: Theme.of(context).textTheme.bodySmall?.merge(
+                            const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                    ),
+                    const SizedBox(height: 20),
+                    GalleryCard(controller: controller),
+                    const SizedBox(height: 20),
+                    Container(
+                      color: Colors.grey[200],
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const GFTypography(
+                                text: 'Tanggapan Reviewer',
+                                type: GFTypographyType.typo3,
+                                showDivider: false,
+                              ),
+                              const SizedBox(height: 10),
+                              Text(
+                                'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.merge(
+                                      const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(''),
+                                  Row(
+                                    children: [
+                                      GFIconButton(
+                                        shape: GFIconButtonShape.circle,
+                                        size: GFSize.SMALL,
+                                        color: GFColors.SUCCESS,
+                                        onPressed: () {
+                                          list.add(
+                                            // Get dynamic string from textfield
+                                            controller.formKey.currentState
+                                                ?.fields['name']?.value,
+                                          );
+                                        },
+                                        icon: const Icon(Icons.add),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      GFIconButton(
+                                        color: GFColors.DANGER,
+                                        size: GFSize.SMALL,
+                                        shape: GFIconButtonShape.circle,
+                                        onPressed: () {
+                                          list.removeLast();
+                                          controller.formKey.currentState
+                                              ?.removeInternalFieldValue(
+                                                  'name${list.length}',
+                                                  isSetState: true);
+                                          debugPrint('list: $list');
+                                        },
+                                        icon: const Icon(Icons.remove),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Obx(() {
+                                if (list.isEmpty) {
+                                  return Column(
+                                    children: const [
+                                      Center(
+                                        child: Text(
+                                          'Tambahkan Tanggapan Reviewer',
+                                          style: TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(height: 20),
+                                    ],
+                                  );
+                                } else {
+                                  return SizedBox(
+                                    height: 400,
+                                    child: Scrollbar(
+                                      child: ListView.builder(
+                                        itemCount: list.length,
+                                        itemBuilder: (context, index) {
+                                          return myWidget(index);
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                }
+                              })
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    GFButton(
+                      onPressed: () {
+                        if (controller.formKey.currentState!
+                            .saveAndValidate()) {
+                          // controller.submit();
+                          debugPrint(controller.formKey.currentState!.value
+                              .toString());
+                          Get.dialog(
+                            AlertDialog(
+                              title: const Text(
+                                'Submit',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              content: const Text(
+                                'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?',
+                                style: TextStyle(
+                                  fontSize: 15,
+                                ),
+                              ),
+                              actions: [
+                                GFButton(
+                                  color: GFColors.DANGER,
+                                  size: GFSize.LARGE,
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Tidak'),
+                                ),
+                                GFButton(
+                                  color: GFColors.SUCCESS,
+                                  size: GFSize.LARGE,
+                                  onPressed: () {
+                                    var list =
+                                        controller.formKey.currentState!.value;
+
+                                    // Transform map to list
+                                    var list2 = list.entries.toList();
+
+                                    // // remove MapEntry and key
+                                    list2.removeWhere(
+                                      (element) =>
+                                          element.key == 'pemutus' ||
+                                          element.key == 'tglReview' ||
+                                          element.key == 'inputan' ||
+                                          element.key == 'keuangan' ||
+                                          element.key == 'karakter' ||
+                                          element.key == 'bisnis' ||
+                                          element.key == 'usaha' ||
+                                          element.key == 'agunan' ||
+                                          element.key == 'berkas',
+                                    );
+
+                                    // debugPrint('list2: $list2');
+
+                                    // Transform list2 to list of string
+                                    var list3 =
+                                        list2.map((e) => e.value).toList();
+
+                                    // list3.removeWhere((element) => element.k)
+
+                                    // transform list3 to string
+                                    list3 =
+                                        list3.map((e) => e.toString()).toList();
+
+                                    controller.bahasanReviewer = list3;
+
+                                    var listFinal = controller.bahasanReviewer;
+
+                                    debugPrint(listFinal.toString());
+
+                                    Navigator.pop(context);
+                                    controller.saveReview();
+                                  },
+                                  child: const Text('Ya'),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          debugPrint('validation failed');
+                        }
+                      },
+                      text: 'Submit',
+                      shape: GFButtonShape.square,
+                      color: GFColors.SUCCESS,
+                      fullWidthButton: true,
+                      size: GFSize.LARGE,
+                      textStyle: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -161,6 +161,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
               onChanged: (value) {
                 controller.isInputanRead.value = value!;
               },
+              activeColor: primaryColor,
               initialValue: controller.isInputanRead.value,
               title: RichText(
                 text: const TextSpan(

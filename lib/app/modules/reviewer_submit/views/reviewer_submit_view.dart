@@ -7,6 +7,7 @@ import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_bisnis.da
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_karakter.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_keuangan.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_usaha.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -290,7 +291,13 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       buttonStyle: buttonStyle(),
                     ),
                     const SizedBox(height: 20),
-                    UsahaCard(controller: controller),
+                    ReviewerUsahaSection(
+                      controller: controller,
+                      subtitleStyle: subtitleStyle(),
+                      buttonStyle: buttonStyle(),
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
+                    ),
                     const SizedBox(height: 20),
                     AgunanCard(controller: controller),
                     const SizedBox(height: 20),

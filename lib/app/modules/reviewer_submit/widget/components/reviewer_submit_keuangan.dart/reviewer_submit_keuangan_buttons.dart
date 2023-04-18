@@ -28,13 +28,6 @@ class ReviewerSubmitKeuanganButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle subtitleStyle() {
-      return TextStyle(
-        fontSize: 18,
-        color: Colors.grey[600],
-      );
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

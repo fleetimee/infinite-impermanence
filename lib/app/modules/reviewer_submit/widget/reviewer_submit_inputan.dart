@@ -17,6 +17,7 @@ class ResultInputSection extends StatelessWidget {
   final Icon iconNotYet;
   final Icon iconDone;
   final TextStyle buttonStyle;
+  final TextStyle subtitleStyle;
 
   const ResultInputSection({
     super.key,
@@ -24,19 +25,15 @@ class ResultInputSection extends StatelessWidget {
     required this.iconNotYet,
     required this.iconDone,
     required this.buttonStyle,
+    required this.subtitleStyle,
   });
 
   @override
   Widget build(BuildContext context) {
-    TextStyle subtitleStyle = TextStyle(
-      fontSize: 18,
-      color: Colors.grey[600],
-    );
-
     return Container(
       color: Colors.grey[200],
       child: Card(
-        elevation: 2,
+        elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -50,8 +47,9 @@ class ResultInputSection extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                  'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
-                  style: subtitleStyle),
+                'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
+                style: subtitleStyle,
+              ),
               const SizedBox(height: 10),
               Scoring(
                 controller: controller,

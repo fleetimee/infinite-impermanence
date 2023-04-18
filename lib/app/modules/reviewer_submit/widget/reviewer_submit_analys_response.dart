@@ -11,23 +11,21 @@ class AnalysResponse extends StatelessWidget {
   const AnalysResponse({
     super.key,
     required this.controller,
+    required this.subtitleStyle,
   });
 
   final ReviewerSubmitController controller;
+  final TextStyle subtitleStyle;
 
   @override
   Widget build(BuildContext context) {
-    TextStyle subtitleStyle = TextStyle(
-      fontSize: 18,
-      color: Colors.grey[600],
-    );
-
     return Container(
       color: Colors.grey[200],
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
+        elevation: 6,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

@@ -17,6 +17,11 @@ class AnalysResponse extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextStyle subtitleStyle = TextStyle(
+      fontSize: 18,
+      color: Colors.grey[600],
+    );
+
     return Container(
       color: Colors.grey[200],
       child: Card(
@@ -36,12 +41,9 @@ class AnalysResponse extends StatelessWidget {
               const SizedBox(height: 10),
               Text(
                 'Ini adalah tanggapan analis terhadap pengajuan ini',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
+                style: subtitleStyle,
               ),
+              const SizedBox(height: 10),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -53,8 +55,8 @@ class AnalysResponse extends StatelessWidget {
                       '${index + 1}. ${controller.pengajuan.bahasanAnalis?[index]}',
                       style: Theme.of(context).textTheme.bodySmall?.merge(
                             const TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                     ),

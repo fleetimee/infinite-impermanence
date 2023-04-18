@@ -2,8 +2,9 @@
 import 'dart:convert';
 
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan_analys_response.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_analys_response.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_keuangan.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -90,6 +91,29 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
   }
 
   var list = List.empty(growable: true).obs;
+
+  Icon iconNotYet() {
+    return const Icon(
+      Icons.info_outline,
+      color: Colors.red,
+      size: 40,
+    );
+  }
+
+  Icon iconDone() {
+    return const Icon(
+      Icons.check_circle_outline,
+      color: Colors.green,
+      size: 40,
+    );
+  }
+
+  TextStyle buttonStyle() {
+    return const TextStyle(
+      fontSize: 20,
+      color: secondaryColor,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -200,13 +224,21 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     const SizedBox(height: 20),
                     ResultInputSection(
                       controller: controller,
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
+                      buttonStyle: buttonStyle(),
                     ),
                     const SizedBox(height: 20),
                     AnalysResponse(
                       controller: controller,
                     ),
                     const SizedBox(height: 20),
-                    KeuanganCard(controller: controller),
+                    ReviewerKeuanganSection(
+                      controller: controller,
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
+                      buttonStyle: buttonStyle(),
+                    ),
                     const SizedBox(height: 20),
                     KarakterCard(controller: controller),
                     const SizedBox(height: 20),
@@ -896,152 +928,6 @@ class KarakterCard extends StatelessWidget {
                   controller.isKarakterPressed.value = true;
                 },
                 validator: FormBuilderValidators.required(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class KeuanganCard extends StatelessWidget {
-  const KeuanganCard({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final ReviewerSubmitController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    flex: 6,
-                    child: GFTypography(
-                      text: 'Keuangan Debitur',
-                      type: GFTypographyType.typo3,
-                      showDivider: false,
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => Icon(
-                        controller.isKeuanganPressed.value == true
-                            ? Icons.check_box
-                            : Icons.close,
-                        color: controller.isKeuanganPressed.value == true
-                            ? Colors.green
-                            : Colors.transparent,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Ini merupakan rekapan keuangan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.RUGILABA_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: primaryColor,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Laporan Keuangan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.NERACA_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: primaryColor,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Keterangan Neraca',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.KEUANGAN_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: primaryColor,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Analisa Keuangan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              Center(
-                child: FormBuilderRadioGroup(
-                  name: 'keuangan',
-                  wrapAlignment: WrapAlignment.center,
-                  onChanged: (value) {
-                    // if clicked then change isPressed to true
-                    controller.isKeuanganPressed.value = true;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Apakah keuangan debitur ini layak?',
-                    floatingLabelAlignment: FloatingLabelAlignment.center,
-                    labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                    border: InputBorder.none,
-                    alignLabelWithHint: true,
-                  ),
-                  options: const [
-                    FormBuilderFieldOption(
-                      value: true,
-                      child: Text('👍 Ya'),
-                    ),
-                    FormBuilderFieldOption(
-                      value: false,
-                      child: Text('👎 Tidak'),
-                    ),
-                  ],
-                  validator: FormBuilderValidators.required(),
-                ),
               ),
             ],
           ),

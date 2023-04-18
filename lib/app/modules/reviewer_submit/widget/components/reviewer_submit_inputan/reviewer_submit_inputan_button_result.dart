@@ -16,44 +16,25 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
   const ReviewerSubmitButtonResult({
     super.key,
     required this.controller,
+    required this.iconNotYet,
+    required this.iconDone,
+    required this.buttonStyle,
   });
 
   final ReviewerSubmitController controller;
+  final Icon iconNotYet;
+  final Icon iconDone;
+  final TextStyle buttonStyle;
 
   @override
   Widget build(BuildContext context) {
-    Icon iconNotYet() {
-      return const Icon(
-        Icons.info_outline,
-        color: Colors.red,
-        size: 40,
-      );
-    }
-
-    Icon iconDone() {
-      return const Icon(
-        Icons.check_circle_outline,
-        color: Colors.green,
-        size: 40,
-      );
-    }
-
-    TextStyle buttonStyle() {
-      return const TextStyle(
-        fontSize: 20,
-        color: secondaryColor,
-      );
-    }
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             Obx(
-              () => controller.isHasilInputanRead.value
-                  ? iconDone()
-                  : iconNotYet(),
+              () => controller.isHasilInputanRead.value ? iconDone : iconNotYet,
             ),
             const SizedBox(width: 5),
             Expanded(
@@ -67,7 +48,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
                 color: primaryColor,
                 shape: GFButtonShape.pills,
                 text: 'Cek Inputan',
-                textStyle: buttonStyle(),
+                textStyle: buttonStyle,
                 size: GFSize.LARGE,
                 fullWidthButton: true,
               ),
@@ -78,9 +59,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
         Row(
           children: [
             Obx(
-              () => controller.isDraftUsulanRead.value
-                  ? iconDone()
-                  : iconNotYet(),
+              () => controller.isDraftUsulanRead.value ? iconDone : iconNotYet,
             ),
             const SizedBox(width: 5),
             Expanded(
@@ -94,7 +73,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
                 color: primaryColor,
                 shape: GFButtonShape.pills,
                 text: 'Cek Draft Usulan',
-                textStyle: buttonStyle(),
+                textStyle: buttonStyle,
                 fullWidthButton: true,
                 size: GFSize.LARGE,
               ),
@@ -105,7 +84,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
         Row(
           children: [
             Obx(
-              () => controller.isUsulanRead.value ? iconDone() : iconNotYet(),
+              () => controller.isUsulanRead.value ? iconDone : iconNotYet,
             ),
             const SizedBox(width: 5),
             Expanded(
@@ -119,7 +98,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
                 color: primaryColor,
                 shape: GFButtonShape.pills,
                 text: 'Cek Draft Usulan Baru',
-                textStyle: buttonStyle(),
+                textStyle: buttonStyle,
                 fullWidthButton: true,
                 size: GFSize.LARGE,
               ),
@@ -129,9 +108,9 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            Obx(() => controller.isDraftPutusanRead.value
-                ? iconDone()
-                : iconNotYet()),
+            Obx(
+              () => controller.isDraftPutusanRead.value ? iconDone : iconNotYet,
+            ),
             const SizedBox(width: 5),
             Expanded(
               child: GFButton(
@@ -144,7 +123,7 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
                 color: primaryColor,
                 shape: GFButtonShape.pills,
                 text: 'Cek Draft Putusan',
-                textStyle: buttonStyle(),
+                textStyle: buttonStyle,
                 fullWidthButton: true,
                 size: GFSize.LARGE,
               ),
@@ -161,16 +140,25 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
               onChanged: (value) {
                 controller.isInputanRead.value = value!;
               },
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
               activeColor: primaryColor,
               initialValue: controller.isInputanRead.value,
               title: RichText(
-                text: const TextSpan(
+                text: TextSpan(
                   children: [
                     TextSpan(
                       text: 'Saya sudah melihat inputan debitur',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
+                        backgroundColor: controller.isUsulanRead.value &&
+                                controller.isDraftPutusanRead.value &&
+                                controller.isDraftUsulanRead.value &&
+                                controller.isHasilInputanRead.value
+                            ? Colors.transparent
+                            : Colors.grey[400],
                       ),
                     ),
                   ],

@@ -14,14 +14,25 @@ import '../controllers/reviewer_submit_controller.dart';
 
 class ResultInputSection extends StatelessWidget {
   final ReviewerSubmitController controller;
+  final Icon iconNotYet;
+  final Icon iconDone;
+  final TextStyle buttonStyle;
 
   const ResultInputSection({
     super.key,
     required this.controller,
+    required this.iconNotYet,
+    required this.iconDone,
+    required this.buttonStyle,
   });
 
   @override
   Widget build(BuildContext context) {
+    TextStyle subtitleStyle = TextStyle(
+      fontSize: 18,
+      color: Colors.grey[600],
+    );
+
     return Container(
       color: Colors.grey[200],
       child: Card(
@@ -39,13 +50,8 @@ class ResultInputSection extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
+                  'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
+                  style: subtitleStyle),
               const SizedBox(height: 10),
               Scoring(
                 controller: controller,
@@ -56,6 +62,9 @@ class ResultInputSection extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ReviewerSubmitButtonResult(
+                iconDone: iconDone,
+                iconNotYet: iconNotYet,
+                buttonStyle: buttonStyle,
                 controller: controller,
               ),
             ],

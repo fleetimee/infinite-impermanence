@@ -16,10 +16,16 @@ class ReviewerKarakterSection extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.subtitleStyle,
+    required this.iconNotYet,
+    required this.iconDone,
+    required this.buttonStyle,
   }) : super(key: key);
 
   final ReviewerSubmitController controller;
   final TextStyle subtitleStyle;
+  final TextStyle buttonStyle;
+  final Icon iconNotYet;
+  final Icon iconDone;
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +75,9 @@ class ReviewerKarakterSection extends StatelessWidget {
               const SizedBox(height: 20),
               ReviewerSubmitKarakterButton(
                 controller: controller,
+                iconDone: iconDone,
+                iconNotYet: iconNotYet,
+                buttonStyle: buttonStyle,
               ),
             ],
           ),

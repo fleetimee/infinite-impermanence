@@ -65,6 +65,8 @@ class ReviewerSubmitController extends GetxController {
   var isKeteranganNeracaRead = false.obs;
   var isAnalisaKeuanganRead = false.obs;
 
+  var isAnalisisKarakterRead = false.obs;
+
   void getRating() async {
     var debtor = insightDebitur.value;
 

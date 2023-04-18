@@ -123,6 +123,28 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
     );
   }
 
+  TextStyle promptText(Color backgroundColor, BuildContext context) {
+    return Theme.of(context).textTheme.bodySmall!.merge(
+          TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+            backgroundColor: backgroundColor,
+          ),
+        );
+  }
+
+  TextStyle promptTextSubtitle(Color backgroundColor, BuildContext context) {
+    return Theme.of(context).textTheme.bodySmall!.merge(
+          TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: Colors.black87,
+            backgroundColor: backgroundColor,
+          ),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -253,7 +275,10 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     const SizedBox(height: 20),
                     ReviewerKarakterSection(
                       controller: controller,
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
                       subtitleStyle: subtitleStyle(),
+                      buttonStyle: buttonStyle(),
                     ),
                     const SizedBox(height: 20),
                     BisnisCard(controller: controller),

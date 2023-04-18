@@ -1,5 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/reviewer_submit/controllers/reviewer_submit_controller.dart';
+import 'package:akm/app/widget/dialog_box.dart';
+import 'package:akm/app/widget/simple_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -131,42 +133,63 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
-        Obx(() => FormBuilderCheckbox(
-              name: 'inputan',
-              enabled: controller.isUsulanRead.value &&
-                  controller.isDraftPutusanRead.value &&
-                  controller.isDraftUsulanRead.value &&
-                  controller.isHasilInputanRead.value,
-              onChanged: (value) {
-                controller.isInputanRead.value = value!;
+        Obx(() => GestureDetector(
+              onTap: () {
+                if (!controller.isUsulanRead.value &&
+                    !controller.isDraftPutusanRead.value &&
+                    !controller.isDraftUsulanRead.value &&
+                    !controller.isHasilInputanRead.value) {
+                  ErrorDialog(
+                    title: 'Inputan Belum Dilihat',
+                    desc:
+                        'Beberapa inputan belum dilihat, silahkan cek kembali',
+                    context: context,
+                    btnOkOnPress: () {},
+                  ).show();
+                }
               },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-              ),
-              activeColor: primaryColor,
-              initialValue: controller.isInputanRead.value,
-              title: RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Saya sudah melihat inputan debitur',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        backgroundColor: controller.isUsulanRead.value &&
-                                controller.isDraftPutusanRead.value &&
-                                controller.isDraftUsulanRead.value &&
-                                controller.isHasilInputanRead.value
-                            ? Colors.transparent
-                            : Colors.grey[400],
-                      ),
-                    ),
-                  ],
+              child: FormBuilderCheckbox(
+                name: 'inputan',
+                enabled: controller.isUsulanRead.value &&
+                    controller.isDraftPutusanRead.value &&
+                    controller.isDraftUsulanRead.value &&
+                    controller.isHasilInputanRead.value,
+                onChanged: (value) {
+                  controller.isInputanRead.value = value!;
+
+                  // Make snackbar
+                  if (controller.isInputanRead.value == true) {
+                    CustomSnackBar.show(context, 'Inputan sudah dilihat');
+                  }
+                },
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
                 ),
-              ),
-              validator: FormBuilderValidators.equal(
-                true,
-                errorText: 'Saya sudah melihat inputan debitur',
+                activeColor: primaryColor,
+                initialValue: controller.isInputanRead.value,
+                title: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Saya sudah melihat inputan debitur',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          backgroundColor: controller.isUsulanRead.value &&
+                                  controller.isDraftPutusanRead.value &&
+                                  controller.isDraftUsulanRead.value &&
+                                  controller.isHasilInputanRead.value
+                              ? Colors.transparent
+                              : Colors.grey[400],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                validator: FormBuilderValidators.equal(
+                  true,
+                  errorText: 'Saya sudah melihat inputan debitur',
+                ),
               ),
             )),
       ],

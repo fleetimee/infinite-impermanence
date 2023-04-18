@@ -2,6 +2,7 @@
 
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/reviewer_submit/controllers/reviewer_submit_controller.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -86,49 +87,62 @@ class ReviewerSubmitBisnisButton extends StatelessWidget {
           height: 10,
         ),
         Obx(
-          () => FormBuilderRadioGroup(
-            name: 'bisnis',
-            enabled: controller.isAnalisisBisnisRead.value,
-            wrapAlignment: WrapAlignment.center,
-            onChanged: (value) {
-              // if clicked then change isPressed to true
-              controller.isBisnisPressed.value = true;
+          () => GestureDetector(
+            onTap: () {
+              if (!controller.isAnalisisBisnisRead.value) {
+                // Show snackbar indicating that the radio group is disabled
+                ErrorDialog(
+                  title: 'Analisa Bisnis Belum Dibaca',
+                  desc: 'Silahkan baca analisa bisnis terlebih dahulu',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              }
             },
-            decoration: InputDecoration(
-              labelText: 'Apakah bisnis debitur ini layak?',
-              floatingLabelAlignment: FloatingLabelAlignment.center,
-              labelStyle: promptText(
-                  controller.isAnalisisBisnisRead.value
-                      ? Colors.transparent
-                      : Colors.grey[400]!,
-                  context),
-              border: InputBorder.none,
-              alignLabelWithHint: true,
-            ),
-            options: [
-              FormBuilderFieldOption(
-                value: true,
-                child: Text(
-                  'YA',
-                  style: promptTextSubtitle(
+            child: FormBuilderRadioGroup(
+              name: 'bisnis',
+              enabled: controller.isAnalisisBisnisRead.value,
+              wrapAlignment: WrapAlignment.center,
+              onChanged: (value) {
+                // if clicked then change isPressed to true
+                controller.isBisnisPressed.value = true;
+              },
+              decoration: InputDecoration(
+                labelText: 'Apakah bisnis debitur ini layak?',
+                floatingLabelAlignment: FloatingLabelAlignment.center,
+                labelStyle: promptText(
                     controller.isAnalisisBisnisRead.value
                         ? Colors.transparent
                         : Colors.grey[400]!,
-                    context,
+                    context),
+                border: InputBorder.none,
+                alignLabelWithHint: true,
+              ),
+              options: [
+                FormBuilderFieldOption(
+                  value: true,
+                  child: Text(
+                    'YA',
+                    style: promptTextSubtitle(
+                      controller.isAnalisisBisnisRead.value
+                          ? Colors.transparent
+                          : Colors.grey[400]!,
+                      context,
+                    ),
                   ),
                 ),
-              ),
-              FormBuilderFieldOption(
-                value: false,
-                child: Text('TIDAK',
-                    style: promptTextSubtitle(
-                        controller.isAnalisisBisnisRead.value
-                            ? Colors.transparent
-                            : Colors.grey[400]!,
-                        context)),
-              ),
-            ],
-            validator: FormBuilderValidators.required(),
+                FormBuilderFieldOption(
+                  value: false,
+                  child: Text('TIDAK',
+                      style: promptTextSubtitle(
+                          controller.isAnalisisBisnisRead.value
+                              ? Colors.transparent
+                              : Colors.grey[400]!,
+                          context)),
+                ),
+              ],
+              validator: FormBuilderValidators.required(),
+            ),
           ),
         ),
       ],

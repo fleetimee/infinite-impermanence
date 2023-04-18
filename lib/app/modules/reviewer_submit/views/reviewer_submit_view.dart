@@ -2,6 +2,7 @@
 import 'dart:convert';
 
 // 🐦 Flutter imports:
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_agunan.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_analys_response.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_bisnis.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan.dart';
@@ -299,7 +300,13 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       iconNotYet: iconNotYet(),
                     ),
                     const SizedBox(height: 20),
-                    AgunanCard(controller: controller),
+                    ReviewerAgunanSection(
+                      controller: controller,
+                      buttonStyle: buttonStyle(),
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
+                      subtitleStyle: subtitleStyle(),
+                    ),
                     const SizedBox(height: 20),
                     Text(
                       'Untuk beberapa parameter dibawah ini hanya untuk tambahan saja dan tidak masuk kedalam penilaian :',
@@ -516,250 +523,6 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AgunanCard extends StatelessWidget {
-  const AgunanCard({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final ReviewerSubmitController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    flex: 6,
-                    child: GFTypography(
-                      text: 'Agunan Debitur',
-                      type: GFTypographyType.typo3,
-                      showDivider: false,
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => Icon(
-                        controller.isAgunanPressed.value == true
-                            ? Icons.check_box
-                            : Icons.close,
-                        color: controller.isAgunanPressed.value == true
-                            ? Colors.green
-                            : Colors.transparent,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Ini merupakan rekapan agunan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.AGUNAN_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: primaryColor,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Analisa Agunan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.DETAIL_AGUNAN,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: primaryColor,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Detail Agunan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              FormBuilderRadioGroup(
-                name: 'agunan',
-                wrapAlignment: WrapAlignment.center,
-                onChanged: (value) {
-                  // if clicked then change isPressed to true
-                  controller.isAgunanPressed.value = true;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Apakah bisnis debitur ini layak?',
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                        const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                  border: InputBorder.none,
-                  alignLabelWithHint: true,
-                ),
-                options: const [
-                  FormBuilderFieldOption(
-                    value: true,
-                    child: Text('👍 Ya'),
-                  ),
-                  FormBuilderFieldOption(
-                    value: false,
-                    child: Text('👎 Tidak'),
-                  ),
-                ],
-                validator: FormBuilderValidators.required(),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class UsahaCard extends StatelessWidget {
-  const UsahaCard({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final ReviewerSubmitController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(9),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    flex: 6,
-                    child: GFTypography(
-                      text: 'Jenis Usaha Debitur',
-                      type: GFTypographyType.typo3,
-                      showDivider: false,
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => Icon(
-                        controller.isUsahaPressed.value == true
-                            ? Icons.check_box
-                            : Icons.close,
-                        color: controller.isUsahaPressed.value == true
-                            ? Colors.green
-                            : Colors.transparent,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                'Ini merupakan rekapan jenis usaha debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.USAHA_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                text: 'Lihat Summary Jenis Usaha',
-                color: primaryColor,
-                shape: GFButtonShape.pills,
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              FormBuilderRadioGroup(
-                name: 'usaha',
-                wrapAlignment: WrapAlignment.center,
-                onChanged: (value) {
-                  // if clicked then change isPressed to true
-                  controller.isUsahaPressed.value = true;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Apakah jenis usaha debitur ini layak?',
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                        const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                  border: InputBorder.none,
-                  alignLabelWithHint: true,
-                ),
-                options: const [
-                  FormBuilderFieldOption(
-                    value: true,
-                    child: Text('👍 Ya'),
-                  ),
-                  FormBuilderFieldOption(
-                    value: false,
-                    child: Text('👎 Tidak'),
-                  ),
-                ],
-                validator: FormBuilderValidators.required(),
-              )
-            ],
           ),
         ),
       ),

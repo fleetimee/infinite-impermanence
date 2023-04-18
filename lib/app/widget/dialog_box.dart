@@ -29,6 +29,9 @@ class ErrorDialog extends AwesomeDialog {
   }) : super(
           context: context,
           animType: AnimType.scale,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           dialogType: DialogType.error,
           title: title,
           titleTextStyle: GoogleFonts.poppins(

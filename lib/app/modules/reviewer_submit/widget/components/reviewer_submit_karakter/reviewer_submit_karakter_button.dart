@@ -2,6 +2,8 @@
 
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/reviewer_submit/controllers/reviewer_submit_controller.dart';
+import 'package:akm/app/widget/dialog_box.dart';
+import 'package:akm/app/widget/simple_snackbar.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -83,47 +85,56 @@ class ReviewerSubmitKarakterButton extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         Obx(
-          () => FormBuilderRadioGroup(
-            name: 'karakter',
-            enabled: controller.isAnalisisKarakterRead.value,
-            wrapAlignment: WrapAlignment.center,
-            decoration: InputDecoration(
-              floatingLabelAlignment: FloatingLabelAlignment.center,
-              labelStyle: promptText(
-                  controller.isAnalisisKarakterRead.value
-                      ? Colors.transparent
-                      : Colors.grey[400]!,
-                  context),
-              border: InputBorder.none,
-              alignLabelWithHint: true,
-              label: const Text('Apakah karakter debitur ini layak?'),
-            ),
-            options: [
-              FormBuilderFieldOption(
-                value: true,
-                child: Text(
-                  'YA',
-                  style: promptTextSubtitle(
-                      controller.isAnalisisKarakterRead.value
-                          ? Colors.transparent
-                          : Colors.grey[400]!,
-                      context),
-                ),
-              ),
-              FormBuilderFieldOption(
-                value: false,
-                child: Text('TIDAK',
-                    style: promptTextSubtitle(
-                        controller.isAnalisisKarakterRead.value
-                            ? Colors.transparent
-                            : Colors.grey[400]!,
-                        context)),
-              ),
-            ],
-            onChanged: (value) {
-              controller.isKarakterPressed.value = true;
+          () => GestureDetector(
+            onTap: () {
+              if (!controller.isAnalisisKarakterRead.value) {
+                ErrorDialog(
+                  title: 'Analisa Karakter Belum Dibaca',
+                  desc: 'Silahkan baca analisa karakter terlebih dahulu',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              }
             },
-            validator: FormBuilderValidators.required(),
+            child: FormBuilderRadioGroup(
+              name: 'karakter',
+              activeColor: primaryColor,
+              enabled: controller.isAnalisisKarakterRead.value,
+              wrapAlignment: WrapAlignment.center,
+              decoration: InputDecoration(
+                floatingLabelAlignment: FloatingLabelAlignment.center,
+                labelStyle: promptText(Colors.transparent, context),
+                border: InputBorder.none,
+                alignLabelWithHint: true,
+                label: const Text('Apakah karakter debitur ini layak?'),
+              ),
+              options: [
+                FormBuilderFieldOption(
+                  value: true,
+                  child: Text(
+                    'YA',
+                    style: promptTextSubtitle(Colors.transparent, context),
+                  ),
+                ),
+                FormBuilderFieldOption(
+                  value: false,
+                  child: Text('TIDAK',
+                      style: promptTextSubtitle(Colors.transparent, context)),
+                ),
+              ],
+              onChanged: (value) {
+                controller.isKarakterPressed.value = true;
+
+                if (value == true) {
+                  CustomSnackBar.show(
+                      context, 'Karakter debitur ini dinyatakan LAYAK');
+                } else {
+                  CustomSnackBar.show(
+                      context, 'Karakter debitur ini dinyatakan TIDAK LAYAK');
+                }
+              },
+              validator: FormBuilderValidators.required(),
+            ),
           ),
         ),
       ],

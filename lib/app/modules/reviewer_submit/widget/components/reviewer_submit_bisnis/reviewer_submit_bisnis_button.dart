@@ -3,6 +3,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/reviewer_submit/controllers/reviewer_submit_controller.dart';
 import 'package:akm/app/widget/dialog_box.dart';
+import 'package:akm/app/widget/simple_snackbar.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -101,20 +102,29 @@ class ReviewerSubmitBisnisButton extends StatelessWidget {
             },
             child: FormBuilderRadioGroup(
               name: 'bisnis',
+              activeColor: primaryColor,
               enabled: controller.isAnalisisBisnisRead.value,
               wrapAlignment: WrapAlignment.center,
               onChanged: (value) {
                 // if clicked then change isPressed to true
                 controller.isBisnisPressed.value = true;
+
+                if (value == true) {
+                  CustomSnackBar.show(
+                    context,
+                    'Bisnis debitur ini dinyatakan LAYAK',
+                  );
+                } else {
+                  CustomSnackBar.show(
+                    context,
+                    'Bisnis debitur ini dinyatakan TIDAK LAYAK',
+                  );
+                }
               },
               decoration: InputDecoration(
                 labelText: 'Apakah bisnis debitur ini layak?',
                 floatingLabelAlignment: FloatingLabelAlignment.center,
-                labelStyle: promptText(
-                    controller.isAnalisisBisnisRead.value
-                        ? Colors.transparent
-                        : Colors.grey[400]!,
-                    context),
+                labelStyle: promptText(Colors.transparent, context),
                 border: InputBorder.none,
                 alignLabelWithHint: true,
               ),
@@ -124,9 +134,7 @@ class ReviewerSubmitBisnisButton extends StatelessWidget {
                   child: Text(
                     'YA',
                     style: promptTextSubtitle(
-                      controller.isAnalisisBisnisRead.value
-                          ? Colors.transparent
-                          : Colors.grey[400]!,
+                      Colors.transparent,
                       context,
                     ),
                   ),
@@ -134,11 +142,7 @@ class ReviewerSubmitBisnisButton extends StatelessWidget {
                 FormBuilderFieldOption(
                   value: false,
                   child: Text('TIDAK',
-                      style: promptTextSubtitle(
-                          controller.isAnalisisBisnisRead.value
-                              ? Colors.transparent
-                              : Colors.grey[400]!,
-                          context)),
+                      style: promptTextSubtitle(Colors.transparent, context)),
                 ),
               ],
               validator: FormBuilderValidators.required(),

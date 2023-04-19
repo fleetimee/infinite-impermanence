@@ -1,5 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/reviewer_submit/controllers/reviewer_submit_controller.dart';
+import 'package:akm/app/widget/dialog_box.dart';
+import 'package:akm/app/widget/simple_snackbar.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -114,79 +116,82 @@ class ReviewerSubmitKeuanganButton extends StatelessWidget {
         const SizedBox(height: 10),
         Center(
           child: Obx(
-            () => FormBuilderRadioGroup(
-              enabled: controller.isLaporanKeuanganRead.value &&
-                  controller.isAnalisaKeuanganRead.value &&
-                  controller.isKeteranganNeracaRead.value,
-              name: 'keuangan',
-              wrapAlignment: WrapAlignment.center,
-              onChanged: (value) {
-                // if clicked then change isPressed to true
-                controller.isKeuanganPressed.value = true;
+            () => GestureDetector(
+              onTap: () {
+                if (!controller.isLaporanKeuanganRead.value &&
+                    !controller.isAnalisaKeuanganRead.value &&
+                    !controller.isKeteranganNeracaRead.value) {
+                  ErrorDialog(
+                    title: 'Keuangan Belum Dilihat',
+                    desc:
+                        'Beberapa keuangan belum dilihat, silahkan cek kembali',
+                    context: context,
+                    btnOkOnPress: () {},
+                  ).show();
+                }
               },
-              activeColor: primaryColor,
-              decoration: InputDecoration(
-                labelText: 'Apakah keuangan debitur ini layak?',
-                floatingLabelAlignment: FloatingLabelAlignment.center,
-                labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                      TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                        backgroundColor:
-                            controller.isLaporanKeuanganRead.value &&
-                                    controller.isAnalisaKeuanganRead.value &&
-                                    controller.isKeteranganNeracaRead.value
-                                ? Colors.transparent
-                                : Colors.grey[400],
+              child: FormBuilderRadioGroup(
+                enabled: controller.isLaporanKeuanganRead.value &&
+                    controller.isAnalisaKeuanganRead.value &&
+                    controller.isKeteranganNeracaRead.value,
+                name: 'keuangan',
+                wrapAlignment: WrapAlignment.center,
+                onChanged: (value) {
+                  // if clicked then change isPressed to true
+                  controller.isKeuanganPressed.value = true;
+
+                  if (value == true) {
+                    CustomSnackBar.show(
+                        context, 'Keuangan Debitur dinyatakan LAYAK');
+                  } else {
+                    CustomSnackBar.show(
+                        context, 'Keuangan Debitur dinyatakan TIDAK LAYAK');
+                  }
+                },
+                activeColor: primaryColor,
+                decoration: InputDecoration(
+                  labelText: 'Apakah keuangan debitur ini layak?',
+                  floatingLabelAlignment: FloatingLabelAlignment.center,
+                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
+                        const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87,
+                        ),
                       ),
-                    ),
-                border: InputBorder.none,
-                alignLabelWithHint: true,
+                  border: InputBorder.none,
+                  alignLabelWithHint: true,
+                ),
+                options: [
+                  FormBuilderFieldOption(
+                    value: true,
+                    child: Obx(() => Text(
+                          'YA',
+                          style: Theme.of(context).textTheme.bodySmall!.merge(
+                                const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                        )),
+                  ),
+                  FormBuilderFieldOption(
+                    value: false,
+                    child: Obx(() => Text(
+                          'TIDAK',
+                          style: Theme.of(context).textTheme.bodySmall!.merge(
+                                const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black87,
+                                ),
+                              ),
+                        )),
+                  ),
+                ],
+                validator: FormBuilderValidators.required(),
               ),
-              options: [
-                FormBuilderFieldOption(
-                  value: true,
-                  child: Obx(() => Text(
-                        'YA',
-                        style: Theme.of(context).textTheme.bodySmall!.merge(
-                              TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
-                                backgroundColor: controller
-                                            .isLaporanKeuanganRead.value &&
-                                        controller
-                                            .isAnalisaKeuanganRead.value &&
-                                        controller.isKeteranganNeracaRead.value
-                                    ? Colors.transparent
-                                    : Colors.grey[400],
-                              ),
-                            ),
-                      )),
-                ),
-                FormBuilderFieldOption(
-                  value: false,
-                  child: Obx(() => Text(
-                        'TIDAK',
-                        style: Theme.of(context).textTheme.bodySmall!.merge(
-                              TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
-                                backgroundColor: controller
-                                            .isLaporanKeuanganRead.value &&
-                                        controller
-                                            .isAnalisaKeuanganRead.value &&
-                                        controller.isKeteranganNeracaRead.value
-                                    ? Colors.transparent
-                                    : Colors.grey[400],
-                              ),
-                            ),
-                      )),
-                ),
-              ],
-              validator: FormBuilderValidators.required(),
             ),
           ),
         ),

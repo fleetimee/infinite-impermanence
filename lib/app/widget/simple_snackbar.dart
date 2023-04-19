@@ -6,12 +6,11 @@ class CustomSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: primaryColor, // customize the background color
-        duration: const Duration(seconds: 1), // customize the duration
+        duration: const Duration(seconds: 2), // customize the duration
         content: Text(
           message,
           style: const TextStyle(
             fontSize: 18,
-            fontWeight: FontWeight.w500,
           ),
         ),
 

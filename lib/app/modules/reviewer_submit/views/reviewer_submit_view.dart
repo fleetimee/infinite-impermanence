@@ -148,6 +148,8 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
         );
   }
 
+  final _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,6 +159,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
           child: Container(
             padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
+              controller: _scrollController,
               child: FormBuilder(
                 key: controller.formKey,
                 child: Column(

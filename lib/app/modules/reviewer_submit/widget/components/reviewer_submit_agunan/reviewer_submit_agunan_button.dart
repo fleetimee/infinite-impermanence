@@ -3,6 +3,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/reviewer_submit/controllers/reviewer_submit_controller.dart';
 import 'package:akm/app/widget/dialog_box.dart';
+import 'package:akm/app/widget/simple_snackbar.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -116,65 +117,60 @@ class ReviewerAgunanSectionButton extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
-        Obx(() => GestureDetector(
-              onTap: () {
-                if (!controller.isDetailAgunanRead.value &&
-                    !controller.isAnalisaAgunanRead.value) {
-                  ErrorDialog(
-                    title: 'Perhatian',
-                    desc:
-                        'Silahkan cek detail agunan dan analisa agunan terlebih dahulu',
-                    context: context,
-                    btnOkOnPress: () {},
-                  ).show();
+        Obx(
+          () => GestureDetector(
+            onTap: () {
+              if (!controller.isDetailAgunanRead.value &&
+                  !controller.isAnalisaAgunanRead.value) {
+                ErrorDialog(
+                  title: 'Perhatian',
+                  desc:
+                      'Silahkan cek detail agunan dan analisa agunan terlebih dahulu',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              }
+            },
+            child: FormBuilderRadioGroup(
+              name: 'agunan',
+              enabled: controller.isDetailAgunanRead.value &&
+                  controller.isAnalisaAgunanRead.value,
+              wrapAlignment: WrapAlignment.center,
+              onChanged: (value) {
+                // if clicked then change isPressed to true
+                controller.isAgunanPressed.value = true;
+
+                if (value == true) {
+                  CustomSnackBar.show(
+                      context, 'Agunan debitur ini dinyatakan LAYAK');
+                } else {
+                  CustomSnackBar.show(
+                      context, 'Agunan debitur ini dinyatakan TIDAK LAYAK');
                 }
               },
-              child: FormBuilderRadioGroup(
-                name: 'agunan',
-                enabled: controller.isDetailAgunanRead.value &&
-                    controller.isAnalisaAgunanRead.value,
-                wrapAlignment: WrapAlignment.center,
-                onChanged: (value) {
-                  // if clicked then change isPressed to true
-                  controller.isAgunanPressed.value = true;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Apakah agunan debitur ini layak?',
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: promptText(
-                      controller.isDetailAgunanRead.value &&
-                              controller.isAnalisaAgunanRead.value
-                          ? Colors.transparent
-                          : Colors.grey[400]!,
-                      context),
-                  border: InputBorder.none,
-                  alignLabelWithHint: true,
-                ),
-                options: [
-                  FormBuilderFieldOption(
-                    value: true,
-                    child: Text('YA',
-                        style: promptTextSubtitle(
-                            controller.isDetailAgunanRead.value &&
-                                    controller.isAnalisaAgunanRead.value
-                                ? Colors.transparent
-                                : Colors.grey[400]!,
-                            context)),
-                  ),
-                  FormBuilderFieldOption(
-                    value: false,
-                    child: Text('TIDAK',
-                        style: promptTextSubtitle(
-                            controller.isDetailAgunanRead.value &&
-                                    controller.isAnalisaAgunanRead.value
-                                ? Colors.transparent
-                                : Colors.grey[400]!,
-                            context)),
-                  ),
-                ],
-                validator: FormBuilderValidators.required(),
+              decoration: InputDecoration(
+                labelText: 'Apakah agunan debitur ini layak?',
+                floatingLabelAlignment: FloatingLabelAlignment.center,
+                labelStyle: promptText(Colors.transparent, context),
+                border: InputBorder.none,
+                alignLabelWithHint: true,
               ),
-            )),
+              options: [
+                FormBuilderFieldOption(
+                  value: true,
+                  child: Text('YA',
+                      style: promptTextSubtitle(Colors.transparent, context)),
+                ),
+                FormBuilderFieldOption(
+                  value: false,
+                  child: Text('TIDAK',
+                      style: promptTextSubtitle(Colors.transparent, context)),
+                ),
+              ],
+              validator: FormBuilderValidators.required(),
+            ),
+          ),
+        ),
       ],
     );
   }

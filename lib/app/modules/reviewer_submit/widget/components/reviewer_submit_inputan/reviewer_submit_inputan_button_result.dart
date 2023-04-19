@@ -168,19 +168,13 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
                 activeColor: primaryColor,
                 initialValue: controller.isInputanRead.value,
                 title: RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     children: [
                       TextSpan(
                         text: 'Saya sudah melihat inputan debitur',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          backgroundColor: controller.isUsulanRead.value &&
-                                  controller.isDraftPutusanRead.value &&
-                                  controller.isDraftUsulanRead.value &&
-                                  controller.isHasilInputanRead.value
-                              ? Colors.transparent
-                              : Colors.grey[400],
                         ),
                       ),
                     ],

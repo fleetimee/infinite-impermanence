@@ -120,7 +120,7 @@ class ReviewerAgunanSectionButton extends StatelessWidget {
         Obx(
           () => GestureDetector(
             onTap: () {
-              if (!controller.isDetailAgunanRead.value &&
+              if (!controller.isDetailAgunanRead.value ||
                   !controller.isAnalisaAgunanRead.value) {
                 ErrorDialog(
                   title: 'Perhatian',
@@ -133,6 +133,7 @@ class ReviewerAgunanSectionButton extends StatelessWidget {
             },
             child: FormBuilderRadioGroup(
               name: 'agunan',
+              activeColor: primaryColor,
               enabled: controller.isDetailAgunanRead.value &&
                   controller.isAnalisaAgunanRead.value,
               wrapAlignment: WrapAlignment.center,

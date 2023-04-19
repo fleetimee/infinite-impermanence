@@ -133,11 +133,7 @@ class ReviewerSubmitUsahaButton extends StatelessWidget {
                     value: false,
                     child: Text(
                       'TIDAK',
-                      style: promptTextSubtitle(
-                          controller.isAnalisisUsahaRead.value
-                              ? Colors.transparent
-                              : Colors.grey[400]!,
-                          context),
+                      style: promptTextSubtitle(Colors.transparent, context),
                     ),
                   ),
                 ],

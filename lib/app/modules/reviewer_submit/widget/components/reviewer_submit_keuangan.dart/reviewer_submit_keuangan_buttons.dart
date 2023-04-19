@@ -118,8 +118,8 @@ class ReviewerSubmitKeuanganButton extends StatelessWidget {
           child: Obx(
             () => GestureDetector(
               onTap: () {
-                if (!controller.isLaporanKeuanganRead.value &&
-                    !controller.isAnalisaKeuanganRead.value &&
+                if (!controller.isLaporanKeuanganRead.value ||
+                    !controller.isAnalisaKeuanganRead.value ||
                     !controller.isKeteranganNeracaRead.value) {
                   ErrorDialog(
                     title: 'Keuangan Belum Dilihat',
@@ -165,29 +165,29 @@ class ReviewerSubmitKeuanganButton extends StatelessWidget {
                 options: [
                   FormBuilderFieldOption(
                     value: true,
-                    child: Obx(() => Text(
-                          'YA',
-                          style: Theme.of(context).textTheme.bodySmall!.merge(
-                                const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                        )),
+                    child: Text(
+                      'YA',
+                      style: Theme.of(context).textTheme.bodySmall!.merge(
+                            const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87,
+                            ),
+                          ),
+                    ),
                   ),
                   FormBuilderFieldOption(
                     value: false,
-                    child: Obx(() => Text(
-                          'TIDAK',
-                          style: Theme.of(context).textTheme.bodySmall!.merge(
-                                const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                        )),
+                    child: Text(
+                      'TIDAK',
+                      style: Theme.of(context).textTheme.bodySmall!.merge(
+                            const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black87,
+                            ),
+                          ),
+                    ),
                   ),
                 ],
                 validator: FormBuilderValidators.required(),

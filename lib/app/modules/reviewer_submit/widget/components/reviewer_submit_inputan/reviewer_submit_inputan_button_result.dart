@@ -135,9 +135,9 @@ class ReviewerSubmitButtonResult extends StatelessWidget {
         const SizedBox(height: 10),
         Obx(() => GestureDetector(
               onTap: () {
-                if (!controller.isUsulanRead.value &&
-                    !controller.isDraftPutusanRead.value &&
-                    !controller.isDraftUsulanRead.value &&
+                if (!controller.isUsulanRead.value ||
+                    !controller.isDraftPutusanRead.value ||
+                    !controller.isDraftUsulanRead.value ||
                     !controller.isHasilInputanRead.value) {
                   ErrorDialog(
                     title: 'Inputan Belum Dilihat',

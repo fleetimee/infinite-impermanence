@@ -322,6 +322,10 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     const SizedBox(height: 20),
                     ReviewerSubmitGallery(
                       controller: controller,
+                      subtitleStyle: subtitleStyle(),
+                      buttonStyle: buttonStyle(),
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
                     ),
                     const SizedBox(height: 20),
                     Container(

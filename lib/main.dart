@@ -97,52 +97,58 @@ class MyApp extends StatelessWidget {
   // TODO: - Edit form agunan masih error dan balik lagi ke value awal
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      builder: (context, child) => ResponsiveWrapper.builder(
-        child,
-        maxWidth: 1200,
-        minWidth: 480,
-        defaultScale: true,
-        breakpoints: [
-          const ResponsiveBreakpoint.resize(
-            480,
-            name: MOBILE,
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: GetMaterialApp(
+        builder: (context, child) => ResponsiveWrapper.builder(
+          child,
+          maxWidth: 1200,
+          minWidth: 480,
+          defaultScale: true,
+          breakpoints: [
+            const ResponsiveBreakpoint.resize(
+              480,
+              name: MOBILE,
+            ),
+            const ResponsiveBreakpoint.autoScale(
+              800,
+              name: TABLET,
+            ),
+            const ResponsiveBreakpoint.resize(
+              1000,
+              name: DESKTOP,
+            ),
+          ],
+          background: Container(
+            color: const Color(0xFFF5F5F5),
           ),
-          const ResponsiveBreakpoint.autoScale(
-            800,
-            name: TABLET,
-          ),
-          const ResponsiveBreakpoint.resize(
-            1000,
-            name: DESKTOP,
-          ),
-        ],
-        background: Container(
-          color: const Color(0xFFF5F5F5),
         ),
+        defaultTransition: Transition.fadeIn,
+        debugShowCheckedModeBanner: false,
+        theme: lightTheme,
+        // darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
+        themeMode: ThemeMode.light,
+        title: "Analisis Kredit Mikro",
+        // initialRoute: AppPages.INITIAL,
+        // initialRoute: Routes.LOGIN_PAGE,
+        home: const Center(
+          child: CircularProgressIndicator(),
+        ),
+        getPages: AppPages.routes,
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          FormBuilderLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('id'),
+        ],
+        locale: const Locale('id'),
       ),
-      defaultTransition: Transition.fadeIn,
-      debugShowCheckedModeBanner: false,
-      theme: lightTheme,
-      // darkTheme: FlexThemeData.dark(scheme: FlexScheme.sakura),
-      themeMode: ThemeMode.light,
-      title: "Analisis Kredit Mikro",
-      // initialRoute: AppPages.INITIAL,
-      // initialRoute: Routes.LOGIN_PAGE,
-      home: const Center(
-        child: CircularProgressIndicator(),
-      ),
-      getPages: AppPages.routes,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        FormBuilderLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('id'),
-      ],
-      locale: const Locale('id'),
     );
   }
 }

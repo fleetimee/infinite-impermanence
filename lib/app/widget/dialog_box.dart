@@ -80,6 +80,9 @@ class PrompDialog extends AwesomeDialog {
   }) : super(
           context: context,
           animType: AnimType.scale,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           dialogType: DialogType.question,
           title: title,
           titleTextStyle: GoogleFonts.poppins(
@@ -128,6 +131,9 @@ class InfoDialog extends AwesomeDialog {
   }) : super(
           context: context,
           animType: AnimType.scale,
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           dialogType: DialogType.warning,
           title: title,
           titleTextStyle: GoogleFonts.poppins(

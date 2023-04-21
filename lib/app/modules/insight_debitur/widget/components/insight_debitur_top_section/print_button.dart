@@ -86,139 +86,174 @@ class PrintButton extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: ListView(
-                    children: [
-                      Obx(
-                        () {
-                          if (analisaKeuanganController
-                              .isAnalisaKeuanganProcessing.value) {
+                  child: Scrollbar(
+                    child: ListView(
+                      children: [
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintInput();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (rugiLabaController.isRugiLabaProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintRugiLaba();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (neracaController.isNeracaProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintNeraca();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintKeuangan();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaBisnisController
+                                .isAnalisaBisnisProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return BisnisPrint();
+                            }
+                          },
+                        ),
+                        Obx(() {
+                          if (analisaKarakterController
+                              .isAnalisaKarakterProcessing.value) {
                             return const Center(
                               child: CircularProgressIndicator(),
                             );
                           } else {
-                            return PrintInput();
+                            return KarakterPrint();
                           }
-                        },
-                      ),
-                      SlikPrint(),
-                      SpkkPrint(),
-                      PkPrint(),
-                      Obx(
-                        () {
-                          if (rugiLabaController.isRugiLabaProcessing.value) {
+                        }),
+                        Obx(() {
+                          if (analisaAgunanController
+                              .isAnalisaAgunanProcessing.value) {
                             return const Center(
                               child: CircularProgressIndicator(),
                             );
                           } else {
-                            return PrintRugiLaba();
+                            return PrintAgunan();
                           }
-                        },
-                      ),
-                      Obx(
-                        () {
-                          if (neracaController.isNeracaProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return PrintNeraca();
-                          }
-                        },
-                      ),
-                      Obx(
-                        () {
-                          if (analisaKeuanganController
-                              .isAnalisaKeuanganProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return PrintKeuangan();
-                          }
-                        },
-                      ),
-                      Obx(
-                        () {
-                          if (analisaBisnisController
-                              .isAnalisaBisnisProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return BisnisPrint();
-                          }
-                        },
-                      ),
-                      Obx(() {
-                        if (analisaKarakterController
-                            .isAnalisaKarakterProcessing.value) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return KarakterPrint();
-                        }
-                      }),
-                      Obx(() {
-                        if (analisaAgunanController
-                            .isAnalisaAgunanProcessing.value) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else {
-                          return PrintAgunan();
-                        }
-                      }),
-                      Obx(
-                        () {
-                          if (analisaJenisUsahaController
-                              .isAnalisaUsahaProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return JenisUsahaPrint();
-                          }
-                        },
-                      ),
-                      ModelPrint(controller: controller),
-                      Obx(
-                        () {
-                          if (analisaKeuanganController
-                              .isAnalisaKeuanganProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return PrintUsulanBaru();
-                          }
-                        },
-                      ),
-                      Obx(
-                        () {
-                          if (analisaKeuanganController
-                              .isAnalisaKeuanganProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return PrintUsulan();
-                          }
-                        },
-                      ),
-                      Obx(
-                        () {
-                          if (analisaKeuanganController
-                              .isAnalisaKeuanganProcessing.value) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          } else {
-                            return PrintPutusan();
-                          }
-                        },
-                      ),
-                    ],
+                        }),
+                        Obx(
+                          () {
+                            if (analisaJenisUsahaController
+                                .isAnalisaUsahaProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return JenisUsahaPrint();
+                            }
+                          },
+                        ),
+                        ModelPrint(controller: controller),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintUsulanBaru();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintUsulan();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PrintPutusan();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return SlikPrint();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return SpkkPrint();
+                            }
+                          },
+                        ),
+                        Obx(
+                          () {
+                            if (analisaKeuanganController
+                                .isAnalisaKeuanganProcessing.value) {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else {
+                              return PkPrint();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

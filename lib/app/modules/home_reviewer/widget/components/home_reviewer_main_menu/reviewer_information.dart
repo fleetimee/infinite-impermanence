@@ -1,9 +1,9 @@
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
@@ -25,8 +25,8 @@ class ReviewerDeviceInformation extends StatelessWidget {
           child: Row(
             children: [
               const Icon(
-                FontAwesomeIcons.check,
-                color: GFColors.SUCCESS,
+                FontAwesomeIcons.android,
+                color: primaryColor,
               ),
               const SizedBox(
                 width: 8,
@@ -61,7 +61,7 @@ class ReviewerDeviceInformation extends StatelessWidget {
                     )
                   : const Icon(
                       FontAwesomeIcons.locationDot,
-                      color: GFColors.DANGER,
+                      color: primaryColor,
                     )),
               const SizedBox(
                 width: 8,
@@ -113,8 +113,8 @@ class ReviewerDeviceInformation extends StatelessWidget {
                       ),
                     )
                   : const Icon(
-                      FontAwesomeIcons.building,
-                      color: GFColors.INFO,
+                      FontAwesomeIcons.locationArrow,
+                      color: primaryColor,
                     )),
               const SizedBox(
                 width: 8,

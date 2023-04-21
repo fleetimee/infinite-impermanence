@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/insight_debitur/views/components/printing/pk/pk_input.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -53,19 +54,28 @@ class PrintInput extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Harap Lengkapi Semua Untuk Melanjutkan',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                // Get.snackbar(
+                //   'Error',
+                //   'Harap Lengkapi Semua Untuk Melanjutkan',
+                //   backgroundColor: Colors.red,
+                //   colorText: Colors.white,
+                // );
+
+                ErrorDialog(
+                  title: 'Inputan belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -106,19 +116,21 @@ class PrintNeraca extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Neraca belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Keterangan Neraca belum lengkap',
+                  desc: 'Harap lengkapi untuk melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -164,19 +176,21 @@ class PrintUsulanBaru extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Hara Lengkapi Semua Untuk Melanjutkan',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Error',
+                  desc: 'Harap isi semua section untuk melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -217,19 +231,21 @@ class PrintRugiLaba extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Laporan Keuangan belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Laporan Keuangan belum lengkap',
+                  desc: 'Harap lengkapi untuk melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -270,19 +286,21 @@ class PrintAgunan extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Analisa Agunan belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Data Agunan belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -329,19 +347,22 @@ class PrintPutusan extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Harap Lengkapi Semua Sebelum Melanjutkan',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Error',
+                  desc:
+                      'Putusan Kredit dapat dibuka setelah di acc oleh komite kredit',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -388,19 +409,21 @@ class PrintUsulan extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Harap Lengkapi Semua Untuk Melanjutkan',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Error',
+                  desc: 'Harap lengkapi semua data sebelum melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -441,19 +464,21 @@ class PrintKeuangan extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Keuangan belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Data Keuangan belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -494,6 +519,7 @@ class ModelPrint extends StatelessWidget {
         text: "READY",
         buttonBoxShadow: true,
         color: GFColors.SUCCESS,
+        shape: GFButtonShape.pills,
       ),
     );
   }
@@ -534,19 +560,21 @@ class BisnisPrint extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Bisnis belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Data Bisnis belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -587,19 +615,21 @@ class KarakterPrint extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Karakter belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Data Karakter belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -640,19 +670,21 @@ class JenisUsahaPrint extends StatelessWidget {
               text: "READY",
               buttonBoxShadow: true,
               color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
             )
           : GFButton(
               onPressed: () {
-                Get.snackbar(
-                  'Error',
-                  'Data Jenis Usaha belum lengkap',
-                  backgroundColor: Colors.red,
-                  colorText: Colors.white,
-                );
+                ErrorDialog(
+                  title: 'Data Jenis Usaha belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
               },
               text: "N/A",
               buttonBoxShadow: true,
               color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
             ),
     );
   }
@@ -668,31 +700,53 @@ class SlikPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
-        title: const Text(
-          'Pernyataan SLIK',
-          style: TextStyle(
-            color: primaryColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-          ),
+      title: const Text(
+        'Pernyataan SLIK',
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
         ),
-        avatar: const GFAvatar(
-          backgroundColor: primaryColor,
-          child: Icon(
-            FontAwesomeIcons.squarespace,
-            color: secondaryColor,
-          ),
+      ),
+      avatar: const GFAvatar(
+        backgroundColor: primaryColor,
+        child: Icon(
+          FontAwesomeIcons.squarespace,
+          color: secondaryColor,
         ),
-        subTitleText: 'Print Pernyaataan SLIK',
-        icon: GFButton(
-          onPressed: () {
-            Get.toNamed(Routes.SLIK_PRINTING,
-                arguments: controller.insightDebitur.value);
-          },
-          text: "READY",
-          buttonBoxShadow: true,
-          color: GFColors.SUCCESS,
-        ));
+      ),
+      subTitleText: 'Print Pernyaataan SLIK',
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
+          ? GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.SLIK_PRINTING,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
+            )
+          : GFButton(
+              onPressed: () {
+                ErrorDialog(
+                  title: 'Data SLIK belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              },
+              text: "N/A",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
+            ),
+    );
   }
 }
 
@@ -706,31 +760,53 @@ class SpkkPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
-        title: const Text(
-          'SPKK',
-          style: TextStyle(
-            color: primaryColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-          ),
+      title: const Text(
+        'SPKK',
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
         ),
-        avatar: const GFAvatar(
-          backgroundColor: primaryColor,
-          child: Icon(
-            FontAwesomeIcons.medium,
-            color: secondaryColor,
-          ),
+      ),
+      avatar: const GFAvatar(
+        backgroundColor: primaryColor,
+        child: Icon(
+          FontAwesomeIcons.medium,
+          color: secondaryColor,
         ),
-        subTitleText: 'Print SPKK',
-        icon: GFButton(
-          onPressed: () {
-            Get.toNamed(Routes.SPKK_PRINTING,
-                arguments: controller.insightDebitur.value);
-          },
-          text: "READY",
-          buttonBoxShadow: true,
-          color: GFColors.SUCCESS,
-        ));
+      ),
+      subTitleText: 'Print SPKK',
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
+          ? GFButton(
+              onPressed: () {
+                Get.toNamed(Routes.SPKK_PRINTING,
+                    arguments: controller.insightDebitur.value);
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
+            )
+          : GFButton(
+              onPressed: () {
+                ErrorDialog(
+                  title: 'Data SPKK belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              },
+              text: "N/A",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
+            ),
+    );
   }
 }
 
@@ -744,35 +820,57 @@ class PkPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
-        title: const Text(
-          'Perjanjian Kredit',
-          style: TextStyle(
-            color: primaryColor,
-            fontSize: 25,
-            fontWeight: FontWeight.w500,
-          ),
+      title: const Text(
+        'Perjanjian Kredit',
+        style: TextStyle(
+          color: primaryColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w500,
         ),
-        avatar: const GFAvatar(
-          backgroundColor: primaryColor,
-          child: Icon(
-            FontAwesomeIcons.github,
-            color: secondaryColor,
-          ),
+      ),
+      avatar: const GFAvatar(
+        backgroundColor: primaryColor,
+        child: Icon(
+          FontAwesomeIcons.github,
+          color: secondaryColor,
         ),
-        subTitleText: 'Print Perjanjian Kredit',
-        icon: GFButton(
-          onPressed: () {
-            // Get.toNamed(Routes.PK_PRINTING,
-            //     arguments: controller.insightDebitur.value);
+      ),
+      subTitleText: 'Print Perjanjian Kredit',
+      icon: controller.insightDebitur.value.analisaKeuangan != null &&
+              controller.insightDebitur.value.analisaAgunan != null &&
+              controller.insightDebitur.value.analisaBisnis != null &&
+              controller.insightDebitur.value.analisaJenisUsaha != null &&
+              controller.insightDebitur.value.analisaKarakter != null &&
+              controller.insightDebitur.value.syaratLain!.isNotEmpty
+          ? GFButton(
+              onPressed: () {
+                // Get.toNamed(Routes.PK_PRINTING,
+                //     arguments: controller.insightDebitur.value);
 
-            Get.to(
-              () => const InputBeforePk(),
-              arguments: controller.insightDebitur.value,
-            );
-          },
-          text: "READY",
-          buttonBoxShadow: true,
-          color: GFColors.SUCCESS,
-        ));
+                Get.to(
+                  () => const InputBeforePk(),
+                  arguments: controller.insightDebitur.value,
+                );
+              },
+              text: "READY",
+              buttonBoxShadow: true,
+              color: GFColors.SUCCESS,
+              shape: GFButtonShape.pills,
+            )
+          : GFButton(
+              onPressed: () {
+                ErrorDialog(
+                  title: 'Data PK belum lengkap',
+                  desc: 'Harap Lengkapi Semua Untuk Melanjutkan',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              },
+              text: "N/A",
+              buttonBoxShadow: true,
+              color: GFColors.DANGER,
+              shape: GFButtonShape.pills,
+            ),
+    );
   }
 }

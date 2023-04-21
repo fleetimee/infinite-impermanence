@@ -2,6 +2,7 @@
 
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/widget/text_label.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -33,7 +34,9 @@ class ReviewerSubmitResponse extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Poin ${num + 1}'),
+            DebiturTextLabel(
+              text: 'Tanggapan Reviewer ${num + 1}',
+            ),
             const SizedBox(height: 10),
             FormBuilderTextField(
               name: 'name$num',
@@ -69,7 +72,7 @@ class ReviewerSubmitResponse extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        elevation: 0,
+        elevation: 6,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(

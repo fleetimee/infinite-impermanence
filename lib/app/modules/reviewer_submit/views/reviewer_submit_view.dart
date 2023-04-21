@@ -9,6 +9,7 @@ import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_gallery.d
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_karakter.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_keuangan.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_response.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_usaha.dart';
 import 'package:flutter/material.dart';
 
@@ -66,34 +67,6 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
       return Future.error(e);
     }
   }
-
-  Widget myWidget(int num) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: FormBuilderTextField(
-            name: 'name$num',
-            textInputAction: TextInputAction.next,
-            maxLines: 3,
-            onChanged: (value) {
-              debugPrint('value: $value');
-            },
-            validator: FormBuilderValidators.required(),
-            decoration: InputDecoration(
-              alignLabelWithHint: true,
-              labelText: 'Poin ${num + 1}',
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  var list = List.empty(growable: true).obs;
 
   Icon iconNotYet() {
     return const Icon(
@@ -155,10 +128,9 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
       backgroundColor: secondaryColor,
       body: SafeArea(
         child: Scrollbar(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: SingleChildScrollView(
-              controller: _scrollController,
+          child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(16),
               child: FormBuilder(
                 key: controller.formKey,
                 child: Column(
@@ -328,107 +300,9 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       iconNotYet: iconNotYet(),
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      color: Colors.grey[200],
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              const GFTypography(
-                                text: 'Tanggapan Reviewer',
-                                type: GFTypographyType.typo3,
-                                showDivider: false,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.merge(
-                                      const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(''),
-                                  Row(
-                                    children: [
-                                      GFIconButton(
-                                        shape: GFIconButtonShape.circle,
-                                        size: GFSize.SMALL,
-                                        color: GFColors.SUCCESS,
-                                        onPressed: () {
-                                          list.add(
-                                            // Get dynamic string from textfield
-                                            controller.formKey.currentState
-                                                ?.fields['name']?.value,
-                                          );
-                                        },
-                                        icon: const Icon(Icons.add),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      GFIconButton(
-                                        color: GFColors.DANGER,
-                                        size: GFSize.SMALL,
-                                        shape: GFIconButtonShape.circle,
-                                        onPressed: () {
-                                          list.removeLast();
-                                          controller.formKey.currentState
-                                              ?.removeInternalFieldValue(
-                                                  'name${list.length}',
-                                                  isSetState: true);
-                                          debugPrint('list: $list');
-                                        },
-                                        icon: const Icon(Icons.remove),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Obx(() {
-                                if (list.isEmpty) {
-                                  return Column(
-                                    children: const [
-                                      Center(
-                                        child: Text(
-                                          'Tambahkan Tanggapan Reviewer',
-                                          style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 20),
-                                    ],
-                                  );
-                                } else {
-                                  return SizedBox(
-                                    height: 400,
-                                    child: Scrollbar(
-                                      child: ListView.builder(
-                                        itemCount: list.length,
-                                        itemBuilder: (context, index) {
-                                          return myWidget(index);
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                }
-                              })
-                            ],
-                          ),
-                        ),
-                      ),
+                    ReviewerSubmitResponse(
+                      controller: controller,
+                      subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
                     GFButton(

@@ -1,10 +1,9 @@
-import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/reviewer_pending_list/controllers/reviewer_pending_list_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
+import 'package:akm/app/widget/simple_alert.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:intl/intl.dart';
 import 'package:random_avatar/random_avatar.dart';
 
@@ -89,9 +88,24 @@ class ListPendingPengajuanReviewer extends StatelessWidget {
             return InkWell(
               onTap: () {
                 Get.dialog(
-                  NormalAlert(
+                  NativePromptAlert(
                     controller: controller,
                     index: index,
+                    title:
+                        'Detail ${controller.listMyPendingReview[index].debitur.peminjam1}',
+                    content: 'Pilih aksi yang ingin dilakukan',
+                    textDanger: 'REVIEW',
+                    textSuccess: 'LIHAT PROGRESS',
+                    onPressedDanger: () {
+                      Navigator.pop(context);
+
+                      Get.toNamed(Routes.REVIEWER_SUBMIT,
+                          arguments: controller.listMyPendingReview[index]);
+                    },
+                    onPressedSuccess: () {
+                      Get.toNamed(Routes.PENGAJUAN_DETAIL,
+                          arguments: controller.listMyPendingReview[index].id!);
+                    },
                   ),
                 );
               },
@@ -131,70 +145,6 @@ class ListPendingPengajuanReviewer extends StatelessWidget {
           },
         ),
       ),
-    );
-  }
-}
-
-class NormalAlert extends StatelessWidget {
-  final int index;
-
-  const NormalAlert({
-    super.key,
-    required this.controller,
-    required this.index,
-  });
-
-  final ReviewerPendingListController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(20),
-        ),
-      ),
-      title: Text(
-        'Detail ${controller.listMyPendingReview[index].debitur.peminjam1}',
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          color: Colors.white,
-        ),
-      ),
-      backgroundColor: primaryColor,
-      content: const Text(
-        'Pilih aksi yang ingin dilakukan',
-        style: TextStyle(
-          fontSize: 15,
-          color: Colors.white,
-        ),
-      ),
-      actions: [
-        GFButton(
-          color: GFColors.DANGER,
-          size: GFSize.LARGE,
-          shape: GFButtonShape.pills,
-          onPressed: () {
-            Navigator.pop(context);
-
-            Get.toNamed(Routes.REVIEWER_SUBMIT,
-                arguments: controller.listMyPendingReview[index]);
-            // pop dialog
-          },
-          text: 'Review',
-        ),
-        GFButton(
-          size: GFSize.LARGE,
-          shape: GFButtonShape.pills,
-          onPressed: () {
-            Navigator.pop(context);
-            Get.toNamed(Routes.PENGAJUAN_DETAIL,
-                arguments: controller.listMyPendingReview[index].id!);
-          },
-          text: 'Lihat Progress',
-        )
-      ],
     );
   }
 }

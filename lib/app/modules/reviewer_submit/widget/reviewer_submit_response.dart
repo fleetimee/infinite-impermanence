@@ -12,6 +12,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:lottie/lottie.dart';
 
 // 🌎 Project imports:
+import '../../../widget/simple_snackbar.dart';
 import '../controllers/reviewer_submit_controller.dart';
 
 class ReviewerSubmitResponse extends StatelessWidget {
@@ -42,11 +43,15 @@ class ReviewerSubmitResponse extends StatelessWidget {
                 debugPrint('value: $value');
               },
               validator: FormBuilderValidators.required(),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 alignLabelWithHint: true,
-                // labelText: 'Poin ${num + 1}',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                filled: true,
+                fillColor: Colors.grey.shade300,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Theme.of(context).primaryColor),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey),
                 ),
               ),
             ),
@@ -80,44 +85,53 @@ class ReviewerSubmitResponse extends StatelessWidget {
                 style: subtitleStyle,
               ),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(''),
-                  Row(
-                    children: [
-                      GFIconButton(
-                        shape: GFIconButtonShape.circle,
-                        size: GFSize.SMALL,
-                        color: primaryColor,
-                        onPressed: () {
-                          list.add(
-                            // Get dynamic string from textfield
-                            controller
-                                .formKey.currentState?.fields['name']?.value,
-                          );
-                        },
-                        icon: const Icon(Icons.add),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      GFIconButton(
-                        color: GFColors.LIGHT,
-                        size: GFSize.SMALL,
-                        shape: GFIconButtonShape.circle,
-                        onPressed: () {
-                          list.removeLast();
-                          controller.formKey.currentState
-                              ?.removeInternalFieldValue('name${list.length}',
-                                  isSetState: true);
-                          debugPrint('list: $list');
-                        },
-                        icon: const Icon(Icons.remove),
-                      ),
-                    ],
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(''),
+                    Row(
+                      children: [
+                        GFIconButton(
+                          shape: GFIconButtonShape.circle,
+                          size: GFSize.SMALL,
+                          color: primaryColor,
+                          onPressed: () {
+                            list.add(
+                              // Get dynamic string from textfield
+                              controller
+                                  .formKey.currentState?.fields['name']?.value,
+                            );
+
+                            CustomSnackBar.show(context,
+                                'Poin nomor ${list.length} ditambahkan');
+                          },
+                          icon: const Icon(Icons.add),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        GFIconButton(
+                          color: GFColors.LIGHT,
+                          size: GFSize.SMALL,
+                          shape: GFIconButtonShape.circle,
+                          onPressed: () {
+                            list.removeLast();
+                            controller.formKey.currentState
+                                ?.removeInternalFieldValue('name${list.length}',
+                                    isSetState: true);
+                            debugPrint('list: $list');
+
+                            CustomSnackBar.show(context,
+                                'Poin nomor ${list.length + 1} dihapus');
+                          },
+                          icon: const Icon(Icons.remove),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 10),
               Obx(() {
@@ -128,6 +142,11 @@ class ReviewerSubmitResponse extends StatelessWidget {
                         child: Lottie.asset(
                           'assets/images/home/list_response.zip',
                           repeat: false,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Text('Error');
+                          },
+                          filterQuality: FilterQuality.high,
                         ),
                       ),
                       const SizedBox(height: 20),

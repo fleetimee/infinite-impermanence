@@ -60,7 +60,7 @@ class FleetimeTextField extends StatelessWidget {
         suffixStyle: const TextStyle(
           fontSize: 16,
         ),
-        fillColor: Colors.grey.shade400,
+        fillColor: Colors.grey.shade300,
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
               borderSide: BorderSide(color: Theme.of(context).primaryColor),

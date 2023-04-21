@@ -78,7 +78,7 @@ class FilterForm extends StatelessWidget {
                     suffixStyle: const TextStyle(
                       fontSize: 16,
                     ),
-                    fillColor: Colors.grey.shade400,
+                    fillColor: Colors.grey.shade300,
                     focusedBorder: OutlineInputBorder(
                       borderSide:
                           BorderSide(color: Theme.of(context).primaryColor),
@@ -153,7 +153,7 @@ class FilterForm extends StatelessWidget {
                       fontSize: 16,
                     ),
                     filled: true,
-                    fillColor: Colors.grey.shade400,
+                    fillColor: Colors.grey.shade300,
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -217,7 +217,7 @@ class FilterForm extends StatelessWidget {
                       fontSize: 16,
                     ),
                     filled: true,
-                    fillColor: Colors.grey.shade400,
+                    fillColor: Colors.grey.shade300,
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -281,7 +281,7 @@ class FilterForm extends StatelessWidget {
                       fontSize: 16,
                     ),
                     filled: true,
-                    fillColor: Colors.grey.shade400,
+                    fillColor: Colors.grey.shade300,
                     focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey),
                     ),
@@ -357,7 +357,7 @@ class FilterForm extends StatelessWidget {
                           fontSize: 16,
                         ),
                         filled: true,
-                        fillColor: Colors.grey.shade400,
+                        fillColor: Colors.grey.shade300,
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.grey),
                         ),

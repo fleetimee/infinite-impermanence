@@ -38,7 +38,7 @@ class FleetimeDatePicker extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         filled: true,
-        fillColor: Colors.grey.shade400,
+        fillColor: Colors.grey.shade300,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: primaryColor),
         ),

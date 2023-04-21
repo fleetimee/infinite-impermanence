@@ -5,10 +5,12 @@ import 'dart:convert';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_agunan.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_analys_response.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_bisnis.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_botton_navbar.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_gallery.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_inputan.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_karakter.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_keuangan.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_response.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/reviewer_submit_usaha.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +30,7 @@ import '../controllers/reviewer_submit_controller.dart';
 
 // ignore: must_be_immutable
 class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
-  ReviewerSubmitView({Key? key}) : super(key: key);
+  const ReviewerSubmitView({Key? key}) : super(key: key);
 
   String formatDatetime(DateTime date) {
     return DateFormat('dd MMMM yyyy').format(date);
@@ -66,34 +68,6 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
       return Future.error(e);
     }
   }
-
-  Widget myWidget(int num) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: FormBuilderTextField(
-            name: 'name$num',
-            textInputAction: TextInputAction.next,
-            maxLines: 3,
-            onChanged: (value) {
-              debugPrint('value: $value');
-            },
-            validator: FormBuilderValidators.required(),
-            decoration: InputDecoration(
-              alignLabelWithHint: true,
-              labelText: 'Poin ${num + 1}',
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  var list = List.empty(growable: true).obs;
 
   Icon iconNotYet() {
     return const Icon(
@@ -147,18 +121,28 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
         );
   }
 
-  final _scrollController = ScrollController();
-
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollController = ScrollController();
+
+    RxBool showButton = false.obs;
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        // User reached the bottom of the page
+        showButton.value = true;
+      }
+    });
+
     return Scaffold(
       backgroundColor: secondaryColor,
       body: SafeArea(
         child: Scrollbar(
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            child: SingleChildScrollView(
-              controller: _scrollController,
+          child: SingleChildScrollView(
+            controller: scrollController,
+            child: Container(
+              padding: const EdgeInsets.all(16),
               child: FormBuilder(
                 key: controller.formKey,
                 child: Column(
@@ -328,211 +312,24 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                       iconNotYet: iconNotYet(),
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      color: Colors.grey[200],
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              const GFTypography(
-                                text: 'Tanggapan Reviewer',
-                                type: GFTypographyType.typo3,
-                                showDivider: false,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Ini merupakan catatan dari reviewer terhadap pengajuan debitur',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.merge(
-                                      const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(''),
-                                  Row(
-                                    children: [
-                                      GFIconButton(
-                                        shape: GFIconButtonShape.circle,
-                                        size: GFSize.SMALL,
-                                        color: GFColors.SUCCESS,
-                                        onPressed: () {
-                                          list.add(
-                                            // Get dynamic string from textfield
-                                            controller.formKey.currentState
-                                                ?.fields['name']?.value,
-                                          );
-                                        },
-                                        icon: const Icon(Icons.add),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      GFIconButton(
-                                        color: GFColors.DANGER,
-                                        size: GFSize.SMALL,
-                                        shape: GFIconButtonShape.circle,
-                                        onPressed: () {
-                                          list.removeLast();
-                                          controller.formKey.currentState
-                                              ?.removeInternalFieldValue(
-                                                  'name${list.length}',
-                                                  isSetState: true);
-                                          debugPrint('list: $list');
-                                        },
-                                        icon: const Icon(Icons.remove),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Obx(() {
-                                if (list.isEmpty) {
-                                  return Column(
-                                    children: const [
-                                      Center(
-                                        child: Text(
-                                          'Tambahkan Tanggapan Reviewer',
-                                          style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 20),
-                                    ],
-                                  );
-                                } else {
-                                  return SizedBox(
-                                    height: 400,
-                                    child: Scrollbar(
-                                      child: ListView.builder(
-                                        itemCount: list.length,
-                                        itemBuilder: (context, index) {
-                                          return myWidget(index);
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                }
-                              })
-                            ],
-                          ),
-                        ),
-                      ),
+                    ReviewerSubmitResponse(
+                      controller: controller,
+                      subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
-                    GFButton(
-                      onPressed: () {
-                        if (controller.formKey.currentState!
-                            .saveAndValidate()) {
-                          // controller.submit();
-                          debugPrint(controller.formKey.currentState!.value
-                              .toString());
-                          Get.dialog(
-                            AlertDialog(
-                              title: const Text(
-                                'Submit',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              content: const Text(
-                                'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?',
-                                style: TextStyle(
-                                  fontSize: 15,
-                                ),
-                              ),
-                              actions: [
-                                GFButton(
-                                  color: GFColors.DANGER,
-                                  size: GFSize.LARGE,
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Tidak'),
-                                ),
-                                GFButton(
-                                  color: GFColors.SUCCESS,
-                                  size: GFSize.LARGE,
-                                  onPressed: () {
-                                    var list =
-                                        controller.formKey.currentState!.value;
-
-                                    // Transform map to list
-                                    var list2 = list.entries.toList();
-
-                                    // // remove MapEntry and key
-                                    list2.removeWhere(
-                                      (element) =>
-                                          element.key == 'pemutus' ||
-                                          element.key == 'tglReview' ||
-                                          element.key == 'inputan' ||
-                                          element.key == 'keuangan' ||
-                                          element.key == 'karakter' ||
-                                          element.key == 'bisnis' ||
-                                          element.key == 'usaha' ||
-                                          element.key == 'agunan' ||
-                                          element.key == 'berkas',
-                                    );
-
-                                    // debugPrint('list2: $list2');
-
-                                    // Transform list2 to list of string
-                                    var list3 =
-                                        list2.map((e) => e.value).toList();
-
-                                    // list3.removeWhere((element) => element.k)
-
-                                    // transform list3 to string
-                                    list3 =
-                                        list3.map((e) => e.toString()).toList();
-
-                                    controller.bahasanReviewer = list3;
-
-                                    var listFinal = controller.bahasanReviewer;
-
-                                    debugPrint(listFinal.toString());
-
-                                    Navigator.pop(context);
-                                    controller.saveReview();
-                                  },
-                                  child: const Text('Ya'),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          debugPrint('validation failed');
-                        }
-                      },
-                      text: 'Submit',
-                      shape: GFButtonShape.square,
-                      color: GFColors.SUCCESS,
-                      fullWidthButton: true,
-                      size: GFSize.LARGE,
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ],
                 ),
               ),
             ),
           ),
         ),
+      ),
+      bottomNavigationBar: Obx(
+        () => showButton.value
+            ? ReviewerSubmitBottomNavbar(
+                controller: controller,
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }

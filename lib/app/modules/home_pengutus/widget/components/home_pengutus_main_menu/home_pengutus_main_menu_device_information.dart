@@ -1,10 +1,10 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
 import 'package:akm/app/modules/home/controllers/home_controller.dart';
@@ -27,8 +27,8 @@ class PengutusDeviceInformation extends StatelessWidget {
           child: Row(
             children: [
               const Icon(
-                FontAwesomeIcons.check,
-                color: GFColors.SUCCESS,
+                FontAwesomeIcons.android,
+                color: secondaryColor,
               ),
               const SizedBox(
                 width: 8,
@@ -63,7 +63,7 @@ class PengutusDeviceInformation extends StatelessWidget {
                     )
                   : const Icon(
                       FontAwesomeIcons.locationDot,
-                      color: GFColors.DANGER,
+                      color: secondaryColor,
                     )),
               const SizedBox(
                 width: 8,
@@ -118,8 +118,8 @@ class PengutusDeviceInformation extends StatelessWidget {
                       ),
                     )
                   : const Icon(
-                      FontAwesomeIcons.building,
-                      color: GFColors.INFO,
+                      FontAwesomeIcons.locationArrow,
+                      color: secondaryColor,
                     )),
               const SizedBox(
                 width: 8,

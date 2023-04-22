@@ -67,8 +67,8 @@ final List<ReviewerListMenu> reviewerMenuList = [
         title: 'Keluar',
         context: Get.context!,
         desc: 'Apakah anda yakin ingin keluar dari aplikasi?',
-        btnOkText: 'Ya',
-        btnCancelText: 'Tidak',
+        btnOkText: 'YA',
+        btnCancelText: 'TIDAK',
         btnCancelOnPress: () {},
         btnOkOnPress: () {
           SystemNavigator.pop();

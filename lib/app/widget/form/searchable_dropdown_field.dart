@@ -43,7 +43,7 @@ class FleetimeSearchableDropdown extends StatelessWidget {
           fontSize: 16,
         ),
         filled: true,
-        fillColor: Colors.grey.shade300,
+        fillColor: Colors.grey.shade400,
         focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
         ),

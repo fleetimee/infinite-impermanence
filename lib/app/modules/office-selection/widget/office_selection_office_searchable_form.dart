@@ -83,7 +83,7 @@ class OfficeSearchableBody extends StatelessWidget {
         //       vertical: 25,
         //     ),
         //     focusColor: Colors.red,
-        //     fillColor: Colors.grey.shade300,
+        //     fillColor: Colors.grey.shade400,
         //     hoverColor: Colors.red,
         //     filled: true,
         //     focusedBorder: OutlineInputBorder(

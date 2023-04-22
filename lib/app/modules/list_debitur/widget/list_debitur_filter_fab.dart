@@ -156,7 +156,7 @@ class ListDebiturFilterFab extends StatelessWidget {
                                               suffixStyle: const TextStyle(
                                                 fontSize: 16,
                                               ),
-                                              fillColor: Colors.grey.shade300,
+                                              fillColor: Colors.grey.shade400,
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                     color: Theme.of(context)
@@ -250,7 +250,7 @@ class ListDebiturFilterFab extends StatelessWidget {
                                                 fontSize: 16,
                                               ),
                                               filled: true,
-                                              fillColor: Colors.grey.shade300,
+                                              fillColor: Colors.grey.shade400,
                                               focusedBorder:
                                                   const OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -330,7 +330,7 @@ class ListDebiturFilterFab extends StatelessWidget {
                                                 fontSize: 16,
                                               ),
                                               filled: true,
-                                              fillColor: Colors.grey.shade300,
+                                              fillColor: Colors.grey.shade400,
                                               focusedBorder:
                                                   const OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -416,7 +416,7 @@ class ListDebiturFilterFab extends StatelessWidget {
                                                 fontSize: 16,
                                               ),
                                               filled: true,
-                                              fillColor: Colors.grey.shade300,
+                                              fillColor: Colors.grey.shade400,
                                               focusedBorder:
                                                   const OutlineInputBorder(
                                                 borderSide: BorderSide(
@@ -515,7 +515,7 @@ class ListDebiturFilterFab extends StatelessWidget {
                                                   ),
                                                   filled: true,
                                                   fillColor:
-                                                      Colors.grey.shade300,
+                                                      Colors.grey.shade400,
                                                   focusedBorder:
                                                       const OutlineInputBorder(
                                                     borderSide: BorderSide(

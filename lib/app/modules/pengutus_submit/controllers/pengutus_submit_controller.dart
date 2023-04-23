@@ -59,6 +59,11 @@ class PengutusSubmitController extends GetxController {
   var isInputanRead = false.obs;
   var isGalleryRead = false.obs;
 
+  var isHasilInputanRead = false.obs;
+  var isDraftUsulanRead = false.obs;
+  var isUsulanRead = false.obs;
+  var isPutusanRead = false.obs;
+
   void getRating() async {
     var debtor = insightDebitur.value;
 

@@ -63,7 +63,7 @@ final List<PengutusListMenu> pengutusMenuList = [
     menuDescription: 'Keluar dari aplikasi',
     imagePath: 'assets/images/home/pemutus_keluar.jpg',
     onTap: () {
-      PrompDialog(
+      PrompDialogPink(
         title: 'Keluar',
         context: Get.context!,
         desc: 'Apakah anda yakin ingin keluar dari aplikasi?',

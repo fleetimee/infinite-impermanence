@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_analyst_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_inputan.dart';
+import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_keuangan.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_reviewer_response.dart';
 import 'package:flutter/material.dart';
 
@@ -215,7 +216,10 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                     subtitleStyle: subtitleStyle(),
                   ),
                   const SizedBox(height: 20),
-                  KeuanganCard(controller: controller),
+                  PengutusKeuanganSection(
+                    controller: controller,
+                    subtitleStyle: subtitleStyle(),
+                  ),
                   const SizedBox(height: 20),
                   KarakterCard(controller: controller),
                   const SizedBox(height: 20),
@@ -950,152 +954,6 @@ class KarakterCard extends StatelessWidget {
                   controller.isKarakterPressed.value = true;
                 },
                 validator: FormBuilderValidators.required(),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class KeuanganCard extends StatelessWidget {
-  const KeuanganCard({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final PengutusSubmitController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    flex: 6,
-                    child: GFTypography(
-                      text: 'Keuangan Debitur',
-                      type: GFTypographyType.typo3,
-                      showDivider: false,
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => Icon(
-                        controller.isKeuanganPressed.value == true
-                            ? Icons.check_box
-                            : Icons.close,
-                        color: controller.isKeuanganPressed.value == true
-                            ? Colors.green
-                            : Colors.transparent,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Ini merupakan rekapan keuangan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.RUGILABA_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Laporan Keuangan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.NERACA_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Keterangan Neraca',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.KEUANGAN_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Analisa Keuangan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              Center(
-                child: FormBuilderRadioGroup(
-                  name: 'keuangan',
-                  wrapAlignment: WrapAlignment.center,
-                  onChanged: (value) {
-                    // if clicked then change isPressed to true
-                    controller.isKeuanganPressed.value = true;
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Apakah keuangan debitur ini layak?',
-                    floatingLabelAlignment: FloatingLabelAlignment.center,
-                    labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                          const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                    border: InputBorder.none,
-                    alignLabelWithHint: true,
-                  ),
-                  options: const [
-                    FormBuilderFieldOption(
-                      value: true,
-                      child: Text('👍 Ya'),
-                    ),
-                    FormBuilderFieldOption(
-                      value: false,
-                      child: Text('👎 Tidak'),
-                    ),
-                  ],
-                  validator: FormBuilderValidators.required(),
-                ),
               ),
             ],
           ),

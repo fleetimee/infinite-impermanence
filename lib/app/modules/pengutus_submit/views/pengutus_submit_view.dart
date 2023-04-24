@@ -87,26 +87,6 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
     );
   }
 
-  TextStyle promptText(Color backgroundColor, BuildContext context) {
-    return Theme.of(context).textTheme.bodySmall!.merge(
-          TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-            backgroundColor: backgroundColor,
-          ),
-        );
-  }
-
-  TextStyle promptTextSubtitle(Color backgroundColor, BuildContext context) {
-    return Theme.of(context).textTheme.bodySmall!.merge(TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w600,
-          color: Colors.black87,
-          backgroundColor: backgroundColor,
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -255,7 +235,9 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                       subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
-                    AgunanCard(controller: controller),
+                    AgunanCard(
+                      controller: controller,
+                    ),
                     const SizedBox(height: 20),
                     Text(
                       'Untuk beberapa parameter dibawah ini hanya untuk tambahan saja dan tidak masuk kedalam penilaian :',

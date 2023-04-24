@@ -72,6 +72,8 @@ class PengutusSubmitController extends GetxController {
 
   var isAnalisaBisnisRead = false.obs;
 
+  var isAnalisaUsahaRead = false.obs;
+
   void getRating() async {
     var debtor = insightDebitur.value;
 

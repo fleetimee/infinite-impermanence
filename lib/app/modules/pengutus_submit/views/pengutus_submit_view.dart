@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_analyst_response.dart';
+import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_bisnis.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_inputan.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_karakter.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_keuangan.dart';
@@ -233,7 +234,13 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                     subtitleStyle: subtitleStyle(),
                   ),
                   const SizedBox(height: 20),
-                  BisnisCard(controller: controller),
+                  PengutusSubmitBisnis(
+                    controller: controller,
+                    buttonStyle: buttonStyle(),
+                    iconDone: iconDone(),
+                    iconNotYet: iconNotYet(),
+                    subtitleStyle: subtitleStyle(),
+                  ),
                   const SizedBox(height: 20),
                   UsahaCard(controller: controller),
                   const SizedBox(height: 20),
@@ -720,120 +727,6 @@ class UsahaCard extends StatelessWidget {
                 },
                 decoration: InputDecoration(
                   labelText: 'Apakah jenis usaha debitur ini layak?',
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                        const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                  border: InputBorder.none,
-                  alignLabelWithHint: true,
-                ),
-                options: const [
-                  FormBuilderFieldOption(
-                    value: true,
-                    child: Text('👍 Ya'),
-                  ),
-                  FormBuilderFieldOption(
-                    value: false,
-                    child: Text('👎 Tidak'),
-                  ),
-                ],
-                validator: FormBuilderValidators.required(),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class BisnisCard extends StatelessWidget {
-  const BisnisCard({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final PengutusSubmitController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    flex: 6,
-                    child: GFTypography(
-                      text: 'Bisnis Debitur',
-                      type: GFTypographyType.typo3,
-                      showDivider: false,
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => Icon(
-                        controller.isBisnisPressed.value == true
-                            ? Icons.check_box
-                            : Icons.close,
-                        color: controller.isBisnisPressed.value == true
-                            ? Colors.green
-                            : Colors.transparent,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Ini merupakan rekapan bisnis debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.BISNIS_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Summary Bisnis',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              FormBuilderRadioGroup(
-                name: 'bisnis',
-                wrapAlignment: WrapAlignment.center,
-                onChanged: (value) {
-                  // if clicked then change isPressed to true
-                  controller.isBisnisPressed.value = true;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Apakah bisnis debitur ini layak?',
                   floatingLabelAlignment: FloatingLabelAlignment.center,
                   labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
                         const TextStyle(

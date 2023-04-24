@@ -1,5 +1,5 @@
 // 🐦 Flutter imports:
-import 'package:akm/app/modules/pengutus_submit/widget/components/pengutus_submit_karakter/pengutus_submit_karakter_button.dart';
+import 'package:akm/app/modules/pengutus_submit/widget/components/pengutus_submit_bisnis/pengutus_submit_bisnis_button.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -9,8 +9,8 @@ import 'package:getwidget/getwidget.dart';
 // 🌎 Project imports:
 import '../controllers/pengutus_submit_controller.dart';
 
-class PengutusKarakterSection extends StatelessWidget {
-  const PengutusKarakterSection({
+class PengutusSubmitBisnis extends StatelessWidget {
+  const PengutusSubmitBisnis({
     Key? key,
     required this.controller,
     required this.iconDone,
@@ -23,6 +23,7 @@ class PengutusKarakterSection extends StatelessWidget {
   final Icon iconDone;
   final Icon iconNotYet;
   final TextStyle buttonStyle;
+
   final TextStyle subtitleStyle;
 
   @override
@@ -43,7 +44,7 @@ class PengutusKarakterSection extends StatelessWidget {
                 const Expanded(
                   flex: 6,
                   child: GFTypography(
-                    text: 'Karakter Debitur',
+                    text: 'Bisnis Debitur',
                     type: GFTypographyType.typo3,
                     showDivider: false,
                   ),
@@ -51,10 +52,10 @@ class PengutusKarakterSection extends StatelessWidget {
                 Expanded(
                   child: Obx(
                     () => Icon(
-                      controller.isKarakterPressed.value == true
+                      controller.isBisnisPressed.value == true
                           ? Icons.check_box
                           : Icons.close,
-                      color: controller.isKarakterPressed.value == true
+                      color: controller.isBisnisPressed.value == true
                           ? Colors.green
                           : Colors.transparent,
                       size: 30,
@@ -65,16 +66,16 @@ class PengutusKarakterSection extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Ini merupakan rekapan karakter debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
+              'Ini merupakan rekapan bisnis debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
               style: subtitleStyle,
             ),
             const SizedBox(height: 20),
-            PemutusSubmitKarakterButton(
+            PengutusSubmitBisnisButton(
               controller: controller,
               iconDone: iconDone,
               iconNotYet: iconNotYet,
               buttonStyle: buttonStyle,
-            ),
+            )
           ],
         ),
       ),

@@ -13,8 +13,8 @@ import 'package:getwidget/getwidget.dart';
 // 🌎 Project imports:
 import 'package:akm/app/routes/app_pages.dart';
 
-class PemutusSubmitKarakterButton extends StatelessWidget {
-  const PemutusSubmitKarakterButton({
+class PengutusSubmitBisnisButton extends StatelessWidget {
+  const PengutusSubmitBisnisButton({
     super.key,
     required this.controller,
     required this.iconDone,
@@ -57,7 +57,7 @@ class PemutusSubmitKarakterButton extends StatelessWidget {
         Row(
           children: [
             Obx(
-              () => controller.isAnalisaKarakterRead.value
+              () => controller.isAnalisaBisnisRead.value == true
                   ? iconDone
                   : iconNotYet,
             ),
@@ -65,73 +65,81 @@ class PemutusSubmitKarakterButton extends StatelessWidget {
             Expanded(
               child: GFButton(
                 onPressed: () {
-                  Get.toNamed(Routes.KARAKTER_PRINT,
+                  Get.toNamed(Routes.BISNIS_PRINT,
                       arguments: controller.insightDebitur.value);
 
-                  controller.isAnalisaKarakterRead(true);
+                  controller.isAnalisaBisnisRead(true);
                 },
-                text: 'Cek Analisa Karakter',
-                textStyle: buttonStyle,
                 color: Colors.pink,
                 shape: GFButtonShape.pills,
+                text: 'Cek Analisa Bisnis',
+                textStyle: buttonStyle,
                 fullWidthButton: true,
                 size: GFSize.LARGE,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(
+          height: 10,
+        ),
         Obx(() {
           return GestureDetector(
             onTap: () {
-              if (!controller.isAnalisaKarakterRead.value) {
+              if (!controller.isAnalisaBisnisRead.value) {
                 ErrorDialogPink(
-                  title: 'Analisa Karakter Belum Dibaca',
-                  desc: 'Silahkan baca analisa karakter terlebih dahulu',
+                  title: 'Analisa Bisnis Belum Dibaca',
+                  desc: 'Silahkan baca analisa bisnis terlebih dahulu',
                   context: context,
                   btnOkOnPress: () {},
                 ).show();
               }
             },
             child: FormBuilderRadioGroup(
-              name: 'karakter',
+              name: 'bisnis',
               activeColor: Colors.pink,
-              enabled: controller.isAnalisaKarakterRead.value,
+              enabled: controller.isAnalisaBisnisRead.value,
               wrapAlignment: WrapAlignment.center,
+              onChanged: (value) {
+                controller.isBisnisPressed.value = true;
+
+                if (value == true) {
+                  CustomSnackBarPink.show(
+                      context, 'Bisnis Debitur dinyatakan LAYAK');
+                } else {
+                  CustomSnackBarPink.show(
+                      context, 'Bisnis Debitur dinyatakan TIDAK LAYAK');
+                }
+              },
               decoration: InputDecoration(
+                labelText: 'Apakah bisnis debitur ini layak?',
                 floatingLabelAlignment: FloatingLabelAlignment.center,
                 labelStyle: promptText(Colors.transparent, context),
                 border: InputBorder.none,
                 alignLabelWithHint: true,
-                label: const Text('Apakah karakter debitur ini layak?'),
               ),
               options: [
                 FormBuilderFieldOption(
                   value: true,
                   child: Text(
                     'YA',
-                    style: promptTextSubtitle(Colors.transparent, context),
+                    style: promptTextSubtitle(
+                      Colors.transparent,
+                      context,
+                    ),
                   ),
                 ),
                 FormBuilderFieldOption(
                   value: false,
                   child: Text(
                     'TIDAK',
-                    style: promptTextSubtitle(Colors.transparent, context),
+                    style: promptTextSubtitle(
+                      Colors.transparent,
+                      context,
+                    ),
                   ),
                 ),
               ],
-              onChanged: (value) {
-                controller.isKarakterPressed.value = true;
-
-                if (value == true) {
-                  CustomSnackBarPink.show(
-                      context, 'Karakter Debitur dinyatakan LAYAK');
-                } else {
-                  CustomSnackBarPink.show(
-                      context, 'Karakter Debitur dinyatakan TIDAK LAYAK');
-                }
-              },
               validator: FormBuilderValidators.required(),
             ),
           );

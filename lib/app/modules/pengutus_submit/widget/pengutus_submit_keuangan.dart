@@ -68,7 +68,7 @@ class PengutusKeuanganSection extends StatelessWidget {
               'Ini merupakan rekapan keuangan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
               style: subtitleStyle,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             PengutusSubmitKeuanganButton(
               controller: controller,
               buttonStyle: buttonStyle,

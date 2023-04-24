@@ -219,6 +219,9 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                   PengutusKeuanganSection(
                     controller: controller,
                     subtitleStyle: subtitleStyle(),
+                    buttonStyle: buttonStyle(),
+                    iconDone: iconDone(),
+                    iconNotYet: iconNotYet(),
                   ),
                   const SizedBox(height: 20),
                   KarakterCard(controller: controller),

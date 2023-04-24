@@ -14,10 +14,16 @@ class PengutusKeuanganSection extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.subtitleStyle,
+    required this.iconDone,
+    required this.iconNotYet,
+    required this.buttonStyle,
   }) : super(key: key);
 
   final PengutusSubmitController controller;
   final TextStyle subtitleStyle;
+  final Icon iconDone;
+  final Icon iconNotYet;
+  final TextStyle buttonStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +72,9 @@ class PengutusKeuanganSection extends StatelessWidget {
               const SizedBox(height: 10),
               PengutusSubmitKeuanganButton(
                 controller: controller,
+                buttonStyle: buttonStyle,
+                iconDone: iconDone,
+                iconNotYet: iconNotYet,
               ),
             ],
           ),

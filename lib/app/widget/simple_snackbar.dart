@@ -25,7 +25,7 @@ class CustomSnackBarPink {
   static show(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.pink, // customize the background color
+        backgroundColor: Colors.pink.shade400, // customize the background color
         duration: const Duration(seconds: 2), // customize the duration
         content: Text(
           message,

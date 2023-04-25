@@ -20,6 +20,7 @@ import 'package:intl/intl.dart';
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import '../controllers/pengutus_submit_controller.dart';
+import '../widget/pengutus_submit_agunan.dart';
 
 // ignore: must_be_immutable
 class PengutusSubmitView extends GetView<PengutusSubmitController> {
@@ -235,8 +236,12 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                       subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
-                    AgunanCard(
+                    PengutusSubmitAgunan(
                       controller: controller,
+                      buttonStyle: buttonStyle(),
+                      iconDone: iconDone(),
+                      iconNotYet: iconNotYet(),
+                      subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
                     Text(
@@ -506,137 +511,6 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                 ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class AgunanCard extends StatelessWidget {
-  const AgunanCard({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  final PengutusSubmitController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.grey[200],
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Expanded(
-                    flex: 6,
-                    child: GFTypography(
-                      text: 'Agunan Debitur',
-                      type: GFTypographyType.typo3,
-                      showDivider: false,
-                    ),
-                  ),
-                  Expanded(
-                    child: Obx(
-                      () => Icon(
-                        controller.isAgunanPressed.value == true
-                            ? Icons.check_box
-                            : Icons.close,
-                        color: controller.isAgunanPressed.value == true
-                            ? Colors.green
-                            : Colors.transparent,
-                        size: 30,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Ini merupakan rekapan agunan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
-                style: Theme.of(context).textTheme.bodySmall?.merge(
-                      const TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.AGUNAN_PRINT,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Summary Agunan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(
-                height: 10.0,
-              ),
-              GFButton(
-                onPressed: () {
-                  Get.toNamed(Routes.DETAIL_AGUNAN,
-                      arguments: controller.insightDebitur.value);
-                },
-                color: Colors.pink,
-                shape: GFButtonShape.pills,
-                text: 'Lihat Detail Agunan',
-                icon: const Icon(
-                  Icons.summarize,
-                  size: 18,
-                  color: secondaryColor,
-                ),
-                fullWidthButton: true,
-                size: GFSize.LARGE,
-              ),
-              const SizedBox(height: 10),
-              FormBuilderRadioGroup(
-                name: 'agunan',
-                wrapAlignment: WrapAlignment.center,
-                onChanged: (value) {
-                  // if clicked then change isPressed to true
-                  controller.isAgunanPressed.value = true;
-                },
-                decoration: InputDecoration(
-                  labelText: 'Apakah bisnis debitur ini layak?',
-                  floatingLabelAlignment: FloatingLabelAlignment.center,
-                  labelStyle: Theme.of(context).textTheme.bodySmall!.merge(
-                        const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                  border: InputBorder.none,
-                  alignLabelWithHint: true,
-                ),
-                options: const [
-                  FormBuilderFieldOption(
-                    value: true,
-                    child: Text('👍 Ya'),
-                  ),
-                  FormBuilderFieldOption(
-                    value: false,
-                    child: Text('👎 Tidak'),
-                  ),
-                ],
-                validator: FormBuilderValidators.required(),
-              )
-            ],
           ),
         ),
       ),

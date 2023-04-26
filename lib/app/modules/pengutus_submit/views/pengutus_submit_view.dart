@@ -8,6 +8,10 @@ import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_keuangan.
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_reviewer_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_usaha.dart';
+import 'package:akm/app/modules/reviewer_submit/widget/pengutus_submit_decision.dart';
+import 'package:akm/app/widget/bottomnavbar_button.dart';
+import 'package:akm/app/widget/dialog_box.dart';
+import 'package:akm/app/widget/simple_alert.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -29,32 +33,6 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
 
   String formatDatetime(DateTime date) {
     return DateFormat('dd MMMM yyyy').format(date);
-  }
-
-  Widget myWidget(int num) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: FormBuilderTextField(
-            name: 'name$num',
-            maxLines: 3,
-            textInputAction: TextInputAction.next,
-            onChanged: (value) {
-              debugPrint('value: $value');
-            },
-            validator: FormBuilderValidators.required(),
-            decoration: InputDecoration(
-              alignLabelWithHint: true,
-              labelText: 'Poin ${num + 1}',
-              border: const OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
   }
 
   var list = List.empty(growable: true).obs;
@@ -91,13 +69,27 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
 
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollController = ScrollController();
+
+    RxBool showButton = false.obs;
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels ==
+          scrollController.position.maxScrollExtent) {
+        // User reached the bottom of the page
+        showButton.value = true;
+      }
+    });
+
     return Scaffold(
       backgroundColor: Colors.pink[600],
       body: RawScrollbar(
+        controller: scrollController,
         thumbColor: Colors.white,
         radius: const Radius.circular(16),
         thickness: 7,
         child: SingleChildScrollView(
+          controller: scrollController,
           child: SafeArea(
             child: Container(
               padding: const EdgeInsets.all(16),
@@ -141,13 +133,23 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                     const SizedBox(height: 20),
                     FormBuilderDateTimePicker(
                       name: 'tglPutusan',
+                      transitionBuilder: (context, child) {
+                        return Theme(
+                          data: ThemeData.light().copyWith(
+                            colorScheme: const ColorScheme.light().copyWith(
+                              primary: Colors.pink,
+                            ),
+                          ),
+                          child: child!,
+                        );
+                      },
                       cursorColor: secondaryColor,
                       inputType: InputType.date,
                       style: GoogleFonts.poppins(
                         color: secondaryColor,
                         fontSize: 16,
                       ),
-                      format: DateFormat('dd-MM-yyyy'),
+                      format: DateFormat('EEEE, dd MMMM yyyy', 'id_ID'),
                       resetIcon: const Icon(Icons.clear),
                       decoration: const InputDecoration(
                         focusColor: secondaryColor,
@@ -267,154 +269,13 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                     PengutusSubmitResponse(
                       controller: controller,
                       subtitleStyle: subtitleStyle(),
+                      list: list,
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      color: Colors.grey[200],
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const GFTypography(
-                                text: 'Putusan',
-                                type: GFTypographyType.typo3,
-                                showDivider: false,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Decision time, TERIMA / TOLAK ?',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.merge(
-                                      const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                              ),
-                              const SizedBox(height: 10),
-                              FormBuilderDropdown(
-                                name: 'putusan',
-                                alignment: Alignment.centerLeft,
-                                decoration: const InputDecoration(
-                                  hintText: 'Terima / Tolak ?',
-                                  border: InputBorder.none,
-                                ),
-                                items: const [
-                                  DropdownMenuItem(
-                                    value: 'DONE',
-                                    child: Text('TERIMA'),
-                                  ),
-                                  DropdownMenuItem(
-                                    value: 'REJECTED',
-                                    child: Text('TOLAK'),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                    PengutusSubmitDecision(
+                      subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
-                    GFButton(
-                      onPressed: () {
-                        if (controller.formKey.currentState!
-                            .saveAndValidate()) {
-                          // controller.submit();
-                          debugPrint(controller.formKey.currentState!.value
-                              .toString());
-                          Get.dialog(
-                            AlertDialog(
-                              title: const Text(
-                                'Submit',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              content: Text(
-                                'Tolong double check data yang telah diinputkan, apakah sudah benar ?',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                              actions: [
-                                GFButton(
-                                  color: GFColors.DANGER,
-                                  size: GFSize.LARGE,
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Text('Tidak'),
-                                ),
-                                GFButton(
-                                  color: GFColors.SUCCESS,
-                                  size: GFSize.LARGE,
-                                  onPressed: () {
-                                    var list =
-                                        controller.formKey.currentState!.value;
-
-                                    // Transform map to list
-                                    var list2 = list.entries.toList();
-
-                                    // // remove MapEntry and key
-                                    list2.removeWhere(
-                                      (element) =>
-                                          element.key == 'pemutus' ||
-                                          element.key == 'tglPutusan' ||
-                                          element.key == 'inputan' ||
-                                          element.key == 'keuangan' ||
-                                          element.key == 'karakter' ||
-                                          element.key == 'bisnis' ||
-                                          element.key == 'usaha' ||
-                                          element.key == 'agunan' ||
-                                          element.key == 'berkas' ||
-                                          element.key == 'putusan',
-                                    );
-
-                                    // debugPrint('list2: $list2');
-
-                                    // Transform list2 to list of string
-                                    var list3 =
-                                        list2.map((e) => e.value).toList();
-
-                                    // list3.removeWhere((element) => element.k)
-
-                                    // transform list3 to string
-                                    list3 =
-                                        list3.map((e) => e.toString()).toList();
-
-                                    controller.bahasanPemutus = list3;
-
-                                    var listFinal = controller.bahasanPemutus;
-
-                                    debugPrint(listFinal.toString());
-
-                                    Navigator.pop(context);
-
-                                    controller.savePutusan();
-                                  },
-                                  child: const Text('Ya'),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          debugPrint('validation failed');
-                        }
-                      },
-                      text: 'Submit',
-                      shape: GFButtonShape.square,
-                      color: GFColors.SUCCESS,
-                      fullWidthButton: true,
-                      size: GFSize.LARGE,
-                      textStyle: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -422,6 +283,87 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
           ),
         ),
       ),
+      bottomNavigationBar: Obx(() => showButton.value
+          ? BottomNavBarButtonPink(
+              text: 'Kirim',
+              icon: Icons.send,
+              onPressed: () {
+                if (controller.formKey.currentState!.saveAndValidate()) {
+                  if (list.isEmpty) {
+                    ErrorDialogPink(
+                      context: context,
+                      title: 'Perhatian',
+                      desc: 'Pastikan tanggapan sudah diisi',
+                      btnOkOnPress: () {},
+                    ).show();
+                  } else {
+                    Get.dialog(
+                      NativePromptAlertPink(
+                        title: 'Submit',
+                        content:
+                            'Tolong double check data yang telah diinputkan, apakah sudah benar ?',
+                        onPressedDanger: () {
+                          Navigator.pop(context);
+                        },
+                        onPressedSuccess: () {
+                          var list = controller.formKey.currentState!.value;
+
+                          // Transform map to list
+                          var list2 = list.entries.toList();
+
+                          // // remove MapEntry and key
+                          list2.removeWhere(
+                            (element) =>
+                                element.key == 'pemutus' ||
+                                element.key == 'tglPutusan' ||
+                                element.key == 'inputan' ||
+                                element.key == 'keuangan' ||
+                                element.key == 'karakter' ||
+                                element.key == 'bisnis' ||
+                                element.key == 'usaha' ||
+                                element.key == 'agunan' ||
+                                element.key == 'berkas' ||
+                                element.key == 'putusan',
+                          );
+
+                          // debugPrint('list2: $list2');
+
+                          // Transform list2 to list of string
+                          var list3 = list2.map((e) => e.value).toList();
+
+                          // list3.removeWhere((element) => element.k)
+
+                          // transform list3 to string
+                          list3 = list3.map((e) => e.toString()).toList();
+
+                          controller.bahasanPemutus = list3;
+
+                          var listFinal = controller.bahasanPemutus;
+
+                          debugPrint(listFinal.toString());
+
+                          Navigator.pop(context);
+
+                          controller.savePutusan();
+                        },
+                        controller: controller,
+                        index: 0,
+                        textDanger: 'TIDAK',
+                        textSuccess: 'YA',
+                      ),
+                    );
+                  }
+                } else {
+                  ErrorDialogPink(
+                    context: context,
+                    title: 'Perhatian',
+                    desc: 'Pastikan semua analisa sudah diperiksa',
+                    btnOkOnPress: () {},
+                  ).show();
+                }
+              },
+            )
+          : const SizedBox.shrink()),
     );
   }
 }

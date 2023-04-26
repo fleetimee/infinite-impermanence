@@ -19,10 +19,12 @@ class PengutusSubmitResponse extends StatelessWidget {
     super.key,
     required this.controller,
     required this.subtitleStyle,
+    required this.list,
   });
 
   final PengutusSubmitController controller;
   final TextStyle subtitleStyle;
+  final RxList<dynamic> list;
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +63,6 @@ class PengutusSubmitResponse extends StatelessWidget {
         ),
       );
     }
-
-    var list = List.empty(growable: true).obs;
 
     return Card(
       shape: RoundedRectangleBorder(

@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_analyst_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_bisnis.dart';
+import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_bottom_navbar.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_gallery.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_inputan.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_karakter.dart';
@@ -9,9 +10,6 @@ import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_response.
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_reviewer_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_usaha.dart';
 import 'package:akm/app/modules/reviewer_submit/widget/pengutus_submit_decision.dart';
-import 'package:akm/app/widget/bottomnavbar_button.dart';
-import 'package:akm/app/widget/dialog_box.dart';
-import 'package:akm/app/widget/simple_alert.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -67,11 +65,11 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
     );
   }
 
+  RxBool showButton = false.obs;
+
   @override
   Widget build(BuildContext context) {
     ScrollController scrollController = ScrollController();
-
-    RxBool showButton = false.obs;
 
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
@@ -283,87 +281,11 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
           ),
         ),
       ),
-      bottomNavigationBar: Obx(() => showButton.value
-          ? BottomNavBarButtonPink(
-              text: 'Kirim',
-              icon: Icons.send,
-              onPressed: () {
-                if (controller.formKey.currentState!.saveAndValidate()) {
-                  if (list.isEmpty) {
-                    ErrorDialogPink(
-                      context: context,
-                      title: 'Perhatian',
-                      desc: 'Pastikan tanggapan sudah diisi',
-                      btnOkOnPress: () {},
-                    ).show();
-                  } else {
-                    Get.dialog(
-                      NativePromptAlertPink(
-                        title: 'Submit',
-                        content:
-                            'Tolong double check data yang telah diinputkan, apakah sudah benar ?',
-                        onPressedDanger: () {
-                          Navigator.pop(context);
-                        },
-                        onPressedSuccess: () {
-                          var list = controller.formKey.currentState!.value;
-
-                          // Transform map to list
-                          var list2 = list.entries.toList();
-
-                          // // remove MapEntry and key
-                          list2.removeWhere(
-                            (element) =>
-                                element.key == 'pemutus' ||
-                                element.key == 'tglPutusan' ||
-                                element.key == 'inputan' ||
-                                element.key == 'keuangan' ||
-                                element.key == 'karakter' ||
-                                element.key == 'bisnis' ||
-                                element.key == 'usaha' ||
-                                element.key == 'agunan' ||
-                                element.key == 'berkas' ||
-                                element.key == 'putusan',
-                          );
-
-                          // debugPrint('list2: $list2');
-
-                          // Transform list2 to list of string
-                          var list3 = list2.map((e) => e.value).toList();
-
-                          // list3.removeWhere((element) => element.k)
-
-                          // transform list3 to string
-                          list3 = list3.map((e) => e.toString()).toList();
-
-                          controller.bahasanPemutus = list3;
-
-                          var listFinal = controller.bahasanPemutus;
-
-                          debugPrint(listFinal.toString());
-
-                          Navigator.pop(context);
-
-                          controller.savePutusan();
-                        },
-                        controller: controller,
-                        index: 0,
-                        textDanger: 'TIDAK',
-                        textSuccess: 'YA',
-                      ),
-                    );
-                  }
-                } else {
-                  ErrorDialogPink(
-                    context: context,
-                    title: 'Perhatian',
-                    desc: 'Pastikan semua analisa sudah diperiksa',
-                    btnOkOnPress: () {},
-                  ).show();
-                }
-              },
-            )
-          : const SizedBox.shrink()),
+      bottomNavigationBar: PengutusSubmitBottomNavBar(
+        controller: controller,
+        listPoints: list,
+        showButton: showButton,
+      ),
     );
   }
 }

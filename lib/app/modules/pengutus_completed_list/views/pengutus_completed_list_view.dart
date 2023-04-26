@@ -21,7 +21,9 @@ class PengutusCompletedListView
             ? const Align(
                 alignment: Alignment.center,
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: Colors.pink,
+                  ),
                 ),
               )
             : // check if listMyCompletedReview is empty

@@ -20,10 +20,12 @@ class ReviewerSubmitResponse extends StatelessWidget {
     super.key,
     required this.controller,
     required this.subtitleStyle,
+    required this.list,
   });
 
   final ReviewerSubmitController controller;
   final TextStyle subtitleStyle;
+  final RxList<dynamic> list;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class ReviewerSubmitResponse extends StatelessWidget {
               decoration: InputDecoration(
                 alignLabelWithHint: true,
                 filled: true,
-                fillColor: Colors.grey.shade400,
+                fillColor: Colors.grey.shade300,
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor),
                 ),
@@ -62,8 +64,6 @@ class ReviewerSubmitResponse extends StatelessWidget {
         ),
       );
     }
-
-    var list = List.empty(growable: true).obs;
 
     return Container(
       color: Colors.grey[200],

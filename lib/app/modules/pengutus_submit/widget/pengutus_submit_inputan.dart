@@ -43,7 +43,7 @@ class PengutusResultInputSection extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan akan di review oleh anda sebagai reviewer.',
+              'Ini merupakan hasil inputan debitur yang telah diinputkan oleh analis, dan sudah di double check oleh reviewer, yang selanjutnya akan diputuskan oleh anda sebagai pemutus.',
               style: subtitleStyle,
             ),
             const SizedBox(height: 10),

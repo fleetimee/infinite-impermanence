@@ -30,7 +30,7 @@ class PengutusPendingList extends StatelessWidget {
               visible: true,
               status: AlertStatus.danger,
               text:
-                  'Ini adalah daftar pengajuan yang belum direview oleh kamu, silahkan review secepatnya',
+                  'Ini adalah daftar pengajuan yang belum diputuskan oleh kamu, silahkan putus secepatnya',
               isDismissible: true,
               leadingIcon: Icons.people_outline,
               borderRadius: const BorderRadius.all(

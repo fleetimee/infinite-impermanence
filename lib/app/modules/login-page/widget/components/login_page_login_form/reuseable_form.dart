@@ -53,7 +53,7 @@ class FleetimeLoginTextField extends StatelessWidget {
           vertical: 25,
         ),
         focusColor: Colors.red,
-        fillColor: Colors.grey.shade400,
+        fillColor: Colors.grey.shade200,
         hoverColor: Colors.red,
         filled: true,
         suffixIcon: suffixIcon,

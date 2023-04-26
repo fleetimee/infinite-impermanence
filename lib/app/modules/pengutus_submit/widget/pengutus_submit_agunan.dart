@@ -65,7 +65,7 @@ class PengutusSubmitAgunan extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Ini merupakan rekapan agunan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
+              'Ini merupakan rekapan agunan debitur, pilih ya atau tidak untuk menandai apakah agunan debitur ini sudah layak untuk diberikan pinjaman atau tidak',
               style: subtitleStyle,
             ),
             const SizedBox(

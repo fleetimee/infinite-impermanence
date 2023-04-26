@@ -25,9 +25,9 @@ class PengutusCompletedList extends StatelessWidget {
           children: [
             BootstrapAlert(
               visible: true,
-              status: AlertStatus.danger,
+              status: AlertStatus.success,
               text:
-                  'Ini adalah daftar pengajuan yang belum direview oleh kamu, silahkan review secepatnya',
+                  'Ini adalah daftar pengajuan yang sudah di putuskan olehmu, silahkan cek kembali apakah sudah benar atau belum',
               isDismissible: true,
               leadingIcon: Icons.people_outline,
               borderRadius: const BorderRadius.all(

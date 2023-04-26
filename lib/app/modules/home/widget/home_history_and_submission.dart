@@ -76,52 +76,65 @@ class _HomeHistoryAndSubmissionState extends State<HomeHistoryAndSubmission> {
                       );
                     } else {
                       if (widget.controller.listMyInput.isNotEmpty) {
-                        return Column(
+                        return Stack(
                           children: [
-                            BootstrapAlert(
-                              visible: _showAlert,
-                              status: AlertStatus.success,
-                              text:
-                                  'Ini merupakan daftar riwayat penginputan debitur yang telah anda lakukan yang diurutkan berdasarkan alpabet',
-                              isDismissible: true,
-                              leadingIcon: Icons.people_outline,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              margin: const EdgeInsets.all(10),
-                              onDismissed: () {},
-                            ),
-                            BootstrapAlert(
-                              visible: _showAlert,
-                              status: AlertStatus.primary,
-                              text:
-                                  'Untuk fitur filter, sorting, dan pencarian, silahkan klik floating action button yang ada di pojok kanan bawah',
-                              isDismissible: true,
-                              leadingIcon: Icons.info_outline,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              margin: const EdgeInsets.all(10),
-                              onDismissed: () {},
-                            ),
-                            BootstrapAlert(
-                              visible: _showAlert,
-                              status: AlertStatus.warning,
-                              text:
-                                  'Untuk melihat detail debitur tap atau tekan pada card debitur yang diinginkan',
-                              isDismissible: true,
-                              leadingIcon: Icons.insert_comment_outlined,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              margin: const EdgeInsets.all(10),
-                              onDismissed: () {},
-                            ),
-                            Expanded(
-                              child: ListRiwayatInput(
-                                controller: widget.controller,
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Image.asset(
+                                "assets/images/home/reviewer_completed.png",
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                fit: BoxFit.contain,
                               ),
                             ),
+                            Column(
+                              children: [
+                                BootstrapAlert(
+                                  visible: _showAlert,
+                                  status: AlertStatus.success,
+                                  text:
+                                      'Ini merupakan daftar riwayat penginputan debitur yang telah anda lakukan yang diurutkan berdasarkan alpabet',
+                                  isDismissible: true,
+                                  leadingIcon: Icons.people_outline,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  margin: const EdgeInsets.all(10),
+                                  onDismissed: () {},
+                                ),
+                                BootstrapAlert(
+                                  visible: _showAlert,
+                                  status: AlertStatus.primary,
+                                  text:
+                                      'Untuk fitur filter, sorting, dan pencarian, silahkan klik floating action button yang ada di pojok kanan bawah',
+                                  isDismissible: true,
+                                  leadingIcon: Icons.info_outline,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  margin: const EdgeInsets.all(10),
+                                  onDismissed: () {},
+                                ),
+                                BootstrapAlert(
+                                  visible: _showAlert,
+                                  status: AlertStatus.warning,
+                                  text:
+                                      'Untuk melihat detail debitur tap atau tekan pada card debitur yang diinginkan',
+                                  isDismissible: true,
+                                  leadingIcon: Icons.insert_comment_outlined,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  margin: const EdgeInsets.all(10),
+                                  onDismissed: () {},
+                                ),
+                                Expanded(
+                                  child: ListRiwayatInput(
+                                    controller: widget.controller,
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         );
                       } else {
@@ -142,26 +155,39 @@ class _HomeHistoryAndSubmissionState extends State<HomeHistoryAndSubmission> {
                       );
                     } else {
                       if (widget.controller.listMySubmission.isNotEmpty) {
-                        return Column(
+                        return Stack(
                           children: [
-                            BootstrapAlert(
-                              visible: _showAlert,
-                              status: AlertStatus.primary,
-                              text:
-                                  'Ini merupakan daftar riwayat pengajuan debitur yang telah anda lakukan yang diurutkan berdasarkan alpabet',
-                              isDismissible: true,
-                              leadingIcon: Icons.info_outline,
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(10),
-                              ),
-                              margin: const EdgeInsets.all(10),
-                              onDismissed: () {},
-                            ),
-                            Expanded(
-                              child: ListRiwayatPengajuan(
-                                controller: widget.controller,
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Image.asset(
+                                "assets/images/home/reviewer_completed.png",
+                                height:
+                                    MediaQuery.of(context).size.height * 0.5,
+                                fit: BoxFit.contain,
                               ),
                             ),
+                            Column(
+                              children: [
+                                BootstrapAlert(
+                                  visible: _showAlert,
+                                  status: AlertStatus.primary,
+                                  text:
+                                      'Ini merupakan daftar riwayat pengajuan debitur yang telah anda lakukan yang diurutkan berdasarkan alpabet',
+                                  isDismissible: true,
+                                  leadingIcon: Icons.info_outline,
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(10),
+                                  ),
+                                  margin: const EdgeInsets.all(10),
+                                  onDismissed: () {},
+                                ),
+                                Expanded(
+                                  child: ListRiwayatPengajuan(
+                                    controller: widget.controller,
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         );
                       } else {

@@ -65,7 +65,7 @@ class PengutusKarakterSection extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Ini merupakan rekapan karakter debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
+              'Ini merupakan rekapan karakter debitur, pilih ya atau tidak untuk menandakan karakter debitur tersebut sesuai atau tidak dengan karakter debitur yang sebenarnya.',
               style: subtitleStyle,
             ),
             const SizedBox(height: 20),

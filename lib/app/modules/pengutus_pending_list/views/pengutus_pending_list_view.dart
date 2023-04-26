@@ -20,7 +20,9 @@ class PengutusPendingListView extends GetView<PengutusPendingListController> {
             ? const Align(
                 alignment: Alignment.center,
                 child: Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: Colors.pink,
+                  ),
                 ),
               )
             : controller.listMyPendingPemutusan.isEmpty

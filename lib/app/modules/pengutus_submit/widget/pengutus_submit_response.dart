@@ -49,7 +49,7 @@ class PengutusSubmitResponse extends StatelessWidget {
               decoration: InputDecoration(
                 alignLabelWithHint: true,
                 filled: true,
-                fillColor: Colors.grey.shade400,
+                fillColor: Colors.grey.shade300,
                 focusedBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: Theme.of(context).primaryColor),
                 ),

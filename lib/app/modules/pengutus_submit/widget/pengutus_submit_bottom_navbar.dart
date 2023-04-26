@@ -1,5 +1,3 @@
-// 🎯 Dart imports:
-
 // 🐦 Flutter imports:
 import 'package:akm/app/widget/bottomnavbar_button.dart';
 import 'package:akm/app/widget/dialog_box.dart';
@@ -10,16 +8,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // 🌎 Project imports:
-import '../controllers/reviewer_submit_controller.dart';
+import '../controllers/pengutus_submit_controller.dart';
 
-class ReviewerSubmitBottomNavbar extends StatelessWidget {
-  const ReviewerSubmitBottomNavbar(
-      {super.key,
-      required this.controller,
-      required this.showButton,
-      required this.listPoints});
+class PengutusSubmitBottomNavBar extends StatelessWidget {
+  const PengutusSubmitBottomNavBar({
+    super.key,
+    required this.showButton,
+    required this.controller,
+    required this.listPoints,
+  });
 
-  final ReviewerSubmitController controller;
+  final PengutusSubmitController controller;
   final RxBool showButton;
   final RxList<dynamic> listPoints;
 
@@ -27,15 +26,13 @@ class ReviewerSubmitBottomNavbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => showButton.value
-          ? BottomNavBarButton(
+          ? BottomNavBarButtonPink(
               text: 'Kirim',
               icon: Icons.send,
               onPressed: () {
                 if (controller.formKey.currentState!.saveAndValidate()) {
-                  debugPrint(controller.formKey.currentState!.value.toString());
-
                   if (listPoints.isEmpty) {
-                    ErrorDialog(
+                    ErrorDialogPink(
                       context: context,
                       title: 'Perhatian',
                       desc: 'Pastikan tanggapan sudah diisi',
@@ -43,12 +40,10 @@ class ReviewerSubmitBottomNavbar extends StatelessWidget {
                     ).show();
                   } else {
                     Get.dialog(
-                      NativePromptAlert(
-                        controller: controller,
-                        index: 0,
+                      NativePromptAlertPink(
                         title: 'Submit',
                         content:
-                            'Dengan menekan tombol Ya, data diatas akan dikirim ke pemutus yang dipilih, dan status pengajuan berubah menjadi REVIEWED. Apakah anda yakin?',
+                            'Tolong double check data yang telah diinputkan, apakah sudah benar ?',
                         onPressedDanger: () {
                           Navigator.pop(context);
                         },
@@ -62,14 +57,15 @@ class ReviewerSubmitBottomNavbar extends StatelessWidget {
                           list2.removeWhere(
                             (element) =>
                                 element.key == 'pemutus' ||
-                                element.key == 'tglReview' ||
+                                element.key == 'tglPutusan' ||
                                 element.key == 'inputan' ||
                                 element.key == 'keuangan' ||
                                 element.key == 'karakter' ||
                                 element.key == 'bisnis' ||
                                 element.key == 'usaha' ||
                                 element.key == 'agunan' ||
-                                element.key == 'berkas',
+                                element.key == 'berkas' ||
+                                element.key == 'putusan',
                           );
 
                           // debugPrint('list2: $list2');
@@ -82,22 +78,25 @@ class ReviewerSubmitBottomNavbar extends StatelessWidget {
                           // transform list3 to string
                           list3 = list3.map((e) => e.toString()).toList();
 
-                          controller.bahasanReviewer = list3;
+                          controller.bahasanPemutus = list3;
 
-                          var listFinal = controller.bahasanReviewer;
+                          var listFinal = controller.bahasanPemutus;
 
                           debugPrint(listFinal.toString());
 
                           Navigator.pop(context);
-                          controller.saveReview();
+
+                          controller.savePutusan();
                         },
+                        controller: controller,
+                        index: 0,
                         textDanger: 'TIDAK',
                         textSuccess: 'YA',
                       ),
                     );
                   }
                 } else {
-                  ErrorDialog(
+                  ErrorDialogPink(
                     context: context,
                     title: 'Perhatian',
                     desc: 'Pastikan semua analisa sudah diperiksa',

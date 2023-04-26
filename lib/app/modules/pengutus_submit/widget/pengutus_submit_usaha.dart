@@ -66,7 +66,7 @@ class PengutusSubmitUsaha extends StatelessWidget {
               height: 10,
             ),
             Text(
-              'Ini merupakan rekapan jenis usaha debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
+              'Ini merupakan rekapan jenis usaha debitur, pilih ya atau tidak untuk menandai apakah usaha debitur ini layak untuk diberikan pinjaman atau tidak',
               style: subtitleStyle,
             ),
             const SizedBox(height: 20),

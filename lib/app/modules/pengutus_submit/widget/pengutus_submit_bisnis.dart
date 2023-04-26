@@ -66,7 +66,7 @@ class PengutusSubmitBisnis extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Ini merupakan rekapan bisnis debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
+              'Ini merupakan rekapan bisnis debitur, pilih ya atau tidak untuk menandai apakah bisnis debitur ini layak untuk diberikan pinjaman atau tidak',
               style: subtitleStyle,
             ),
             const SizedBox(height: 20),

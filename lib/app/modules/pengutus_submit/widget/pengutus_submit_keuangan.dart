@@ -65,7 +65,7 @@ class PengutusKeuanganSection extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              'Ini merupakan rekapan keuangan debitur, pilih ya atau tidak untuk mengirim response ini ke pemutus',
+              'Ini merupakan rekapan keuangan debitur, pilih ya atau tidak untuk menandai keuangan debitur sudah diisi atau belum',
               style: subtitleStyle,
             ),
             const SizedBox(height: 20),

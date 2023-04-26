@@ -50,79 +50,84 @@ class InsightDebiturView extends GetView<InsightDebiturController> {
         onRefresh: () async {
           controller.refreshInsightDebitur();
         },
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              iconTheme: const IconThemeData(
-                color: primaryColor,
-              ),
-              backgroundColor: Colors.transparent,
-              bottom: PreferredSize(
-                preferredSize: const Size.fromHeight(0),
-                child: Container(
-                  decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(500),
-                        topRight: Radius.circular(500),
-                      ),
-                      color: secondaryColor),
-                  // padding: const EdgeInsets.only(bottom: 25, top: 5),
-                  width: double.maxFinite,
+        child: RawScrollbar(
+          thumbColor: primaryColor,
+          radius: const Radius.circular(16),
+          thickness: 7,
+          child: CustomScrollView(
+            slivers: [
+              SliverAppBar(
+                iconTheme: const IconThemeData(
+                  color: primaryColor,
+                ),
+                backgroundColor: Colors.transparent,
+                bottom: PreferredSize(
+                  preferredSize: const Size.fromHeight(0),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(500),
+                          topRight: Radius.circular(500),
+                        ),
+                        color: secondaryColor),
+                    // padding: const EdgeInsets.only(bottom: 25, top: 5),
+                    width: double.maxFinite,
+                  ),
+                ),
+                expandedHeight: 300,
+                pinned: true,
+                flexibleSpace: FlexibleSpaceBar(
+                  background: Image.asset(
+                    'assets/images/home/copyright.jpg',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-              expandedHeight: 300,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  'assets/images/home/copyright.jpg',
-                  fit: BoxFit.cover,
+              SliverToBoxAdapter(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InsightDebiturTopSection(
+                      controller: controller,
+                      neracaController: neracaController,
+                      rugiLabaController: rugiLabaController,
+                      analisaKeuanganController: analisaKeuanganController,
+                      analisaBisnisController: analisaBisnisController,
+                      analisaKarakterController: analisaKarakterController,
+                      analisaJenisUsahaController: analisaJenisUsahaController,
+                      selectAgunanController: selectAgunanController,
+                      analisaAgunanController: analisaAgunanController,
+                    ),
+                    InsightDebiturCarousel(
+                      controller: controller,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    InsightDebiturProgressBar(
+                      controller: controller,
+                    ),
+                    const SizedBox(
+                      height: 25,
+                    ),
+                    InsightDebiturSubmissionButton(
+                      controller: controller,
+                    ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    InsightDebiturContent(
+                      controller: controller,
+                    ),
+                    InsighDebiturDetailDebitur(
+                      controller: controller,
+                    ),
+                  ],
                 ),
               ),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  InsightDebiturTopSection(
-                    controller: controller,
-                    neracaController: neracaController,
-                    rugiLabaController: rugiLabaController,
-                    analisaKeuanganController: analisaKeuanganController,
-                    analisaBisnisController: analisaBisnisController,
-                    analisaKarakterController: analisaKarakterController,
-                    analisaJenisUsahaController: analisaJenisUsahaController,
-                    selectAgunanController: selectAgunanController,
-                    analisaAgunanController: analisaAgunanController,
-                  ),
-                  InsightDebiturCarousel(
-                    controller: controller,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  InsightDebiturProgressBar(
-                    controller: controller,
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  InsightDebiturSubmissionButton(
-                    controller: controller,
-                  ),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
-                  InsightDebiturContent(
-                    controller: controller,
-                  ),
-                  InsighDebiturDetailDebitur(
-                    controller: controller,
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

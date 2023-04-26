@@ -12,3 +12,4 @@ config:
     #  - /assets/images/banner_upgrade.png # Uncomment this if you want to use
     #  - /assets/images/logo.png # Uncomment this if you want to use
     - /assets/fonts/times-new-roman.ttf
+    - /lib/app/modules/home/widget/components/home_history_and_submission.dart

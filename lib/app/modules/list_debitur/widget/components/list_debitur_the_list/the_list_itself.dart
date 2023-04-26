@@ -32,58 +32,68 @@ class ListAllDebitur extends StatelessWidget {
         controller: controller.scrollController,
         itemCount: controller.listDebitur.length,
         itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(8),
-            child: Card(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(30),
-                ),
+          if (index == controller.listDebitur.length - 1 &&
+              controller.isMoreDataAvailable.value == true) {
+            return const Center(
+              child: CircularProgressIndicator(
+                backgroundColor: Colors.white,
               ),
-              color:
-                  controller.listDebitur[index].userId == auth.currentUser?.uid
-                      ? Colors.blue[900]?.withOpacity(0.9)
-                      : Colors.red[900]?.withOpacity(0.9),
-              elevation: 6,
-              child: ListTile(
-                leading: RandomAvatar(
-                  '${controller.listDebitur[index].peminjam1}',
-                  fit: BoxFit.cover,
-                  height: 50,
-                  width: 50,
-                ),
-                enableFeedback: true,
-                contentPadding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 10,
-                ),
-                title: Text(
-                  '${controller.listDebitur[index].peminjam1}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+            );
+          } else {
+            return Container(
+              padding: const EdgeInsets.all(8),
+              child: Card(
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30),
                   ),
                 ),
-                subtitle: TextSubtitle(
-                  subtitleStyle: subtitleStyle,
-                  controller: controller,
-                  index: index,
+                color: controller.listDebitur[index].userId ==
+                        auth.currentUser?.uid
+                    ? Colors.blue[900]?.withOpacity(0.9)
+                    : Colors.red[900]?.withOpacity(0.9),
+                elevation: 6,
+                child: ListTile(
+                  leading: RandomAvatar(
+                    '${controller.listDebitur[index].peminjam1}',
+                    fit: BoxFit.cover,
+                    height: 50,
+                    width: 50,
+                  ),
+                  enableFeedback: true,
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
+                  title: Text(
+                    '${controller.listDebitur[index].peminjam1}',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: TextSubtitle(
+                    subtitleStyle: subtitleStyle,
+                    controller: controller,
+                    index: index,
+                  ),
+                  onTap: () {
+                    controller.listDebitur[index].userId ==
+                            auth.currentUser?.uid
+                        ? Get.toNamed(Routes.INSIGHT_DEBITUR,
+                            arguments: controller.listDebitur[index].id)
+                        : ErrorDialog(
+                            title: 'Error',
+                            context: context,
+                            desc: 'Anda tidak memiliki akses ke data ini',
+                            btnOkOnPress: () {},
+                          ).show();
+                  },
+                  splashColor: Colors.blue[900]?.withOpacity(0.4),
                 ),
-                onTap: () {
-                  controller.listDebitur[index].userId == auth.currentUser?.uid
-                      ? Get.toNamed(Routes.INSIGHT_DEBITUR,
-                          arguments: controller.listDebitur[index].id)
-                      : ErrorDialog(
-                          title: 'Error',
-                          context: context,
-                          desc: 'Anda tidak memiliki akses ke data ini',
-                          btnOkOnPress: () {},
-                        ).show();
-                },
-                splashColor: Colors.blue[900]?.withOpacity(0.4),
               ),
-            ),
-          );
+            );
+          }
         },
       ),
     );

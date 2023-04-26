@@ -43,46 +43,57 @@ class DeviceInfo extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Model',
                           subTitleText: controller.modelName.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Product',
                           subTitleText: controller.productName.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Brand',
                           subTitleText: controller.brandName.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Manufacturer',
                           subTitleText: controller.manufacturer.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Android Version',
                           subTitleText: controller.androidVersion.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Bootloader',
                           subTitleText: controller.bootloader.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Board',
                           subTitleText: controller.board.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Device',
                           subTitleText: controller.device.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Hardware',
                           subTitleText: controller.hardware.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Display',
                           subTitleText: controller.display.value,
                         ),
                         GFListTile(
+                          color: Colors.white,
                           titleText: 'Physical Device',
                           subTitleText:
                               controller.isPhysicalDevice.value ? 'Yes' : 'No',

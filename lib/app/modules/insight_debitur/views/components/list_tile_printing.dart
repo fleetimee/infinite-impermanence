@@ -23,6 +23,7 @@ class PrintInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Input',
         style: TextStyle(
@@ -91,6 +92,7 @@ class PrintNeraca extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Keterangan Neraca',
         style: TextStyle(
@@ -146,6 +148,7 @@ class PrintUsulanBaru extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Memorandum Pengusulan Kredit',
         style: TextStyle(
@@ -206,6 +209,7 @@ class PrintRugiLaba extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Laporan Keuangan',
         style: TextStyle(
@@ -261,6 +265,7 @@ class PrintAgunan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Analisa Agunan',
         style: TextStyle(
@@ -316,6 +321,7 @@ class PrintPutusan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Putusan Kredit',
         style: TextStyle(
@@ -378,6 +384,7 @@ class PrintUsulan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Memorandum Pengusulan Komite Kredit',
         style: TextStyle(
@@ -439,6 +446,7 @@ class PrintKeuangan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Analisa Keuangan',
         style: TextStyle(
@@ -495,6 +503,7 @@ class ModelPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Model',
         style: TextStyle(
@@ -535,6 +544,7 @@ class BisnisPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Analisa Bisnis',
         style: TextStyle(
@@ -590,6 +600,7 @@ class KarakterPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Analisa Karakter',
         style: TextStyle(
@@ -645,6 +656,7 @@ class JenisUsahaPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Analisa Jenis Usaha',
         style: TextStyle(
@@ -700,6 +712,7 @@ class SlikPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Pernyataan SLIK',
         style: TextStyle(
@@ -760,6 +773,7 @@ class SpkkPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'SPKK',
         style: TextStyle(
@@ -820,6 +834,7 @@ class PkPrint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GFListTile(
+      color: Colors.white,
       title: const Text(
         'Perjanjian Kredit',
         style: TextStyle(

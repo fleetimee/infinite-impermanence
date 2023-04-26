@@ -26,26 +26,38 @@ class ListDebiturListView extends StatelessWidget {
           );
         } else {
           if (controller.listDebitur.isNotEmpty) {
-            return Column(
+            return Stack(
               children: [
-                BootstrapAlert(
-                  visible: true,
-                  status: AlertStatus.success,
-                  text:
-                      'Ini merupakan list debitur yang telah diinputkan oleh semua analis, anda hanya dapat melihat data debitur yang anda inputkan',
-                  leadingIcon: Icons.people_outline,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  margin: const EdgeInsets.all(10),
-                  onDismissed: () {},
-                  isDismissible: true,
-                ),
-                Expanded(
-                  child: ListAllDebitur(
-                    controller: controller,
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset(
+                    "assets/images/home/list_pending.png",
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    fit: BoxFit.contain,
                   ),
                 ),
+                Column(
+                  children: [
+                    BootstrapAlert(
+                      visible: true,
+                      status: AlertStatus.success,
+                      text:
+                          'Ini merupakan list debitur yang telah diinputkan oleh semua analis, anda hanya dapat melihat data debitur yang anda inputkan',
+                      leadingIcon: Icons.people_outline,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                      margin: const EdgeInsets.all(10),
+                      onDismissed: () {},
+                      isDismissible: true,
+                    ),
+                    Expanded(
+                      child: ListAllDebitur(
+                        controller: controller,
+                      ),
+                    ),
+                  ],
+                )
               ],
             );
           } else {
@@ -72,7 +84,8 @@ class ListDebiturListView extends StatelessWidget {
                       child: Lottie.asset(
                         'assets/images/home/404.zip',
                         frameRate: FrameRate.max,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
+                        height: 350,
                         repeat: true,
                         errorBuilder: (context, error, stackTrace) {
                           return const Text(
@@ -88,11 +101,11 @@ class ListDebiturListView extends StatelessWidget {
                       child: Text(
                         'Data tidak dapat ditemukan di database atau list debitur masih kosong',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.normal,
-                          letterSpacing: 1.2,
-                        ),
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.normal,
+                            letterSpacing: 1.2,
+                            height: 1.5),
                         textAlign: TextAlign.center,
                       ),
                     ),

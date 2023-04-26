@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/reviewer_pending_list/controllers/reviewer_pending_list_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:akm/app/widget/simple_alert.dart';
@@ -39,7 +40,10 @@ class ListPendingPengajuanReviewer extends StatelessWidget {
           },
         );
       },
-      child: Scrollbar(
+      child: RawScrollbar(
+        thumbColor: primaryColor,
+        radius: const Radius.circular(16),
+        thickness: 7,
         child: ListView.builder(
           shrinkWrap: true,
           itemCount: controller.listMyPendingReview.length,

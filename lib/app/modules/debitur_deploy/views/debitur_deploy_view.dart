@@ -1,4 +1,5 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/debitur_deploy/widget/debitur_deploy_bottom_navbar.dart';
 import 'package:akm/app/modules/debitur_deploy/widget/debitur_deploy_create_form.dart';
 import 'package:flutter/material.dart';
@@ -30,13 +31,19 @@ class DebiturDeployView extends GetView<DebiturDeployController> {
       appBar: AppBar(
         title: const Text('Input Debitur'),
       ),
-      body: SingleChildScrollView(
+      body: RawScrollbar(
         controller: scrollController,
-        child: SafeArea(
-          child: Container(
-            margin: const EdgeInsets.all(16),
-            child: DebiturDeployCreateForm(
-              controller: controller,
+        thumbColor: primaryColor,
+        radius: const Radius.circular(16),
+        thickness: 7,
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: SafeArea(
+            child: Container(
+              margin: const EdgeInsets.all(16),
+              child: DebiturDeployCreateForm(
+                controller: controller,
+              ),
             ),
           ),
         ),

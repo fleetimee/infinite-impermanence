@@ -30,7 +30,7 @@ import '../controllers/reviewer_submit_controller.dart';
 
 // ignore: must_be_immutable
 class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
-  const ReviewerSubmitView({Key? key}) : super(key: key);
+  ReviewerSubmitView({Key? key}) : super(key: key);
 
   String formatDatetime(DateTime date) {
     return DateFormat('dd MMMM yyyy').format(date);
@@ -120,6 +120,8 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
           ),
         );
   }
+
+  final list = List.empty(growable: true).obs;
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +317,7 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
                     ReviewerSubmitResponse(
                       controller: controller,
                       subtitleStyle: subtitleStyle(),
+                      list: list,
                     ),
                     const SizedBox(height: 20),
                   ],
@@ -324,12 +327,10 @@ class ReviewerSubmitView extends GetView<ReviewerSubmitController> {
           ),
         ),
       ),
-      bottomNavigationBar: Obx(
-        () => showButton.value
-            ? ReviewerSubmitBottomNavbar(
-                controller: controller,
-              )
-            : const SizedBox.shrink(),
+      bottomNavigationBar: ReviewerSubmitBottomNavbar(
+        controller: controller,
+        listPoints: list,
+        showButton: showButton,
       ),
     );
   }

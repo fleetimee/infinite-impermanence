@@ -19,7 +19,7 @@ class ReviewerButton extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         separatorBuilder: (context, index) {
           return const SizedBox(
-            height: 5,
+            height: 10,
           );
         },
         itemBuilder: (context, index) {

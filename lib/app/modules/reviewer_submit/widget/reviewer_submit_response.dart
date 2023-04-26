@@ -1,7 +1,6 @@
-// 🎯 Dart imports:
-
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:akm/app/widget/text_label.dart';
 import 'package:flutter/material.dart';
 
@@ -21,10 +20,12 @@ class ReviewerSubmitResponse extends StatelessWidget {
     super.key,
     required this.controller,
     required this.subtitleStyle,
+    required this.list,
   });
 
   final ReviewerSubmitController controller;
   final TextStyle subtitleStyle;
+  final RxList<dynamic> list;
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +64,6 @@ class ReviewerSubmitResponse extends StatelessWidget {
         ),
       );
     }
-
-    var list = List.empty(growable: true).obs;
 
     return Container(
       color: Colors.grey[200],
@@ -120,14 +119,31 @@ class ReviewerSubmitResponse extends StatelessWidget {
                           size: GFSize.SMALL,
                           shape: GFIconButtonShape.circle,
                           onPressed: () {
-                            list.removeLast();
-                            controller.formKey.currentState
-                                ?.removeInternalFieldValue('name${list.length}',
-                                    isSetState: true);
-                            debugPrint('list: $list');
+                            /// if list is empty, show snackbar
+                            /// else remove last item from list
+                            ///
 
-                            CustomSnackBar.show(context,
-                                'Poin nomor ${list.length + 1} dihapus');
+                            if (list.isEmpty) {
+                              ErrorDialog(
+                                title: 'Tidak ada poin yang bisa dihapus',
+                                desc: 'Silahkan tambahkan poin terlebih dahulu',
+                                context: context,
+                                btnOkOnPress: () {},
+                              ).show();
+
+                              return;
+                            } else {
+                              list.removeLast();
+                              controller.formKey.currentState
+                                  ?.removeInternalFieldValue(
+                                      'name${list.length}',
+                                      isSetState: true);
+
+                              debugPrint('list: $list');
+
+                              CustomSnackBar.show(context,
+                                  'Poin nomor ${list.length + 1} dihapus');
+                            }
                           },
                           icon: const Icon(Icons.remove),
                         ),

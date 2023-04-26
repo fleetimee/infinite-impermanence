@@ -28,9 +28,9 @@ class ReviewerCompletedList extends StatelessWidget {
           children: [
             BootstrapAlert(
               visible: true,
-              status: AlertStatus.danger,
+              status: AlertStatus.success,
               text:
-                  'Ini adalah daftar pengajuan yang belum direview oleh kamu, silahkan review secepatnya',
+                  'Ini adalah daftar pengajuan yang sudah kamu periksa, status bisa berganti ke DONE atau REJECTED tergantung keputusan dari Pemutus',
               isDismissible: true,
               leadingIcon: Icons.people_outline,
               borderRadius: const BorderRadius.all(

@@ -1,8 +1,8 @@
 // 🐦 Flutter imports:
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -60,11 +60,40 @@ class HomePengutusController extends GetxController {
   //   }
   // }
 
+  void verifyEmail() async {
+    try {
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification().then(
+          (value) {
+        SuccessDialogPink(
+                context: Get.context!,
+                title: 'Success',
+                desc: 'Verifikasi email sudah dikirim',
+                btnOkOnPress: () {})
+            .show();
+      }, onError: (error) {
+        FirebaseAuthException exception = error as FirebaseAuthException;
+
+        ErrorDialogPink(
+          context: Get.context!,
+          title: 'Error',
+          desc: exception.message.toString(),
+          btnOkOnPress: () {},
+        ).show();
+      });
+    } catch (e) {
+      FirebaseAuthException exception = e as FirebaseAuthException;
+      ErrorDialogPink(
+        context: Get.context!,
+        title: 'Error',
+        desc: exception.message.toString(),
+        btnOkOnPress: () {},
+      ).show();
+    }
+  }
+
   void logout() {
-    AwesomeDialog(
+    PrompDialogPink(
       context: Get.context!,
-      dialogType: DialogType.question,
-      animType: AnimType.scale,
       title: 'Logout',
       desc: 'Are you sure want to logout?',
       btnCancelOnPress: () {},

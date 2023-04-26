@@ -35,3 +35,37 @@ class BottomNavBarButton extends StatelessWidget {
     );
   }
 }
+
+class BottomNavBarButtonPink extends StatelessWidget {
+  final void Function()? onPressed;
+  final String text;
+  final IconData? icon;
+
+  const BottomNavBarButtonPink({
+    super.key,
+    this.onPressed,
+    required this.text,
+    this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60,
+      child: GFButton(
+        onPressed: onPressed,
+        text: text,
+        textStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+        ),
+        icon: Icon(
+          icon,
+          color: Colors.white,
+        ),
+        size: GFSize.LARGE,
+        color: Colors.pinkAccent,
+      ),
+    );
+  }
+}

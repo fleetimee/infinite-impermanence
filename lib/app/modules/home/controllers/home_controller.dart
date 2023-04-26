@@ -574,20 +574,16 @@ class HomeController extends GetxController {
     try {
       await FirebaseAuth.instance.currentUser!.sendEmailVerification().then(
           (value) {
-        AwesomeDialog(
+        SuccessDialog(
           context: Get.context!,
-          dialogType: DialogType.success,
-          animType: AnimType.scale,
           title: 'Success',
           desc: 'Verification email sent successfully',
           btnOkOnPress: () {},
         ).show();
       }, onError: (error) {
         FirebaseAuthException exception = error as FirebaseAuthException;
-        AwesomeDialog(
+        ErrorDialog(
           context: Get.context!,
-          dialogType: DialogType.error,
-          animType: AnimType.scale,
           title: 'Error',
           desc: exception.message.toString(),
           btnOkOnPress: () {},
@@ -595,11 +591,9 @@ class HomeController extends GetxController {
       });
     } catch (e) {
       FirebaseAuthException exception = e as FirebaseAuthException;
-      AwesomeDialog(
+      ErrorDialog(
         context: Get.context!,
-        dialogType: DialogType.error,
-        animType: AnimType.scale,
-        title: e.toString(),
+        title: 'Error',
         desc: exception.message.toString(),
         btnOkOnPress: () {},
       ).show();

@@ -1,10 +1,12 @@
+import 'package:akm/app/widget/simple_snackbar.dart';
+import 'package:get/get.dart';
 import 'package:akm/app/modules/pengutus_submit/controllers/pengutus_submit_controller.dart';
+import 'package:akm/app/widget/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-import 'package:get/get.dart';
 import 'package:getwidget/getwidget.dart';
 
 // 🌎 Project imports:
@@ -79,31 +81,55 @@ class PengutusSubmitGalleryButton extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
-        FormBuilderCheckbox(
-          name: 'berkas',
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          activeColor: Colors.pink,
-          onChanged: (value) {
-            controller.isGalleryRead.value = value!;
-          },
-          initialValue: controller.isGalleryRead.value,
-          title: RichText(
-            text: const TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Saya sudah melihat berkas ini',
-                  style: TextStyle(color: Colors.black),
+        Obx(() {
+          return GestureDetector(
+            onTap: () {
+              if (!controller.isGalleryDocumentRead.value ||
+                  !controller.isGalleryPhotoRead.value) {
+                ErrorDialogPink(
+                  title: 'Gallery Belum Dilihat',
+                  desc: 'Beberapa gallery belum dilihat, silahkan cek kembali',
+                  context: context,
+                  btnOkOnPress: () {},
+                ).show();
+              }
+            },
+            child: FormBuilderCheckbox(
+              name: 'berkas',
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(50),
+              ),
+              enabled: controller.isGalleryDocumentRead.value &&
+                  controller.isGalleryPhotoRead.value,
+              activeColor: Colors.pink,
+              onChanged: (value) {
+                controller.isGalleryRead.value = value!;
+
+                if (controller.isGalleryRead.value) {
+                  CustomSnackBarPink.show(context, 'Gallery sudah dilihat');
+                }
+              },
+              initialValue: controller.isGalleryRead.value,
+              title: RichText(
+                text: const TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Saya sudah melihat berkas ini',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
+              validator: FormBuilderValidators.equal(
+                true,
+                errorText: 'Saya sudah melihat berkas ini',
+              ),
             ),
-          ),
-          validator: FormBuilderValidators.equal(
-            true,
-            errorText: 'Saya sudah melihat berkas ini',
-          ),
-        ),
+          );
+        }),
       ],
     );
   }

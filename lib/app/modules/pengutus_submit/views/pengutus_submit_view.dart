@@ -5,6 +5,7 @@ import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_gallery.d
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_inputan.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_karakter.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_keuangan.dart';
+import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_reviewer_response.dart';
 import 'package:akm/app/modules/pengutus_submit/widget/pengutus_submit_usaha.dart';
 import 'package:flutter/material.dart';
@@ -263,108 +264,9 @@ class PengutusSubmitView extends GetView<PengutusSubmitController> {
                       controller: controller,
                     ),
                     const SizedBox(height: 20),
-                    Container(
-                      color: Colors.grey[200],
-                      child: Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const GFTypography(
-                                text: 'Tanggapan Pemutus',
-                                type: GFTypographyType.typo3,
-                                showDivider: false,
-                              ),
-                              const SizedBox(height: 10),
-                              Text(
-                                'Ini merupakan catatan pemutus untuk debitur ini',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.merge(
-                                      const TextStyle(
-                                        fontSize: 14,
-                                      ),
-                                    ),
-                              ),
-                              const SizedBox(height: 10),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text(''),
-                                  Row(
-                                    children: [
-                                      GFIconButton(
-                                        shape: GFIconButtonShape.circle,
-                                        size: GFSize.SMALL,
-                                        color: GFColors.SUCCESS,
-                                        onPressed: () {
-                                          list.add(
-                                            // Get dynamic string from textfield
-                                            controller.formKey.currentState
-                                                ?.fields['name']?.value,
-                                          );
-                                        },
-                                        icon: const Icon(Icons.add),
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      GFIconButton(
-                                        color: GFColors.DANGER,
-                                        size: GFSize.SMALL,
-                                        shape: GFIconButtonShape.circle,
-                                        onPressed: () {
-                                          list.removeLast();
-                                          controller.formKey.currentState
-                                              ?.removeInternalFieldValue(
-                                                  'name${list.length}',
-                                                  isSetState: true);
-                                          debugPrint('list: $list');
-                                        },
-                                        icon: const Icon(Icons.remove),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 10),
-                              Obx(() {
-                                if (list.isEmpty) {
-                                  return Column(
-                                    children: const [
-                                      Center(
-                                        child: Text(
-                                          'Tambahkan Tanggapan Pemutus',
-                                          style: TextStyle(
-                                            fontSize: 24,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 20),
-                                    ],
-                                  );
-                                } else {
-                                  return SizedBox(
-                                    height: 400,
-                                    child: Scrollbar(
-                                      child: ListView.builder(
-                                        itemCount: list.length,
-                                        itemBuilder: (context, index) {
-                                          return myWidget(index);
-                                        },
-                                      ),
-                                    ),
-                                  );
-                                }
-                              })
-                            ],
-                          ),
-                        ),
-                      ),
+                    PengutusSubmitResponse(
+                      controller: controller,
+                      subtitleStyle: subtitleStyle(),
                     ),
                     const SizedBox(height: 20),
                     Container(

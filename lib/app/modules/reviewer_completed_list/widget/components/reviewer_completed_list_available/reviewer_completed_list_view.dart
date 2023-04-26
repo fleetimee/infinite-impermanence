@@ -1,3 +1,4 @@
+import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/reviewer_completed_list/controllers/reviewer_completed_list_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,10 @@ class ListCompletedPengajuanReviewer extends StatelessWidget {
           },
         );
       },
-      child: Scrollbar(
+      child: RawScrollbar(
+        thumbColor: primaryColor,
+        radius: const Radius.circular(16),
+        thickness: 7,
         child: ListView.builder(
           shrinkWrap: true,
           itemCount: controller.listMyCompletedReview.length,

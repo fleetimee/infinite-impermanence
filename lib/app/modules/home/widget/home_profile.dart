@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/widget/components/home_profile/avatar.dart';
+import 'package:akm/app/modules/home/widget/components/home_profile/useer_progression.dart';
 import 'package:akm/app/modules/home/widget/components/home_profile/user_input.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +59,9 @@ class FormFirebase extends StatelessWidget {
                   UserInput(
                     controller: controller,
                     auth: auth,
+                  ),
+                  UserStatAndProgression(
+                    controller: controller,
                   ),
                 ],
               ),

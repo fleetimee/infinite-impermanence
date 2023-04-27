@@ -31,11 +31,8 @@ class HomeMenu extends StatelessWidget {
             controller: controller,
           ),
           const SizedBox(
-            height: 25,
+            height: 10,
           ),
-          StatWidget(
-            controller: controller,
-          )
         ],
       ),
     );

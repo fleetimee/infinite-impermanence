@@ -1,5 +1,6 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
+import 'package:akm/app/modules/home/controllers/home_controller.dart';
 import 'package:akm/app/modules/home/models/menu_grid.dart';
 import 'package:akm/app/modules/home/views/components/home_menu.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ import 'package:getwidget/getwidget.dart';
 // 🌎 Project imports:
 
 class HomeMainPage extends StatelessWidget {
-  HomeMainPage({super.key});
+  HomeMainPage({super.key, required this.controller});
 
   final List<String> imageList = [
     "assets/images/home/image1.jpg",
@@ -21,9 +22,12 @@ class HomeMainPage extends StatelessWidget {
     "assets/images/home/image5.jpg",
   ];
 
+  final HomeController controller;
+
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const NeverScrollableScrollPhysics(),
       slivers: <Widget>[
         SliverAppBar(
           leading: (ModalRoute.of(context)?.canPop ?? false)
@@ -75,61 +79,73 @@ class HomeMainPage extends StatelessWidget {
           sliver: HomeMenu(),
         ),
         SliverToBoxAdapter(
-          child: SizedBox(
-            height: 300,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: GridView.builder(
-                itemCount: menuGridList.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  childAspectRatio: 0.8,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 16,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Column(
+              children: [
+                StatWidget(
+                  controller: controller,
                 ),
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () => menuGridList[index].onTap(),
-                          child: Card(
-                            color: Colors.blue[900]?.withOpacity(0.9),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            elevation: 10,
-                            child: SizedBox(
-                              height: 50,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SvgPicture.asset(
-                                      menuGridList[index].menuIcon,
-                                      height: 50,
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 280,
+                  child: GridView.builder(
+                    itemCount: menuGridList.length,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      childAspectRatio: 0.8,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 16,
+                    ),
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Expanded(
+                            child: InkWell(
+                              onTap: () => menuGridList[index].onTap(),
+                              child: Card(
+                                color: Colors.blue[900]?.withOpacity(0.9),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                elevation: 10,
+                                child: SizedBox(
+                                  height: 50,
+                                  child: Center(
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SvgPicture.asset(
+                                          menuGridList[index].menuIcon,
+                                          height: 50,
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        menuGridList[index].menuName,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: secondaryColor,
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            menuGridList[index].menuName,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              color: secondaryColor,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
         )

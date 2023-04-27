@@ -5,6 +5,7 @@ import 'package:akm/app/modules/pengajuan_printing/widget/pengajuan_printing_gal
 import 'package:akm/app/modules/pengajuan_printing/widget/pengajuan_printing_inputan_section.dart';
 import 'package:akm/app/modules/pengajuan_printing/widget/pengajuan_printing_karakter_section.dart';
 import 'package:akm/app/modules/pengajuan_printing/widget/pengajuan_printing_keuangan_section.dart';
+import 'package:akm/app/modules/pengajuan_printing/widget/pengajuan_printing_others_section.dart';
 import 'package:akm/app/modules/pengajuan_printing/widget/pengajuan_printing_usaha_section.dart';
 import 'package:flutter/material.dart';
 
@@ -68,6 +69,8 @@ class PengajuanPrintingList extends StatelessWidget {
           PrintAgunanSection(),
           SizedBox(height: 25),
           PrintAgunanGallery(),
+          SizedBox(height: 25),
+          PrintOtherSection(),
         ],
       ),
     );

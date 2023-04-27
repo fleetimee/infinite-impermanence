@@ -1,3 +1,4 @@
+import 'package:akm/app/modules/insight_debitur/views/components/printing/pk/pk_input.dart';
 import 'package:akm/app/modules/pengajuan_printing/controllers/pengajuan_printing_controller.dart';
 import 'package:akm/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -188,8 +189,46 @@ final List<PrintCardPengajuanDetail> galleryPrintList = [
     onTap: () {
       final controller = Get.find<PengajuanPrintingController>();
 
-      Get.toNamed(Routes.GALLERY_IMAGE,
+      Get.toNamed(Routes.GALLERY_FILE,
           arguments: controller.insightDebitur.value);
+    },
+  ),
+];
+
+final List<PrintCardPengajuanDetail> othersPrintList = [
+  PrintCardPengajuanDetail(
+    icon: Icons.edit_note,
+    title: 'Pernyataan SLIK',
+    subtitle: 'Cetak Pernyataan SLIK',
+    onTap: () {
+      final controller = Get.find<PengajuanPrintingController>();
+
+      Get.toNamed(Routes.SLIK_PRINTING,
+          arguments: controller.insightDebitur.value);
+    },
+  ),
+  PrintCardPengajuanDetail(
+    icon: Icons.history_edu,
+    title: 'SPKK',
+    subtitle: 'Cetak SPKK',
+    onTap: () {
+      final controller = Get.find<PengajuanPrintingController>();
+
+      Get.toNamed(Routes.SPKK_PRINTING,
+          arguments: controller.insightDebitur.value);
+    },
+  ),
+  PrintCardPengajuanDetail(
+    icon: Icons.assignment_turned_in,
+    title: 'Perjanjian Kredit',
+    subtitle: 'Cetak Perjanjian Kredit',
+    onTap: () {
+      final controller = Get.find<PengajuanPrintingController>();
+
+      Get.to(
+        () => const InputBeforePk(),
+        arguments: controller.insightDebitur.value,
+      );
     },
   ),
 ];

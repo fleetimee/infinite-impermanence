@@ -92,6 +92,7 @@ class HomeMainPage extends StatelessWidget {
                 SizedBox(
                   height: 280,
                   child: GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: menuGridList.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
@@ -144,6 +145,9 @@ class HomeMainPage extends StatelessWidget {
                       );
                     },
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
               ],
             ),

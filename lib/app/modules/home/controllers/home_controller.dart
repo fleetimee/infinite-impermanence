@@ -5,6 +5,7 @@ import 'dart:io';
 
 // 🐦 Flutter imports:
 import 'package:akm/app/widget/dialog_box.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -247,6 +248,15 @@ class HomeController extends GetxController {
   var totalPlafond = 0.obs;
   var totalPlafondRejected = 0.obs;
 
+  // var targetPlafond = 0.obs;
+  var targetPlafond = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+    initialValue: 0,
+  );
+  var successPercentage = 0.0.obs;
+
   // Get location
   void getLocation() async {
     /// Determine the current position of the device.
@@ -431,6 +441,18 @@ class HomeController extends GetxController {
         ).show();
       }
     }
+  }
+
+  void calculatePercentage() {
+    var parseTotalPlafond =
+        double.parse(totalPlafond.toString().replaceAll('.', ''));
+    var parseTarget = double.parse(targetPlafond.text.replaceAll('.', ''));
+
+    // Calculate percentage
+    var percentage = parseTotalPlafond / parseTarget * 100;
+
+    // Set percentage
+    successPercentage.value = percentage;
   }
 
   // Unlink google account

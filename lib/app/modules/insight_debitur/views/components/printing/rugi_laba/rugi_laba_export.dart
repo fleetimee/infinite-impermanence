@@ -112,7 +112,17 @@ Future<Uint8List> makeRugilabaPdf(DebiturInsight debtor) async {
             TableRow(
               children: [
                 headerSmol(
-                    'Per Tanggal ${DateFormat('dd MMMM yyyy').format(DateTime.parse(debtor.inputNeraca!.tanggalInput.toString()).subtract(Duration(days: DateTime.parse(debtor.inputNeraca!.tanggalInput.toString()).day)).add(const Duration(days: 1)).subtract(const Duration(days: 1)))}')
+                    'Per Tanggal ${DateFormat('dd MMMM yyyy', 'id_ID').format(
+                  DateTime.parse(debtor.inputNeraca!.tanggalInput.toString())
+                      .subtract(Duration(
+                          days: DateTime.parse(
+                                  debtor.inputNeraca!.tanggalInput.toString())
+                              .day))
+                      .add(const Duration(days: 1))
+                      .subtract(
+                        const Duration(days: 1),
+                      ),
+                )}')
               ],
             )
           ],
@@ -731,7 +741,17 @@ Future<Uint8List> makeRugilabaPdf(DebiturInsight debtor) async {
             TableRow(
               children: [
                 headerSmol(
-                    'Periode Bulan ${DateFormat('MMMM yyyy').format(DateTime.parse(debtor.inputNeraca!.tanggalInput.toString()))}')
+                    'Periode Bulan ${DateFormat('dd MMMM yyyy', 'id_ID').format(
+                  DateTime.parse(debtor.inputNeraca!.tanggalInput.toString())
+                      .subtract(Duration(
+                          days: DateTime.parse(
+                                  debtor.inputNeraca!.tanggalInput.toString())
+                              .day))
+                      .add(const Duration(days: 1))
+                      .subtract(
+                        const Duration(days: 1),
+                      ),
+                )}')
               ],
             )
           ],

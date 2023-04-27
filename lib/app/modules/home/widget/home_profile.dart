@@ -60,8 +60,19 @@ class FormFirebase extends StatelessWidget {
                     controller: controller,
                     auth: auth,
                   ),
-                  UserStatAndProgression(
-                    controller: controller,
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: UserStatAndProgression(
+                          controller: controller,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

@@ -139,7 +139,13 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(height: 16),
                 Center(
                   child: Text(
-                    'Per tanggal : ${DateFormat('dd MMMM yyyy').format(DateTime(data.inputNeraca.tanggalInput.year, data.inputNeraca.tanggalInput.month, 1).subtract(const Duration(days: 1)))}',
+                    'Per tanggal : ${DateFormat('dd MMMM yyyy', 'id_ID').format(
+                      DateTime(data.inputNeraca.tanggalInput.year,
+                              data.inputNeraca.tanggalInput.month, 1)
+                          .subtract(
+                        const Duration(days: 1),
+                      ),
+                    )}',
                     style: subtitle2,
                   ),
                 ),
@@ -163,7 +169,13 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
                 const SizedBox(height: 16),
                 Center(
                   child: Text(
-                    'Periode bulan : ${DateFormat('MMMM yyyy').format(data.inputNeraca.tanggalInput)}',
+                    'Periode bulan : ${DateFormat('dd MMMM yyyy', 'id_ID').format(
+                      DateTime(data.inputNeraca.tanggalInput.year,
+                              data.inputNeraca.tanggalInput.month, 1)
+                          .subtract(
+                        const Duration(days: 1),
+                      ),
+                    )}',
                     style: subtitle2,
                   ),
                 ),

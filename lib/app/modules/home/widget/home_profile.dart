@@ -1,6 +1,7 @@
 // 🐦 Flutter imports:
 import 'package:akm/app/common/style.dart';
 import 'package:akm/app/modules/home/widget/components/home_profile/avatar.dart';
+import 'package:akm/app/modules/home/widget/components/home_profile/useer_progression.dart';
 import 'package:akm/app/modules/home/widget/components/home_profile/user_input.dart';
 import 'package:flutter/material.dart';
 
@@ -58,6 +59,20 @@ class FormFirebase extends StatelessWidget {
                   UserInput(
                     controller: controller,
                     auth: auth,
+                  ),
+                  const SizedBox(
+                    height: 10.0,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: Scrollbar(
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: UserStatAndProgression(
+                          controller: controller,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),

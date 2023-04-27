@@ -5,6 +5,7 @@ import 'dart:io';
 
 // 🐦 Flutter imports:
 import 'package:akm/app/widget/dialog_box.dart';
+import 'package:extended_masked_text/extended_masked_text.dart';
 import 'package:flutter/material.dart';
 
 // 📦 Package imports:
@@ -243,6 +244,19 @@ class HomeController extends GetxController {
   var isReauthProcessing = false.obs;
   var isPasswordProcessing = false.obs;
 
+  // For stat card
+  var totalPlafond = 0.obs;
+  var totalPlafondRejected = 0.obs;
+
+  // var targetPlafond = 0.obs;
+  var targetPlafond = MoneyMaskedTextController(
+    decimalSeparator: '',
+    thousandSeparator: '.',
+    precision: 0,
+    initialValue: 0,
+  );
+  var successPercentage = 0.0.obs;
+
   // Get location
   void getLocation() async {
     /// Determine the current position of the device.
@@ -427,6 +441,18 @@ class HomeController extends GetxController {
         ).show();
       }
     }
+  }
+
+  void calculatePercentage() {
+    var parseTotalPlafond =
+        double.parse(totalPlafond.toString().replaceAll('.', ''));
+    var parseTarget = double.parse(targetPlafond.text.replaceAll('.', ''));
+
+    // Calculate percentage
+    var percentage = parseTotalPlafond / parseTarget * 100;
+
+    // Set percentage
+    successPercentage.value = percentage;
   }
 
   // Unlink google account
@@ -730,6 +756,29 @@ class HomeController extends GetxController {
 
         listMyInput.clear();
         listMyInput.addAll(resp);
+
+        for (var element in listMyInput) {
+          if (element.inputKeuangan != null) {
+            // totalPlafond += int.parse(element.inputKeuangan!.kreditDiusulkan!);
+
+            /// Check if pengajuan is not empty
+            if (element.pengajuan!.isNotEmpty) {
+              /// Check if pengajuan status is DONE
+              if (element.pengajuan![0].status == 'DONE') {
+                totalPlafond +=
+                    int.parse(element.inputKeuangan!.kreditDiusulkan!);
+              }
+
+              if (element.pengajuan![0].status == 'REJECTED') {
+                totalPlafondRejected +=
+                    int.parse(element.inputKeuangan!.kreditDiusulkan!);
+              }
+            }
+          }
+        }
+
+        debugPrint('Total plafond: $totalPlafond');
+        debugPrint('Total plafond rejected: $totalPlafondRejected');
       }, onError: (error) {
         isMyInputProcessing(false);
         Get.snackbar('Error', error.toString());

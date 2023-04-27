@@ -63,7 +63,9 @@ class HomeView extends GetView<HomeController> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             SafeArea(
-              child: HomeMainPage(),
+              child: HomeMainPage(
+                controller: controller,
+              ),
             ),
             LoaderOverlay(
               child: SafeArea(

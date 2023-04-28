@@ -20,7 +20,7 @@ dependencies:
       url: https://github.com/chornthorn/data_connection_checker.git
       ref: master
   data_table_2: ^2.4.2
-  device_info_plus: ^8.2.0
+  device_info_plus: ^8.2.2
   dio: ^5.1.1
   double_back_to_close_app: ^2.1.0
   extended_masked_text: ^2.3.1
@@ -32,7 +32,7 @@ dependencies:
   firebase_analytics: ^10.2.1
   firebase_auth: ^4.4.2
   firebase_core: ^2.10.0
-  firebase_crashlytics: ^3.1.1
+  firebase_crashlytics: ^3.1.2
   firebase_messaging: ^14.4.1
   flutter:
     sdk: flutter
@@ -69,10 +69,10 @@ dependencies:
   geolocator: ^9.0.2
   get: 4.6.5
   getwidget: ^3.1.1
-  google_fonts: ^4.0.3
+  google_fonts: ^4.0.4
   google_sign_in: ^6.1.0
   http: ^0.13.5
-  image_picker: ^0.8.7+3
+  image_picker: ^0.8.7+4
   in_app_update:
     git:
       url: https://github.com/nikb7/flutter_in_app_update
@@ -107,7 +107,7 @@ dependencies:
   rive: 0.9.1
   scaffold_gradient_background: ^1.0.3+1
   settings_ui: ^2.0.2
-  share_plus: ^6.3.2
+  share_plus: ^6.3.4
   shared_preferences: ^2.1.0
   syncfusion_flutter_charts: ^21.1.41
   terbilang_id: ^0.1.0

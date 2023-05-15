@@ -15,4 +15,16 @@ ThemeData lightTheme = ThemeData(
   visualDensity: VisualDensity.adaptivePlatformDensity,
   textTheme: GoogleFonts.plusJakartaSansTextTheme(),
   scaffoldBackgroundColor: secondaryColor,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: primaryColor,
+    elevation: 0,
+    titleTextStyle: TextStyle(
+      color: Colors.white,
+      fontSize: 24,
+      fontWeight: FontWeight.w500,
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+    ),
+  ),
 );

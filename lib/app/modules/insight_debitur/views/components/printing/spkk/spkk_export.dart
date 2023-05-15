@@ -46,11 +46,6 @@ Future<Uint8List> makeSpkkPdf(DebiturInsight debtor) async {
 
   helperBranch = office['cabang_pembantu'];
 
-  final imageLogo = MemoryImage(
-      (await rootBundle.load('assets/images/pdf/logo.png'))
-          .buffer
-          .asUint8List());
-
   // Get list of syarat lain
   var syaratList = debtor.syaratLain;
 

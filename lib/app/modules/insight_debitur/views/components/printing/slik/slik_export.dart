@@ -28,11 +28,6 @@ Future<Uint8List> makeSlikPdf(DebiturInsight debtor) async {
     version: PdfVersion.pdf_1_5,
   );
 
-  final imageLogo = MemoryImage(
-      (await rootBundle.load('assets/images/pdf/logo.png'))
-          .buffer
-          .asUint8List());
-
   pdf.addPage(
     MultiPage(
       footer: (context) => Container(

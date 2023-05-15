@@ -96,8 +96,8 @@ class ListRiwayatPengajuan extends StatelessWidget {
                     index: index,
                     buildChip: buildChip,
                   ),
-                  trailing: Column(
-                    children: const [
+                  trailing: const Column(
+                    children: [
                       SizedBox(
                         height: 30,
                       ),

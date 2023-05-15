@@ -69,7 +69,6 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
       ),
       body: FormBuilder(
         key: controller.formKey,
-        autoFocusOnValidationFailure: true,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -188,12 +187,14 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                               Text(
                                 controller.deskripsiKredit,
-                                style:
-                                    Theme.of(context).textTheme.bodySmall?.merge(
-                                          const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.merge(
+                                      const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
                               ),
                               const SizedBox(
                                 height: 16.0,
@@ -266,12 +267,14 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                               Text(
                                 controller.bungaDeskripsi,
-                                style:
-                                    Theme.of(context).textTheme.bodySmall?.merge(
-                                          const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.merge(
+                                      const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
                               ),
                               const SizedBox(
                                 height: 16.0,
@@ -884,12 +887,14 @@ class LihatInputKeuanganView extends GetView<InputKeuanganController> {
                               ),
                               Text(
                                 controller.interestTop,
-                                style:
-                                    Theme.of(context).textTheme.bodySmall?.merge(
-                                          const TextStyle(
-                                            fontSize: 14.0,
-                                          ),
-                                        ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.merge(
+                                      const TextStyle(
+                                        fontSize: 14.0,
+                                      ),
+                                    ),
                               ),
                               const SizedBox(
                                 height: 16.0,

@@ -83,10 +83,10 @@ class KursView extends GetView<KursController> {
                                       style: Get.textTheme.titleLarge),
                                   subTitle: Column(
                                     children: [
-                                      Row(
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: const [
+                                        children: [
                                           Text(
                                             'Kurs Beli',
                                             style: TextStyle(
@@ -156,10 +156,10 @@ class KursView extends GetView<KursController> {
                                       style: Get.textTheme.titleLarge),
                                   subTitle: Column(
                                     children: [
-                                      Row(
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: const [
+                                        children: [
                                           Text(
                                             'Kurs Beli',
                                             style: TextStyle(
@@ -229,10 +229,10 @@ class KursView extends GetView<KursController> {
                                       style: Get.textTheme.titleLarge),
                                   subTitle: Column(
                                     children: [
-                                      Row(
+                                      const Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: const [
+                                        children: [
                                           Text(
                                             'Kurs Beli',
                                             style: TextStyle(

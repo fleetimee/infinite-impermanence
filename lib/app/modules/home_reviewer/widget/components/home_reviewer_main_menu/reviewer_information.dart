@@ -67,9 +67,9 @@ class ReviewerDeviceInformation extends StatelessWidget {
                 width: 8,
               ),
               Obx(() => homeCtrl.address.value == 'Getting address'
-                  ? SizedBox(
+                  ? const SizedBox(
                       child: Row(
-                        children: const [
+                        children: [
                           Text(
                             'Getting address',
                             style: TextStyle(
@@ -121,9 +121,9 @@ class ReviewerDeviceInformation extends StatelessWidget {
               ),
               Obx(() => homeCtrl.mainBranch.value == '...' &&
                       homeCtrl.helperBranch.value == '...'
-                  ? SizedBox(
+                  ? const SizedBox(
                       child: Row(
-                        children: const [
+                        children: [
                           Text(
                             '...',
                             style: TextStyle(

@@ -53,8 +53,8 @@ class MenuPilihAgunan extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.agunan?.length == 0) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -69,9 +69,9 @@ class MenuPilihAgunan extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(

@@ -52,8 +52,8 @@ class MenuAnalisaAgunan extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.analisaAgunan == null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -68,9 +68,9 @@ class MenuAnalisaAgunan extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(

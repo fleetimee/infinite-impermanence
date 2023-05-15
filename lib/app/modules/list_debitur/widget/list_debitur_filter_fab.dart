@@ -491,10 +491,7 @@ class ListDebiturFilterFab extends StatelessWidget {
                                                   decimalDigits: 0,
                                                   name: 'Rp. ',
                                                 ),
-                                                textStyle: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
+
                                                 activeColor: primaryColor,
                                                 inactiveColor: Colors.pink[100],
                                                 onSaved: (value) {

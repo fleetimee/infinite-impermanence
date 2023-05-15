@@ -127,8 +127,7 @@ class PengutusSubmitResponse extends StatelessWidget {
                         } else {
                           list.removeLast();
                           controller.formKey.currentState
-                              ?.removeInternalFieldValue('name${list.length}',
-                                  isSetState: true);
+                              ?.removeInternalFieldValue('name${list.length}');
 
                           debugPrint('list: $list');
 

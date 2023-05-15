@@ -95,7 +95,6 @@ class EditLihatKeuanganAnalisisView
                         .toString());
                   },
                   autovalidateMode: AutovalidateMode.always,
-                  autoFocusOnValidationFailure: true,
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [

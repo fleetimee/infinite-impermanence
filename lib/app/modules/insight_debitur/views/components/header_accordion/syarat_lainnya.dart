@@ -46,12 +46,12 @@ class HeaderSyarat extends StatelessWidget {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: primaryColor,
-        tabs: [
+        tabs: const [
           // first tab [you can add an icon using the icon property]
           Tab(
             icon: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 Expanded(
                   child: Icon(
                     FontAwesomeIcons.grip,
@@ -119,8 +119,8 @@ class MenuInputanSyarat extends StatelessWidget {
                   } else {
                     if (controller.insightDebitur.value.syaratLain?.length ==
                         0) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -135,9 +135,9 @@ class MenuInputanSyarat extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(
@@ -266,8 +266,8 @@ class MenuInputIjin extends StatelessWidget {
                   } else {
                     if (controller.insightDebitur.value.ijinLegitimasi ==
                         null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -282,9 +282,9 @@ class MenuInputIjin extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(
@@ -445,8 +445,8 @@ class MenuAsuransi extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.asuransi == null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -461,9 +461,9 @@ class MenuAsuransi extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(

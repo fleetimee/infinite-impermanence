@@ -267,8 +267,8 @@ class IntroScreenView extends GetView<IntroScreenController> {
               ),
               PageViewModel(
                 title: 'Awesome 🎉',
-                bodyWidget: Column(
-                  children: const [
+                bodyWidget: const Column(
+                  children: [
                     Align(
                       alignment: Alignment.center,
                       child: Text(

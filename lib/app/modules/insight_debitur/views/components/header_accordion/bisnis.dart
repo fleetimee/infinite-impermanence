@@ -43,12 +43,12 @@ class HeaderBisnis extends StatelessWidget {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: primaryColor,
-        tabs: [
+        tabs: const [
           // first tab [you can add an icon using the icon property]
           Tab(
             icon: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 Expanded(
                   child: Icon(
                     FontAwesomeIcons.arrowTrendUp,
@@ -115,8 +115,8 @@ class MenuAnalisaBisnis extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.analisaBisnis == null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -131,9 +131,9 @@ class MenuAnalisaBisnis extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(

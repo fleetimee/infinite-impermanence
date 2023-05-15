@@ -267,9 +267,9 @@ class StatusWidget extends StatelessWidget {
               ),
               Obx(
                 () => controller.address.value == 'Getting address'
-                    ? SizedBox(
+                    ? const SizedBox(
                         child: Row(
-                          children: const [
+                          children: [
                             Text(
                               'Getting address',
                               style: TextStyle(
@@ -323,9 +323,9 @@ class StatusWidget extends StatelessWidget {
               Obx(
                 () => controller.mainBranch.value == '...' &&
                         controller.helperBranch.value == '...'
-                    ? SizedBox(
+                    ? const SizedBox(
                         child: Row(
-                          children: const [
+                          children: [
                             Text(
                               '...',
                               style: TextStyle(

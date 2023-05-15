@@ -38,12 +38,12 @@ class HeaderDetailDebitur extends StatelessWidget {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: primaryColor,
-        tabs: [
+        tabs: const [
           // first tab [you can add an icon using the icon property]
           Tab(
             icon: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 Expanded(
                   child: Icon(
                     FontAwesomeIcons.accessibleIcon,

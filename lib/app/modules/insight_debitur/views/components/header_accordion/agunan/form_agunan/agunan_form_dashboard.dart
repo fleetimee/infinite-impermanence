@@ -51,13 +51,13 @@ class MenuMasukFormAgunan extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.agunan?.length == 0) {
-                      return Row(
-                        children: const [],
+                      return const Row(
+                        children: [],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const []);
+                          children: []);
                     }
                   }
                 },

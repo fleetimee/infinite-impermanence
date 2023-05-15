@@ -80,11 +80,11 @@ class MediaDocsView extends GetView<MediaDocsController> {
                     ],
                     maxFiles: 1,
                     validator: FormBuilderValidators.required(),
-                    typeSelectors: [
+                    typeSelectors: const [
                       TypeSelector(
                           type: FileType.custom,
                           selector: Row(
-                            children: const [
+                            children: [
                               Icon(
                                 Icons.attach_file,
                               ),
@@ -160,7 +160,7 @@ Widget customFileViewerBuilder(
   return ListView.separated(
     shrinkWrap: true,
     itemBuilder: (context, index) {
-      final file = files![index];
+      final file = files[index];
       return ListTile(
         title: Text(file.name),
         trailing: IconButton(

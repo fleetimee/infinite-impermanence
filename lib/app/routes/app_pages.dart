@@ -353,7 +353,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LIST_DEBITUR,
-      page: () => ListDebiturView(),
+      page: () => const ListDebiturView(),
       binding: ListDebiturBinding(),
     ),
     GetPage(
@@ -552,7 +552,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.PENGAJUAN_PRINTING,
-      page: () => PengajuanPrintingView(),
+      page: () => const PengajuanPrintingView(),
       binding: PengajuanPrintingBinding(),
     ),
     GetPage(

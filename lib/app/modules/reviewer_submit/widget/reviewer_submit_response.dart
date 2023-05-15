@@ -136,8 +136,8 @@ class ReviewerSubmitResponse extends StatelessWidget {
                               list.removeLast();
                               controller.formKey.currentState
                                   ?.removeInternalFieldValue(
-                                      'name${list.length}',
-                                      isSetState: true);
+                                'name${list.length}',
+                              );
 
                               debugPrint('list: $list');
 

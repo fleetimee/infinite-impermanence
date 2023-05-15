@@ -53,9 +53,9 @@ class PengajuanPrintingList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      child: Column(
+      child: const Column(
         mainAxisSize: MainAxisSize.min,
-        children: const [
+        children: [
           PrintInputanSection(),
           SizedBox(height: 25),
           PrintKeuanganSection(),

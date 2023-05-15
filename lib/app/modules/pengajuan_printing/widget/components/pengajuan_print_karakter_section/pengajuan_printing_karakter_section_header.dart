@@ -17,21 +17,21 @@ class HeaderPrintingKarakter extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Row(
           children: [
-            Expanded(
+            const Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Print",
                     style: TextStyle(
                       fontSize: 12.0,
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 6.0,
                   ),
                   Row(
-                    children: const [
+                    children: [
                       Text(
                         "Analisa Karakter",
                         style: TextStyle(

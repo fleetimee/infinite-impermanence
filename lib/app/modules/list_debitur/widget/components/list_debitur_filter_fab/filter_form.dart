@@ -16,6 +16,7 @@ import 'package:intl/intl.dart';
 import 'package:akm/app/common/provinsi_kabupaten.dart';
 import 'package:akm/app/common/style.dart';
 
+// ignore: must_be_immutable
 class FilterForm extends StatelessWidget {
   final ListDebiturController controller;
   String umur;
@@ -335,10 +336,6 @@ class FilterForm extends StatelessWidget {
                         locale: 'id',
                         decimalDigits: 0,
                         name: 'Rp. ',
-                      ),
-                      textStyle: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
                       ),
                       activeColor: primaryColor,
                       inactiveColor: Colors.pink[100],

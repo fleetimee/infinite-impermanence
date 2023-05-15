@@ -113,8 +113,8 @@ class RssFeedView extends GetView<RssFeedController> {
                                                 const SizedBox(
                                                   height: 4.0,
                                                 ),
-                                                Row(
-                                                  children: const [
+                                                const Row(
+                                                  children: [
                                                     Text(
                                                       "Admin",
                                                       style: TextStyle(
@@ -163,13 +163,13 @@ class RssFeedView extends GetView<RssFeedController> {
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(12.0),
+                                    const Padding(
+                                      padding: EdgeInsets.all(12.0),
                                       child: Row(
                                         children: [
                                           SizedBox(
                                             child: Row(
-                                              children: const [
+                                              children: [
                                                 Icon(
                                                   Icons.thumb_up,
                                                   size: 20.0,
@@ -186,12 +186,12 @@ class RssFeedView extends GetView<RssFeedController> {
                                               ],
                                             ),
                                           ),
-                                          const SizedBox(
+                                          SizedBox(
                                             width: 12.0,
                                           ),
                                           SizedBox(
                                             child: Row(
-                                              children: const [
+                                              children: [
                                                 Icon(
                                                   Icons.chat_bubble_outline,
                                                   size: 20.0,
@@ -208,8 +208,8 @@ class RssFeedView extends GetView<RssFeedController> {
                                               ],
                                             ),
                                           ),
-                                          const Spacer(),
-                                          const Icon(
+                                          Spacer(),
+                                          Icon(
                                             Icons.share,
                                             size: 20.0,
                                           ),

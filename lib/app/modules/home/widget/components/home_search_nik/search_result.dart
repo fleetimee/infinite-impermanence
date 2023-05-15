@@ -155,8 +155,8 @@ class NikSearchResult extends StatelessWidget {
                             )
                           ],
                         ),
-                        trailing: Column(
-                          children: const [
+                        trailing: const Column(
+                          children: [
                             SizedBox(
                               height: 10,
                             ),

@@ -35,7 +35,6 @@ class EditRugiLabaView extends GetView<RugiLabaController> {
         child: Container(
           padding: const EdgeInsets.all(16),
           child: FormBuilder(
-            autoFocusOnValidationFailure: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             key: controller.formKey,
             child: Column(

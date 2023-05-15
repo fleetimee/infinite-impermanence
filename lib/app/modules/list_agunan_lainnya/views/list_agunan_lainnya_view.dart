@@ -139,9 +139,9 @@ class ListAgunanLainnyaView extends GetView<ListAgunanLainnyaController> {
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       child: GFListTile(
                         color: secondaryColor,
-                        title: Column(
+                        title: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
+                          children: [
                             Text(
                               'Agunan Lainnya',
                               style: TextStyle(

@@ -73,10 +73,10 @@ class EditKarakterAnalisisView extends GetView<KarakterAnalisisController> {
                         left: 20.0,
                         right: 20.0,
                       ),
-                      child: Column(
+                      child: const Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
-                        children: const [
+                        children: [
                           SizedBox(
                             height: 10,
                           ),

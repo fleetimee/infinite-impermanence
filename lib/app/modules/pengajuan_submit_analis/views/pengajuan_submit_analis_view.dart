@@ -259,8 +259,8 @@ class PengajuanSubmitAnalisView
                                 list.removeLast();
                                 controller.formKey.currentState
                                     ?.removeInternalFieldValue(
-                                        'name${list.length}',
-                                        isSetState: true);
+                                  'name${list.length}',
+                                );
                                 debugPrint('list: $list');
                               },
                               icon: const Icon(Icons.remove),
@@ -273,8 +273,8 @@ class PengajuanSubmitAnalisView
 
                     Obx(() {
                       if (list.isEmpty) {
-                        return Column(
-                          children: const [
+                        return const Column(
+                          children: [
                             SizedBox(
                               height: 150,
                             ),

@@ -45,12 +45,12 @@ class HeaderKeuangan extends StatelessWidget {
         ),
         labelColor: Colors.white,
         unselectedLabelColor: primaryColor,
-        tabs: [
+        tabs: const [
           // first tab [you can add an icon using the icon property]
           Tab(
             icon: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
+              children: [
                 Expanded(
                   child: Icon(
                     FontAwesomeIcons.moneyCheckDollar,
@@ -114,8 +114,8 @@ class MenuNeraca extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.inputNeraca == null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -130,9 +130,9 @@ class MenuNeraca extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(
@@ -289,8 +289,8 @@ class MenuRugiLaba extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.inputRugiLaba == null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -305,9 +305,9 @@ class MenuRugiLaba extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(
@@ -487,8 +487,8 @@ class MenuInputKeuangan extends StatelessWidget {
                     );
                   } else {
                     if (controller.insightDebitur.value.inputKeuangan == null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -503,9 +503,9 @@ class MenuInputKeuangan extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(
@@ -687,8 +687,8 @@ class MenuAnalisaKeuangan extends StatelessWidget {
                   } else {
                     if (controller.insightDebitur.value.analisaKeuangan ==
                         null) {
-                      return Row(
-                        children: const [
+                      return const Row(
+                        children: [
                           Text(
                             'Belum di-input',
                             style: TextStyle(color: Colors.red),
@@ -703,9 +703,9 @@ class MenuAnalisaKeuangan extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Row(
+                      return const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: const [
+                        children: [
                           Text(
                             'Sudah di-input',
                             style: TextStyle(

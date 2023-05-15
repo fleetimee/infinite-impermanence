@@ -191,10 +191,10 @@ class SideMenu extends StatelessWidget {
           const SizedBox(
             height: 300,
           ),
-          Align(
+          const Align(
             alignment: FractionalOffset.bottomRight,
             child: Column(
-              children: const <Widget>[
+              children: <Widget>[
                 Divider(),
                 Center(
                   child: ListTile(

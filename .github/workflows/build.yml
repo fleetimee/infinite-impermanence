@@ -12,7 +12,7 @@ jobs:
     name: Build Artifacts and Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       # Menyiapkan Java
       - name: Setup Java
@@ -79,7 +79,7 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Get APPBUNDLE from Artifacts
         uses: actions/download-artifact@v3
         with:
